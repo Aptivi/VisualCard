@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <AssemblyVersion>0.1.0.0</AssemblyVersion>
+    <FileVersion>0.1.0.0</FileVersion>
+    <Version>0.1.0.0</Version>
+    <ApplicationIcon>OfficialAppIcon-VisualCard.ico</ApplicationIcon>
+    <Company>EoflaOE</Company>
+    <Description>A managed VCard contact file parser</Description>
+    <Copyright>Copyright (c) 2021 - 2022 EoflaOE and its companies.</Copyright>
+    <PackageIcon>OfficialAppIcon-VisualCard-512.png</PackageIcon>
+    <PackageProjectUrl>https://github.com/EoflaOE/VisualCard</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/EoflaOE/VisualCard</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>vcf;contacts;parsers</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="OfficialAppIcon-VisualCard.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="OfficialAppIcon-VisualCard-512.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
