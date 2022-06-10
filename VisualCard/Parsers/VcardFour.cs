@@ -23,10 +23,29 @@
  * 
  */
 
-namespace VisualCard
-{
-    public static class CardParser
-    {
+using System;
 
+namespace VisualCard.Parsers
+{
+    /// <summary>
+    /// Parser for VCard version 4.0. Consult the vcard-40-rfc6350.txt file in source for the specification.
+    /// </summary>
+    public class VcardFour : BaseVcardParser, IVcardParser
+    {
+        public override string CardPath { get; }
+        public override string CardContent { get; }
+        public override string CardVersion { get; }
+
+        public override Card Parse()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal VcardFour(string cardPath, string cardContent, string cardVersion)
+        {
+            CardPath = cardPath;
+            CardContent = cardContent;
+            CardVersion = cardVersion;
+        }
     }
 }

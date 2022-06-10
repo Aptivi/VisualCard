@@ -44,10 +44,6 @@ namespace VisualCard
         /// </summary>
         public string? ContactLastName { get; set; }
         /// <summary>
-        /// The contact's name suffix
-        /// </summary>
-        public string? ContactNameSuffix { get; set; }
-        /// <summary>
         /// The contact's full name
         /// </summary>
         public string? ContactFullName { get; }
@@ -80,12 +76,25 @@ namespace VisualCard
         /// </summary>
         public string? ContactURL { get; set; }
         /// <summary>
-        /// The contact's photo encoding
+        /// The contact's notes
         /// </summary>
-        public string? ContactPhotoEncoding { get; set; }
-        /// <summary>
-        /// The contact's photo
-        /// </summary>
-        public string? ContactPhoto { get; set; }
+        public string? ContactNotes { get; set; }
+
+        internal Card(string? cardVersion, string? contactFirstName, string? contactMiddleName, string? contactLastName, string? contactFullName, string? contactPhoneType, string? contactPhoneNumber, string? contactAddress, string? contactAddressType, string? contactOrganization, string? contactTitle, string? contactURL, string? contactNotes)
+        {
+            CardVersion = cardVersion;
+            ContactFirstName = contactFirstName;
+            ContactMiddleName = contactMiddleName;
+            ContactLastName = contactLastName;
+            ContactFullName = contactFullName;
+            ContactPhoneType = contactPhoneType;
+            ContactPhoneNumber = contactPhoneNumber;
+            ContactAddress = contactAddress;
+            ContactAddressType = contactAddressType;
+            ContactOrganization = contactOrganization;
+            ContactTitle = contactTitle;
+            ContactURL = contactURL;
+            ContactNotes = contactNotes;
+        }
     }
 }

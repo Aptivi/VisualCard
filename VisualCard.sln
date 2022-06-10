@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisualCard", "VisualCard\VisualCard.csproj", "{2AFDCE5C-842F-4129-B4BE-00A72F19DCD2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisualCard", "VisualCard\VisualCard.csproj", "{2AFDCE5C-842F-4129-B4BE-00A72F19DCD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisualCard.ShowContacts", "VisualCard.ShowContacts\VisualCard.ShowContacts.csproj", "{798FA5EC-E411-4DF3-B8C7-D5E0AA63AA58}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{2AFDCE5C-842F-4129-B4BE-00A72F19DCD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2AFDCE5C-842F-4129-B4BE-00A72F19DCD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2AFDCE5C-842F-4129-B4BE-00A72F19DCD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{798FA5EC-E411-4DF3-B8C7-D5E0AA63AA58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{798FA5EC-E411-4DF3-B8C7-D5E0AA63AA58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{798FA5EC-E411-4DF3-B8C7-D5E0AA63AA58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{798FA5EC-E411-4DF3-B8C7-D5E0AA63AA58}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
