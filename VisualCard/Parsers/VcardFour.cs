@@ -24,6 +24,7 @@
  */
 
 using System;
+using VisualCard.Parts;
 
 namespace VisualCard.Parsers
 {

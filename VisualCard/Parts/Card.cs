@@ -23,7 +23,7 @@
  * 
  */
 
-namespace VisualCard
+namespace VisualCard.Parts
 {
     public class Card
     {
@@ -34,64 +34,49 @@ namespace VisualCard
         /// <summary>
         /// The contact's first name
         /// </summary>
-        public string? ContactFirstName { get; set; }
-        /// <summary>
-        /// The contact's middle name
-        /// </summary>
-        public string? ContactMiddleName { get; set; }
+        public string? ContactFirstName { get; }
         /// <summary>
         /// The contact's last name
         /// </summary>
-        public string? ContactLastName { get; set; }
+        public string? ContactLastName { get; }
         /// <summary>
         /// The contact's full name
         /// </summary>
         public string? ContactFullName { get; }
         /// <summary>
-        /// The contact's phone type
+        /// The contact's telephones
         /// </summary>
-        public string? ContactPhoneType { get; set; }
+        public TelephoneInfo[] ContactTelephones { get; }
         /// <summary>
-        /// The contact's phone number
+        /// The contact's addresses
         /// </summary>
-        public string? ContactPhoneNumber { get; set; }
+        public AddressInfo[] ContactAddresses { get; }
         /// <summary>
-        /// The contact's address
+        /// The contact's organizations
         /// </summary>
-        public string? ContactAddress { get; set; }
-        /// <summary>
-        /// The contact's address type
-        /// </summary>
-        public string? ContactAddressType { get; set; }
-        /// <summary>
-        /// The contact's organization
-        /// </summary>
-        public string? ContactOrganization { get; set; }
+        public OrganizationInfo[] ContactOrganizations { get; }
         /// <summary>
         /// The contact's title
         /// </summary>
-        public string? ContactTitle { get; set; }
+        public string? ContactTitle { get; }
         /// <summary>
         /// The contact's URL
         /// </summary>
-        public string? ContactURL { get; set; }
+        public string? ContactURL { get; }
         /// <summary>
         /// The contact's notes
         /// </summary>
-        public string? ContactNotes { get; set; }
+        public string? ContactNotes { get; }
 
-        internal Card(string? cardVersion, string? contactFirstName, string? contactMiddleName, string? contactLastName, string? contactFullName, string? contactPhoneType, string? contactPhoneNumber, string? contactAddress, string? contactAddressType, string? contactOrganization, string? contactTitle, string? contactURL, string? contactNotes)
+        internal Card(string? cardVersion, string? contactFirstName, string? contactLastName, string? contactFullName, TelephoneInfo[] contactTelephones, AddressInfo[] contactAddresses, OrganizationInfo[] contactOrganizations, string? contactTitle, string? contactURL, string? contactNotes)
         {
             CardVersion = cardVersion;
             ContactFirstName = contactFirstName;
-            ContactMiddleName = contactMiddleName;
             ContactLastName = contactLastName;
             ContactFullName = contactFullName;
-            ContactPhoneType = contactPhoneType;
-            ContactPhoneNumber = contactPhoneNumber;
-            ContactAddress = contactAddress;
-            ContactAddressType = contactAddressType;
-            ContactOrganization = contactOrganization;
+            ContactTelephones = contactTelephones;
+            ContactAddresses = contactAddresses;
+            ContactOrganizations = contactOrganizations;
             ContactTitle = contactTitle;
             ContactURL = contactURL;
             ContactNotes = contactNotes;

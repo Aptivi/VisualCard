@@ -23,6 +23,8 @@
  * 
  */
 
+using VisualCard.Parts;
+
 namespace VisualCard.Parsers
 {
     /// <summary>

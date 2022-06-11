@@ -24,6 +24,7 @@
  */
 
 using VisualCard.Parsers;
+using VisualCard.Parts;
 
 namespace VisualCard.ShowContacts
 {
@@ -52,17 +53,38 @@ namespace VisualCard.ShowContacts
                 foreach (Card Contact in Contacts)
                 {
                     Console.WriteLine("----------------------------");
-                    Console.WriteLine("Name:          {0}", Contact.ContactFullName);
-                    Console.WriteLine("First name:    {0}", Contact.ContactFirstName);
-                    Console.WriteLine("Middle name:   {0}", Contact.ContactMiddleName);
-                    Console.WriteLine("Last name:     {0}", Contact.ContactLastName);
-                    Console.WriteLine("Address type:  {0}", Contact.ContactAddressType);
-                    Console.WriteLine("Address:       {0}", Contact.ContactAddress);
-                    Console.WriteLine("Organization:  {0}", Contact.ContactOrganization);
-                    Console.WriteLine("Title or Job:  {0}", Contact.ContactTitle);
-                    Console.WriteLine("Contact URL:   {0}", Contact.ContactURL);
-                    Console.WriteLine("Phone type:    {0}", Contact.ContactPhoneType);
-                    Console.WriteLine("Phone number:  {0}", Contact.ContactPhoneNumber);
+                    Console.WriteLine("Name:                    {0}", Contact.ContactFullName);
+                    Console.WriteLine("First name:              {0}", Contact.ContactFirstName);
+                    Console.WriteLine("Last name:               {0}", Contact.ContactLastName);
+                    Console.WriteLine("Title or Job:            {0}", Contact.ContactTitle);
+                    Console.WriteLine("Contact URL:             {0}", Contact.ContactURL);
+                    Console.WriteLine("Contact Note:            {0}", Contact.ContactNotes);
+
+                    // List addresses
+                    foreach (AddressInfo Address in Contact.ContactAddresses)
+                    {
+                        Console.WriteLine("P.O. Box:                {0}", Address.PostOfficeBox);
+                        Console.WriteLine("Extended Address:        {0}", Address.ExtendedAddress);
+                        Console.WriteLine("Street Address:          {0}", Address.StreetAddress);
+                        Console.WriteLine("Region:                  {0}", Address.Region);
+                        Console.WriteLine("Locality:                {0}", Address.Locality);
+                        Console.WriteLine("Postal Code:             {0}", Address.PostalCode);
+                        Console.WriteLine("Country:                 {0}", Address.Country);
+                    }
+
+                    // List organizations
+                    foreach (OrganizationInfo Organization in Contact.ContactOrganizations)
+                    {
+                        Console.WriteLine("Organization Name:       {0}", Organization.Name);
+                        Console.WriteLine("Organization Unit:       {0}", Organization.Unit);
+                        Console.WriteLine("Organization Unit Role:  {0}", Organization.Role);
+                    }
+
+                    foreach (TelephoneInfo Telephone in Contact.ContactTelephones)
+                    {
+                        Console.WriteLine("Phone types:             {0}", Telephone.ContactPhoneTypes);
+                        Console.WriteLine("Phone number:            {0}", Telephone.ContactPhoneNumber);
+                    }
                 }
             }
         }

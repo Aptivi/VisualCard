@@ -23,16 +23,25 @@
  * 
  */
 
-using VisualCard.Parts;
-
-namespace VisualCard.Parsers
+namespace VisualCard.Parts
 {
-    public abstract class BaseVcardParser : IVcardParser
+    public class TelephoneInfo
     {
-        public virtual string CardPath => "";
-        public virtual string CardContent => "";
-        public virtual string CardVersion => "";
+        /// <summary>
+        /// The contact's phone types
+        /// </summary>
+        public string[]? ContactPhoneTypes { get; }
+        /// <summary>
+        /// The contact's phone number
+        /// </summary>
+        public string? ContactPhoneNumber { get; }
 
-        public abstract Card Parse();
+        internal TelephoneInfo() { }
+
+        internal TelephoneInfo(string[]? contactPhoneTypes, string? contactPhoneNumber)
+        {
+            ContactPhoneTypes = contactPhoneTypes;
+            ContactPhoneNumber = contactPhoneNumber;
+        }
     }
 }

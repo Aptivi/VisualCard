@@ -23,16 +23,30 @@
  * 
  */
 
-using VisualCard.Parts;
-
-namespace VisualCard.Parsers
+namespace VisualCard.Parts
 {
-    public abstract class BaseVcardParser : IVcardParser
+    public class OrganizationInfo
     {
-        public virtual string CardPath => "";
-        public virtual string CardContent => "";
-        public virtual string CardVersion => "";
+        /// <summary>
+        /// The contact's organization name
+        /// </summary>
+        public string? Name { get; }
+        /// <summary>
+        /// The contact's organization unit
+        /// </summary>
+        public string? Unit { get; }
+        /// <summary>
+        /// The contact's organization unit's role
+        /// </summary>
+        public string? Role { get; }
 
-        public abstract Card Parse();
+        internal OrganizationInfo() { }
+
+        internal OrganizationInfo(string? name, string? unit, string? role)
+        {
+            Name = name;
+            Unit = unit;
+            Role = role;
+        }
     }
 }

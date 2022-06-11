@@ -24,6 +24,11 @@
  */
 
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using System.Text.RegularExpressions;
+using VisualCard.Parts;
 
 namespace VisualCard.Parsers
 {
@@ -38,7 +43,203 @@ namespace VisualCard.Parsers
 
         public override Card Parse()
         {
-            throw new NotImplementedException();
+            // Check the version to ensure that we're really dealing with VCard 2.1 contact
+            if (CardVersion != "2.1")
+                throw new InvalidDataException($"Card version {CardVersion} doesn't match expected \"2.1\".");
+
+            // Check the content to ensure that we really have data
+            if (string.IsNullOrEmpty(CardContent))
+                throw new InvalidDataException($"Card content is empty.");
+
+            // Now, make a stream out of card content
+            byte[] CardContentData = Encoding.Default.GetBytes(CardContent);
+            MemoryStream CardContentStream = new(CardContentData, false);
+            StreamReader CardContentReader = new(CardContentStream);
+
+            // Some variables to assign to the Card() ctor
+            string _lastName                = "";
+            string _firstName               = "";
+            string _fullName                = "";
+            string _title                   = "";
+            string _url                     = "";
+            string _note                    = "";
+            List<TelephoneInfo> _telephones = new();
+            List<AddressInfo> _addresses    = new();
+            List<OrganizationInfo> _orgs    = new();
+
+            // Some VCard 2.1 constants
+            const char _fieldDelimiter                  = ';';
+            const char _valueDelimiter                  = ',';
+            const char _argumentDelimiter               = ':';
+            const string _nameSpecifier                 = "N:";
+            const string _fullNameSpecifier             = "FN:";
+            const string _telephoneSpecifierWithType    = "TEL;";
+            const string _telephoneSpecifier            = "TEL:";
+            const string _addressSpecifierWithType      = "ADR;";
+            const string _orgSpecifier                  = "ORG:";
+            const string _titleSpecifier                = "TITLE:";
+            const string _urlSpecifier                  = "URL:";
+            const string _noteSpecifier                 = "NOTE:";
+            const string _typeArgumentSpecifier         = "TYPE=";
+
+            // Name specifier is required
+            bool nameSpecifierSpotted = false;
+
+            // Iterate through all the lines
+            while (!CardContentReader.EndOfStream)
+            {
+                // Get line
+                string? _value = CardContentReader.ReadLine();
+
+                // The name (N:Sanders;John;;;)
+                if (_value.StartsWith(_nameSpecifier))
+                {
+                    // Check the line
+                    string? nameValue = _value.Substring(_nameSpecifier.Length);
+                    string[] splitName = nameValue.Split(_fieldDelimiter);
+                    if (splitName.Length != 5)
+                        throw new InvalidDataException("Name field must specify exactly five values (Last name, first name, alt names, prefixes, and suffixes)");
+
+                    // Populate fields
+                    _lastName =     splitName[0];
+                    _firstName =    splitName[1];
+
+                    // Set flag to indicate that the required field is spotted
+                    nameSpecifierSpotted = true;
+                }
+
+                // Full name (FN:John Sanders)
+                if (_value.StartsWith(_fullNameSpecifier))
+                {
+                    // Get the value
+                    string? fullNameValue = _value.Substring(_fullNameSpecifier.Length);
+
+                    // Populate field
+                    _fullName = fullNameValue;
+                }
+
+                // Telephone (TEL;CELL;HOME:495-522-3560 or TEL;TYPE=cell,home:495-522-3560)
+                if (_value.StartsWith(_telephoneSpecifierWithType))
+                {
+                    // Get the value
+                    string? telValue = _value.Substring(_telephoneSpecifierWithType.Length);
+                    string[] splitTel = telValue.Split(_argumentDelimiter);
+                    if (splitTel.Length != 2)
+                        throw new InvalidDataException("Telephone field must specify exactly two values (Type (optionally prepended with TYPE=), and phone number)");
+
+                    // Check to see if the type is prepended with the TYPE= argument
+                    string[] splitTypes = splitTel[0].StartsWith(_typeArgumentSpecifier) ?
+                                          splitTel[0].Split(_valueDelimiter) :
+                                          splitTel[0].Split(_fieldDelimiter);
+
+                    // Populate the fields
+                    string[] _telephoneTypes =  splitTypes;
+                    string _telephoneNumber =   Regex.Unescape(splitTel[1]);
+                    TelephoneInfo _telephone = new(_telephoneTypes, _telephoneNumber);
+                    _telephones.Add(_telephone);
+                }
+
+                // Telephone (TEL:495-522-3560)
+                if (_value.StartsWith(_telephoneSpecifier))
+                {
+                    // Get the value
+                    string? telValue = _value.Substring(_telephoneSpecifier.Length);
+
+                    // Populate the fields
+                    string[] _telephoneTypes = new string[] { "CELL" };
+                    string _telephoneNumber = Regex.Unescape(telValue);
+                    TelephoneInfo _telephone = new(_telephoneTypes, _telephoneNumber);
+                    _telephones.Add(_telephone);
+                }
+
+                // Address (ADR;HOME:;;Los Angeles, USA;;;;)
+                if (_value.StartsWith(_addressSpecifierWithType))
+                {
+                    // Get the value
+                    string? adrValue = _value.Substring(_addressSpecifierWithType.Length);
+                    string[] splitAdr = adrValue.Split(_argumentDelimiter);
+                    if (splitAdr.Length != 2)
+                        throw new InvalidDataException("Address field must specify exactly two values (Type (optionally prepended with TYPE=), and address information)");
+
+                    // Check to see if the type is prepended with the TYPE= argument
+                    string[] splitTypes = splitAdr[0].StartsWith(_typeArgumentSpecifier) ?
+                                          splitAdr[0].Split(_valueDelimiter) :
+                                          splitAdr[0].Split(_fieldDelimiter);
+
+                    // Check the provided address
+                    string[] splitAddressValues = splitAdr[1].Split(_fieldDelimiter);
+                    if (splitAddressValues.Length != 7)
+                        throw new InvalidDataException("Address information must specify exactly seven values (P.O. Box, extended address, street address, locality, region, postal code, and country)");
+
+                    // Populate the fields
+                    string[] _addressTypes =    splitTypes;
+                    string _addressPOBox =      Regex.Unescape(splitAddressValues[0]);
+                    string _addressExtended =   Regex.Unescape(splitAddressValues[1]);
+                    string _addressStreet =     Regex.Unescape(splitAddressValues[2]);
+                    string _addressLocality =   Regex.Unescape(splitAddressValues[3]);
+                    string _addressRegion =     Regex.Unescape(splitAddressValues[4]);
+                    string _addressPostalCode = Regex.Unescape(splitAddressValues[5]);
+                    string _addressCountry =    Regex.Unescape(splitAddressValues[6]);
+                    AddressInfo _address = new(_addressTypes, _addressPOBox, _addressExtended, _addressStreet, _addressLocality, _addressRegion, _addressPostalCode, _addressCountry);
+                    _addresses.Add(_address);
+                }
+
+                // Organization (ORG:Acme Co. or ORG:ABC, Inc.;North American Division;Marketing)
+                if (_value.StartsWith(_orgSpecifier))
+                {
+                    // Get the value
+                    string? orgValue = _value.Substring(_orgSpecifier.Length);
+                    string[] splitOrg = orgValue.Split(_fieldDelimiter);
+
+                    // Populate the fields
+                    string _orgName = Regex.Unescape(splitOrg[0]);
+                    string _orgUnit = Regex.Unescape(splitOrg.Length >= 2 ? splitOrg[1] : "");
+                    string _orgUnitRole = Regex.Unescape(splitOrg.Length >= 3 ? splitOrg[2] : "");
+                    OrganizationInfo _org = new(_orgName, _orgUnit, _orgUnitRole);
+                    _orgs.Add(_org);
+                }
+
+                // Title (TITLE:Product Manager)
+                if (_value.StartsWith(_titleSpecifier))
+                {
+                    // Get the value
+                    string? titleValue = _value.Substring(_titleSpecifier.Length);
+
+                    // Populate field
+                    _title = Regex.Unescape(titleValue);
+                }
+
+                // Website link (URL:https://sso.org/)
+                if (_value.StartsWith(_urlSpecifier))
+                {
+                    // Get the value
+                    string? urlValue = _value.Substring(_urlSpecifier.Length);
+
+                    // Try to parse the URL to ensure that it conforms to IETF RFC 1738: Uniform Resource Locators
+                    if (!Uri.TryCreate(urlValue, UriKind.Absolute, out Uri? uri))
+                        throw new InvalidDataException($"URL {urlValue} is invalid");
+
+                    // Populate field
+                    _url = uri.ToString();
+                }
+
+                // Note (NOTE:Product Manager)
+                if (_value.StartsWith(_noteSpecifier))
+                {
+                    // Get the value
+                    string? noteValue = _value.Substring(_noteSpecifier.Length);
+
+                    // Populate field
+                    _note = Regex.Unescape(noteValue);
+                }
+            }
+
+            // Requirement checks
+            if (!nameSpecifierSpotted)
+                throw new InvalidDataException("The name specifier, \"N:\", is required.");
+
+            // Make a new instance of the card
+            return new Card(CardVersion, _firstName, _lastName, _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _title, _url, _note);
         }
 
         internal VcardTwo(string cardPath, string cardContent, string cardVersion)
