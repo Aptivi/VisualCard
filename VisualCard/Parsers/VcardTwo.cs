@@ -43,7 +43,6 @@ namespace VisualCard.Parsers
         public override string CardVersion { get; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0057:Use range operator", Justification = "Trying to maintain .NET Framework compatibility as it doesn't have System.Index")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1847:Use char literal for a single character lookup", Justification = "Trying to maintain .NET Framework compatibility")]
         public override Card Parse()
         {
             // Check the version to ensure that we're really dealing with VCard 2.1 contact
