@@ -41,6 +41,7 @@ namespace VisualCard.Parsers
         public override string CardContent { get; }
         public override string CardVersion { get; }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0057:Use range operator", Justification = "Trying to maintain .NET Framework compatibility as it doesn't have System.Index")]
         public override Card Parse()
         {
             // Check the version to ensure that we're really dealing with VCard 2.1 contact
@@ -101,8 +102,8 @@ namespace VisualCard.Parsers
                         throw new InvalidDataException("Name field must specify exactly five values (Last name, first name, alt names, prefixes, and suffixes)");
 
                     // Populate fields
-                    _lastName =     splitName[0];
-                    _firstName =    splitName[1];
+                    _lastName =  Regex.Unescape(splitName[0]);
+                    _firstName = Regex.Unescape(splitName[1]);
 
                     // Set flag to indicate that the required field is spotted
                     nameSpecifierSpotted = true;
@@ -115,7 +116,7 @@ namespace VisualCard.Parsers
                     string? fullNameValue = _value.Substring(_fullNameSpecifier.Length);
 
                     // Populate field
-                    _fullName = fullNameValue;
+                    _fullName = Regex.Unescape(fullNameValue);
                 }
 
                 // Telephone (TEL;CELL;HOME:495-522-3560 or TEL;TYPE=cell,home:495-522-3560)
@@ -192,8 +193,8 @@ namespace VisualCard.Parsers
                     string[] splitOrg = orgValue.Split(_fieldDelimiter);
 
                     // Populate the fields
-                    string _orgName = Regex.Unescape(splitOrg[0]);
-                    string _orgUnit = Regex.Unescape(splitOrg.Length >= 2 ? splitOrg[1] : "");
+                    string _orgName =     Regex.Unescape(splitOrg[0]);
+                    string _orgUnit =     Regex.Unescape(splitOrg.Length >= 2 ? splitOrg[1] : "");
                     string _orgUnitRole = Regex.Unescape(splitOrg.Length >= 3 ? splitOrg[2] : "");
                     OrganizationInfo _org = new(_orgName, _orgUnit, _orgUnitRole);
                     _orgs.Add(_org);
