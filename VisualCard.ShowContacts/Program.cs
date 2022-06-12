@@ -23,6 +23,7 @@
  * 
  */
 
+using System.Diagnostics;
 using VisualCard.Parsers;
 using VisualCard.Parts;
 
@@ -38,6 +39,15 @@ namespace VisualCard.ShowContacts
             }
             else
             {
+                // If one of the arguments is a switch to trigger printing, set it
+                bool print = true;
+                if (args.Length > 1)
+                    print = !args.Contains("-noprint");
+
+                // Initialize stopwatch
+                Stopwatch elapsed = new();
+                elapsed.Start();
+
                 // Get parsers
                 List<BaseVcardParser> ContactParsers = CardTools.GetCardParsers(args[0]);
                 List<Card> Contacts = new();
@@ -47,6 +57,14 @@ namespace VisualCard.ShowContacts
                 {
                     Card Contact = ContactParser.Parse();
                     Contacts.Add(Contact);
+                }
+
+                // If not printing, exit
+                elapsed.Stop();
+                if (!print)
+                {
+                    Console.WriteLine("Elapsed time: {0}", elapsed.Elapsed.ToString());
+                    return;
                 }
 
                 // Show contact information
