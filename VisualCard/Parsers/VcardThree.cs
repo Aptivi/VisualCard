@@ -69,6 +69,7 @@ namespace VisualCard.Parsers
             List<EmailInfo> _emails         = new();
             List<AddressInfo> _addresses    = new();
             List<OrganizationInfo> _orgs    = new();
+            List<XNameInfo> _xes            = new();
 
             // Some VCard 2.1 constants
             const char _fieldDelimiter                  = ';';
@@ -84,6 +85,7 @@ namespace VisualCard.Parsers
             const string _titleSpecifier                = "TITLE:";
             const string _urlSpecifier                  = "URL:";
             const string _noteSpecifier                 = "NOTE:";
+            const string _xSpecifier                    = "X-";
             const string _typeArgumentSpecifier         = "TYPE=";
 
             // Name and Full Name specifiers are required
@@ -293,6 +295,28 @@ namespace VisualCard.Parsers
                     // Populate field
                     _note = Regex.Unescape(noteValue);
                 }
+
+                // X-nonstandard (X-AIM:john.s or X-DL;Design Work Group:List Item 1;List Item 2;List Item 3)
+                if (_value.StartsWith(_xSpecifier))
+                {
+                    // Get the value
+                    string? xValue = _value.Substring(_xSpecifier.Length);
+                    string[] splitX = xValue.Split(_argumentDelimiter);
+
+                    // Populate the name
+                    string _xName = splitX[0].Contains(_fieldDelimiter.ToString()) ?
+                                    splitX[0].Substring(0, splitX[0].IndexOf(_fieldDelimiter)) :
+                                    splitX[0];
+
+                    // Populate the fields
+                    string[] _xTypes = splitX[0].Contains(_fieldDelimiter.ToString()) ?
+                                       splitX[0].Substring(splitX[0].IndexOf(_fieldDelimiter) + 1)
+                                                .Split(_fieldDelimiter) :
+                                       Array.Empty<string>();
+                    string[] _xValues = splitX[1].Split(_fieldDelimiter);
+                    XNameInfo _x = new(_xName, _xValues, _xTypes);
+                    _xes.Add(_x);
+                }
             }
 
             // Requirement checks
@@ -302,7 +326,7 @@ namespace VisualCard.Parsers
                 throw new InvalidDataException("The full name specifier, \"FN:\", is required.");
 
             // Make a new instance of the card
-            return new Card(CardVersion, _firstName, _lastName, _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _title, _url, _note, _emails.ToArray());
+            return new Card(CardVersion, _firstName, _lastName, _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _title, _url, _note, _emails.ToArray(), _xes.ToArray());
         }
 
         internal VcardThree(string cardPath, string cardContent, string cardVersion)

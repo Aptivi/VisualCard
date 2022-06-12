@@ -71,8 +71,12 @@ namespace VisualCard.Parts
         /// The contact's notes
         /// </summary>
         public string? ContactNotes { get; }
+        /// <summary>
+        /// The contact's extended options (usually starts with X-SOMETHING:Value1;Value2...)
+        /// </summary>
+        public XNameInfo[] ContactXNames { get; }
 
-        internal Card(string? cardVersion, string? contactFirstName, string? contactLastName, string? contactFullName, TelephoneInfo[] contactTelephones, AddressInfo[] contactAddresses, OrganizationInfo[] contactOrganizations, string? contactTitle, string? contactURL, string? contactNotes, EmailInfo[] contactMails)
+        internal Card(string? cardVersion, string? contactFirstName, string? contactLastName, string? contactFullName, TelephoneInfo[] contactTelephones, AddressInfo[] contactAddresses, OrganizationInfo[] contactOrganizations, string? contactTitle, string? contactURL, string? contactNotes, EmailInfo[] contactMails, XNameInfo[] contactXNames)
         {
             CardVersion = cardVersion;
             ContactFirstName = contactFirstName;
@@ -85,6 +89,7 @@ namespace VisualCard.Parts
             ContactURL = contactURL;
             ContactNotes = contactNotes;
             ContactMails = contactMails;
+            ContactXNames = contactXNames;
         }
     }
 }
