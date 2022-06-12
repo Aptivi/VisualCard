@@ -135,8 +135,13 @@ namespace VisualCard.Parsers
 
                     // Check to see if the type is prepended with the TYPE= argument
                     if (splitTel[0].StartsWith(_typeArgumentSpecifier))
-                        splitTypes = splitTel[0].Split(_valueDelimiter);
+                        // Get the types
+                        splitTypes = splitTel[0].Substring(_typeArgumentSpecifier.Length).Split(_valueDelimiter);
+                    else if (string.IsNullOrEmpty(splitTel[0]))
+                        // We're confronted with an empty type. Assume that it's a CELL.
+                        splitTypes = new string[] { "CELL" };
                     else
+                        // Trying to specify type without TYPE= is illegal according to RFC2426
                         throw new InvalidDataException("Telephone type must be prepended with TYPE=");
 
                     // Populate the fields
@@ -171,9 +176,14 @@ namespace VisualCard.Parsers
 
                     // Check to see if the type is prepended with the TYPE= argument
                     if (splitAdr[0].StartsWith(_typeArgumentSpecifier))
-                        splitTypes = splitAdr[0].Split(_valueDelimiter);
+                        // Get the types
+                        splitTypes = splitAdr[0].Substring(_typeArgumentSpecifier.Length).Split(_valueDelimiter);
+                    else if (string.IsNullOrEmpty(splitAdr[0]))
+                        // We're confronted with an empty type. Assume that it's a HOME address.
+                        splitTypes = new string[] { "HOME" };
                     else
-                        throw new InvalidDataException("Telephone type must be prepended with TYPE=");
+                        // Trying to specify type without TYPE= is illegal according to RFC2426
+                        throw new InvalidDataException("Address type must be prepended with TYPE=");
 
                     // Check the provided address
                     string[] splitAddressValues = splitAdr[1].Split(_fieldDelimiter);

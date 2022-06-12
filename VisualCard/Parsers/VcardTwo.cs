@@ -130,7 +130,7 @@ namespace VisualCard.Parsers
 
                     // Check to see if the type is prepended with the TYPE= argument
                     string[] splitTypes = splitTel[0].StartsWith(_typeArgumentSpecifier) ?
-                                          splitTel[0].Split(_valueDelimiter) :
+                                          splitTel[0].Substring(_typeArgumentSpecifier.Length).Split(_valueDelimiter) :
                                           splitTel[0].Split(_fieldDelimiter);
 
                     // Populate the fields
@@ -164,7 +164,7 @@ namespace VisualCard.Parsers
 
                     // Check to see if the type is prepended with the TYPE= argument
                     string[] splitTypes = splitAdr[0].StartsWith(_typeArgumentSpecifier) ?
-                                          splitAdr[0].Split(_valueDelimiter) :
+                                          splitAdr[0].Substring(_typeArgumentSpecifier.Length).Split(_valueDelimiter) :
                                           splitAdr[0].Split(_fieldDelimiter);
 
                     // Check the provided address
