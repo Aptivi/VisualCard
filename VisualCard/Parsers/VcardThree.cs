@@ -59,16 +59,15 @@ namespace VisualCard.Parsers
             StreamReader CardContentReader = new(CardContentStream);
 
             // Some variables to assign to the Card() ctor
-            string _lastName                = "";
-            string _firstName               = "";
             string _fullName                = "";
-            string _title                   = "";
             string _url                     = "";
             string _note                    = "";
+            List<NameInfo> _names           = new();
             List<TelephoneInfo> _telephones = new();
             List<EmailInfo> _emails         = new();
             List<AddressInfo> _addresses    = new();
             List<OrganizationInfo> _orgs    = new();
+            List<TitleInfo> _titles         = new();
             List<XNameInfo> _xes            = new();
 
             // Some VCard 2.1 constants
@@ -108,8 +107,10 @@ namespace VisualCard.Parsers
                         throw new InvalidDataException("Name field must specify exactly five values (Last name, first name, alt names, prefixes, and suffixes)");
 
                     // Populate fields
-                    _lastName =  Regex.Unescape(splitName[0]);
-                    _firstName = Regex.Unescape(splitName[1]);
+                    string _lastName =  Regex.Unescape(splitName[0]);
+                    string _firstName = Regex.Unescape(splitName[1]);
+                    NameInfo _name = new(0, Array.Empty<string>(), _firstName, _lastName);
+                    _names.Add(_name);
 
                     // Set flag to indicate that the required field is spotted
                     nameSpecifierSpotted = true;
@@ -269,7 +270,9 @@ namespace VisualCard.Parsers
                     string? titleValue = _value.Substring(_titleSpecifier.Length);
 
                     // Populate field
-                    _title = Regex.Unescape(titleValue);
+                    string _title = Regex.Unescape(titleValue);
+                    TitleInfo title = new(0, Array.Empty<string>(), _title);
+                    _titles.Add(title);
                 }
 
                 // Website link (URL:https://sso.org/)
@@ -326,7 +329,7 @@ namespace VisualCard.Parsers
                 throw new InvalidDataException("The full name specifier, \"FN:\", is required.");
 
             // Make a new instance of the card
-            return new Card(CardVersion, _firstName, _lastName, _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _title, _url, _note, _emails.ToArray(), _xes.ToArray());
+            return new Card(CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), "individual");
         }
 
         internal VcardThree(string cardPath, string cardContent, string cardVersion)

@@ -72,11 +72,25 @@ namespace VisualCard.ShowContacts
                 {
                     Console.WriteLine("----------------------------");
                     Console.WriteLine("Name:                    {0}", Contact.ContactFullName);
-                    Console.WriteLine("First name:              {0}", Contact.ContactFirstName);
-                    Console.WriteLine("Last name:               {0}", Contact.ContactLastName);
-                    Console.WriteLine("Title or Job:            {0}", Contact.ContactTitle);
-                    Console.WriteLine("Contact URL:             {0}", Contact.ContactURL);
-                    Console.WriteLine("Contact Note:            {0}", Contact.ContactNotes);
+
+                    // List names
+                    foreach (NameInfo name in Contact.ContactNames)
+                    {
+                        Console.WriteLine("First name:              {0}", name.ContactFirstName);
+                        Console.WriteLine("Last name:               {0}", name.ContactLastName);
+                        Console.WriteLine("ALTID:                   {0}", name.AltId);
+                        if (name.AltArguments?.Length > 0)
+                            Console.WriteLine("Reason for ALTID:        {0}", name.AltArguments);
+                    }
+
+                    // List titles
+                    foreach (TitleInfo title in Contact.ContactTitles)
+                    { 
+                        Console.WriteLine("Title or Job:            {0}", title.ContactTitle);
+                        Console.WriteLine("ALTID:                   {0}", title.AltId);
+                        if (title.AltArguments?.Length > 0)
+                            Console.WriteLine("Reason for ALTID:        {0}", title.AltArguments);
+                    }
 
                     // List addresses
                     foreach (AddressInfo Address in Contact.ContactAddresses)
@@ -111,6 +125,10 @@ namespace VisualCard.ShowContacts
                         Console.WriteLine("Phone types:             {0}", Telephone.ContactPhoneTypes);
                         Console.WriteLine("Phone number:            {0}", Telephone.ContactPhoneNumber);
                     }
+
+                    // List remaining
+                    Console.WriteLine("Contact URL:             {0}", Contact.ContactURL);
+                    Console.WriteLine("Contact Note:            {0}", Contact.ContactNotes);
                 }
             }
         }

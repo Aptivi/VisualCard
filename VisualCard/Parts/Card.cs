@@ -32,13 +32,13 @@ namespace VisualCard.Parts
         /// </summary>
         public string? CardVersion { get; }
         /// <summary>
-        /// The contact's first name
+        /// The VCard kind (individual is the default)
         /// </summary>
-        public string? ContactFirstName { get; }
+        public string? CardKind { get; }
         /// <summary>
-        /// The contact's last name
+        /// The contact's names
         /// </summary>
-        public string? ContactLastName { get; }
+        public NameInfo[] ContactNames { get; }
         /// <summary>
         /// The contact's full name
         /// </summary>
@@ -60,9 +60,9 @@ namespace VisualCard.Parts
         /// </summary>
         public OrganizationInfo[] ContactOrganizations { get; }
         /// <summary>
-        /// The contact's title
+        /// The contact's titles
         /// </summary>
-        public string? ContactTitle { get; }
+        public TitleInfo[] ContactTitles { get; }
         /// <summary>
         /// The contact's URL
         /// </summary>
@@ -76,20 +76,20 @@ namespace VisualCard.Parts
         /// </summary>
         public XNameInfo[] ContactXNames { get; }
 
-        internal Card(string? cardVersion, string? contactFirstName, string? contactLastName, string? contactFullName, TelephoneInfo[] contactTelephones, AddressInfo[] contactAddresses, OrganizationInfo[] contactOrganizations, string? contactTitle, string? contactURL, string? contactNotes, EmailInfo[] contactMails, XNameInfo[] contactXNames)
+        internal Card(string? cardVersion, NameInfo[] contactNames, string? contactFullName, TelephoneInfo[] contactTelephones, AddressInfo[] contactAddresses, OrganizationInfo[] contactOrganizations, TitleInfo[] contactTitles, string? contactURL, string? contactNotes, EmailInfo[] contactMails, XNameInfo[] contactXNames, string? cardKind)
         {
             CardVersion = cardVersion;
-            ContactFirstName = contactFirstName;
-            ContactLastName = contactLastName;
+            ContactNames = contactNames;
             ContactFullName = contactFullName;
             ContactTelephones = contactTelephones;
             ContactAddresses = contactAddresses;
             ContactOrganizations = contactOrganizations;
-            ContactTitle = contactTitle;
+            ContactTitles = contactTitles;
             ContactURL = contactURL;
             ContactNotes = contactNotes;
             ContactMails = contactMails;
             ContactXNames = contactXNames;
+            CardKind = cardKind;
         }
     }
 }
