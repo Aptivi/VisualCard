@@ -26,6 +26,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net.Mail;
 using System.Text;
 using System.Text.RegularExpressions;
 using VisualCard.Parts;
@@ -65,6 +66,7 @@ namespace VisualCard.Parsers
             string _url                     = "";
             string _note                    = "";
             List<TelephoneInfo> _telephones = new();
+            List<EmailInfo> _emails         = new();
             List<AddressInfo> _addresses    = new();
             List<OrganizationInfo> _orgs    = new();
 
@@ -77,6 +79,7 @@ namespace VisualCard.Parsers
             const string _telephoneSpecifierWithType    = "TEL;";
             const string _telephoneSpecifier            = "TEL:";
             const string _addressSpecifierWithType      = "ADR;";
+            const string _emailSpecifier                = "EMAIL;";
             const string _orgSpecifier                  = "ORG:";
             const string _titleSpecifier                = "TITLE:";
             const string _urlSpecifier                  = "URL:";
@@ -185,6 +188,38 @@ namespace VisualCard.Parsers
                     _addresses.Add(_address);
                 }
 
+                // Email (EMAIL;HOME;INTERNET:john.s@acme.co or EMAIL;TYPE=HOME,INTERNET:john.s@acme.co)
+                if (_value.StartsWith(_emailSpecifier))
+                {
+                    // Get the value
+                    string? mailValue = _value.Substring(_emailSpecifier.Length);
+                    string[] splitMail = mailValue.Split(_argumentDelimiter);
+                    MailAddress mail;
+                    if (splitMail.Length != 2)
+                        throw new InvalidDataException("E-mail field must specify exactly two values (Type (optionally prepended with TYPE=), and a valid e-mail address)");
+
+                    // Check to see if the type is prepended with the TYPE= argument
+                    string[] splitTypes = splitMail[0].StartsWith(_typeArgumentSpecifier) ?
+                                          splitMail[0].Substring(_typeArgumentSpecifier.Length).Split(_valueDelimiter) :
+                                          splitMail[0].Split(_fieldDelimiter);
+
+                    // Try to create mail address
+                    try
+                    {
+                        mail = new MailAddress(splitMail[1]);
+                    }
+                    catch (ArgumentException aex)
+                    {
+                        throw new InvalidDataException("E-mail address is invalid", aex);
+                    }
+
+                    // Populate the fields
+                    string[] _emailTypes = splitTypes;
+                    string _emailAddress = mail.Address;
+                    EmailInfo _email = new(_emailTypes, _emailAddress);
+                    _emails.Add(_email);
+                }
+
                 // Organization (ORG:Acme Co. or ORG:ABC, Inc.;North American Division;Marketing)
                 if (_value.StartsWith(_orgSpecifier))
                 {
@@ -240,7 +275,7 @@ namespace VisualCard.Parsers
                 throw new InvalidDataException("The name specifier, \"N:\", is required.");
 
             // Make a new instance of the card
-            return new Card(CardVersion, _firstName, _lastName, _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _title, _url, _note);
+            return new Card(CardVersion, _firstName, _lastName, _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _title, _url, _note, _emails.ToArray());
         }
 
         internal VcardTwo(string cardPath, string cardContent, string cardVersion)

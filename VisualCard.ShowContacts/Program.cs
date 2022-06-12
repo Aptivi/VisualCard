@@ -90,6 +90,13 @@ namespace VisualCard.ShowContacts
                         Console.WriteLine("Country:                 {0}", Address.Country);
                     }
 
+                    // List e-mails
+                    foreach (EmailInfo Email in Contact.ContactMails)
+                    {
+                        Console.WriteLine("Email types:             {0}", Email.ContactEmailTypes);
+                        Console.WriteLine("Email address:           {0}", Email.ContactEmailAddress);
+                    }
+
                     // List organizations
                     foreach (OrganizationInfo Organization in Contact.ContactOrganizations)
                     {
@@ -98,6 +105,7 @@ namespace VisualCard.ShowContacts
                         Console.WriteLine("Organization Unit Role:  {0}", Organization.Role);
                     }
 
+                    // List telephones
                     foreach (TelephoneInfo Telephone in Contact.ContactTelephones)
                     {
                         Console.WriteLine("Phone types:             {0}", Telephone.ContactPhoneTypes);

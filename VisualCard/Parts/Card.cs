@@ -52,6 +52,10 @@ namespace VisualCard.Parts
         /// </summary>
         public AddressInfo[] ContactAddresses { get; }
         /// <summary>
+        /// The contact's e-mails
+        /// </summary>
+        public EmailInfo[] ContactMails { get; }
+        /// <summary>
         /// The contact's organizations
         /// </summary>
         public OrganizationInfo[] ContactOrganizations { get; }
@@ -68,7 +72,7 @@ namespace VisualCard.Parts
         /// </summary>
         public string? ContactNotes { get; }
 
-        internal Card(string? cardVersion, string? contactFirstName, string? contactLastName, string? contactFullName, TelephoneInfo[] contactTelephones, AddressInfo[] contactAddresses, OrganizationInfo[] contactOrganizations, string? contactTitle, string? contactURL, string? contactNotes)
+        internal Card(string? cardVersion, string? contactFirstName, string? contactLastName, string? contactFullName, TelephoneInfo[] contactTelephones, AddressInfo[] contactAddresses, OrganizationInfo[] contactOrganizations, string? contactTitle, string? contactURL, string? contactNotes, EmailInfo[] contactMails)
         {
             CardVersion = cardVersion;
             ContactFirstName = contactFirstName;
@@ -80,6 +84,7 @@ namespace VisualCard.Parts
             ContactTitle = contactTitle;
             ContactURL = contactURL;
             ContactNotes = contactNotes;
+            ContactMails = contactMails;
         }
     }
 }
