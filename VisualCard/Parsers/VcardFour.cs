@@ -85,6 +85,7 @@ namespace VisualCard.Parsers
             const string _emailSpecifier = "EMAIL;";
             const string _orgSpecifier = "ORG:";
             const string _titleSpecifier = "TITLE:";
+            const string _titleSpecifierWithArguments = "TITLE;";
             const string _urlSpecifier = "URL:";
             const string _noteSpecifier = "NOTE:";
             const string _xSpecifier = "X-";
@@ -347,10 +348,10 @@ namespace VisualCard.Parsers
 
                 // Title (TITLE;ALTID=1;LANGUAGE=fr:Patron or TITLE;LANGUAGE=fr:Patron)
                 // ALTID is supported.
-                if (_value.StartsWith(_titleSpecifier))
+                if (_value.StartsWith(_titleSpecifierWithArguments))
                 {
                     // Get the value
-                    string? titleValue = _value.Substring(_titleSpecifier.Length);
+                    string? titleValue = _value.Substring(_titleSpecifierWithArguments.Length);
                     string[] splitTitleParts = titleValue.Split(_argumentDelimiter);
                     string[] splitArgs = splitTitleParts[0].Split(_fieldDelimiter);
                     int altId = 0;

@@ -62,56 +62,62 @@ namespace VisualCard
                 // Get the line
                 CardContent.AppendLine(CardLine);
 
-                // All VCards must begin with BEGIN:VCARD
-                if (CardLine != "BEGIN:VCARD" && !BeginSpotted)
-                    throw new InvalidDataException($"This file {Path} is not a valid VCard contact file.");
-                else if (!BeginSpotted)
+                // If the line is empty, skip it
+                if (!string.IsNullOrEmpty(CardLine))
                 {
-                    BeginSpotted = true;
-                    VersionSpotted = false;
-                    EndSpotted = false;
-                }
-
-                // Now that the beginning of the card tag is spotted, parse the version as we need to know how to select the appropriate parser.
-                // All VCards are required to have their own version directly after the BEGIN:VCARD tag
-                CardLine = CardReader.ReadLine();
-                if (CardLine != "VERSION:2.1" && CardLine != "VERSION:3.0" && CardLine != "VERSION:4.0" && !VersionSpotted)
-                    throw new InvalidDataException($"This file {Path} has an invalid VCard version {CardLine}.");
-                else if (!VersionSpotted)
-                {
-                    VersionSpotted = true;
-                    CardVersion = CardLine.Substring(8);
-                }
-
-                // If the ending tag is spotted, reset everything.
-                if (CardLine == "END:VCARD" && !EndSpotted)
-                {
-                    EndSpotted = true;
-                    CardContent.AppendLine(CardLine);
-
-                    // Select parser
-                    BaseVcardParser CardParser;
-                    switch (CardVersion)
+                    // All VCards must begin with BEGIN:VCARD
+                    if (CardLine != "BEGIN:VCARD" && !BeginSpotted)
+                        throw new InvalidDataException($"This file {Path} is not a valid VCard contact file.");
+                    else if (!BeginSpotted)
                     {
-                        case "2.1":
-                            CardParser = new VcardTwo(Path, CardContent.ToString(), CardVersion);
-                            FinalParsers.Add(CardParser);
-                            break;
-                        case "3.0":
-                            CardParser = new VcardThree(Path, CardContent.ToString(), CardVersion);
-                            FinalParsers.Add(CardParser);
-                            break;
-                        case "4.0":
-                            CardParser = new VcardFour(Path, CardContent.ToString(), CardVersion);
-                            FinalParsers.Add(CardParser);
-                            break;
+                        BeginSpotted = true;
+                        VersionSpotted = false;
+                        EndSpotted = false;
                     }
 
-                    // Clear the content in case we want to make a second contact
-                    CardContent.Clear();
-                    BeginSpotted = false;
+                    // Now that the beginning of the card tag is spotted, parse the version as we need to know how to select the appropriate parser.
+                    // All VCards are required to have their own version directly after the BEGIN:VCARD tag
                     CardLine = CardReader.ReadLine();
+                    if (CardLine != "VERSION:2.1" && CardLine != "VERSION:3.0" && CardLine != "VERSION:4.0" && !VersionSpotted)
+                        throw new InvalidDataException($"This file {Path} has an invalid VCard version {CardLine}.");
+                    else if (!VersionSpotted)
+                    {
+                        VersionSpotted = true;
+                        CardVersion = CardLine.Substring(8);
+                    }
+
+                    // If the ending tag is spotted, reset everything.
+                    if (CardLine == "END:VCARD" && !EndSpotted)
+                    {
+                        EndSpotted = true;
+                        CardContent.AppendLine(CardLine);
+
+                        // Select parser
+                        BaseVcardParser CardParser;
+                        switch (CardVersion)
+                        {
+                            case "2.1":
+                                CardParser = new VcardTwo(Path, CardContent.ToString(), CardVersion);
+                                FinalParsers.Add(CardParser);
+                                break;
+                            case "3.0":
+                                CardParser = new VcardThree(Path, CardContent.ToString(), CardVersion);
+                                FinalParsers.Add(CardParser);
+                                break;
+                            case "4.0":
+                                CardParser = new VcardFour(Path, CardContent.ToString(), CardVersion);
+                                FinalParsers.Add(CardParser);
+                                break;
+                        }
+
+                        // Clear the content in case we want to make a second contact
+                        CardContent.Clear();
+                        BeginSpotted = false;
+                        CardLine = CardReader.ReadLine();
+                    }
                 }
+                else
+                    CardLine = CardReader.ReadLine();
             }
 
             // Throw if the card ended prematurely
