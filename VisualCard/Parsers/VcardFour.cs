@@ -123,7 +123,7 @@ namespace VisualCard.Parsers
                     // Check the line
                     string? nameValue = _value.Substring(_nameSpecifier.Length);
                     string[] splitName = nameValue.Split(_fieldDelimiter);
-                    if (splitName.Length != 5)
+                    if (splitName.Length < 2)
                         throw new InvalidDataException("Name field must specify exactly five values (Last name, first name, alt names, prefixes, and suffixes)");
 
                     // Check to see if there are any names with altid
@@ -131,9 +131,12 @@ namespace VisualCard.Parsers
                         throw new InvalidDataException("Attempted to overwrite name under the main ID.");
 
                     // Populate fields
-                    string _lastName = Regex.Unescape(splitName[0]);
-                    string _firstName = Regex.Unescape(splitName[1]);
-                    NameInfo _name = new(0, Array.Empty<string>(), _firstName, _lastName);
+                    string _lastName   = Regex.Unescape(splitName[0]);
+                    string _firstName  = Regex.Unescape(splitName[1]);
+                    string[] _altNames = splitName.Length >= 3 ? Regex.Unescape(splitName[2]).Split(new char[] { _valueDelimiter }) : Array.Empty<string>();
+                    string[] _prefixes = splitName.Length >= 4 ? Regex.Unescape(splitName[3]).Split(new char[] { _valueDelimiter }) : Array.Empty<string>();
+                    string[] _suffixes = splitName.Length >= 5 ? Regex.Unescape(splitName[4]).Split(new char[] { _valueDelimiter }) : Array.Empty<string>();
+                    NameInfo _name = new(0, Array.Empty<string>(), _firstName, _lastName, _altNames, _prefixes, _suffixes);
                     _names.Add(_name);
 
                     // Since we've reserved id 0, set the flag
@@ -149,7 +152,7 @@ namespace VisualCard.Parsers
                     string[] splitNameParts = nameValue.Split(_argumentDelimiter);
                     string[] splitName = splitNameParts[1].Split(_fieldDelimiter);
                     string[] splitArgs = splitNameParts[0].Split(_fieldDelimiter);
-                    if (splitName.Length != 5)
+                    if (splitName.Length < 2)
                         throw new InvalidDataException("Name field must specify exactly five values (Last name, first name, alt names, prefixes, and suffixes)");
 
                     // Check the ALTID
@@ -171,9 +174,12 @@ namespace VisualCard.Parsers
                     splitArgs.CopyTo(finalArgs, 1);
 
                     // Populate fields
-                    string _lastName = Regex.Unescape(splitName[0]);
-                    string _firstName = Regex.Unescape(splitName[1]);
-                    NameInfo _name = new(altId, finalArgs, _firstName, _lastName);
+                    string _lastName   = Regex.Unescape(splitName[0]);
+                    string _firstName  = Regex.Unescape(splitName[1]);
+                    string[] _altNames = splitName.Length >= 3 ? Regex.Unescape(splitName[2]).Split(new char[] { _valueDelimiter }) : Array.Empty<string>();
+                    string[] _prefixes = splitName.Length >= 4 ? Regex.Unescape(splitName[3]).Split(new char[] { _valueDelimiter }) : Array.Empty<string>();
+                    string[] _suffixes = splitName.Length >= 5 ? Regex.Unescape(splitName[4]).Split(new char[] { _valueDelimiter }) : Array.Empty<string>();
+                    NameInfo _name = new(altId, finalArgs, _firstName, _lastName, _altNames, _prefixes, _suffixes);
                     _names.Add(_name);
 
                     // Since we've reserved a specific id, set the flag

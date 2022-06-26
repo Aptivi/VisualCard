@@ -43,15 +43,30 @@ namespace VisualCard.Parts
         /// The contact's last name
         /// </summary>
         public string? ContactLastName { get; }
+        /// <summary>
+        /// The contact's alternative names
+        /// </summary>
+        public string[]? AltNames { get; }
+        /// <summary>
+        /// The contact's prefixes
+        /// </summary>
+        public string[]? Prefixes { get; }
+        /// <summary>
+        /// The contact's suffixes
+        /// </summary>
+        public string[]? Suffixes { get; }
 
         internal NameInfo() { }
 
-        internal NameInfo(int altId, string[] altArguments, string? contactFirstName, string? contactLastName)
+        internal NameInfo(int altId, string[] altArguments, string? contactFirstName, string? contactLastName, string[]? altNames, string[]? prefixes, string[]? suffixes)
         {
             AltId = altId;
             AltArguments = altArguments;
             ContactFirstName = contactFirstName;
             ContactLastName = contactLastName;
+            AltNames = altNames;
+            Prefixes = prefixes;
+            Suffixes = suffixes;
         }
     }
 }
