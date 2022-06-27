@@ -59,38 +59,38 @@ namespace VisualCard.Parsers
             StreamReader CardContentReader = new(CardContentStream);
 
             // Some variables to assign to the Card() ctor
-            string _kind = "individual";
-            string _fullName = "";
-            string _url = "";
-            string _note = "";
-            List<NameInfo> _names = new();
+            string _kind                    = "individual";
+            string _fullName                = "";
+            string _url                     = "";
+            string _note                    = "";
+            List<NameInfo> _names           = new();
             List<TelephoneInfo> _telephones = new();
-            List<EmailInfo> _emails = new();
-            List<AddressInfo> _addresses = new();
-            List<OrganizationInfo> _orgs = new();
-            List<TitleInfo> _titles = new();
-            List<XNameInfo> _xes = new();
+            List<EmailInfo> _emails         = new();
+            List<AddressInfo> _addresses    = new();
+            List<OrganizationInfo> _orgs    = new();
+            List<TitleInfo> _titles         = new();
+            List<XNameInfo> _xes            = new();
 
             // Some VCard 4.0 constants
-            const char _fieldDelimiter = ';';
-            const char _valueDelimiter = ',';
-            const char _argumentDelimiter = ':';
-            const string _kindSpecifier = "KIND:";
-            const string _nameSpecifierWithType = "N;";
-            const string _nameSpecifier = "N:";
-            const string _fullNameSpecifier = "FN:";
-            const string _telephoneSpecifierWithType = "TEL;";
-            const string _telephoneSpecifier = "TEL:";
-            const string _addressSpecifierWithType = "ADR;";
-            const string _emailSpecifier = "EMAIL;";
-            const string _orgSpecifier = "ORG:";
-            const string _titleSpecifier = "TITLE:";
-            const string _titleSpecifierWithArguments = "TITLE;";
-            const string _urlSpecifier = "URL:";
-            const string _noteSpecifier = "NOTE:";
-            const string _xSpecifier = "X-";
-            const string _typeArgumentSpecifier = "TYPE=";
-            const string _altIdArgumentSpecifier = "ALTID=";
+            const char _fieldDelimiter                  = ';';
+            const char _valueDelimiter                  = ',';
+            const char _argumentDelimiter               = ':';
+            const string _kindSpecifier                 = "KIND:";
+            const string _nameSpecifierWithType         = "N;";
+            const string _nameSpecifier                 = "N:";
+            const string _fullNameSpecifier             = "FN:";
+            const string _telephoneSpecifierWithType    = "TEL;";
+            const string _telephoneSpecifier            = "TEL:";
+            const string _addressSpecifierWithType      = "ADR;";
+            const string _emailSpecifier                = "EMAIL;";
+            const string _orgSpecifier                  = "ORG:";
+            const string _titleSpecifier                = "TITLE:";
+            const string _titleSpecifierWithArguments   = "TITLE;";
+            const string _urlSpecifier                  = "URL:";
+            const string _noteSpecifier                 = "NOTE:";
+            const string _xSpecifier                    = "X-";
+            const string _typeArgumentSpecifier         = "TYPE=";
+            const string _altIdArgumentSpecifier        = "ALTID=";
 
             // Full Name specifier is required
             bool fullNameSpecifierSpotted = false;
