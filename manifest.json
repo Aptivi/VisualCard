@@ -1,0 +1,305 @@
+{
+  "homepages": [],
+  "source_base_path": "/github/workspace/DocGen",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      },
+      "is_incremental": false
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.CardTools.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.CardTools.html",
+          "hash": "Yl/0DpDJDLaHbHztN312Q1GiniBCuwJ+ygD1ZLR/sX8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parsers.BaseVcardParser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parsers.BaseVcardParser.html",
+          "hash": "bxqQHQbPDBgP9tRe/THXy/9Bt48ah+/lWqk4PsGPoFk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parsers.IVcardParser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parsers.IVcardParser.html",
+          "hash": "q2M594RAXepxYQSwsnxtSJhb3rM39rmFYVlehbUPW10="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parsers.VcardFour.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parsers.VcardFour.html",
+          "hash": "ZZsP0H8MMafNJDI0sLelT1eu0wCB4aNhviTdDzEMRBg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parsers.VcardThree.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parsers.VcardThree.html",
+          "hash": "tqbodJ2Vzak5PzlgoCdc3ck/1En2qhy/pJ2YoeCmypo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parsers.VcardTwo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parsers.VcardTwo.html",
+          "hash": "yUCvO8si0drdLI5Ok5cXw+MAEsvZeYZ1kPlVjzPETxo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parsers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parsers.html",
+          "hash": "+zNc8nIjRSs3n1JGlfTNCz5103SBR1HObx9MvkjAFZM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.AddressInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.AddressInfo.html",
+          "hash": "MAF+iJA3kJHRxT9cxjAtGrAbMkrPzXORayyuSPCYwFE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.Card.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.Card.html",
+          "hash": "dm7NEeovl9p4VG1vCkRDRECME3sWOptadGJJMoPJRX8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.EmailInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.EmailInfo.html",
+          "hash": "MB0Y5IRg2+8gbwU/xWflzspfoCLayIVFM/TJ7Mk0kT4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.NameInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.NameInfo.html",
+          "hash": "Q6n+ZwpZNxWE8n7SpRfoSwB8Ym6q396hm0qzpY7BGZ0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.OrganizationInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.OrganizationInfo.html",
+          "hash": "kcmSaCPN4+mClWPnhSqwNBegBj8/u/9burng92bltjQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.TelephoneInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.TelephoneInfo.html",
+          "hash": "Z6jhCNDLmjSkQFpVFdkGlYVhGRZrIVZC0gBWrGZX3us="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.TitleInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.TitleInfo.html",
+          "hash": "JOYIVM+0mYaDNuKOz8pfx7YmA0sGo6yAaulqJYPaRto="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.XNameInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.XNameInfo.html",
+          "hash": "rXDjYsSXgjMi2yIKUoClQiILXHvJv/jsMa7xAWsqa7I="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.html",
+          "hash": "ZofQFhf6mFa+kAgJPVZm9FNccEBqPhmsIilxXjEFH6g="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.html",
+          "hash": "0nHuP5pPvQyEGHpSxFUBH2NYwwmkAcuTXj3lRTrIYH0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "86+jA4hWn2Ju985T05EhWbJHrcYjJJ4V9rXLePIMmY0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "1bBTotBY/TGm0rlCvdJQpXevgA1r4faxEroMDMeAAqo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "vh9FCYLI5D9o5meOkVjAIc/lrozSYwiejEBF3YqZpCw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot build incrementally because last build info is missing.",
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0,
+        "full_build_reason_code": "NoAvailableBuildCache"
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 1,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 17,
+          "skipped_file_count": 0
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: should not trace intermediate info.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
