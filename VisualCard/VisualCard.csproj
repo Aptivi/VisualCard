@@ -6,7 +6,7 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <AssemblyVersion>0.1.0.0</AssemblyVersion>
     <FileVersion>0.1.0.0</FileVersion>
-    <Version>0.1.0.0-alpha01</Version>
+    <Version>0.1.0.0-alpha02</Version>
     <ApplicationIcon>OfficialAppIcon-VisualCard.ico</ApplicationIcon>
     <Company>Aptivi</Company>
     <Description>A managed VCard contact file parser</Description>
@@ -20,7 +20,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <LangVersion>10.0</LangVersion>
-    <PackageVersion>0.1.0.0-alpha01</PackageVersion>
+    <PackageVersion>0.1.0.0-alpha02</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
