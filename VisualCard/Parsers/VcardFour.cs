@@ -88,6 +88,7 @@ namespace VisualCard.Parsers
             const string _titleSpecifierWithArguments   = "TITLE;";
             const string _urlSpecifier                  = "URL:";
             const string _noteSpecifier                 = "NOTE:";
+            const string _photoSpecifierWithType        = "PHOTO;";
             const string _xSpecifier                    = "X-";
             const string _typeArgumentSpecifier         = "TYPE=";
             const string _altIdArgumentSpecifier        = "ALTID=";
