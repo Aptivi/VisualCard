@@ -457,6 +457,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Card.CardKind
   nameWithType: Card.CardKind
+- uid: VisualCard.Parts.Card.CardRevision
+  name: CardRevision
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_CardRevision
+  commentId: P:VisualCard.Parts.Card.CardRevision
+  fullName: VisualCard.Parts.Card.CardRevision
+  nameWithType: Card.CardRevision
+- uid: VisualCard.Parts.Card.CardRevision*
+  name: CardRevision
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_CardRevision_
+  commentId: Overload:VisualCard.Parts.Card.CardRevision
+  isSpec: "True"
+  fullName: VisualCard.Parts.Card.CardRevision
+  nameWithType: Card.CardRevision
 - uid: VisualCard.Parts.Card.CardVersion
   name: CardVersion
   href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_CardVersion
@@ -522,6 +535,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Card.ContactNames
   nameWithType: Card.ContactNames
+- uid: VisualCard.Parts.Card.ContactNicknames
+  name: ContactNicknames
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactNicknames
+  commentId: P:VisualCard.Parts.Card.ContactNicknames
+  fullName: VisualCard.Parts.Card.ContactNicknames
+  nameWithType: Card.ContactNicknames
+- uid: VisualCard.Parts.Card.ContactNicknames*
+  name: ContactNicknames
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactNicknames_
+  commentId: Overload:VisualCard.Parts.Card.ContactNicknames
+  isSpec: "True"
+  fullName: VisualCard.Parts.Card.ContactNicknames
+  nameWithType: Card.ContactNicknames
 - uid: VisualCard.Parts.Card.ContactNotes
   name: ContactNotes
   href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactNotes
@@ -742,6 +768,64 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.NameInfo.Suffixes
   nameWithType: NameInfo.Suffixes
+- uid: VisualCard.Parts.NicknameInfo
+  name: NicknameInfo
+  href: api/VisualCard.Parts.NicknameInfo.html
+  commentId: T:VisualCard.Parts.NicknameInfo
+  fullName: VisualCard.Parts.NicknameInfo
+  nameWithType: NicknameInfo
+- uid: VisualCard.Parts.NicknameInfo.AltArguments
+  name: AltArguments
+  href: api/VisualCard.Parts.NicknameInfo.html#VisualCard_Parts_NicknameInfo_AltArguments
+  commentId: P:VisualCard.Parts.NicknameInfo.AltArguments
+  fullName: VisualCard.Parts.NicknameInfo.AltArguments
+  nameWithType: NicknameInfo.AltArguments
+- uid: VisualCard.Parts.NicknameInfo.AltArguments*
+  name: AltArguments
+  href: api/VisualCard.Parts.NicknameInfo.html#VisualCard_Parts_NicknameInfo_AltArguments_
+  commentId: Overload:VisualCard.Parts.NicknameInfo.AltArguments
+  isSpec: "True"
+  fullName: VisualCard.Parts.NicknameInfo.AltArguments
+  nameWithType: NicknameInfo.AltArguments
+- uid: VisualCard.Parts.NicknameInfo.AltId
+  name: AltId
+  href: api/VisualCard.Parts.NicknameInfo.html#VisualCard_Parts_NicknameInfo_AltId
+  commentId: P:VisualCard.Parts.NicknameInfo.AltId
+  fullName: VisualCard.Parts.NicknameInfo.AltId
+  nameWithType: NicknameInfo.AltId
+- uid: VisualCard.Parts.NicknameInfo.AltId*
+  name: AltId
+  href: api/VisualCard.Parts.NicknameInfo.html#VisualCard_Parts_NicknameInfo_AltId_
+  commentId: Overload:VisualCard.Parts.NicknameInfo.AltId
+  isSpec: "True"
+  fullName: VisualCard.Parts.NicknameInfo.AltId
+  nameWithType: NicknameInfo.AltId
+- uid: VisualCard.Parts.NicknameInfo.ContactNickname
+  name: ContactNickname
+  href: api/VisualCard.Parts.NicknameInfo.html#VisualCard_Parts_NicknameInfo_ContactNickname
+  commentId: P:VisualCard.Parts.NicknameInfo.ContactNickname
+  fullName: VisualCard.Parts.NicknameInfo.ContactNickname
+  nameWithType: NicknameInfo.ContactNickname
+- uid: VisualCard.Parts.NicknameInfo.ContactNickname*
+  name: ContactNickname
+  href: api/VisualCard.Parts.NicknameInfo.html#VisualCard_Parts_NicknameInfo_ContactNickname_
+  commentId: Overload:VisualCard.Parts.NicknameInfo.ContactNickname
+  isSpec: "True"
+  fullName: VisualCard.Parts.NicknameInfo.ContactNickname
+  nameWithType: NicknameInfo.ContactNickname
+- uid: VisualCard.Parts.NicknameInfo.NicknameTypes
+  name: NicknameTypes
+  href: api/VisualCard.Parts.NicknameInfo.html#VisualCard_Parts_NicknameInfo_NicknameTypes
+  commentId: P:VisualCard.Parts.NicknameInfo.NicknameTypes
+  fullName: VisualCard.Parts.NicknameInfo.NicknameTypes
+  nameWithType: NicknameInfo.NicknameTypes
+- uid: VisualCard.Parts.NicknameInfo.NicknameTypes*
+  name: NicknameTypes
+  href: api/VisualCard.Parts.NicknameInfo.html#VisualCard_Parts_NicknameInfo_NicknameTypes_
+  commentId: Overload:VisualCard.Parts.NicknameInfo.NicknameTypes
+  isSpec: "True"
+  fullName: VisualCard.Parts.NicknameInfo.NicknameTypes
+  nameWithType: NicknameInfo.NicknameTypes
 - uid: VisualCard.Parts.OrganizationInfo
   name: OrganizationInfo
   href: api/VisualCard.Parts.OrganizationInfo.html
@@ -871,6 +955,90 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.PhotoInfo.ValueType
   nameWithType: PhotoInfo.ValueType
+- uid: VisualCard.Parts.SoundInfo
+  name: SoundInfo
+  href: api/VisualCard.Parts.SoundInfo.html
+  commentId: T:VisualCard.Parts.SoundInfo
+  fullName: VisualCard.Parts.SoundInfo
+  nameWithType: SoundInfo
+- uid: VisualCard.Parts.SoundInfo.AltArguments
+  name: AltArguments
+  href: api/VisualCard.Parts.SoundInfo.html#VisualCard_Parts_SoundInfo_AltArguments
+  commentId: P:VisualCard.Parts.SoundInfo.AltArguments
+  fullName: VisualCard.Parts.SoundInfo.AltArguments
+  nameWithType: SoundInfo.AltArguments
+- uid: VisualCard.Parts.SoundInfo.AltArguments*
+  name: AltArguments
+  href: api/VisualCard.Parts.SoundInfo.html#VisualCard_Parts_SoundInfo_AltArguments_
+  commentId: Overload:VisualCard.Parts.SoundInfo.AltArguments
+  isSpec: "True"
+  fullName: VisualCard.Parts.SoundInfo.AltArguments
+  nameWithType: SoundInfo.AltArguments
+- uid: VisualCard.Parts.SoundInfo.AltId
+  name: AltId
+  href: api/VisualCard.Parts.SoundInfo.html#VisualCard_Parts_SoundInfo_AltId
+  commentId: P:VisualCard.Parts.SoundInfo.AltId
+  fullName: VisualCard.Parts.SoundInfo.AltId
+  nameWithType: SoundInfo.AltId
+- uid: VisualCard.Parts.SoundInfo.AltId*
+  name: AltId
+  href: api/VisualCard.Parts.SoundInfo.html#VisualCard_Parts_SoundInfo_AltId_
+  commentId: Overload:VisualCard.Parts.SoundInfo.AltId
+  isSpec: "True"
+  fullName: VisualCard.Parts.SoundInfo.AltId
+  nameWithType: SoundInfo.AltId
+- uid: VisualCard.Parts.SoundInfo.Encoding
+  name: Encoding
+  href: api/VisualCard.Parts.SoundInfo.html#VisualCard_Parts_SoundInfo_Encoding
+  commentId: P:VisualCard.Parts.SoundInfo.Encoding
+  fullName: VisualCard.Parts.SoundInfo.Encoding
+  nameWithType: SoundInfo.Encoding
+- uid: VisualCard.Parts.SoundInfo.Encoding*
+  name: Encoding
+  href: api/VisualCard.Parts.SoundInfo.html#VisualCard_Parts_SoundInfo_Encoding_
+  commentId: Overload:VisualCard.Parts.SoundInfo.Encoding
+  isSpec: "True"
+  fullName: VisualCard.Parts.SoundInfo.Encoding
+  nameWithType: SoundInfo.Encoding
+- uid: VisualCard.Parts.SoundInfo.SoundEncoded
+  name: SoundEncoded
+  href: api/VisualCard.Parts.SoundInfo.html#VisualCard_Parts_SoundInfo_SoundEncoded
+  commentId: P:VisualCard.Parts.SoundInfo.SoundEncoded
+  fullName: VisualCard.Parts.SoundInfo.SoundEncoded
+  nameWithType: SoundInfo.SoundEncoded
+- uid: VisualCard.Parts.SoundInfo.SoundEncoded*
+  name: SoundEncoded
+  href: api/VisualCard.Parts.SoundInfo.html#VisualCard_Parts_SoundInfo_SoundEncoded_
+  commentId: Overload:VisualCard.Parts.SoundInfo.SoundEncoded
+  isSpec: "True"
+  fullName: VisualCard.Parts.SoundInfo.SoundEncoded
+  nameWithType: SoundInfo.SoundEncoded
+- uid: VisualCard.Parts.SoundInfo.SoundType
+  name: SoundType
+  href: api/VisualCard.Parts.SoundInfo.html#VisualCard_Parts_SoundInfo_SoundType
+  commentId: P:VisualCard.Parts.SoundInfo.SoundType
+  fullName: VisualCard.Parts.SoundInfo.SoundType
+  nameWithType: SoundInfo.SoundType
+- uid: VisualCard.Parts.SoundInfo.SoundType*
+  name: SoundType
+  href: api/VisualCard.Parts.SoundInfo.html#VisualCard_Parts_SoundInfo_SoundType_
+  commentId: Overload:VisualCard.Parts.SoundInfo.SoundType
+  isSpec: "True"
+  fullName: VisualCard.Parts.SoundInfo.SoundType
+  nameWithType: SoundInfo.SoundType
+- uid: VisualCard.Parts.SoundInfo.ValueType
+  name: ValueType
+  href: api/VisualCard.Parts.SoundInfo.html#VisualCard_Parts_SoundInfo_ValueType
+  commentId: P:VisualCard.Parts.SoundInfo.ValueType
+  fullName: VisualCard.Parts.SoundInfo.ValueType
+  nameWithType: SoundInfo.ValueType
+- uid: VisualCard.Parts.SoundInfo.ValueType*
+  name: ValueType
+  href: api/VisualCard.Parts.SoundInfo.html#VisualCard_Parts_SoundInfo_ValueType_
+  commentId: Overload:VisualCard.Parts.SoundInfo.ValueType
+  isSpec: "True"
+  fullName: VisualCard.Parts.SoundInfo.ValueType
+  nameWithType: SoundInfo.ValueType
 - uid: VisualCard.Parts.TelephoneInfo
   name: TelephoneInfo
   href: api/VisualCard.Parts.TelephoneInfo.html

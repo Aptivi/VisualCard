@@ -105,7 +105,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisualCard.Parts.AddressInfo.html",
-          "hash": "P32YnqAmEHJVKnzCuXpda0aHgJaPN2Bl9t3laAFGDH0="
+          "hash": "YS9ty0bm+6bhYvTrrFe7yHMpyxzNMCUpAttZ7J4guno="
         }
       },
       "is_incremental": false,
@@ -117,7 +117,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisualCard.Parts.Card.html",
-          "hash": "R/GBjRX8I74/z9X9OICM8+XNdqcCFM/yenzz3Pm/RpQ="
+          "hash": "AowqV6Qim6qDO6Hxc2xj9OcYF+V+/RaihqyI85xJHMQ="
         }
       },
       "is_incremental": false,
@@ -129,7 +129,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisualCard.Parts.EmailInfo.html",
-          "hash": "4OFSGSrcbv/i4fJCD605mVVV5VxN2f4YWcktOpTvcJM="
+          "hash": "kdKuVau/cN9zXkH0dOh64Jkwl0pOg8HtvOQ5tf+N4mk="
         }
       },
       "is_incremental": false,
@@ -141,7 +141,19 @@
       "output": {
         ".html": {
           "relative_path": "api/VisualCard.Parts.NameInfo.html",
-          "hash": "xjueLO1JgNkJKSNmAO8L5TzeBZAUajCj/HaoILcAi7o="
+          "hash": "TQDGEgM5OERVkYsBqX4nWaIv6Wh5AqzKIMmADhHzltI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.NicknameInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.NicknameInfo.html",
+          "hash": "pW0BF/Rl+x0eBjBKLtWe/ar2tiFgmYntw0HGM38xlWY="
         }
       },
       "is_incremental": false,
@@ -153,7 +165,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisualCard.Parts.OrganizationInfo.html",
-          "hash": "IGJUmkmDGOjtlXFYYbYa5Lsek7gwxmoJx3OcqsySoNo="
+          "hash": "uN92WSjrAQx45KpzCfEfagaoymSSGEUls+DMta+DdXk="
         }
       },
       "is_incremental": false,
@@ -165,7 +177,19 @@
       "output": {
         ".html": {
           "relative_path": "api/VisualCard.Parts.PhotoInfo.html",
-          "hash": "P+Ed8qFB4KOWngQUC+kuh/AzFy5aiL2ZzXBX+O1QIfY="
+          "hash": "zFfnkK8d7OP462UOYr+j8kzpAMVQ2OGJ7OPhUD8FoZU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.SoundInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.SoundInfo.html",
+          "hash": "GfvrFQ+NoBujw8ByF7wVMxByDPkD2BcXCk7Rx0SSS+0="
         }
       },
       "is_incremental": false,
@@ -177,7 +201,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisualCard.Parts.TelephoneInfo.html",
-          "hash": "X6/oQwmWa2A0RczAmgpN4VUjTnOjCRg3tDpJgQNSy+8="
+          "hash": "zn7/92mirgknmzuzrtSVqlokaUA9rqdVkGIBX42F3os="
         }
       },
       "is_incremental": false,
@@ -189,7 +213,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisualCard.Parts.TitleInfo.html",
-          "hash": "kV31n6BF6R4daIJJIImZM9uSSoaF/9eVe3HZr6qSDu0="
+          "hash": "odJ6oHwk5v1dVD42EqsRw5r0YW0JC+WuUiJOFAqzPS4="
         }
       },
       "is_incremental": false,
@@ -201,7 +225,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisualCard.Parts.XNameInfo.html",
-          "hash": "HJ0ExW44+YWZYjEh+3eHgclWLXyCbnAGdWlA3bDABJs="
+          "hash": "eJkUgnu6KPZzVNwXg7e1CrPKxxvsgWXuljCcWGprBBk="
         }
       },
       "is_incremental": false,
@@ -213,7 +237,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisualCard.Parts.html",
-          "hash": "O79rBMSYEm5Bvnkrd8wMPe9ctkMkzAEuhLyTZhyvt0M="
+          "hash": "3wJiJys5E7T4H959vvQE03obom+svMs7f7AyjAv+MHM="
         }
       },
       "is_incremental": false,
@@ -237,7 +261,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "oFtiRqhowuxcl7wq1VCWZ7FJn4uewEmlI42W1GvhzkA="
+          "hash": "U06ij9cGeiKPfCDjP9v8ZqLvGizatGu5TcMxEIZB5EI="
         }
       },
       "is_incremental": false,
@@ -288,7 +312,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 18,
+          "total_file_count": 20,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {
