@@ -69,6 +69,7 @@ namespace VisualCard.Parsers
             List<AddressInfo> _addresses    = new();
             List<OrganizationInfo> _orgs    = new();
             List<TitleInfo> _titles         = new();
+            List<PhotoInfo> _photos         = new();
             List<XNameInfo> _xes            = new();
 
             // Some VCard 4.0 constants
@@ -413,6 +414,82 @@ namespace VisualCard.Parsers
                     _note = Regex.Unescape(noteValue);
                 }
 
+                // Photo (PHOTO;ENCODING=BASE64;JPEG:... or PHOTO;VALUE=URL:file:///jqpublic.gif or PHOTO;ENCODING=BASE64;TYPE=GIF:...)
+                // ALTID is supported.
+                if (_value.StartsWith(_photoSpecifierWithType))
+                {
+                    // Get the value
+                    string? photoValue = _value.Substring(_photoSpecifierWithType.Length);
+                    string[] splitPhoto = photoValue.Split(_argumentDelimiter);
+                    string[] splitArgs = splitPhoto[0].Split(_fieldDelimiter);
+                    int altId = 0;
+
+                    // Check the ALTID
+                    if (splitArgs[0].StartsWith(_altIdArgumentSpecifier))
+                    {
+                        if (!int.TryParse(splitArgs[0].Substring(_altIdArgumentSpecifier.Length), out altId))
+                            throw new InvalidDataException("ALTID must be numeric");
+
+                        // Here, we require arguments for ALTID
+                        if (splitArgs.Length <= 1)
+                            throw new InvalidDataException("ALTID must have one or more arguments to specify why is this instance an alternative");
+                    }
+
+                    // Finalize the arguments
+                    string[] finalArgs = Array.Empty<string>();
+                    if (splitArgs[0].StartsWith(_altIdArgumentSpecifier))
+                        splitArgs.CopyTo(finalArgs, 1);
+                    else
+                        finalArgs = splitArgs;
+
+                    // Check to see if the value is prepended by the VALUE= argument
+                    bool isUrl = false;
+                    string valueType = "";
+                    if (splitArgs.Length == 1)
+                    {
+                        const string _valueArgumentSpecifier = "VALUE=";
+                        valueType = splitArgs[0].Substring(_valueArgumentSpecifier.Length).ToLower();
+                        isUrl = valueType == "url" || valueType == "uri";
+                    }
+
+                    // Check to see if the value is prepended by the ENCODING= argument
+                    string photoEncoding = "";
+                    if (splitArgs.Length >= 1)
+                    {
+                        const string _encodingArgumentSpecifier = "ENCODING=";
+                        photoEncoding = splitArgs[0].Substring(_encodingArgumentSpecifier.Length);
+                    }
+
+                    // Check to see if the value is prepended with the TYPE= argument
+                    string photoType = "";
+                    if (splitArgs.Length >= 1)
+                    {
+                        photoType = splitArgs[1].StartsWith(_typeArgumentSpecifier) ?
+                                    splitArgs[1].Substring(_typeArgumentSpecifier.Length) :
+                                    splitArgs[1];
+                    }
+
+                    // Now, get the encoded photo
+                    StringBuilder encodedPhoto = new();
+                    if (splitPhoto.Length == 2)
+                        encodedPhoto.Append(splitPhoto[1]);
+
+                    // Make sure to get all the blocks until we reach an empty line
+                    if (!isUrl)
+                    {
+                        string? lineToBeAppended = CardContentReader.ReadLine();
+                        while (!string.IsNullOrWhiteSpace(lineToBeAppended))
+                        {
+                            encodedPhoto.Append(lineToBeAppended);
+                            lineToBeAppended = CardContentReader.ReadLine();
+                        }
+                    }
+
+                    // Populate the fields
+                    PhotoInfo _photo = new(altId, finalArgs, valueType, photoEncoding, photoType, encodedPhoto.ToString());
+                    _photos.Add(_photo);
+                }
+
                 // X-nonstandard (X-AIM:john.s or X-DL;Design Work Group:List Item 1;List Item 2;List Item 3)
                 // Here, we don't support ALTID.
                 if (_value.StartsWith(_xSpecifier))
@@ -442,7 +519,7 @@ namespace VisualCard.Parsers
                 throw new InvalidDataException("The full name specifier, \"FN:\", is required.");
 
             // Make a new instance of the card
-            return new Card(CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), _kind);
+            return new Card(CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), _kind, _photos.ToArray());
         }
 
         internal VcardFour(string cardPath, string cardContent, string cardVersion)

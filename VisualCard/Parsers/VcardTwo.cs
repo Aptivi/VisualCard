@@ -68,6 +68,7 @@ namespace VisualCard.Parsers
             List<AddressInfo> _addresses    = new();
             List<OrganizationInfo> _orgs    = new();
             List<TitleInfo> _titles         = new();
+            List<PhotoInfo> _photos         = new();
             List<XNameInfo> _xes            = new();
 
             // Some VCard 2.1 constants
@@ -278,6 +279,62 @@ namespace VisualCard.Parsers
                     _note = Regex.Unescape(noteValue);
                 }
 
+                // Photo (PHOTO;ENCODING=BASE64;JPEG:... or PHOTO;VALUE=URL:file:///jqpublic.gif or PHOTO;ENCODING=BASE64;TYPE=GIF:...)
+                if (_value.StartsWith(_photoSpecifierWithType))
+                {
+                    // Get the value
+                    string? photoValue = _value.Substring(_photoSpecifierWithType.Length);
+                    string[] splitPhoto = photoValue.Split(_argumentDelimiter);
+                    string[] splitPhotoArgs = photoValue.Split(_fieldDelimiter);
+
+                    // Check to see if the value is prepended by the VALUE= argument
+                    bool isUrl = false;
+                    string valueType = "";
+                    if (splitPhotoArgs.Length == 1)
+                    {
+                        const string _valueArgumentSpecifier = "VALUE=";
+                        valueType = splitPhotoArgs[0].Substring(_valueArgumentSpecifier.Length).ToLower();
+                        isUrl = valueType == "url" || valueType == "uri";
+                    }
+
+                    // Check to see if the value is prepended by the ENCODING= argument
+                    string photoEncoding = "";
+                    if (splitPhotoArgs.Length >= 1)
+                    {
+                        const string _encodingArgumentSpecifier = "ENCODING=";
+                        photoEncoding = splitPhotoArgs[0].Substring(_encodingArgumentSpecifier.Length);
+                    }
+
+                    // Check to see if the value is prepended with the TYPE= argument
+                    string photoType = "";
+                    if (splitPhotoArgs.Length >= 1)
+                    {
+                        photoType = splitPhotoArgs[1].StartsWith(_typeArgumentSpecifier) ?
+                                    splitPhotoArgs[1].Substring(_typeArgumentSpecifier.Length).Substring(0, splitPhotoArgs[1].IndexOf(_argumentDelimiter)) :
+                                    splitPhotoArgs[1].Substring(0, splitPhotoArgs[1].IndexOf(_argumentDelimiter));
+                    }
+
+                    // Now, get the encoded photo
+                    StringBuilder encodedPhoto = new();
+                    if (splitPhoto.Length == 2)
+                        encodedPhoto.Append(splitPhoto[1]);
+
+                    // Make sure to get all the blocks until we reach an empty line
+                    if (!isUrl)
+                    {
+                        string? lineToBeAppended = CardContentReader.ReadLine();
+                        while (!string.IsNullOrWhiteSpace(lineToBeAppended))
+                        {
+                            encodedPhoto.Append(lineToBeAppended);
+                            lineToBeAppended = CardContentReader.ReadLine()?.Trim();
+                        }
+                    }
+
+                    // Populate the fields
+                    PhotoInfo _photo = new(0, Array.Empty<string>(), valueType, photoEncoding, photoType, encodedPhoto.ToString());
+                    _photos.Add(_photo);
+                }
+
                 // X-nonstandard (X-AIM:john.s or X-DL;Design Work Group:List Item 1;List Item 2;List Item 3)
                 if (_value.StartsWith(_xSpecifier))
                 {
@@ -306,7 +363,7 @@ namespace VisualCard.Parsers
                 throw new InvalidDataException("The name specifier, \"N:\", is required.");
 
             // Make a new instance of the card
-            return new Card(CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), "individual");
+            return new Card(CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), "individual", _photos.ToArray());
         }
 
         internal VcardTwo(string cardPath, string cardContent, string cardVersion)

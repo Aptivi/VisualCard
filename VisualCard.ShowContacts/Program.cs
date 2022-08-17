@@ -126,6 +126,18 @@ namespace VisualCard.ShowContacts
                         Console.WriteLine("Phone number:            {0}", Telephone.ContactPhoneNumber);
                     }
 
+                    // List telephones
+                    foreach (PhotoInfo Photo in Contact.ContactPhotos)
+                    {
+                        Console.WriteLine("Photo encoding:          {0}", Photo.Encoding);
+                        Console.WriteLine("Photo type:              {0}", Photo.PhotoType);
+                        Console.WriteLine("Photo value type:        {0}", Photo.ValueType);
+                        Console.WriteLine("ALTID:                   {0}", Photo.AltId);
+                        if (Photo.AltArguments?.Length > 0)
+                            Console.WriteLine("Reason for ALTID:        {0}", Photo.AltArguments);
+                        Console.WriteLine("Photo data: \n{0}", Photo.PhotoEncoded);
+                    }
+
                     // List remaining
                     Console.WriteLine("Contact URL:             {0}", Contact.ContactURL);
                     Console.WriteLine("Contact Note:            {0}", Contact.ContactNotes);
