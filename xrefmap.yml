@@ -548,6 +548,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Card.ContactOrganizations
   nameWithType: Card.ContactOrganizations
+- uid: VisualCard.Parts.Card.ContactPhotos
+  name: ContactPhotos
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactPhotos
+  commentId: P:VisualCard.Parts.Card.ContactPhotos
+  fullName: VisualCard.Parts.Card.ContactPhotos
+  nameWithType: Card.ContactPhotos
+- uid: VisualCard.Parts.Card.ContactPhotos*
+  name: ContactPhotos
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactPhotos_
+  commentId: Overload:VisualCard.Parts.Card.ContactPhotos
+  isSpec: "True"
+  fullName: VisualCard.Parts.Card.ContactPhotos
+  nameWithType: Card.ContactPhotos
 - uid: VisualCard.Parts.Card.ContactTelephones
   name: ContactTelephones
   href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactTelephones
@@ -774,6 +787,90 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.OrganizationInfo.Unit
   nameWithType: OrganizationInfo.Unit
+- uid: VisualCard.Parts.PhotoInfo
+  name: PhotoInfo
+  href: api/VisualCard.Parts.PhotoInfo.html
+  commentId: T:VisualCard.Parts.PhotoInfo
+  fullName: VisualCard.Parts.PhotoInfo
+  nameWithType: PhotoInfo
+- uid: VisualCard.Parts.PhotoInfo.AltArguments
+  name: AltArguments
+  href: api/VisualCard.Parts.PhotoInfo.html#VisualCard_Parts_PhotoInfo_AltArguments
+  commentId: P:VisualCard.Parts.PhotoInfo.AltArguments
+  fullName: VisualCard.Parts.PhotoInfo.AltArguments
+  nameWithType: PhotoInfo.AltArguments
+- uid: VisualCard.Parts.PhotoInfo.AltArguments*
+  name: AltArguments
+  href: api/VisualCard.Parts.PhotoInfo.html#VisualCard_Parts_PhotoInfo_AltArguments_
+  commentId: Overload:VisualCard.Parts.PhotoInfo.AltArguments
+  isSpec: "True"
+  fullName: VisualCard.Parts.PhotoInfo.AltArguments
+  nameWithType: PhotoInfo.AltArguments
+- uid: VisualCard.Parts.PhotoInfo.AltId
+  name: AltId
+  href: api/VisualCard.Parts.PhotoInfo.html#VisualCard_Parts_PhotoInfo_AltId
+  commentId: P:VisualCard.Parts.PhotoInfo.AltId
+  fullName: VisualCard.Parts.PhotoInfo.AltId
+  nameWithType: PhotoInfo.AltId
+- uid: VisualCard.Parts.PhotoInfo.AltId*
+  name: AltId
+  href: api/VisualCard.Parts.PhotoInfo.html#VisualCard_Parts_PhotoInfo_AltId_
+  commentId: Overload:VisualCard.Parts.PhotoInfo.AltId
+  isSpec: "True"
+  fullName: VisualCard.Parts.PhotoInfo.AltId
+  nameWithType: PhotoInfo.AltId
+- uid: VisualCard.Parts.PhotoInfo.Encoding
+  name: Encoding
+  href: api/VisualCard.Parts.PhotoInfo.html#VisualCard_Parts_PhotoInfo_Encoding
+  commentId: P:VisualCard.Parts.PhotoInfo.Encoding
+  fullName: VisualCard.Parts.PhotoInfo.Encoding
+  nameWithType: PhotoInfo.Encoding
+- uid: VisualCard.Parts.PhotoInfo.Encoding*
+  name: Encoding
+  href: api/VisualCard.Parts.PhotoInfo.html#VisualCard_Parts_PhotoInfo_Encoding_
+  commentId: Overload:VisualCard.Parts.PhotoInfo.Encoding
+  isSpec: "True"
+  fullName: VisualCard.Parts.PhotoInfo.Encoding
+  nameWithType: PhotoInfo.Encoding
+- uid: VisualCard.Parts.PhotoInfo.PhotoEncoded
+  name: PhotoEncoded
+  href: api/VisualCard.Parts.PhotoInfo.html#VisualCard_Parts_PhotoInfo_PhotoEncoded
+  commentId: P:VisualCard.Parts.PhotoInfo.PhotoEncoded
+  fullName: VisualCard.Parts.PhotoInfo.PhotoEncoded
+  nameWithType: PhotoInfo.PhotoEncoded
+- uid: VisualCard.Parts.PhotoInfo.PhotoEncoded*
+  name: PhotoEncoded
+  href: api/VisualCard.Parts.PhotoInfo.html#VisualCard_Parts_PhotoInfo_PhotoEncoded_
+  commentId: Overload:VisualCard.Parts.PhotoInfo.PhotoEncoded
+  isSpec: "True"
+  fullName: VisualCard.Parts.PhotoInfo.PhotoEncoded
+  nameWithType: PhotoInfo.PhotoEncoded
+- uid: VisualCard.Parts.PhotoInfo.PhotoType
+  name: PhotoType
+  href: api/VisualCard.Parts.PhotoInfo.html#VisualCard_Parts_PhotoInfo_PhotoType
+  commentId: P:VisualCard.Parts.PhotoInfo.PhotoType
+  fullName: VisualCard.Parts.PhotoInfo.PhotoType
+  nameWithType: PhotoInfo.PhotoType
+- uid: VisualCard.Parts.PhotoInfo.PhotoType*
+  name: PhotoType
+  href: api/VisualCard.Parts.PhotoInfo.html#VisualCard_Parts_PhotoInfo_PhotoType_
+  commentId: Overload:VisualCard.Parts.PhotoInfo.PhotoType
+  isSpec: "True"
+  fullName: VisualCard.Parts.PhotoInfo.PhotoType
+  nameWithType: PhotoInfo.PhotoType
+- uid: VisualCard.Parts.PhotoInfo.ValueType
+  name: ValueType
+  href: api/VisualCard.Parts.PhotoInfo.html#VisualCard_Parts_PhotoInfo_ValueType
+  commentId: P:VisualCard.Parts.PhotoInfo.ValueType
+  fullName: VisualCard.Parts.PhotoInfo.ValueType
+  nameWithType: PhotoInfo.ValueType
+- uid: VisualCard.Parts.PhotoInfo.ValueType*
+  name: ValueType
+  href: api/VisualCard.Parts.PhotoInfo.html#VisualCard_Parts_PhotoInfo_ValueType_
+  commentId: Overload:VisualCard.Parts.PhotoInfo.ValueType
+  isSpec: "True"
+  fullName: VisualCard.Parts.PhotoInfo.ValueType
+  nameWithType: PhotoInfo.ValueType
 - uid: VisualCard.Parts.TelephoneInfo
   name: TelephoneInfo
   href: api/VisualCard.Parts.TelephoneInfo.html
