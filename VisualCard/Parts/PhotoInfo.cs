@@ -34,27 +34,27 @@ namespace VisualCard.Parts
         /// <summary>
         /// Arguments that follow the AltId
         /// </summary>
-        public string[]? AltArguments { get; }
+        public string[] AltArguments { get; }
         /// <summary>
         /// Value type
         /// </summary>
-        public string? ValueType { get; }
+        public string ValueType { get; }
         /// <summary>
         /// Photo encoding type
         /// </summary>
-        public string? Encoding { get; }
+        public string Encoding { get; }
         /// <summary>
         /// Photo type (JPEG, ...)
         /// </summary>
-        public string? PhotoType { get; }
+        public string PhotoType { get; }
         /// <summary>
         /// Encoded photo
         /// </summary>
-        public string? PhotoEncoded { get; }
+        public string PhotoEncoded { get; }
 
         internal PhotoInfo() { }
 
-        internal PhotoInfo(int altId, string[]? altArguments, string? valueType, string? encoding, string? photoType, string? photoEncoded)
+        internal PhotoInfo(int altId, string[] altArguments, string valueType, string encoding, string photoType, string photoEncoded)
         {
             AltId = altId;
             AltArguments = altArguments;

@@ -34,27 +34,27 @@ namespace VisualCard.Parts
         /// <summary>
         /// Arguments that follow the AltId
         /// </summary>
-        public string[]? AltArguments { get; }
+        public string[] AltArguments { get; }
         /// <summary>
         /// Value type
         /// </summary>
-        public string? ValueType { get; }
+        public string ValueType { get; }
         /// <summary>
         /// Sound encoding type
         /// </summary>
-        public string? Encoding { get; }
+        public string Encoding { get; }
         /// <summary>
         /// Sound type (JPEG, ...)
         /// </summary>
-        public string? SoundType { get; }
+        public string SoundType { get; }
         /// <summary>
         /// Encoded sound
         /// </summary>
-        public string? SoundEncoded { get; }
+        public string SoundEncoded { get; }
 
         internal SoundInfo() { }
 
-        internal SoundInfo(int altId, string[]? altArguments, string? valueType, string? encoding, string? soundType, string? soundEncoded)
+        internal SoundInfo(int altId, string[] altArguments, string valueType, string encoding, string soundType, string soundEncoded)
         {
             AltId = altId;
             AltArguments = altArguments;

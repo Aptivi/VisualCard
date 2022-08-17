@@ -30,15 +30,15 @@ namespace VisualCard.Parts
         /// <summary>
         /// The contact's phone types
         /// </summary>
-        public string[]? ContactPhoneTypes { get; }
+        public string[] ContactPhoneTypes { get; }
         /// <summary>
         /// The contact's phone number
         /// </summary>
-        public string? ContactPhoneNumber { get; }
+        public string ContactPhoneNumber { get; }
 
         internal TelephoneInfo() { }
 
-        internal TelephoneInfo(string[]? contactPhoneTypes, string? contactPhoneNumber)
+        internal TelephoneInfo(string[] contactPhoneTypes, string contactPhoneNumber)
         {
             ContactPhoneTypes = contactPhoneTypes;
             ContactPhoneNumber = contactPhoneNumber;

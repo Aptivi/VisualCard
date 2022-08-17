@@ -108,14 +108,14 @@ namespace VisualCard.Parsers
             while (!CardContentReader.EndOfStream)
             {
                 // Get line
-                string? _value = CardContentReader.ReadLine();
+                string _value = CardContentReader.ReadLine();
 
                 // Card type (KIND:individual, KIND:group, KIND:org, KIND:location, ...)
                 // Here, we don't support ALTID.
                 if (_value.StartsWith(_kindSpecifier))
                 {
                     // Get the value
-                    string? kindValue = _value.Substring(_kindSpecifier.Length);
+                    string kindValue = _value.Substring(_kindSpecifier.Length);
 
                     // Populate field
                     if (!string.IsNullOrEmpty(kindValue))
@@ -127,7 +127,7 @@ namespace VisualCard.Parsers
                 if (_value.StartsWith(_nameSpecifier))
                 {
                     // Check the line
-                    string? nameValue = _value.Substring(_nameSpecifier.Length);
+                    string nameValue = _value.Substring(_nameSpecifier.Length);
                     string[] splitName = nameValue.Split(_fieldDelimiter);
                     if (splitName.Length < 2)
                         throw new InvalidDataException("Name field must specify exactly five values (Last name, first name, alt names, prefixes, and suffixes)");
@@ -154,7 +154,7 @@ namespace VisualCard.Parsers
                 if (_value.StartsWith(_nameSpecifierWithType))
                 {
                     // Check the line
-                    string? nameValue = _value.Substring(_nameSpecifierWithType.Length);
+                    string nameValue = _value.Substring(_nameSpecifierWithType.Length);
                     string[] splitNameParts = nameValue.Split(_argumentDelimiter);
                     string[] splitName = splitNameParts[1].Split(_fieldDelimiter);
                     string[] splitArgs = splitNameParts[0].Split(_fieldDelimiter);
@@ -197,7 +197,7 @@ namespace VisualCard.Parsers
                 if (_value.StartsWith(_fullNameSpecifier))
                 {
                     // Get the value
-                    string? fullNameValue = _value.Substring(_fullNameSpecifier.Length);
+                    string fullNameValue = _value.Substring(_fullNameSpecifier.Length);
 
                     // Populate field
                     _fullName = Regex.Unescape(fullNameValue);
@@ -211,7 +211,7 @@ namespace VisualCard.Parsers
                 if (_value.StartsWith(_telephoneSpecifierWithType))
                 {
                     // Get the value
-                    string? telValue = _value.Substring(_telephoneSpecifierWithType.Length);
+                    string telValue = _value.Substring(_telephoneSpecifierWithType.Length);
                     string[] splitTel = telValue.Split(_argumentDelimiter);
                     string[] splitTypes;
                     if (splitTel.Length != 2)
@@ -240,7 +240,7 @@ namespace VisualCard.Parsers
                 if (_value.StartsWith(_telephoneSpecifier))
                 {
                     // Get the value
-                    string? telValue = _value.Substring(_telephoneSpecifier.Length);
+                    string telValue = _value.Substring(_telephoneSpecifier.Length);
 
                     // Populate the fields
                     string[] _telephoneTypes = new string[] { "CELL" };
@@ -254,7 +254,7 @@ namespace VisualCard.Parsers
                 if (_value.StartsWith(_addressSpecifierWithType))
                 {
                     // Get the value
-                    string? adrValue = _value.Substring(_addressSpecifierWithType.Length);
+                    string adrValue = _value.Substring(_addressSpecifierWithType.Length);
                     string[] splitAdr = adrValue.Split(_argumentDelimiter);
                     string[] splitTypes;
                     if (splitAdr.Length != 2)
@@ -294,7 +294,7 @@ namespace VisualCard.Parsers
                 if (_value.StartsWith(_emailSpecifier))
                 {
                     // Get the value
-                    string? mailValue = _value.Substring(_emailSpecifier.Length);
+                    string mailValue = _value.Substring(_emailSpecifier.Length);
                     string[] splitMail = mailValue.Split(_argumentDelimiter);
                     string[] splitTypes;
                     MailAddress mail;
@@ -334,7 +334,7 @@ namespace VisualCard.Parsers
                 if (_value.StartsWith(_orgSpecifier))
                 {
                     // Get the value
-                    string? orgValue = _value.Substring(_orgSpecifier.Length);
+                    string orgValue = _value.Substring(_orgSpecifier.Length);
                     string[] splitOrg = orgValue.Split(_fieldDelimiter);
 
                     // Populate the fields
@@ -350,7 +350,7 @@ namespace VisualCard.Parsers
                 if (_value.StartsWith(_titleSpecifier))
                 {
                     // Get the value
-                    string? titleValue = _value.Substring(_titleSpecifier.Length);
+                    string titleValue = _value.Substring(_titleSpecifier.Length);
 
                     // Populate field
                     string _title = Regex.Unescape(titleValue);
@@ -363,7 +363,7 @@ namespace VisualCard.Parsers
                 if (_value.StartsWith(_titleSpecifierWithArguments))
                 {
                     // Get the value
-                    string? titleValue = _value.Substring(_titleSpecifierWithArguments.Length);
+                    string titleValue = _value.Substring(_titleSpecifierWithArguments.Length);
                     string[] splitTitleParts = titleValue.Split(_argumentDelimiter);
                     string[] splitArgs = splitTitleParts[0].Split(_fieldDelimiter);
                     int altId = 0;
@@ -397,10 +397,10 @@ namespace VisualCard.Parsers
                 if (_value.StartsWith(_urlSpecifier))
                 {
                     // Get the value
-                    string? urlValue = _value.Substring(_urlSpecifier.Length);
+                    string urlValue = _value.Substring(_urlSpecifier.Length);
 
                     // Try to parse the URL to ensure that it conforms to IETF RFC 1738: Uniform Resource Locators
-                    if (!Uri.TryCreate(urlValue, UriKind.Absolute, out Uri? uri))
+                    if (!Uri.TryCreate(urlValue, UriKind.Absolute, out Uri uri))
                         throw new InvalidDataException($"URL {urlValue} is invalid");
 
                     // Populate field
@@ -412,7 +412,7 @@ namespace VisualCard.Parsers
                 if (_value.StartsWith(_noteSpecifier))
                 {
                     // Get the value
-                    string? noteValue = _value.Substring(_noteSpecifier.Length);
+                    string noteValue = _value.Substring(_noteSpecifier.Length);
 
                     // Populate field
                     _note = Regex.Unescape(noteValue);
@@ -423,7 +423,7 @@ namespace VisualCard.Parsers
                 if (_value.StartsWith(_photoSpecifierWithType))
                 {
                     // Get the value
-                    string? photoValue = _value.Substring(_photoSpecifierWithType.Length);
+                    string photoValue = _value.Substring(_photoSpecifierWithType.Length);
                     string[] splitPhoto = photoValue.Split(_argumentDelimiter);
                     string[] splitArgs = splitPhoto[0].Split(_fieldDelimiter);
                     int altId = 0;
@@ -481,7 +481,7 @@ namespace VisualCard.Parsers
                     // Make sure to get all the blocks until we reach an empty line
                     if (!isUrl)
                     {
-                        string? lineToBeAppended = CardContentReader.ReadLine();
+                        string lineToBeAppended = CardContentReader.ReadLine();
                         while (!string.IsNullOrWhiteSpace(lineToBeAppended))
                         {
                             encodedPhoto.Append(lineToBeAppended);
@@ -498,7 +498,7 @@ namespace VisualCard.Parsers
                 if (_value.StartsWith(_soundSpecifierWithType))
                 {
                     // Get the value
-                    string? soundValue = _value.Substring(_soundSpecifierWithType.Length);
+                    string soundValue = _value.Substring(_soundSpecifierWithType.Length);
                     string[] splitSound = soundValue.Split(_argumentDelimiter);
                     string[] splitArgs = splitSound[0].Split(_fieldDelimiter);
                     int altId = 0;
@@ -558,7 +558,7 @@ namespace VisualCard.Parsers
                     // Make sure to get all the blocks until we reach an empty line
                     if (!isUrl)
                     {
-                        string? lineToBeAppended = CardContentReader.ReadLine();
+                        string lineToBeAppended = CardContentReader.ReadLine();
                         while (!string.IsNullOrWhiteSpace(lineToBeAppended))
                         {
                             encodedSound.Append(lineToBeAppended);
@@ -576,7 +576,7 @@ namespace VisualCard.Parsers
                 if (_value.StartsWith(_revSpecifier))
                 {
                     // Get the value
-                    string? revValue = _value.Substring(_revSpecifier.Length);
+                    string revValue = _value.Substring(_revSpecifier.Length);
 
                     // Populate field
                     _rev = DateTime.Parse(revValue);
@@ -587,7 +587,7 @@ namespace VisualCard.Parsers
                 if (_value.StartsWith(_xSpecifier))
                 {
                     // Get the value
-                    string? xValue = _value.Substring(_xSpecifier.Length);
+                    string xValue = _value.Substring(_xSpecifier.Length);
                     string[] splitX = xValue.Split(_argumentDelimiter);
 
                     // Populate the name

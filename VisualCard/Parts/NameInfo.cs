@@ -34,31 +34,31 @@ namespace VisualCard.Parts
         /// <summary>
         /// Arguments that follow the AltId
         /// </summary>
-        public string[]? AltArguments { get; }
+        public string[] AltArguments { get; }
         /// <summary>
         /// The contact's first name
         /// </summary>
-        public string? ContactFirstName { get; }
+        public string ContactFirstName { get; }
         /// <summary>
         /// The contact's last name
         /// </summary>
-        public string? ContactLastName { get; }
+        public string ContactLastName { get; }
         /// <summary>
         /// The contact's alternative names
         /// </summary>
-        public string[]? AltNames { get; }
+        public string[] AltNames { get; }
         /// <summary>
         /// The contact's prefixes
         /// </summary>
-        public string[]? Prefixes { get; }
+        public string[] Prefixes { get; }
         /// <summary>
         /// The contact's suffixes
         /// </summary>
-        public string[]? Suffixes { get; }
+        public string[] Suffixes { get; }
 
         internal NameInfo() { }
 
-        internal NameInfo(int altId, string[] altArguments, string? contactFirstName, string? contactLastName, string[]? altNames, string[]? prefixes, string[]? suffixes)
+        internal NameInfo(int altId, string[] altArguments, string contactFirstName, string contactLastName, string[] altNames, string[] prefixes, string[] suffixes)
         {
             AltId = altId;
             AltArguments = altArguments;

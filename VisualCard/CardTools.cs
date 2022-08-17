@@ -53,9 +53,9 @@ namespace VisualCard
             StreamReader CardReader = new(CardFs);
 
             // Parse the lines of the card file
-            string? CardLine;
+            string CardLine;
             StringBuilder CardContent = new();
-            string? CardVersion = "";
+            string CardVersion = "";
             CardLine = CardReader.ReadLine();
             while (!CardReader.EndOfStream)
             {

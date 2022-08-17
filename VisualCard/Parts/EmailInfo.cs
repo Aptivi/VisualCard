@@ -30,15 +30,15 @@ namespace VisualCard.Parts
         /// <summary>
         /// The contact's email types
         /// </summary>
-        public string[]? ContactEmailTypes { get; }
+        public string[] ContactEmailTypes { get; }
         /// <summary>
         /// The contact's email address
         /// </summary>
-        public string? ContactEmailAddress { get; }
+        public string ContactEmailAddress { get; }
 
         internal EmailInfo() { }
 
-        internal EmailInfo(string[]? contactEmailTypes, string? contactEmailAddress)
+        internal EmailInfo(string[] contactEmailTypes, string contactEmailAddress)
         {
             ContactEmailTypes = contactEmailTypes;
             ContactEmailAddress = contactEmailAddress;

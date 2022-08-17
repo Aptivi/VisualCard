@@ -30,19 +30,19 @@ namespace VisualCard.Parts
         /// <summary>
         /// X- key name
         /// </summary>
-        public string? XKeyName { get; }
+        public string XKeyName { get; }
         /// <summary>
         /// X- values
         /// </summary>
-        public string[]? XKeyTypes { get; }
+        public string[] XKeyTypes { get; }
         /// <summary>
         /// X- values
         /// </summary>
-        public string[]? XValues { get; }
+        public string[] XValues { get; }
 
         internal XNameInfo() { }
 
-        internal XNameInfo(string xKeyName, string[] xValues, string[]? xKeyTypes)
+        internal XNameInfo(string xKeyName, string[] xValues, string[] xKeyTypes)
         {
             XKeyName = xKeyName;
             XValues = xValues;

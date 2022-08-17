@@ -34,15 +34,15 @@ namespace VisualCard.Parts
         /// <summary>
         /// Arguments that follow the AltId
         /// </summary>
-        public string[]? AltArguments { get; }
+        public string[] AltArguments { get; }
         /// <summary>
         /// The contact's title
         /// </summary>
-        public string? ContactTitle { get; }
+        public string ContactTitle { get; }
 
         internal TitleInfo() { }
 
-        internal TitleInfo(int altId, string[] altArguments, string? contactTitle)
+        internal TitleInfo(int altId, string[] altArguments, string contactTitle)
         {
             AltId = altId;
             AltArguments = altArguments;

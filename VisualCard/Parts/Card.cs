@@ -32,11 +32,11 @@ namespace VisualCard.Parts
         /// <summary>
         /// The VCard version
         /// </summary>
-        public string? CardVersion { get; }
+        public string CardVersion { get; }
         /// <summary>
         /// The VCard kind (individual is the default)
         /// </summary>
-        public string? CardKind { get; }
+        public string CardKind { get; }
         /// <summary>
         /// The contact's names
         /// </summary>
@@ -44,7 +44,7 @@ namespace VisualCard.Parts
         /// <summary>
         /// The contact's full name
         /// </summary>
-        public string? ContactFullName { get; }
+        public string ContactFullName { get; }
         /// <summary>
         /// The contact's telephones
         /// </summary>
@@ -68,7 +68,7 @@ namespace VisualCard.Parts
         /// <summary>
         /// The contact's URL
         /// </summary>
-        public string? ContactURL { get; }
+        public string ContactURL { get; }
         /// <summary>
         /// The contact's photos
         /// </summary>
@@ -76,7 +76,7 @@ namespace VisualCard.Parts
         /// <summary>
         /// The contact's notes
         /// </summary>
-        public string? ContactNotes { get; }
+        public string ContactNotes { get; }
         /// <summary>
         /// The contact's extended options (usually starts with X-SOMETHING:Value1;Value2...)
         /// </summary>
@@ -86,7 +86,7 @@ namespace VisualCard.Parts
         /// </summary>
         public DateTime? CardRevision { get; }
 
-        internal Card(string? cardVersion, NameInfo[] contactNames, string? contactFullName, TelephoneInfo[] contactTelephones, AddressInfo[] contactAddresses, OrganizationInfo[] contactOrganizations, TitleInfo[] contactTitles, string? contactURL, string? contactNotes, EmailInfo[] contactMails, XNameInfo[] contactXNames, string? cardKind, PhotoInfo[] contactPhotos, DateTime cardRevision)
+        internal Card(string cardVersion, NameInfo[] contactNames, string contactFullName, TelephoneInfo[] contactTelephones, AddressInfo[] contactAddresses, OrganizationInfo[] contactOrganizations, TitleInfo[] contactTitles, string contactURL, string contactNotes, EmailInfo[] contactMails, XNameInfo[] contactXNames, string cardKind, PhotoInfo[] contactPhotos, DateTime cardRevision)
         {
             CardVersion = cardVersion;
             ContactNames = contactNames;
