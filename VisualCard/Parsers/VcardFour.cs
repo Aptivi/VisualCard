@@ -70,6 +70,7 @@ namespace VisualCard.Parsers
             List<OrganizationInfo> _orgs    = new();
             List<TitleInfo> _titles         = new();
             List<PhotoInfo> _photos         = new();
+            List<SoundInfo> _sounds         = new();
             List<XNameInfo> _xes            = new();
 
             // Some VCard 4.0 constants
@@ -90,6 +91,7 @@ namespace VisualCard.Parsers
             const string _urlSpecifier                  = "URL:";
             const string _noteSpecifier                 = "NOTE:";
             const string _photoSpecifierWithType        = "PHOTO;";
+            const string _soundSpecifierWithType        = "SOUND;";
             const string _xSpecifier                    = "X-";
             const string _typeArgumentSpecifier         = "TYPE=";
             const string _altIdArgumentSpecifier        = "ALTID=";
@@ -488,6 +490,83 @@ namespace VisualCard.Parsers
                     // Populate the fields
                     PhotoInfo _photo = new(altId, finalArgs, valueType, photoEncoding, photoType, encodedPhoto.ToString());
                     _photos.Add(_photo);
+                }
+
+                // Sound (SOUND;VALUE=URL:file///multimed/audio/jqpublic.wav or SOUND;WAVE;BASE64:... or SOUND;TYPE=WAVE;ENCODING=BASE64:...)
+                if (_value.StartsWith(_soundSpecifierWithType))
+                {
+                    // Get the value
+                    string? soundValue = _value.Substring(_soundSpecifierWithType.Length);
+                    string[] splitSound = soundValue.Split(_argumentDelimiter);
+                    string[] splitArgs = splitSound[0].Split(_fieldDelimiter);
+                    int altId = 0;
+
+                    // Check the ALTID
+                    if (splitArgs[0].StartsWith(_altIdArgumentSpecifier))
+                    {
+                        if (!int.TryParse(splitArgs[0].Substring(_altIdArgumentSpecifier.Length), out altId))
+                            throw new InvalidDataException("ALTID must be numeric");
+
+                        // Here, we require arguments for ALTID
+                        if (splitArgs.Length <= 1)
+                            throw new InvalidDataException("ALTID must have one or more arguments to specify why is this instance an alternative");
+                    }
+
+                    // Finalize the arguments
+                    string[] finalArgs = Array.Empty<string>();
+                    if (splitArgs[0].StartsWith(_altIdArgumentSpecifier))
+                        splitArgs.CopyTo(finalArgs, 1);
+                    else
+                        finalArgs = splitArgs;
+
+                    // Check to see if the value is prepended by the VALUE= argument
+                    bool isUrl = false;
+                    string valueType = "";
+                    if (splitArgs.Length == 1)
+                    {
+                        const string _valueArgumentSpecifier = "VALUE=";
+                        valueType = splitArgs[0].Substring(_valueArgumentSpecifier.Length).ToLower();
+                        isUrl = valueType == "url" || valueType == "uri";
+                    }
+
+                    // Check to see if the value is prepended with the TYPE= argument
+                    string soundType = "";
+                    if (splitArgs.Length > 1)
+                    {
+                        soundType = splitArgs[0].StartsWith(_typeArgumentSpecifier) ?
+                                    splitArgs[0].Substring(_typeArgumentSpecifier.Length) :
+                                    splitArgs[0];
+                    }
+
+                    // Check to see if the value is prepended by the ENCODING= argument
+                    string soundEncoding = "";
+                    if (splitArgs.Length > 1)
+                    {
+                        const string _encodingArgumentSpecifier = "ENCODING=";
+                        soundEncoding = splitArgs[1].StartsWith(_encodingArgumentSpecifier) ?
+                                        splitArgs[1].Substring(_encodingArgumentSpecifier.Length).Substring(0, splitArgs[1].IndexOf(_argumentDelimiter)) :
+                                        splitArgs[1].Substring(0, splitArgs[1].IndexOf(_argumentDelimiter));
+                    }
+
+                    // Now, get the encoded sound
+                    StringBuilder encodedSound = new();
+                    if (splitSound.Length == 2)
+                        encodedSound.Append(splitSound[1]);
+
+                    // Make sure to get all the blocks until we reach an empty line
+                    if (!isUrl)
+                    {
+                        string? lineToBeAppended = CardContentReader.ReadLine();
+                        while (!string.IsNullOrWhiteSpace(lineToBeAppended))
+                        {
+                            encodedSound.Append(lineToBeAppended);
+                            lineToBeAppended = CardContentReader.ReadLine()?.Trim();
+                        }
+                    }
+
+                    // Populate the fields
+                    SoundInfo _sound = new(altId, finalArgs, valueType, soundEncoding, soundType, encodedSound.ToString());
+                    _sounds.Add(_sound);
                 }
 
                 // X-nonstandard (X-AIM:john.s or X-DL;Design Work Group:List Item 1;List Item 2;List Item 3)

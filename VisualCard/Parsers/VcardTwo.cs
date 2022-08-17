@@ -69,6 +69,7 @@ namespace VisualCard.Parsers
             List<OrganizationInfo> _orgs    = new();
             List<TitleInfo> _titles         = new();
             List<PhotoInfo> _photos         = new();
+            List<SoundInfo> _sounds         = new();
             List<XNameInfo> _xes            = new();
 
             // Some VCard 2.1 constants
@@ -86,6 +87,7 @@ namespace VisualCard.Parsers
             const string _urlSpecifier                  = "URL:";
             const string _noteSpecifier                 = "NOTE:";
             const string _photoSpecifierWithType        = "PHOTO;";
+            const string _soundSpecifierWithType        = "SOUND;";
             const string _xSpecifier                    = "X-";
             const string _typeArgumentSpecifier         = "TYPE=";
 
@@ -333,6 +335,64 @@ namespace VisualCard.Parsers
                     // Populate the fields
                     PhotoInfo _photo = new(0, Array.Empty<string>(), valueType, photoEncoding, photoType, encodedPhoto.ToString());
                     _photos.Add(_photo);
+                }
+
+                // Sound (SOUND;VALUE=URL:file///multimed/audio/jqpublic.wav or SOUND;WAVE;BASE64:... or SOUND;TYPE=WAVE;ENCODING=BASE64:...)
+                if (_value.StartsWith(_soundSpecifierWithType))
+                {
+                    // Get the value
+                    string? soundValue = _value.Substring(_soundSpecifierWithType.Length);
+                    string[] splitSound = soundValue.Split(_argumentDelimiter);
+                    string[] splitSoundArgs = soundValue.Split(_fieldDelimiter);
+
+                    // Check to see if the value is prepended by the VALUE= argument
+                    bool isUrl = false;
+                    string valueType = "";
+                    if (splitSoundArgs.Length == 1)
+                    {
+                        const string _valueArgumentSpecifier = "VALUE=";
+                        valueType = splitSoundArgs[0].Substring(_valueArgumentSpecifier.Length).ToLower();
+                        isUrl = valueType == "url" || valueType == "uri";
+                    }
+
+                    // Check to see if the value is prepended with the TYPE= argument
+                    string soundType = "";
+                    if (splitSoundArgs.Length > 1)
+                    {
+                        soundType = splitSoundArgs[0].StartsWith(_typeArgumentSpecifier) ?
+                                    splitSoundArgs[0].Substring(_typeArgumentSpecifier.Length) :
+                                    splitSoundArgs[0];
+                    }
+
+                    // Check to see if the value is prepended by the ENCODING= argument
+                    string soundEncoding = "";
+                    if (splitSoundArgs.Length > 1)
+                    {
+                        const string _encodingArgumentSpecifier = "ENCODING=";
+                        soundEncoding = splitSoundArgs[1].StartsWith(_encodingArgumentSpecifier) ?
+                                        splitSoundArgs[1].Substring(_encodingArgumentSpecifier.Length).Substring(0, splitSoundArgs[1].IndexOf(_argumentDelimiter)) :
+                                        splitSoundArgs[1].Substring(0, splitSoundArgs[1].IndexOf(_argumentDelimiter));
+                    }
+
+                    // Now, get the encoded sound
+                    StringBuilder encodedSound = new();
+                    if (splitSound.Length == 2)
+                        encodedSound.Append(splitSound[1]);
+
+                    // Make sure to get all the blocks until we reach an empty line
+                    if (!isUrl)
+                    {
+                        string? lineToBeAppended = CardContentReader.ReadLine();
+                        while (!string.IsNullOrWhiteSpace(lineToBeAppended))
+                        {
+                            encodedSound.Append(lineToBeAppended);
+                            lineToBeAppended = CardContentReader.ReadLine()?.Trim();
+                        }
+                    }
+
+                    // Populate the fields
+                    SoundInfo _sound = new(0, Array.Empty<string>(), valueType, soundEncoding, soundType, encodedSound.ToString());
+                    _sounds.Add(_sound);
                 }
 
                 // X-nonstandard (X-AIM:john.s or X-DL;Design Work Group:List Item 1;List Item 2;List Item 3)
