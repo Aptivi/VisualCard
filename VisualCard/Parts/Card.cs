@@ -23,6 +23,8 @@
  * 
  */
 
+using System;
+
 namespace VisualCard.Parts
 {
     public class Card
@@ -79,8 +81,12 @@ namespace VisualCard.Parts
         /// The contact's extended options (usually starts with X-SOMETHING:Value1;Value2...)
         /// </summary>
         public XNameInfo[] ContactXNames { get; }
+        /// <summary>
+        /// The card revision
+        /// </summary>
+        public DateTime? CardRevision { get; }
 
-        internal Card(string? cardVersion, NameInfo[] contactNames, string? contactFullName, TelephoneInfo[] contactTelephones, AddressInfo[] contactAddresses, OrganizationInfo[] contactOrganizations, TitleInfo[] contactTitles, string? contactURL, string? contactNotes, EmailInfo[] contactMails, XNameInfo[] contactXNames, string? cardKind, PhotoInfo[] contactPhotos)
+        internal Card(string? cardVersion, NameInfo[] contactNames, string? contactFullName, TelephoneInfo[] contactTelephones, AddressInfo[] contactAddresses, OrganizationInfo[] contactOrganizations, TitleInfo[] contactTitles, string? contactURL, string? contactNotes, EmailInfo[] contactMails, XNameInfo[] contactXNames, string? cardKind, PhotoInfo[] contactPhotos, DateTime cardRevision)
         {
             CardVersion = cardVersion;
             ContactNames = contactNames;
@@ -95,6 +101,7 @@ namespace VisualCard.Parts
             ContactXNames = contactXNames;
             CardKind = cardKind;
             ContactPhotos = contactPhotos;
+            CardRevision = cardRevision;
         }
     }
 }

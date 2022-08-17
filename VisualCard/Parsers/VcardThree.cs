@@ -62,6 +62,7 @@ namespace VisualCard.Parsers
             string _fullName                = "";
             string _url                     = "";
             string _note                    = "";
+            DateTime _rev                   = DateTime.MinValue;
             List<NameInfo> _names           = new();
             List<TelephoneInfo> _telephones = new();
             List<EmailInfo> _emails         = new();
@@ -88,6 +89,7 @@ namespace VisualCard.Parsers
             const string _noteSpecifier                 = "NOTE:";
             const string _photoSpecifierWithType        = "PHOTO;";
             const string _soundSpecifierWithType        = "SOUND;";
+            const string _revSpecifier                  = "REV:";
             const string _xSpecifier                    = "X-";
             const string _typeArgumentSpecifier         = "TYPE=";
 
@@ -420,6 +422,16 @@ namespace VisualCard.Parsers
                     _sounds.Add(_sound);
                 }
 
+                // Revision (REV:1995-10-31T22:27:10Z or REV:19951031T222710)
+                if (_value.StartsWith(_revSpecifier))
+                {
+                    // Get the value
+                    string? revValue = _value.Substring(_revSpecifier.Length);
+
+                    // Populate field
+                    _rev = DateTime.Parse(revValue);
+                }
+
                 // X-nonstandard (X-AIM:john.s or X-DL;Design Work Group:List Item 1;List Item 2;List Item 3)
                 if (_value.StartsWith(_xSpecifier))
                 {
@@ -450,7 +462,7 @@ namespace VisualCard.Parsers
                 throw new InvalidDataException("The full name specifier, \"FN:\", is required.");
 
             // Make a new instance of the card
-            return new Card(CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), "individual", _photos.ToArray());
+            return new Card(CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), "individual", _photos.ToArray(), _rev);
         }
 
         internal VcardThree(string cardPath, string cardContent, string cardVersion)
