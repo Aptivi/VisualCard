@@ -72,6 +72,7 @@ namespace VisualCard.Parsers
             List<TitleInfo> _titles         = new();
             List<PhotoInfo> _photos         = new();
             List<SoundInfo> _sounds         = new();
+            List<NicknameInfo> _nicks       = new();
             List<XNameInfo> _xes            = new();
 
             // Some VCard 4.0 constants
@@ -94,6 +95,8 @@ namespace VisualCard.Parsers
             const string _photoSpecifierWithType        = "PHOTO;";
             const string _soundSpecifierWithType        = "SOUND;";
             const string _revSpecifier                  = "REV:";
+            const string _nicknameSpecifier             = "NICKNAME:";
+            const string _nicknameSpecifierWithType     = "NICKNAME;";
             const string _xSpecifier                    = "X-";
             const string _typeArgumentSpecifier         = "TYPE=";
             const string _altIdArgumentSpecifier        = "ALTID=";
@@ -582,6 +585,68 @@ namespace VisualCard.Parsers
                     _rev = DateTime.Parse(revValue);
                 }
 
+                // Nickname (NICKNAME;TYPE=cell,home:495-522-3560)
+                if (_value.StartsWith(_nicknameSpecifierWithType))
+                {
+                    // Get the value
+                    string nickValue = _value.Substring(_nicknameSpecifierWithType.Length);
+                    string[] splitNick = nickValue.Split(_argumentDelimiter);
+                    string[] splitArgs = splitNick[0].Split(_fieldDelimiter);
+                    int altId = 0;
+
+                    // Check the ALTID
+                    if (splitArgs[0].StartsWith(_altIdArgumentSpecifier))
+                    {
+                        if (!int.TryParse(splitArgs[0].Substring(_altIdArgumentSpecifier.Length), out altId))
+                            throw new InvalidDataException("ALTID must be numeric");
+
+                        // Here, we require arguments for ALTID
+                        if (splitArgs.Length <= 1)
+                            throw new InvalidDataException("ALTID must have one or more arguments to specify why is this instance an alternative");
+                    }
+
+                    // Finalize the arguments
+                    string[] finalArgs = Array.Empty<string>();
+                    if (splitArgs[0].StartsWith(_altIdArgumentSpecifier))
+                        splitArgs.CopyTo(finalArgs, 1);
+                    else
+                        finalArgs = splitArgs;
+
+                    string[] splitTypes;
+                    if (splitNick.Length != 2)
+                        throw new InvalidDataException("Nickname field must specify exactly two values (Type (must be prepended with TYPE=), and nickname)");
+
+                    // Check to see if the type is prepended with the TYPE= argument
+                    if (splitNick[0].StartsWith(_typeArgumentSpecifier))
+                        // Get the types
+                        splitTypes = splitNick[0].Substring(_typeArgumentSpecifier.Length).Split(_valueDelimiter);
+                    else if (string.IsNullOrEmpty(splitNick[0]))
+                        // We're confronted with an empty type. Assume that it's HOME.
+                        splitTypes = new string[] { "HOME" };
+                    else
+                        // Trying to specify type without TYPE= is illegal according to RFC2426
+                        throw new InvalidDataException("Nick type must be prepended with TYPE=");
+
+                    // Populate the fields
+                    string[] _nicknameTypes = splitTypes;
+                    string _nick = Regex.Unescape(splitNick[1]);
+                    NicknameInfo _nickInstance = new(altId, finalArgs, _nick, _nicknameTypes);
+                    _nicks.Add(_nickInstance);
+                }
+
+                // Nickname (NICKNAME:495-522-3560)
+                if (_value.StartsWith(_nicknameSpecifier))
+                {
+                    // Get the value
+                    string nickValue = _value.Substring(_nicknameSpecifier.Length);
+
+                    // Populate the fields
+                    string[] _nicknameTypes = new string[] { "HOME" };
+                    string _nick = Regex.Unescape(nickValue);
+                    NicknameInfo _nickInstance = new(0, Array.Empty<string>(), _nick, _nicknameTypes);
+                    _nicks.Add(_nickInstance);
+                }
+
                 // X-nonstandard (X-AIM:john.s or X-DL;Design Work Group:List Item 1;List Item 2;List Item 3)
                 // Here, we don't support ALTID.
                 if (_value.StartsWith(_xSpecifier))
@@ -611,7 +676,7 @@ namespace VisualCard.Parsers
                 throw new InvalidDataException("The full name specifier, \"FN:\", is required.");
 
             // Make a new instance of the card
-            return new Card(CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), _kind, _photos.ToArray(), _rev);
+            return new Card(CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), _kind, _photos.ToArray(), _rev, _nicks.ToArray());
         }
 
         internal VcardFour(string cardPath, string cardContent, string cardVersion)

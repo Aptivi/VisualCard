@@ -85,8 +85,12 @@ namespace VisualCard.Parts
         /// The card revision
         /// </summary>
         public DateTime? CardRevision { get; }
+        /// <summary>
+        /// The contact's nicknames
+        /// </summary>
+        public NicknameInfo[] ContactNicknames { get; }
 
-        internal Card(string cardVersion, NameInfo[] contactNames, string contactFullName, TelephoneInfo[] contactTelephones, AddressInfo[] contactAddresses, OrganizationInfo[] contactOrganizations, TitleInfo[] contactTitles, string contactURL, string contactNotes, EmailInfo[] contactMails, XNameInfo[] contactXNames, string cardKind, PhotoInfo[] contactPhotos, DateTime cardRevision)
+        internal Card(string cardVersion, NameInfo[] contactNames, string contactFullName, TelephoneInfo[] contactTelephones, AddressInfo[] contactAddresses, OrganizationInfo[] contactOrganizations, TitleInfo[] contactTitles, string contactURL, string contactNotes, EmailInfo[] contactMails, XNameInfo[] contactXNames, string cardKind, PhotoInfo[] contactPhotos, DateTime cardRevision, NicknameInfo[] contactNicknames)
         {
             CardVersion = cardVersion;
             ContactNames = contactNames;
@@ -102,6 +106,7 @@ namespace VisualCard.Parts
             CardKind = cardKind;
             ContactPhotos = contactPhotos;
             CardRevision = cardRevision;
+            ContactNicknames = contactNicknames;
         }
     }
 }
