@@ -97,8 +97,12 @@ namespace VisualCard.Parts
         /// The contact's mailing software
         /// </summary>
         public string ContactMailer { get; }
+        /// <summary>
+        /// The contact's roles
+        /// </summary>
+        public RoleInfo[] ContactRoles { get; }
 
-        internal Card(string cardVersion, NameInfo[] contactNames, string contactFullName, TelephoneInfo[] contactTelephones, AddressInfo[] contactAddresses, OrganizationInfo[] contactOrganizations, TitleInfo[] contactTitles, string contactURL, string contactNotes, EmailInfo[] contactMails, XNameInfo[] contactXNames, string cardKind, PhotoInfo[] contactPhotos, DateTime cardRevision, NicknameInfo[] contactNicknames, DateTime? contactBirthdate, string contactMailer)
+        internal Card(string cardVersion, NameInfo[] contactNames, string contactFullName, TelephoneInfo[] contactTelephones, AddressInfo[] contactAddresses, OrganizationInfo[] contactOrganizations, TitleInfo[] contactTitles, string contactURL, string contactNotes, EmailInfo[] contactMails, XNameInfo[] contactXNames, string cardKind, PhotoInfo[] contactPhotos, DateTime cardRevision, NicknameInfo[] contactNicknames, DateTime? contactBirthdate, string contactMailer, RoleInfo[] contactRoles)
         {
             CardVersion = cardVersion;
             ContactNames = contactNames;
@@ -117,6 +121,7 @@ namespace VisualCard.Parts
             ContactNicknames = contactNicknames;
             ContactBirthdate = contactBirthdate;
             ContactMailer = contactMailer;
+            ContactRoles = contactRoles;
         }
     }
 }

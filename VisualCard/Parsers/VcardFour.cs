@@ -74,6 +74,7 @@ namespace VisualCard.Parsers
             List<PhotoInfo> _photos         = new();
             List<SoundInfo> _sounds         = new();
             List<NicknameInfo> _nicks       = new();
+            List<RoleInfo> _roles           = new();
             List<XNameInfo> _xes            = new();
 
             // Some VCard 4.0 constants
@@ -99,6 +100,8 @@ namespace VisualCard.Parsers
             const string _nicknameSpecifier             = "NICKNAME:";
             const string _nicknameSpecifierWithType     = "NICKNAME;";
             const string _birthSpecifier                = "BDAY:";
+            const string _roleSpecifier                 = "ROLE:";
+            const string _roleSpecifierWithType         = "ROLE;";
             const string _xSpecifier                    = "X-";
             const string _typeArgumentSpecifier         = "TYPE=";
             const string _altIdArgumentSpecifier        = "ALTID=";
@@ -663,6 +666,51 @@ namespace VisualCard.Parsers
                     _bday = DateTime.Parse(bdayValue);
                 }
 
+                // Role (ROLE:Programmer)
+                // ALTID is supported. See below.
+                if (_value.StartsWith(_roleSpecifier))
+                {
+                    // Get the value
+                    string roleValue = _value.Substring(_roleSpecifier.Length);
+
+                    // Populate the fields
+                    RoleInfo _role = new(0, Array.Empty<string>(), roleValue);
+                    _roles.Add(_role);
+                }
+
+                // Role (ROLE;ALTID=1;LANGUAGE=en:Programmer)
+                // ALTID is supported. See below.
+                if (_value.StartsWith(_roleSpecifierWithType))
+                {
+                    // Get the value
+                    string roleValue = _value.Substring(_roleSpecifier.Length);
+                    string[] splitRoleParts = roleValue.Split(_argumentDelimiter);
+                    string[] splitArgs = splitRoleParts[0].Split(_fieldDelimiter);
+                    int altId = 0;
+
+                    // Check the ALTID
+                    if (splitArgs[0].StartsWith(_altIdArgumentSpecifier))
+                    {
+                        if (!int.TryParse(splitArgs[0].Substring(_altIdArgumentSpecifier.Length), out altId))
+                            throw new InvalidDataException("ALTID must be numeric");
+
+                        // Here, we require arguments for ALTID
+                        if (splitArgs.Length <= 1)
+                            throw new InvalidDataException("ALTID must have one or more arguments to specify why is this instance an alternative");
+                    }
+
+                    // Finalize the arguments
+                    string[] finalArgs = Array.Empty<string>();
+                    if (splitArgs[0].StartsWith(_altIdArgumentSpecifier))
+                        splitArgs.CopyTo(finalArgs, 1);
+                    else
+                        finalArgs = splitArgs;
+
+                    // Populate the fields
+                    RoleInfo _role = new(altId, finalArgs, roleValue);
+                    _roles.Add(_role);
+                }
+
                 // X-nonstandard (X-AIM:john.s or X-DL;Design Work Group:List Item 1;List Item 2;List Item 3)
                 // Here, we don't support ALTID.
                 if (_value.StartsWith(_xSpecifier))
@@ -692,7 +740,7 @@ namespace VisualCard.Parsers
                 throw new InvalidDataException("The full name specifier, \"FN:\", is required.");
 
             // Make a new instance of the card
-            return new Card(CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), _kind, _photos.ToArray(), _rev, _nicks.ToArray(), _bday, "");
+            return new Card(CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), _kind, _photos.ToArray(), _rev, _nicks.ToArray(), _bday, "", _roles.ToArray());
         }
 
         internal VcardFour(string cardPath, string cardContent, string cardVersion)

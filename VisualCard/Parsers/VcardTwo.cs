@@ -73,6 +73,7 @@ namespace VisualCard.Parsers
             List<TitleInfo> _titles         = new();
             List<PhotoInfo> _photos         = new();
             List<SoundInfo> _sounds         = new();
+            List<RoleInfo> _roles           = new();
             List<XNameInfo> _xes            = new();
 
             // Some VCard 2.1 constants
@@ -94,6 +95,7 @@ namespace VisualCard.Parsers
             const string _revSpecifier                  = "REV:";
             const string _birthSpecifier                = "BDAY:";
             const string _mailerSpecifier               = "MAILER:";
+            const string _roleSpecifier                 = "ROLE:";
             const string _xSpecifier                    = "X-";
             const string _typeArgumentSpecifier         = "TYPE=";
 
@@ -431,6 +433,17 @@ namespace VisualCard.Parsers
                     _mailer = Regex.Unescape(mailerValue);
                 }
 
+                // Role (ROLE:Programmer)
+                if (_value.StartsWith(_roleSpecifier))
+                {
+                    // Get the value
+                    string roleValue = _value.Substring(_roleSpecifier.Length);
+
+                    // Populate the fields
+                    RoleInfo _role = new(0, Array.Empty<string>(), roleValue);
+                    _roles.Add(_role);
+                }
+
                 // X-nonstandard (X-AIM:john.s or X-DL;Design Work Group:List Item 1;List Item 2;List Item 3)
                 if (_value.StartsWith(_xSpecifier))
                 {
@@ -459,7 +472,7 @@ namespace VisualCard.Parsers
                 throw new InvalidDataException("The name specifier, \"N:\", is required.");
 
             // Make a new instance of the card
-            return new Card(CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), "individual", _photos.ToArray(), _rev, null, _bday, _mailer);
+            return new Card(CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), "individual", _photos.ToArray(), _rev, null, _bday, _mailer, _roles.ToArray());
         }
 
         internal VcardTwo(string cardPath, string cardContent, string cardVersion)

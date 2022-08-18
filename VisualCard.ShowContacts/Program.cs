@@ -127,7 +127,7 @@ namespace VisualCard.ShowContacts
                         Console.WriteLine("Phone number:            {0}", Telephone.ContactPhoneNumber);
                     }
 
-                    // List telephones
+                    // List photos
                     foreach (PhotoInfo Photo in Contact.ContactPhotos)
                     {
                         Console.WriteLine("Photo encoding:          {0}", Photo.Encoding);
@@ -137,6 +137,15 @@ namespace VisualCard.ShowContacts
                         if (Photo.AltArguments?.Length > 0)
                             Console.WriteLine("Reason for ALTID:        {0}", Photo.AltArguments);
                         Console.WriteLine("Photo data: \n{0}", Photo.PhotoEncoded);
+                    }
+
+                    // List roles
+                    foreach (RoleInfo Role in Contact.ContactRoles)
+                    {
+                        Console.WriteLine("Role:                    {0}", Role.ContactRole);
+                        Console.WriteLine("ALTID:                   {0}", Role.AltId);
+                        if (Role.AltArguments?.Length > 0)
+                            Console.WriteLine("Reason for ALTID:        {0}", Role.AltArguments);
                     }
 
                     // List remaining
