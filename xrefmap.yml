@@ -26,6 +26,37 @@ references:
   isSpec: "True"
   fullName: VisualCard.CardTools.GetCardParsers
   nameWithType: CardTools.GetCardParsers
+- uid: VisualCard.Exceptions
+  name: VisualCard.Exceptions
+  href: api/VisualCard.Exceptions.html
+  commentId: N:VisualCard.Exceptions
+  fullName: VisualCard.Exceptions
+  nameWithType: VisualCard.Exceptions
+- uid: VisualCard.Exceptions.VCardParseException
+  name: VCardParseException
+  href: api/VisualCard.Exceptions.VCardParseException.html
+  commentId: T:VisualCard.Exceptions.VCardParseException
+  fullName: VisualCard.Exceptions.VCardParseException
+  nameWithType: VCardParseException
+- uid: VisualCard.Exceptions.VCardParseException.#ctor
+  name: VCardParseException()
+  href: api/VisualCard.Exceptions.VCardParseException.html#VisualCard_Exceptions_VCardParseException__ctor
+  commentId: M:VisualCard.Exceptions.VCardParseException.#ctor
+  fullName: VisualCard.Exceptions.VCardParseException.VCardParseException()
+  nameWithType: VCardParseException.VCardParseException()
+- uid: VisualCard.Exceptions.VCardParseException.#ctor(System.String,System.String,System.Int32,Exception)
+  name: VCardParseException(String, String, Int32, Exception)
+  href: api/VisualCard.Exceptions.VCardParseException.html#VisualCard_Exceptions_VCardParseException__ctor_System_String_System_String_System_Int32_Exception_
+  commentId: M:VisualCard.Exceptions.VCardParseException.#ctor(System.String,System.String,System.Int32,Exception)
+  fullName: VisualCard.Exceptions.VCardParseException.VCardParseException(System.String, System.String, System.Int32, Exception)
+  nameWithType: VCardParseException.VCardParseException(String, String, Int32, Exception)
+- uid: VisualCard.Exceptions.VCardParseException.#ctor*
+  name: VCardParseException
+  href: api/VisualCard.Exceptions.VCardParseException.html#VisualCard_Exceptions_VCardParseException__ctor_
+  commentId: Overload:VisualCard.Exceptions.VCardParseException.#ctor
+  isSpec: "True"
+  fullName: VisualCard.Exceptions.VCardParseException.VCardParseException
+  nameWithType: VCardParseException.VCardParseException
 - uid: VisualCard.Parsers
   name: VisualCard.Parsers
   href: api/VisualCard.Parsers.html
@@ -496,6 +527,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Card.ContactAddresses
   nameWithType: Card.ContactAddresses
+- uid: VisualCard.Parts.Card.ContactBirthdate
+  name: ContactBirthdate
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactBirthdate
+  commentId: P:VisualCard.Parts.Card.ContactBirthdate
+  fullName: VisualCard.Parts.Card.ContactBirthdate
+  nameWithType: Card.ContactBirthdate
+- uid: VisualCard.Parts.Card.ContactBirthdate*
+  name: ContactBirthdate
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactBirthdate_
+  commentId: Overload:VisualCard.Parts.Card.ContactBirthdate
+  isSpec: "True"
+  fullName: VisualCard.Parts.Card.ContactBirthdate
+  nameWithType: Card.ContactBirthdate
 - uid: VisualCard.Parts.Card.ContactFullName
   name: ContactFullName
   href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactFullName
@@ -509,6 +553,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Card.ContactFullName
   nameWithType: Card.ContactFullName
+- uid: VisualCard.Parts.Card.ContactMailer
+  name: ContactMailer
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactMailer
+  commentId: P:VisualCard.Parts.Card.ContactMailer
+  fullName: VisualCard.Parts.Card.ContactMailer
+  nameWithType: Card.ContactMailer
+- uid: VisualCard.Parts.Card.ContactMailer*
+  name: ContactMailer
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactMailer_
+  commentId: Overload:VisualCard.Parts.Card.ContactMailer
+  isSpec: "True"
+  fullName: VisualCard.Parts.Card.ContactMailer
+  nameWithType: Card.ContactMailer
 - uid: VisualCard.Parts.Card.ContactMails
   name: ContactMails
   href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactMails
@@ -587,6 +644,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Card.ContactPhotos
   nameWithType: Card.ContactPhotos
+- uid: VisualCard.Parts.Card.ContactRoles
+  name: ContactRoles
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactRoles
+  commentId: P:VisualCard.Parts.Card.ContactRoles
+  fullName: VisualCard.Parts.Card.ContactRoles
+  nameWithType: Card.ContactRoles
+- uid: VisualCard.Parts.Card.ContactRoles*
+  name: ContactRoles
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactRoles_
+  commentId: Overload:VisualCard.Parts.Card.ContactRoles
+  isSpec: "True"
+  fullName: VisualCard.Parts.Card.ContactRoles
+  nameWithType: Card.ContactRoles
 - uid: VisualCard.Parts.Card.ContactTelephones
   name: ContactTelephones
   href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactTelephones
@@ -955,6 +1025,51 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.PhotoInfo.ValueType
   nameWithType: PhotoInfo.ValueType
+- uid: VisualCard.Parts.RoleInfo
+  name: RoleInfo
+  href: api/VisualCard.Parts.RoleInfo.html
+  commentId: T:VisualCard.Parts.RoleInfo
+  fullName: VisualCard.Parts.RoleInfo
+  nameWithType: RoleInfo
+- uid: VisualCard.Parts.RoleInfo.AltArguments
+  name: AltArguments
+  href: api/VisualCard.Parts.RoleInfo.html#VisualCard_Parts_RoleInfo_AltArguments
+  commentId: P:VisualCard.Parts.RoleInfo.AltArguments
+  fullName: VisualCard.Parts.RoleInfo.AltArguments
+  nameWithType: RoleInfo.AltArguments
+- uid: VisualCard.Parts.RoleInfo.AltArguments*
+  name: AltArguments
+  href: api/VisualCard.Parts.RoleInfo.html#VisualCard_Parts_RoleInfo_AltArguments_
+  commentId: Overload:VisualCard.Parts.RoleInfo.AltArguments
+  isSpec: "True"
+  fullName: VisualCard.Parts.RoleInfo.AltArguments
+  nameWithType: RoleInfo.AltArguments
+- uid: VisualCard.Parts.RoleInfo.AltId
+  name: AltId
+  href: api/VisualCard.Parts.RoleInfo.html#VisualCard_Parts_RoleInfo_AltId
+  commentId: P:VisualCard.Parts.RoleInfo.AltId
+  fullName: VisualCard.Parts.RoleInfo.AltId
+  nameWithType: RoleInfo.AltId
+- uid: VisualCard.Parts.RoleInfo.AltId*
+  name: AltId
+  href: api/VisualCard.Parts.RoleInfo.html#VisualCard_Parts_RoleInfo_AltId_
+  commentId: Overload:VisualCard.Parts.RoleInfo.AltId
+  isSpec: "True"
+  fullName: VisualCard.Parts.RoleInfo.AltId
+  nameWithType: RoleInfo.AltId
+- uid: VisualCard.Parts.RoleInfo.ContactRole
+  name: ContactRole
+  href: api/VisualCard.Parts.RoleInfo.html#VisualCard_Parts_RoleInfo_ContactRole
+  commentId: P:VisualCard.Parts.RoleInfo.ContactRole
+  fullName: VisualCard.Parts.RoleInfo.ContactRole
+  nameWithType: RoleInfo.ContactRole
+- uid: VisualCard.Parts.RoleInfo.ContactRole*
+  name: ContactRole
+  href: api/VisualCard.Parts.RoleInfo.html#VisualCard_Parts_RoleInfo_ContactRole_
+  commentId: Overload:VisualCard.Parts.RoleInfo.ContactRole
+  isSpec: "True"
+  fullName: VisualCard.Parts.RoleInfo.ContactRole
+  nameWithType: RoleInfo.ContactRole
 - uid: VisualCard.Parts.SoundInfo
   name: SoundInfo
   href: api/VisualCard.Parts.SoundInfo.html
