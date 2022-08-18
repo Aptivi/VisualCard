@@ -44,7 +44,6 @@ namespace VisualCard.Parsers
         public override string CardContent { get; }
         public override string CardVersion { get; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0057:Use range operator", Justification = "Trying to maintain .NET Framework compatibility as it doesn't have System.Index")]
         public override Card Parse()
         {
             // Check the version to ensure that we're really dealing with VCard 4.0 contact

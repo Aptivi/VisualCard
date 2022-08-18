@@ -26,6 +26,7 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+    <None Include="E:\Misc\New\source\repos\VisualCard\.editorconfig" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +34,10 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EditorConfigFiles Remove="E:\Misc\New\source\repos\VisualCard\.editorconfig" />
   </ItemGroup>
 
 </Project>

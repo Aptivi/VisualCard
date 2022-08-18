@@ -5,7 +5,12 @@ VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisualCard", "VisualCard\VisualCard.csproj", "{2AFDCE5C-842F-4129-B4BE-00A72F19DCD2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisualCard.ShowContacts", "VisualCard.ShowContacts\VisualCard.ShowContacts.csproj", "{798FA5EC-E411-4DF3-B8C7-D5E0AA63AA58}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisualCard.ShowContacts", "VisualCard.ShowContacts\VisualCard.ShowContacts.csproj", "{798FA5EC-E411-4DF3-B8C7-D5E0AA63AA58}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9EB96994-DDAB-4F53-8D4F-0E8EEFD08CFD}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
