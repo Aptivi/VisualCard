@@ -59,8 +59,14 @@ namespace VisualCard
             CardLine = CardReader.ReadLine();
             while (!CardReader.EndOfStream)
             {
-                // Get the line
-                CardContent.AppendLine(CardLine);
+                // Skip empty lines
+                if (string.IsNullOrEmpty(CardLine))
+                {
+                    CardLine = CardReader.ReadLine();
+                    continue;
+                }
+                else
+                    CardContent.AppendLine(CardLine);
 
                 // All VCards must begin with BEGIN:VCARD
                 if (CardLine != "BEGIN:VCARD" && !BeginSpotted)
