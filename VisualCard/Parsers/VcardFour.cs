@@ -64,6 +64,7 @@ namespace VisualCard.Parsers
             string _url                     = "";
             string _note                    = "";
             DateTime _rev                   = DateTime.MinValue;
+            DateTime _bday                  = DateTime.MinValue;
             List<NameInfo> _names           = new();
             List<TelephoneInfo> _telephones = new();
             List<EmailInfo> _emails         = new();
@@ -97,6 +98,7 @@ namespace VisualCard.Parsers
             const string _revSpecifier                  = "REV:";
             const string _nicknameSpecifier             = "NICKNAME:";
             const string _nicknameSpecifierWithType     = "NICKNAME;";
+            const string _birthSpecifier                = "BDAY:";
             const string _xSpecifier                    = "X-";
             const string _typeArgumentSpecifier         = "TYPE=";
             const string _altIdArgumentSpecifier        = "ALTID=";
@@ -498,6 +500,7 @@ namespace VisualCard.Parsers
                 }
 
                 // Sound (SOUND;VALUE=URL:file///multimed/audio/jqpublic.wav or SOUND;WAVE;BASE64:... or SOUND;TYPE=WAVE;ENCODING=BASE64:...)
+                // ALTID is supported.
                 if (_value.StartsWith(_soundSpecifierWithType))
                 {
                     // Get the value
@@ -586,6 +589,7 @@ namespace VisualCard.Parsers
                 }
 
                 // Nickname (NICKNAME;TYPE=cell,home:495-522-3560)
+                // ALTID is supported.
                 if (_value.StartsWith(_nicknameSpecifierWithType))
                 {
                     // Get the value
@@ -635,6 +639,7 @@ namespace VisualCard.Parsers
                 }
 
                 // Nickname (NICKNAME:495-522-3560)
+                // ALTID is supported. See above.
                 if (_value.StartsWith(_nicknameSpecifier))
                 {
                     // Get the value
@@ -645,6 +650,17 @@ namespace VisualCard.Parsers
                     string _nick = Regex.Unescape(nickValue);
                     NicknameInfo _nickInstance = new(0, Array.Empty<string>(), _nick, _nicknameTypes);
                     _nicks.Add(_nickInstance);
+                }
+
+                // Birthdate (BDAY:19950415 or BDAY:1953-10-15T23:10:00Z)
+                // Here, we don't support ALTID.
+                if (_value.StartsWith(_birthSpecifier))
+                {
+                    // Get the value
+                    string bdayValue = _value.Substring(_birthSpecifier.Length);
+
+                    // Populate field
+                    _bday = DateTime.Parse(bdayValue);
                 }
 
                 // X-nonstandard (X-AIM:john.s or X-DL;Design Work Group:List Item 1;List Item 2;List Item 3)
@@ -676,7 +692,7 @@ namespace VisualCard.Parsers
                 throw new InvalidDataException("The full name specifier, \"FN:\", is required.");
 
             // Make a new instance of the card
-            return new Card(CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), _kind, _photos.ToArray(), _rev, _nicks.ToArray());
+            return new Card(CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), _kind, _photos.ToArray(), _rev, _nicks.ToArray(), _bday, "");
         }
 
         internal VcardFour(string cardPath, string cardContent, string cardVersion)

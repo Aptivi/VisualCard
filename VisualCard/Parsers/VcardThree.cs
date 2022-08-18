@@ -62,7 +62,9 @@ namespace VisualCard.Parsers
             string _fullName                = "";
             string _url                     = "";
             string _note                    = "";
+            string _mailer                  = "";
             DateTime _rev                   = DateTime.MinValue;
+            DateTime _bday                  = DateTime.MinValue;
             List<NameInfo> _names           = new();
             List<TelephoneInfo> _telephones = new();
             List<EmailInfo> _emails         = new();
@@ -93,6 +95,8 @@ namespace VisualCard.Parsers
             const string _revSpecifier                  = "REV:";
             const string _nicknameSpecifier             = "NICKNAME:";
             const string _nicknameSpecifierWithType     = "NICKNAME;";
+            const string _birthSpecifier                = "BDAY:";
+            const string _mailerSpecifier               = "MAILER:";
             const string _xSpecifier                    = "X-";
             const string _typeArgumentSpecifier         = "TYPE=";
 
@@ -476,6 +480,26 @@ namespace VisualCard.Parsers
                     _nicks.Add(_nickInstance);
                 }
 
+                // Birthdate (BDAY:19950415 or BDAY:1953-10-15T23:10:00Z)
+                if (_value.StartsWith(_birthSpecifier))
+                {
+                    // Get the value
+                    string bdayValue = _value.Substring(_birthSpecifier.Length);
+
+                    // Populate field
+                    _bday = DateTime.Parse(bdayValue);
+                }
+
+                // Mailer (MAILER:ccMail 2.2 or MAILER:PigeonMail 2.1)
+                if (_value.StartsWith(_mailerSpecifier))
+                {
+                    // Get the value
+                    string mailerValue = _value.Substring(_mailerSpecifier.Length);
+
+                    // Populate field
+                    _mailer = Regex.Unescape(mailerValue);
+                }
+
                 // X-nonstandard (X-AIM:john.s or X-DL;Design Work Group:List Item 1;List Item 2;List Item 3)
                 if (_value.StartsWith(_xSpecifier))
                 {
@@ -506,7 +530,7 @@ namespace VisualCard.Parsers
                 throw new InvalidDataException("The full name specifier, \"FN:\", is required.");
 
             // Make a new instance of the card
-            return new Card(CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), "individual", _photos.ToArray(), _rev, _nicks.ToArray());
+            return new Card(CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), "individual", _photos.ToArray(), _rev, _nicks.ToArray(), _bday, _mailer);
         }
 
         internal VcardThree(string cardPath, string cardContent, string cardVersion)

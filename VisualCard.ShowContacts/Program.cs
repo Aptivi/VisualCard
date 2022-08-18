@@ -72,6 +72,7 @@ namespace VisualCard.ShowContacts
                 {
                     Console.WriteLine("----------------------------");
                     Console.WriteLine("Name:                    {0}", Contact.ContactFullName);
+                    Console.WriteLine("Revision:                {0}", Contact.CardRevision);
 
                     // List names
                     foreach (NameInfo name in Contact.ContactNames)
@@ -139,6 +140,8 @@ namespace VisualCard.ShowContacts
                     }
 
                     // List remaining
+                    Console.WriteLine("Contact birthdate:       {0}", Contact.ContactBirthdate);
+                    Console.WriteLine("Contact mailer:          {0}", Contact.ContactMailer);
                     Console.WriteLine("Contact URL:             {0}", Contact.ContactURL);
                     Console.WriteLine("Contact Note:            {0}", Contact.ContactNotes);
                 }
