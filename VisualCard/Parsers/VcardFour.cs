@@ -26,6 +26,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net.Mail;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -118,6 +119,34 @@ namespace VisualCard.Parsers
                 // Get line
                 string _value = CardContentReader.ReadLine();
 
+                // Variables
+                string[] splitValueParts = _value.Split(_argumentDelimiter);
+                string[] splitArgs = splitValueParts[0].Split(_fieldDelimiter);
+                splitArgs = splitArgs.Except(new string[] { splitArgs[0] }).ToArray();
+                string[] splitValues = splitValueParts[1].Split(_fieldDelimiter);
+                List<string> finalArgs = new();
+                int altId = 0;
+
+                if (splitArgs.Length > 0)
+                {
+                    // If we have more than one argument, check for ALTID
+                    if (splitArgs[0].StartsWith(_altIdArgumentSpecifier))
+                    {
+                        if (!int.TryParse(splitArgs[0].Substring(_altIdArgumentSpecifier.Length), out altId))
+                            throw new InvalidDataException("ALTID must be numeric");
+
+                        // Here, we require arguments for ALTID
+                        if (splitArgs.Length <= 1)
+                            throw new InvalidDataException("ALTID must have one or more arguments to specify why is this instance an alternative");
+                    }
+
+                    // Finalize the arguments
+                    if (splitArgs[0].StartsWith(_altIdArgumentSpecifier))
+                        finalArgs.AddRange(splitArgs.Except(new string[] { splitArgs[0] }));
+                    else
+                        finalArgs.AddRange(splitArgs);
+                }
+
                 // Card type (KIND:individual, KIND:group, KIND:org, KIND:location, ...)
                 // Here, we don't support ALTID.
                 if (_value.StartsWith(_kindSpecifier))
@@ -135,9 +164,7 @@ namespace VisualCard.Parsers
                 if (_value.StartsWith(_nameSpecifier))
                 {
                     // Check the line
-                    string nameValue = _value.Substring(_nameSpecifier.Length);
-                    string[] splitName = nameValue.Split(_fieldDelimiter);
-                    if (splitName.Length < 2)
+                    if (splitValues.Length < 2)
                         throw new InvalidDataException("Name field must specify exactly five values (Last name, first name, alt names, prefixes, and suffixes)");
 
                     // Check to see if there are any names with altid
@@ -145,11 +172,11 @@ namespace VisualCard.Parsers
                         throw new InvalidDataException("Attempted to overwrite name under the main ID.");
 
                     // Populate fields
-                    string _lastName   = Regex.Unescape(splitName[0]);
-                    string _firstName  = Regex.Unescape(splitName[1]);
-                    string[] _altNames = splitName.Length >= 3 ? Regex.Unescape(splitName[2]).Split(new char[] { _valueDelimiter }) : Array.Empty<string>();
-                    string[] _prefixes = splitName.Length >= 4 ? Regex.Unescape(splitName[3]).Split(new char[] { _valueDelimiter }) : Array.Empty<string>();
-                    string[] _suffixes = splitName.Length >= 5 ? Regex.Unescape(splitName[4]).Split(new char[] { _valueDelimiter }) : Array.Empty<string>();
+                    string _lastName   = Regex.Unescape(splitValues[0]);
+                    string _firstName  = Regex.Unescape(splitValues[1]);
+                    string[] _altNames = splitValues.Length >= 3 ? Regex.Unescape(splitValues[2]).Split(new char[] { _valueDelimiter }) : Array.Empty<string>();
+                    string[] _prefixes = splitValues.Length >= 4 ? Regex.Unescape(splitValues[3]).Split(new char[] { _valueDelimiter }) : Array.Empty<string>();
+                    string[] _suffixes = splitValues.Length >= 5 ? Regex.Unescape(splitValues[4]).Split(new char[] { _valueDelimiter }) : Array.Empty<string>();
                     NameInfo _name = new(0, Array.Empty<string>(), _firstName, _lastName, _altNames, _prefixes, _suffixes);
                     _names.Add(_name);
 
@@ -165,27 +192,16 @@ namespace VisualCard.Parsers
                     string nameValue = _value.Substring(_nameSpecifierWithType.Length);
                     string[] splitNameParts = nameValue.Split(_argumentDelimiter);
                     string[] splitName = splitNameParts[1].Split(_fieldDelimiter);
-                    string[] splitArgs = splitNameParts[0].Split(_fieldDelimiter);
                     if (splitName.Length < 2)
                         throw new InvalidDataException("Name field must specify exactly five values (Last name, first name, alt names, prefixes, and suffixes)");
 
                     // Check the ALTID
                     if (!splitArgs[0].StartsWith(_altIdArgumentSpecifier))
                         throw new InvalidDataException("ALTID must come exactly first");
-                    if (!int.TryParse(splitArgs[0].Substring(_altIdArgumentSpecifier.Length), out int altId))
-                        throw new InvalidDataException("ALTID must be numeric");
 
                     // ALTID: N: has cardinality of *1
                     if (idReservedForName && _names.Count > 0 && _names[0].AltId != altId)
                         throw new InvalidDataException("ALTID may not be different from all the alternative argument names");
-
-                    // Here, we require arguments for ALTID
-                    if (splitArgs.Length <= 1)
-                        throw new InvalidDataException("ALTID must have one or more arguments to specify why is this instance an alternative");
-
-                    // Finalize the arguments
-                    string[] finalArgs = Array.Empty<string>();
-                    splitArgs.CopyTo(finalArgs, 1);
 
                     // Populate fields
                     string _lastName   = Regex.Unescape(splitName[0]);
@@ -193,7 +209,7 @@ namespace VisualCard.Parsers
                     string[] _altNames = splitName.Length >= 3 ? Regex.Unescape(splitName[2]).Split(new char[] { _valueDelimiter }) : Array.Empty<string>();
                     string[] _prefixes = splitName.Length >= 4 ? Regex.Unescape(splitName[3]).Split(new char[] { _valueDelimiter }) : Array.Empty<string>();
                     string[] _suffixes = splitName.Length >= 5 ? Regex.Unescape(splitName[4]).Split(new char[] { _valueDelimiter }) : Array.Empty<string>();
-                    NameInfo _name = new(altId, finalArgs, _firstName, _lastName, _altNames, _prefixes, _suffixes);
+                    NameInfo _name = new(altId, finalArgs.ToArray(), _firstName, _lastName, _altNames, _prefixes, _suffixes);
                     _names.Add(_name);
 
                     // Since we've reserved a specific id, set the flag
@@ -373,30 +389,10 @@ namespace VisualCard.Parsers
                     // Get the value
                     string titleValue = _value.Substring(_titleSpecifierWithArguments.Length);
                     string[] splitTitleParts = titleValue.Split(_argumentDelimiter);
-                    string[] splitArgs = splitTitleParts[0].Split(_fieldDelimiter);
-                    int altId = 0;
-
-                    // Check the ALTID
-                    if (splitArgs[0].StartsWith(_altIdArgumentSpecifier))
-                    {
-                        if (!int.TryParse(splitArgs[0].Substring(_altIdArgumentSpecifier.Length), out altId))
-                            throw new InvalidDataException("ALTID must be numeric");
-
-                        // Here, we require arguments for ALTID
-                        if (splitArgs.Length <= 1)
-                            throw new InvalidDataException("ALTID must have one or more arguments to specify why is this instance an alternative");
-                    }
-
-                    // Finalize the arguments
-                    string[] finalArgs = Array.Empty<string>();
-                    if (splitArgs[0].StartsWith(_altIdArgumentSpecifier))
-                        splitArgs.CopyTo(finalArgs, 1);
-                    else
-                        finalArgs = splitArgs;
 
                     // Populate field
                     string _title = Regex.Unescape(splitTitleParts[1]);
-                    TitleInfo title = new(altId, finalArgs, _title);
+                    TitleInfo title = new(altId, finalArgs.ToArray(), _title);
                     _titles.Add(title);
                 }
 
@@ -433,26 +429,6 @@ namespace VisualCard.Parsers
                     // Get the value
                     string photoValue = _value.Substring(_photoSpecifierWithType.Length);
                     string[] splitPhoto = photoValue.Split(_argumentDelimiter);
-                    string[] splitArgs = splitPhoto[0].Split(_fieldDelimiter);
-                    int altId = 0;
-
-                    // Check the ALTID
-                    if (splitArgs[0].StartsWith(_altIdArgumentSpecifier))
-                    {
-                        if (!int.TryParse(splitArgs[0].Substring(_altIdArgumentSpecifier.Length), out altId))
-                            throw new InvalidDataException("ALTID must be numeric");
-
-                        // Here, we require arguments for ALTID
-                        if (splitArgs.Length <= 1)
-                            throw new InvalidDataException("ALTID must have one or more arguments to specify why is this instance an alternative");
-                    }
-
-                    // Finalize the arguments
-                    string[] finalArgs = Array.Empty<string>();
-                    if (splitArgs[0].StartsWith(_altIdArgumentSpecifier))
-                        splitArgs.CopyTo(finalArgs, 1);
-                    else
-                        finalArgs = splitArgs;
 
                     // Check to see if the value is prepended by the VALUE= argument
                     bool isUrl = false;
@@ -498,7 +474,7 @@ namespace VisualCard.Parsers
                     }
 
                     // Populate the fields
-                    PhotoInfo _photo = new(altId, finalArgs, valueType, photoEncoding, photoType, encodedPhoto.ToString());
+                    PhotoInfo _photo = new(altId, finalArgs.ToArray(), valueType, photoEncoding, photoType, encodedPhoto.ToString());
                     _photos.Add(_photo);
                 }
 
@@ -509,26 +485,6 @@ namespace VisualCard.Parsers
                     // Get the value
                     string soundValue = _value.Substring(_soundSpecifierWithType.Length);
                     string[] splitSound = soundValue.Split(_argumentDelimiter);
-                    string[] splitArgs = splitSound[0].Split(_fieldDelimiter);
-                    int altId = 0;
-
-                    // Check the ALTID
-                    if (splitArgs[0].StartsWith(_altIdArgumentSpecifier))
-                    {
-                        if (!int.TryParse(splitArgs[0].Substring(_altIdArgumentSpecifier.Length), out altId))
-                            throw new InvalidDataException("ALTID must be numeric");
-
-                        // Here, we require arguments for ALTID
-                        if (splitArgs.Length <= 1)
-                            throw new InvalidDataException("ALTID must have one or more arguments to specify why is this instance an alternative");
-                    }
-
-                    // Finalize the arguments
-                    string[] finalArgs = Array.Empty<string>();
-                    if (splitArgs[0].StartsWith(_altIdArgumentSpecifier))
-                        splitArgs.CopyTo(finalArgs, 1);
-                    else
-                        finalArgs = splitArgs;
 
                     // Check to see if the value is prepended by the VALUE= argument
                     bool isUrl = false;
@@ -576,7 +532,7 @@ namespace VisualCard.Parsers
                     }
 
                     // Populate the fields
-                    SoundInfo _sound = new(altId, finalArgs, valueType, soundEncoding, soundType, encodedSound.ToString());
+                    SoundInfo _sound = new(altId, finalArgs.ToArray(), valueType, soundEncoding, soundType, encodedSound.ToString());
                     _sounds.Add(_sound);
                 }
 
@@ -598,26 +554,6 @@ namespace VisualCard.Parsers
                     // Get the value
                     string nickValue = _value.Substring(_nicknameSpecifierWithType.Length);
                     string[] splitNick = nickValue.Split(_argumentDelimiter);
-                    string[] splitArgs = splitNick[0].Split(_fieldDelimiter);
-                    int altId = 0;
-
-                    // Check the ALTID
-                    if (splitArgs[0].StartsWith(_altIdArgumentSpecifier))
-                    {
-                        if (!int.TryParse(splitArgs[0].Substring(_altIdArgumentSpecifier.Length), out altId))
-                            throw new InvalidDataException("ALTID must be numeric");
-
-                        // Here, we require arguments for ALTID
-                        if (splitArgs.Length <= 1)
-                            throw new InvalidDataException("ALTID must have one or more arguments to specify why is this instance an alternative");
-                    }
-
-                    // Finalize the arguments
-                    string[] finalArgs = Array.Empty<string>();
-                    if (splitArgs[0].StartsWith(_altIdArgumentSpecifier))
-                        splitArgs.CopyTo(finalArgs, 1);
-                    else
-                        finalArgs = splitArgs;
 
                     string[] splitTypes;
                     if (splitNick.Length != 2)
@@ -637,7 +573,7 @@ namespace VisualCard.Parsers
                     // Populate the fields
                     string[] _nicknameTypes = splitTypes;
                     string _nick = Regex.Unescape(splitNick[1]);
-                    NicknameInfo _nickInstance = new(altId, finalArgs, _nick, _nicknameTypes);
+                    NicknameInfo _nickInstance = new(altId, finalArgs.ToArray(), _nick, _nicknameTypes);
                     _nicks.Add(_nickInstance);
                 }
 
@@ -684,30 +620,9 @@ namespace VisualCard.Parsers
                 {
                     // Get the value
                     string roleValue = _value.Substring(_roleSpecifier.Length);
-                    string[] splitRoleParts = roleValue.Split(_argumentDelimiter);
-                    string[] splitArgs = splitRoleParts[0].Split(_fieldDelimiter);
-                    int altId = 0;
-
-                    // Check the ALTID
-                    if (splitArgs[0].StartsWith(_altIdArgumentSpecifier))
-                    {
-                        if (!int.TryParse(splitArgs[0].Substring(_altIdArgumentSpecifier.Length), out altId))
-                            throw new InvalidDataException("ALTID must be numeric");
-
-                        // Here, we require arguments for ALTID
-                        if (splitArgs.Length <= 1)
-                            throw new InvalidDataException("ALTID must have one or more arguments to specify why is this instance an alternative");
-                    }
-
-                    // Finalize the arguments
-                    string[] finalArgs = Array.Empty<string>();
-                    if (splitArgs[0].StartsWith(_altIdArgumentSpecifier))
-                        splitArgs.CopyTo(finalArgs, 1);
-                    else
-                        finalArgs = splitArgs;
 
                     // Populate the fields
-                    RoleInfo _role = new(altId, finalArgs, roleValue);
+                    RoleInfo _role = new(altId, finalArgs.ToArray(), roleValue);
                     _roles.Add(_role);
                 }
 
