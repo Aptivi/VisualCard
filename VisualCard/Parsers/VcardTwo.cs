@@ -29,6 +29,7 @@ using System.IO;
 using System.Net.Mail;
 using System.Text;
 using System.Text.RegularExpressions;
+using VisualCard.Exceptions;
 using VisualCard.Parts;
 
 namespace VisualCard.Parsers
@@ -103,367 +104,376 @@ namespace VisualCard.Parsers
             bool nameSpecifierSpotted = false;
 
             // Iterate through all the lines
+            int lineNumber = 0;
             while (!CardContentReader.EndOfStream)
             {
                 // Get line
                 string _value = CardContentReader.ReadLine();
+                lineNumber += 1;
 
-                // The name (N:Sanders;John;;;)
-                if (_value.StartsWith(_nameSpecifier))
+                try
                 {
-                    // Check the line
-                    string nameValue = _value.Substring(_nameSpecifier.Length);
-                    string[] splitName = nameValue.Split(_fieldDelimiter);
-                    if (splitName.Length < 2)
-                        throw new InvalidDataException("Name field must specify the first two or more of the five values (Last name, first name, alt names, prefixes, and suffixes)");
-
-                    // Populate fields
-                    string _lastName   = Regex.Unescape(splitName[0]);
-                    string _firstName  = Regex.Unescape(splitName[1]);
-                    string[] _altNames = splitName.Length >= 3 ? Regex.Unescape(splitName[2]).Split(new char[] { _valueDelimiter }) : Array.Empty<string>();
-                    string[] _prefixes = splitName.Length >= 4 ? Regex.Unescape(splitName[3]).Split(new char[] { _valueDelimiter }) : Array.Empty<string>();
-                    string[] _suffixes = splitName.Length >= 5 ? Regex.Unescape(splitName[4]).Split(new char[] { _valueDelimiter }) : Array.Empty<string>();
-                    NameInfo _name = new(0, Array.Empty<string>(), _firstName, _lastName, _altNames, _prefixes, _suffixes);
-                    _names.Add(_name);
-
-                    // Set flag to indicate that the required field is spotted
-                    nameSpecifierSpotted = true;
-                }
-
-                // Full name (FN:John Sanders)
-                if (_value.StartsWith(_fullNameSpecifier))
-                {
-                    // Get the value
-                    string fullNameValue = _value.Substring(_fullNameSpecifier.Length);
-
-                    // Populate field
-                    _fullName = Regex.Unescape(fullNameValue);
-                }
-
-                // Telephone (TEL;CELL;HOME:495-522-3560 or TEL;TYPE=cell,home:495-522-3560)
-                if (_value.StartsWith(_telephoneSpecifierWithType))
-                {
-                    // Get the value
-                    string telValue = _value.Substring(_telephoneSpecifierWithType.Length);
-                    string[] splitTel = telValue.Split(_argumentDelimiter);
-                    if (splitTel.Length != 2)
-                        throw new InvalidDataException("Telephone field must specify exactly two values (Type (optionally prepended with TYPE=), and phone number)");
-
-                    // Check to see if the type is prepended with the TYPE= argument
-                    string[] splitTypes = splitTel[0].StartsWith(_typeArgumentSpecifier) ?
-                                          splitTel[0].Substring(_typeArgumentSpecifier.Length).Split(_valueDelimiter) :
-                                          splitTel[0].Split(_fieldDelimiter);
-
-                    // Populate the fields
-                    string[] _telephoneTypes =  splitTypes;
-                    string _telephoneNumber =   Regex.Unescape(splitTel[1]);
-                    TelephoneInfo _telephone = new(_telephoneTypes, _telephoneNumber);
-                    _telephones.Add(_telephone);
-                }
-
-                // Telephone (TEL:495-522-3560)
-                if (_value.StartsWith(_telephoneSpecifier))
-                {
-                    // Get the value
-                    string telValue = _value.Substring(_telephoneSpecifier.Length);
-
-                    // Populate the fields
-                    string[] _telephoneTypes = new string[] { "CELL" };
-                    string _telephoneNumber = Regex.Unescape(telValue);
-                    TelephoneInfo _telephone = new(_telephoneTypes, _telephoneNumber);
-                    _telephones.Add(_telephone);
-                }
-
-                // Address (ADR;HOME:;;Los Angeles, USA;;;;)
-                if (_value.StartsWith(_addressSpecifierWithType))
-                {
-                    // Get the value
-                    string adrValue = _value.Substring(_addressSpecifierWithType.Length);
-                    string[] splitAdr = adrValue.Split(_argumentDelimiter);
-                    if (splitAdr.Length != 2)
-                        throw new InvalidDataException("Address field must specify exactly two values (Type (optionally prepended with TYPE=), and address information)");
-
-                    // Check to see if the type is prepended with the TYPE= argument
-                    string[] splitTypes = splitAdr[0].StartsWith(_typeArgumentSpecifier) ?
-                                          splitAdr[0].Substring(_typeArgumentSpecifier.Length).Split(_valueDelimiter) :
-                                          splitAdr[0].Split(_fieldDelimiter);
-
-                    // Check the provided address
-                    string[] splitAddressValues = splitAdr[1].Split(_fieldDelimiter);
-                    if (splitAddressValues.Length != 7)
-                        throw new InvalidDataException("Address information must specify exactly seven values (P.O. Box, extended address, street address, locality, region, postal code, and country)");
-
-                    // Populate the fields
-                    string[] _addressTypes =    splitTypes;
-                    string _addressPOBox =      Regex.Unescape(splitAddressValues[0]);
-                    string _addressExtended =   Regex.Unescape(splitAddressValues[1]);
-                    string _addressStreet =     Regex.Unescape(splitAddressValues[2]);
-                    string _addressLocality =   Regex.Unescape(splitAddressValues[3]);
-                    string _addressRegion =     Regex.Unescape(splitAddressValues[4]);
-                    string _addressPostalCode = Regex.Unescape(splitAddressValues[5]);
-                    string _addressCountry =    Regex.Unescape(splitAddressValues[6]);
-                    AddressInfo _address = new(_addressTypes, _addressPOBox, _addressExtended, _addressStreet, _addressLocality, _addressRegion, _addressPostalCode, _addressCountry);
-                    _addresses.Add(_address);
-                }
-
-                // Email (EMAIL;HOME;INTERNET:john.s@acme.co or EMAIL;TYPE=HOME,INTERNET:john.s@acme.co)
-                if (_value.StartsWith(_emailSpecifier))
-                {
-                    // Get the value
-                    string mailValue = _value.Substring(_emailSpecifier.Length);
-                    string[] splitMail = mailValue.Split(_argumentDelimiter);
-                    MailAddress mail;
-                    if (splitMail.Length != 2)
-                        throw new InvalidDataException("E-mail field must specify exactly two values (Type (optionally prepended with TYPE=), and a valid e-mail address)");
-
-                    // Check to see if the type is prepended with the TYPE= argument
-                    string[] splitTypes = splitMail[0].StartsWith(_typeArgumentSpecifier) ?
-                                          splitMail[0].Substring(_typeArgumentSpecifier.Length).Split(_valueDelimiter) :
-                                          splitMail[0].Split(_fieldDelimiter);
-
-                    // Try to create mail address
-                    try
+                    // The name (N:Sanders;John;;;)
+                    if (_value.StartsWith(_nameSpecifier))
                     {
-                        mail = new MailAddress(splitMail[1]);
-                    }
-                    catch (ArgumentException aex)
-                    {
-                        throw new InvalidDataException("E-mail address is invalid", aex);
+                        // Check the line
+                        string nameValue = _value.Substring(_nameSpecifier.Length);
+                        string[] splitName = nameValue.Split(_fieldDelimiter);
+                        if (splitName.Length < 2)
+                            throw new InvalidDataException("Name field must specify the first two or more of the five values (Last name, first name, alt names, prefixes, and suffixes)");
+
+                        // Populate fields
+                        string _lastName   = Regex.Unescape(splitName[0]);
+                        string _firstName  = Regex.Unescape(splitName[1]);
+                        string[] _altNames = splitName.Length >= 3 ? Regex.Unescape(splitName[2]).Split(new char[] { _valueDelimiter }) : Array.Empty<string>();
+                        string[] _prefixes = splitName.Length >= 4 ? Regex.Unescape(splitName[3]).Split(new char[] { _valueDelimiter }) : Array.Empty<string>();
+                        string[] _suffixes = splitName.Length >= 5 ? Regex.Unescape(splitName[4]).Split(new char[] { _valueDelimiter }) : Array.Empty<string>();
+                        NameInfo _name = new(0, Array.Empty<string>(), _firstName, _lastName, _altNames, _prefixes, _suffixes);
+                        _names.Add(_name);
+
+                        // Set flag to indicate that the required field is spotted
+                        nameSpecifierSpotted = true;
                     }
 
-                    // Populate the fields
-                    string[] _emailTypes = splitTypes;
-                    string _emailAddress = mail.Address;
-                    EmailInfo _email = new(_emailTypes, _emailAddress);
-                    _emails.Add(_email);
-                }
-
-                // Organization (ORG:Acme Co. or ORG:ABC, Inc.;North American Division;Marketing)
-                if (_value.StartsWith(_orgSpecifier))
-                {
-                    // Get the value
-                    string orgValue = _value.Substring(_orgSpecifier.Length);
-                    string[] splitOrg = orgValue.Split(_fieldDelimiter);
-
-                    // Populate the fields
-                    string _orgName =     Regex.Unescape(splitOrg[0]);
-                    string _orgUnit =     Regex.Unescape(splitOrg.Length >= 2 ? splitOrg[1] : "");
-                    string _orgUnitRole = Regex.Unescape(splitOrg.Length >= 3 ? splitOrg[2] : "");
-                    OrganizationInfo _org = new(_orgName, _orgUnit, _orgUnitRole);
-                    _orgs.Add(_org);
-                }
-
-                // Title (TITLE:Product Manager)
-                if (_value.StartsWith(_titleSpecifier))
-                {
-                    // Get the value
-                    string titleValue = _value.Substring(_titleSpecifier.Length);
-
-                    // Populate field
-                    string _title = Regex.Unescape(titleValue);
-                    TitleInfo title = new(0, Array.Empty<string>(), _title);
-                    _titles.Add(title);
-                }
-
-                // Website link (URL:https://sso.org/)
-                if (_value.StartsWith(_urlSpecifier))
-                {
-                    // Get the value
-                    string urlValue = _value.Substring(_urlSpecifier.Length);
-
-                    // Try to parse the URL to ensure that it conforms to IETF RFC 1738: Uniform Resource Locators
-                    if (!Uri.TryCreate(urlValue, UriKind.Absolute, out Uri uri))
-                        throw new InvalidDataException($"URL {urlValue} is invalid");
-
-                    // Populate field
-                    _url = uri.ToString();
-                }
-
-                // Note (NOTE:Product Manager)
-                if (_value.StartsWith(_noteSpecifier))
-                {
-                    // Get the value
-                    string noteValue = _value.Substring(_noteSpecifier.Length);
-
-                    // Populate field
-                    _note = Regex.Unescape(noteValue);
-                }
-
-                // Photo (PHOTO;ENCODING=BASE64;JPEG:... or PHOTO;VALUE=URL:file:///jqpublic.gif or PHOTO;ENCODING=BASE64;TYPE=GIF:...)
-                if (_value.StartsWith(_photoSpecifierWithType))
-                {
-                    // Get the value
-                    string photoValue = _value.Substring(_photoSpecifierWithType.Length);
-                    string[] splitPhoto = photoValue.Split(_argumentDelimiter);
-                    string[] splitPhotoArgs = photoValue.Split(_fieldDelimiter);
-
-                    // Check to see if the value is prepended by the VALUE= argument
-                    bool isUrl = false;
-                    string valueType = "";
-                    if (splitPhotoArgs.Length == 1)
+                    // Full name (FN:John Sanders)
+                    if (_value.StartsWith(_fullNameSpecifier))
                     {
-                        const string _valueArgumentSpecifier = "VALUE=";
-                        valueType = splitPhotoArgs[0].Substring(_valueArgumentSpecifier.Length).ToLower();
-                        isUrl = valueType == "url" || valueType == "uri";
+                        // Get the value
+                        string fullNameValue = _value.Substring(_fullNameSpecifier.Length);
+
+                        // Populate field
+                        _fullName = Regex.Unescape(fullNameValue);
                     }
 
-                    // Check to see if the value is prepended by the ENCODING= argument
-                    string photoEncoding = "";
-                    if (splitPhotoArgs.Length >= 1)
+                    // Telephone (TEL;CELL;HOME:495-522-3560 or TEL;TYPE=cell,home:495-522-3560)
+                    if (_value.StartsWith(_telephoneSpecifierWithType))
                     {
-                        const string _encodingArgumentSpecifier = "ENCODING=";
-                        photoEncoding = splitPhotoArgs[0].Substring(_encodingArgumentSpecifier.Length);
+                        // Get the value
+                        string telValue = _value.Substring(_telephoneSpecifierWithType.Length);
+                        string[] splitTel = telValue.Split(_argumentDelimiter);
+                        if (splitTel.Length != 2)
+                            throw new InvalidDataException("Telephone field must specify exactly two values (Type (optionally prepended with TYPE=), and phone number)");
+
+                        // Check to see if the type is prepended with the TYPE= argument
+                        string[] splitTypes = splitTel[0].StartsWith(_typeArgumentSpecifier) ?
+                                              splitTel[0].Substring(_typeArgumentSpecifier.Length).Split(_valueDelimiter) :
+                                              splitTel[0].Split(_fieldDelimiter);
+
+                        // Populate the fields
+                        string[] _telephoneTypes =  splitTypes;
+                        string _telephoneNumber =   Regex.Unescape(splitTel[1]);
+                        TelephoneInfo _telephone = new(_telephoneTypes, _telephoneNumber);
+                        _telephones.Add(_telephone);
                     }
 
-                    // Check to see if the value is prepended with the TYPE= argument
-                    string photoType = "";
-                    if (splitPhotoArgs.Length >= 1)
+                    // Telephone (TEL:495-522-3560)
+                    if (_value.StartsWith(_telephoneSpecifier))
                     {
-                        photoType = splitPhotoArgs[1].StartsWith(_typeArgumentSpecifier) ?
-                                    splitPhotoArgs[1].Substring(_typeArgumentSpecifier.Length).Substring(0, splitPhotoArgs[1].IndexOf(_argumentDelimiter)) :
-                                    splitPhotoArgs[1].Substring(0, splitPhotoArgs[1].IndexOf(_argumentDelimiter));
+                        // Get the value
+                        string telValue = _value.Substring(_telephoneSpecifier.Length);
+
+                        // Populate the fields
+                        string[] _telephoneTypes = new string[] { "CELL" };
+                        string _telephoneNumber = Regex.Unescape(telValue);
+                        TelephoneInfo _telephone = new(_telephoneTypes, _telephoneNumber);
+                        _telephones.Add(_telephone);
                     }
 
-                    // Now, get the encoded photo
-                    StringBuilder encodedPhoto = new();
-                    if (splitPhoto.Length == 2)
-                        encodedPhoto.Append(splitPhoto[1]);
-
-                    // Make sure to get all the blocks until we reach an empty line
-                    if (!isUrl)
+                    // Address (ADR;HOME:;;Los Angeles, USA;;;;)
+                    if (_value.StartsWith(_addressSpecifierWithType))
                     {
-                        string lineToBeAppended = CardContentReader.ReadLine();
-                        while (!string.IsNullOrWhiteSpace(lineToBeAppended))
+                        // Get the value
+                        string adrValue = _value.Substring(_addressSpecifierWithType.Length);
+                        string[] splitAdr = adrValue.Split(_argumentDelimiter);
+                        if (splitAdr.Length != 2)
+                            throw new InvalidDataException("Address field must specify exactly two values (Type (optionally prepended with TYPE=), and address information)");
+
+                        // Check to see if the type is prepended with the TYPE= argument
+                        string[] splitTypes = splitAdr[0].StartsWith(_typeArgumentSpecifier) ?
+                                              splitAdr[0].Substring(_typeArgumentSpecifier.Length).Split(_valueDelimiter) :
+                                              splitAdr[0].Split(_fieldDelimiter);
+
+                        // Check the provided address
+                        string[] splitAddressValues = splitAdr[1].Split(_fieldDelimiter);
+                        if (splitAddressValues.Length != 7)
+                            throw new InvalidDataException("Address information must specify exactly seven values (P.O. Box, extended address, street address, locality, region, postal code, and country)");
+
+                        // Populate the fields
+                        string[] _addressTypes =    splitTypes;
+                        string _addressPOBox =      Regex.Unescape(splitAddressValues[0]);
+                        string _addressExtended =   Regex.Unescape(splitAddressValues[1]);
+                        string _addressStreet =     Regex.Unescape(splitAddressValues[2]);
+                        string _addressLocality =   Regex.Unescape(splitAddressValues[3]);
+                        string _addressRegion =     Regex.Unescape(splitAddressValues[4]);
+                        string _addressPostalCode = Regex.Unescape(splitAddressValues[5]);
+                        string _addressCountry =    Regex.Unescape(splitAddressValues[6]);
+                        AddressInfo _address = new(_addressTypes, _addressPOBox, _addressExtended, _addressStreet, _addressLocality, _addressRegion, _addressPostalCode, _addressCountry);
+                        _addresses.Add(_address);
+                    }
+
+                    // Email (EMAIL;HOME;INTERNET:john.s@acme.co or EMAIL;TYPE=HOME,INTERNET:john.s@acme.co)
+                    if (_value.StartsWith(_emailSpecifier))
+                    {
+                        // Get the value
+                        string mailValue = _value.Substring(_emailSpecifier.Length);
+                        string[] splitMail = mailValue.Split(_argumentDelimiter);
+                        MailAddress mail;
+                        if (splitMail.Length != 2)
+                            throw new InvalidDataException("E-mail field must specify exactly two values (Type (optionally prepended with TYPE=), and a valid e-mail address)");
+
+                        // Check to see if the type is prepended with the TYPE= argument
+                        string[] splitTypes = splitMail[0].StartsWith(_typeArgumentSpecifier) ?
+                                              splitMail[0].Substring(_typeArgumentSpecifier.Length).Split(_valueDelimiter) :
+                                              splitMail[0].Split(_fieldDelimiter);
+
+                        // Try to create mail address
+                        try
                         {
-                            encodedPhoto.Append(lineToBeAppended);
-                            lineToBeAppended = CardContentReader.ReadLine()?.Trim();
+                            mail = new MailAddress(splitMail[1]);
                         }
-                    }
-
-                    // Populate the fields
-                    PhotoInfo _photo = new(0, Array.Empty<string>(), valueType, photoEncoding, photoType, encodedPhoto.ToString());
-                    _photos.Add(_photo);
-                }
-
-                // Sound (SOUND;VALUE=URL:file///multimed/audio/jqpublic.wav or SOUND;WAVE;BASE64:... or SOUND;TYPE=WAVE;ENCODING=BASE64:...)
-                if (_value.StartsWith(_soundSpecifierWithType))
-                {
-                    // Get the value
-                    string soundValue = _value.Substring(_soundSpecifierWithType.Length);
-                    string[] splitSound = soundValue.Split(_argumentDelimiter);
-                    string[] splitSoundArgs = soundValue.Split(_fieldDelimiter);
-
-                    // Check to see if the value is prepended by the VALUE= argument
-                    bool isUrl = false;
-                    string valueType = "";
-                    if (splitSoundArgs.Length == 1)
-                    {
-                        const string _valueArgumentSpecifier = "VALUE=";
-                        valueType = splitSoundArgs[0].Substring(_valueArgumentSpecifier.Length).ToLower();
-                        isUrl = valueType == "url" || valueType == "uri";
-                    }
-
-                    // Check to see if the value is prepended with the TYPE= argument
-                    string soundType = "";
-                    if (splitSoundArgs.Length > 1)
-                    {
-                        soundType = splitSoundArgs[0].StartsWith(_typeArgumentSpecifier) ?
-                                    splitSoundArgs[0].Substring(_typeArgumentSpecifier.Length) :
-                                    splitSoundArgs[0];
-                    }
-
-                    // Check to see if the value is prepended by the ENCODING= argument
-                    string soundEncoding = "";
-                    if (splitSoundArgs.Length > 1)
-                    {
-                        const string _encodingArgumentSpecifier = "ENCODING=";
-                        soundEncoding = splitSoundArgs[1].StartsWith(_encodingArgumentSpecifier) ?
-                                        splitSoundArgs[1].Substring(_encodingArgumentSpecifier.Length).Substring(0, splitSoundArgs[1].IndexOf(_argumentDelimiter)) :
-                                        splitSoundArgs[1].Substring(0, splitSoundArgs[1].IndexOf(_argumentDelimiter));
-                    }
-
-                    // Now, get the encoded sound
-                    StringBuilder encodedSound = new();
-                    if (splitSound.Length == 2)
-                        encodedSound.Append(splitSound[1]);
-
-                    // Make sure to get all the blocks until we reach an empty line
-                    if (!isUrl)
-                    {
-                        string lineToBeAppended = CardContentReader.ReadLine();
-                        while (!string.IsNullOrWhiteSpace(lineToBeAppended))
+                        catch (ArgumentException aex)
                         {
-                            encodedSound.Append(lineToBeAppended);
-                            lineToBeAppended = CardContentReader.ReadLine()?.Trim();
+                            throw new InvalidDataException("E-mail address is invalid", aex);
                         }
+
+                        // Populate the fields
+                        string[] _emailTypes = splitTypes;
+                        string _emailAddress = mail.Address;
+                        EmailInfo _email = new(_emailTypes, _emailAddress);
+                        _emails.Add(_email);
                     }
 
-                    // Populate the fields
-                    SoundInfo _sound = new(0, Array.Empty<string>(), valueType, soundEncoding, soundType, encodedSound.ToString());
-                    _sounds.Add(_sound);
+                    // Organization (ORG:Acme Co. or ORG:ABC, Inc.;North American Division;Marketing)
+                    if (_value.StartsWith(_orgSpecifier))
+                    {
+                        // Get the value
+                        string orgValue = _value.Substring(_orgSpecifier.Length);
+                        string[] splitOrg = orgValue.Split(_fieldDelimiter);
+
+                        // Populate the fields
+                        string _orgName =     Regex.Unescape(splitOrg[0]);
+                        string _orgUnit =     Regex.Unescape(splitOrg.Length >= 2 ? splitOrg[1] : "");
+                        string _orgUnitRole = Regex.Unescape(splitOrg.Length >= 3 ? splitOrg[2] : "");
+                        OrganizationInfo _org = new(_orgName, _orgUnit, _orgUnitRole);
+                        _orgs.Add(_org);
+                    }
+
+                    // Title (TITLE:Product Manager)
+                    if (_value.StartsWith(_titleSpecifier))
+                    {
+                        // Get the value
+                        string titleValue = _value.Substring(_titleSpecifier.Length);
+
+                        // Populate field
+                        string _title = Regex.Unescape(titleValue);
+                        TitleInfo title = new(0, Array.Empty<string>(), _title);
+                        _titles.Add(title);
+                    }
+
+                    // Website link (URL:https://sso.org/)
+                    if (_value.StartsWith(_urlSpecifier))
+                    {
+                        // Get the value
+                        string urlValue = _value.Substring(_urlSpecifier.Length);
+
+                        // Try to parse the URL to ensure that it conforms to IETF RFC 1738: Uniform Resource Locators
+                        if (!Uri.TryCreate(urlValue, UriKind.Absolute, out Uri uri))
+                            throw new InvalidDataException($"URL {urlValue} is invalid");
+
+                        // Populate field
+                        _url = uri.ToString();
+                    }
+
+                    // Note (NOTE:Product Manager)
+                    if (_value.StartsWith(_noteSpecifier))
+                    {
+                        // Get the value
+                        string noteValue = _value.Substring(_noteSpecifier.Length);
+
+                        // Populate field
+                        _note = Regex.Unescape(noteValue);
+                    }
+
+                    // Photo (PHOTO;ENCODING=BASE64;JPEG:... or PHOTO;VALUE=URL:file:///jqpublic.gif or PHOTO;ENCODING=BASE64;TYPE=GIF:...)
+                    if (_value.StartsWith(_photoSpecifierWithType))
+                    {
+                        // Get the value
+                        string photoValue = _value.Substring(_photoSpecifierWithType.Length);
+                        string[] splitPhoto = photoValue.Split(_argumentDelimiter);
+                        string[] splitPhotoArgs = photoValue.Split(_fieldDelimiter);
+
+                        // Check to see if the value is prepended by the VALUE= argument
+                        bool isUrl = false;
+                        string valueType = "";
+                        if (splitPhotoArgs.Length == 1)
+                        {
+                            const string _valueArgumentSpecifier = "VALUE=";
+                            valueType = splitPhotoArgs[0].Substring(_valueArgumentSpecifier.Length).ToLower();
+                            isUrl = valueType == "url" || valueType == "uri";
+                        }
+
+                        // Check to see if the value is prepended by the ENCODING= argument
+                        string photoEncoding = "";
+                        if (splitPhotoArgs.Length >= 1)
+                        {
+                            const string _encodingArgumentSpecifier = "ENCODING=";
+                            photoEncoding = splitPhotoArgs[0].Substring(_encodingArgumentSpecifier.Length);
+                        }
+
+                        // Check to see if the value is prepended with the TYPE= argument
+                        string photoType = "";
+                        if (splitPhotoArgs.Length >= 1)
+                        {
+                            photoType = splitPhotoArgs[1].StartsWith(_typeArgumentSpecifier) ?
+                                        splitPhotoArgs[1].Substring(_typeArgumentSpecifier.Length).Substring(0, splitPhotoArgs[1].IndexOf(_argumentDelimiter)) :
+                                        splitPhotoArgs[1].Substring(0, splitPhotoArgs[1].IndexOf(_argumentDelimiter));
+                        }
+
+                        // Now, get the encoded photo
+                        StringBuilder encodedPhoto = new();
+                        if (splitPhoto.Length == 2)
+                            encodedPhoto.Append(splitPhoto[1]);
+
+                        // Make sure to get all the blocks until we reach an empty line
+                        if (!isUrl)
+                        {
+                            string lineToBeAppended = CardContentReader.ReadLine();
+                            while (!string.IsNullOrWhiteSpace(lineToBeAppended))
+                            {
+                                encodedPhoto.Append(lineToBeAppended);
+                                lineToBeAppended = CardContentReader.ReadLine()?.Trim();
+                            }
+                        }
+
+                        // Populate the fields
+                        PhotoInfo _photo = new(0, Array.Empty<string>(), valueType, photoEncoding, photoType, encodedPhoto.ToString());
+                        _photos.Add(_photo);
+                    }
+
+                    // Sound (SOUND;VALUE=URL:file///multimed/audio/jqpublic.wav or SOUND;WAVE;BASE64:... or SOUND;TYPE=WAVE;ENCODING=BASE64:...)
+                    if (_value.StartsWith(_soundSpecifierWithType))
+                    {
+                        // Get the value
+                        string soundValue = _value.Substring(_soundSpecifierWithType.Length);
+                        string[] splitSound = soundValue.Split(_argumentDelimiter);
+                        string[] splitSoundArgs = soundValue.Split(_fieldDelimiter);
+
+                        // Check to see if the value is prepended by the VALUE= argument
+                        bool isUrl = false;
+                        string valueType = "";
+                        if (splitSoundArgs.Length == 1)
+                        {
+                            const string _valueArgumentSpecifier = "VALUE=";
+                            valueType = splitSoundArgs[0].Substring(_valueArgumentSpecifier.Length).ToLower();
+                            isUrl = valueType == "url" || valueType == "uri";
+                        }
+
+                        // Check to see if the value is prepended with the TYPE= argument
+                        string soundType = "";
+                        if (splitSoundArgs.Length > 1)
+                        {
+                            soundType = splitSoundArgs[0].StartsWith(_typeArgumentSpecifier) ?
+                                        splitSoundArgs[0].Substring(_typeArgumentSpecifier.Length) :
+                                        splitSoundArgs[0];
+                        }
+
+                        // Check to see if the value is prepended by the ENCODING= argument
+                        string soundEncoding = "";
+                        if (splitSoundArgs.Length > 1)
+                        {
+                            const string _encodingArgumentSpecifier = "ENCODING=";
+                            soundEncoding = splitSoundArgs[1].StartsWith(_encodingArgumentSpecifier) ?
+                                            splitSoundArgs[1].Substring(_encodingArgumentSpecifier.Length).Substring(0, splitSoundArgs[1].IndexOf(_argumentDelimiter)) :
+                                            splitSoundArgs[1].Substring(0, splitSoundArgs[1].IndexOf(_argumentDelimiter));
+                        }
+
+                        // Now, get the encoded sound
+                        StringBuilder encodedSound = new();
+                        if (splitSound.Length == 2)
+                            encodedSound.Append(splitSound[1]);
+
+                        // Make sure to get all the blocks until we reach an empty line
+                        if (!isUrl)
+                        {
+                            string lineToBeAppended = CardContentReader.ReadLine();
+                            while (!string.IsNullOrWhiteSpace(lineToBeAppended))
+                            {
+                                encodedSound.Append(lineToBeAppended);
+                                lineToBeAppended = CardContentReader.ReadLine()?.Trim();
+                            }
+                        }
+
+                        // Populate the fields
+                        SoundInfo _sound = new(0, Array.Empty<string>(), valueType, soundEncoding, soundType, encodedSound.ToString());
+                        _sounds.Add(_sound);
+                    }
+
+                    // Revision (REV:1995-10-31T22:27:10Z or REV:19951031T222710)
+                    if (_value.StartsWith(_revSpecifier))
+                    {
+                        // Get the value
+                        string revValue = _value.Substring(_revSpecifier.Length);
+
+                        // Populate field
+                        _rev = DateTime.Parse(revValue);
+                    }
+
+                    // Birthdate (BDAY:19950415 or BDAY:1953-10-15T23:10:00Z)
+                    if (_value.StartsWith(_birthSpecifier))
+                    {
+                        // Get the value
+                        string bdayValue = _value.Substring(_birthSpecifier.Length);
+
+                        // Populate field
+                        _bday = DateTime.Parse(bdayValue);
+                    }
+
+                    // Mailer (MAILER:ccMail 2.2 or MAILER:PigeonMail 2.1)
+                    if (_value.StartsWith(_mailerSpecifier))
+                    {
+                        // Get the value
+                        string mailerValue = _value.Substring(_mailerSpecifier.Length);
+
+                        // Populate field
+                        _mailer = Regex.Unescape(mailerValue);
+                    }
+
+                    // Role (ROLE:Programmer)
+                    if (_value.StartsWith(_roleSpecifier))
+                    {
+                        // Get the value
+                        string roleValue = _value.Substring(_roleSpecifier.Length);
+
+                        // Populate the fields
+                        RoleInfo _role = new(0, Array.Empty<string>(), roleValue);
+                        _roles.Add(_role);
+                    }
+
+                    // X-nonstandard (X-AIM:john.s or X-DL;Design Work Group:List Item 1;List Item 2;List Item 3)
+                    if (_value.StartsWith(_xSpecifier))
+                    {
+                        // Get the value
+                        string xValue = _value.Substring(_xSpecifier.Length);
+                        string[] splitX = xValue.Split(_argumentDelimiter);
+
+                        // Populate the name
+                        string _xName = splitX[0].Contains(_fieldDelimiter.ToString()) ?
+                                        splitX[0].Substring(0, splitX[0].IndexOf(_fieldDelimiter)) :
+                                        splitX[0];
+
+                        // Populate the fields
+                        string[] _xTypes  = splitX[0].Contains(_fieldDelimiter.ToString()) ?
+                                            splitX[0].Substring(splitX[0].IndexOf(_fieldDelimiter) + 1)
+                                                     .Split(_fieldDelimiter) :
+                                            Array.Empty<string>();
+                        string[] _xValues = splitX[1].Split(_fieldDelimiter);
+                        XNameInfo _x = new(_xName, _xValues, _xTypes);
+                        _xes.Add(_x);
+                    }
                 }
-
-                // Revision (REV:1995-10-31T22:27:10Z or REV:19951031T222710)
-                if (_value.StartsWith(_revSpecifier))
+                catch (Exception ex) 
                 {
-                    // Get the value
-                    string revValue = _value.Substring(_revSpecifier.Length);
-
-                    // Populate field
-                    _rev = DateTime.Parse(revValue);
-                }
-
-                // Birthdate (BDAY:19950415 or BDAY:1953-10-15T23:10:00Z)
-                if (_value.StartsWith(_birthSpecifier))
-                {
-                    // Get the value
-                    string bdayValue = _value.Substring(_birthSpecifier.Length);
-
-                    // Populate field
-                    _bday = DateTime.Parse(bdayValue);
-                }
-
-                // Mailer (MAILER:ccMail 2.2 or MAILER:PigeonMail 2.1)
-                if (_value.StartsWith(_mailerSpecifier))
-                {
-                    // Get the value
-                    string mailerValue = _value.Substring(_mailerSpecifier.Length);
-
-                    // Populate field
-                    _mailer = Regex.Unescape(mailerValue);
-                }
-
-                // Role (ROLE:Programmer)
-                if (_value.StartsWith(_roleSpecifier))
-                {
-                    // Get the value
-                    string roleValue = _value.Substring(_roleSpecifier.Length);
-
-                    // Populate the fields
-                    RoleInfo _role = new(0, Array.Empty<string>(), roleValue);
-                    _roles.Add(_role);
-                }
-
-                // X-nonstandard (X-AIM:john.s or X-DL;Design Work Group:List Item 1;List Item 2;List Item 3)
-                if (_value.StartsWith(_xSpecifier))
-                {
-                    // Get the value
-                    string xValue = _value.Substring(_xSpecifier.Length);
-                    string[] splitX = xValue.Split(_argumentDelimiter);
-
-                    // Populate the name
-                    string _xName = splitX[0].Contains(_fieldDelimiter.ToString()) ?
-                                    splitX[0].Substring(0, splitX[0].IndexOf(_fieldDelimiter)) :
-                                    splitX[0];
-
-                    // Populate the fields
-                    string[] _xTypes  = splitX[0].Contains(_fieldDelimiter.ToString()) ?
-                                        splitX[0].Substring(splitX[0].IndexOf(_fieldDelimiter) + 1)
-                                                 .Split(_fieldDelimiter) :
-                                        Array.Empty<string>();
-                    string[] _xValues = splitX[1].Split(_fieldDelimiter);
-                    XNameInfo _x = new(_xName, _xValues, _xTypes);
-                    _xes.Add(_x);
+                    throw new VCardParseException(ex.Message, _value, lineNumber, ex);
                 }
             }
 
