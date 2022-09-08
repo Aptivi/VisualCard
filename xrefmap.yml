@@ -540,6 +540,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Card.ContactBirthdate
   nameWithType: Card.ContactBirthdate
+- uid: VisualCard.Parts.Card.ContactCategories
+  name: ContactCategories
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactCategories
+  commentId: P:VisualCard.Parts.Card.ContactCategories
+  fullName: VisualCard.Parts.Card.ContactCategories
+  nameWithType: Card.ContactCategories
+- uid: VisualCard.Parts.Card.ContactCategories*
+  name: ContactCategories
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactCategories_
+  commentId: Overload:VisualCard.Parts.Card.ContactCategories
+  isSpec: "True"
+  fullName: VisualCard.Parts.Card.ContactCategories
+  nameWithType: Card.ContactCategories
 - uid: VisualCard.Parts.Card.ContactFullName
   name: ContactFullName
   href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactFullName
