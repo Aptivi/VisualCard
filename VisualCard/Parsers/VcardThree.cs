@@ -75,6 +75,7 @@ namespace VisualCard.Parsers
             List<SoundInfo> _sounds         = new();
             List<NicknameInfo> _nicks       = new();
             List<RoleInfo> _roles           = new();
+            List<string> _categories        = new();
             List<XNameInfo> _xes            = new();
 
             // Some VCard 3.0 constants
@@ -99,6 +100,7 @@ namespace VisualCard.Parsers
             const string _birthSpecifier                = "BDAY:";
             const string _mailerSpecifier               = "MAILER:";
             const string _roleSpecifier                 = "ROLE:";
+            const string _categoriesSpecifier           = "CATEGORIES:";
             const string _xSpecifier                    = "X-";
             const string _typeArgumentSpecifier         = "TYPE=";
 
@@ -517,6 +519,16 @@ namespace VisualCard.Parsers
                         _roles.Add(_role);
                     }
 
+                    // Categories (CATEGORIES:INTERNET or CATEGORIES:INTERNET,IETF,INDUSTRY,INFORMATION TECHNOLOGY)
+                    if (_value.StartsWith(_categoriesSpecifier))
+                    {
+                        // Get the value
+                        string categoriesValue = _value.Substring(_categoriesSpecifier.Length);
+
+                        // Populate field
+                        _categories.AddRange(Regex.Unescape(categoriesValue).Split(','));
+                    }
+
                     // X-nonstandard (X-AIM:john.s or X-DL;Design Work Group:List Item 1;List Item 2;List Item 3)
                     if (_value.StartsWith(_xSpecifier))
                     {
@@ -552,7 +564,7 @@ namespace VisualCard.Parsers
                 throw new InvalidDataException("The full name specifier, \"FN:\", is required.");
 
             // Make a new instance of the card
-            return new Card(CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), "individual", _photos.ToArray(), _rev, _nicks.ToArray(), _bday, _mailer, _roles.ToArray());
+            return new Card(CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), "individual", _photos.ToArray(), _rev, _nicks.ToArray(), _bday, _mailer, _roles.ToArray(), _categories.ToArray());
         }
 
         internal VcardThree(string cardPath, string cardContent, string cardVersion)
