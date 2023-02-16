@@ -1,40 +1,67 @@
-## WARNING
 
-This project is unfinished!
+<div align = center>
 
-## VisualCard
+<br>
+<br>
+    
+<img
+  src = 'https://cdn.jsdelivr.net/gh/Aptivi/VisualCard@main/VisualCard/OfficialAppIcon-VisualCard-512.png'
+  width = 256
+  align = center
+/>
 
-VisualCard is a library that parses the VCard Files (`.vcf`), whether it's a single contact or a multiple contact file. It's compatible with both .NET Framework 4.8 and the modern .NET runtime.
+<br>
 
-This library is also able to parse a multi-contact `.vcf` file with multiple versions of VCard for different contacts.
+# VisualCard
+    
+*A library that parses the VCard files.*
 
-VisualCard ensures that it's compliant with the following VCard specifications:
- * Version 2.1 - A versit Consortium Specification - September 1996
- * Version 3.0 - RFC 2426 - vCard MIME Directory Profile - Dawson & Howes - September 1998
- * Version 4.0 - RFC 6350 - vCard - S. Perreault - August 2011
+<br>
+<br>
 
-### License
+[![Badge Main]][Main]   
+[![Badge Main Linux]][Main Linux]
 
-```
-MIT License
+[![Badge Latest]][Latest]   
+[![Badge NuGet]][NuGet]
 
-Copyright (c) 2021 Aptivi
+![Badge Size]   
+[![Badge Downloads]][Releases]
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+[![Button Manual]][Manual]   
+[![Button Libraries]][Libraries]
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+</div>
+    
+<br>
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
+</div>
+
+
+<!----------------------------------------------------------------------------->
+
+[Releases]: https://github.com/Aptivi/VisualCard/releases
+[Latest]: https://github.com/Aptivi/VisualCard/releases/latest
+[NuGet]: https://www.nuget.org/packages/VisualCard/
+
+[Main]: https://github.com/Aptivi/VisualCard/actions/workflows/build-win.yml
+[Main Linux]: https://github.com/Aptivi/VisualCard/actions/workflows/build-linux.yml
+
+[Libraries]: https://aptivi.gitbook.io/visualcard-manual/project-dependencies
+[Manual]: https://aptivi.gitbook.io/visualcard-manual/
+
+<!----------------------------------[ Badges ]--------------------------------->
+
+[Badge Downloads]: https://img.shields.io/github/downloads/Aptivi/VisualCard/total?color=217346&label=Downloads&style=for-the-badge&logoColor=white&logo=DocuSign&labelColor=2d9d5f
+[Badge Latest]: https://img.shields.io/github/v/release/Aptivi/VisualCard?color=212121&include_prereleases&label=github&style=for-the-badge&logoColor=white&logo=AzureArtifacts&labelColor=303030
+[Badge NuGet]: https://img.shields.io/nuget/vpre/VisualCard?color=012f52&style=for-the-badge&logoColor=white&logo=NuGet&labelColor=004880
+[Badge Size]: https://img.shields.io/github/repo-size/Aptivi/VisualCard?color=bb4a28&label=size&logoColor=white&style=for-the-badge&logo=GoogleAnalytics&labelColor=E85C33
+
+[Badge Main]: https://github.com/Aptivi/VisualCard/actions/workflows/build-win.yml/badge.svg
+[Badge Main Linux]: https://github.com/Aptivi/VisualCard/actions/workflows/build-linux.yml/badge.svg
+
+
+<!---------------------------------[ Buttons ]--------------------------------->
+
+[Button Libraries]: https://img.shields.io/badge/Libraries-EA8220?style=for-the-badge&logoColor=white&logo=AzureArtifacts
+[Button Manual]: https://img.shields.io/badge/Docs-blueviolet?style=for-the-badge&logoColor=white&logo=GitBook
