@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0;net48</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <AssemblyVersion>0.1.0.0</AssemblyVersion>
     <FileVersion>0.1.0.0</FileVersion>
@@ -26,7 +26,7 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-    <None Include="E:\Misc\New\source\repos\VisualCard\.editorconfig" />
+    <None Include="..\.editorconfig" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,7 +37,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EditorConfigFiles Remove="E:\Misc\New\source\repos\VisualCard\.editorconfig" />
+    <EditorConfigFiles Remove="..\.editorconfig" />
   </ItemGroup>
 
 </Project>
