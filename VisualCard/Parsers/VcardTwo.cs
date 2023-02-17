@@ -337,10 +337,10 @@ namespace VisualCard.Parsers
                         if (!isUrl)
                         {
                             string lineToBeAppended = CardContentReader.ReadLine();
-                            while (!string.IsNullOrWhiteSpace(lineToBeAppended))
+                            while (!string.IsNullOrWhiteSpace(lineToBeAppended) && lineToBeAppended.StartsWith(" "))
                             {
-                                encodedPhoto.Append(lineToBeAppended);
-                                lineToBeAppended = CardContentReader.ReadLine()?.Trim();
+                                encodedPhoto.Append(lineToBeAppended.Trim());
+                                lineToBeAppended = CardContentReader.ReadLine();
                             }
                         }
 

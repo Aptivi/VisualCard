@@ -56,6 +56,7 @@ namespace VisualCard
             string CardLine;
             StringBuilder CardContent = new();
             string CardVersion = "";
+            bool CardSawNull = false;
             CardLine = CardReader.ReadLine();
             while (!CardReader.EndOfStream)
             {
@@ -63,7 +64,9 @@ namespace VisualCard
                 if (string.IsNullOrEmpty(CardLine))
                 {
                     CardLine = CardReader.ReadLine();
-                    continue;
+                    CardSawNull = true;
+                    if (!CardReader.EndOfStream)
+                        continue;
                 }
                 else
                     CardContent.AppendLine(CardLine);
@@ -80,7 +83,9 @@ namespace VisualCard
 
                 // Now that the beginning of the card tag is spotted, parse the version as we need to know how to select the appropriate parser.
                 // All VCards are required to have their own version directly after the BEGIN:VCARD tag
-                CardLine = CardReader.ReadLine();
+                if (!CardSawNull)
+                    CardLine = CardReader.ReadLine();
+                CardSawNull = false;
                 if (CardLine != "VERSION:2.1" && CardLine != "VERSION:3.0" && CardLine != "VERSION:4.0" && !VersionSpotted)
                     throw new InvalidDataException($"This file {Path} has an invalid VCard version {CardLine}.");
                 else if (!VersionSpotted)
