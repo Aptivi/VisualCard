@@ -40,9 +40,8 @@ namespace VisualCard.ShowContacts
             else
             {
                 // If one of the arguments is a switch to trigger printing, set it
-                bool print = true;
-                if (args.Length > 1)
-                    print = !args.Contains("-noprint");
+                bool print = !args.Contains("-noprint");
+                bool save = args.Contains("-save");
 
                 // Initialize stopwatch
                 Stopwatch elapsed = new();
@@ -57,6 +56,8 @@ namespace VisualCard.ShowContacts
                 {
                     Card Contact = ContactParser.Parse();
                     Contacts.Add(Contact);
+                    if (save)
+                        ContactParser.SaveTo($"contact_{DateTime.Now:dd-MM-yyyy_HH-mm-ss_ffffff}.vcf");
                 }
 
                 // If not printing, exit

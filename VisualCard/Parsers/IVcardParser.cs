@@ -51,5 +51,11 @@ namespace VisualCard.Parsers
         /// Parses the VCard file
         /// </summary>
         Card Parse();
+
+        /// <summary>
+        /// Saves the VCard file
+        /// </summary>
+        /// <param name="path">Path to a vcard file to save to</param>
+        void SaveTo(string path);
     }
 }

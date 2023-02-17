@@ -44,6 +44,36 @@ namespace VisualCard.Parsers
         public override string CardContent { get; }
         public override string CardVersion { get; }
 
+        // Some VCard 4.0 constants
+        const char _fieldDelimiter                  = ';';
+        const char _valueDelimiter                  = ',';
+        const char _argumentDelimiter               = ':';
+        const string _kindSpecifier                 = "KIND:";
+        const string _nameSpecifierWithType         = "N;";
+        const string _nameSpecifier                 = "N:";
+        const string _fullNameSpecifier             = "FN:";
+        const string _telephoneSpecifierWithType    = "TEL;";
+        const string _telephoneSpecifier            = "TEL:";
+        const string _addressSpecifierWithType      = "ADR;";
+        const string _emailSpecifier                = "EMAIL;";
+        const string _orgSpecifier                  = "ORG:";
+        const string _titleSpecifier                = "TITLE:";
+        const string _titleSpecifierWithArguments   = "TITLE;";
+        const string _urlSpecifier                  = "URL:";
+        const string _noteSpecifier                 = "NOTE:";
+        const string _photoSpecifierWithType        = "PHOTO;";
+        const string _soundSpecifierWithType        = "SOUND;";
+        const string _revSpecifier                  = "REV:";
+        const string _nicknameSpecifier             = "NICKNAME:";
+        const string _nicknameSpecifierWithType     = "NICKNAME;";
+        const string _birthSpecifier                = "BDAY:";
+        const string _roleSpecifier                 = "ROLE:";
+        const string _roleSpecifierWithType         = "ROLE;";
+        const string _categoriesSpecifier           = "CATEGORIES:";
+        const string _xSpecifier                    = "X-";
+        const string _typeArgumentSpecifier         = "TYPE=";
+        const string _altIdArgumentSpecifier        = "ALTID=";
+
         public override Card Parse()
         {
             // Check the version to ensure that we're really dealing with VCard 4.0 contact
@@ -78,36 +108,6 @@ namespace VisualCard.Parsers
             List<RoleInfo> _roles           = new();
             List<string> _categories        = new();
             List<XNameInfo> _xes            = new();
-
-            // Some VCard 4.0 constants
-            const char _fieldDelimiter                  = ';';
-            const char _valueDelimiter                  = ',';
-            const char _argumentDelimiter               = ':';
-            const string _kindSpecifier                 = "KIND:";
-            const string _nameSpecifierWithType         = "N;";
-            const string _nameSpecifier                 = "N:";
-            const string _fullNameSpecifier             = "FN:";
-            const string _telephoneSpecifierWithType    = "TEL;";
-            const string _telephoneSpecifier            = "TEL:";
-            const string _addressSpecifierWithType      = "ADR;";
-            const string _emailSpecifier                = "EMAIL;";
-            const string _orgSpecifier                  = "ORG:";
-            const string _titleSpecifier                = "TITLE:";
-            const string _titleSpecifierWithArguments   = "TITLE;";
-            const string _urlSpecifier                  = "URL:";
-            const string _noteSpecifier                 = "NOTE:";
-            const string _photoSpecifierWithType        = "PHOTO;";
-            const string _soundSpecifierWithType        = "SOUND;";
-            const string _revSpecifier                  = "REV:";
-            const string _nicknameSpecifier             = "NICKNAME:";
-            const string _nicknameSpecifierWithType     = "NICKNAME;";
-            const string _birthSpecifier                = "BDAY:";
-            const string _roleSpecifier                 = "ROLE:";
-            const string _roleSpecifierWithType         = "ROLE;";
-            const string _categoriesSpecifier           = "CATEGORIES:";
-            const string _xSpecifier                    = "X-";
-            const string _typeArgumentSpecifier         = "TYPE=";
-            const string _altIdArgumentSpecifier        = "ALTID=";
 
             // Full Name specifier is required
             bool fullNameSpecifierSpotted = false;
@@ -678,6 +678,25 @@ namespace VisualCard.Parsers
 
             // Make a new instance of the card
             return new Card(CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), _kind, _photos.ToArray(), _rev, _nicks.ToArray(), _bday, "", _roles.ToArray(), _categories.ToArray());
+        }
+
+        public override void SaveTo(string path)
+        {
+            // Check the version to ensure that we're really dealing with VCard 4.0 contact
+            if (CardVersion != "4.0")
+                throw new InvalidDataException($"Card version {CardVersion} doesn't match expected \"4.0\".");
+
+            // Check the content to ensure that we really have data
+            if (string.IsNullOrEmpty(CardContent))
+                throw new InvalidDataException($"Card content is empty.");
+
+            // Now, make a stream out of card content
+            byte[] CardContentData = Encoding.Default.GetBytes(CardContent);
+            MemoryStream CardContentStream = new(CardContentData, false);
+            var fileStream = File.OpenWrite(path);
+            CardContentStream.CopyTo(fileStream);
+            fileStream.Flush();
+            fileStream.Close();
         }
 
         internal VcardFour(string cardPath, string cardContent, string cardVersion)
