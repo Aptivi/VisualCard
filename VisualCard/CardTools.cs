@@ -125,6 +125,9 @@ namespace VisualCard
                 }
             }
 
+            // Close the stream to avoid stuck file handle
+            CardReader.Close();
+
             // Throw if the card ended prematurely
             if (!EndSpotted)
                 throw new InvalidDataException("Card ended prematurely without the ending tag");
