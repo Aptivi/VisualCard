@@ -443,6 +443,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.AddressInfo.AddressTypes
   nameWithType: AddressInfo.AddressTypes
+- uid: VisualCard.Parts.AddressInfo.AltId
+  name: AltId
+  href: api/VisualCard.Parts.AddressInfo.html#VisualCard_Parts_AddressInfo_AltId
+  commentId: P:VisualCard.Parts.AddressInfo.AltId
+  fullName: VisualCard.Parts.AddressInfo.AltId
+  nameWithType: AddressInfo.AltId
+- uid: VisualCard.Parts.AddressInfo.AltId*
+  name: AltId
+  href: api/VisualCard.Parts.AddressInfo.html#VisualCard_Parts_AddressInfo_AltId_
+  commentId: Overload:VisualCard.Parts.AddressInfo.AltId
+  isSpec: "True"
+  fullName: VisualCard.Parts.AddressInfo.AltId
+  nameWithType: AddressInfo.AltId
 - uid: VisualCard.Parts.AddressInfo.Country
   name: Country
   href: api/VisualCard.Parts.AddressInfo.html#VisualCard_Parts_AddressInfo_Country
@@ -793,6 +806,19 @@ references:
   commentId: T:VisualCard.Parts.EmailInfo
   fullName: VisualCard.Parts.EmailInfo
   nameWithType: EmailInfo
+- uid: VisualCard.Parts.EmailInfo.AltId
+  name: AltId
+  href: api/VisualCard.Parts.EmailInfo.html#VisualCard_Parts_EmailInfo_AltId
+  commentId: P:VisualCard.Parts.EmailInfo.AltId
+  fullName: VisualCard.Parts.EmailInfo.AltId
+  nameWithType: EmailInfo.AltId
+- uid: VisualCard.Parts.EmailInfo.AltId*
+  name: AltId
+  href: api/VisualCard.Parts.EmailInfo.html#VisualCard_Parts_EmailInfo_AltId_
+  commentId: Overload:VisualCard.Parts.EmailInfo.AltId
+  isSpec: "True"
+  fullName: VisualCard.Parts.EmailInfo.AltId
+  nameWithType: EmailInfo.AltId
 - uid: VisualCard.Parts.EmailInfo.ContactEmailAddress
   name: ContactEmailAddress
   href: api/VisualCard.Parts.EmailInfo.html#VisualCard_Parts_EmailInfo_ContactEmailAddress
@@ -1064,6 +1090,19 @@ references:
   commentId: T:VisualCard.Parts.OrganizationInfo
   fullName: VisualCard.Parts.OrganizationInfo
   nameWithType: OrganizationInfo
+- uid: VisualCard.Parts.OrganizationInfo.AltId
+  name: AltId
+  href: api/VisualCard.Parts.OrganizationInfo.html#VisualCard_Parts_OrganizationInfo_AltId
+  commentId: P:VisualCard.Parts.OrganizationInfo.AltId
+  fullName: VisualCard.Parts.OrganizationInfo.AltId
+  nameWithType: OrganizationInfo.AltId
+- uid: VisualCard.Parts.OrganizationInfo.AltId*
+  name: AltId
+  href: api/VisualCard.Parts.OrganizationInfo.html#VisualCard_Parts_OrganizationInfo_AltId_
+  commentId: Overload:VisualCard.Parts.OrganizationInfo.AltId
+  isSpec: "True"
+  fullName: VisualCard.Parts.OrganizationInfo.AltId
+  nameWithType: OrganizationInfo.AltId
 - uid: VisualCard.Parts.OrganizationInfo.Name
   name: Name
   href: api/VisualCard.Parts.OrganizationInfo.html#VisualCard_Parts_OrganizationInfo_Name
@@ -1322,6 +1361,19 @@ references:
   commentId: T:VisualCard.Parts.TelephoneInfo
   fullName: VisualCard.Parts.TelephoneInfo
   nameWithType: TelephoneInfo
+- uid: VisualCard.Parts.TelephoneInfo.AltId
+  name: AltId
+  href: api/VisualCard.Parts.TelephoneInfo.html#VisualCard_Parts_TelephoneInfo_AltId
+  commentId: P:VisualCard.Parts.TelephoneInfo.AltId
+  fullName: VisualCard.Parts.TelephoneInfo.AltId
+  nameWithType: TelephoneInfo.AltId
+- uid: VisualCard.Parts.TelephoneInfo.AltId*
+  name: AltId
+  href: api/VisualCard.Parts.TelephoneInfo.html#VisualCard_Parts_TelephoneInfo_AltId_
+  commentId: Overload:VisualCard.Parts.TelephoneInfo.AltId
+  isSpec: "True"
+  fullName: VisualCard.Parts.TelephoneInfo.AltId
+  nameWithType: TelephoneInfo.AltId
 - uid: VisualCard.Parts.TelephoneInfo.ContactPhoneNumber
   name: ContactPhoneNumber
   href: api/VisualCard.Parts.TelephoneInfo.html#VisualCard_Parts_TelephoneInfo_ContactPhoneNumber
@@ -1399,6 +1451,19 @@ references:
   commentId: T:VisualCard.Parts.XNameInfo
   fullName: VisualCard.Parts.XNameInfo
   nameWithType: XNameInfo
+- uid: VisualCard.Parts.XNameInfo.AltId
+  name: AltId
+  href: api/VisualCard.Parts.XNameInfo.html#VisualCard_Parts_XNameInfo_AltId
+  commentId: P:VisualCard.Parts.XNameInfo.AltId
+  fullName: VisualCard.Parts.XNameInfo.AltId
+  nameWithType: XNameInfo.AltId
+- uid: VisualCard.Parts.XNameInfo.AltId*
+  name: AltId
+  href: api/VisualCard.Parts.XNameInfo.html#VisualCard_Parts_XNameInfo_AltId_
+  commentId: Overload:VisualCard.Parts.XNameInfo.AltId
+  isSpec: "True"
+  fullName: VisualCard.Parts.XNameInfo.AltId
+  nameWithType: XNameInfo.AltId
 - uid: VisualCard.Parts.XNameInfo.XKeyName
   name: XKeyName
   href: api/VisualCard.Parts.XNameInfo.html#VisualCard_Parts_XNameInfo_XKeyName

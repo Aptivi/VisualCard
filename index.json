@@ -52,7 +52,7 @@
   "api/VisualCard.Parts.AddressInfo.html": {
     "href": "api/VisualCard.Parts.AddressInfo.html",
     "title": "Class AddressInfo | VisualCard API - Eofla Internals",
-    "keywords": "Class AddressInfo Inheritance System.Object AddressInfo Namespace : VisualCard.Parts Assembly : VisualCard.dll Syntax public class AddressInfo : object Properties AddressTypes The contact's address types Declaration public string[] AddressTypes { get; } Property Value Type Description System.String [] Country The contact's country Declaration public string Country { get; } Property Value Type Description System.String ExtendedAddress The contact's extended address Declaration public string ExtendedAddress { get; } Property Value Type Description System.String Locality The contact's locality Declaration public string Locality { get; } Property Value Type Description System.String PostalCode The contact's postal code Declaration public string PostalCode { get; } Property Value Type Description System.String PostOfficeBox The contact's post office box Declaration public string PostOfficeBox { get; } Property Value Type Description System.String Region The contact's region Declaration public string Region { get; } Property Value Type Description System.String StreetAddress The contact's street address Declaration public string StreetAddress { get; } Property Value Type Description System.String"
+    "keywords": "Class AddressInfo Inheritance System.Object AddressInfo Namespace : VisualCard.Parts Assembly : VisualCard.dll Syntax public class AddressInfo : object Properties AddressTypes The contact's address types Declaration public string[] AddressTypes { get; } Property Value Type Description System.String [] AltId Alternative ID. Zero if unspecified. Declaration public int AltId { get; } Property Value Type Description System.Int32 Country The contact's country Declaration public string Country { get; } Property Value Type Description System.String ExtendedAddress The contact's extended address Declaration public string ExtendedAddress { get; } Property Value Type Description System.String Locality The contact's locality Declaration public string Locality { get; } Property Value Type Description System.String PostalCode The contact's postal code Declaration public string PostalCode { get; } Property Value Type Description System.String PostOfficeBox The contact's post office box Declaration public string PostOfficeBox { get; } Property Value Type Description System.String Region The contact's region Declaration public string Region { get; } Property Value Type Description System.String StreetAddress The contact's street address Declaration public string StreetAddress { get; } Property Value Type Description System.String"
   },
   "api/VisualCard.Parts.Card.html": {
     "href": "api/VisualCard.Parts.Card.html",
@@ -62,7 +62,7 @@
   "api/VisualCard.Parts.EmailInfo.html": {
     "href": "api/VisualCard.Parts.EmailInfo.html",
     "title": "Class EmailInfo | VisualCard API - Eofla Internals",
-    "keywords": "Class EmailInfo Inheritance System.Object EmailInfo Namespace : VisualCard.Parts Assembly : VisualCard.dll Syntax public class EmailInfo : object Properties ContactEmailAddress The contact's email address Declaration public string ContactEmailAddress { get; } Property Value Type Description System.String ContactEmailTypes The contact's email types Declaration public string[] ContactEmailTypes { get; } Property Value Type Description System.String []"
+    "keywords": "Class EmailInfo Inheritance System.Object EmailInfo Namespace : VisualCard.Parts Assembly : VisualCard.dll Syntax public class EmailInfo : object Properties AltId Alternative ID. Zero if unspecified. Declaration public int AltId { get; } Property Value Type Description System.Int32 ContactEmailAddress The contact's email address Declaration public string ContactEmailAddress { get; } Property Value Type Description System.String ContactEmailTypes The contact's email types Declaration public string[] ContactEmailTypes { get; } Property Value Type Description System.String []"
   },
   "api/VisualCard.Parts.html": {
     "href": "api/VisualCard.Parts.html",
@@ -87,7 +87,7 @@
   "api/VisualCard.Parts.OrganizationInfo.html": {
     "href": "api/VisualCard.Parts.OrganizationInfo.html",
     "title": "Class OrganizationInfo | VisualCard API - Eofla Internals",
-    "keywords": "Class OrganizationInfo Inheritance System.Object OrganizationInfo Namespace : VisualCard.Parts Assembly : VisualCard.dll Syntax public class OrganizationInfo : object Properties Name The contact's organization name Declaration public string Name { get; } Property Value Type Description System.String Role The contact's organization unit's role Declaration public string Role { get; } Property Value Type Description System.String Unit The contact's organization unit Declaration public string Unit { get; } Property Value Type Description System.String"
+    "keywords": "Class OrganizationInfo Inheritance System.Object OrganizationInfo Namespace : VisualCard.Parts Assembly : VisualCard.dll Syntax public class OrganizationInfo : object Properties AltId Alternative ID. Zero if unspecified. Declaration public int AltId { get; } Property Value Type Description System.Int32 Name The contact's organization name Declaration public string Name { get; } Property Value Type Description System.String Role The contact's organization unit's role Declaration public string Role { get; } Property Value Type Description System.String Unit The contact's organization unit Declaration public string Unit { get; } Property Value Type Description System.String"
   },
   "api/VisualCard.Parts.PhotoInfo.html": {
     "href": "api/VisualCard.Parts.PhotoInfo.html",
@@ -107,7 +107,7 @@
   "api/VisualCard.Parts.TelephoneInfo.html": {
     "href": "api/VisualCard.Parts.TelephoneInfo.html",
     "title": "Class TelephoneInfo | VisualCard API - Eofla Internals",
-    "keywords": "Class TelephoneInfo Inheritance System.Object TelephoneInfo Namespace : VisualCard.Parts Assembly : VisualCard.dll Syntax public class TelephoneInfo : object Properties ContactPhoneNumber The contact's phone number Declaration public string ContactPhoneNumber { get; } Property Value Type Description System.String ContactPhoneTypes The contact's phone types Declaration public string[] ContactPhoneTypes { get; } Property Value Type Description System.String []"
+    "keywords": "Class TelephoneInfo Inheritance System.Object TelephoneInfo Namespace : VisualCard.Parts Assembly : VisualCard.dll Syntax public class TelephoneInfo : object Properties AltId Alternative ID. Zero if unspecified. Declaration public int AltId { get; } Property Value Type Description System.Int32 ContactPhoneNumber The contact's phone number Declaration public string ContactPhoneNumber { get; } Property Value Type Description System.String ContactPhoneTypes The contact's phone types Declaration public string[] ContactPhoneTypes { get; } Property Value Type Description System.String []"
   },
   "api/VisualCard.Parts.TitleInfo.html": {
     "href": "api/VisualCard.Parts.TitleInfo.html",
@@ -117,7 +117,7 @@
   "api/VisualCard.Parts.XNameInfo.html": {
     "href": "api/VisualCard.Parts.XNameInfo.html",
     "title": "Class XNameInfo | VisualCard API - Eofla Internals",
-    "keywords": "Class XNameInfo Inheritance System.Object XNameInfo Namespace : VisualCard.Parts Assembly : VisualCard.dll Syntax public class XNameInfo : object Properties XKeyName X- key name Declaration public string XKeyName { get; } Property Value Type Description System.String XKeyTypes X- values Declaration public string[] XKeyTypes { get; } Property Value Type Description System.String [] XValues X- values Declaration public string[] XValues { get; } Property Value Type Description System.String []"
+    "keywords": "Class XNameInfo Inheritance System.Object XNameInfo Namespace : VisualCard.Parts Assembly : VisualCard.dll Syntax public class XNameInfo : object Properties AltId Alternative ID. Zero if unspecified. Declaration public int AltId { get; } Property Value Type Description System.Int32 XKeyName X- key name Declaration public string XKeyName { get; } Property Value Type Description System.String XKeyTypes X- values Declaration public string[] XKeyTypes { get; } Property Value Type Description System.String [] XValues X- values Declaration public string[] XValues { get; } Property Value Type Description System.String []"
   },
   "index.html": {
     "href": "index.html",
