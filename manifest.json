@@ -161,6 +161,18 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.LogoInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.LogoInfo.html",
+          "hash": "LCUREok9Nb84Ip9oVWmozdhojthU200aEBFOKHl3jVU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/VisualCard.Parts.NameInfo.yml",
       "output": {
         ".html": {
@@ -273,7 +285,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisualCard.Parts.html",
-          "hash": "yvObyalSx9jGKSvfFeNrCYLuBqUTXh5f7QE1R0b7oDk="
+          "hash": "aLxdZm0GlueRoBuEuzVmFp/LK7I2OVL5nq+gLSpwsY0="
         }
       },
       "is_incremental": false,
@@ -297,7 +309,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "jY/KsZFMaJPPu+wSYfGuzV8CwdJbJ8dAisZceH22BII="
+          "hash": "VkGpZiChHLV/Ev72WoxOP7/Ado5+LMFtUMvGXL+bus4="
         }
       },
       "is_incremental": false,
@@ -348,7 +360,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 23,
+          "total_file_count": 24,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {

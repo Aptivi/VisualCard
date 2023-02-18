@@ -67,7 +67,12 @@
   "api/VisualCard.Parts.html": {
     "href": "api/VisualCard.Parts.html",
     "title": "Namespace VisualCard.Parts | VisualCard API - Eofla Internals",
-    "keywords": "Namespace VisualCard.Parts Classes AddressInfo Card EmailInfo NameInfo NicknameInfo OrganizationInfo PhotoInfo RoleInfo SoundInfo TelephoneInfo TitleInfo XNameInfo"
+    "keywords": "Namespace VisualCard.Parts Classes AddressInfo Card EmailInfo LogoInfo NameInfo NicknameInfo OrganizationInfo PhotoInfo RoleInfo SoundInfo TelephoneInfo TitleInfo XNameInfo"
+  },
+  "api/VisualCard.Parts.LogoInfo.html": {
+    "href": "api/VisualCard.Parts.LogoInfo.html",
+    "title": "Class LogoInfo | VisualCard API - Eofla Internals",
+    "keywords": "Class LogoInfo Inheritance System.Object LogoInfo Namespace : VisualCard.Parts Assembly : VisualCard.dll Syntax public class LogoInfo : object Properties AltArguments Arguments that follow the AltId Declaration public string[] AltArguments { get; } Property Value Type Description System.String [] AltId Alternative ID. Zero if unspecified. Declaration public int AltId { get; } Property Value Type Description System.Int32 Encoding Logo encoding type Declaration public string Encoding { get; } Property Value Type Description System.String LogoEncoded Encoded logo Declaration public string LogoEncoded { get; } Property Value Type Description System.String LogoType Logo type (JPEG, ...) Declaration public string LogoType { get; } Property Value Type Description System.String ValueType Value type Declaration public string ValueType { get; } Property Value Type Description System.String"
   },
   "api/VisualCard.Parts.NameInfo.html": {
     "href": "api/VisualCard.Parts.NameInfo.html",
