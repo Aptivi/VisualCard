@@ -58,6 +58,7 @@ namespace VisualCard.Parsers
         const string _urlSpecifier                  = "URL:";
         const string _noteSpecifier                 = "NOTE:";
         const string _photoSpecifierWithType        = "PHOTO;";
+        const string _logoSpecifierWithType         = "LOGO;";
         const string _soundSpecifierWithType        = "SOUND;";
         const string _revSpecifier                  = "REV:";
         const string _birthSpecifier                = "BDAY:";
@@ -95,6 +96,7 @@ namespace VisualCard.Parsers
             List<OrganizationInfo> _orgs    = new();
             List<TitleInfo> _titles         = new();
             List<PhotoInfo> _photos         = new();
+            List<LogoInfo> _logos           = new();
             List<SoundInfo> _sounds         = new();
             List<RoleInfo> _roles           = new();
             List<XNameInfo> _xes            = new();
@@ -347,6 +349,62 @@ namespace VisualCard.Parsers
                         // Populate the fields
                         PhotoInfo _photo = new(0, Array.Empty<string>(), valueType, photoEncoding, photoType, encodedPhoto.ToString());
                         _photos.Add(_photo);
+                    }
+
+                    // Logo (LOGO;ENCODING=BASE64;JPEG:... or LOGO;VALUE=URL:file:///jqpublic.gif or LOGO;ENCODING=BASE64;TYPE=GIF:...)
+                    if (_value.StartsWith(_logoSpecifierWithType))
+                    {
+                        // Get the value
+                        string logoValue = _value.Substring(_logoSpecifierWithType.Length);
+                        string[] splitLogo = logoValue.Split(_argumentDelimiter);
+                        string[] splitLogoArgs = logoValue.Split(_fieldDelimiter);
+
+                        // Check to see if the value is prepended by the VALUE= argument
+                        bool isUrl = false;
+                        string valueType = "";
+                        if (splitLogoArgs.Length == 1)
+                        {
+                            const string _valueArgumentSpecifier = "VALUE=";
+                            valueType = splitLogoArgs[0].Substring(_valueArgumentSpecifier.Length).ToLower();
+                            isUrl = valueType == "url" || valueType == "uri";
+                        }
+
+                        // Check to see if the value is prepended by the ENCODING= argument
+                        string logoEncoding = "";
+                        if (splitLogoArgs.Length >= 1)
+                        {
+                            const string _encodingArgumentSpecifier = "ENCODING=";
+                            logoEncoding = splitLogoArgs[0].Substring(_encodingArgumentSpecifier.Length);
+                        }
+
+                        // Check to see if the value is prepended with the TYPE= argument
+                        string logoType = "";
+                        if (splitLogoArgs.Length >= 1)
+                        {
+                            logoType = splitLogoArgs[1].StartsWith(_typeArgumentSpecifier) ?
+                                       splitLogoArgs[1].Substring(_typeArgumentSpecifier.Length).Substring(0, splitLogoArgs[1].IndexOf(_argumentDelimiter)) :
+                                       splitLogoArgs[1].Substring(0, splitLogoArgs[1].IndexOf(_argumentDelimiter));
+                        }
+
+                        // Now, get the encoded logo
+                        StringBuilder encodedLogo = new();
+                        if (splitLogo.Length == 2)
+                            encodedLogo.Append(splitLogo[1]);
+
+                        // Make sure to get all the blocks until we reach an empty line
+                        if (!isUrl)
+                        {
+                            string lineToBeAppended = CardContentReader.ReadLine();
+                            while (!string.IsNullOrWhiteSpace(lineToBeAppended) && lineToBeAppended.StartsWith(" "))
+                            {
+                                encodedLogo.Append(lineToBeAppended.Trim());
+                                lineToBeAppended = CardContentReader.ReadLine();
+                            }
+                        }
+
+                        // Populate the fields
+                        LogoInfo _logo = new(0, Array.Empty<string>(), valueType, logoEncoding, logoType, encodedLogo.ToString());
+                        _logos.Add(_logo);
                     }
 
                     // Sound (SOUND;VALUE=URL:file///multimed/audio/jqpublic.wav or SOUND;WAVE;BASE64:... or SOUND;TYPE=WAVE;ENCODING=BASE64:...)
