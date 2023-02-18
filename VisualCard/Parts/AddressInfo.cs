@@ -28,6 +28,10 @@ namespace VisualCard.Parts
     public class AddressInfo
     {
         /// <summary>
+        /// Alternative ID. Zero if unspecified.
+        /// </summary>
+        public int AltId { get; }
+        /// <summary>
         /// The contact's address types
         /// </summary>
         public string[] AddressTypes { get; }
@@ -62,8 +66,9 @@ namespace VisualCard.Parts
 
         internal AddressInfo() { }
 
-        internal AddressInfo(string[] addressTypes, string postOfficeBox, string extendedAddress, string streetAddress, string locality, string region, string postalCode, string country)
+        internal AddressInfo(int altId, string[] addressTypes, string postOfficeBox, string extendedAddress, string streetAddress, string locality, string region, string postalCode, string country)
         {
+            AltId = altId;
             AddressTypes = addressTypes;
             PostOfficeBox = postOfficeBox;
             ExtendedAddress = extendedAddress;

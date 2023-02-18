@@ -168,7 +168,7 @@ namespace VisualCard.Parsers
                     }
 
                     // The name (N:Sanders;John;;;)
-                    // ALTID is supported. Refer below for info.
+                    // ALTID is supported.
                     if (_value.StartsWith(_nameSpecifier))
                     {
                         // Check the line
@@ -239,7 +239,7 @@ namespace VisualCard.Parsers
                     }
 
                     // Telephone (TEL;TYPE=cell,home:495-522-3560)
-                    // Here, we don't support ALTID.
+                    // ALTID is supported.
                     if (_value.StartsWith(_telephoneSpecifierWithType))
                     {
                         // Get the value
@@ -263,12 +263,12 @@ namespace VisualCard.Parsers
                         // Populate the fields
                         string[] _telephoneTypes = splitTypes;
                         string _telephoneNumber = Regex.Unescape(splitTel[1]);
-                        TelephoneInfo _telephone = new(_telephoneTypes, _telephoneNumber);
+                        TelephoneInfo _telephone = new(altId, _telephoneTypes, _telephoneNumber);
                         _telephones.Add(_telephone);
                     }
 
                     // Telephone (TEL:495-522-3560)
-                    // Here, we don't support ALTID.
+                    // ALTID is supported.
                     if (_value.StartsWith(_telephoneSpecifier))
                     {
                         // Get the value
@@ -277,12 +277,12 @@ namespace VisualCard.Parsers
                         // Populate the fields
                         string[] _telephoneTypes = new string[] { "CELL" };
                         string _telephoneNumber = Regex.Unescape(telValue);
-                        TelephoneInfo _telephone = new(_telephoneTypes, _telephoneNumber);
+                        TelephoneInfo _telephone = new(altId, _telephoneTypes, _telephoneNumber);
                         _telephones.Add(_telephone);
                     }
 
                     // Address (ADR;TYPE=HOME:;;Los Angeles, USA;;;;)
-                    // Here, we don't support ALTID.
+                    // ALTID is supported.
                     if (_value.StartsWith(_addressSpecifierWithType))
                     {
                         // Get the value
@@ -317,7 +317,7 @@ namespace VisualCard.Parsers
                         string _addressRegion = Regex.Unescape(splitAddressValues[4]);
                         string _addressPostalCode = Regex.Unescape(splitAddressValues[5]);
                         string _addressCountry = Regex.Unescape(splitAddressValues[6]);
-                        AddressInfo _address = new(_addressTypes, _addressPOBox, _addressExtended, _addressStreet, _addressLocality, _addressRegion, _addressPostalCode, _addressCountry);
+                        AddressInfo _address = new(altId, _addressTypes, _addressPOBox, _addressExtended, _addressStreet, _addressLocality, _addressRegion, _addressPostalCode, _addressCountry);
                         _addresses.Add(_address);
                     }
 
@@ -357,7 +357,7 @@ namespace VisualCard.Parsers
                         // Populate the fields
                         string[] _emailTypes = splitTypes;
                         string _emailAddress = mail.Address;
-                        EmailInfo _email = new(_emailTypes, _emailAddress);
+                        EmailInfo _email = new(altId, _emailTypes, _emailAddress);
                         _emails.Add(_email);
                     }
 
@@ -373,12 +373,12 @@ namespace VisualCard.Parsers
                         string _orgName = Regex.Unescape(splitOrg[0]);
                         string _orgUnit = Regex.Unescape(splitOrg.Length >= 2 ? splitOrg[1] : "");
                         string _orgUnitRole = Regex.Unescape(splitOrg.Length >= 3 ? splitOrg[2] : "");
-                        OrganizationInfo _org = new(_orgName, _orgUnit, _orgUnitRole);
+                        OrganizationInfo _org = new(altId, _orgName, _orgUnit, _orgUnitRole);
                         _orgs.Add(_org);
                     }
 
                     // Title (TITLE:Product Manager)
-                    // ALTID is supported. Refer below for info.
+                    // ALTID is supported.
                     if (_value.StartsWith(_titleSpecifier))
                     {
                         // Get the value
@@ -386,7 +386,7 @@ namespace VisualCard.Parsers
 
                         // Populate field
                         string _title = Regex.Unescape(titleValue);
-                        TitleInfo title = new(0, Array.Empty<string>(), _title);
+                        TitleInfo title = new(altId, Array.Empty<string>(), _title);
                         _titles.Add(title);
                     }
 
@@ -667,7 +667,7 @@ namespace VisualCard.Parsers
                     }
 
                     // Role (ROLE:Programmer)
-                    // ALTID is supported. See below.
+                    // ALTID is supported.
                     if (_value.StartsWith(_roleSpecifier))
                     {
                         // Get the value
@@ -679,7 +679,7 @@ namespace VisualCard.Parsers
                     }
 
                     // Role (ROLE;ALTID=1;LANGUAGE=en:Programmer)
-                    // ALTID is supported. See below.
+                    // ALTID is supported.
                     if (_value.StartsWith(_roleSpecifierWithType))
                     {
                         // Get the value
@@ -702,7 +702,7 @@ namespace VisualCard.Parsers
                     }
 
                     // X-nonstandard (X-AIM:john.s or X-DL;Design Work Group:List Item 1;List Item 2;List Item 3)
-                    // Here, we don't support ALTID.
+                    // ALTID is supported.
                     if (_value.StartsWith(_xSpecifier))
                     {
                         // Get the value
@@ -720,7 +720,7 @@ namespace VisualCard.Parsers
                                                     .Split(_fieldDelimiter) :
                                            Array.Empty<string>();
                         string[] _xValues = splitX[1].Split(_fieldDelimiter);
-                        XNameInfo _x = new(_xName, _xValues, _xTypes);
+                        XNameInfo _x = new(altId, _xName, _xValues, _xTypes);
                         _xes.Add(_x);
                     }
                 }

@@ -28,6 +28,10 @@ namespace VisualCard.Parts
     public class XNameInfo
     {
         /// <summary>
+        /// Alternative ID. Zero if unspecified.
+        /// </summary>
+        public int AltId { get; }
+        /// <summary>
         /// X- key name
         /// </summary>
         public string XKeyName { get; }
@@ -42,8 +46,9 @@ namespace VisualCard.Parts
 
         internal XNameInfo() { }
 
-        internal XNameInfo(string xKeyName, string[] xValues, string[] xKeyTypes)
+        internal XNameInfo(int altId, string xKeyName, string[] xValues, string[] xKeyTypes)
         {
+            AltId = altId;
             XKeyName = xKeyName;
             XValues = xValues;
             XKeyTypes = xKeyTypes;

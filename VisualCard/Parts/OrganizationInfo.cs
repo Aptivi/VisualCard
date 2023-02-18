@@ -28,6 +28,10 @@ namespace VisualCard.Parts
     public class OrganizationInfo
     {
         /// <summary>
+        /// Alternative ID. Zero if unspecified.
+        /// </summary>
+        public int AltId { get; }
+        /// <summary>
         /// The contact's organization name
         /// </summary>
         public string Name { get; }
@@ -42,8 +46,9 @@ namespace VisualCard.Parts
 
         internal OrganizationInfo() { }
 
-        internal OrganizationInfo(string name, string unit, string role)
+        internal OrganizationInfo(int altId, string name, string unit, string role)
         {
+            AltId = altId;
             Name = name;
             Unit = unit;
             Role = role;

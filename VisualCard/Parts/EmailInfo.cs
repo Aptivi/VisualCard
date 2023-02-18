@@ -28,6 +28,10 @@ namespace VisualCard.Parts
     public class EmailInfo
     {
         /// <summary>
+        /// Alternative ID. Zero if unspecified.
+        /// </summary>
+        public int AltId { get; }
+        /// <summary>
         /// The contact's email types
         /// </summary>
         public string[] ContactEmailTypes { get; }
@@ -38,8 +42,9 @@ namespace VisualCard.Parts
 
         internal EmailInfo() { }
 
-        internal EmailInfo(string[] contactEmailTypes, string contactEmailAddress)
+        internal EmailInfo(int altId, string[] contactEmailTypes, string contactEmailAddress)
         {
+            AltId = altId;
             ContactEmailTypes = contactEmailTypes;
             ContactEmailAddress = contactEmailAddress;
         }

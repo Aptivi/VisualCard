@@ -28,6 +28,10 @@ namespace VisualCard.Parts
     public class TelephoneInfo
     {
         /// <summary>
+        /// Alternative ID. Zero if unspecified.
+        /// </summary>
+        public int AltId { get; }
+        /// <summary>
         /// The contact's phone types
         /// </summary>
         public string[] ContactPhoneTypes { get; }
@@ -38,8 +42,9 @@ namespace VisualCard.Parts
 
         internal TelephoneInfo() { }
 
-        internal TelephoneInfo(string[] contactPhoneTypes, string contactPhoneNumber)
+        internal TelephoneInfo(int altId, string[] contactPhoneTypes, string contactPhoneNumber)
         {
+            AltId = altId;
             ContactPhoneTypes = contactPhoneTypes;
             ContactPhoneNumber = contactPhoneNumber;
         }
