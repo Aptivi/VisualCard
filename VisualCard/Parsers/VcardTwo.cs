@@ -163,7 +163,7 @@ namespace VisualCard.Parsers
                         // Populate the fields
                         string[] _telephoneTypes =  splitTypes;
                         string _telephoneNumber =   Regex.Unescape(splitTel[1]);
-                        TelephoneInfo _telephone = new(_telephoneTypes, _telephoneNumber);
+                        TelephoneInfo _telephone = new(0, _telephoneTypes, _telephoneNumber);
                         _telephones.Add(_telephone);
                     }
 
@@ -176,7 +176,7 @@ namespace VisualCard.Parsers
                         // Populate the fields
                         string[] _telephoneTypes = new string[] { "CELL" };
                         string _telephoneNumber = Regex.Unescape(telValue);
-                        TelephoneInfo _telephone = new(_telephoneTypes, _telephoneNumber);
+                        TelephoneInfo _telephone = new(0, _telephoneTypes, _telephoneNumber);
                         _telephones.Add(_telephone);
                     }
 
@@ -208,7 +208,7 @@ namespace VisualCard.Parsers
                         string _addressRegion =     Regex.Unescape(splitAddressValues[4]);
                         string _addressPostalCode = Regex.Unescape(splitAddressValues[5]);
                         string _addressCountry =    Regex.Unescape(splitAddressValues[6]);
-                        AddressInfo _address = new(_addressTypes, _addressPOBox, _addressExtended, _addressStreet, _addressLocality, _addressRegion, _addressPostalCode, _addressCountry);
+                        AddressInfo _address = new(0, _addressTypes, _addressPOBox, _addressExtended, _addressStreet, _addressLocality, _addressRegion, _addressPostalCode, _addressCountry);
                         _addresses.Add(_address);
                     }
 
@@ -240,7 +240,7 @@ namespace VisualCard.Parsers
                         // Populate the fields
                         string[] _emailTypes = splitTypes;
                         string _emailAddress = mail.Address;
-                        EmailInfo _email = new(_emailTypes, _emailAddress);
+                        EmailInfo _email = new(0, _emailTypes, _emailAddress);
                         _emails.Add(_email);
                     }
 
@@ -255,7 +255,7 @@ namespace VisualCard.Parsers
                         string _orgName =     Regex.Unescape(splitOrg[0]);
                         string _orgUnit =     Regex.Unescape(splitOrg.Length >= 2 ? splitOrg[1] : "");
                         string _orgUnitRole = Regex.Unescape(splitOrg.Length >= 3 ? splitOrg[2] : "");
-                        OrganizationInfo _org = new(_orgName, _orgUnit, _orgUnitRole);
+                        OrganizationInfo _org = new(0, _orgName, _orgUnit, _orgUnitRole);
                         _orgs.Add(_org);
                     }
 
@@ -524,7 +524,7 @@ namespace VisualCard.Parsers
                                                      .Split(_fieldDelimiter) :
                                             Array.Empty<string>();
                         string[] _xValues = splitX[1].Split(_fieldDelimiter);
-                        XNameInfo _x = new(_xName, _xValues, _xTypes);
+                        XNameInfo _x = new(0, _xName, _xValues, _xTypes);
                         _xes.Add(_x);
                     }
                 }
