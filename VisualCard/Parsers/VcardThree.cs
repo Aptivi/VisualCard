@@ -67,6 +67,7 @@ namespace VisualCard.Parsers
         const string _mailerSpecifier               = "MAILER:";
         const string _roleSpecifier                 = "ROLE:";
         const string _categoriesSpecifier           = "CATEGORIES:";
+        const string _productIdSpecifier            = "PRODID:";
         const string _xSpecifier                    = "X-";
         const string _typeArgumentSpecifier         = "TYPE=";
 
@@ -90,6 +91,7 @@ namespace VisualCard.Parsers
             string _url                     = "";
             string _note                    = "";
             string _mailer                  = "";
+            string _prodId                  = "";
             DateTime _rev                   = DateTime.MinValue;
             DateTime _bday                  = DateTime.MinValue;
             List<NameInfo> _names           = new();
@@ -587,6 +589,16 @@ namespace VisualCard.Parsers
                         _categories.AddRange(Regex.Unescape(categoriesValue).Split(','));
                     }
 
+                    // Product ID (PRODID:-//ONLINE DIRECTORY//NONSGML Version 1//EN)
+                    if (_value.StartsWith(_productIdSpecifier))
+                    {
+                        // Get the value
+                        string prodIdValue = _value.Substring(_productIdSpecifier.Length);
+
+                        // Populate field
+                        _prodId = Regex.Unescape(prodIdValue);
+                    }
+
                     // X-nonstandard (X-AIM:john.s or X-DL;Design Work Group:List Item 1;List Item 2;List Item 3)
                     if (_value.StartsWith(_xSpecifier))
                     {
@@ -622,7 +634,7 @@ namespace VisualCard.Parsers
                 throw new InvalidDataException("The full name specifier, \"FN:\", is required.");
 
             // Make a new instance of the card
-            return new Card(CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), "individual", _photos.ToArray(), _rev, _nicks.ToArray(), _bday, _mailer, _roles.ToArray(), _categories.ToArray());
+            return new Card(CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), "individual", _photos.ToArray(), _rev, _nicks.ToArray(), _bday, _mailer, _roles.ToArray(), _categories.ToArray(), _logos.ToArray(), _prodId);
         }
 
         public override void SaveTo(string path)

@@ -539,7 +539,7 @@ namespace VisualCard.Parsers
                 throw new InvalidDataException("The name specifier, \"N:\", is required.");
 
             // Make a new instance of the card
-            return new Card(CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), "individual", _photos.ToArray(), _rev, null, _bday, _mailer, _roles.ToArray(), Array.Empty<string>());
+            return new Card(CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), "individual", _photos.ToArray(), _rev, Array.Empty<NicknameInfo>(), _bday, _mailer, _roles.ToArray(), Array.Empty<string>(), _logos.ToArray(), "");
         }
 
         public override void SaveTo(string path)
