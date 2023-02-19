@@ -644,6 +644,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Card.ContactFullName
   nameWithType: Card.ContactFullName
+- uid: VisualCard.Parts.Card.ContactLogos
+  name: ContactLogos
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactLogos
+  commentId: P:VisualCard.Parts.Card.ContactLogos
+  fullName: VisualCard.Parts.Card.ContactLogos
+  nameWithType: Card.ContactLogos
+- uid: VisualCard.Parts.Card.ContactLogos*
+  name: ContactLogos
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactLogos_
+  commentId: Overload:VisualCard.Parts.Card.ContactLogos
+  isSpec: "True"
+  fullName: VisualCard.Parts.Card.ContactLogos
+  nameWithType: Card.ContactLogos
 - uid: VisualCard.Parts.Card.ContactMailer
   name: ContactMailer
   href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactMailer
@@ -735,6 +748,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Card.ContactPhotos
   nameWithType: Card.ContactPhotos
+- uid: VisualCard.Parts.Card.ContactProdId
+  name: ContactProdId
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactProdId
+  commentId: P:VisualCard.Parts.Card.ContactProdId
+  fullName: VisualCard.Parts.Card.ContactProdId
+  nameWithType: Card.ContactProdId
+- uid: VisualCard.Parts.Card.ContactProdId*
+  name: ContactProdId
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactProdId_
+  commentId: Overload:VisualCard.Parts.Card.ContactProdId
+  isSpec: "True"
+  fullName: VisualCard.Parts.Card.ContactProdId
+  nameWithType: Card.ContactProdId
 - uid: VisualCard.Parts.Card.ContactRoles
   name: ContactRoles
   href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactRoles
