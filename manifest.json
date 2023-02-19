@@ -141,7 +141,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisualCard.Parts.Card.html",
-          "hash": "Z2mAK7kPR3jJNlmTdOvsTJ07E6bOTPwHsBrxEPc3xdY="
+          "hash": "+GvSfm5UKeoVpaEZH5skwIVkJ7fQGDi44NxZ9rKe6xY="
         }
       },
       "is_incremental": false,
@@ -154,6 +154,18 @@
         ".html": {
           "relative_path": "api/VisualCard.Parts.EmailInfo.html",
           "hash": "Iu9Jk2l3XSIB2L8hWzjnS6ytDCVTGIbMNXNdD2CIKCw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.GeoInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.GeoInfo.html",
+          "hash": "9nv887oWLPj0ZTRKOvk2hSuzJVa69Oiu7Mr/KQdTBGc="
         }
       },
       "is_incremental": false,
@@ -257,6 +269,18 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.TimeZoneInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.TimeZoneInfo.html",
+          "hash": "05qO1Q8bdx0QAW6sifpT142r5v0nhSgksWNirIcaa+c="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/VisualCard.Parts.TitleInfo.yml",
       "output": {
         ".html": {
@@ -285,7 +309,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisualCard.Parts.html",
-          "hash": "aLxdZm0GlueRoBuEuzVmFp/LK7I2OVL5nq+gLSpwsY0="
+          "hash": "6/nap89O9UmmpsHbUhNcE1BwzDtuk6BQhw289NciO1s="
         }
       },
       "is_incremental": false,
@@ -309,7 +333,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "VkGpZiChHLV/Ev72WoxOP7/Ado5+LMFtUMvGXL+bus4="
+          "hash": "6syFmahpnda+gODE0+vCtmNN18p1/NtSsHw1gvVVV3M="
         }
       },
       "is_incremental": false,
@@ -360,7 +384,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 24,
+          "total_file_count": 26,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {

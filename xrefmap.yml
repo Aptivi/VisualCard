@@ -644,6 +644,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Card.ContactFullName
   nameWithType: Card.ContactFullName
+- uid: VisualCard.Parts.Card.ContactGeo
+  name: ContactGeo
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactGeo
+  commentId: P:VisualCard.Parts.Card.ContactGeo
+  fullName: VisualCard.Parts.Card.ContactGeo
+  nameWithType: Card.ContactGeo
+- uid: VisualCard.Parts.Card.ContactGeo*
+  name: ContactGeo
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactGeo_
+  commentId: Overload:VisualCard.Parts.Card.ContactGeo
+  isSpec: "True"
+  fullName: VisualCard.Parts.Card.ContactGeo
+  nameWithType: Card.ContactGeo
 - uid: VisualCard.Parts.Card.ContactLogos
   name: ContactLogos
   href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactLogos
@@ -774,6 +787,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Card.ContactRoles
   nameWithType: Card.ContactRoles
+- uid: VisualCard.Parts.Card.ContactSortString
+  name: ContactSortString
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactSortString
+  commentId: P:VisualCard.Parts.Card.ContactSortString
+  fullName: VisualCard.Parts.Card.ContactSortString
+  nameWithType: Card.ContactSortString
+- uid: VisualCard.Parts.Card.ContactSortString*
+  name: ContactSortString
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactSortString_
+  commentId: Overload:VisualCard.Parts.Card.ContactSortString
+  isSpec: "True"
+  fullName: VisualCard.Parts.Card.ContactSortString
+  nameWithType: Card.ContactSortString
 - uid: VisualCard.Parts.Card.ContactTelephones
   name: ContactTelephones
   href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactTelephones
@@ -787,6 +813,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Card.ContactTelephones
   nameWithType: Card.ContactTelephones
+- uid: VisualCard.Parts.Card.ContactTimeZone
+  name: ContactTimeZone
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactTimeZone
+  commentId: P:VisualCard.Parts.Card.ContactTimeZone
+  fullName: VisualCard.Parts.Card.ContactTimeZone
+  nameWithType: Card.ContactTimeZone
+- uid: VisualCard.Parts.Card.ContactTimeZone*
+  name: ContactTimeZone
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactTimeZone_
+  commentId: Overload:VisualCard.Parts.Card.ContactTimeZone
+  isSpec: "True"
+  fullName: VisualCard.Parts.Card.ContactTimeZone
+  nameWithType: Card.ContactTimeZone
 - uid: VisualCard.Parts.Card.ContactTitles
   name: ContactTitles
   href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactTitles
@@ -871,6 +910,51 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.EmailInfo.ContactEmailTypes
   nameWithType: EmailInfo.ContactEmailTypes
+- uid: VisualCard.Parts.GeoInfo
+  name: GeoInfo
+  href: api/VisualCard.Parts.GeoInfo.html
+  commentId: T:VisualCard.Parts.GeoInfo
+  fullName: VisualCard.Parts.GeoInfo
+  nameWithType: GeoInfo
+- uid: VisualCard.Parts.GeoInfo.AltArguments
+  name: AltArguments
+  href: api/VisualCard.Parts.GeoInfo.html#VisualCard_Parts_GeoInfo_AltArguments
+  commentId: P:VisualCard.Parts.GeoInfo.AltArguments
+  fullName: VisualCard.Parts.GeoInfo.AltArguments
+  nameWithType: GeoInfo.AltArguments
+- uid: VisualCard.Parts.GeoInfo.AltArguments*
+  name: AltArguments
+  href: api/VisualCard.Parts.GeoInfo.html#VisualCard_Parts_GeoInfo_AltArguments_
+  commentId: Overload:VisualCard.Parts.GeoInfo.AltArguments
+  isSpec: "True"
+  fullName: VisualCard.Parts.GeoInfo.AltArguments
+  nameWithType: GeoInfo.AltArguments
+- uid: VisualCard.Parts.GeoInfo.AltId
+  name: AltId
+  href: api/VisualCard.Parts.GeoInfo.html#VisualCard_Parts_GeoInfo_AltId
+  commentId: P:VisualCard.Parts.GeoInfo.AltId
+  fullName: VisualCard.Parts.GeoInfo.AltId
+  nameWithType: GeoInfo.AltId
+- uid: VisualCard.Parts.GeoInfo.AltId*
+  name: AltId
+  href: api/VisualCard.Parts.GeoInfo.html#VisualCard_Parts_GeoInfo_AltId_
+  commentId: Overload:VisualCard.Parts.GeoInfo.AltId
+  isSpec: "True"
+  fullName: VisualCard.Parts.GeoInfo.AltId
+  nameWithType: GeoInfo.AltId
+- uid: VisualCard.Parts.GeoInfo.Geo
+  name: Geo
+  href: api/VisualCard.Parts.GeoInfo.html#VisualCard_Parts_GeoInfo_Geo
+  commentId: P:VisualCard.Parts.GeoInfo.Geo
+  fullName: VisualCard.Parts.GeoInfo.Geo
+  nameWithType: GeoInfo.Geo
+- uid: VisualCard.Parts.GeoInfo.Geo*
+  name: Geo
+  href: api/VisualCard.Parts.GeoInfo.html#VisualCard_Parts_GeoInfo_Geo_
+  commentId: Overload:VisualCard.Parts.GeoInfo.Geo
+  isSpec: "True"
+  fullName: VisualCard.Parts.GeoInfo.Geo
+  nameWithType: GeoInfo.Geo
 - uid: VisualCard.Parts.LogoInfo
   name: LogoInfo
   href: api/VisualCard.Parts.LogoInfo.html
@@ -1426,6 +1510,51 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.TelephoneInfo.ContactPhoneTypes
   nameWithType: TelephoneInfo.ContactPhoneTypes
+- uid: VisualCard.Parts.TimeZoneInfo
+  name: TimeZoneInfo
+  href: api/VisualCard.Parts.TimeZoneInfo.html
+  commentId: T:VisualCard.Parts.TimeZoneInfo
+  fullName: VisualCard.Parts.TimeZoneInfo
+  nameWithType: TimeZoneInfo
+- uid: VisualCard.Parts.TimeZoneInfo.AltArguments
+  name: AltArguments
+  href: api/VisualCard.Parts.TimeZoneInfo.html#VisualCard_Parts_TimeZoneInfo_AltArguments
+  commentId: P:VisualCard.Parts.TimeZoneInfo.AltArguments
+  fullName: VisualCard.Parts.TimeZoneInfo.AltArguments
+  nameWithType: TimeZoneInfo.AltArguments
+- uid: VisualCard.Parts.TimeZoneInfo.AltArguments*
+  name: AltArguments
+  href: api/VisualCard.Parts.TimeZoneInfo.html#VisualCard_Parts_TimeZoneInfo_AltArguments_
+  commentId: Overload:VisualCard.Parts.TimeZoneInfo.AltArguments
+  isSpec: "True"
+  fullName: VisualCard.Parts.TimeZoneInfo.AltArguments
+  nameWithType: TimeZoneInfo.AltArguments
+- uid: VisualCard.Parts.TimeZoneInfo.AltId
+  name: AltId
+  href: api/VisualCard.Parts.TimeZoneInfo.html#VisualCard_Parts_TimeZoneInfo_AltId
+  commentId: P:VisualCard.Parts.TimeZoneInfo.AltId
+  fullName: VisualCard.Parts.TimeZoneInfo.AltId
+  nameWithType: TimeZoneInfo.AltId
+- uid: VisualCard.Parts.TimeZoneInfo.AltId*
+  name: AltId
+  href: api/VisualCard.Parts.TimeZoneInfo.html#VisualCard_Parts_TimeZoneInfo_AltId_
+  commentId: Overload:VisualCard.Parts.TimeZoneInfo.AltId
+  isSpec: "True"
+  fullName: VisualCard.Parts.TimeZoneInfo.AltId
+  nameWithType: TimeZoneInfo.AltId
+- uid: VisualCard.Parts.TimeZoneInfo.TimeZone
+  name: TimeZone
+  href: api/VisualCard.Parts.TimeZoneInfo.html#VisualCard_Parts_TimeZoneInfo_TimeZone
+  commentId: P:VisualCard.Parts.TimeZoneInfo.TimeZone
+  fullName: VisualCard.Parts.TimeZoneInfo.TimeZone
+  nameWithType: TimeZoneInfo.TimeZone
+- uid: VisualCard.Parts.TimeZoneInfo.TimeZone*
+  name: TimeZone
+  href: api/VisualCard.Parts.TimeZoneInfo.html#VisualCard_Parts_TimeZoneInfo_TimeZone_
+  commentId: Overload:VisualCard.Parts.TimeZoneInfo.TimeZone
+  isSpec: "True"
+  fullName: VisualCard.Parts.TimeZoneInfo.TimeZone
+  nameWithType: TimeZoneInfo.TimeZone
 - uid: VisualCard.Parts.TitleInfo
   name: TitleInfo
   href: api/VisualCard.Parts.TitleInfo.html
