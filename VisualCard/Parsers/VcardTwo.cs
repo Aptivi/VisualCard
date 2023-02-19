@@ -31,6 +31,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using VisualCard.Exceptions;
 using VisualCard.Parts;
+using TimeZoneInfo = VisualCard.Parts.TimeZoneInfo;
 
 namespace VisualCard.Parsers
 {
@@ -64,8 +65,13 @@ namespace VisualCard.Parsers
         const string _birthSpecifier                = "BDAY:";
         const string _mailerSpecifier               = "MAILER:";
         const string _roleSpecifier                 = "ROLE:";
+        const string _timeZoneSpecifier             = "TZ:";
+        const string _geoSpecifier                  = "GEO:";
+        const string _timeZoneSpecifierWithType     = "TZ;";
+        const string _geoSpecifierWithType          = "GEO;";
         const string _xSpecifier                    = "X-";
         const string _typeArgumentSpecifier         = "TYPE=";
+        const string _valueArgumentSpecifier        = "VALUE=";
 
         public override Card Parse()
         {
@@ -99,6 +105,8 @@ namespace VisualCard.Parsers
             List<LogoInfo> _logos           = new();
             List<SoundInfo> _sounds         = new();
             List<RoleInfo> _roles           = new();
+            List<TimeZoneInfo> _timezones   = new();
+            List<GeoInfo> _geos             = new();
             List<XNameInfo> _xes            = new();
 
             // Name specifier is required
@@ -506,6 +514,72 @@ namespace VisualCard.Parsers
                         _roles.Add(_role);
                     }
 
+                    // Time Zone (TZ;VALUE=text:-05:00; EST; Raleigh/North America)
+                    if (_value.StartsWith(_timeZoneSpecifierWithType))
+                    {
+                        // Get the value
+                        string tzValue = _value.Substring(_timeZoneSpecifierWithType.Length);
+                        string[] splitTz = tzValue.Split(_argumentDelimiter);
+                        if (splitTz.Length != 1)
+                            throw new InvalidDataException("TimeZone field must specify exactly one value (VALUE=\"text\" / \"uri\" / \"utc-offset\")");
+
+                        // Check to see if the type is prepended with the VALUE= argument
+                        string[] splitTypes = splitTz[0].StartsWith(_valueArgumentSpecifier) ?
+                                              splitTz[0].Substring(_valueArgumentSpecifier.Length).Split(_valueDelimiter) :
+                                              splitTz[0].Split(_fieldDelimiter);
+
+                        // Populate the fields
+                        string[] _timeZoneTypes = splitTypes;
+                        string _timeZoneNumber = Regex.Unescape(splitTz[1]);
+                        TimeZoneInfo _timeZone = new(0, _timeZoneTypes, _timeZoneNumber);
+                        _timezones.Add(_timeZone);
+                    }
+
+                    // Time Zone (TZ:-05:00)
+                    if (_value.StartsWith(_timeZoneSpecifier))
+                    {
+                        // Get the value
+                        string tzValue = _value.Substring(_timeZoneSpecifier.Length);
+
+                        // Populate the fields
+                        string _timeZoneStr = Regex.Unescape(tzValue);
+                        TimeZoneInfo _timeZone = new(0, Array.Empty<string>(), _timeZoneStr);
+                        _timezones.Add(_timeZone);
+                    }
+
+                    // Geo (GEO;VALUE=uri:https://...)
+                    if (_value.StartsWith(_geoSpecifierWithType))
+                    {
+                        // Get the value
+                        string geoValue = _value.Substring(_geoSpecifierWithType.Length);
+                        string[] splitGeo = geoValue.Split(_argumentDelimiter);
+                        if (splitGeo.Length != 1)
+                            throw new InvalidDataException("Geo field must specify exactly one value (VALUE=\"uri\")");
+
+                        // Check to see if the type is prepended with the VALUE= argument
+                        string[] splitTypes = splitGeo[0].StartsWith(_valueArgumentSpecifier) ?
+                                              splitGeo[0].Substring(_valueArgumentSpecifier.Length).Split(_valueDelimiter) :
+                                              splitGeo[0].Split(_fieldDelimiter);
+
+                        // Populate the fields
+                        string[] _geoTypes = splitTypes;
+                        string _geoNumber = Regex.Unescape(splitGeo[1]);
+                        GeoInfo _geo = new(0, _geoTypes, _geoNumber);
+                        _geos.Add(_geo);
+                    }
+
+                    // Geo (GEO:geo:37.386013,-122.082932)
+                    if (_value.StartsWith(_geoSpecifier))
+                    {
+                        // Get the value
+                        string geoValue = _value.Substring(_geoSpecifier.Length);
+
+                        // Populate the fields
+                        string _geoStr = Regex.Unescape(geoValue);
+                        GeoInfo _geo = new(0, Array.Empty<string>(), _geoStr);
+                        _geos.Add(_geo);
+                    }
+
                     // X-nonstandard (X-AIM:john.s or X-DL;Design Work Group:List Item 1;List Item 2;List Item 3)
                     if (_value.StartsWith(_xSpecifier))
                     {
@@ -539,7 +613,7 @@ namespace VisualCard.Parsers
                 throw new InvalidDataException("The name specifier, \"N:\", is required.");
 
             // Make a new instance of the card
-            return new Card(CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), "individual", _photos.ToArray(), _rev, Array.Empty<NicknameInfo>(), _bday, _mailer, _roles.ToArray(), Array.Empty<string>(), _logos.ToArray(), "");
+            return new Card(CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), "individual", _photos.ToArray(), _rev, Array.Empty<NicknameInfo>(), _bday, _mailer, _roles.ToArray(), Array.Empty<string>(), _logos.ToArray(), "", "", _timezones.ToArray(), _geos.ToArray());
         }
 
         public override void SaveTo(string path)

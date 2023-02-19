@@ -32,6 +32,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using VisualCard.Exceptions;
 using VisualCard.Parts;
+using TimeZoneInfo = VisualCard.Parts.TimeZoneInfo;
 
 namespace VisualCard.Parsers
 {
@@ -72,9 +73,15 @@ namespace VisualCard.Parsers
         const string _roleSpecifierWithType         = "ROLE;";
         const string _categoriesSpecifier           = "CATEGORIES:";
         const string _productIdSpecifier            = "PRODID:";
+        const string _sortStringSpecifier           = "SORT-STRING:";
+        const string _timeZoneSpecifier             = "TZ:";
+        const string _geoSpecifier                  = "GEO:";
+        const string _timeZoneSpecifierWithType     = "TZ;";
+        const string _geoSpecifierWithType          = "GEO;";
         const string _xSpecifier                    = "X-";
         const string _typeArgumentSpecifier         = "TYPE=";
         const string _altIdArgumentSpecifier        = "ALTID=";
+        const string _valueArgumentSpecifier        = "VALUE=";
 
         public override Card Parse()
         {
@@ -97,6 +104,7 @@ namespace VisualCard.Parsers
             string _url                     = "";
             string _note                    = "";
             string _prodId                  = "";
+            string _sortString              = "";
             DateTime _rev                   = DateTime.MinValue;
             DateTime _bday                  = DateTime.MinValue;
             List<NameInfo> _names           = new();
@@ -111,6 +119,8 @@ namespace VisualCard.Parsers
             List<NicknameInfo> _nicks       = new();
             List<RoleInfo> _roles           = new();
             List<string> _categories        = new();
+            List<TimeZoneInfo> _timezones   = new();
+            List<GeoInfo> _geos             = new();
             List<XNameInfo> _xes            = new();
 
             // Full Name specifier is required
@@ -714,6 +724,103 @@ namespace VisualCard.Parsers
                         _prodId = Regex.Unescape(prodIdValue);
                     }
 
+                    // Sort string (SORT-STRING:Harten)
+                    // Here, we don't support ALTID.
+                    if (_value.StartsWith(_sortStringSpecifier))
+                    {
+                        // Get the value
+                        string sortStringValue = _value.Substring(_sortStringSpecifier.Length);
+
+                        // Populate field
+                        _sortString = Regex.Unescape(sortStringValue);
+                    }
+
+                    // Time Zone (TZ;VALUE=text:-05:00; EST; Raleigh/North America)
+                    // ALTID is supported.
+                    if (_value.StartsWith(_timeZoneSpecifierWithType))
+                    {
+                        // Get the value
+                        string tzValue = _value.Substring(_timeZoneSpecifierWithType.Length);
+                        string[] splitTz = tzValue.Split(_argumentDelimiter);
+                        string[] splitTypes;
+                        if (splitTz.Length != 2)
+                            throw new InvalidDataException("Time Zone field must specify exactly one value (VALUE=\"text\" / \"uri\" / \"utc-offset\")");
+
+                        // Check to see if the type is prepended with the VALUE= argument
+                        if (splitTz[0].StartsWith(_valueArgumentSpecifier))
+                            // Get the types
+                            splitTypes = splitTz[0].Substring(_valueArgumentSpecifier.Length).Split(_valueDelimiter);
+                        else if (string.IsNullOrEmpty(splitTz[0]))
+                            // We're confronted with an empty type. Assume that it's a uri-offset.
+                            splitTypes = new string[] { "uri-offset" };
+                        else
+                            // Trying to specify type without VALUE= is illegal according to RFC2426
+                            throw new InvalidDataException("Time Zone type must be prepended with VALUE=");
+
+                        // Populate the fields
+                        string[] _timeZoneTypes = splitTypes;
+                        string _timeZoneNumber = Regex.Unescape(splitTz[1]);
+                        TimeZoneInfo _timeZone = new(altId, _timeZoneTypes, _timeZoneNumber);
+                        _timezones.Add(_timeZone);
+                    }
+
+                    // Time Zone (TZ:-05:00)
+                    // ALTID is supported.
+                    if (_value.StartsWith(_timeZoneSpecifier))
+                    {
+                        // Get the value
+                        string tzValue = _value.Substring(_timeZoneSpecifier.Length);
+
+                        // Populate the fields
+                        string[] _timeZoneTypes = new string[] { "uri-offset" };
+                        string _timeZoneNumber = Regex.Unescape(tzValue);
+                        TimeZoneInfo _timeZone = new(altId, _timeZoneTypes, _timeZoneNumber);
+                        _timezones.Add(_timeZone);
+                    }
+
+                    // Geo (GEO;VALUE=uri:https://...)
+                    // ALTID is supported.
+                    if (_value.StartsWith(_geoSpecifierWithType))
+                    {
+                        // Get the value
+                        string geoValue = _value.Substring(_geoSpecifierWithType.Length);
+                        string[] splitGeo = geoValue.Split(_argumentDelimiter);
+                        string[] splitTypes;
+                        if (splitGeo.Length != 2)
+                            throw new InvalidDataException("Geo field must specify exactly one value (VALUE=\"uri\")");
+
+                        // Check to see if the type is prepended with the VALUE= argument
+                        if (splitGeo[0].StartsWith(_valueArgumentSpecifier))
+                            // Get the types
+                            splitTypes = splitGeo[0].Substring(_valueArgumentSpecifier.Length).Split(_valueDelimiter);
+                        else if (string.IsNullOrEmpty(splitGeo[0]))
+                            // We're confronted with an empty type. Assume that it's a uri.
+                            splitTypes = new string[] { "uri" };
+                        else
+                            // Trying to specify type without VALUE= is illegal according to RFC2426
+                            throw new InvalidDataException("Geo type must be prepended with VALUE=");
+
+                        // Populate the fields
+                        string[] _geoTypes = splitTypes;
+                        string _geoNumber = Regex.Unescape(splitGeo[1]);
+                        GeoInfo _geo = new(altId, _geoTypes, _geoNumber);
+                        _geos.Add(_geo);
+                    }
+
+                    // Geo (GEO:geo:37.386013,-122.082932)
+                    // ALTID is supported.
+                    if (_value.StartsWith(_geoSpecifier))
+                    {
+                        // Get the value
+                        string geoValue = _value.Substring(_geoSpecifier.Length);
+
+                        // Populate the fields
+                        string[] _geoTypes = new string[] { "uri" };
+                        string _geoNumber = Regex.Unescape(geoValue);
+                        GeoInfo _geo = new(altId, _geoTypes, _geoNumber);
+                        _geos.Add(_geo);
+                    }
+
                     // X-nonstandard (X-AIM:john.s or X-DL;Design Work Group:List Item 1;List Item 2;List Item 3)
                     // ALTID is supported.
                     if (_value.StartsWith(_xSpecifier))
@@ -748,7 +855,7 @@ namespace VisualCard.Parsers
                 throw new InvalidDataException("The full name specifier, \"FN:\", is required.");
 
             // Make a new instance of the card
-            return new Card(CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), _kind, _photos.ToArray(), _rev, _nicks.ToArray(), _bday, "", _roles.ToArray(), _categories.ToArray(), _logos.ToArray(), _prodId);
+            return new Card(CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), _kind, _photos.ToArray(), _rev, _nicks.ToArray(), _bday, "", _roles.ToArray(), _categories.ToArray(), _logos.ToArray(), _prodId, _sortString, _timezones.ToArray(), _geos.ToArray());
         }
 
         public override void SaveTo(string path)

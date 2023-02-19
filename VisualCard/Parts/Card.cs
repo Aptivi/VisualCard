@@ -113,8 +113,20 @@ namespace VisualCard.Parts
         /// The contact's product ID
         /// </summary>
         public string ContactProdId { get; }
+        /// <summary>
+        /// The contact's sort string
+        /// </summary>
+        public string ContactSortString { get; }
+        /// <summary>
+        /// The contact's time zones
+        /// </summary>
+        public TimeZoneInfo[] ContactTimeZone { get; }
+        /// <summary>
+        /// The contact's geographical coordinates in (lat;long)
+        /// </summary>
+        public GeoInfo[] ContactGeo { get; }
 
-        internal Card(string cardVersion, NameInfo[] contactNames, string contactFullName, TelephoneInfo[] contactTelephones, AddressInfo[] contactAddresses, OrganizationInfo[] contactOrganizations, TitleInfo[] contactTitles, string contactURL, string contactNotes, EmailInfo[] contactMails, XNameInfo[] contactXNames, string cardKind, PhotoInfo[] contactPhotos, DateTime cardRevision, NicknameInfo[] contactNicknames, DateTime? contactBirthdate, string contactMailer, RoleInfo[] contactRoles, string[] contactCategories, LogoInfo[] contactLogos, string contactProdId)
+        internal Card(string cardVersion, NameInfo[] contactNames, string contactFullName, TelephoneInfo[] contactTelephones, AddressInfo[] contactAddresses, OrganizationInfo[] contactOrganizations, TitleInfo[] contactTitles, string contactURL, string contactNotes, EmailInfo[] contactMails, XNameInfo[] contactXNames, string cardKind, PhotoInfo[] contactPhotos, DateTime cardRevision, NicknameInfo[] contactNicknames, DateTime? contactBirthdate, string contactMailer, RoleInfo[] contactRoles, string[] contactCategories, LogoInfo[] contactLogos, string contactProdId, string contactSortString, TimeZoneInfo[] contactTimeZone, GeoInfo[] contactGeo)
         {
             CardVersion = cardVersion;
             ContactNames = contactNames;
@@ -137,6 +149,9 @@ namespace VisualCard.Parts
             ContactCategories = contactCategories;
             ContactLogos = contactLogos;
             ContactProdId = contactProdId;
+            ContactSortString = contactSortString;
+            ContactTimeZone = contactTimeZone;
+            ContactGeo = contactGeo;
         }
     }
 }
