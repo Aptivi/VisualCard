@@ -743,7 +743,7 @@ namespace VisualCard.Parsers
                         string tzValue = _value.Substring(_timeZoneSpecifierWithType.Length);
                         string[] splitTz = tzValue.Split(_argumentDelimiter);
                         string[] splitTypes;
-                        if (splitTz.Length != 2)
+                        if (splitTz.Length != 1)
                             throw new InvalidDataException("Time Zone field must specify exactly one value (VALUE=\"text\" / \"uri\" / \"utc-offset\")");
 
                         // Check to see if the type is prepended with the VALUE= argument
@@ -786,7 +786,7 @@ namespace VisualCard.Parsers
                         string geoValue = _value.Substring(_geoSpecifierWithType.Length);
                         string[] splitGeo = geoValue.Split(_argumentDelimiter);
                         string[] splitTypes;
-                        if (splitGeo.Length != 2)
+                        if (splitGeo.Length != 1)
                             throw new InvalidDataException("Geo field must specify exactly one value (VALUE=\"uri\")");
 
                         // Check to see if the type is prepended with the VALUE= argument
