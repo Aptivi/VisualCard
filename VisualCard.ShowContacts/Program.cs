@@ -42,6 +42,11 @@ namespace VisualCard.ShowContacts
                 // If one of the arguments is a switch to trigger printing, set it
                 bool print = !args.Contains("-noprint");
                 bool save = args.Contains("-save");
+                bool dbg = args.Contains("-debug");
+
+                // If debug, wait for debugger
+                if (dbg)
+                    Debugger.Launch();
 
                 // Initialize stopwatch
                 Stopwatch elapsed = new();

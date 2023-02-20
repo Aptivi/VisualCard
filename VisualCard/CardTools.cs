@@ -79,6 +79,7 @@ namespace VisualCard
                     BeginSpotted = true;
                     VersionSpotted = false;
                     EndSpotted = false;
+                    CardSawNull = false;
                 }
 
                 // Now that the beginning of the card tag is spotted, parse the version as we need to know how to select the appropriate parser.
