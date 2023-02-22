@@ -21,7 +21,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisualCard.CardTools.html",
-          "hash": "qBdXpLKHJA9o3xyLX93gPBxmuiTnUOSNDmP71douw8U="
+          "hash": "7BviIN/vsm/xwJYw4/Hrk/g0oBuhCIa1W5Ps0WhSeRo="
         }
       },
       "is_incremental": false,
@@ -57,7 +57,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisualCard.Parsers.BaseVcardParser.html",
-          "hash": "hUlnckg76oyX64g7aVcNlI9BKRibBteJFDP6PMpaMuc="
+          "hash": "D+IG2jsjh/LyLuxlc3svmYu4fspW2wfDwAKXNOZSiZY="
         }
       },
       "is_incremental": false,
@@ -69,7 +69,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisualCard.Parsers.IVcardParser.html",
-          "hash": "UAgX5qBxE7uHJ+moRRoXiTx3b8F5SXjVTgXpSczGAWU="
+          "hash": "q06uW2VpSDtdCBO3r6rFjJ608tIFLWm0SjloXhJpISo="
         }
       },
       "is_incremental": false,
@@ -81,7 +81,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisualCard.Parsers.VcardFour.html",
-          "hash": "X1vYoABzDxozI0rdXietZ+09bFq+R70wDplC1Ro3Asw="
+          "hash": "T0UpoO3eRg7goJSyljG9iLCz8BWDxd0Am0hNpTIjMK4="
         }
       },
       "is_incremental": false,
@@ -93,7 +93,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisualCard.Parsers.VcardThree.html",
-          "hash": "Ckedj60T7julGAAjIHNi1xQo3KQrX82eYbDqx+UuGQQ="
+          "hash": "zwXYS5A51vS7sZQ1YmpBsGyH3Gp0t+Da+3z3sYryP/s="
         }
       },
       "is_incremental": false,
@@ -105,7 +105,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisualCard.Parsers.VcardTwo.html",
-          "hash": "P517zda2Lr66olEW0UNKYhESAy2P7RrMgmjsFRltSDE="
+          "hash": "jle70gXkRpTDQCB2EXnTzLI/jIh31cEv/uA78nCJQDM="
         }
       },
       "is_incremental": false,

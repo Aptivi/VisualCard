@@ -13,6 +13,12 @@ references:
   commentId: T:VisualCard.CardTools
   fullName: VisualCard.CardTools
   nameWithType: CardTools
+- uid: VisualCard.CardTools.GetCardParsers(StreamReader)
+  name: GetCardParsers(StreamReader)
+  href: api/VisualCard.CardTools.html#VisualCard_CardTools_GetCardParsers_StreamReader_
+  commentId: M:VisualCard.CardTools.GetCardParsers(StreamReader)
+  fullName: VisualCard.CardTools.GetCardParsers(StreamReader)
+  nameWithType: CardTools.GetCardParsers(StreamReader)
 - uid: VisualCard.CardTools.GetCardParsers(System.String)
   name: GetCardParsers(String)
   href: api/VisualCard.CardTools.html#VisualCard_CardTools_GetCardParsers_System_String_
@@ -26,6 +32,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.CardTools.GetCardParsers
   nameWithType: CardTools.GetCardParsers
+- uid: VisualCard.CardTools.GetCardParsersFromString(System.String)
+  name: GetCardParsersFromString(String)
+  href: api/VisualCard.CardTools.html#VisualCard_CardTools_GetCardParsersFromString_System_String_
+  commentId: M:VisualCard.CardTools.GetCardParsersFromString(System.String)
+  fullName: VisualCard.CardTools.GetCardParsersFromString(System.String)
+  nameWithType: CardTools.GetCardParsersFromString(String)
+- uid: VisualCard.CardTools.GetCardParsersFromString*
+  name: GetCardParsersFromString
+  href: api/VisualCard.CardTools.html#VisualCard_CardTools_GetCardParsersFromString_
+  commentId: Overload:VisualCard.CardTools.GetCardParsersFromString
+  isSpec: "True"
+  fullName: VisualCard.CardTools.GetCardParsersFromString
+  nameWithType: CardTools.GetCardParsersFromString
 - uid: VisualCard.Exceptions
   name: VisualCard.Exceptions
   href: api/VisualCard.Exceptions.html
@@ -82,19 +101,6 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parsers.BaseVcardParser.CardContent
   nameWithType: BaseVcardParser.CardContent
-- uid: VisualCard.Parsers.BaseVcardParser.CardPath
-  name: CardPath
-  href: api/VisualCard.Parsers.BaseVcardParser.html#VisualCard_Parsers_BaseVcardParser_CardPath
-  commentId: P:VisualCard.Parsers.BaseVcardParser.CardPath
-  fullName: VisualCard.Parsers.BaseVcardParser.CardPath
-  nameWithType: BaseVcardParser.CardPath
-- uid: VisualCard.Parsers.BaseVcardParser.CardPath*
-  name: CardPath
-  href: api/VisualCard.Parsers.BaseVcardParser.html#VisualCard_Parsers_BaseVcardParser_CardPath_
-  commentId: Overload:VisualCard.Parsers.BaseVcardParser.CardPath
-  isSpec: "True"
-  fullName: VisualCard.Parsers.BaseVcardParser.CardPath
-  nameWithType: BaseVcardParser.CardPath
 - uid: VisualCard.Parsers.BaseVcardParser.CardVersion
   name: CardVersion
   href: api/VisualCard.Parsers.BaseVcardParser.html#VisualCard_Parsers_BaseVcardParser_CardVersion
@@ -153,19 +159,6 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parsers.IVcardParser.CardContent
   nameWithType: IVcardParser.CardContent
-- uid: VisualCard.Parsers.IVcardParser.CardPath
-  name: CardPath
-  href: api/VisualCard.Parsers.IVcardParser.html#VisualCard_Parsers_IVcardParser_CardPath
-  commentId: P:VisualCard.Parsers.IVcardParser.CardPath
-  fullName: VisualCard.Parsers.IVcardParser.CardPath
-  nameWithType: IVcardParser.CardPath
-- uid: VisualCard.Parsers.IVcardParser.CardPath*
-  name: CardPath
-  href: api/VisualCard.Parsers.IVcardParser.html#VisualCard_Parsers_IVcardParser_CardPath_
-  commentId: Overload:VisualCard.Parsers.IVcardParser.CardPath
-  isSpec: "True"
-  fullName: VisualCard.Parsers.IVcardParser.CardPath
-  nameWithType: IVcardParser.CardPath
 - uid: VisualCard.Parsers.IVcardParser.CardVersion
   name: CardVersion
   href: api/VisualCard.Parsers.IVcardParser.html#VisualCard_Parsers_IVcardParser_CardVersion
@@ -224,19 +217,6 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parsers.VcardFour.CardContent
   nameWithType: VcardFour.CardContent
-- uid: VisualCard.Parsers.VcardFour.CardPath
-  name: CardPath
-  href: api/VisualCard.Parsers.VcardFour.html#VisualCard_Parsers_VcardFour_CardPath
-  commentId: P:VisualCard.Parsers.VcardFour.CardPath
-  fullName: VisualCard.Parsers.VcardFour.CardPath
-  nameWithType: VcardFour.CardPath
-- uid: VisualCard.Parsers.VcardFour.CardPath*
-  name: CardPath
-  href: api/VisualCard.Parsers.VcardFour.html#VisualCard_Parsers_VcardFour_CardPath_
-  commentId: Overload:VisualCard.Parsers.VcardFour.CardPath
-  isSpec: "True"
-  fullName: VisualCard.Parsers.VcardFour.CardPath
-  nameWithType: VcardFour.CardPath
 - uid: VisualCard.Parsers.VcardFour.CardVersion
   name: CardVersion
   href: api/VisualCard.Parsers.VcardFour.html#VisualCard_Parsers_VcardFour_CardVersion
@@ -295,19 +275,6 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parsers.VcardThree.CardContent
   nameWithType: VcardThree.CardContent
-- uid: VisualCard.Parsers.VcardThree.CardPath
-  name: CardPath
-  href: api/VisualCard.Parsers.VcardThree.html#VisualCard_Parsers_VcardThree_CardPath
-  commentId: P:VisualCard.Parsers.VcardThree.CardPath
-  fullName: VisualCard.Parsers.VcardThree.CardPath
-  nameWithType: VcardThree.CardPath
-- uid: VisualCard.Parsers.VcardThree.CardPath*
-  name: CardPath
-  href: api/VisualCard.Parsers.VcardThree.html#VisualCard_Parsers_VcardThree_CardPath_
-  commentId: Overload:VisualCard.Parsers.VcardThree.CardPath
-  isSpec: "True"
-  fullName: VisualCard.Parsers.VcardThree.CardPath
-  nameWithType: VcardThree.CardPath
 - uid: VisualCard.Parsers.VcardThree.CardVersion
   name: CardVersion
   href: api/VisualCard.Parsers.VcardThree.html#VisualCard_Parsers_VcardThree_CardVersion
@@ -366,19 +333,6 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parsers.VcardTwo.CardContent
   nameWithType: VcardTwo.CardContent
-- uid: VisualCard.Parsers.VcardTwo.CardPath
-  name: CardPath
-  href: api/VisualCard.Parsers.VcardTwo.html#VisualCard_Parsers_VcardTwo_CardPath
-  commentId: P:VisualCard.Parsers.VcardTwo.CardPath
-  fullName: VisualCard.Parsers.VcardTwo.CardPath
-  nameWithType: VcardTwo.CardPath
-- uid: VisualCard.Parsers.VcardTwo.CardPath*
-  name: CardPath
-  href: api/VisualCard.Parsers.VcardTwo.html#VisualCard_Parsers_VcardTwo_CardPath_
-  commentId: Overload:VisualCard.Parsers.VcardTwo.CardPath
-  isSpec: "True"
-  fullName: VisualCard.Parsers.VcardTwo.CardPath
-  nameWithType: VcardTwo.CardPath
 - uid: VisualCard.Parsers.VcardTwo.CardVersion
   name: CardVersion
   href: api/VisualCard.Parsers.VcardTwo.html#VisualCard_Parsers_VcardTwo_CardVersion

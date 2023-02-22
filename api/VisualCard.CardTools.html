@@ -102,6 +102,51 @@
   
   
   <a id="VisualCard_CardTools_GetCardParsers_" data-uid="VisualCard.CardTools.GetCardParsers*"></a>
+  <h4 id="VisualCard_CardTools_GetCardParsers_StreamReader_" data-uid="VisualCard.CardTools.GetCardParsers(StreamReader)">GetCardParsers(StreamReader)</h4>
+  <div class="markdown level1 summary"><p>Gets the list of parsers for single/multiple contacts from the stream</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static List&lt;BaseVcardParser&gt; GetCardParsers(StreamReader stream)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">StreamReader</span></td>
+        <td><span class="parametername">stream</span></td>
+        <td><p>Stream containing the contacts</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="VisualCard.Parsers.BaseVcardParser.html">BaseVcardParser</a>&gt;</td>
+        <td><p>List of contact parsers for single or multiple contacts</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="VisualCard_CardTools_GetCardParsers_" data-uid="VisualCard.CardTools.GetCardParsers*"></a>
   <h4 id="VisualCard_CardTools_GetCardParsers_System_String_" data-uid="VisualCard.CardTools.GetCardParsers(System.String)">GetCardParsers(String)</h4>
   <div class="markdown level1 summary"><p>Gets the list of parsers for single/multiple contacts from the path</p>
 </div>
@@ -125,6 +170,50 @@
         <td><span class="parametername">Path</span></td>
         <td><p>Path to the contacts file</p>
 </td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="VisualCard.Parsers.BaseVcardParser.html">BaseVcardParser</a>&gt;</td>
+        <td><p>List of contact parsers for single or multiple contacts</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="VisualCard_CardTools_GetCardParsersFromString_" data-uid="VisualCard.CardTools.GetCardParsersFromString*"></a>
+  <h4 id="VisualCard_CardTools_GetCardParsersFromString_System_String_" data-uid="VisualCard.CardTools.GetCardParsersFromString(System.String)">GetCardParsersFromString(String)</h4>
+  <div class="markdown level1 summary"><p>Gets the list of parsers for single/multiple contacts from the string</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static List&lt;BaseVcardParser&gt; GetCardParsersFromString(string cardText)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">cardText</span></td>
+        <td></td>
       </tr>
     </tbody>
   </table>
