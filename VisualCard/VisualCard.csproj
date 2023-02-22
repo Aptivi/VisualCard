@@ -3,9 +3,9 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <AssemblyVersion>0.1.0.0</AssemblyVersion>
-    <FileVersion>0.1.0.0</FileVersion>
-    <Version>0.1.0.0</Version>
+    <AssemblyVersion>0.2.0</AssemblyVersion>
+    <FileVersion>0.2.0</FileVersion>
+    <Version>0.2.0</Version>
     <Company>Aptivi</Company>
     <Description>A managed VCard contact file parser</Description>
     <Copyright>Copyright (c) 2021 - 2022 Aptivi.</Copyright>
@@ -17,8 +17,8 @@
     <PackageTags>vcf;contacts;parsers</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-    <LangVersion>10.0</LangVersion>
-    <PackageVersion>0.1.0.0</PackageVersion>
+    <LangVersion>latest</LangVersion>
+    <PackageVersion>0.2.0</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>

@@ -29,7 +29,6 @@ namespace VisualCard.Parsers
 {
     public abstract class BaseVcardParser : IVcardParser
     {
-        public virtual string CardPath => "";
         public virtual string CardContent => "";
         public virtual string CardVersion => "";
 

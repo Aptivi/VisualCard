@@ -36,11 +36,37 @@ namespace VisualCard
     public static class CardTools
     {
         /// <summary>
+        /// Gets the list of parsers for single/multiple contacts from the string
+        /// </summary>
+        /// <param name="Path">Contacts text</param>
+        /// <returns>List of contact parsers for single or multiple contacts</returns>
+        public static List<BaseVcardParser> GetCardParsersFromString(string cardText)
+        {
+            // Open the stream to parse multiple contact versions (required to parse more than one contact)
+            MemoryStream CardFs = new(Encoding.Default.GetBytes(cardText));
+            StreamReader CardReader = new(CardFs);
+            return GetCardParsers(CardReader);
+        }
+
+        /// <summary>
         /// Gets the list of parsers for single/multiple contacts from the path
         /// </summary>
         /// <param name="Path">Path to the contacts file</param>
         /// <returns>List of contact parsers for single or multiple contacts</returns>
         public static List<BaseVcardParser> GetCardParsers(string Path)
+        {
+            // Open the stream to parse multiple contact versions (required to parse more than one contact)
+            FileStream CardFs = new(Path, FileMode.Open, FileAccess.Read);
+            StreamReader CardReader = new(CardFs);
+            return GetCardParsers(CardReader);
+        }
+
+        /// <summary>
+        /// Gets the list of parsers for single/multiple contacts from the stream
+        /// </summary>
+        /// <param name="stream">Stream containing the contacts</param>
+        /// <returns>List of contact parsers for single or multiple contacts</returns>
+        public static List<BaseVcardParser> GetCardParsers(StreamReader stream)
         {
             // Variables and flags
             List<BaseVcardParser> FinalParsers = new();
@@ -48,24 +74,20 @@ namespace VisualCard
             bool VersionSpotted = false;
             bool EndSpotted = false;
 
-            // Open the stream to parse multiple contact versions (required to parse more than one contact)
-            FileStream CardFs = new(Path, FileMode.Open, FileAccess.Read);
-            StreamReader CardReader = new(CardFs);
-
             // Parse the lines of the card file
             string CardLine;
             StringBuilder CardContent = new();
             string CardVersion = "";
             bool CardSawNull = false;
-            CardLine = CardReader.ReadLine();
-            while (!CardReader.EndOfStream)
+            CardLine = stream.ReadLine();
+            while (!stream.EndOfStream)
             {
                 // Skip empty lines
                 if (string.IsNullOrEmpty(CardLine))
                 {
-                    CardLine = CardReader.ReadLine();
+                    CardLine = stream.ReadLine();
                     CardSawNull = true;
-                    if (!CardReader.EndOfStream)
+                    if (!stream.EndOfStream)
                         continue;
                 }
                 else
@@ -73,7 +95,7 @@ namespace VisualCard
 
                 // All VCards must begin with BEGIN:VCARD
                 if (CardLine != "BEGIN:VCARD" && !BeginSpotted)
-                    throw new InvalidDataException($"This file {Path} is not a valid VCard contact file.");
+                    throw new InvalidDataException($"This is not a valid VCard contact file.");
                 else if (!BeginSpotted)
                 {
                     BeginSpotted = true;
@@ -85,10 +107,10 @@ namespace VisualCard
                 // Now that the beginning of the card tag is spotted, parse the version as we need to know how to select the appropriate parser.
                 // All VCards are required to have their own version directly after the BEGIN:VCARD tag
                 if (!CardSawNull)
-                    CardLine = CardReader.ReadLine();
+                    CardLine = stream.ReadLine();
                 CardSawNull = false;
                 if (CardLine != "VERSION:2.1" && CardLine != "VERSION:3.0" && CardLine != "VERSION:4.0" && !VersionSpotted)
-                    throw new InvalidDataException($"This file {Path} has an invalid VCard version {CardLine}.");
+                    throw new InvalidDataException($"This has an invalid VCard version {CardLine}.");
                 else if (!VersionSpotted)
                 {
                     VersionSpotted = true;
@@ -106,15 +128,15 @@ namespace VisualCard
                     switch (CardVersion)
                     {
                         case "2.1":
-                            CardParser = new VcardTwo(Path, CardContent.ToString(), CardVersion);
+                            CardParser = new VcardTwo(CardContent.ToString(), CardVersion);
                             FinalParsers.Add(CardParser);
                             break;
                         case "3.0":
-                            CardParser = new VcardThree(Path, CardContent.ToString(), CardVersion);
+                            CardParser = new VcardThree(CardContent.ToString(), CardVersion);
                             FinalParsers.Add(CardParser);
                             break;
                         case "4.0":
-                            CardParser = new VcardFour(Path, CardContent.ToString(), CardVersion);
+                            CardParser = new VcardFour(CardContent.ToString(), CardVersion);
                             FinalParsers.Add(CardParser);
                             break;
                     }
@@ -122,12 +144,12 @@ namespace VisualCard
                     // Clear the content in case we want to make a second contact
                     CardContent.Clear();
                     BeginSpotted = false;
-                    CardLine = CardReader.ReadLine();
+                    CardLine = stream.ReadLine();
                 }
             }
 
             // Close the stream to avoid stuck file handle
-            CardReader.Close();
+            stream.Close();
 
             // Throw if the card ended prematurely
             if (!EndSpotted)

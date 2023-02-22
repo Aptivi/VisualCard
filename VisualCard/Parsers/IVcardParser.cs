@@ -33,11 +33,6 @@ namespace VisualCard.Parsers
     public interface IVcardParser
     {
         /// <summary>
-        /// The path to the VCard file
-        /// </summary>
-        public string CardPath { get; }
-
-        /// <summary>
         /// Contents of the VCard
         /// </summary>
         public string CardContent { get; }

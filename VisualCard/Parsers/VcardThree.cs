@@ -40,7 +40,6 @@ namespace VisualCard.Parsers
     /// </summary>
     public class VcardThree : BaseVcardParser, IVcardParser
     {
-        public override string CardPath { get; }
         public override string CardContent { get; }
         public override string CardVersion { get; }
 
@@ -758,9 +757,8 @@ namespace VisualCard.Parsers
             fileStream.Close();
         }
 
-        internal VcardThree(string cardPath, string cardContent, string cardVersion)
+        internal VcardThree(string cardContent, string cardVersion)
         {
-            CardPath = cardPath;
             CardContent = cardContent;
             CardVersion = cardVersion;
         }
