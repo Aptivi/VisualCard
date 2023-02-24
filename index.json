@@ -24,30 +24,45 @@
     "title": "Class BaseVcardParser | VisualCard API - Eofla Internals",
     "keywords": "Class BaseVcardParser Inheritance System.Object BaseVcardParser VcardFour VcardThree VcardTwo Implements IVcardParser Namespace : VisualCard.Parsers Assembly : VisualCard.dll Syntax public abstract class BaseVcardParser : object, IVcardParser Properties CardContent Declaration public virtual string CardContent { get; } Property Value Type Description System.String CardVersion Declaration public virtual string CardVersion { get; } Property Value Type Description System.String Methods Parse() Declaration public abstract Card Parse() Returns Type Description Card SaveTo(String) Declaration public abstract void SaveTo(string path) Parameters Type Name Description System.String path Implements IVcardParser"
   },
+  "api/VisualCard.Parsers.Four.html": {
+    "href": "api/VisualCard.Parsers.Four.html",
+    "title": "Namespace VisualCard.Parsers.Four | VisualCard API - Eofla Internals",
+    "keywords": "Namespace VisualCard.Parsers.Four Classes VcardFour Parser for VCard version 4.0. Consult the vcard-40-rfc6350.txt file in source for the specification."
+  },
+  "api/VisualCard.Parsers.Four.VcardFour.html": {
+    "href": "api/VisualCard.Parsers.Four.VcardFour.html",
+    "title": "Class VcardFour | VisualCard API - Eofla Internals",
+    "keywords": "Class VcardFour Parser for VCard version 4.0. Consult the vcard-40-rfc6350.txt file in source for the specification. Inheritance System.Object BaseVcardParser VcardFour Implements IVcardParser Namespace : VisualCard.Parsers.Four Assembly : VisualCard.dll Syntax public class VcardFour : BaseVcardParser, IVcardParser Properties CardContent Declaration public override string CardContent { get; } Property Value Type Description System.String Overrides BaseVcardParser.CardContent CardVersion Declaration public override string CardVersion { get; } Property Value Type Description System.String Overrides BaseVcardParser.CardVersion Methods Parse() Declaration public override Card Parse() Returns Type Description Card Overrides BaseVcardParser.Parse() SaveTo(String) Declaration public override void SaveTo(string path) Parameters Type Name Description System.String path Overrides BaseVcardParser.SaveTo(String) Implements IVcardParser"
+  },
   "api/VisualCard.Parsers.html": {
     "href": "api/VisualCard.Parsers.html",
     "title": "Namespace VisualCard.Parsers | VisualCard API - Eofla Internals",
-    "keywords": "Namespace VisualCard.Parsers Classes BaseVcardParser VcardFour Parser for VCard version 4.0. Consult the vcard-40-rfc6350.txt file in source for the specification. VcardThree Parser for VCard version 3.0. Consult the vcard-30-rfc2426.txt file in source for the specification. VcardTwo Parser for VCard version 2.1. Consult the vcard-21.txt file in source for the specification. Interfaces IVcardParser VCard parser interface"
+    "keywords": "Namespace VisualCard.Parsers Classes BaseVcardParser Interfaces IVcardParser VCard parser interface"
   },
   "api/VisualCard.Parsers.IVcardParser.html": {
     "href": "api/VisualCard.Parsers.IVcardParser.html",
     "title": "Interface IVcardParser | VisualCard API - Eofla Internals",
     "keywords": "Interface IVcardParser VCard parser interface Namespace : VisualCard.Parsers Assembly : VisualCard.dll Syntax public interface IVcardParser Properties CardContent Contents of the VCard Declaration string CardContent { get; } Property Value Type Description System.String CardVersion The version of the card Declaration string CardVersion { get; } Property Value Type Description System.String Methods Parse() Parses the VCard file Declaration Card Parse() Returns Type Description Card SaveTo(String) Saves the VCard file Declaration void SaveTo(string path) Parameters Type Name Description System.String path Path to a vcard file to save to"
   },
-  "api/VisualCard.Parsers.VcardFour.html": {
-    "href": "api/VisualCard.Parsers.VcardFour.html",
-    "title": "Class VcardFour | VisualCard API - Eofla Internals",
-    "keywords": "Class VcardFour Parser for VCard version 4.0. Consult the vcard-40-rfc6350.txt file in source for the specification. Inheritance System.Object BaseVcardParser VcardFour Implements IVcardParser Namespace : VisualCard.Parsers Assembly : VisualCard.dll Syntax public class VcardFour : BaseVcardParser, IVcardParser Properties CardContent Declaration public override string CardContent { get; } Property Value Type Description System.String Overrides BaseVcardParser.CardContent CardVersion Declaration public override string CardVersion { get; } Property Value Type Description System.String Overrides BaseVcardParser.CardVersion Methods Parse() Declaration public override Card Parse() Returns Type Description Card Overrides BaseVcardParser.Parse() SaveTo(String) Declaration public override void SaveTo(string path) Parameters Type Name Description System.String path Overrides BaseVcardParser.SaveTo(String) Implements IVcardParser"
+  "api/VisualCard.Parsers.Three.html": {
+    "href": "api/VisualCard.Parsers.Three.html",
+    "title": "Namespace VisualCard.Parsers.Three | VisualCard API - Eofla Internals",
+    "keywords": "Namespace VisualCard.Parsers.Three Classes VcardThree Parser for VCard version 3.0. Consult the vcard-30-rfc2426.txt file in source for the specification."
   },
-  "api/VisualCard.Parsers.VcardThree.html": {
-    "href": "api/VisualCard.Parsers.VcardThree.html",
+  "api/VisualCard.Parsers.Three.VcardThree.html": {
+    "href": "api/VisualCard.Parsers.Three.VcardThree.html",
     "title": "Class VcardThree | VisualCard API - Eofla Internals",
-    "keywords": "Class VcardThree Parser for VCard version 3.0. Consult the vcard-30-rfc2426.txt file in source for the specification. Inheritance System.Object BaseVcardParser VcardThree Implements IVcardParser Namespace : VisualCard.Parsers Assembly : VisualCard.dll Syntax public class VcardThree : BaseVcardParser, IVcardParser Properties CardContent Declaration public override string CardContent { get; } Property Value Type Description System.String Overrides BaseVcardParser.CardContent CardVersion Declaration public override string CardVersion { get; } Property Value Type Description System.String Overrides BaseVcardParser.CardVersion Methods Parse() Declaration public override Card Parse() Returns Type Description Card Overrides BaseVcardParser.Parse() SaveTo(String) Declaration public override void SaveTo(string path) Parameters Type Name Description System.String path Overrides BaseVcardParser.SaveTo(String) Implements IVcardParser"
+    "keywords": "Class VcardThree Parser for VCard version 3.0. Consult the vcard-30-rfc2426.txt file in source for the specification. Inheritance System.Object BaseVcardParser VcardThree Implements IVcardParser Namespace : VisualCard.Parsers.Three Assembly : VisualCard.dll Syntax public class VcardThree : BaseVcardParser, IVcardParser Properties CardContent Declaration public override string CardContent { get; } Property Value Type Description System.String Overrides BaseVcardParser.CardContent CardVersion Declaration public override string CardVersion { get; } Property Value Type Description System.String Overrides BaseVcardParser.CardVersion Methods Parse() Declaration public override Card Parse() Returns Type Description Card Overrides BaseVcardParser.Parse() SaveTo(String) Declaration public override void SaveTo(string path) Parameters Type Name Description System.String path Overrides BaseVcardParser.SaveTo(String) Implements IVcardParser"
   },
-  "api/VisualCard.Parsers.VcardTwo.html": {
-    "href": "api/VisualCard.Parsers.VcardTwo.html",
+  "api/VisualCard.Parsers.Two.html": {
+    "href": "api/VisualCard.Parsers.Two.html",
+    "title": "Namespace VisualCard.Parsers.Two | VisualCard API - Eofla Internals",
+    "keywords": "Namespace VisualCard.Parsers.Two Classes VcardTwo Parser for VCard version 2.1. Consult the vcard-21.txt file in source for the specification."
+  },
+  "api/VisualCard.Parsers.Two.VcardTwo.html": {
+    "href": "api/VisualCard.Parsers.Two.VcardTwo.html",
     "title": "Class VcardTwo | VisualCard API - Eofla Internals",
-    "keywords": "Class VcardTwo Parser for VCard version 2.1. Consult the vcard-21.txt file in source for the specification. Inheritance System.Object BaseVcardParser VcardTwo Implements IVcardParser Namespace : VisualCard.Parsers Assembly : VisualCard.dll Syntax public class VcardTwo : BaseVcardParser, IVcardParser Properties CardContent Declaration public override string CardContent { get; } Property Value Type Description System.String Overrides BaseVcardParser.CardContent CardVersion Declaration public override string CardVersion { get; } Property Value Type Description System.String Overrides BaseVcardParser.CardVersion Methods Parse() Declaration public override Card Parse() Returns Type Description Card Overrides BaseVcardParser.Parse() SaveTo(String) Declaration public override void SaveTo(string path) Parameters Type Name Description System.String path Overrides BaseVcardParser.SaveTo(String) Implements IVcardParser"
+    "keywords": "Class VcardTwo Parser for VCard version 2.1. Consult the vcard-21.txt file in source for the specification. Inheritance System.Object BaseVcardParser VcardTwo Implements IVcardParser Namespace : VisualCard.Parsers.Two Assembly : VisualCard.dll Syntax public class VcardTwo : BaseVcardParser, IVcardParser Properties CardContent Declaration public override string CardContent { get; } Property Value Type Description System.String Overrides BaseVcardParser.CardContent CardVersion Declaration public override string CardVersion { get; } Property Value Type Description System.String Overrides BaseVcardParser.CardVersion Methods Parse() Declaration public override Card Parse() Returns Type Description Card Overrides BaseVcardParser.Parse() SaveTo(String) Declaration public override void SaveTo(string path) Parameters Type Name Description System.String path Overrides BaseVcardParser.SaveTo(String) Implements IVcardParser"
   },
   "api/VisualCard.Parts.AddressInfo.html": {
     "href": "api/VisualCard.Parts.AddressInfo.html",

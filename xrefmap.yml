@@ -140,6 +140,70 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parsers.BaseVcardParser.SaveTo
   nameWithType: BaseVcardParser.SaveTo
+- uid: VisualCard.Parsers.Four
+  name: VisualCard.Parsers.Four
+  href: api/VisualCard.Parsers.Four.html
+  commentId: N:VisualCard.Parsers.Four
+  fullName: VisualCard.Parsers.Four
+  nameWithType: VisualCard.Parsers.Four
+- uid: VisualCard.Parsers.Four.VcardFour
+  name: VcardFour
+  href: api/VisualCard.Parsers.Four.VcardFour.html
+  commentId: T:VisualCard.Parsers.Four.VcardFour
+  fullName: VisualCard.Parsers.Four.VcardFour
+  nameWithType: VcardFour
+- uid: VisualCard.Parsers.Four.VcardFour.CardContent
+  name: CardContent
+  href: api/VisualCard.Parsers.Four.VcardFour.html#VisualCard_Parsers_Four_VcardFour_CardContent
+  commentId: P:VisualCard.Parsers.Four.VcardFour.CardContent
+  fullName: VisualCard.Parsers.Four.VcardFour.CardContent
+  nameWithType: VcardFour.CardContent
+- uid: VisualCard.Parsers.Four.VcardFour.CardContent*
+  name: CardContent
+  href: api/VisualCard.Parsers.Four.VcardFour.html#VisualCard_Parsers_Four_VcardFour_CardContent_
+  commentId: Overload:VisualCard.Parsers.Four.VcardFour.CardContent
+  isSpec: "True"
+  fullName: VisualCard.Parsers.Four.VcardFour.CardContent
+  nameWithType: VcardFour.CardContent
+- uid: VisualCard.Parsers.Four.VcardFour.CardVersion
+  name: CardVersion
+  href: api/VisualCard.Parsers.Four.VcardFour.html#VisualCard_Parsers_Four_VcardFour_CardVersion
+  commentId: P:VisualCard.Parsers.Four.VcardFour.CardVersion
+  fullName: VisualCard.Parsers.Four.VcardFour.CardVersion
+  nameWithType: VcardFour.CardVersion
+- uid: VisualCard.Parsers.Four.VcardFour.CardVersion*
+  name: CardVersion
+  href: api/VisualCard.Parsers.Four.VcardFour.html#VisualCard_Parsers_Four_VcardFour_CardVersion_
+  commentId: Overload:VisualCard.Parsers.Four.VcardFour.CardVersion
+  isSpec: "True"
+  fullName: VisualCard.Parsers.Four.VcardFour.CardVersion
+  nameWithType: VcardFour.CardVersion
+- uid: VisualCard.Parsers.Four.VcardFour.Parse
+  name: Parse()
+  href: api/VisualCard.Parsers.Four.VcardFour.html#VisualCard_Parsers_Four_VcardFour_Parse
+  commentId: M:VisualCard.Parsers.Four.VcardFour.Parse
+  fullName: VisualCard.Parsers.Four.VcardFour.Parse()
+  nameWithType: VcardFour.Parse()
+- uid: VisualCard.Parsers.Four.VcardFour.Parse*
+  name: Parse
+  href: api/VisualCard.Parsers.Four.VcardFour.html#VisualCard_Parsers_Four_VcardFour_Parse_
+  commentId: Overload:VisualCard.Parsers.Four.VcardFour.Parse
+  isSpec: "True"
+  fullName: VisualCard.Parsers.Four.VcardFour.Parse
+  nameWithType: VcardFour.Parse
+- uid: VisualCard.Parsers.Four.VcardFour.SaveTo(System.String)
+  name: SaveTo(String)
+  href: api/VisualCard.Parsers.Four.VcardFour.html#VisualCard_Parsers_Four_VcardFour_SaveTo_System_String_
+  commentId: M:VisualCard.Parsers.Four.VcardFour.SaveTo(System.String)
+  fullName: VisualCard.Parsers.Four.VcardFour.SaveTo(System.String)
+  nameWithType: VcardFour.SaveTo(String)
+- uid: VisualCard.Parsers.Four.VcardFour.SaveTo*
+  name: SaveTo
+  href: api/VisualCard.Parsers.Four.VcardFour.html#VisualCard_Parsers_Four_VcardFour_SaveTo_
+  commentId: Overload:VisualCard.Parsers.Four.VcardFour.SaveTo
+  isSpec: "True"
+  fullName: VisualCard.Parsers.Four.VcardFour.SaveTo
+  nameWithType: VcardFour.SaveTo
 - uid: VisualCard.Parsers.IVcardParser
   name: IVcardParser
   href: api/VisualCard.Parsers.IVcardParser.html
@@ -198,179 +262,133 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parsers.IVcardParser.SaveTo
   nameWithType: IVcardParser.SaveTo
-- uid: VisualCard.Parsers.VcardFour
-  name: VcardFour
-  href: api/VisualCard.Parsers.VcardFour.html
-  commentId: T:VisualCard.Parsers.VcardFour
-  fullName: VisualCard.Parsers.VcardFour
-  nameWithType: VcardFour
-- uid: VisualCard.Parsers.VcardFour.CardContent
-  name: CardContent
-  href: api/VisualCard.Parsers.VcardFour.html#VisualCard_Parsers_VcardFour_CardContent
-  commentId: P:VisualCard.Parsers.VcardFour.CardContent
-  fullName: VisualCard.Parsers.VcardFour.CardContent
-  nameWithType: VcardFour.CardContent
-- uid: VisualCard.Parsers.VcardFour.CardContent*
-  name: CardContent
-  href: api/VisualCard.Parsers.VcardFour.html#VisualCard_Parsers_VcardFour_CardContent_
-  commentId: Overload:VisualCard.Parsers.VcardFour.CardContent
-  isSpec: "True"
-  fullName: VisualCard.Parsers.VcardFour.CardContent
-  nameWithType: VcardFour.CardContent
-- uid: VisualCard.Parsers.VcardFour.CardVersion
-  name: CardVersion
-  href: api/VisualCard.Parsers.VcardFour.html#VisualCard_Parsers_VcardFour_CardVersion
-  commentId: P:VisualCard.Parsers.VcardFour.CardVersion
-  fullName: VisualCard.Parsers.VcardFour.CardVersion
-  nameWithType: VcardFour.CardVersion
-- uid: VisualCard.Parsers.VcardFour.CardVersion*
-  name: CardVersion
-  href: api/VisualCard.Parsers.VcardFour.html#VisualCard_Parsers_VcardFour_CardVersion_
-  commentId: Overload:VisualCard.Parsers.VcardFour.CardVersion
-  isSpec: "True"
-  fullName: VisualCard.Parsers.VcardFour.CardVersion
-  nameWithType: VcardFour.CardVersion
-- uid: VisualCard.Parsers.VcardFour.Parse
-  name: Parse()
-  href: api/VisualCard.Parsers.VcardFour.html#VisualCard_Parsers_VcardFour_Parse
-  commentId: M:VisualCard.Parsers.VcardFour.Parse
-  fullName: VisualCard.Parsers.VcardFour.Parse()
-  nameWithType: VcardFour.Parse()
-- uid: VisualCard.Parsers.VcardFour.Parse*
-  name: Parse
-  href: api/VisualCard.Parsers.VcardFour.html#VisualCard_Parsers_VcardFour_Parse_
-  commentId: Overload:VisualCard.Parsers.VcardFour.Parse
-  isSpec: "True"
-  fullName: VisualCard.Parsers.VcardFour.Parse
-  nameWithType: VcardFour.Parse
-- uid: VisualCard.Parsers.VcardFour.SaveTo(System.String)
-  name: SaveTo(String)
-  href: api/VisualCard.Parsers.VcardFour.html#VisualCard_Parsers_VcardFour_SaveTo_System_String_
-  commentId: M:VisualCard.Parsers.VcardFour.SaveTo(System.String)
-  fullName: VisualCard.Parsers.VcardFour.SaveTo(System.String)
-  nameWithType: VcardFour.SaveTo(String)
-- uid: VisualCard.Parsers.VcardFour.SaveTo*
-  name: SaveTo
-  href: api/VisualCard.Parsers.VcardFour.html#VisualCard_Parsers_VcardFour_SaveTo_
-  commentId: Overload:VisualCard.Parsers.VcardFour.SaveTo
-  isSpec: "True"
-  fullName: VisualCard.Parsers.VcardFour.SaveTo
-  nameWithType: VcardFour.SaveTo
-- uid: VisualCard.Parsers.VcardThree
+- uid: VisualCard.Parsers.Three
+  name: VisualCard.Parsers.Three
+  href: api/VisualCard.Parsers.Three.html
+  commentId: N:VisualCard.Parsers.Three
+  fullName: VisualCard.Parsers.Three
+  nameWithType: VisualCard.Parsers.Three
+- uid: VisualCard.Parsers.Three.VcardThree
   name: VcardThree
-  href: api/VisualCard.Parsers.VcardThree.html
-  commentId: T:VisualCard.Parsers.VcardThree
-  fullName: VisualCard.Parsers.VcardThree
+  href: api/VisualCard.Parsers.Three.VcardThree.html
+  commentId: T:VisualCard.Parsers.Three.VcardThree
+  fullName: VisualCard.Parsers.Three.VcardThree
   nameWithType: VcardThree
-- uid: VisualCard.Parsers.VcardThree.CardContent
+- uid: VisualCard.Parsers.Three.VcardThree.CardContent
   name: CardContent
-  href: api/VisualCard.Parsers.VcardThree.html#VisualCard_Parsers_VcardThree_CardContent
-  commentId: P:VisualCard.Parsers.VcardThree.CardContent
-  fullName: VisualCard.Parsers.VcardThree.CardContent
+  href: api/VisualCard.Parsers.Three.VcardThree.html#VisualCard_Parsers_Three_VcardThree_CardContent
+  commentId: P:VisualCard.Parsers.Three.VcardThree.CardContent
+  fullName: VisualCard.Parsers.Three.VcardThree.CardContent
   nameWithType: VcardThree.CardContent
-- uid: VisualCard.Parsers.VcardThree.CardContent*
+- uid: VisualCard.Parsers.Three.VcardThree.CardContent*
   name: CardContent
-  href: api/VisualCard.Parsers.VcardThree.html#VisualCard_Parsers_VcardThree_CardContent_
-  commentId: Overload:VisualCard.Parsers.VcardThree.CardContent
+  href: api/VisualCard.Parsers.Three.VcardThree.html#VisualCard_Parsers_Three_VcardThree_CardContent_
+  commentId: Overload:VisualCard.Parsers.Three.VcardThree.CardContent
   isSpec: "True"
-  fullName: VisualCard.Parsers.VcardThree.CardContent
+  fullName: VisualCard.Parsers.Three.VcardThree.CardContent
   nameWithType: VcardThree.CardContent
-- uid: VisualCard.Parsers.VcardThree.CardVersion
+- uid: VisualCard.Parsers.Three.VcardThree.CardVersion
   name: CardVersion
-  href: api/VisualCard.Parsers.VcardThree.html#VisualCard_Parsers_VcardThree_CardVersion
-  commentId: P:VisualCard.Parsers.VcardThree.CardVersion
-  fullName: VisualCard.Parsers.VcardThree.CardVersion
+  href: api/VisualCard.Parsers.Three.VcardThree.html#VisualCard_Parsers_Three_VcardThree_CardVersion
+  commentId: P:VisualCard.Parsers.Three.VcardThree.CardVersion
+  fullName: VisualCard.Parsers.Three.VcardThree.CardVersion
   nameWithType: VcardThree.CardVersion
-- uid: VisualCard.Parsers.VcardThree.CardVersion*
+- uid: VisualCard.Parsers.Three.VcardThree.CardVersion*
   name: CardVersion
-  href: api/VisualCard.Parsers.VcardThree.html#VisualCard_Parsers_VcardThree_CardVersion_
-  commentId: Overload:VisualCard.Parsers.VcardThree.CardVersion
+  href: api/VisualCard.Parsers.Three.VcardThree.html#VisualCard_Parsers_Three_VcardThree_CardVersion_
+  commentId: Overload:VisualCard.Parsers.Three.VcardThree.CardVersion
   isSpec: "True"
-  fullName: VisualCard.Parsers.VcardThree.CardVersion
+  fullName: VisualCard.Parsers.Three.VcardThree.CardVersion
   nameWithType: VcardThree.CardVersion
-- uid: VisualCard.Parsers.VcardThree.Parse
+- uid: VisualCard.Parsers.Three.VcardThree.Parse
   name: Parse()
-  href: api/VisualCard.Parsers.VcardThree.html#VisualCard_Parsers_VcardThree_Parse
-  commentId: M:VisualCard.Parsers.VcardThree.Parse
-  fullName: VisualCard.Parsers.VcardThree.Parse()
+  href: api/VisualCard.Parsers.Three.VcardThree.html#VisualCard_Parsers_Three_VcardThree_Parse
+  commentId: M:VisualCard.Parsers.Three.VcardThree.Parse
+  fullName: VisualCard.Parsers.Three.VcardThree.Parse()
   nameWithType: VcardThree.Parse()
-- uid: VisualCard.Parsers.VcardThree.Parse*
+- uid: VisualCard.Parsers.Three.VcardThree.Parse*
   name: Parse
-  href: api/VisualCard.Parsers.VcardThree.html#VisualCard_Parsers_VcardThree_Parse_
-  commentId: Overload:VisualCard.Parsers.VcardThree.Parse
+  href: api/VisualCard.Parsers.Three.VcardThree.html#VisualCard_Parsers_Three_VcardThree_Parse_
+  commentId: Overload:VisualCard.Parsers.Three.VcardThree.Parse
   isSpec: "True"
-  fullName: VisualCard.Parsers.VcardThree.Parse
+  fullName: VisualCard.Parsers.Three.VcardThree.Parse
   nameWithType: VcardThree.Parse
-- uid: VisualCard.Parsers.VcardThree.SaveTo(System.String)
+- uid: VisualCard.Parsers.Three.VcardThree.SaveTo(System.String)
   name: SaveTo(String)
-  href: api/VisualCard.Parsers.VcardThree.html#VisualCard_Parsers_VcardThree_SaveTo_System_String_
-  commentId: M:VisualCard.Parsers.VcardThree.SaveTo(System.String)
-  fullName: VisualCard.Parsers.VcardThree.SaveTo(System.String)
+  href: api/VisualCard.Parsers.Three.VcardThree.html#VisualCard_Parsers_Three_VcardThree_SaveTo_System_String_
+  commentId: M:VisualCard.Parsers.Three.VcardThree.SaveTo(System.String)
+  fullName: VisualCard.Parsers.Three.VcardThree.SaveTo(System.String)
   nameWithType: VcardThree.SaveTo(String)
-- uid: VisualCard.Parsers.VcardThree.SaveTo*
+- uid: VisualCard.Parsers.Three.VcardThree.SaveTo*
   name: SaveTo
-  href: api/VisualCard.Parsers.VcardThree.html#VisualCard_Parsers_VcardThree_SaveTo_
-  commentId: Overload:VisualCard.Parsers.VcardThree.SaveTo
+  href: api/VisualCard.Parsers.Three.VcardThree.html#VisualCard_Parsers_Three_VcardThree_SaveTo_
+  commentId: Overload:VisualCard.Parsers.Three.VcardThree.SaveTo
   isSpec: "True"
-  fullName: VisualCard.Parsers.VcardThree.SaveTo
+  fullName: VisualCard.Parsers.Three.VcardThree.SaveTo
   nameWithType: VcardThree.SaveTo
-- uid: VisualCard.Parsers.VcardTwo
+- uid: VisualCard.Parsers.Two
+  name: VisualCard.Parsers.Two
+  href: api/VisualCard.Parsers.Two.html
+  commentId: N:VisualCard.Parsers.Two
+  fullName: VisualCard.Parsers.Two
+  nameWithType: VisualCard.Parsers.Two
+- uid: VisualCard.Parsers.Two.VcardTwo
   name: VcardTwo
-  href: api/VisualCard.Parsers.VcardTwo.html
-  commentId: T:VisualCard.Parsers.VcardTwo
-  fullName: VisualCard.Parsers.VcardTwo
+  href: api/VisualCard.Parsers.Two.VcardTwo.html
+  commentId: T:VisualCard.Parsers.Two.VcardTwo
+  fullName: VisualCard.Parsers.Two.VcardTwo
   nameWithType: VcardTwo
-- uid: VisualCard.Parsers.VcardTwo.CardContent
+- uid: VisualCard.Parsers.Two.VcardTwo.CardContent
   name: CardContent
-  href: api/VisualCard.Parsers.VcardTwo.html#VisualCard_Parsers_VcardTwo_CardContent
-  commentId: P:VisualCard.Parsers.VcardTwo.CardContent
-  fullName: VisualCard.Parsers.VcardTwo.CardContent
+  href: api/VisualCard.Parsers.Two.VcardTwo.html#VisualCard_Parsers_Two_VcardTwo_CardContent
+  commentId: P:VisualCard.Parsers.Two.VcardTwo.CardContent
+  fullName: VisualCard.Parsers.Two.VcardTwo.CardContent
   nameWithType: VcardTwo.CardContent
-- uid: VisualCard.Parsers.VcardTwo.CardContent*
+- uid: VisualCard.Parsers.Two.VcardTwo.CardContent*
   name: CardContent
-  href: api/VisualCard.Parsers.VcardTwo.html#VisualCard_Parsers_VcardTwo_CardContent_
-  commentId: Overload:VisualCard.Parsers.VcardTwo.CardContent
+  href: api/VisualCard.Parsers.Two.VcardTwo.html#VisualCard_Parsers_Two_VcardTwo_CardContent_
+  commentId: Overload:VisualCard.Parsers.Two.VcardTwo.CardContent
   isSpec: "True"
-  fullName: VisualCard.Parsers.VcardTwo.CardContent
+  fullName: VisualCard.Parsers.Two.VcardTwo.CardContent
   nameWithType: VcardTwo.CardContent
-- uid: VisualCard.Parsers.VcardTwo.CardVersion
+- uid: VisualCard.Parsers.Two.VcardTwo.CardVersion
   name: CardVersion
-  href: api/VisualCard.Parsers.VcardTwo.html#VisualCard_Parsers_VcardTwo_CardVersion
-  commentId: P:VisualCard.Parsers.VcardTwo.CardVersion
-  fullName: VisualCard.Parsers.VcardTwo.CardVersion
+  href: api/VisualCard.Parsers.Two.VcardTwo.html#VisualCard_Parsers_Two_VcardTwo_CardVersion
+  commentId: P:VisualCard.Parsers.Two.VcardTwo.CardVersion
+  fullName: VisualCard.Parsers.Two.VcardTwo.CardVersion
   nameWithType: VcardTwo.CardVersion
-- uid: VisualCard.Parsers.VcardTwo.CardVersion*
+- uid: VisualCard.Parsers.Two.VcardTwo.CardVersion*
   name: CardVersion
-  href: api/VisualCard.Parsers.VcardTwo.html#VisualCard_Parsers_VcardTwo_CardVersion_
-  commentId: Overload:VisualCard.Parsers.VcardTwo.CardVersion
+  href: api/VisualCard.Parsers.Two.VcardTwo.html#VisualCard_Parsers_Two_VcardTwo_CardVersion_
+  commentId: Overload:VisualCard.Parsers.Two.VcardTwo.CardVersion
   isSpec: "True"
-  fullName: VisualCard.Parsers.VcardTwo.CardVersion
+  fullName: VisualCard.Parsers.Two.VcardTwo.CardVersion
   nameWithType: VcardTwo.CardVersion
-- uid: VisualCard.Parsers.VcardTwo.Parse
+- uid: VisualCard.Parsers.Two.VcardTwo.Parse
   name: Parse()
-  href: api/VisualCard.Parsers.VcardTwo.html#VisualCard_Parsers_VcardTwo_Parse
-  commentId: M:VisualCard.Parsers.VcardTwo.Parse
-  fullName: VisualCard.Parsers.VcardTwo.Parse()
+  href: api/VisualCard.Parsers.Two.VcardTwo.html#VisualCard_Parsers_Two_VcardTwo_Parse
+  commentId: M:VisualCard.Parsers.Two.VcardTwo.Parse
+  fullName: VisualCard.Parsers.Two.VcardTwo.Parse()
   nameWithType: VcardTwo.Parse()
-- uid: VisualCard.Parsers.VcardTwo.Parse*
+- uid: VisualCard.Parsers.Two.VcardTwo.Parse*
   name: Parse
-  href: api/VisualCard.Parsers.VcardTwo.html#VisualCard_Parsers_VcardTwo_Parse_
-  commentId: Overload:VisualCard.Parsers.VcardTwo.Parse
+  href: api/VisualCard.Parsers.Two.VcardTwo.html#VisualCard_Parsers_Two_VcardTwo_Parse_
+  commentId: Overload:VisualCard.Parsers.Two.VcardTwo.Parse
   isSpec: "True"
-  fullName: VisualCard.Parsers.VcardTwo.Parse
+  fullName: VisualCard.Parsers.Two.VcardTwo.Parse
   nameWithType: VcardTwo.Parse
-- uid: VisualCard.Parsers.VcardTwo.SaveTo(System.String)
+- uid: VisualCard.Parsers.Two.VcardTwo.SaveTo(System.String)
   name: SaveTo(String)
-  href: api/VisualCard.Parsers.VcardTwo.html#VisualCard_Parsers_VcardTwo_SaveTo_System_String_
-  commentId: M:VisualCard.Parsers.VcardTwo.SaveTo(System.String)
-  fullName: VisualCard.Parsers.VcardTwo.SaveTo(System.String)
+  href: api/VisualCard.Parsers.Two.VcardTwo.html#VisualCard_Parsers_Two_VcardTwo_SaveTo_System_String_
+  commentId: M:VisualCard.Parsers.Two.VcardTwo.SaveTo(System.String)
+  fullName: VisualCard.Parsers.Two.VcardTwo.SaveTo(System.String)
   nameWithType: VcardTwo.SaveTo(String)
-- uid: VisualCard.Parsers.VcardTwo.SaveTo*
+- uid: VisualCard.Parsers.Two.VcardTwo.SaveTo*
   name: SaveTo
-  href: api/VisualCard.Parsers.VcardTwo.html#VisualCard_Parsers_VcardTwo_SaveTo_
-  commentId: Overload:VisualCard.Parsers.VcardTwo.SaveTo
+  href: api/VisualCard.Parsers.Two.VcardTwo.html#VisualCard_Parsers_Two_VcardTwo_SaveTo_
+  commentId: Overload:VisualCard.Parsers.Two.VcardTwo.SaveTo
   isSpec: "True"
-  fullName: VisualCard.Parsers.VcardTwo.SaveTo
+  fullName: VisualCard.Parsers.Two.VcardTwo.SaveTo
   nameWithType: VcardTwo.SaveTo
 - uid: VisualCard.Parts
   name: VisualCard.Parts
