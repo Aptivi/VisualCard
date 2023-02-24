@@ -27,6 +27,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using VisualCard.Parsers;
+using VisualCard.Parsers.Two;
+using VisualCard.Parsers.Three;
+using VisualCard.Parsers.Four;
 
 namespace VisualCard
 {

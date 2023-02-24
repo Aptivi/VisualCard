@@ -33,50 +33,55 @@ using VisualCard.Exceptions;
 using VisualCard.Parts;
 using TimeZoneInfo = VisualCard.Parts.TimeZoneInfo;
 
-namespace VisualCard.Parsers
+namespace VisualCard.Parsers.Three
 {
     /// <summary>
-    /// Parser for VCard version 2.1. Consult the vcard-21.txt file in source for the specification.
+    /// Parser for VCard version 3.0. Consult the vcard-30-rfc2426.txt file in source for the specification.
     /// </summary>
-    public class VcardTwo : BaseVcardParser, IVcardParser
+    public class VcardThree : BaseVcardParser, IVcardParser
     {
         public override string CardContent { get; }
         public override string CardVersion { get; }
 
-        // Some VCard 2.1 constants
-        const char _fieldDelimiter                  = ';';
-        const char _valueDelimiter                  = ',';
-        const char _argumentDelimiter               = ':';
-        const string _nameSpecifier                 = "N:";
-        const string _fullNameSpecifier             = "FN:";
-        const string _telephoneSpecifierWithType    = "TEL;";
-        const string _telephoneSpecifier            = "TEL:";
-        const string _addressSpecifierWithType      = "ADR;";
-        const string _emailSpecifier                = "EMAIL;";
-        const string _orgSpecifier                  = "ORG:";
-        const string _titleSpecifier                = "TITLE:";
-        const string _urlSpecifier                  = "URL:";
-        const string _noteSpecifier                 = "NOTE:";
-        const string _photoSpecifierWithType        = "PHOTO;";
-        const string _logoSpecifierWithType         = "LOGO;";
-        const string _soundSpecifierWithType        = "SOUND;";
-        const string _revSpecifier                  = "REV:";
-        const string _birthSpecifier                = "BDAY:";
-        const string _mailerSpecifier               = "MAILER:";
-        const string _roleSpecifier                 = "ROLE:";
-        const string _timeZoneSpecifier             = "TZ:";
-        const string _geoSpecifier                  = "GEO:";
-        const string _timeZoneSpecifierWithType     = "TZ;";
-        const string _geoSpecifierWithType          = "GEO;";
-        const string _xSpecifier                    = "X-";
-        const string _typeArgumentSpecifier         = "TYPE=";
-        const string _valueArgumentSpecifier        = "VALUE=";
+        // Some VCard 3.0 constants
+        const char _fieldDelimiter = ';';
+        const char _valueDelimiter = ',';
+        const char _argumentDelimiter = ':';
+        const string _nameSpecifier = "N:";
+        const string _fullNameSpecifier = "FN:";
+        const string _telephoneSpecifierWithType = "TEL;";
+        const string _telephoneSpecifier = "TEL:";
+        const string _addressSpecifierWithType = "ADR;";
+        const string _emailSpecifier = "EMAIL;";
+        const string _orgSpecifier = "ORG:";
+        const string _titleSpecifier = "TITLE:";
+        const string _urlSpecifier = "URL:";
+        const string _noteSpecifier = "NOTE:";
+        const string _photoSpecifierWithType = "PHOTO;";
+        const string _logoSpecifierWithType = "LOGO;";
+        const string _soundSpecifierWithType = "SOUND;";
+        const string _revSpecifier = "REV:";
+        const string _nicknameSpecifier = "NICKNAME:";
+        const string _nicknameSpecifierWithType = "NICKNAME;";
+        const string _birthSpecifier = "BDAY:";
+        const string _mailerSpecifier = "MAILER:";
+        const string _roleSpecifier = "ROLE:";
+        const string _categoriesSpecifier = "CATEGORIES:";
+        const string _productIdSpecifier = "PRODID:";
+        const string _sortStringSpecifier = "SORT-STRING:";
+        const string _timeZoneSpecifier = "TZ:";
+        const string _geoSpecifier = "GEO:";
+        const string _timeZoneSpecifierWithType = "TZ;";
+        const string _geoSpecifierWithType = "GEO;";
+        const string _xSpecifier = "X-";
+        const string _typeArgumentSpecifier = "TYPE=";
+        const string _valueArgumentSpecifier = "VALUE=";
 
         public override Card Parse()
         {
-            // Check the version to ensure that we're really dealing with VCard 2.1 contact
-            if (CardVersion != "2.1")
-                throw new InvalidDataException($"Card version {CardVersion} doesn't match expected \"2.1\".");
+            // Check the version to ensure that we're really dealing with VCard 3.0 contact
+            if (CardVersion != "3.0")
+                throw new InvalidDataException($"Card version {CardVersion} doesn't match expected \"3.0\".");
 
             // Check the content to ensure that we really have data
             if (string.IsNullOrEmpty(CardContent))
@@ -88,28 +93,33 @@ namespace VisualCard.Parsers
             StreamReader CardContentReader = new(CardContentStream);
 
             // Some variables to assign to the Card() ctor
-            string _fullName                = "";
-            string _url                     = "";
-            string _note                    = "";
-            string _mailer                  = "";
-            DateTime _rev                   = DateTime.MinValue;
-            DateTime _bday                  = DateTime.MinValue;
+            string _fullName = "";
+            string _url = "";
+            string _note = "";
+            string _mailer = "";
+            string _prodId = "";
+            string _sortString = "";
+            DateTime _rev = DateTime.MinValue;
+            DateTime _bday = DateTime.MinValue;
+            List<NameInfo> _names = new();
             List<TelephoneInfo> _telephones = new();
-            List<NameInfo> _names           = new();
-            List<EmailInfo> _emails         = new();
-            List<AddressInfo> _addresses    = new();
-            List<OrganizationInfo> _orgs    = new();
-            List<TitleInfo> _titles         = new();
-            List<PhotoInfo> _photos         = new();
-            List<LogoInfo> _logos           = new();
-            List<SoundInfo> _sounds         = new();
-            List<RoleInfo> _roles           = new();
-            List<TimeZoneInfo> _timezones   = new();
-            List<GeoInfo> _geos             = new();
-            List<XNameInfo> _xes            = new();
+            List<EmailInfo> _emails = new();
+            List<AddressInfo> _addresses = new();
+            List<OrganizationInfo> _orgs = new();
+            List<TitleInfo> _titles = new();
+            List<PhotoInfo> _photos = new();
+            List<LogoInfo> _logos = new();
+            List<SoundInfo> _sounds = new();
+            List<NicknameInfo> _nicks = new();
+            List<RoleInfo> _roles = new();
+            List<string> _categories = new();
+            List<TimeZoneInfo> _timezones = new();
+            List<GeoInfo> _geos = new();
+            List<XNameInfo> _xes = new();
 
-            // Name specifier is required
+            // Name and Full Name specifiers are required
             bool nameSpecifierSpotted = false;
+            bool fullNameSpecifierSpotted = false;
 
             // Iterate through all the lines
             int lineNumber = 0;
@@ -128,11 +138,11 @@ namespace VisualCard.Parsers
                         string nameValue = _value.Substring(_nameSpecifier.Length);
                         string[] splitName = nameValue.Split(_fieldDelimiter);
                         if (splitName.Length < 2)
-                            throw new InvalidDataException("Name field must specify the first two or more of the five values (Last name, first name, alt names, prefixes, and suffixes)");
+                            throw new InvalidDataException("Name field must specify exactly five values (Last name, first name, alt names, prefixes, and suffixes)");
 
                         // Populate fields
-                        string _lastName   = Regex.Unescape(splitName[0]);
-                        string _firstName  = Regex.Unescape(splitName[1]);
+                        string _lastName = Regex.Unescape(splitName[0]);
+                        string _firstName = Regex.Unescape(splitName[1]);
                         string[] _altNames = splitName.Length >= 3 ? Regex.Unescape(splitName[2]).Split(new char[] { _valueDelimiter }) : Array.Empty<string>();
                         string[] _prefixes = splitName.Length >= 4 ? Regex.Unescape(splitName[3]).Split(new char[] { _valueDelimiter }) : Array.Empty<string>();
                         string[] _suffixes = splitName.Length >= 5 ? Regex.Unescape(splitName[4]).Split(new char[] { _valueDelimiter }) : Array.Empty<string>();
@@ -151,25 +161,35 @@ namespace VisualCard.Parsers
 
                         // Populate field
                         _fullName = Regex.Unescape(fullNameValue);
+
+                        // Set flag to indicate that the required field is spotted
+                        fullNameSpecifierSpotted = true;
                     }
 
-                    // Telephone (TEL;CELL;HOME:495-522-3560 or TEL;TYPE=cell,home:495-522-3560)
+                    // Telephone (TEL;TYPE=cell,home:495-522-3560)
                     if (_value.StartsWith(_telephoneSpecifierWithType))
                     {
                         // Get the value
                         string telValue = _value.Substring(_telephoneSpecifierWithType.Length);
                         string[] splitTel = telValue.Split(_argumentDelimiter);
+                        string[] splitTypes;
                         if (splitTel.Length != 2)
-                            throw new InvalidDataException("Telephone field must specify exactly two values (Type (optionally prepended with TYPE=), and phone number)");
+                            throw new InvalidDataException("Telephone field must specify exactly two values (Type (must be prepended with TYPE=), and phone number)");
 
                         // Check to see if the type is prepended with the TYPE= argument
-                        string[] splitTypes = splitTel[0].StartsWith(_typeArgumentSpecifier) ?
-                                              splitTel[0].Substring(_typeArgumentSpecifier.Length).Split(_valueDelimiter) :
-                                              splitTel[0].Split(_fieldDelimiter);
+                        if (splitTel[0].StartsWith(_typeArgumentSpecifier))
+                            // Get the types
+                            splitTypes = splitTel[0].Substring(_typeArgumentSpecifier.Length).Split(_valueDelimiter);
+                        else if (string.IsNullOrEmpty(splitTel[0]))
+                            // We're confronted with an empty type. Assume that it's a CELL.
+                            splitTypes = new string[] { "CELL" };
+                        else
+                            // Trying to specify type without TYPE= is illegal according to RFC2426
+                            throw new InvalidDataException("Telephone type must be prepended with TYPE=");
 
                         // Populate the fields
-                        string[] _telephoneTypes =  splitTypes;
-                        string _telephoneNumber =   Regex.Unescape(splitTel[1]);
+                        string[] _telephoneTypes = splitTypes;
+                        string _telephoneNumber = Regex.Unescape(splitTel[1]);
                         TelephoneInfo _telephone = new(0, _telephoneTypes, _telephoneNumber);
                         _telephones.Add(_telephone);
                     }
@@ -187,19 +207,26 @@ namespace VisualCard.Parsers
                         _telephones.Add(_telephone);
                     }
 
-                    // Address (ADR;HOME:;;Los Angeles, USA;;;;)
+                    // Address (ADR;TYPE=HOME:;;Los Angeles, USA;;;;)
                     if (_value.StartsWith(_addressSpecifierWithType))
                     {
                         // Get the value
                         string adrValue = _value.Substring(_addressSpecifierWithType.Length);
                         string[] splitAdr = adrValue.Split(_argumentDelimiter);
+                        string[] splitTypes;
                         if (splitAdr.Length != 2)
-                            throw new InvalidDataException("Address field must specify exactly two values (Type (optionally prepended with TYPE=), and address information)");
+                            throw new InvalidDataException("Address field must specify exactly two values (Type (must be prepended with TYPE=), and address information)");
 
                         // Check to see if the type is prepended with the TYPE= argument
-                        string[] splitTypes = splitAdr[0].StartsWith(_typeArgumentSpecifier) ?
-                                              splitAdr[0].Substring(_typeArgumentSpecifier.Length).Split(_valueDelimiter) :
-                                              splitAdr[0].Split(_fieldDelimiter);
+                        if (splitAdr[0].StartsWith(_typeArgumentSpecifier))
+                            // Get the types
+                            splitTypes = splitAdr[0].Substring(_typeArgumentSpecifier.Length).Split(_valueDelimiter);
+                        else if (string.IsNullOrEmpty(splitAdr[0]))
+                            // We're confronted with an empty type. Assume that it's a HOME address.
+                            splitTypes = new string[] { "HOME" };
+                        else
+                            // Trying to specify type without TYPE= is illegal according to RFC2426
+                            throw new InvalidDataException("Address type must be prepended with TYPE=");
 
                         // Check the provided address
                         string[] splitAddressValues = splitAdr[1].Split(_fieldDelimiter);
@@ -207,32 +234,39 @@ namespace VisualCard.Parsers
                             throw new InvalidDataException("Address information must specify exactly seven values (P.O. Box, extended address, street address, locality, region, postal code, and country)");
 
                         // Populate the fields
-                        string[] _addressTypes =    splitTypes;
-                        string _addressPOBox =      Regex.Unescape(splitAddressValues[0]);
-                        string _addressExtended =   Regex.Unescape(splitAddressValues[1]);
-                        string _addressStreet =     Regex.Unescape(splitAddressValues[2]);
-                        string _addressLocality =   Regex.Unescape(splitAddressValues[3]);
-                        string _addressRegion =     Regex.Unescape(splitAddressValues[4]);
+                        string[] _addressTypes = splitTypes;
+                        string _addressPOBox = Regex.Unescape(splitAddressValues[0]);
+                        string _addressExtended = Regex.Unescape(splitAddressValues[1]);
+                        string _addressStreet = Regex.Unescape(splitAddressValues[2]);
+                        string _addressLocality = Regex.Unescape(splitAddressValues[3]);
+                        string _addressRegion = Regex.Unescape(splitAddressValues[4]);
                         string _addressPostalCode = Regex.Unescape(splitAddressValues[5]);
-                        string _addressCountry =    Regex.Unescape(splitAddressValues[6]);
+                        string _addressCountry = Regex.Unescape(splitAddressValues[6]);
                         AddressInfo _address = new(0, _addressTypes, _addressPOBox, _addressExtended, _addressStreet, _addressLocality, _addressRegion, _addressPostalCode, _addressCountry);
                         _addresses.Add(_address);
                     }
 
-                    // Email (EMAIL;HOME;INTERNET:john.s@acme.co or EMAIL;TYPE=HOME,INTERNET:john.s@acme.co)
+                    // Email (EMAIL;TYPE=HOME,INTERNET:john.s@acme.co)
                     if (_value.StartsWith(_emailSpecifier))
                     {
                         // Get the value
                         string mailValue = _value.Substring(_emailSpecifier.Length);
                         string[] splitMail = mailValue.Split(_argumentDelimiter);
+                        string[] splitTypes;
                         MailAddress mail;
                         if (splitMail.Length != 2)
-                            throw new InvalidDataException("E-mail field must specify exactly two values (Type (optionally prepended with TYPE=), and a valid e-mail address)");
+                            throw new InvalidDataException("E-mail field must specify exactly two values (Type (must be prepended with TYPE=), and a valid e-mail address)");
 
                         // Check to see if the type is prepended with the TYPE= argument
-                        string[] splitTypes = splitMail[0].StartsWith(_typeArgumentSpecifier) ?
-                                              splitMail[0].Substring(_typeArgumentSpecifier.Length).Split(_valueDelimiter) :
-                                              splitMail[0].Split(_fieldDelimiter);
+                        if (splitMail[0].StartsWith(_typeArgumentSpecifier))
+                            // Get the types
+                            splitTypes = splitMail[0].Substring(_typeArgumentSpecifier.Length).Split(_valueDelimiter);
+                        else if (string.IsNullOrEmpty(splitMail[0]))
+                            // We're confronted with an empty type. Assume that it's an INTERNET mail.
+                            splitTypes = new string[] { "INTERNET" };
+                        else
+                            // Trying to specify type without TYPE= is illegal according to RFC2426
+                            throw new InvalidDataException("E-mail type must be prepended with TYPE=");
 
                         // Try to create mail address
                         try
@@ -259,8 +293,8 @@ namespace VisualCard.Parsers
                         string[] splitOrg = orgValue.Split(_fieldDelimiter);
 
                         // Populate the fields
-                        string _orgName =     Regex.Unescape(splitOrg[0]);
-                        string _orgUnit =     Regex.Unescape(splitOrg.Length >= 2 ? splitOrg[1] : "");
+                        string _orgName = Regex.Unescape(splitOrg[0]);
+                        string _orgUnit = Regex.Unescape(splitOrg.Length >= 2 ? splitOrg[1] : "");
                         string _orgUnitRole = Regex.Unescape(splitOrg.Length >= 3 ? splitOrg[2] : "");
                         OrganizationInfo _org = new(0, _orgName, _orgUnit, _orgUnitRole);
                         _orgs.Add(_org);
@@ -333,8 +367,8 @@ namespace VisualCard.Parsers
                         if (splitPhotoArgs.Length >= 1)
                         {
                             photoType = splitPhotoArgs[1].StartsWith(_typeArgumentSpecifier) ?
-                                        splitPhotoArgs[1].Substring(_typeArgumentSpecifier.Length).Substring(0, splitPhotoArgs[1].IndexOf(_argumentDelimiter)) :
-                                        splitPhotoArgs[1].Substring(0, splitPhotoArgs[1].IndexOf(_argumentDelimiter));
+                                        splitPhotoArgs[1].Substring(_typeArgumentSpecifier.Length) :
+                                        splitPhotoArgs[1];
                         }
 
                         // Now, get the encoded photo
@@ -389,8 +423,8 @@ namespace VisualCard.Parsers
                         if (splitLogoArgs.Length >= 1)
                         {
                             logoType = splitLogoArgs[1].StartsWith(_typeArgumentSpecifier) ?
-                                       splitLogoArgs[1].Substring(_typeArgumentSpecifier.Length).Substring(0, splitLogoArgs[1].IndexOf(_argumentDelimiter)) :
-                                       splitLogoArgs[1].Substring(0, splitLogoArgs[1].IndexOf(_argumentDelimiter));
+                                       splitLogoArgs[1].Substring(_typeArgumentSpecifier.Length) :
+                                       splitLogoArgs[1];
                         }
 
                         // Now, get the encoded logo
@@ -482,6 +516,47 @@ namespace VisualCard.Parsers
                         _rev = DateTime.Parse(revValue);
                     }
 
+                    // Nickname (NICKNAME;TYPE=work:Boss)
+                    if (_value.StartsWith(_nicknameSpecifierWithType))
+                    {
+                        // Get the value
+                        string nickValue = _value.Substring(_nicknameSpecifierWithType.Length);
+                        string[] splitNick = nickValue.Split(_argumentDelimiter);
+                        string[] splitTypes;
+                        if (splitNick.Length != 2)
+                            throw new InvalidDataException("Nickname field must specify exactly two values (Type (must be prepended with TYPE=), and nickname)");
+
+                        // Check to see if the type is prepended with the TYPE= argument
+                        if (splitNick[0].StartsWith(_typeArgumentSpecifier))
+                            // Get the types
+                            splitTypes = splitNick[0].Substring(_typeArgumentSpecifier.Length).Split(_valueDelimiter);
+                        else if (string.IsNullOrEmpty(splitNick[0]))
+                            // We're confronted with an empty type. Assume that it's HOME.
+                            splitTypes = new string[] { "HOME" };
+                        else
+                            // Trying to specify type without TYPE= is illegal according to RFC2426
+                            throw new InvalidDataException("Nick type must be prepended with TYPE=");
+
+                        // Populate the fields
+                        string[] _nicknameTypes = splitTypes;
+                        string _nick = Regex.Unescape(splitNick[1]);
+                        NicknameInfo _nickInstance = new(0, Array.Empty<string>(), _nick, _nicknameTypes);
+                        _nicks.Add(_nickInstance);
+                    }
+
+                    // Nickname (NICKNAME:Jim)
+                    if (_value.StartsWith(_nicknameSpecifier))
+                    {
+                        // Get the value
+                        string nickValue = _value.Substring(_nicknameSpecifier.Length);
+
+                        // Populate the fields
+                        string[] _nicknameTypes = new string[] { "HOME" };
+                        string _nick = Regex.Unescape(nickValue);
+                        NicknameInfo _nickInstance = new(0, Array.Empty<string>(), _nick, _nicknameTypes);
+                        _nicks.Add(_nickInstance);
+                    }
+
                     // Birthdate (BDAY:19950415 or BDAY:1953-10-15T23:10:00Z)
                     if (_value.StartsWith(_birthSpecifier))
                     {
@@ -513,19 +588,56 @@ namespace VisualCard.Parsers
                         _roles.Add(_role);
                     }
 
+                    // Categories (CATEGORIES:INTERNET or CATEGORIES:INTERNET,IETF,INDUSTRY,INFORMATION TECHNOLOGY)
+                    if (_value.StartsWith(_categoriesSpecifier))
+                    {
+                        // Get the value
+                        string categoriesValue = _value.Substring(_categoriesSpecifier.Length);
+
+                        // Populate field
+                        _categories.AddRange(Regex.Unescape(categoriesValue).Split(','));
+                    }
+
+                    // Product ID (PRODID:-//ONLINE DIRECTORY//NONSGML Version 1//EN)
+                    if (_value.StartsWith(_productIdSpecifier))
+                    {
+                        // Get the value
+                        string prodIdValue = _value.Substring(_productIdSpecifier.Length);
+
+                        // Populate field
+                        _prodId = Regex.Unescape(prodIdValue);
+                    }
+
+                    // Sort string (SORT-STRING:Harten)
+                    if (_value.StartsWith(_sortStringSpecifier))
+                    {
+                        // Get the value
+                        string sortStringValue = _value.Substring(_sortStringSpecifier.Length);
+
+                        // Populate field
+                        _sortString = Regex.Unescape(sortStringValue);
+                    }
+
                     // Time Zone (TZ;VALUE=text:-05:00; EST; Raleigh/North America)
                     if (_value.StartsWith(_timeZoneSpecifierWithType))
                     {
                         // Get the value
                         string tzValue = _value.Substring(_timeZoneSpecifierWithType.Length);
                         string[] splitTz = tzValue.Split(_argumentDelimiter);
+                        string[] splitTypes;
                         if (splitTz.Length != 1)
-                            throw new InvalidDataException("TimeZone field must specify exactly one value (VALUE=\"text\" / \"uri\" / \"utc-offset\")");
+                            throw new InvalidDataException("Time Zone field must specify exactly one value (VALUE=\"text\" / \"uri\" / \"utc-offset\")");
 
                         // Check to see if the type is prepended with the VALUE= argument
-                        string[] splitTypes = splitTz[0].StartsWith(_valueArgumentSpecifier) ?
-                                              splitTz[0].Substring(_valueArgumentSpecifier.Length).Split(_valueDelimiter) :
-                                              splitTz[0].Split(_fieldDelimiter);
+                        if (splitTz[0].StartsWith(_valueArgumentSpecifier))
+                            // Get the types
+                            splitTypes = splitTz[0].Substring(_valueArgumentSpecifier.Length).Split(_valueDelimiter);
+                        else if (string.IsNullOrEmpty(splitTz[0]))
+                            // We're confronted with an empty type. Assume that it's a uri-offset.
+                            splitTypes = new string[] { "uri-offset" };
+                        else
+                            // Trying to specify type without VALUE= is illegal according to RFC2426
+                            throw new InvalidDataException("Time Zone type must be prepended with VALUE=");
 
                         // Populate the fields
                         string[] _timeZoneTypes = splitTypes;
@@ -541,8 +653,9 @@ namespace VisualCard.Parsers
                         string tzValue = _value.Substring(_timeZoneSpecifier.Length);
 
                         // Populate the fields
-                        string _timeZoneStr = Regex.Unescape(tzValue);
-                        TimeZoneInfo _timeZone = new(0, Array.Empty<string>(), _timeZoneStr);
+                        string[] _timeZoneTypes = new string[] { "uri-offset" };
+                        string _timeZoneNumber = Regex.Unescape(tzValue);
+                        TimeZoneInfo _timeZone = new(0, _timeZoneTypes, _timeZoneNumber);
                         _timezones.Add(_timeZone);
                     }
 
@@ -552,13 +665,20 @@ namespace VisualCard.Parsers
                         // Get the value
                         string geoValue = _value.Substring(_geoSpecifierWithType.Length);
                         string[] splitGeo = geoValue.Split(_argumentDelimiter);
+                        string[] splitTypes;
                         if (splitGeo.Length != 1)
                             throw new InvalidDataException("Geo field must specify exactly one value (VALUE=\"uri\")");
 
                         // Check to see if the type is prepended with the VALUE= argument
-                        string[] splitTypes = splitGeo[0].StartsWith(_valueArgumentSpecifier) ?
-                                              splitGeo[0].Substring(_valueArgumentSpecifier.Length).Split(_valueDelimiter) :
-                                              splitGeo[0].Split(_fieldDelimiter);
+                        if (splitGeo[0].StartsWith(_valueArgumentSpecifier))
+                            // Get the types
+                            splitTypes = splitGeo[0].Substring(_valueArgumentSpecifier.Length).Split(_valueDelimiter);
+                        else if (string.IsNullOrEmpty(splitGeo[0]))
+                            // We're confronted with an empty type. Assume that it's a uri.
+                            splitTypes = new string[] { "uri" };
+                        else
+                            // Trying to specify type without VALUE= is illegal according to RFC2426
+                            throw new InvalidDataException("Geo type must be prepended with VALUE=");
 
                         // Populate the fields
                         string[] _geoTypes = splitTypes;
@@ -574,8 +694,9 @@ namespace VisualCard.Parsers
                         string geoValue = _value.Substring(_geoSpecifier.Length);
 
                         // Populate the fields
-                        string _geoStr = Regex.Unescape(geoValue);
-                        GeoInfo _geo = new(0, Array.Empty<string>(), _geoStr);
+                        string[] _geoTypes = new string[] { "uri" };
+                        string _geoNumber = Regex.Unescape(geoValue);
+                        GeoInfo _geo = new(0, _geoTypes, _geoNumber);
                         _geos.Add(_geo);
                     }
 
@@ -592,16 +713,16 @@ namespace VisualCard.Parsers
                                         splitX[0];
 
                         // Populate the fields
-                        string[] _xTypes  = splitX[0].Contains(_fieldDelimiter.ToString()) ?
-                                            splitX[0].Substring(splitX[0].IndexOf(_fieldDelimiter) + 1)
-                                                     .Split(_fieldDelimiter) :
-                                            Array.Empty<string>();
+                        string[] _xTypes = splitX[0].Contains(_fieldDelimiter.ToString()) ?
+                                           splitX[0].Substring(splitX[0].IndexOf(_fieldDelimiter) + 1)
+                                                    .Split(_fieldDelimiter) :
+                                           Array.Empty<string>();
                         string[] _xValues = splitX[1].Split(_fieldDelimiter);
                         XNameInfo _x = new(0, _xName, _xValues, _xTypes);
                         _xes.Add(_x);
                     }
                 }
-                catch (Exception ex) 
+                catch (Exception ex)
                 {
                     throw new VCardParseException(ex.Message, _value, lineNumber, ex);
                 }
@@ -610,16 +731,18 @@ namespace VisualCard.Parsers
             // Requirement checks
             if (!nameSpecifierSpotted)
                 throw new InvalidDataException("The name specifier, \"N:\", is required.");
+            if (!fullNameSpecifierSpotted)
+                throw new InvalidDataException("The full name specifier, \"FN:\", is required.");
 
             // Make a new instance of the card
-            return new Card(CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), "individual", _photos.ToArray(), _rev, Array.Empty<NicknameInfo>(), _bday, _mailer, _roles.ToArray(), Array.Empty<string>(), _logos.ToArray(), "", "", _timezones.ToArray(), _geos.ToArray());
+            return new Card(CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), "individual", _photos.ToArray(), _rev, _nicks.ToArray(), _bday, _mailer, _roles.ToArray(), _categories.ToArray(), _logos.ToArray(), _prodId, _sortString, _timezones.ToArray(), _geos.ToArray());
         }
 
         public override void SaveTo(string path)
         {
-            // Check the version to ensure that we're really dealing with VCard 2.1 contact
-            if (CardVersion != "2.1")
-                throw new InvalidDataException($"Card version {CardVersion} doesn't match expected \"2.1\".");
+            // Check the version to ensure that we're really dealing with VCard 3.0 contact
+            if (CardVersion != "3.0")
+                throw new InvalidDataException($"Card version {CardVersion} doesn't match expected \"3.0\".");
 
             // Check the content to ensure that we really have data
             if (string.IsNullOrEmpty(CardContent))
@@ -634,7 +757,7 @@ namespace VisualCard.Parsers
             fileStream.Close();
         }
 
-        internal VcardTwo(string cardContent, string cardVersion)
+        internal VcardThree(string cardContent, string cardVersion)
         {
             CardContent = cardContent;
             CardVersion = cardVersion;

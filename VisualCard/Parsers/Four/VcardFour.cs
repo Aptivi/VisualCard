@@ -34,7 +34,7 @@ using VisualCard.Exceptions;
 using VisualCard.Parts;
 using TimeZoneInfo = VisualCard.Parts.TimeZoneInfo;
 
-namespace VisualCard.Parsers
+namespace VisualCard.Parsers.Four
 {
     /// <summary>
     /// Parser for VCard version 4.0. Consult the vcard-40-rfc6350.txt file in source for the specification.
