@@ -612,10 +612,10 @@ namespace VisualCard.Parsers.Two
                 throw new InvalidDataException("The name specifier, \"N:\", is required.");
 
             // Make a new instance of the card
-            return new Card(CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), "individual", _photos.ToArray(), _rev, Array.Empty<NicknameInfo>(), _bday, _mailer, _roles.ToArray(), Array.Empty<string>(), _logos.ToArray(), "", "", _timezones.ToArray(), _geos.ToArray());
+            return new Card(this, CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), "individual", _photos.ToArray(), _rev, Array.Empty<NicknameInfo>(), _bday, _mailer, _roles.ToArray(), Array.Empty<string>(), _logos.ToArray(), "", "", _timezones.ToArray(), _geos.ToArray(), _sounds.ToArray());
         }
 
-        public override void SaveTo(string path)
+        internal override void SaveTo(string path, Card card)
         {
             // Check the version to ensure that we're really dealing with VCard 2.1 contact
             if (CardVersion != "2.1")
@@ -626,11 +626,119 @@ namespace VisualCard.Parsers.Two
                 throw new InvalidDataException($"Card content is empty.");
 
             // Now, make a stream out of card content
-            byte[] CardContentData = Encoding.Default.GetBytes(CardContent);
-            MemoryStream CardContentStream = new(CardContentData, false);
-            var fileStream = File.OpenWrite(path);
-            CardContentStream.CopyTo(fileStream);
-            fileStream.Flush();
+            using var fileStream = new StreamWriter(path) { AutoFlush = true };
+
+            // First, write the header
+            fileStream.WriteLine("BEGIN:VCARD");
+            fileStream.WriteLine($"VERSION:{CardVersion}");
+
+            // Then, write the full name and the name
+            if (!string.IsNullOrWhiteSpace(card.ContactFullName))
+                fileStream.WriteLine($"{_fullNameSpecifier}{card.ContactFullName}");
+            foreach (NameInfo name in card.ContactNames)
+            {
+                string altNamesStr = string.Join(_valueDelimiter.ToString(), name.AltNames);
+                string prefixesStr = string.Join(_valueDelimiter.ToString(), name.Prefixes);
+                string suffixesStr = string.Join(_valueDelimiter.ToString(), name.Suffixes);
+                fileStream.WriteLine(
+                    $"{_nameSpecifier}" +
+                    $"{name.ContactLastName}{_fieldDelimiter}" +
+                    $"{name.ContactFirstName}{_fieldDelimiter}" +
+                    $"{altNamesStr}{_fieldDelimiter}" +
+                    $"{prefixesStr}{_fieldDelimiter}" +
+                    $"{suffixesStr}{_fieldDelimiter}"
+                );
+            }
+
+            // Now, start filling in the rest...
+            foreach (TelephoneInfo telephone in card.ContactTelephones)
+                fileStream.WriteLine(
+                    $"{_telephoneSpecifierWithType}" +
+                    $"TYPE={string.Join(",", telephone.ContactPhoneTypes)}{_argumentDelimiter}" +
+                    $"{telephone.ContactPhoneNumber}"
+                );
+            foreach (AddressInfo address in card.ContactAddresses)
+                fileStream.WriteLine(
+                    $"{_addressSpecifierWithType}" +
+                    $"TYPE={string.Join(",", address.AddressTypes)}{_argumentDelimiter}" +
+                    $"{address.PostOfficeBox}{_fieldDelimiter}" +
+                    $"{address.ExtendedAddress}{_fieldDelimiter}" +
+                    $"{address.StreetAddress}{_fieldDelimiter}" +
+                    $"{address.Locality}{_fieldDelimiter}" +
+                    $"{address.Region}{_fieldDelimiter}" +
+                    $"{address.PostalCode}{_fieldDelimiter}" +
+                    $"{address.Country}"
+                );
+            foreach (EmailInfo email in card.ContactMails)
+                fileStream.WriteLine(
+                    $"{_emailSpecifier}" +
+                    $"TYPE={string.Join(",", email.ContactEmailTypes)}{_argumentDelimiter}" +
+                    $"{email.ContactEmailAddress}"
+                );
+            foreach (TitleInfo title in card.ContactTitles)
+                fileStream.WriteLine(
+                    $"{_titleSpecifier}" +
+                    $"{title.ContactTitle}"
+                );
+            if (!string.IsNullOrWhiteSpace(card.ContactURL))
+                fileStream.WriteLine($"{_urlSpecifier}{card.ContactURL}");
+            if (!string.IsNullOrWhiteSpace(card.ContactNotes))
+                fileStream.WriteLine($"{_noteSpecifier}{card.ContactNotes}");
+            foreach (PhotoInfo photo in card.ContactPhotos)
+                fileStream.WriteLine(
+                    $"{_photoSpecifierWithType}" +
+                    $"VALUE={photo.ValueType}{_fieldDelimiter}" +
+                    $"ENCODING={photo.Encoding}{_fieldDelimiter}" +
+                    $"TYPE={photo.PhotoType}{_argumentDelimiter}" +
+                    $"{photo.PhotoEncoded}"
+                );
+            foreach (LogoInfo logo in card.ContactLogos)
+                fileStream.WriteLine(
+                    $"{_logoSpecifierWithType}" +
+                    $"VALUE={logo.ValueType}{_fieldDelimiter}" +
+                    $"ENCODING={logo.Encoding}{_fieldDelimiter}" +
+                    $"TYPE={logo.LogoType}{_argumentDelimiter}" +
+                    $"{logo.LogoEncoded}"
+                );
+            foreach (SoundInfo sound in card.ContactSounds)
+                fileStream.WriteLine(
+                    $"{_soundSpecifierWithType}" +
+                    $"VALUE={sound.ValueType}{_fieldDelimiter}" +
+                    $"ENCODING={sound.Encoding}{_fieldDelimiter}" +
+                    $"TYPE={sound.SoundType}{_argumentDelimiter}" +
+                    $"{sound.SoundEncoded}"
+                );
+            if (card.CardRevision is not null && card.CardRevision != DateTime.MinValue)
+                fileStream.WriteLine($"{_revSpecifier}{card.CardRevision:dd-MM-yyyy_HH-mm-ss}");
+            if (card.ContactBirthdate is not null && card.ContactBirthdate != DateTime.MinValue)
+                fileStream.WriteLine($"{_birthSpecifier}{card.ContactBirthdate:dd-MM-yyyy}");
+            if (!string.IsNullOrWhiteSpace(card.ContactMailer))
+                fileStream.WriteLine($"{_mailerSpecifier}{card.ContactMailer}");
+            foreach (RoleInfo role in card.ContactRoles)
+                fileStream.WriteLine(
+                    $"{_roleSpecifier}" +
+                    $"{role.ContactRole}"
+                );
+            foreach (TimeZoneInfo timeZone in card.ContactTimeZone)
+                fileStream.WriteLine(
+                    $"{_timeZoneSpecifier}" +
+                    $"{timeZone.TimeZone}"
+                );
+            foreach (GeoInfo geo in card.ContactGeo)
+                fileStream.WriteLine(
+                    $"{_geoSpecifier}" +
+                    $"{geo.Geo}"
+                );
+            foreach (XNameInfo xname in card.ContactXNames)
+                fileStream.WriteLine(
+                    $"{_xSpecifier}" +
+                    $"{xname.XKeyName}{(xname.XKeyTypes.Length > 0 ? _fieldDelimiter : _argumentDelimiter)}" +
+                    $"{(xname.XKeyTypes.Length > 0 ? string.Join(_fieldDelimiter.ToString(), xname.XKeyTypes) + _argumentDelimiter : "")}" +
+                    $"{string.Join(_fieldDelimiter.ToString(), xname.XValues)}"
+                );
+
+            // Finally, end the file and close it
+            fileStream.WriteLine("END:VCARD");
             fileStream.Close();
         }
 

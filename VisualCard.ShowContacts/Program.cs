@@ -62,7 +62,7 @@ namespace VisualCard.ShowContacts
                     Card Contact = ContactParser.Parse();
                     Contacts.Add(Contact);
                     if (save)
-                        ContactParser.SaveTo($"contact_{DateTime.Now:dd-MM-yyyy_HH-mm-ss_ffffff}.vcf");
+                        Contact.SaveTo($"contact_{DateTime.Now:dd-MM-yyyy_HH-mm-ss_ffffff}.vcf");
                 }
 
                 // If not printing, exit

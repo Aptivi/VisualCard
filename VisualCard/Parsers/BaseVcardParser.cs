@@ -33,6 +33,6 @@ namespace VisualCard.Parsers
         public virtual string CardVersion => "";
 
         public abstract Card Parse();
-        public abstract void SaveTo(string path);
+        internal abstract void SaveTo(string path, Card card);
     }
 }

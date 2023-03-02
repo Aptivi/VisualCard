@@ -27,9 +27,11 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Mail;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Xml.Linq;
 using VisualCard.Exceptions;
 using VisualCard.Parts;
 using TimeZoneInfo = VisualCard.Parts.TimeZoneInfo;
@@ -333,7 +335,7 @@ namespace VisualCard.Parsers.Four
                     }
 
                     // Email (EMAIL;TYPE=HOME,INTERNET:john.s@acme.co)
-                    // Here, we don't support ALTID.
+                    // ALTID is supported.
                     if (_value.StartsWith(_emailSpecifier))
                     {
                         // Get the value
@@ -373,7 +375,7 @@ namespace VisualCard.Parsers.Four
                     }
 
                     // Organization (ORG:Acme Co. or ORG:ABC, Inc.;North American Division;Marketing)
-                    // Here, we don't support ALTID.
+                    // ALTID is supported.
                     if (_value.StartsWith(_orgSpecifier))
                     {
                         // Get the value
@@ -854,10 +856,10 @@ namespace VisualCard.Parsers.Four
                 throw new InvalidDataException("The full name specifier, \"FN:\", is required.");
 
             // Make a new instance of the card
-            return new Card(CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), _kind, _photos.ToArray(), _rev, _nicks.ToArray(), _bday, "", _roles.ToArray(), _categories.ToArray(), _logos.ToArray(), _prodId, _sortString, _timezones.ToArray(), _geos.ToArray());
+            return new Card(this, CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), _kind, _photos.ToArray(), _rev, _nicks.ToArray(), _bday, "", _roles.ToArray(), _categories.ToArray(), _logos.ToArray(), _prodId, _sortString, _timezones.ToArray(), _geos.ToArray(), _sounds.ToArray());
         }
 
-        public override void SaveTo(string path)
+        internal override void SaveTo(string path, Card card)
         {
             // Check the version to ensure that we're really dealing with VCard 4.0 contact
             if (CardVersion != "4.0")
@@ -868,11 +870,197 @@ namespace VisualCard.Parsers.Four
                 throw new InvalidDataException($"Card content is empty.");
 
             // Now, make a stream out of card content
-            byte[] CardContentData = Encoding.Default.GetBytes(CardContent);
-            MemoryStream CardContentStream = new(CardContentData, false);
-            var fileStream = File.OpenWrite(path);
-            CardContentStream.CopyTo(fileStream);
-            fileStream.Flush();
+            using var fileStream = new StreamWriter(path) { AutoFlush = true };
+
+            // First, write the header
+            fileStream.WriteLine("BEGIN:VCARD");
+            fileStream.WriteLine($"VERSION:{CardVersion}");
+            fileStream.WriteLine($"{_kindSpecifier}{card.CardKind}");
+
+            // Then, write the full name and the name
+            if (!string.IsNullOrWhiteSpace(card.ContactFullName))
+                fileStream.WriteLine($"{_fullNameSpecifier}{card.ContactFullName}");
+            foreach (NameInfo name in card.ContactNames)
+            {
+                bool installAltId = name.AltId >= 0 && name.AltArguments.Length > 0;
+                string altNamesStr = string.Join(_valueDelimiter.ToString(), name.AltNames);
+                string prefixesStr = string.Join(_valueDelimiter.ToString(), name.Prefixes);
+                string suffixesStr = string.Join(_valueDelimiter.ToString(), name.Suffixes);
+                fileStream.WriteLine(
+                    $"{(installAltId ? _nameSpecifierWithType : _nameSpecifier)}" +
+                    $"{(installAltId ? "ALTID=" + name.AltId + _fieldDelimiter : "")}" +
+                    $"{(installAltId ? string.Join(_fieldDelimiter.ToString(), name.AltArguments) + _fieldDelimiter : "")}" +
+                    $"{name.ContactLastName}{_fieldDelimiter}" +
+                    $"{name.ContactFirstName}{_fieldDelimiter}" +
+                    $"{altNamesStr}{_fieldDelimiter}" +
+                    $"{prefixesStr}{_fieldDelimiter}" +
+                    $"{suffixesStr}{_fieldDelimiter}"
+                );
+            }
+
+            // Now, start filling in the rest...
+            foreach (TelephoneInfo telephone in card.ContactTelephones)
+            {
+                bool installAltId = telephone.AltId > 0;
+                fileStream.WriteLine(
+                    $"{_telephoneSpecifierWithType}" +
+                    $"{(installAltId ? "ALTID=" + telephone.AltId + _fieldDelimiter : "")}" +
+                    $"TYPE={string.Join(",", telephone.ContactPhoneTypes)}{_argumentDelimiter}" +
+                    $"{telephone.ContactPhoneNumber}"
+                );
+            }
+            foreach (AddressInfo address in card.ContactAddresses)
+            {
+                bool installAltId = address.AltId > 0;
+                fileStream.WriteLine(
+                    $"{_addressSpecifierWithType}" +
+                    $"{(installAltId ? "ALTID=" + address.AltId + _fieldDelimiter : "")}" +
+                    $"TYPE={string.Join(",", address.AddressTypes)}{_argumentDelimiter}" +
+                    $"{address.PostOfficeBox}{_fieldDelimiter}" +
+                    $"{address.ExtendedAddress}{_fieldDelimiter}" +
+                    $"{address.StreetAddress}{_fieldDelimiter}" +
+                    $"{address.Locality}{_fieldDelimiter}" +
+                    $"{address.Region}{_fieldDelimiter}" +
+                    $"{address.PostalCode}{_fieldDelimiter}" +
+                    $"{address.Country}"
+                );
+            }
+            foreach (EmailInfo email in card.ContactMails)
+            {
+                bool installAltId = email.AltId > 0;
+                fileStream.WriteLine(
+                    $"{_emailSpecifier}" +
+                    $"{(installAltId ? "ALTID=" + email.AltId + _fieldDelimiter : "")}" +
+                    $"TYPE={string.Join(",", email.ContactEmailTypes)}{_argumentDelimiter}" +
+                    $"{email.ContactEmailAddress}"
+                );
+            }
+            foreach (OrganizationInfo organization in card.ContactOrganizations)
+                fileStream.WriteLine(
+                    $"{_orgSpecifier}" +
+                    $"{organization.Name}{_fieldDelimiter}" +
+                    $"{organization.Unit}{_fieldDelimiter}" +
+                    $"{organization.Role}"
+                );
+            foreach (TitleInfo title in card.ContactTitles)
+            {
+                bool installAltId = title.AltId >= 0 && title.AltArguments.Length > 0;
+                fileStream.WriteLine(
+                    $"{(installAltId ? _titleSpecifierWithArguments : _titleSpecifier)}" +
+                    $"{(installAltId ? "ALTID=" + title.AltId + _fieldDelimiter : "")}" +
+                    $"{(installAltId ? string.Join(_fieldDelimiter.ToString(), title.AltArguments) + _fieldDelimiter : "")}" +
+                    $"{title.ContactTitle}"
+                );
+            }
+            if (!string.IsNullOrWhiteSpace(card.ContactURL))
+                fileStream.WriteLine($"{_urlSpecifier}{card.ContactURL}");
+            if (!string.IsNullOrWhiteSpace(card.ContactNotes))
+                fileStream.WriteLine($"{_noteSpecifier}{card.ContactNotes}");
+            foreach (PhotoInfo photo in card.ContactPhotos)
+            {
+                bool installAltId = photo.AltId >= 0 && photo.AltArguments.Length > 0;
+                fileStream.WriteLine(
+                    $"{_photoSpecifierWithType}" +
+                    $"{(installAltId ? "ALTID=" + photo.AltId + _fieldDelimiter : "")}" +
+                    $"{(installAltId ? string.Join(_fieldDelimiter.ToString(), photo.AltArguments) + _fieldDelimiter : "")}" +
+                    $"VALUE={photo.ValueType}{_fieldDelimiter}" +
+                    $"ENCODING={photo.Encoding}{_fieldDelimiter}" +
+                    $"TYPE={photo.PhotoType}{_argumentDelimiter}" +
+                    $"{photo.PhotoEncoded}"
+                );
+            }
+            foreach (LogoInfo logo in card.ContactLogos)
+            {
+                bool installAltId = logo.AltId >= 0 && logo.AltArguments.Length > 0;
+                fileStream.WriteLine(
+                    $"{_logoSpecifierWithType}" +
+                    $"{(installAltId ? "ALTID=" + logo.AltId + _fieldDelimiter : "")}" +
+                    $"{(installAltId ? string.Join(_fieldDelimiter.ToString(), logo.AltArguments) + _fieldDelimiter : "")}" +
+                    $"VALUE={logo.ValueType}{_fieldDelimiter}" +
+                    $"ENCODING={logo.Encoding}{_fieldDelimiter}" +
+                    $"TYPE={logo.LogoType}{_argumentDelimiter}" +
+                    $"{logo.LogoEncoded}"
+                );
+            }
+            foreach (SoundInfo sound in card.ContactSounds)
+            {
+                bool installAltId = sound.AltId >= 0 && sound.AltArguments.Length > 0;
+                fileStream.WriteLine(
+                    $"{_soundSpecifierWithType}" +
+                    $"{(installAltId ? "ALTID=" + sound.AltId + _fieldDelimiter : "")}" +
+                    $"{(installAltId ? string.Join(_fieldDelimiter.ToString(), sound.AltArguments) + _fieldDelimiter : "")}" +
+                    $"VALUE={sound.ValueType}{_fieldDelimiter}" +
+                    $"ENCODING={sound.Encoding}{_fieldDelimiter}" +
+                    $"TYPE={sound.SoundType}{_argumentDelimiter}" +
+                    $"{sound.SoundEncoded}"
+                );
+            }
+            if (card.CardRevision is not null && card.CardRevision != DateTime.MinValue)
+                fileStream.WriteLine($"{_revSpecifier}{card.CardRevision:dd-MM-yyyy_HH-mm-ss}");
+            foreach (NicknameInfo nickname in card.ContactNicknames)
+            {
+                bool installAltId = nickname.AltId >= 0 && nickname.AltArguments.Length > 0;
+                fileStream.WriteLine(
+                    $"{(installAltId ? _nicknameSpecifierWithType : _nicknameSpecifier)}" +
+                    $"{(installAltId ? "ALTID=" + nickname.AltId + _fieldDelimiter : "")}" +
+                    $"{(installAltId ? string.Join(_fieldDelimiter.ToString(), nickname.AltArguments) + _fieldDelimiter : "")}" +
+                    $"TYPE={string.Join(",", nickname.NicknameTypes)}{_argumentDelimiter}" +
+                    $"{nickname.ContactNickname}"
+                );
+            }
+            if (card.ContactBirthdate is not null && card.ContactBirthdate != DateTime.MinValue)
+                fileStream.WriteLine($"{_birthSpecifier}{card.ContactBirthdate:dd-MM-yyyy}");
+            foreach (RoleInfo role in card.ContactRoles)
+            {
+                bool installAltId = role.AltId >= 0 && role.AltArguments.Length > 0;
+                fileStream.WriteLine(
+                    $"{(installAltId ? _roleSpecifierWithType : _roleSpecifier)}" +
+                    $"{(installAltId ? "ALTID=" + role.AltId + _fieldDelimiter : "")}" +
+                    $"{(installAltId ? string.Join(_fieldDelimiter.ToString(), role.AltArguments) + _fieldDelimiter : "")}" +
+                    $"{role.ContactRole}"
+                );
+            }
+            if (card.ContactCategories is not null && card.ContactCategories.Length > 0)
+                fileStream.WriteLine($"{_categoriesSpecifier}{string.Join(",", card.ContactCategories)}");
+            if (!string.IsNullOrWhiteSpace(card.ContactProdId))
+                fileStream.WriteLine($"{_productIdSpecifier}{card.ContactProdId}");
+            if (!string.IsNullOrWhiteSpace(card.ContactSortString))
+                fileStream.WriteLine($"{_sortStringSpecifier}{card.ContactSortString}");
+            foreach (TimeZoneInfo timeZone in card.ContactTimeZone)
+            {
+                bool installAltId = timeZone.AltId > 0;
+                fileStream.WriteLine(
+                    $"{(installAltId ? _timeZoneSpecifierWithType : _timeZoneSpecifier)}" +
+                    $"{(installAltId ? "ALTID=" + timeZone.AltId + _fieldDelimiter : "")}" +
+                    $"{(installAltId ? string.Join(_fieldDelimiter.ToString(), timeZone.AltArguments) + _argumentDelimiter : "")}" +
+                    $"{timeZone.TimeZone}"
+                );
+            }
+            foreach (GeoInfo geo in card.ContactGeo)
+            {
+                bool installAltId = geo.AltId > 0;
+                fileStream.WriteLine(
+                    $"{(installAltId ? _geoSpecifierWithType : _geoSpecifier)}" +
+                    $"{(installAltId ? "ALTID=" + geo.AltId + _fieldDelimiter : "")}" +
+                    $"{(installAltId ? string.Join(_fieldDelimiter.ToString(), geo.AltArguments) + _argumentDelimiter : "")}" +
+                    $"{geo.Geo}"
+                );
+            }
+            foreach (XNameInfo xname in card.ContactXNames)
+            {
+                bool installAltId = xname.AltId > 0;
+                bool installType = installAltId || xname.XKeyTypes.Length > 0;
+                fileStream.WriteLine(
+                    $"{_xSpecifier}" +
+                    $"{xname.XKeyName}{(installType ? _fieldDelimiter : _argumentDelimiter)}" +
+                    $"{(installAltId ? "ALTID=" + xname.AltId + _fieldDelimiter : "")}" +
+                    $"{(xname.XKeyTypes.Length > 0 ? string.Join(_fieldDelimiter.ToString(), xname.XKeyTypes) + _argumentDelimiter : "")}" +
+                    $"{string.Join(_fieldDelimiter.ToString(), xname.XValues)}"
+                );
+            }
+
+            // Finally, end the file and close it
+            fileStream.WriteLine("END:VCARD");
             fileStream.Close();
         }
 
