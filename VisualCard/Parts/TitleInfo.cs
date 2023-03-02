@@ -46,7 +46,7 @@ namespace VisualCard.Parts
         {
             AltId = altId;
             AltArguments = altArguments;
-            contactTitle = ContactTitle;
+            ContactTitle = contactTitle;
         }
     }
 }
