@@ -675,6 +675,13 @@ namespace VisualCard.Parsers.Two
                     $"TYPE={string.Join(",", email.ContactEmailTypes)}{_argumentDelimiter}" +
                     $"{email.ContactEmailAddress}"
                 );
+            foreach (OrganizationInfo organization in card.ContactOrganizations)
+                fileStream.WriteLine(
+                    $"{_orgSpecifier}" +
+                    $"{organization.Name}{_fieldDelimiter}" +
+                    $"{organization.Unit}{_fieldDelimiter}" +
+                    $"{organization.Role}"
+                );
             foreach (TitleInfo title in card.ContactTitles)
                 fileStream.WriteLine(
                     $"{_titleSpecifier}" +
