@@ -26,6 +26,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Pipes;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -859,7 +860,7 @@ namespace VisualCard.Parsers.Four
             return new Card(this, CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), _kind, _photos.ToArray(), _rev, _nicks.ToArray(), _bday, "", _roles.ToArray(), _categories.ToArray(), _logos.ToArray(), _prodId, _sortString, _timezones.ToArray(), _geos.ToArray(), _sounds.ToArray());
         }
 
-        internal override void SaveTo(string path, Card card)
+        internal override string SaveToString(Card card)
         {
             // Check the version to ensure that we're really dealing with VCard 4.0 contact
             if (CardVersion != "4.0")
@@ -869,24 +870,24 @@ namespace VisualCard.Parsers.Four
             if (string.IsNullOrEmpty(CardContent))
                 throw new InvalidDataException($"Card content is empty.");
 
-            // Now, make a stream out of card content
-            using var fileStream = new StreamWriter(path) { AutoFlush = true };
+            // Initialize the card builder
+            var cardBuilder = new StringBuilder();
 
             // First, write the header
-            fileStream.WriteLine("BEGIN:VCARD");
-            fileStream.WriteLine($"VERSION:{CardVersion}");
-            fileStream.WriteLine($"{_kindSpecifier}{card.CardKind}");
+            cardBuilder.AppendLine("BEGIN:VCARD");
+            cardBuilder.AppendLine($"VERSION:{CardVersion}");
+            cardBuilder.AppendLine($"{_kindSpecifier}{card.CardKind}");
 
             // Then, write the full name and the name
             if (!string.IsNullOrWhiteSpace(card.ContactFullName))
-                fileStream.WriteLine($"{_fullNameSpecifier}{card.ContactFullName}");
+                cardBuilder.AppendLine($"{_fullNameSpecifier}{card.ContactFullName}");
             foreach (NameInfo name in card.ContactNames)
             {
                 bool installAltId = name.AltId >= 0 && name.AltArguments.Length > 0;
                 string altNamesStr = string.Join(_valueDelimiter.ToString(), name.AltNames);
                 string prefixesStr = string.Join(_valueDelimiter.ToString(), name.Prefixes);
                 string suffixesStr = string.Join(_valueDelimiter.ToString(), name.Suffixes);
-                fileStream.WriteLine(
+                cardBuilder.AppendLine(
                     $"{(installAltId ? _nameSpecifierWithType : _nameSpecifier)}" +
                     $"{(installAltId ? "ALTID=" + name.AltId + _fieldDelimiter : "")}" +
                     $"{(installAltId ? string.Join(_fieldDelimiter.ToString(), name.AltArguments) + _fieldDelimiter : "")}" +
@@ -902,7 +903,7 @@ namespace VisualCard.Parsers.Four
             foreach (TelephoneInfo telephone in card.ContactTelephones)
             {
                 bool installAltId = telephone.AltId > 0;
-                fileStream.WriteLine(
+                cardBuilder.AppendLine(
                     $"{_telephoneSpecifierWithType}" +
                     $"{(installAltId ? "ALTID=" + telephone.AltId + _fieldDelimiter : "")}" +
                     $"TYPE={string.Join(",", telephone.ContactPhoneTypes)}{_argumentDelimiter}" +
@@ -912,7 +913,7 @@ namespace VisualCard.Parsers.Four
             foreach (AddressInfo address in card.ContactAddresses)
             {
                 bool installAltId = address.AltId > 0;
-                fileStream.WriteLine(
+                cardBuilder.AppendLine(
                     $"{_addressSpecifierWithType}" +
                     $"{(installAltId ? "ALTID=" + address.AltId + _fieldDelimiter : "")}" +
                     $"TYPE={string.Join(",", address.AddressTypes)}{_argumentDelimiter}" +
@@ -928,7 +929,7 @@ namespace VisualCard.Parsers.Four
             foreach (EmailInfo email in card.ContactMails)
             {
                 bool installAltId = email.AltId > 0;
-                fileStream.WriteLine(
+                cardBuilder.AppendLine(
                     $"{_emailSpecifier}" +
                     $"{(installAltId ? "ALTID=" + email.AltId + _fieldDelimiter : "")}" +
                     $"TYPE={string.Join(",", email.ContactEmailTypes)}{_argumentDelimiter}" +
@@ -936,7 +937,7 @@ namespace VisualCard.Parsers.Four
                 );
             }
             foreach (OrganizationInfo organization in card.ContactOrganizations)
-                fileStream.WriteLine(
+                cardBuilder.AppendLine(
                     $"{_orgSpecifier}" +
                     $"{organization.Name}{_fieldDelimiter}" +
                     $"{organization.Unit}{_fieldDelimiter}" +
@@ -945,7 +946,7 @@ namespace VisualCard.Parsers.Four
             foreach (TitleInfo title in card.ContactTitles)
             {
                 bool installAltId = title.AltId >= 0 && title.AltArguments.Length > 0;
-                fileStream.WriteLine(
+                cardBuilder.AppendLine(
                     $"{(installAltId ? _titleSpecifierWithArguments : _titleSpecifier)}" +
                     $"{(installAltId ? "ALTID=" + title.AltId + _fieldDelimiter : "")}" +
                     $"{(installAltId ? string.Join(_fieldDelimiter.ToString(), title.AltArguments) + _fieldDelimiter : "")}" +
@@ -953,13 +954,13 @@ namespace VisualCard.Parsers.Four
                 );
             }
             if (!string.IsNullOrWhiteSpace(card.ContactURL))
-                fileStream.WriteLine($"{_urlSpecifier}{card.ContactURL}");
+                cardBuilder.AppendLine($"{_urlSpecifier}{card.ContactURL}");
             if (!string.IsNullOrWhiteSpace(card.ContactNotes))
-                fileStream.WriteLine($"{_noteSpecifier}{card.ContactNotes}");
+                cardBuilder.AppendLine($"{_noteSpecifier}{card.ContactNotes}");
             foreach (PhotoInfo photo in card.ContactPhotos)
             {
                 bool installAltId = photo.AltId >= 0 && photo.AltArguments.Length > 0;
-                fileStream.WriteLine(
+                cardBuilder.AppendLine(
                     $"{_photoSpecifierWithType}" +
                     $"{(installAltId ? "ALTID=" + photo.AltId + _fieldDelimiter : "")}" +
                     $"{(installAltId ? string.Join(_fieldDelimiter.ToString(), photo.AltArguments) + _fieldDelimiter : "")}" +
@@ -972,7 +973,7 @@ namespace VisualCard.Parsers.Four
             foreach (LogoInfo logo in card.ContactLogos)
             {
                 bool installAltId = logo.AltId >= 0 && logo.AltArguments.Length > 0;
-                fileStream.WriteLine(
+                cardBuilder.AppendLine(
                     $"{_logoSpecifierWithType}" +
                     $"{(installAltId ? "ALTID=" + logo.AltId + _fieldDelimiter : "")}" +
                     $"{(installAltId ? string.Join(_fieldDelimiter.ToString(), logo.AltArguments) + _fieldDelimiter : "")}" +
@@ -985,7 +986,7 @@ namespace VisualCard.Parsers.Four
             foreach (SoundInfo sound in card.ContactSounds)
             {
                 bool installAltId = sound.AltId >= 0 && sound.AltArguments.Length > 0;
-                fileStream.WriteLine(
+                cardBuilder.AppendLine(
                     $"{_soundSpecifierWithType}" +
                     $"{(installAltId ? "ALTID=" + sound.AltId + _fieldDelimiter : "")}" +
                     $"{(installAltId ? string.Join(_fieldDelimiter.ToString(), sound.AltArguments) + _fieldDelimiter : "")}" +
@@ -996,11 +997,11 @@ namespace VisualCard.Parsers.Four
                 );
             }
             if (card.CardRevision is not null && card.CardRevision != DateTime.MinValue)
-                fileStream.WriteLine($"{_revSpecifier}{card.CardRevision:dd-MM-yyyy_HH-mm-ss}");
+                cardBuilder.AppendLine($"{_revSpecifier}{card.CardRevision:dd-MM-yyyy_HH-mm-ss}");
             foreach (NicknameInfo nickname in card.ContactNicknames)
             {
                 bool installAltId = nickname.AltId >= 0 && nickname.AltArguments.Length > 0;
-                fileStream.WriteLine(
+                cardBuilder.AppendLine(
                     $"{(installAltId ? _nicknameSpecifierWithType : _nicknameSpecifier)}" +
                     $"{(installAltId ? "ALTID=" + nickname.AltId + _fieldDelimiter : "")}" +
                     $"{(installAltId ? string.Join(_fieldDelimiter.ToString(), nickname.AltArguments) + _fieldDelimiter : "")}" +
@@ -1009,11 +1010,11 @@ namespace VisualCard.Parsers.Four
                 );
             }
             if (card.ContactBirthdate is not null && card.ContactBirthdate != DateTime.MinValue)
-                fileStream.WriteLine($"{_birthSpecifier}{card.ContactBirthdate:dd-MM-yyyy}");
+                cardBuilder.AppendLine($"{_birthSpecifier}{card.ContactBirthdate:dd-MM-yyyy}");
             foreach (RoleInfo role in card.ContactRoles)
             {
                 bool installAltId = role.AltId >= 0 && role.AltArguments.Length > 0;
-                fileStream.WriteLine(
+                cardBuilder.AppendLine(
                     $"{(installAltId ? _roleSpecifierWithType : _roleSpecifier)}" +
                     $"{(installAltId ? "ALTID=" + role.AltId + _fieldDelimiter : "")}" +
                     $"{(installAltId ? string.Join(_fieldDelimiter.ToString(), role.AltArguments) + _fieldDelimiter : "")}" +
@@ -1021,15 +1022,15 @@ namespace VisualCard.Parsers.Four
                 );
             }
             if (card.ContactCategories is not null && card.ContactCategories.Length > 0)
-                fileStream.WriteLine($"{_categoriesSpecifier}{string.Join(",", card.ContactCategories)}");
+                cardBuilder.AppendLine($"{_categoriesSpecifier}{string.Join(",", card.ContactCategories)}");
             if (!string.IsNullOrWhiteSpace(card.ContactProdId))
-                fileStream.WriteLine($"{_productIdSpecifier}{card.ContactProdId}");
+                cardBuilder.AppendLine($"{_productIdSpecifier}{card.ContactProdId}");
             if (!string.IsNullOrWhiteSpace(card.ContactSortString))
-                fileStream.WriteLine($"{_sortStringSpecifier}{card.ContactSortString}");
+                cardBuilder.AppendLine($"{_sortStringSpecifier}{card.ContactSortString}");
             foreach (TimeZoneInfo timeZone in card.ContactTimeZone)
             {
                 bool installAltId = timeZone.AltId > 0;
-                fileStream.WriteLine(
+                cardBuilder.AppendLine(
                     $"{(installAltId ? _timeZoneSpecifierWithType : _timeZoneSpecifier)}" +
                     $"{(installAltId ? "ALTID=" + timeZone.AltId + _fieldDelimiter : "")}" +
                     $"{(installAltId ? string.Join(_fieldDelimiter.ToString(), timeZone.AltArguments) + _argumentDelimiter : "")}" +
@@ -1039,7 +1040,7 @@ namespace VisualCard.Parsers.Four
             foreach (GeoInfo geo in card.ContactGeo)
             {
                 bool installAltId = geo.AltId > 0;
-                fileStream.WriteLine(
+                cardBuilder.AppendLine(
                     $"{(installAltId ? _geoSpecifierWithType : _geoSpecifier)}" +
                     $"{(installAltId ? "ALTID=" + geo.AltId + _fieldDelimiter : "")}" +
                     $"{(installAltId ? string.Join(_fieldDelimiter.ToString(), geo.AltArguments) + _argumentDelimiter : "")}" +
@@ -1050,7 +1051,7 @@ namespace VisualCard.Parsers.Four
             {
                 bool installAltId = xname.AltId > 0;
                 bool installType = installAltId || xname.XKeyTypes.Length > 0;
-                fileStream.WriteLine(
+                cardBuilder.AppendLine(
                     $"{_xSpecifier}" +
                     $"{xname.XKeyName}{(installType ? _fieldDelimiter : _argumentDelimiter)}" +
                     $"{(installAltId ? "ALTID=" + xname.AltId + _fieldDelimiter : "")}" +
@@ -1059,9 +1060,24 @@ namespace VisualCard.Parsers.Four
                 );
             }
 
-            // Finally, end the file and close it
-            fileStream.WriteLine("END:VCARD");
-            fileStream.Close();
+            // Finally, end the card and return it
+            cardBuilder.AppendLine("END:VCARD");
+            return cardBuilder.ToString();
+        }
+
+        internal override void SaveTo(string path, Card card)
+        {
+            // Check the version to ensure that we're really dealing with VCard 4.0 contact
+            if (CardVersion != "4.0")
+                throw new InvalidDataException($"Card version {CardVersion} doesn't match expected \"4.0\".");
+
+            // Check the content to ensure that we really have data
+            if (string.IsNullOrEmpty(CardContent))
+                throw new InvalidDataException($"Card content is empty.");
+
+            // Save all the changes to the file
+            var cardString = SaveToString(card);
+            File.WriteAllText(path, cardString);
         }
 
         internal VcardFour(string cardContent, string cardVersion)

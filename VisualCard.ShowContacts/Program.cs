@@ -159,6 +159,11 @@ namespace VisualCard.ShowContacts
                     Console.WriteLine("Contact mailer:          {0}", Contact.ContactMailer);
                     Console.WriteLine("Contact URL:             {0}", Contact.ContactURL);
                     Console.WriteLine("Contact Note:            {0}", Contact.ContactNotes);
+
+                    // Print VCard
+                    Console.WriteLine("\nRaw VCard" +
+                                        "---------\n");
+                    Console.WriteLine(Contact.SaveToString());
                 }
             }
         }

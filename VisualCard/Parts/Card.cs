@@ -141,6 +141,12 @@ namespace VisualCard.Parts
         public void SaveTo(string path) =>
             Parser.SaveTo(path, this);
 
+        /// <summary>
+        /// Saves the contact to the returned string
+        /// </summary>
+        public string SaveToString() =>
+            Parser.SaveToString(this);
+
         internal Card(BaseVcardParser parser, string cardVersion, NameInfo[] contactNames, string contactFullName, TelephoneInfo[] contactTelephones, AddressInfo[] contactAddresses, OrganizationInfo[] contactOrganizations, TitleInfo[] contactTitles, string contactURL, string contactNotes, EmailInfo[] contactMails, XNameInfo[] contactXNames, string cardKind, PhotoInfo[] contactPhotos, DateTime cardRevision, NicknameInfo[] contactNicknames, DateTime? contactBirthdate, string contactMailer, RoleInfo[] contactRoles, string[] contactCategories, LogoInfo[] contactLogos, string contactProdId, string contactSortString, TimeZoneInfo[] contactTimeZone, GeoInfo[] contactGeo, SoundInfo[] contactSounds)
         {
             _parser = parser;

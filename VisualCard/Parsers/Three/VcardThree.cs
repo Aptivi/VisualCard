@@ -27,6 +27,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.IO.Pipes;
 using System.Net.Mail;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -739,7 +740,7 @@ namespace VisualCard.Parsers.Three
             return new Card(this, CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), "individual", _photos.ToArray(), _rev, _nicks.ToArray(), _bday, _mailer, _roles.ToArray(), _categories.ToArray(), _logos.ToArray(), _prodId, _sortString, _timezones.ToArray(), _geos.ToArray(), _sounds.ToArray());
         }
 
-        internal override void SaveTo(string path, Card card)
+        internal override string SaveToString(Card card)
         {
             // Check the version to ensure that we're really dealing with VCard 3.0 contact
             if (CardVersion != "3.0")
@@ -749,22 +750,22 @@ namespace VisualCard.Parsers.Three
             if (string.IsNullOrEmpty(CardContent))
                 throw new InvalidDataException($"Card content is empty.");
 
-            // Now, make a stream out of card content
-            using var fileStream = new StreamWriter(path) { AutoFlush = true };
+            // Initialize the card builder
+            var cardBuilder = new StringBuilder();
 
             // First, write the header
-            fileStream.WriteLine("BEGIN:VCARD");
-            fileStream.WriteLine($"VERSION:{CardVersion}");
+            cardBuilder.AppendLine("BEGIN:VCARD");
+            cardBuilder.AppendLine($"VERSION:{CardVersion}");
 
             // Then, write the full name and the name
             if (!string.IsNullOrWhiteSpace(card.ContactFullName))
-                fileStream.WriteLine($"{_fullNameSpecifier}{card.ContactFullName}");
+                cardBuilder.AppendLine($"{_fullNameSpecifier}{card.ContactFullName}");
             foreach (NameInfo name in card.ContactNames)
             {
                 string altNamesStr = string.Join(_valueDelimiter.ToString(), name.AltNames);
                 string prefixesStr = string.Join(_valueDelimiter.ToString(), name.Prefixes);
                 string suffixesStr = string.Join(_valueDelimiter.ToString(), name.Suffixes);
-                fileStream.WriteLine(
+                cardBuilder.AppendLine(
                     $"{_nameSpecifier}" +
                     $"{name.ContactLastName}{_fieldDelimiter}" +
                     $"{name.ContactFirstName}{_fieldDelimiter}" +
@@ -776,13 +777,13 @@ namespace VisualCard.Parsers.Three
 
             // Now, start filling in the rest...
             foreach (TelephoneInfo telephone in card.ContactTelephones)
-                fileStream.WriteLine(
+                cardBuilder.AppendLine(
                     $"{_telephoneSpecifierWithType}" +
                     $"TYPE={string.Join(",", telephone.ContactPhoneTypes)}{_argumentDelimiter}" +
                     $"{telephone.ContactPhoneNumber}"
                 );
             foreach (AddressInfo address in card.ContactAddresses)
-                fileStream.WriteLine(
+                cardBuilder.AppendLine(
                     $"{_addressSpecifierWithType}" +
                     $"TYPE={string.Join(",", address.AddressTypes)}{_argumentDelimiter}" +
                     $"{address.PostOfficeBox}{_fieldDelimiter}" +
@@ -794,29 +795,29 @@ namespace VisualCard.Parsers.Three
                     $"{address.Country}"
                 );
             foreach (EmailInfo email in card.ContactMails)
-                fileStream.WriteLine(
+                cardBuilder.AppendLine(
                     $"{_emailSpecifier}" +
                     $"TYPE={string.Join(",", email.ContactEmailTypes)}{_argumentDelimiter}" +
                     $"{email.ContactEmailAddress}"
                 );
             foreach (OrganizationInfo organization in card.ContactOrganizations)
-                fileStream.WriteLine(
+                cardBuilder.AppendLine(
                     $"{_orgSpecifier}" +
                     $"{organization.Name}{_fieldDelimiter}" +
                     $"{organization.Unit}{_fieldDelimiter}" +
                     $"{organization.Role}"
                 );
             foreach (TitleInfo title in card.ContactTitles)
-                fileStream.WriteLine(
+                cardBuilder.AppendLine(
                     $"{_titleSpecifier}" +
                     $"{title.ContactTitle}"
                 );
             if (!string.IsNullOrWhiteSpace(card.ContactURL))
-                fileStream.WriteLine($"{_urlSpecifier}{card.ContactURL}");
+                cardBuilder.AppendLine($"{_urlSpecifier}{card.ContactURL}");
             if (!string.IsNullOrWhiteSpace(card.ContactNotes))
-                fileStream.WriteLine($"{_noteSpecifier}{card.ContactNotes}");
+                cardBuilder.AppendLine($"{_noteSpecifier}{card.ContactNotes}");
             foreach (PhotoInfo photo in card.ContactPhotos)
-                fileStream.WriteLine(
+                cardBuilder.AppendLine(
                     $"{_photoSpecifierWithType}" +
                     $"VALUE={photo.ValueType}{_fieldDelimiter}" +
                     $"ENCODING={photo.Encoding}{_fieldDelimiter}" +
@@ -824,7 +825,7 @@ namespace VisualCard.Parsers.Three
                     $"{photo.PhotoEncoded}"
                 );
             foreach (LogoInfo logo in card.ContactLogos)
-                fileStream.WriteLine(
+                cardBuilder.AppendLine(
                     $"{_logoSpecifierWithType}" +
                     $"VALUE={logo.ValueType}{_fieldDelimiter}" +
                     $"ENCODING={logo.Encoding}{_fieldDelimiter}" +
@@ -832,7 +833,7 @@ namespace VisualCard.Parsers.Three
                     $"{logo.LogoEncoded}"
                 );
             foreach (SoundInfo sound in card.ContactSounds)
-                fileStream.WriteLine(
+                cardBuilder.AppendLine(
                     $"{_soundSpecifierWithType}" +
                     $"VALUE={sound.ValueType}{_fieldDelimiter}" +
                     $"ENCODING={sound.Encoding}{_fieldDelimiter}" +
@@ -840,49 +841,64 @@ namespace VisualCard.Parsers.Three
                     $"{sound.SoundEncoded}"
                 );
             if (card.CardRevision is not null && card.CardRevision != DateTime.MinValue)
-                fileStream.WriteLine($"{_revSpecifier}{card.CardRevision:dd-MM-yyyy_HH-mm-ss}");
+                cardBuilder.AppendLine($"{_revSpecifier}{card.CardRevision:dd-MM-yyyy_HH-mm-ss}");
             foreach (NicknameInfo nickname in card.ContactNicknames)
-                fileStream.WriteLine(
+                cardBuilder.AppendLine(
                     $"{_nicknameSpecifierWithType}" +
                     $"TYPE={string.Join(",", nickname.NicknameTypes)}{_argumentDelimiter}" +
                     $"{nickname.ContactNickname}"
                 );
             if (card.ContactBirthdate is not null && card.ContactBirthdate != DateTime.MinValue)
-                fileStream.WriteLine($"{_birthSpecifier}{card.ContactBirthdate:dd-MM-yyyy}");
+                cardBuilder.AppendLine($"{_birthSpecifier}{card.ContactBirthdate:dd-MM-yyyy}");
             if (!string.IsNullOrWhiteSpace(card.ContactMailer))
-                fileStream.WriteLine($"{_mailerSpecifier}{card.ContactMailer}");
+                cardBuilder.AppendLine($"{_mailerSpecifier}{card.ContactMailer}");
             foreach (RoleInfo role in card.ContactRoles)
-                fileStream.WriteLine(
+                cardBuilder.AppendLine(
                     $"{_roleSpecifier}" +
                     $"{role.ContactRole}"
                 );
             if (card.ContactCategories is not null && card.ContactCategories.Length > 0)
-                fileStream.WriteLine($"{_categoriesSpecifier}{string.Join(",", card.ContactCategories)}");
+                cardBuilder.AppendLine($"{_categoriesSpecifier}{string.Join(",", card.ContactCategories)}");
             if (!string.IsNullOrWhiteSpace(card.ContactProdId))
-                fileStream.WriteLine($"{_productIdSpecifier}{card.ContactProdId}");
+                cardBuilder.AppendLine($"{_productIdSpecifier}{card.ContactProdId}");
             if (!string.IsNullOrWhiteSpace(card.ContactSortString))
-                fileStream.WriteLine($"{_sortStringSpecifier}{card.ContactSortString}");
+                cardBuilder.AppendLine($"{_sortStringSpecifier}{card.ContactSortString}");
             foreach (TimeZoneInfo timeZone in card.ContactTimeZone)
-                fileStream.WriteLine(
+                cardBuilder.AppendLine(
                     $"{_timeZoneSpecifier}" +
                     $"{timeZone.TimeZone}"
                 );
             foreach (GeoInfo geo in card.ContactGeo)
-                fileStream.WriteLine(
+                cardBuilder.AppendLine(
                     $"{_geoSpecifier}" +
                     $"{geo.Geo}"
                 );
             foreach (XNameInfo xname in card.ContactXNames)
-                fileStream.WriteLine(
+                cardBuilder.AppendLine(
                     $"{_xSpecifier}" +
                     $"{xname.XKeyName}{(xname.XKeyTypes.Length > 0 ? _fieldDelimiter : _argumentDelimiter)}" +
                     $"{(xname.XKeyTypes.Length > 0 ? string.Join(_fieldDelimiter.ToString(), xname.XKeyTypes) + _argumentDelimiter : "")}" +
                     $"{string.Join(_fieldDelimiter.ToString(), xname.XValues)}"
                 );
 
-            // Finally, end the file and close it
-            fileStream.WriteLine("END:VCARD");
-            fileStream.Close();
+            // Finally, end the card and return it
+            cardBuilder.AppendLine("END:VCARD");
+            return cardBuilder.ToString();
+        }
+
+        internal override void SaveTo(string path, Card card)
+        {
+            // Check the version to ensure that we're really dealing with VCard 3.0 contact
+            if (CardVersion != "3.0")
+                throw new InvalidDataException($"Card version {CardVersion} doesn't match expected \"3.0\".");
+
+            // Check the content to ensure that we really have data
+            if (string.IsNullOrEmpty(CardContent))
+                throw new InvalidDataException($"Card content is empty.");
+
+            // Save all the changes to the file
+            var cardString = SaveToString(card);
+            File.WriteAllText(path, cardString);
         }
 
         internal VcardThree(string cardContent, string cardVersion)
