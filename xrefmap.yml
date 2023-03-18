@@ -798,6 +798,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Card.SaveTo
   nameWithType: Card.SaveTo
+- uid: VisualCard.Parts.Card.SaveToString
+  name: SaveToString()
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_SaveToString
+  commentId: M:VisualCard.Parts.Card.SaveToString
+  fullName: VisualCard.Parts.Card.SaveToString()
+  nameWithType: Card.SaveToString()
+- uid: VisualCard.Parts.Card.SaveToString*
+  name: SaveToString
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_SaveToString_
+  commentId: Overload:VisualCard.Parts.Card.SaveToString
+  isSpec: "True"
+  fullName: VisualCard.Parts.Card.SaveToString
+  nameWithType: Card.SaveToString
 - uid: VisualCard.Parts.EmailInfo
   name: EmailInfo
   href: api/VisualCard.Parts.EmailInfo.html
