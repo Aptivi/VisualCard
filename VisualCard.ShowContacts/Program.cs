@@ -161,7 +161,7 @@ namespace VisualCard.ShowContacts
                     Console.WriteLine("Contact Note:            {0}", Contact.ContactNotes);
 
                     // Print VCard
-                    Console.WriteLine("\nRaw VCard" +
+                    Console.WriteLine("\nRaw VCard\n" +
                                         "---------\n");
                     Console.WriteLine(Contact.SaveToString());
                 }
