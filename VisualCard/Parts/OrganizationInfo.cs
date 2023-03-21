@@ -32,6 +32,10 @@ namespace VisualCard.Parts
         /// </summary>
         public int AltId { get; }
         /// <summary>
+        /// The contact's organization types
+        /// </summary>
+        public string[] OrgTypes { get; }
+        /// <summary>
         /// The contact's organization name
         /// </summary>
         public string Name { get; }
@@ -46,12 +50,13 @@ namespace VisualCard.Parts
 
         internal OrganizationInfo() { }
 
-        internal OrganizationInfo(int altId, string name, string unit, string role)
+        internal OrganizationInfo(int altId, string name, string unit, string role, string[] orgTypes)
         {
             AltId = altId;
             Name = name;
             Unit = unit;
             Role = role;
+            OrgTypes = orgTypes;
         }
     }
 }

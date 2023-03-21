@@ -60,6 +60,7 @@ namespace VisualCard.Parsers.Four
         const string _addressSpecifierWithType      = "ADR;";
         const string _emailSpecifier                = "EMAIL;";
         const string _orgSpecifier                  = "ORG:";
+        const string _orgSpecifierWithType          = "ORG;";
         const string _titleSpecifier                = "TITLE:";
         const string _titleSpecifierWithArguments   = "TITLE;";
         const string _urlSpecifier                  = "URL:";
@@ -384,10 +385,46 @@ namespace VisualCard.Parsers.Four
                         string[] splitOrg = orgValue.Split(_fieldDelimiter);
 
                         // Populate the fields
+                        string[] splitTypes = new string[] { "WORK" };
                         string _orgName = Regex.Unescape(splitOrg[0]);
                         string _orgUnit = Regex.Unescape(splitOrg.Length >= 2 ? splitOrg[1] : "");
                         string _orgUnitRole = Regex.Unescape(splitOrg.Length >= 3 ? splitOrg[2] : "");
-                        OrganizationInfo _org = new(altId, _orgName, _orgUnit, _orgUnitRole);
+                        OrganizationInfo _org = new(altId, _orgName, _orgUnit, _orgUnitRole, splitTypes);
+                        _orgs.Add(_org);
+                    }
+
+                    // Organization (ORG;TYPE=WORK:Acme Co. or ORG:ABC, Inc.;North American Division;Marketing)
+                    // ALTID is supported.
+                    if (_value.StartsWith(_orgSpecifierWithType))
+                    {
+                        // Get the value
+                        string orgValue = _value.Substring(_orgSpecifierWithType.Length);
+                        string[] splitOrg = orgValue.Split(_argumentDelimiter);
+                        string[] splitTypes;
+                        if (splitOrg.Length != 2)
+                            throw new InvalidDataException("Organization field must specify exactly two values (Type (must be prepended with TYPE=), and address information)");
+
+                        // Check to see if the type is prepended with the TYPE= argument
+                        if (splitOrg[0].StartsWith(_typeArgumentSpecifier))
+                            // Get the types
+                            splitTypes = splitOrg[0].Substring(_typeArgumentSpecifier.Length).Split(_valueDelimiter);
+                        else if (string.IsNullOrEmpty(splitOrg[0]))
+                            // We're confronted with an empty type. Assume that it's a WORK organization.
+                            splitTypes = new string[] { "WORK" };
+                        else
+                            // Trying to specify type without TYPE= is illegal according to RFC2426
+                            throw new InvalidDataException("Organization type must be prepended with TYPE=");
+
+                        // Check the provided organization
+                        string[] splitOrganizationValues = splitOrg[1].Split(_fieldDelimiter);
+                        if (splitOrganizationValues.Length != 3)
+                            throw new InvalidDataException("Organization information must specify exactly three values (name, unit, and role)");
+
+                        // Populate the fields
+                        string _orgName = Regex.Unescape(splitOrg[0]);
+                        string _orgUnit = Regex.Unescape(splitOrg.Length >= 2 ? splitOrg[1] : "");
+                        string _orgUnitRole = Regex.Unescape(splitOrg.Length >= 3 ? splitOrg[2] : "");
+                        OrganizationInfo _org = new(altId, _orgName, _orgUnit, _orgUnitRole, splitTypes);
                         _orgs.Add(_org);
                     }
 
@@ -937,12 +974,17 @@ namespace VisualCard.Parsers.Four
                 );
             }
             foreach (OrganizationInfo organization in card.ContactOrganizations)
+            {
+                bool installAltId = organization.AltId > 0;
                 cardBuilder.AppendLine(
-                    $"{_orgSpecifier}" +
+                    $"{_orgSpecifierWithType}" +
+                    $"{(installAltId ? "ALTID=" + organization.AltId + _fieldDelimiter : "")}" +
+                    $"TYPE={string.Join(",", organization.OrgTypes)}{_argumentDelimiter}" +
                     $"{organization.Name}{_fieldDelimiter}" +
                     $"{organization.Unit}{_fieldDelimiter}" +
                     $"{organization.Role}"
                 );
+            }
             foreach (TitleInfo title in card.ContactTitles)
             {
                 bool installAltId = title.AltId >= 0 && title.AltArguments.Length > 0;

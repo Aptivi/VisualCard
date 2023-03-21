@@ -475,7 +475,6 @@ namespace VisualCard.Converters
                             //
                             // | d1: Organization name
                             // | d2: Organization type
-                            // TODO: Implement organization type in VisualCard parsers
                             // | d3: Organization unit
                             // | d4: Your employee title or role in the organization
                             // ---> will get converted to VCard line:
