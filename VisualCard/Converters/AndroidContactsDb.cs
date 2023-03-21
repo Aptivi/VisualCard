@@ -283,7 +283,7 @@ namespace VisualCard.Converters
                                     _telephoneTypeName = "mms";
                                     break;
                             }
-                            masterContactBuilder.AppendLine($"{_telephoneSpecifierWithType}TYPE={_telephoneTypeName}:{d2}");
+                            masterContactBuilder.AppendLine($"{_telephoneSpecifierWithType}TYPE={_telephoneTypeName}:{d1}");
                             break;
                         case "vnd.android.cursor.item/nickname":
                             // Example:
