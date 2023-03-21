@@ -559,6 +559,42 @@ namespace VisualCard.Converters
                             const string _noteSpecifier = "NOTE:";
                             masterContactBuilder.AppendLine($"{_noteSpecifier}{d1}");
                             break;
+                        case "vnd.android.cursor.item/photo":
+                            // Example:
+                            //
+                            // _id    mimetype                         quote(data.data15)
+                            // 3      vnd.android.cursor.item/photo    X'FFD8FFE...
+                            //
+                            // | d15: Encoded photo
+                            // ---> will get converted to VCard line:
+                            //      PHOTO;ENCODING=BASE64;JPEG:d15
+                            // TODO: may not be BASE64
+                            const string _photoSpecifierWithType = "PHOTO;";
+                            const int maxChars = 74;
+                            const int maxCharsFirst = 48;
+
+                            // Unquote the encoded photo
+                            d15 = d15.Substring(d15.IndexOf("'") + 1);
+                            d15 = d15.Substring(0, d15.IndexOf("'"));
+
+                            // Construct the photo block
+                            StringBuilder photoBlock = new();
+                            int selectedMax = maxCharsFirst;
+                            int processed = 0;
+                            for (int currCharNum = 0; currCharNum < d15.Length; currCharNum++)
+                            {
+                                photoBlock.Append(d15[currCharNum]);
+                                processed++;
+                                if (processed >= selectedMax)
+                                {
+                                    // Append a new line because we reached the maximum limit
+                                    selectedMax = maxChars;
+                                    processed = 0;
+                                    photoBlock.Append("\n ");
+                                }
+                            }
+                            masterContactBuilder.AppendLine($"{_photoSpecifierWithType}ENCODING=BASE64;JPEG:{photoBlock}");
+                            break;
                     }
 
                     // Update lastId
