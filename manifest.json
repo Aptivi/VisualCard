@@ -29,6 +29,30 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Converters.AndroidContactsDb.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Converters.AndroidContactsDb.html",
+          "hash": "Rpz4jenI+qezDlVmB1IbpeRJM9jeQgPu9LlAhO3lVp8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Converters.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Converters.html",
+          "hash": "FgLHOnL7pW+bflUWfl7WSc4ENZhHvvyLatajo8zbTDM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/VisualCard.Exceptions.VCardParseException.yml",
       "output": {
         ".html": {
@@ -369,7 +393,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "jpXPZCJnqjqafQS5n24YtEc7TzhED+jMurVvEs4Y5ss="
+          "hash": "zuJjNfFvrgMsz0frlEGF0hKx0zFk4KAiEDJRsXpC6ds="
         }
       },
       "is_incremental": false,
@@ -420,7 +444,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 29,
+          "total_file_count": 31,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {

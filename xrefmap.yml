@@ -45,6 +45,31 @@ references:
   isSpec: "True"
   fullName: VisualCard.CardTools.GetCardParsersFromString
   nameWithType: CardTools.GetCardParsersFromString
+- uid: VisualCard.Converters
+  name: VisualCard.Converters
+  href: api/VisualCard.Converters.html
+  commentId: N:VisualCard.Converters
+  fullName: VisualCard.Converters
+  nameWithType: VisualCard.Converters
+- uid: VisualCard.Converters.AndroidContactsDb
+  name: AndroidContactsDb
+  href: api/VisualCard.Converters.AndroidContactsDb.html
+  commentId: T:VisualCard.Converters.AndroidContactsDb
+  fullName: VisualCard.Converters.AndroidContactsDb
+  nameWithType: AndroidContactsDb
+- uid: VisualCard.Converters.AndroidContactsDb.GetContactsFromDb(System.String)
+  name: GetContactsFromDb(String)
+  href: api/VisualCard.Converters.AndroidContactsDb.html#VisualCard_Converters_AndroidContactsDb_GetContactsFromDb_System_String_
+  commentId: M:VisualCard.Converters.AndroidContactsDb.GetContactsFromDb(System.String)
+  fullName: VisualCard.Converters.AndroidContactsDb.GetContactsFromDb(System.String)
+  nameWithType: AndroidContactsDb.GetContactsFromDb(String)
+- uid: VisualCard.Converters.AndroidContactsDb.GetContactsFromDb*
+  name: GetContactsFromDb
+  href: api/VisualCard.Converters.AndroidContactsDb.html#VisualCard_Converters_AndroidContactsDb_GetContactsFromDb_
+  commentId: Overload:VisualCard.Converters.AndroidContactsDb.GetContactsFromDb
+  isSpec: "True"
+  fullName: VisualCard.Converters.AndroidContactsDb.GetContactsFromDb
+  nameWithType: AndroidContactsDb.GetContactsFromDb
 - uid: VisualCard.Exceptions
   name: VisualCard.Exceptions
   href: api/VisualCard.Exceptions.html

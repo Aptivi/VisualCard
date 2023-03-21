@@ -4,6 +4,16 @@
     "title": "Class CardTools | VisualCard API - Eofla Internals",
     "keywords": "Class CardTools Module for VCard management Inheritance System.Object CardTools Namespace : VisualCard Assembly : VisualCard.dll Syntax public static class CardTools : object Methods GetCardParsers(StreamReader) Gets the list of parsers for single/multiple contacts from the stream Declaration public static List<BaseVcardParser> GetCardParsers(StreamReader stream) Parameters Type Name Description StreamReader stream Stream containing the contacts Returns Type Description List < BaseVcardParser > List of contact parsers for single or multiple contacts GetCardParsers(String) Gets the list of parsers for single/multiple contacts from the path Declaration public static List<BaseVcardParser> GetCardParsers(string Path) Parameters Type Name Description System.String Path Path to the contacts file Returns Type Description List < BaseVcardParser > List of contact parsers for single or multiple contacts GetCardParsersFromString(String) Gets the list of parsers for single/multiple contacts from the string Declaration public static List<BaseVcardParser> GetCardParsersFromString(string cardText) Parameters Type Name Description System.String cardText Returns Type Description List < BaseVcardParser > List of contact parsers for single or multiple contacts"
   },
+  "api/VisualCard.Converters.AndroidContactsDb.html": {
+    "href": "api/VisualCard.Converters.AndroidContactsDb.html",
+    "title": "Class AndroidContactsDb | VisualCard API - Eofla Internals",
+    "keywords": "Class AndroidContactsDb Android contacts database management class Inheritance System.Object AndroidContactsDb Namespace : VisualCard.Converters Assembly : VisualCard.dll Syntax public static class AndroidContactsDb : object Methods GetContactsFromDb(String) Gets all contacts from the Android database Declaration public static List<BaseVcardParser> GetContactsFromDb(string pathToDb) Parameters Type Name Description System.String pathToDb Path to the valid contacts2.db file, usually fetched from /data/data/android.providers.contacts/databases/ found in the rooted Android devices Returns Type Description List < BaseVcardParser >"
+  },
+  "api/VisualCard.Converters.html": {
+    "href": "api/VisualCard.Converters.html",
+    "title": "Namespace VisualCard.Converters | VisualCard API - Eofla Internals",
+    "keywords": "Namespace VisualCard.Converters Classes AndroidContactsDb Android contacts database management class"
+  },
   "api/VisualCard.Exceptions.html": {
     "href": "api/VisualCard.Exceptions.html",
     "title": "Namespace VisualCard.Exceptions | VisualCard API - Eofla Internals",
