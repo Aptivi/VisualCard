@@ -335,9 +335,9 @@ namespace VisualCard.Parsers.Three
                             throw new InvalidDataException("Organization information must specify exactly three values (name, unit, and role)");
 
                         // Populate the fields
-                        string _orgName = Regex.Unescape(splitOrg[0]);
-                        string _orgUnit = Regex.Unescape(splitOrg.Length >= 2 ? splitOrg[1] : "");
-                        string _orgUnitRole = Regex.Unescape(splitOrg.Length >= 3 ? splitOrg[2] : "");
+                        string _orgName = Regex.Unescape(splitOrganizationValues[0]);
+                        string _orgUnit = Regex.Unescape(splitOrganizationValues.Length >= 2 ? splitOrganizationValues[1] : "");
+                        string _orgUnitRole = Regex.Unescape(splitOrganizationValues.Length >= 3 ? splitOrganizationValues[2] : "");
                         OrganizationInfo _org = new(0, _orgName, _orgUnit, _orgUnitRole, splitTypes);
                         _orgs.Add(_org);
                     }
