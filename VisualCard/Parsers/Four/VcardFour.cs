@@ -1005,7 +1005,7 @@ namespace VisualCard.Parsers.Four
                 cardBuilder.AppendLine(
                     $"{_photoSpecifierWithType}" +
                     $"{(installAltId ? "ALTID=" + photo.AltId + _fieldDelimiter : "")}" +
-                    $"{(installAltId ? string.Join(_fieldDelimiter.ToString(), photo.AltArguments) + _argumentDelimiter : "")}" +
+                    $"{(installAltId ? string.Join(_fieldDelimiter.ToString(), photo.AltArguments) + _fieldDelimiter : "")}" +
                     $"VALUE={photo.ValueType}{_fieldDelimiter}" +
                     $"ENCODING={photo.Encoding}{_fieldDelimiter}" +
                     $"TYPE={photo.PhotoType}{_argumentDelimiter}" +
@@ -1018,7 +1018,7 @@ namespace VisualCard.Parsers.Four
                 cardBuilder.AppendLine(
                     $"{_logoSpecifierWithType}" +
                     $"{(installAltId ? "ALTID=" + logo.AltId + _fieldDelimiter : "")}" +
-                    $"{(installAltId ? string.Join(_fieldDelimiter.ToString(), logo.AltArguments) + _argumentDelimiter : "")}" +
+                    $"{(installAltId ? string.Join(_fieldDelimiter.ToString(), logo.AltArguments) + _fieldDelimiter : "")}" +
                     $"VALUE={logo.ValueType}{_fieldDelimiter}" +
                     $"ENCODING={logo.Encoding}{_fieldDelimiter}" +
                     $"TYPE={logo.LogoType}{_argumentDelimiter}" +
@@ -1031,7 +1031,7 @@ namespace VisualCard.Parsers.Four
                 cardBuilder.AppendLine(
                     $"{_soundSpecifierWithType}" +
                     $"{(installAltId ? "ALTID=" + sound.AltId + _fieldDelimiter : "")}" +
-                    $"{(installAltId ? string.Join(_fieldDelimiter.ToString(), sound.AltArguments) + _argumentDelimiter : "")}" +
+                    $"{(installAltId ? string.Join(_fieldDelimiter.ToString(), sound.AltArguments) + _fieldDelimiter : "")}" +
                     $"VALUE={sound.ValueType}{_fieldDelimiter}" +
                     $"ENCODING={sound.Encoding}{_fieldDelimiter}" +
                     $"TYPE={sound.SoundType}{_argumentDelimiter}" +
@@ -1046,7 +1046,7 @@ namespace VisualCard.Parsers.Four
                 cardBuilder.AppendLine(
                     $"{(installAltId ? _nicknameSpecifierWithType : _nicknameSpecifier)}" +
                     $"{(installAltId ? "ALTID=" + nickname.AltId + _fieldDelimiter : "")}" +
-                    $"{(installAltId ? string.Join(_fieldDelimiter.ToString(), nickname.AltArguments) + _argumentDelimiter : "")}" +
+                    $"{(installAltId ? string.Join(_fieldDelimiter.ToString(), nickname.AltArguments) + _fieldDelimiter : "")}" +
                     $"TYPE={string.Join(",", nickname.NicknameTypes)}{_argumentDelimiter}" +
                     $"{nickname.ContactNickname}"
                 );
