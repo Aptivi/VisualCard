@@ -522,7 +522,6 @@ namespace VisualCard.Converters
                             // | d2: SIP address type
                             // ---> will get converted to VCard line:
                             //      IMPP;TYPE=d2:d1
-                            // TODO: Unimplemented on VisualCard parsers!!!
                             const string _imppSpecifierWithType = "IMPP;";
                             string _imppTypeName = "home";
                             switch (d2)

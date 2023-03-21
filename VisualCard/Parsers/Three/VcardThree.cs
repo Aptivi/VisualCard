@@ -77,6 +77,8 @@ namespace VisualCard.Parsers.Three
         const string _geoSpecifier = "GEO:";
         const string _timeZoneSpecifierWithType = "TZ;";
         const string _geoSpecifierWithType = "GEO;";
+        const string _imppSpecifier = "IMPP:";
+        const string _imppSpecifierWithType = "IMPP;";
         const string _xSpecifier = "X-";
         const string _typeArgumentSpecifier = "TYPE=";
         const string _valueArgumentSpecifier = "VALUE=";
@@ -119,6 +121,7 @@ namespace VisualCard.Parsers.Three
             List<string> _categories = new();
             List<TimeZoneInfo> _timezones = new();
             List<GeoInfo> _geos = new();
+            List<ImppInfo> _impps = new();
             List<XNameInfo> _xes = new();
 
             // Name and Full Name specifiers are required
@@ -739,6 +742,48 @@ namespace VisualCard.Parsers.Three
                         _geos.Add(_geo);
                     }
 
+                    // IMPP information (IMPP;TYPE=home:sip:test)
+                    if (_value.StartsWith(_imppSpecifierWithType))
+                    {
+                        // Get the value
+                        string imppValue = _value.Substring(_imppSpecifierWithType.Length);
+                        string[] splitImpp = imppValue.Split(_argumentDelimiter);
+
+                        string[] splitTypes;
+                        if (splitImpp.Length < 2)
+                            throw new InvalidDataException("IMPP information field must specify exactly two values (Type (must be prepended with TYPE=), and impp)");
+
+                        // Check to see if the type is prepended with the TYPE= argument
+                        if (splitImpp[0].StartsWith(_typeArgumentSpecifier))
+                            // Get the types
+                            splitTypes = splitImpp[0].Substring(_typeArgumentSpecifier.Length).Split(_valueDelimiter);
+                        else if (string.IsNullOrEmpty(splitImpp[0]))
+                            // We're confronted with an empty type. Assume that it's HOME.
+                            splitTypes = new string[] { "HOME" };
+                        else
+                            // Trying to specify type without TYPE= is illegal according to RFC2426
+                            throw new InvalidDataException("IMPP type must be prepended with TYPE=");
+
+                        // Populate the fields
+                        string[] _imppTypes = splitTypes;
+                        string _impp = Regex.Unescape(imppValue.Substring(imppValue.IndexOf(":") + 1));
+                        ImppInfo _imppInstance = new(0, Array.Empty<string>(), _impp, _imppTypes);
+                        _impps.Add(_imppInstance);
+                    }
+
+                    // IMPP information (IMPP:sip:test)
+                    if (_value.StartsWith(_imppSpecifier))
+                    {
+                        // Get the value
+                        string imppValue = _value.Substring(_imppSpecifier.Length);
+
+                        // Populate the fields
+                        string[] _imppTypes = new string[] { "HOME" };
+                        string _impp = Regex.Unescape(imppValue);
+                        ImppInfo _imppInstance = new(0, Array.Empty<string>(), _impp, _imppTypes);
+                        _impps.Add(_imppInstance);
+                    }
+
                     // X-nonstandard (X-AIM:john.s or X-DL;Design Work Group:List Item 1;List Item 2;List Item 3)
                     if (_value.StartsWith(_xSpecifier))
                     {
@@ -774,7 +819,7 @@ namespace VisualCard.Parsers.Three
                 throw new InvalidDataException("The full name specifier, \"FN:\", is required.");
 
             // Make a new instance of the card
-            return new Card(this, CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), "individual", _photos.ToArray(), _rev, _nicks.ToArray(), _bday, _mailer, _roles.ToArray(), _categories.ToArray(), _logos.ToArray(), _prodId, _sortString, _timezones.ToArray(), _geos.ToArray(), _sounds.ToArray());
+            return new Card(this, CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), "individual", _photos.ToArray(), _rev, _nicks.ToArray(), _bday, _mailer, _roles.ToArray(), _categories.ToArray(), _logos.ToArray(), _prodId, _sortString, _timezones.ToArray(), _geos.ToArray(), _sounds.ToArray(), _impps.ToArray());
         }
 
         internal override string SaveToString(Card card)
