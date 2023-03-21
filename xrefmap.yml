@@ -1197,6 +1197,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.OrganizationInfo.Name
   nameWithType: OrganizationInfo.Name
+- uid: VisualCard.Parts.OrganizationInfo.OrgTypes
+  name: OrgTypes
+  href: api/VisualCard.Parts.OrganizationInfo.html#VisualCard_Parts_OrganizationInfo_OrgTypes
+  commentId: P:VisualCard.Parts.OrganizationInfo.OrgTypes
+  fullName: VisualCard.Parts.OrganizationInfo.OrgTypes
+  nameWithType: OrganizationInfo.OrgTypes
+- uid: VisualCard.Parts.OrganizationInfo.OrgTypes*
+  name: OrgTypes
+  href: api/VisualCard.Parts.OrganizationInfo.html#VisualCard_Parts_OrganizationInfo_OrgTypes_
+  commentId: Overload:VisualCard.Parts.OrganizationInfo.OrgTypes
+  isSpec: "True"
+  fullName: VisualCard.Parts.OrganizationInfo.OrgTypes
+  nameWithType: OrganizationInfo.OrgTypes
 - uid: VisualCard.Parts.OrganizationInfo.Role
   name: Role
   href: api/VisualCard.Parts.OrganizationInfo.html#VisualCard_Parts_OrganizationInfo_Role
