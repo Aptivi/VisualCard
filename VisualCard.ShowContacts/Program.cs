@@ -24,6 +24,7 @@
  */
 
 using System.Diagnostics;
+using VisualCard.Converters;
 using VisualCard.Parsers;
 using VisualCard.Parts;
 
@@ -43,6 +44,7 @@ namespace VisualCard.ShowContacts
                 bool print = !args.Contains("-noprint");
                 bool save = args.Contains("-save");
                 bool dbg = args.Contains("-debug");
+                bool android = args.Contains("-android");
 
                 // If debug, wait for debugger
                 if (dbg)
@@ -53,7 +55,7 @@ namespace VisualCard.ShowContacts
                 elapsed.Start();
 
                 // Get parsers
-                List<BaseVcardParser> ContactParsers = CardTools.GetCardParsers(args[0]);
+                List<BaseVcardParser> ContactParsers = android ? AndroidContactsDb.GetContactsFromDb(args[0]) : CardTools.GetCardParsers(args[0]);
                 List<Card> Contacts = new();
 
                 // Parse all contacts

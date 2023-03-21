@@ -40,4 +40,8 @@
     <EditorConfigFiles Remove="..\.editorconfig" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="7.0.4" />
+  </ItemGroup>
+
 </Project>
