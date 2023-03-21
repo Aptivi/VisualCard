@@ -956,6 +956,12 @@ namespace VisualCard.Parsers.Three
                     $"{_geoSpecifier}" +
                     $"{geo.Geo}"
                 );
+            foreach (ImppInfo impp in card.ContactImpps)
+                cardBuilder.AppendLine(
+                    $"{_imppSpecifierWithType}" +
+                    $"TYPE={string.Join(",", impp.ImppTypes)}{_argumentDelimiter}" +
+                    $"{impp.ContactIMPP}"
+                );
             foreach (XNameInfo xname in card.ContactXNames)
                 cardBuilder.AppendLine(
                     $"{_xSpecifier}" +

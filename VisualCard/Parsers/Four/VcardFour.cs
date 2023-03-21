@@ -1136,6 +1136,16 @@ namespace VisualCard.Parsers.Four
                     $"{geo.Geo}"
                 );
             }
+            foreach (ImppInfo impp in card.ContactImpps)
+            {
+                bool installAltId = impp.AltId > 0;
+                cardBuilder.AppendLine(
+                    $"{(installAltId ? _imppSpecifierWithType : _imppSpecifier)}" +
+                    $"{(installAltId ? "ALTID=" + impp.AltId + _fieldDelimiter : "")}" +
+                    $"{(installAltId ? string.Join(_fieldDelimiter.ToString(), impp.AltArguments) + _argumentDelimiter : "")}" +
+                    $"{impp.ContactIMPP}"
+                );
+            }
             foreach (XNameInfo xname in card.ContactXNames)
             {
                 bool installAltId = xname.AltId > 0;
