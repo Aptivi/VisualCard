@@ -589,6 +589,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Card.ContactGeo
   nameWithType: Card.ContactGeo
+- uid: VisualCard.Parts.Card.ContactImpps
+  name: ContactImpps
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactImpps
+  commentId: P:VisualCard.Parts.Card.ContactImpps
+  fullName: VisualCard.Parts.Card.ContactImpps
+  nameWithType: Card.ContactImpps
+- uid: VisualCard.Parts.Card.ContactImpps*
+  name: ContactImpps
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactImpps_
+  commentId: Overload:VisualCard.Parts.Card.ContactImpps
+  isSpec: "True"
+  fullName: VisualCard.Parts.Card.ContactImpps
+  nameWithType: Card.ContactImpps
 - uid: VisualCard.Parts.Card.ContactLogos
   name: ContactLogos
   href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactLogos
@@ -926,6 +939,64 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.GeoInfo.Geo
   nameWithType: GeoInfo.Geo
+- uid: VisualCard.Parts.ImppInfo
+  name: ImppInfo
+  href: api/VisualCard.Parts.ImppInfo.html
+  commentId: T:VisualCard.Parts.ImppInfo
+  fullName: VisualCard.Parts.ImppInfo
+  nameWithType: ImppInfo
+- uid: VisualCard.Parts.ImppInfo.AltArguments
+  name: AltArguments
+  href: api/VisualCard.Parts.ImppInfo.html#VisualCard_Parts_ImppInfo_AltArguments
+  commentId: P:VisualCard.Parts.ImppInfo.AltArguments
+  fullName: VisualCard.Parts.ImppInfo.AltArguments
+  nameWithType: ImppInfo.AltArguments
+- uid: VisualCard.Parts.ImppInfo.AltArguments*
+  name: AltArguments
+  href: api/VisualCard.Parts.ImppInfo.html#VisualCard_Parts_ImppInfo_AltArguments_
+  commentId: Overload:VisualCard.Parts.ImppInfo.AltArguments
+  isSpec: "True"
+  fullName: VisualCard.Parts.ImppInfo.AltArguments
+  nameWithType: ImppInfo.AltArguments
+- uid: VisualCard.Parts.ImppInfo.AltId
+  name: AltId
+  href: api/VisualCard.Parts.ImppInfo.html#VisualCard_Parts_ImppInfo_AltId
+  commentId: P:VisualCard.Parts.ImppInfo.AltId
+  fullName: VisualCard.Parts.ImppInfo.AltId
+  nameWithType: ImppInfo.AltId
+- uid: VisualCard.Parts.ImppInfo.AltId*
+  name: AltId
+  href: api/VisualCard.Parts.ImppInfo.html#VisualCard_Parts_ImppInfo_AltId_
+  commentId: Overload:VisualCard.Parts.ImppInfo.AltId
+  isSpec: "True"
+  fullName: VisualCard.Parts.ImppInfo.AltId
+  nameWithType: ImppInfo.AltId
+- uid: VisualCard.Parts.ImppInfo.ContactIMPP
+  name: ContactIMPP
+  href: api/VisualCard.Parts.ImppInfo.html#VisualCard_Parts_ImppInfo_ContactIMPP
+  commentId: P:VisualCard.Parts.ImppInfo.ContactIMPP
+  fullName: VisualCard.Parts.ImppInfo.ContactIMPP
+  nameWithType: ImppInfo.ContactIMPP
+- uid: VisualCard.Parts.ImppInfo.ContactIMPP*
+  name: ContactIMPP
+  href: api/VisualCard.Parts.ImppInfo.html#VisualCard_Parts_ImppInfo_ContactIMPP_
+  commentId: Overload:VisualCard.Parts.ImppInfo.ContactIMPP
+  isSpec: "True"
+  fullName: VisualCard.Parts.ImppInfo.ContactIMPP
+  nameWithType: ImppInfo.ContactIMPP
+- uid: VisualCard.Parts.ImppInfo.ImppTypes
+  name: ImppTypes
+  href: api/VisualCard.Parts.ImppInfo.html#VisualCard_Parts_ImppInfo_ImppTypes
+  commentId: P:VisualCard.Parts.ImppInfo.ImppTypes
+  fullName: VisualCard.Parts.ImppInfo.ImppTypes
+  nameWithType: ImppInfo.ImppTypes
+- uid: VisualCard.Parts.ImppInfo.ImppTypes*
+  name: ImppTypes
+  href: api/VisualCard.Parts.ImppInfo.html#VisualCard_Parts_ImppInfo_ImppTypes_
+  commentId: Overload:VisualCard.Parts.ImppInfo.ImppTypes
+  isSpec: "True"
+  fullName: VisualCard.Parts.ImppInfo.ImppTypes
+  nameWithType: ImppInfo.ImppTypes
 - uid: VisualCard.Parts.LogoInfo
   name: LogoInfo
   href: api/VisualCard.Parts.LogoInfo.html

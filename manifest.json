@@ -201,7 +201,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisualCard.Parts.Card.html",
-          "hash": "usjPD212OF4ZurSkAz98fmhn1LLaD02SKDJDZAgq7T0="
+          "hash": "cePxj4vO11BlZBL8AJqw5sUJQAuYoZhyxmBRZ4Ev96c="
         }
       },
       "is_incremental": false,
@@ -226,6 +226,18 @@
         ".html": {
           "relative_path": "api/VisualCard.Parts.GeoInfo.html",
           "hash": "9nv887oWLPj0ZTRKOvk2hSuzJVa69Oiu7Mr/KQdTBGc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.ImppInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.ImppInfo.html",
+          "hash": "lE4XqyLmhhZT5uuLkDqDTvEE4RZhDc+rQ2fWJ9I45IE="
         }
       },
       "is_incremental": false,
@@ -369,7 +381,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisualCard.Parts.html",
-          "hash": "6/nap89O9UmmpsHbUhNcE1BwzDtuk6BQhw289NciO1s="
+          "hash": "VWOuqtdAA/Kk+He0u3Nx+iABLLkpmbuxskvATJvMkvE="
         }
       },
       "is_incremental": false,
@@ -393,7 +405,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "zuJjNfFvrgMsz0frlEGF0hKx0zFk4KAiEDJRsXpC6ds="
+          "hash": "5JzLIFY762KXDuIzXDouuSb+mSt7f5mUIJgk+qRhJK4="
         }
       },
       "is_incremental": false,
@@ -444,7 +456,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 31,
+          "total_file_count": 32,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {
