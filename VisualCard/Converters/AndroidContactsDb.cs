@@ -92,7 +92,12 @@ namespace VisualCard.Converters
                         data.data8,
                         data.data9,
                         data.data10,
-                        quote(data.data15) FROM raw_contacts,
+                        data.data11,
+                        data.data12,
+                        data.data13,
+                        data.data14,
+                        quote(data.data15)
+                    FROM raw_contacts,
                         data,
                         mimetypes
                     WHERE
@@ -155,7 +160,11 @@ namespace VisualCard.Converters
                     var d8 = !reader.IsDBNull(9) ? reader.GetString(9) : $"";
                     var d9 = !reader.IsDBNull(10) ? reader.GetString(10) : $"";
                     var d10 = !reader.IsDBNull(11) ? reader.GetString(11) : $"";
-                    var d15 = !reader.IsDBNull(12) ? reader.GetString(12) : $"";
+                    var d11 = !reader.IsDBNull(12) ? reader.GetString(12) : $"";
+                    var d12 = !reader.IsDBNull(13) ? reader.GetString(13) : $"";
+                    var d13 = !reader.IsDBNull(14) ? reader.GetString(14) : $"";
+                    var d14 = !reader.IsDBNull(15) ? reader.GetString(15) : $"";
+                    var d15 = !reader.IsDBNull(16) ? reader.GetString(16) : $"";
 
                     // Check the metadata type. They're not documented to us even in the official Android developers guide,
                     // so we have to figure things out.
