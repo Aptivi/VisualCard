@@ -139,7 +139,6 @@ namespace VisualCard.Converters
 
                             BEGIN:VCARD
                             VERSION:3.0
-                            
                             """
                         );
                     }
