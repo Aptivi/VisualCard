@@ -409,8 +409,8 @@ namespace VisualCard.Parsers.Three
                         if (splitPhotoArgs.Length >= 1)
                         {
                             photoType = splitPhotoArgs[1].StartsWith(_typeArgumentSpecifier) ?
-                                        splitPhotoArgs[1].Substring(_typeArgumentSpecifier.Length) :
-                                        splitPhotoArgs[1];
+                                        splitPhotoArgs[1].Substring(_typeArgumentSpecifier.Length).Substring(0, splitPhotoArgs[1].IndexOf(_argumentDelimiter)) :
+                                        splitPhotoArgs[1].Substring(0, splitPhotoArgs[1].IndexOf(_argumentDelimiter));
                         }
 
                         // Now, get the encoded photo
@@ -465,8 +465,8 @@ namespace VisualCard.Parsers.Three
                         if (splitLogoArgs.Length >= 1)
                         {
                             logoType = splitLogoArgs[1].StartsWith(_typeArgumentSpecifier) ?
-                                       splitLogoArgs[1].Substring(_typeArgumentSpecifier.Length) :
-                                       splitLogoArgs[1];
+                                       splitLogoArgs[1].Substring(_typeArgumentSpecifier.Length).Substring(0, splitLogoArgs[1].IndexOf(_argumentDelimiter)) :
+                                       splitLogoArgs[1].Substring(0, splitLogoArgs[1].IndexOf(_argumentDelimiter));
                         }
 
                         // Now, get the encoded logo
