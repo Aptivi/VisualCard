@@ -97,7 +97,8 @@ namespace VisualCard.Converters
                         data.data13,
                         data.data14,
                         quote(data.data15)
-                    FROM raw_contacts,
+                    FROM
+                        raw_contacts,
                         data,
                         mimetypes
                     WHERE
