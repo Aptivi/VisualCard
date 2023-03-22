@@ -1049,41 +1049,80 @@ namespace VisualCard.Parsers.Four
             foreach (PhotoInfo photo in card.ContactPhotos)
             {
                 bool installAltId = photo.AltId >= 0 && photo.AltArguments.Length > 0;
-                cardBuilder.AppendLine(
-                    $"{_photoSpecifierWithType}" +
-                    $"{(installAltId ? "ALTID=" + photo.AltId + _fieldDelimiter : "")}" +
-                    $"{(installAltId ? string.Join(_fieldDelimiter.ToString(), photo.AltArguments) + _fieldDelimiter : "")}" +
-                    $"VALUE={photo.ValueType}{_fieldDelimiter}" +
-                    $"ENCODING={photo.Encoding}{_fieldDelimiter}" +
-                    $"TYPE={photo.PhotoType}{_argumentDelimiter}" +
-                    $"{photo.PhotoEncoded}"
-                );
+                if (photo.ValueType == "uri" || photo.ValueType == "url")
+                {
+                    cardBuilder.AppendLine(
+                        $"{_photoSpecifierWithType}" +
+                        $"{(installAltId ? "ALTID=" + photo.AltId + _fieldDelimiter : "")}" +
+                        $"{(installAltId ? string.Join(_fieldDelimiter.ToString(), photo.AltArguments) + _fieldDelimiter : "")}" +
+                        $"VALUE={photo.ValueType}{_argumentDelimiter}" +
+                        $"{photo.PhotoEncoded}"
+                    );
+                }
+                else
+                {
+                    string photoArgsLine =
+                        $"{_photoSpecifierWithType}" +
+                        $"{(installAltId ? "ALTID=" + photo.AltId + _fieldDelimiter : "")}" +
+                        $"{(installAltId ? string.Join(_fieldDelimiter.ToString(), photo.AltArguments) + _fieldDelimiter : "")}" +
+                        $"VALUE={photo.ValueType}{_fieldDelimiter}" +
+                        $"ENCODING={photo.Encoding}{_fieldDelimiter}" +
+                        $"TYPE={photo.PhotoType}{_argumentDelimiter}";
+                    cardBuilder.Append(photoArgsLine);
+                    cardBuilder.AppendLine(MakeStringBlock(photo.PhotoEncoded, photoArgsLine.Length));
+                }
             }
             foreach (LogoInfo logo in card.ContactLogos)
             {
                 bool installAltId = logo.AltId >= 0 && logo.AltArguments.Length > 0;
-                cardBuilder.AppendLine(
-                    $"{_logoSpecifierWithType}" +
-                    $"{(installAltId ? "ALTID=" + logo.AltId + _fieldDelimiter : "")}" +
-                    $"{(installAltId ? string.Join(_fieldDelimiter.ToString(), logo.AltArguments) + _fieldDelimiter : "")}" +
-                    $"VALUE={logo.ValueType}{_fieldDelimiter}" +
-                    $"ENCODING={logo.Encoding}{_fieldDelimiter}" +
-                    $"TYPE={logo.LogoType}{_argumentDelimiter}" +
-                    $"{logo.LogoEncoded}"
-                );
+                if (logo.ValueType == "uri" || logo.ValueType == "url")
+                {
+                    cardBuilder.AppendLine(
+                        $"{_logoSpecifierWithType}" +
+                        $"{(installAltId ? "ALTID=" + logo.AltId + _fieldDelimiter : "")}" +
+                        $"{(installAltId ? string.Join(_fieldDelimiter.ToString(), logo.AltArguments) + _fieldDelimiter : "")}" +
+                        $"VALUE={logo.ValueType}{_argumentDelimiter}" +
+                        $"{logo.LogoEncoded}"
+                    );
+                }
+                else
+                {
+                    string logoArgsLine =
+                        $"{_logoSpecifierWithType}" +
+                        $"{(installAltId ? "ALTID=" + logo.AltId + _fieldDelimiter : "")}" +
+                        $"{(installAltId ? string.Join(_fieldDelimiter.ToString(), logo.AltArguments) + _fieldDelimiter : "")}" +
+                        $"VALUE={logo.ValueType}{_fieldDelimiter}" +
+                        $"ENCODING={logo.Encoding}{_fieldDelimiter}" +
+                        $"TYPE={logo.LogoType}{_argumentDelimiter}";
+                    cardBuilder.Append(logoArgsLine);
+                    cardBuilder.AppendLine(MakeStringBlock(logo.LogoEncoded, logoArgsLine.Length));
+                }
             }
             foreach (SoundInfo sound in card.ContactSounds)
             {
                 bool installAltId = sound.AltId >= 0 && sound.AltArguments.Length > 0;
-                cardBuilder.AppendLine(
-                    $"{_soundSpecifierWithType}" +
-                    $"{(installAltId ? "ALTID=" + sound.AltId + _fieldDelimiter : "")}" +
-                    $"{(installAltId ? string.Join(_fieldDelimiter.ToString(), sound.AltArguments) + _fieldDelimiter : "")}" +
-                    $"VALUE={sound.ValueType}{_fieldDelimiter}" +
-                    $"ENCODING={sound.Encoding}{_fieldDelimiter}" +
-                    $"TYPE={sound.SoundType}{_argumentDelimiter}" +
-                    $"{sound.SoundEncoded}"
-                );
+                if (sound.ValueType == "uri" || sound.ValueType == "url")
+                {
+                    cardBuilder.AppendLine(
+                        $"{_soundSpecifierWithType}" +
+                        $"{(installAltId ? "ALTID=" + sound.AltId + _fieldDelimiter : "")}" +
+                        $"{(installAltId ? string.Join(_fieldDelimiter.ToString(), sound.AltArguments) + _fieldDelimiter : "")}" +
+                        $"VALUE={sound.ValueType}{_argumentDelimiter}" +
+                        $"{sound.SoundEncoded}"
+                    );
+                }
+                else
+                {
+                    string soundArgsLine =
+                        $"{_soundSpecifierWithType}" +
+                        $"{(installAltId ? "ALTID=" + sound.AltId + _fieldDelimiter : "")}" +
+                        $"{(installAltId ? string.Join(_fieldDelimiter.ToString(), sound.AltArguments) + _fieldDelimiter : "")}" +
+                        $"VALUE={sound.ValueType}{_fieldDelimiter}" +
+                        $"ENCODING={sound.Encoding}{_fieldDelimiter}" +
+                        $"TYPE={sound.SoundType}{_argumentDelimiter}";
+                    cardBuilder.Append(soundArgsLine);
+                    cardBuilder.AppendLine(MakeStringBlock(sound.SoundEncoded, soundArgsLine.Length));
+                }
             }
             if (card.CardRevision is not null && card.CardRevision != DateTime.MinValue)
                 cardBuilder.AppendLine($"{_revSpecifier}{card.CardRevision:dd-MM-yyyy_HH-mm-ss}");
@@ -1177,6 +1216,30 @@ namespace VisualCard.Parsers.Four
             // Save all the changes to the file
             var cardString = SaveToString(card);
             File.WriteAllText(path, cardString);
+        }
+
+        private string MakeStringBlock(string target, int firstLength)
+        {
+            const int maxChars = 74;
+            int maxCharsFirst = maxChars - firstLength;
+
+            // Construct the block
+            StringBuilder block = new();
+            int selectedMax = maxCharsFirst;
+            int processed = 0;
+            for (int currCharNum = 0; currCharNum < target.Length; currCharNum++)
+            {
+                block.Append(target[currCharNum]);
+                processed++;
+                if (processed >= selectedMax)
+                {
+                    // Append a new line because we reached the maximum limit
+                    selectedMax = maxChars;
+                    processed = 0;
+                    block.Append("\n ");
+                }
+            }
+            return block.ToString();
         }
 
         internal VcardFour(string cardContent, string cardVersion)
