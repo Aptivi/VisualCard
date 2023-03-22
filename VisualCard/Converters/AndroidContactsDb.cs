@@ -567,8 +567,7 @@ namespace VisualCard.Converters
                             //
                             // | d15: Encoded photo
                             // ---> will get converted to VCard line:
-                            //      PHOTO;ENCODING=BASE64;JPEG:d15
-                            // TODO: may not be BASE64
+                            //      PHOTO;ENCODING=BLOB;JPEG:d15
                             const string _photoSpecifierWithType = "PHOTO;";
                             const int maxChars = 74;
                             const int maxCharsFirst = 48;
@@ -593,7 +592,7 @@ namespace VisualCard.Converters
                                     photoBlock.Append("\n ");
                                 }
                             }
-                            masterContactBuilder.AppendLine($"{_photoSpecifierWithType}ENCODING=BASE64;JPEG:{photoBlock}");
+                            masterContactBuilder.AppendLine($"{_photoSpecifierWithType}ENCODING=BLOB;JPEG:{photoBlock}");
                             break;
                     }
 
