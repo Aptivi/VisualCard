@@ -24,11 +24,13 @@
  */
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using VisualCard.Parsers;
 
 namespace VisualCard.Parts
 {
-    public class Card
+    public class Card : IEquatable<Card>
     {
         private readonly BaseVcardParser _parser;
 
@@ -150,6 +152,94 @@ namespace VisualCard.Parts
         /// </summary>
         public string SaveToString() =>
             Parser.SaveToString(this);
+
+        public override bool Equals(object obj) =>
+            base.Equals(obj);
+
+        /// <summary>
+        /// Checks to see if both the cards are equal
+        /// </summary>
+        /// <param name="other">The target <see cref="Card"/> instance to check to see if they equal</param>
+        /// <returns>True if all the card elements are equal. Otherwise, false.</returns>
+        public bool Equals(Card other) =>
+            Equals(this, other);
+
+        /// <summary>
+        /// Checks to see if both the cards are equal
+        /// </summary>
+        /// <param name="source">The source <see cref="Card"/> instance to check to see if they equal</param>
+        /// <param name="target">The target <see cref="Card"/> instance to check to see if they equal</param>
+        /// <returns>True if all the card elements are equal. Otherwise, false.</returns>
+        public bool Equals(Card source, Card target)
+        {
+            // We can't perform this operation on null.
+            if (source is null)
+                return false;
+
+            // Check all the properties
+            return
+                source.ContactNames.SequenceEqual(target.ContactNames) &&
+                source.ContactTelephones.SequenceEqual(target.ContactTelephones) &&
+                source.ContactAddresses.SequenceEqual(target.ContactAddresses) &&
+                source.ContactMails.SequenceEqual(target.ContactMails) &&
+                source.ContactOrganizations.SequenceEqual(target.ContactOrganizations) &&
+                source.ContactTitles.SequenceEqual(target.ContactTitles) &&
+                source.ContactPhotos.SequenceEqual(target.ContactPhotos) &&
+                source.ContactXNames.SequenceEqual(target.ContactXNames) &&
+                source.ContactNicknames.SequenceEqual(target.ContactNicknames) &&
+                source.ContactRoles.SequenceEqual(target.ContactRoles) &&
+                source.ContactCategories.SequenceEqual(target.ContactCategories) &&
+                source.ContactLogos.SequenceEqual(target.ContactLogos) &&
+                source.ContactTimeZone.SequenceEqual(target.ContactTimeZone) &&
+                source.ContactGeo.SequenceEqual(target.ContactGeo) &&
+                source.ContactSounds.SequenceEqual(target.ContactSounds) &&
+                source.ContactImpps.SequenceEqual(target.ContactImpps) &&
+                source.ContactFullName == target.ContactFullName &&
+                source.ContactURL == target.ContactURL &&
+                source.ContactNotes == target.ContactNotes &&
+                source.CardRevision == target.CardRevision &&
+                source.ContactBirthdate == target.ContactBirthdate &&
+                source.ContactMailer == target.ContactMailer &&
+                source.ContactProdId == target.ContactProdId &&
+                source.ContactSortString == target.ContactSortString
+            ;
+        }
+
+        public override int GetHashCode()
+        {
+            int hashCode = -952271737;
+            hashCode = hashCode * -1521134295 + EqualityComparer<NameInfo[]>.Default.GetHashCode(ContactNames);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactFullName);
+            hashCode = hashCode * -1521134295 + EqualityComparer<TelephoneInfo[]>.Default.GetHashCode(ContactTelephones);
+            hashCode = hashCode * -1521134295 + EqualityComparer<AddressInfo[]>.Default.GetHashCode(ContactAddresses);
+            hashCode = hashCode * -1521134295 + EqualityComparer<EmailInfo[]>.Default.GetHashCode(ContactMails);
+            hashCode = hashCode * -1521134295 + EqualityComparer<OrganizationInfo[]>.Default.GetHashCode(ContactOrganizations);
+            hashCode = hashCode * -1521134295 + EqualityComparer<TitleInfo[]>.Default.GetHashCode(ContactTitles);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactURL);
+            hashCode = hashCode * -1521134295 + EqualityComparer<PhotoInfo[]>.Default.GetHashCode(ContactPhotos);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactNotes);
+            hashCode = hashCode * -1521134295 + EqualityComparer<XNameInfo[]>.Default.GetHashCode(ContactXNames);
+            hashCode = hashCode * -1521134295 + CardRevision.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<NicknameInfo[]>.Default.GetHashCode(ContactNicknames);
+            hashCode = hashCode * -1521134295 + ContactBirthdate.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactMailer);
+            hashCode = hashCode * -1521134295 + EqualityComparer<RoleInfo[]>.Default.GetHashCode(ContactRoles);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(ContactCategories);
+            hashCode = hashCode * -1521134295 + EqualityComparer<LogoInfo[]>.Default.GetHashCode(ContactLogos);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactProdId);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactSortString);
+            hashCode = hashCode * -1521134295 + EqualityComparer<TimeZoneInfo[]>.Default.GetHashCode(ContactTimeZone);
+            hashCode = hashCode * -1521134295 + EqualityComparer<GeoInfo[]>.Default.GetHashCode(ContactGeo);
+            hashCode = hashCode * -1521134295 + EqualityComparer<SoundInfo[]>.Default.GetHashCode(ContactSounds);
+            hashCode = hashCode * -1521134295 + EqualityComparer<ImppInfo[]>.Default.GetHashCode(ContactImpps);
+            return hashCode;
+        }
+
+        public static bool operator ==(Card a, Card b)
+            => a.Equals(b);
+
+        public static bool operator !=(Card a, Card b)
+            => !a.Equals(b);
 
         internal Card(BaseVcardParser parser, string cardVersion, NameInfo[] contactNames, string contactFullName, TelephoneInfo[] contactTelephones, AddressInfo[] contactAddresses, OrganizationInfo[] contactOrganizations, TitleInfo[] contactTitles, string contactURL, string contactNotes, EmailInfo[] contactMails, XNameInfo[] contactXNames, string cardKind, PhotoInfo[] contactPhotos, DateTime cardRevision, NicknameInfo[] contactNicknames, DateTime? contactBirthdate, string contactMailer, RoleInfo[] contactRoles, string[] contactCategories, LogoInfo[] contactLogos, string contactProdId, string contactSortString, TimeZoneInfo[] contactTimeZone, GeoInfo[] contactGeo, SoundInfo[] contactSounds, ImppInfo[] contactImpps)
         {
