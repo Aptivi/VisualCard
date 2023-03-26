@@ -401,6 +401,31 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.AddressInfo.Country
   nameWithType: AddressInfo.Country
+- uid: VisualCard.Parts.AddressInfo.Equals(System.Object)
+  name: Equals(Object)
+  href: api/VisualCard.Parts.AddressInfo.html#VisualCard_Parts_AddressInfo_Equals_System_Object_
+  commentId: M:VisualCard.Parts.AddressInfo.Equals(System.Object)
+  fullName: VisualCard.Parts.AddressInfo.Equals(System.Object)
+  nameWithType: AddressInfo.Equals(Object)
+- uid: VisualCard.Parts.AddressInfo.Equals(VisualCard.Parts.AddressInfo)
+  name: Equals(AddressInfo)
+  href: api/VisualCard.Parts.AddressInfo.html#VisualCard_Parts_AddressInfo_Equals_VisualCard_Parts_AddressInfo_
+  commentId: M:VisualCard.Parts.AddressInfo.Equals(VisualCard.Parts.AddressInfo)
+  fullName: VisualCard.Parts.AddressInfo.Equals(VisualCard.Parts.AddressInfo)
+  nameWithType: AddressInfo.Equals(AddressInfo)
+- uid: VisualCard.Parts.AddressInfo.Equals(VisualCard.Parts.AddressInfo,VisualCard.Parts.AddressInfo)
+  name: Equals(AddressInfo, AddressInfo)
+  href: api/VisualCard.Parts.AddressInfo.html#VisualCard_Parts_AddressInfo_Equals_VisualCard_Parts_AddressInfo_VisualCard_Parts_AddressInfo_
+  commentId: M:VisualCard.Parts.AddressInfo.Equals(VisualCard.Parts.AddressInfo,VisualCard.Parts.AddressInfo)
+  fullName: VisualCard.Parts.AddressInfo.Equals(VisualCard.Parts.AddressInfo, VisualCard.Parts.AddressInfo)
+  nameWithType: AddressInfo.Equals(AddressInfo, AddressInfo)
+- uid: VisualCard.Parts.AddressInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Parts.AddressInfo.html#VisualCard_Parts_AddressInfo_Equals_
+  commentId: Overload:VisualCard.Parts.AddressInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Parts.AddressInfo.Equals
+  nameWithType: AddressInfo.Equals
 - uid: VisualCard.Parts.AddressInfo.ExtendedAddress
   name: ExtendedAddress
   href: api/VisualCard.Parts.AddressInfo.html#VisualCard_Parts_AddressInfo_ExtendedAddress
@@ -414,6 +439,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.AddressInfo.ExtendedAddress
   nameWithType: AddressInfo.ExtendedAddress
+- uid: VisualCard.Parts.AddressInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Parts.AddressInfo.html#VisualCard_Parts_AddressInfo_GetHashCode
+  commentId: M:VisualCard.Parts.AddressInfo.GetHashCode
+  fullName: VisualCard.Parts.AddressInfo.GetHashCode()
+  nameWithType: AddressInfo.GetHashCode()
+- uid: VisualCard.Parts.AddressInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Parts.AddressInfo.html#VisualCard_Parts_AddressInfo_GetHashCode_
+  commentId: Overload:VisualCard.Parts.AddressInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Parts.AddressInfo.GetHashCode
+  nameWithType: AddressInfo.GetHashCode
 - uid: VisualCard.Parts.AddressInfo.Locality
   name: Locality
   href: api/VisualCard.Parts.AddressInfo.html#VisualCard_Parts_AddressInfo_Locality
@@ -958,6 +996,44 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.EmailInfo.ContactEmailTypes
   nameWithType: EmailInfo.ContactEmailTypes
+- uid: VisualCard.Parts.EmailInfo.Equals(System.Object)
+  name: Equals(Object)
+  href: api/VisualCard.Parts.EmailInfo.html#VisualCard_Parts_EmailInfo_Equals_System_Object_
+  commentId: M:VisualCard.Parts.EmailInfo.Equals(System.Object)
+  fullName: VisualCard.Parts.EmailInfo.Equals(System.Object)
+  nameWithType: EmailInfo.Equals(Object)
+- uid: VisualCard.Parts.EmailInfo.Equals(VisualCard.Parts.EmailInfo)
+  name: Equals(EmailInfo)
+  href: api/VisualCard.Parts.EmailInfo.html#VisualCard_Parts_EmailInfo_Equals_VisualCard_Parts_EmailInfo_
+  commentId: M:VisualCard.Parts.EmailInfo.Equals(VisualCard.Parts.EmailInfo)
+  fullName: VisualCard.Parts.EmailInfo.Equals(VisualCard.Parts.EmailInfo)
+  nameWithType: EmailInfo.Equals(EmailInfo)
+- uid: VisualCard.Parts.EmailInfo.Equals(VisualCard.Parts.EmailInfo,VisualCard.Parts.EmailInfo)
+  name: Equals(EmailInfo, EmailInfo)
+  href: api/VisualCard.Parts.EmailInfo.html#VisualCard_Parts_EmailInfo_Equals_VisualCard_Parts_EmailInfo_VisualCard_Parts_EmailInfo_
+  commentId: M:VisualCard.Parts.EmailInfo.Equals(VisualCard.Parts.EmailInfo,VisualCard.Parts.EmailInfo)
+  fullName: VisualCard.Parts.EmailInfo.Equals(VisualCard.Parts.EmailInfo, VisualCard.Parts.EmailInfo)
+  nameWithType: EmailInfo.Equals(EmailInfo, EmailInfo)
+- uid: VisualCard.Parts.EmailInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Parts.EmailInfo.html#VisualCard_Parts_EmailInfo_Equals_
+  commentId: Overload:VisualCard.Parts.EmailInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Parts.EmailInfo.Equals
+  nameWithType: EmailInfo.Equals
+- uid: VisualCard.Parts.EmailInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Parts.EmailInfo.html#VisualCard_Parts_EmailInfo_GetHashCode
+  commentId: M:VisualCard.Parts.EmailInfo.GetHashCode
+  fullName: VisualCard.Parts.EmailInfo.GetHashCode()
+  nameWithType: EmailInfo.GetHashCode()
+- uid: VisualCard.Parts.EmailInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Parts.EmailInfo.html#VisualCard_Parts_EmailInfo_GetHashCode_
+  commentId: Overload:VisualCard.Parts.EmailInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Parts.EmailInfo.GetHashCode
+  nameWithType: EmailInfo.GetHashCode
 - uid: VisualCard.Parts.GeoInfo
   name: GeoInfo
   href: api/VisualCard.Parts.GeoInfo.html
@@ -990,6 +1066,31 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.GeoInfo.AltId
   nameWithType: GeoInfo.AltId
+- uid: VisualCard.Parts.GeoInfo.Equals(System.Object)
+  name: Equals(Object)
+  href: api/VisualCard.Parts.GeoInfo.html#VisualCard_Parts_GeoInfo_Equals_System_Object_
+  commentId: M:VisualCard.Parts.GeoInfo.Equals(System.Object)
+  fullName: VisualCard.Parts.GeoInfo.Equals(System.Object)
+  nameWithType: GeoInfo.Equals(Object)
+- uid: VisualCard.Parts.GeoInfo.Equals(VisualCard.Parts.GeoInfo)
+  name: Equals(GeoInfo)
+  href: api/VisualCard.Parts.GeoInfo.html#VisualCard_Parts_GeoInfo_Equals_VisualCard_Parts_GeoInfo_
+  commentId: M:VisualCard.Parts.GeoInfo.Equals(VisualCard.Parts.GeoInfo)
+  fullName: VisualCard.Parts.GeoInfo.Equals(VisualCard.Parts.GeoInfo)
+  nameWithType: GeoInfo.Equals(GeoInfo)
+- uid: VisualCard.Parts.GeoInfo.Equals(VisualCard.Parts.GeoInfo,VisualCard.Parts.GeoInfo)
+  name: Equals(GeoInfo, GeoInfo)
+  href: api/VisualCard.Parts.GeoInfo.html#VisualCard_Parts_GeoInfo_Equals_VisualCard_Parts_GeoInfo_VisualCard_Parts_GeoInfo_
+  commentId: M:VisualCard.Parts.GeoInfo.Equals(VisualCard.Parts.GeoInfo,VisualCard.Parts.GeoInfo)
+  fullName: VisualCard.Parts.GeoInfo.Equals(VisualCard.Parts.GeoInfo, VisualCard.Parts.GeoInfo)
+  nameWithType: GeoInfo.Equals(GeoInfo, GeoInfo)
+- uid: VisualCard.Parts.GeoInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Parts.GeoInfo.html#VisualCard_Parts_GeoInfo_Equals_
+  commentId: Overload:VisualCard.Parts.GeoInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Parts.GeoInfo.Equals
+  nameWithType: GeoInfo.Equals
 - uid: VisualCard.Parts.GeoInfo.Geo
   name: Geo
   href: api/VisualCard.Parts.GeoInfo.html#VisualCard_Parts_GeoInfo_Geo
@@ -1003,6 +1104,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.GeoInfo.Geo
   nameWithType: GeoInfo.Geo
+- uid: VisualCard.Parts.GeoInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Parts.GeoInfo.html#VisualCard_Parts_GeoInfo_GetHashCode
+  commentId: M:VisualCard.Parts.GeoInfo.GetHashCode
+  fullName: VisualCard.Parts.GeoInfo.GetHashCode()
+  nameWithType: GeoInfo.GetHashCode()
+- uid: VisualCard.Parts.GeoInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Parts.GeoInfo.html#VisualCard_Parts_GeoInfo_GetHashCode_
+  commentId: Overload:VisualCard.Parts.GeoInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Parts.GeoInfo.GetHashCode
+  nameWithType: GeoInfo.GetHashCode
 - uid: VisualCard.Parts.ImppInfo
   name: ImppInfo
   href: api/VisualCard.Parts.ImppInfo.html
@@ -1048,6 +1162,44 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.ImppInfo.ContactIMPP
   nameWithType: ImppInfo.ContactIMPP
+- uid: VisualCard.Parts.ImppInfo.Equals(System.Object)
+  name: Equals(Object)
+  href: api/VisualCard.Parts.ImppInfo.html#VisualCard_Parts_ImppInfo_Equals_System_Object_
+  commentId: M:VisualCard.Parts.ImppInfo.Equals(System.Object)
+  fullName: VisualCard.Parts.ImppInfo.Equals(System.Object)
+  nameWithType: ImppInfo.Equals(Object)
+- uid: VisualCard.Parts.ImppInfo.Equals(VisualCard.Parts.ImppInfo)
+  name: Equals(ImppInfo)
+  href: api/VisualCard.Parts.ImppInfo.html#VisualCard_Parts_ImppInfo_Equals_VisualCard_Parts_ImppInfo_
+  commentId: M:VisualCard.Parts.ImppInfo.Equals(VisualCard.Parts.ImppInfo)
+  fullName: VisualCard.Parts.ImppInfo.Equals(VisualCard.Parts.ImppInfo)
+  nameWithType: ImppInfo.Equals(ImppInfo)
+- uid: VisualCard.Parts.ImppInfo.Equals(VisualCard.Parts.ImppInfo,VisualCard.Parts.ImppInfo)
+  name: Equals(ImppInfo, ImppInfo)
+  href: api/VisualCard.Parts.ImppInfo.html#VisualCard_Parts_ImppInfo_Equals_VisualCard_Parts_ImppInfo_VisualCard_Parts_ImppInfo_
+  commentId: M:VisualCard.Parts.ImppInfo.Equals(VisualCard.Parts.ImppInfo,VisualCard.Parts.ImppInfo)
+  fullName: VisualCard.Parts.ImppInfo.Equals(VisualCard.Parts.ImppInfo, VisualCard.Parts.ImppInfo)
+  nameWithType: ImppInfo.Equals(ImppInfo, ImppInfo)
+- uid: VisualCard.Parts.ImppInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Parts.ImppInfo.html#VisualCard_Parts_ImppInfo_Equals_
+  commentId: Overload:VisualCard.Parts.ImppInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Parts.ImppInfo.Equals
+  nameWithType: ImppInfo.Equals
+- uid: VisualCard.Parts.ImppInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Parts.ImppInfo.html#VisualCard_Parts_ImppInfo_GetHashCode
+  commentId: M:VisualCard.Parts.ImppInfo.GetHashCode
+  fullName: VisualCard.Parts.ImppInfo.GetHashCode()
+  nameWithType: ImppInfo.GetHashCode()
+- uid: VisualCard.Parts.ImppInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Parts.ImppInfo.html#VisualCard_Parts_ImppInfo_GetHashCode_
+  commentId: Overload:VisualCard.Parts.ImppInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Parts.ImppInfo.GetHashCode
+  nameWithType: ImppInfo.GetHashCode
 - uid: VisualCard.Parts.ImppInfo.ImppTypes
   name: ImppTypes
   href: api/VisualCard.Parts.ImppInfo.html#VisualCard_Parts_ImppInfo_ImppTypes
@@ -1106,6 +1258,44 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.LogoInfo.Encoding
   nameWithType: LogoInfo.Encoding
+- uid: VisualCard.Parts.LogoInfo.Equals(System.Object)
+  name: Equals(Object)
+  href: api/VisualCard.Parts.LogoInfo.html#VisualCard_Parts_LogoInfo_Equals_System_Object_
+  commentId: M:VisualCard.Parts.LogoInfo.Equals(System.Object)
+  fullName: VisualCard.Parts.LogoInfo.Equals(System.Object)
+  nameWithType: LogoInfo.Equals(Object)
+- uid: VisualCard.Parts.LogoInfo.Equals(VisualCard.Parts.LogoInfo)
+  name: Equals(LogoInfo)
+  href: api/VisualCard.Parts.LogoInfo.html#VisualCard_Parts_LogoInfo_Equals_VisualCard_Parts_LogoInfo_
+  commentId: M:VisualCard.Parts.LogoInfo.Equals(VisualCard.Parts.LogoInfo)
+  fullName: VisualCard.Parts.LogoInfo.Equals(VisualCard.Parts.LogoInfo)
+  nameWithType: LogoInfo.Equals(LogoInfo)
+- uid: VisualCard.Parts.LogoInfo.Equals(VisualCard.Parts.LogoInfo,VisualCard.Parts.LogoInfo)
+  name: Equals(LogoInfo, LogoInfo)
+  href: api/VisualCard.Parts.LogoInfo.html#VisualCard_Parts_LogoInfo_Equals_VisualCard_Parts_LogoInfo_VisualCard_Parts_LogoInfo_
+  commentId: M:VisualCard.Parts.LogoInfo.Equals(VisualCard.Parts.LogoInfo,VisualCard.Parts.LogoInfo)
+  fullName: VisualCard.Parts.LogoInfo.Equals(VisualCard.Parts.LogoInfo, VisualCard.Parts.LogoInfo)
+  nameWithType: LogoInfo.Equals(LogoInfo, LogoInfo)
+- uid: VisualCard.Parts.LogoInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Parts.LogoInfo.html#VisualCard_Parts_LogoInfo_Equals_
+  commentId: Overload:VisualCard.Parts.LogoInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Parts.LogoInfo.Equals
+  nameWithType: LogoInfo.Equals
+- uid: VisualCard.Parts.LogoInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Parts.LogoInfo.html#VisualCard_Parts_LogoInfo_GetHashCode
+  commentId: M:VisualCard.Parts.LogoInfo.GetHashCode
+  fullName: VisualCard.Parts.LogoInfo.GetHashCode()
+  nameWithType: LogoInfo.GetHashCode()
+- uid: VisualCard.Parts.LogoInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Parts.LogoInfo.html#VisualCard_Parts_LogoInfo_GetHashCode_
+  commentId: Overload:VisualCard.Parts.LogoInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Parts.LogoInfo.GetHashCode
+  nameWithType: LogoInfo.GetHashCode
 - uid: VisualCard.Parts.LogoInfo.LogoEncoded
   name: LogoEncoded
   href: api/VisualCard.Parts.LogoInfo.html#VisualCard_Parts_LogoInfo_LogoEncoded
@@ -1216,6 +1406,44 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.NameInfo.ContactLastName
   nameWithType: NameInfo.ContactLastName
+- uid: VisualCard.Parts.NameInfo.Equals(System.Object)
+  name: Equals(Object)
+  href: api/VisualCard.Parts.NameInfo.html#VisualCard_Parts_NameInfo_Equals_System_Object_
+  commentId: M:VisualCard.Parts.NameInfo.Equals(System.Object)
+  fullName: VisualCard.Parts.NameInfo.Equals(System.Object)
+  nameWithType: NameInfo.Equals(Object)
+- uid: VisualCard.Parts.NameInfo.Equals(VisualCard.Parts.NameInfo)
+  name: Equals(NameInfo)
+  href: api/VisualCard.Parts.NameInfo.html#VisualCard_Parts_NameInfo_Equals_VisualCard_Parts_NameInfo_
+  commentId: M:VisualCard.Parts.NameInfo.Equals(VisualCard.Parts.NameInfo)
+  fullName: VisualCard.Parts.NameInfo.Equals(VisualCard.Parts.NameInfo)
+  nameWithType: NameInfo.Equals(NameInfo)
+- uid: VisualCard.Parts.NameInfo.Equals(VisualCard.Parts.NameInfo,VisualCard.Parts.NameInfo)
+  name: Equals(NameInfo, NameInfo)
+  href: api/VisualCard.Parts.NameInfo.html#VisualCard_Parts_NameInfo_Equals_VisualCard_Parts_NameInfo_VisualCard_Parts_NameInfo_
+  commentId: M:VisualCard.Parts.NameInfo.Equals(VisualCard.Parts.NameInfo,VisualCard.Parts.NameInfo)
+  fullName: VisualCard.Parts.NameInfo.Equals(VisualCard.Parts.NameInfo, VisualCard.Parts.NameInfo)
+  nameWithType: NameInfo.Equals(NameInfo, NameInfo)
+- uid: VisualCard.Parts.NameInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Parts.NameInfo.html#VisualCard_Parts_NameInfo_Equals_
+  commentId: Overload:VisualCard.Parts.NameInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Parts.NameInfo.Equals
+  nameWithType: NameInfo.Equals
+- uid: VisualCard.Parts.NameInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Parts.NameInfo.html#VisualCard_Parts_NameInfo_GetHashCode
+  commentId: M:VisualCard.Parts.NameInfo.GetHashCode
+  fullName: VisualCard.Parts.NameInfo.GetHashCode()
+  nameWithType: NameInfo.GetHashCode()
+- uid: VisualCard.Parts.NameInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Parts.NameInfo.html#VisualCard_Parts_NameInfo_GetHashCode_
+  commentId: Overload:VisualCard.Parts.NameInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Parts.NameInfo.GetHashCode
+  nameWithType: NameInfo.GetHashCode
 - uid: VisualCard.Parts.NameInfo.Prefixes
   name: Prefixes
   href: api/VisualCard.Parts.NameInfo.html#VisualCard_Parts_NameInfo_Prefixes
@@ -1287,6 +1515,44 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.NicknameInfo.ContactNickname
   nameWithType: NicknameInfo.ContactNickname
+- uid: VisualCard.Parts.NicknameInfo.Equals(System.Object)
+  name: Equals(Object)
+  href: api/VisualCard.Parts.NicknameInfo.html#VisualCard_Parts_NicknameInfo_Equals_System_Object_
+  commentId: M:VisualCard.Parts.NicknameInfo.Equals(System.Object)
+  fullName: VisualCard.Parts.NicknameInfo.Equals(System.Object)
+  nameWithType: NicknameInfo.Equals(Object)
+- uid: VisualCard.Parts.NicknameInfo.Equals(VisualCard.Parts.NicknameInfo)
+  name: Equals(NicknameInfo)
+  href: api/VisualCard.Parts.NicknameInfo.html#VisualCard_Parts_NicknameInfo_Equals_VisualCard_Parts_NicknameInfo_
+  commentId: M:VisualCard.Parts.NicknameInfo.Equals(VisualCard.Parts.NicknameInfo)
+  fullName: VisualCard.Parts.NicknameInfo.Equals(VisualCard.Parts.NicknameInfo)
+  nameWithType: NicknameInfo.Equals(NicknameInfo)
+- uid: VisualCard.Parts.NicknameInfo.Equals(VisualCard.Parts.NicknameInfo,VisualCard.Parts.NicknameInfo)
+  name: Equals(NicknameInfo, NicknameInfo)
+  href: api/VisualCard.Parts.NicknameInfo.html#VisualCard_Parts_NicknameInfo_Equals_VisualCard_Parts_NicknameInfo_VisualCard_Parts_NicknameInfo_
+  commentId: M:VisualCard.Parts.NicknameInfo.Equals(VisualCard.Parts.NicknameInfo,VisualCard.Parts.NicknameInfo)
+  fullName: VisualCard.Parts.NicknameInfo.Equals(VisualCard.Parts.NicknameInfo, VisualCard.Parts.NicknameInfo)
+  nameWithType: NicknameInfo.Equals(NicknameInfo, NicknameInfo)
+- uid: VisualCard.Parts.NicknameInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Parts.NicknameInfo.html#VisualCard_Parts_NicknameInfo_Equals_
+  commentId: Overload:VisualCard.Parts.NicknameInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Parts.NicknameInfo.Equals
+  nameWithType: NicknameInfo.Equals
+- uid: VisualCard.Parts.NicknameInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Parts.NicknameInfo.html#VisualCard_Parts_NicknameInfo_GetHashCode
+  commentId: M:VisualCard.Parts.NicknameInfo.GetHashCode
+  fullName: VisualCard.Parts.NicknameInfo.GetHashCode()
+  nameWithType: NicknameInfo.GetHashCode()
+- uid: VisualCard.Parts.NicknameInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Parts.NicknameInfo.html#VisualCard_Parts_NicknameInfo_GetHashCode_
+  commentId: Overload:VisualCard.Parts.NicknameInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Parts.NicknameInfo.GetHashCode
+  nameWithType: NicknameInfo.GetHashCode
 - uid: VisualCard.Parts.NicknameInfo.NicknameTypes
   name: NicknameTypes
   href: api/VisualCard.Parts.NicknameInfo.html#VisualCard_Parts_NicknameInfo_NicknameTypes
@@ -1319,6 +1585,44 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.OrganizationInfo.AltId
   nameWithType: OrganizationInfo.AltId
+- uid: VisualCard.Parts.OrganizationInfo.Equals(System.Object)
+  name: Equals(Object)
+  href: api/VisualCard.Parts.OrganizationInfo.html#VisualCard_Parts_OrganizationInfo_Equals_System_Object_
+  commentId: M:VisualCard.Parts.OrganizationInfo.Equals(System.Object)
+  fullName: VisualCard.Parts.OrganizationInfo.Equals(System.Object)
+  nameWithType: OrganizationInfo.Equals(Object)
+- uid: VisualCard.Parts.OrganizationInfo.Equals(VisualCard.Parts.OrganizationInfo)
+  name: Equals(OrganizationInfo)
+  href: api/VisualCard.Parts.OrganizationInfo.html#VisualCard_Parts_OrganizationInfo_Equals_VisualCard_Parts_OrganizationInfo_
+  commentId: M:VisualCard.Parts.OrganizationInfo.Equals(VisualCard.Parts.OrganizationInfo)
+  fullName: VisualCard.Parts.OrganizationInfo.Equals(VisualCard.Parts.OrganizationInfo)
+  nameWithType: OrganizationInfo.Equals(OrganizationInfo)
+- uid: VisualCard.Parts.OrganizationInfo.Equals(VisualCard.Parts.OrganizationInfo,VisualCard.Parts.OrganizationInfo)
+  name: Equals(OrganizationInfo, OrganizationInfo)
+  href: api/VisualCard.Parts.OrganizationInfo.html#VisualCard_Parts_OrganizationInfo_Equals_VisualCard_Parts_OrganizationInfo_VisualCard_Parts_OrganizationInfo_
+  commentId: M:VisualCard.Parts.OrganizationInfo.Equals(VisualCard.Parts.OrganizationInfo,VisualCard.Parts.OrganizationInfo)
+  fullName: VisualCard.Parts.OrganizationInfo.Equals(VisualCard.Parts.OrganizationInfo, VisualCard.Parts.OrganizationInfo)
+  nameWithType: OrganizationInfo.Equals(OrganizationInfo, OrganizationInfo)
+- uid: VisualCard.Parts.OrganizationInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Parts.OrganizationInfo.html#VisualCard_Parts_OrganizationInfo_Equals_
+  commentId: Overload:VisualCard.Parts.OrganizationInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Parts.OrganizationInfo.Equals
+  nameWithType: OrganizationInfo.Equals
+- uid: VisualCard.Parts.OrganizationInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Parts.OrganizationInfo.html#VisualCard_Parts_OrganizationInfo_GetHashCode
+  commentId: M:VisualCard.Parts.OrganizationInfo.GetHashCode
+  fullName: VisualCard.Parts.OrganizationInfo.GetHashCode()
+  nameWithType: OrganizationInfo.GetHashCode()
+- uid: VisualCard.Parts.OrganizationInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Parts.OrganizationInfo.html#VisualCard_Parts_OrganizationInfo_GetHashCode_
+  commentId: Overload:VisualCard.Parts.OrganizationInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Parts.OrganizationInfo.GetHashCode
+  nameWithType: OrganizationInfo.GetHashCode
 - uid: VisualCard.Parts.OrganizationInfo.Name
   name: Name
   href: api/VisualCard.Parts.OrganizationInfo.html#VisualCard_Parts_OrganizationInfo_Name
@@ -1416,6 +1720,44 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.PhotoInfo.Encoding
   nameWithType: PhotoInfo.Encoding
+- uid: VisualCard.Parts.PhotoInfo.Equals(System.Object)
+  name: Equals(Object)
+  href: api/VisualCard.Parts.PhotoInfo.html#VisualCard_Parts_PhotoInfo_Equals_System_Object_
+  commentId: M:VisualCard.Parts.PhotoInfo.Equals(System.Object)
+  fullName: VisualCard.Parts.PhotoInfo.Equals(System.Object)
+  nameWithType: PhotoInfo.Equals(Object)
+- uid: VisualCard.Parts.PhotoInfo.Equals(VisualCard.Parts.PhotoInfo)
+  name: Equals(PhotoInfo)
+  href: api/VisualCard.Parts.PhotoInfo.html#VisualCard_Parts_PhotoInfo_Equals_VisualCard_Parts_PhotoInfo_
+  commentId: M:VisualCard.Parts.PhotoInfo.Equals(VisualCard.Parts.PhotoInfo)
+  fullName: VisualCard.Parts.PhotoInfo.Equals(VisualCard.Parts.PhotoInfo)
+  nameWithType: PhotoInfo.Equals(PhotoInfo)
+- uid: VisualCard.Parts.PhotoInfo.Equals(VisualCard.Parts.PhotoInfo,VisualCard.Parts.PhotoInfo)
+  name: Equals(PhotoInfo, PhotoInfo)
+  href: api/VisualCard.Parts.PhotoInfo.html#VisualCard_Parts_PhotoInfo_Equals_VisualCard_Parts_PhotoInfo_VisualCard_Parts_PhotoInfo_
+  commentId: M:VisualCard.Parts.PhotoInfo.Equals(VisualCard.Parts.PhotoInfo,VisualCard.Parts.PhotoInfo)
+  fullName: VisualCard.Parts.PhotoInfo.Equals(VisualCard.Parts.PhotoInfo, VisualCard.Parts.PhotoInfo)
+  nameWithType: PhotoInfo.Equals(PhotoInfo, PhotoInfo)
+- uid: VisualCard.Parts.PhotoInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Parts.PhotoInfo.html#VisualCard_Parts_PhotoInfo_Equals_
+  commentId: Overload:VisualCard.Parts.PhotoInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Parts.PhotoInfo.Equals
+  nameWithType: PhotoInfo.Equals
+- uid: VisualCard.Parts.PhotoInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Parts.PhotoInfo.html#VisualCard_Parts_PhotoInfo_GetHashCode
+  commentId: M:VisualCard.Parts.PhotoInfo.GetHashCode
+  fullName: VisualCard.Parts.PhotoInfo.GetHashCode()
+  nameWithType: PhotoInfo.GetHashCode()
+- uid: VisualCard.Parts.PhotoInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Parts.PhotoInfo.html#VisualCard_Parts_PhotoInfo_GetHashCode_
+  commentId: Overload:VisualCard.Parts.PhotoInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Parts.PhotoInfo.GetHashCode
+  nameWithType: PhotoInfo.GetHashCode
 - uid: VisualCard.Parts.PhotoInfo.PhotoEncoded
   name: PhotoEncoded
   href: api/VisualCard.Parts.PhotoInfo.html#VisualCard_Parts_PhotoInfo_PhotoEncoded
@@ -1500,6 +1842,44 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.RoleInfo.ContactRole
   nameWithType: RoleInfo.ContactRole
+- uid: VisualCard.Parts.RoleInfo.Equals(System.Object)
+  name: Equals(Object)
+  href: api/VisualCard.Parts.RoleInfo.html#VisualCard_Parts_RoleInfo_Equals_System_Object_
+  commentId: M:VisualCard.Parts.RoleInfo.Equals(System.Object)
+  fullName: VisualCard.Parts.RoleInfo.Equals(System.Object)
+  nameWithType: RoleInfo.Equals(Object)
+- uid: VisualCard.Parts.RoleInfo.Equals(VisualCard.Parts.RoleInfo)
+  name: Equals(RoleInfo)
+  href: api/VisualCard.Parts.RoleInfo.html#VisualCard_Parts_RoleInfo_Equals_VisualCard_Parts_RoleInfo_
+  commentId: M:VisualCard.Parts.RoleInfo.Equals(VisualCard.Parts.RoleInfo)
+  fullName: VisualCard.Parts.RoleInfo.Equals(VisualCard.Parts.RoleInfo)
+  nameWithType: RoleInfo.Equals(RoleInfo)
+- uid: VisualCard.Parts.RoleInfo.Equals(VisualCard.Parts.RoleInfo,VisualCard.Parts.RoleInfo)
+  name: Equals(RoleInfo, RoleInfo)
+  href: api/VisualCard.Parts.RoleInfo.html#VisualCard_Parts_RoleInfo_Equals_VisualCard_Parts_RoleInfo_VisualCard_Parts_RoleInfo_
+  commentId: M:VisualCard.Parts.RoleInfo.Equals(VisualCard.Parts.RoleInfo,VisualCard.Parts.RoleInfo)
+  fullName: VisualCard.Parts.RoleInfo.Equals(VisualCard.Parts.RoleInfo, VisualCard.Parts.RoleInfo)
+  nameWithType: RoleInfo.Equals(RoleInfo, RoleInfo)
+- uid: VisualCard.Parts.RoleInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Parts.RoleInfo.html#VisualCard_Parts_RoleInfo_Equals_
+  commentId: Overload:VisualCard.Parts.RoleInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Parts.RoleInfo.Equals
+  nameWithType: RoleInfo.Equals
+- uid: VisualCard.Parts.RoleInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Parts.RoleInfo.html#VisualCard_Parts_RoleInfo_GetHashCode
+  commentId: M:VisualCard.Parts.RoleInfo.GetHashCode
+  fullName: VisualCard.Parts.RoleInfo.GetHashCode()
+  nameWithType: RoleInfo.GetHashCode()
+- uid: VisualCard.Parts.RoleInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Parts.RoleInfo.html#VisualCard_Parts_RoleInfo_GetHashCode_
+  commentId: Overload:VisualCard.Parts.RoleInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Parts.RoleInfo.GetHashCode
+  nameWithType: RoleInfo.GetHashCode
 - uid: VisualCard.Parts.SoundInfo
   name: SoundInfo
   href: api/VisualCard.Parts.SoundInfo.html
@@ -1545,6 +1925,44 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.SoundInfo.Encoding
   nameWithType: SoundInfo.Encoding
+- uid: VisualCard.Parts.SoundInfo.Equals(System.Object)
+  name: Equals(Object)
+  href: api/VisualCard.Parts.SoundInfo.html#VisualCard_Parts_SoundInfo_Equals_System_Object_
+  commentId: M:VisualCard.Parts.SoundInfo.Equals(System.Object)
+  fullName: VisualCard.Parts.SoundInfo.Equals(System.Object)
+  nameWithType: SoundInfo.Equals(Object)
+- uid: VisualCard.Parts.SoundInfo.Equals(VisualCard.Parts.SoundInfo)
+  name: Equals(SoundInfo)
+  href: api/VisualCard.Parts.SoundInfo.html#VisualCard_Parts_SoundInfo_Equals_VisualCard_Parts_SoundInfo_
+  commentId: M:VisualCard.Parts.SoundInfo.Equals(VisualCard.Parts.SoundInfo)
+  fullName: VisualCard.Parts.SoundInfo.Equals(VisualCard.Parts.SoundInfo)
+  nameWithType: SoundInfo.Equals(SoundInfo)
+- uid: VisualCard.Parts.SoundInfo.Equals(VisualCard.Parts.SoundInfo,VisualCard.Parts.SoundInfo)
+  name: Equals(SoundInfo, SoundInfo)
+  href: api/VisualCard.Parts.SoundInfo.html#VisualCard_Parts_SoundInfo_Equals_VisualCard_Parts_SoundInfo_VisualCard_Parts_SoundInfo_
+  commentId: M:VisualCard.Parts.SoundInfo.Equals(VisualCard.Parts.SoundInfo,VisualCard.Parts.SoundInfo)
+  fullName: VisualCard.Parts.SoundInfo.Equals(VisualCard.Parts.SoundInfo, VisualCard.Parts.SoundInfo)
+  nameWithType: SoundInfo.Equals(SoundInfo, SoundInfo)
+- uid: VisualCard.Parts.SoundInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Parts.SoundInfo.html#VisualCard_Parts_SoundInfo_Equals_
+  commentId: Overload:VisualCard.Parts.SoundInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Parts.SoundInfo.Equals
+  nameWithType: SoundInfo.Equals
+- uid: VisualCard.Parts.SoundInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Parts.SoundInfo.html#VisualCard_Parts_SoundInfo_GetHashCode
+  commentId: M:VisualCard.Parts.SoundInfo.GetHashCode
+  fullName: VisualCard.Parts.SoundInfo.GetHashCode()
+  nameWithType: SoundInfo.GetHashCode()
+- uid: VisualCard.Parts.SoundInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Parts.SoundInfo.html#VisualCard_Parts_SoundInfo_GetHashCode_
+  commentId: Overload:VisualCard.Parts.SoundInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Parts.SoundInfo.GetHashCode
+  nameWithType: SoundInfo.GetHashCode
 - uid: VisualCard.Parts.SoundInfo.SoundEncoded
   name: SoundEncoded
   href: api/VisualCard.Parts.SoundInfo.html#VisualCard_Parts_SoundInfo_SoundEncoded
@@ -1629,6 +2047,44 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.TelephoneInfo.ContactPhoneTypes
   nameWithType: TelephoneInfo.ContactPhoneTypes
+- uid: VisualCard.Parts.TelephoneInfo.Equals(System.Object)
+  name: Equals(Object)
+  href: api/VisualCard.Parts.TelephoneInfo.html#VisualCard_Parts_TelephoneInfo_Equals_System_Object_
+  commentId: M:VisualCard.Parts.TelephoneInfo.Equals(System.Object)
+  fullName: VisualCard.Parts.TelephoneInfo.Equals(System.Object)
+  nameWithType: TelephoneInfo.Equals(Object)
+- uid: VisualCard.Parts.TelephoneInfo.Equals(VisualCard.Parts.TelephoneInfo)
+  name: Equals(TelephoneInfo)
+  href: api/VisualCard.Parts.TelephoneInfo.html#VisualCard_Parts_TelephoneInfo_Equals_VisualCard_Parts_TelephoneInfo_
+  commentId: M:VisualCard.Parts.TelephoneInfo.Equals(VisualCard.Parts.TelephoneInfo)
+  fullName: VisualCard.Parts.TelephoneInfo.Equals(VisualCard.Parts.TelephoneInfo)
+  nameWithType: TelephoneInfo.Equals(TelephoneInfo)
+- uid: VisualCard.Parts.TelephoneInfo.Equals(VisualCard.Parts.TelephoneInfo,VisualCard.Parts.TelephoneInfo)
+  name: Equals(TelephoneInfo, TelephoneInfo)
+  href: api/VisualCard.Parts.TelephoneInfo.html#VisualCard_Parts_TelephoneInfo_Equals_VisualCard_Parts_TelephoneInfo_VisualCard_Parts_TelephoneInfo_
+  commentId: M:VisualCard.Parts.TelephoneInfo.Equals(VisualCard.Parts.TelephoneInfo,VisualCard.Parts.TelephoneInfo)
+  fullName: VisualCard.Parts.TelephoneInfo.Equals(VisualCard.Parts.TelephoneInfo, VisualCard.Parts.TelephoneInfo)
+  nameWithType: TelephoneInfo.Equals(TelephoneInfo, TelephoneInfo)
+- uid: VisualCard.Parts.TelephoneInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Parts.TelephoneInfo.html#VisualCard_Parts_TelephoneInfo_Equals_
+  commentId: Overload:VisualCard.Parts.TelephoneInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Parts.TelephoneInfo.Equals
+  nameWithType: TelephoneInfo.Equals
+- uid: VisualCard.Parts.TelephoneInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Parts.TelephoneInfo.html#VisualCard_Parts_TelephoneInfo_GetHashCode
+  commentId: M:VisualCard.Parts.TelephoneInfo.GetHashCode
+  fullName: VisualCard.Parts.TelephoneInfo.GetHashCode()
+  nameWithType: TelephoneInfo.GetHashCode()
+- uid: VisualCard.Parts.TelephoneInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Parts.TelephoneInfo.html#VisualCard_Parts_TelephoneInfo_GetHashCode_
+  commentId: Overload:VisualCard.Parts.TelephoneInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Parts.TelephoneInfo.GetHashCode
+  nameWithType: TelephoneInfo.GetHashCode
 - uid: VisualCard.Parts.TimeZoneInfo
   name: TimeZoneInfo
   href: api/VisualCard.Parts.TimeZoneInfo.html
@@ -1661,6 +2117,44 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.TimeZoneInfo.AltId
   nameWithType: TimeZoneInfo.AltId
+- uid: VisualCard.Parts.TimeZoneInfo.Equals(System.Object)
+  name: Equals(Object)
+  href: api/VisualCard.Parts.TimeZoneInfo.html#VisualCard_Parts_TimeZoneInfo_Equals_System_Object_
+  commentId: M:VisualCard.Parts.TimeZoneInfo.Equals(System.Object)
+  fullName: VisualCard.Parts.TimeZoneInfo.Equals(System.Object)
+  nameWithType: TimeZoneInfo.Equals(Object)
+- uid: VisualCard.Parts.TimeZoneInfo.Equals(VisualCard.Parts.TimeZoneInfo)
+  name: Equals(TimeZoneInfo)
+  href: api/VisualCard.Parts.TimeZoneInfo.html#VisualCard_Parts_TimeZoneInfo_Equals_VisualCard_Parts_TimeZoneInfo_
+  commentId: M:VisualCard.Parts.TimeZoneInfo.Equals(VisualCard.Parts.TimeZoneInfo)
+  fullName: VisualCard.Parts.TimeZoneInfo.Equals(VisualCard.Parts.TimeZoneInfo)
+  nameWithType: TimeZoneInfo.Equals(TimeZoneInfo)
+- uid: VisualCard.Parts.TimeZoneInfo.Equals(VisualCard.Parts.TimeZoneInfo,VisualCard.Parts.TimeZoneInfo)
+  name: Equals(TimeZoneInfo, TimeZoneInfo)
+  href: api/VisualCard.Parts.TimeZoneInfo.html#VisualCard_Parts_TimeZoneInfo_Equals_VisualCard_Parts_TimeZoneInfo_VisualCard_Parts_TimeZoneInfo_
+  commentId: M:VisualCard.Parts.TimeZoneInfo.Equals(VisualCard.Parts.TimeZoneInfo,VisualCard.Parts.TimeZoneInfo)
+  fullName: VisualCard.Parts.TimeZoneInfo.Equals(VisualCard.Parts.TimeZoneInfo, VisualCard.Parts.TimeZoneInfo)
+  nameWithType: TimeZoneInfo.Equals(TimeZoneInfo, TimeZoneInfo)
+- uid: VisualCard.Parts.TimeZoneInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Parts.TimeZoneInfo.html#VisualCard_Parts_TimeZoneInfo_Equals_
+  commentId: Overload:VisualCard.Parts.TimeZoneInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Parts.TimeZoneInfo.Equals
+  nameWithType: TimeZoneInfo.Equals
+- uid: VisualCard.Parts.TimeZoneInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Parts.TimeZoneInfo.html#VisualCard_Parts_TimeZoneInfo_GetHashCode
+  commentId: M:VisualCard.Parts.TimeZoneInfo.GetHashCode
+  fullName: VisualCard.Parts.TimeZoneInfo.GetHashCode()
+  nameWithType: TimeZoneInfo.GetHashCode()
+- uid: VisualCard.Parts.TimeZoneInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Parts.TimeZoneInfo.html#VisualCard_Parts_TimeZoneInfo_GetHashCode_
+  commentId: Overload:VisualCard.Parts.TimeZoneInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Parts.TimeZoneInfo.GetHashCode
+  nameWithType: TimeZoneInfo.GetHashCode
 - uid: VisualCard.Parts.TimeZoneInfo.TimeZone
   name: TimeZone
   href: api/VisualCard.Parts.TimeZoneInfo.html#VisualCard_Parts_TimeZoneInfo_TimeZone
@@ -1719,6 +2213,44 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.TitleInfo.ContactTitle
   nameWithType: TitleInfo.ContactTitle
+- uid: VisualCard.Parts.TitleInfo.Equals(System.Object)
+  name: Equals(Object)
+  href: api/VisualCard.Parts.TitleInfo.html#VisualCard_Parts_TitleInfo_Equals_System_Object_
+  commentId: M:VisualCard.Parts.TitleInfo.Equals(System.Object)
+  fullName: VisualCard.Parts.TitleInfo.Equals(System.Object)
+  nameWithType: TitleInfo.Equals(Object)
+- uid: VisualCard.Parts.TitleInfo.Equals(VisualCard.Parts.TitleInfo)
+  name: Equals(TitleInfo)
+  href: api/VisualCard.Parts.TitleInfo.html#VisualCard_Parts_TitleInfo_Equals_VisualCard_Parts_TitleInfo_
+  commentId: M:VisualCard.Parts.TitleInfo.Equals(VisualCard.Parts.TitleInfo)
+  fullName: VisualCard.Parts.TitleInfo.Equals(VisualCard.Parts.TitleInfo)
+  nameWithType: TitleInfo.Equals(TitleInfo)
+- uid: VisualCard.Parts.TitleInfo.Equals(VisualCard.Parts.TitleInfo,VisualCard.Parts.TitleInfo)
+  name: Equals(TitleInfo, TitleInfo)
+  href: api/VisualCard.Parts.TitleInfo.html#VisualCard_Parts_TitleInfo_Equals_VisualCard_Parts_TitleInfo_VisualCard_Parts_TitleInfo_
+  commentId: M:VisualCard.Parts.TitleInfo.Equals(VisualCard.Parts.TitleInfo,VisualCard.Parts.TitleInfo)
+  fullName: VisualCard.Parts.TitleInfo.Equals(VisualCard.Parts.TitleInfo, VisualCard.Parts.TitleInfo)
+  nameWithType: TitleInfo.Equals(TitleInfo, TitleInfo)
+- uid: VisualCard.Parts.TitleInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Parts.TitleInfo.html#VisualCard_Parts_TitleInfo_Equals_
+  commentId: Overload:VisualCard.Parts.TitleInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Parts.TitleInfo.Equals
+  nameWithType: TitleInfo.Equals
+- uid: VisualCard.Parts.TitleInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Parts.TitleInfo.html#VisualCard_Parts_TitleInfo_GetHashCode
+  commentId: M:VisualCard.Parts.TitleInfo.GetHashCode
+  fullName: VisualCard.Parts.TitleInfo.GetHashCode()
+  nameWithType: TitleInfo.GetHashCode()
+- uid: VisualCard.Parts.TitleInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Parts.TitleInfo.html#VisualCard_Parts_TitleInfo_GetHashCode_
+  commentId: Overload:VisualCard.Parts.TitleInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Parts.TitleInfo.GetHashCode
+  nameWithType: TitleInfo.GetHashCode
 - uid: VisualCard.Parts.XNameInfo
   name: XNameInfo
   href: api/VisualCard.Parts.XNameInfo.html
@@ -1738,6 +2270,44 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.XNameInfo.AltId
   nameWithType: XNameInfo.AltId
+- uid: VisualCard.Parts.XNameInfo.Equals(System.Object)
+  name: Equals(Object)
+  href: api/VisualCard.Parts.XNameInfo.html#VisualCard_Parts_XNameInfo_Equals_System_Object_
+  commentId: M:VisualCard.Parts.XNameInfo.Equals(System.Object)
+  fullName: VisualCard.Parts.XNameInfo.Equals(System.Object)
+  nameWithType: XNameInfo.Equals(Object)
+- uid: VisualCard.Parts.XNameInfo.Equals(VisualCard.Parts.XNameInfo)
+  name: Equals(XNameInfo)
+  href: api/VisualCard.Parts.XNameInfo.html#VisualCard_Parts_XNameInfo_Equals_VisualCard_Parts_XNameInfo_
+  commentId: M:VisualCard.Parts.XNameInfo.Equals(VisualCard.Parts.XNameInfo)
+  fullName: VisualCard.Parts.XNameInfo.Equals(VisualCard.Parts.XNameInfo)
+  nameWithType: XNameInfo.Equals(XNameInfo)
+- uid: VisualCard.Parts.XNameInfo.Equals(VisualCard.Parts.XNameInfo,VisualCard.Parts.XNameInfo)
+  name: Equals(XNameInfo, XNameInfo)
+  href: api/VisualCard.Parts.XNameInfo.html#VisualCard_Parts_XNameInfo_Equals_VisualCard_Parts_XNameInfo_VisualCard_Parts_XNameInfo_
+  commentId: M:VisualCard.Parts.XNameInfo.Equals(VisualCard.Parts.XNameInfo,VisualCard.Parts.XNameInfo)
+  fullName: VisualCard.Parts.XNameInfo.Equals(VisualCard.Parts.XNameInfo, VisualCard.Parts.XNameInfo)
+  nameWithType: XNameInfo.Equals(XNameInfo, XNameInfo)
+- uid: VisualCard.Parts.XNameInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Parts.XNameInfo.html#VisualCard_Parts_XNameInfo_Equals_
+  commentId: Overload:VisualCard.Parts.XNameInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Parts.XNameInfo.Equals
+  nameWithType: XNameInfo.Equals
+- uid: VisualCard.Parts.XNameInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Parts.XNameInfo.html#VisualCard_Parts_XNameInfo_GetHashCode
+  commentId: M:VisualCard.Parts.XNameInfo.GetHashCode
+  fullName: VisualCard.Parts.XNameInfo.GetHashCode()
+  nameWithType: XNameInfo.GetHashCode()
+- uid: VisualCard.Parts.XNameInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Parts.XNameInfo.html#VisualCard_Parts_XNameInfo_GetHashCode_
+  commentId: Overload:VisualCard.Parts.XNameInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Parts.XNameInfo.GetHashCode
+  nameWithType: XNameInfo.GetHashCode
 - uid: VisualCard.Parts.XNameInfo.XKeyName
   name: XKeyName
   href: api/VisualCard.Parts.XNameInfo.html#VisualCard_Parts_XNameInfo_XKeyName
