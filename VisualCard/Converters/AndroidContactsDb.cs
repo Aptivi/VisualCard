@@ -53,7 +53,7 @@ namespace VisualCard.Converters
                 "usually found in the /data/data/android.providers.contacts/databases/ folder. If the " +
                 "file is not there, you may need to look for this file under the /data/user/0/com.android.providers.contacts/databases/ " +
                 "folder. Some ROMs, such as Motorola, may store contacts in their own contact provider " +
-                "folder, for example, /data/user/0/com.android.providers.contacts/databases/.";
+                "folder, for example, /data/user/0/com.motorola.blur.providers.contacts/databases/.";
             if (!File.Exists(pathToDb))
                 throw new FileNotFoundException("The Android contact database file obtained from the contact provider is not found." + dbObtainTip);
             List<BaseVcardParser> cardParsers = new();
