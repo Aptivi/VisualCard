@@ -23,9 +23,13 @@
  * 
  */
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace VisualCard.Parts
 {
-    public class AddressInfo
+    public class AddressInfo : IEquatable<AddressInfo>
     {
         /// <summary>
         /// Alternative ID. Zero if unspecified.
@@ -63,6 +67,58 @@ namespace VisualCard.Parts
         /// The contact's country
         /// </summary>
         public string Country { get; }
+
+        public override bool Equals(object obj) =>
+            base.Equals(obj);
+
+        /// <summary>
+        /// Checks to see if both the parts are equal
+        /// </summary>
+        /// <param name="other">The target <see cref="AddressInfo"/> instance to check to see if they equal</param>
+        /// <returns>True if all the part elements are equal. Otherwise, false.</returns>
+        public bool Equals(AddressInfo other) =>
+            Equals(this, other);
+
+        /// <summary>
+        /// Checks to see if both the parts are equal
+        /// </summary>
+        /// <param name="source">The source <see cref="AddressInfo"/> instance to check to see if they equal</param>
+        /// <param name="target">The target <see cref="AddressInfo"/> instance to check to see if they equal</param>
+        /// <returns>True if all the part elements are equal. Otherwise, false.</returns>
+        public bool Equals(AddressInfo source, AddressInfo target)
+        {
+            // We can't perform this operation on null.
+            if (source is null)
+                return false;
+
+            // Check all the properties
+            return
+                source.AddressTypes.SequenceEqual(target.AddressTypes) &&
+                source.AltId == target.AltId &&
+                source.PostOfficeBox == target.PostOfficeBox &&
+                source.ExtendedAddress == target.ExtendedAddress &&
+                source.StreetAddress == target.StreetAddress &&
+                source.Locality == target.Locality &&
+                source.Region == target.Region &&
+                source.PostalCode == target.PostalCode &&
+                source.Country == target.Country
+            ;
+        }
+
+        public override int GetHashCode()
+        {
+            int hashCode = -1822094836;
+            hashCode = hashCode * -1521134295 + AltId.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(AddressTypes);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(PostOfficeBox);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ExtendedAddress);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(StreetAddress);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Locality);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Region);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(PostalCode);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Country);
+            return hashCode;
+        }
 
         internal AddressInfo() { }
 

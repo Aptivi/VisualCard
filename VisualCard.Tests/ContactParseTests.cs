@@ -28,6 +28,7 @@ using Shouldly;
 using System.Collections.Generic;
 using System.IO;
 using VisualCard.Parsers;
+using VisualCard.Parts;
 
 namespace VisualCard.Tests
 {
@@ -52,6 +53,37 @@ namespace VisualCard.Tests
             Should.NotThrow(() => parsers = CardTools.GetCardParsersFromString(cardText));
             foreach (BaseVcardParser parser in parsers)
                 Should.NotThrow(parser.Parse);
+        }
+
+        [Test]
+        [TestCaseSource(typeof(ContactData), nameof(ContactData.singleVcardContactShorts))]
+        [TestCaseSource(typeof(ContactData), nameof(ContactData.singleVcardContacts))]
+        [TestCaseSource(typeof(ContactData), nameof(ContactData.multipleVcardContacts))]
+        [TestCaseSource(typeof(ContactData), nameof(ContactData.remainingContacts))]
+        public void ParseDifferentContactsAndTestEquality(string cardText)
+        {
+            List<BaseVcardParser> parsers = new();
+            List<Card> cards = new();
+
+            // Parse the cards
+            Should.NotThrow(() => parsers = CardTools.GetCardParsersFromString(cardText));
+            foreach (BaseVcardParser parser in parsers)
+                cards.Add(Should.NotThrow(parser.Parse));
+
+            // Test equality with available data
+            List<bool> foundCards = new();
+            foreach (Card card in cards)
+            {
+                bool found = false;
+                foreach (Card expectedCard in ContactData.vCardContactsInstances)
+                    if (expectedCard == card)
+                    {
+                        found = true;
+                        break;
+                    }
+                foundCards.Add(found);
+            }
+            foundCards.ShouldAllBe((b) => b);
         }
 
         [Test]

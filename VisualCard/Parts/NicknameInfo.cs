@@ -23,9 +23,13 @@
  * 
  */
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace VisualCard.Parts
 {
-    public class NicknameInfo
+    public class NicknameInfo : IEquatable<NicknameInfo>
     {
         /// <summary>
         /// Alternative ID. Zero if unspecified.
@@ -43,6 +47,48 @@ namespace VisualCard.Parts
         /// The contact's nickname types
         /// </summary>
         public string[] NicknameTypes { get; }
+
+        public override bool Equals(object obj) =>
+            base.Equals(obj);
+
+        /// <summary>
+        /// Checks to see if both the parts are equal
+        /// </summary>
+        /// <param name="other">The target <see cref="NicknameInfo"/> instance to check to see if they equal</param>
+        /// <returns>True if all the part elements are equal. Otherwise, false.</returns>
+        public bool Equals(NicknameInfo other) =>
+            Equals(this, other);
+
+        /// <summary>
+        /// Checks to see if both the parts are equal
+        /// </summary>
+        /// <param name="source">The source <see cref="NicknameInfo"/> instance to check to see if they equal</param>
+        /// <param name="target">The target <see cref="NicknameInfo"/> instance to check to see if they equal</param>
+        /// <returns>True if all the part elements are equal. Otherwise, false.</returns>
+        public bool Equals(NicknameInfo source, NicknameInfo target)
+        {
+            // We can't perform this operation on null.
+            if (source is null)
+                return false;
+
+            // Check all the properties
+            return
+                source.AltArguments.SequenceEqual(target.AltArguments) &&
+                source.NicknameTypes.SequenceEqual(target.NicknameTypes) &&
+                source.AltId == target.AltId &&
+                source.ContactNickname == target.ContactNickname
+            ;
+        }
+
+        public override int GetHashCode()
+        {
+            int hashCode = -1183179154;
+            hashCode = hashCode * -1521134295 + AltId.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(AltArguments);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactNickname);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(NicknameTypes);
+            return hashCode;
+        }
 
         internal NicknameInfo() { }
 
