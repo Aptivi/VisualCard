@@ -25,10 +25,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.IO;
-using System.IO.Pipes;
-using System.Net;
 using System.Net.Mail;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -45,43 +42,6 @@ namespace VisualCard.Parsers.Three
     {
         public override string CardContent { get; }
         public override string CardVersion { get; }
-
-        // Some VCard 3.0 constants
-        const char _fieldDelimiter = ';';
-        const char _valueDelimiter = ',';
-        const char _argumentDelimiter = ':';
-        const string _nameSpecifier = "N:";
-        const string _fullNameSpecifier = "FN:";
-        const string _telephoneSpecifierWithType = "TEL;";
-        const string _telephoneSpecifier = "TEL:";
-        const string _addressSpecifierWithType = "ADR;";
-        const string _emailSpecifier = "EMAIL;";
-        const string _orgSpecifier = "ORG:";
-        const string _orgSpecifierWithType = "ORG;";
-        const string _titleSpecifier = "TITLE:";
-        const string _urlSpecifier = "URL:";
-        const string _noteSpecifier = "NOTE:";
-        const string _photoSpecifierWithType = "PHOTO;";
-        const string _logoSpecifierWithType = "LOGO;";
-        const string _soundSpecifierWithType = "SOUND;";
-        const string _revSpecifier = "REV:";
-        const string _nicknameSpecifier = "NICKNAME:";
-        const string _nicknameSpecifierWithType = "NICKNAME;";
-        const string _birthSpecifier = "BDAY:";
-        const string _mailerSpecifier = "MAILER:";
-        const string _roleSpecifier = "ROLE:";
-        const string _categoriesSpecifier = "CATEGORIES:";
-        const string _productIdSpecifier = "PRODID:";
-        const string _sortStringSpecifier = "SORT-STRING:";
-        const string _timeZoneSpecifier = "TZ:";
-        const string _geoSpecifier = "GEO:";
-        const string _timeZoneSpecifierWithType = "TZ;";
-        const string _geoSpecifierWithType = "GEO;";
-        const string _imppSpecifier = "IMPP:";
-        const string _imppSpecifierWithType = "IMPP;";
-        const string _xSpecifier = "X-";
-        const string _typeArgumentSpecifier = "TYPE=";
-        const string _valueArgumentSpecifier = "VALUE=";
 
         public override Card Parse()
         {
@@ -139,20 +99,20 @@ namespace VisualCard.Parsers.Three
                 try
                 {
                     // The name (N:Sanders;John;;;)
-                    if (_value.StartsWith(_nameSpecifier))
+                    if (_value.StartsWith(VcardConstants._nameSpecifier))
                     {
                         // Check the line
-                        string nameValue = _value.Substring(_nameSpecifier.Length);
-                        string[] splitName = nameValue.Split(_fieldDelimiter);
+                        string nameValue = _value.Substring(VcardConstants._nameSpecifier.Length);
+                        string[] splitName = nameValue.Split(VcardConstants._fieldDelimiter);
                         if (splitName.Length < 2)
                             throw new InvalidDataException("Name field must specify exactly five values (Last name, first name, alt names, prefixes, and suffixes)");
 
                         // Populate fields
                         string _lastName = Regex.Unescape(splitName[0]);
                         string _firstName = Regex.Unescape(splitName[1]);
-                        string[] _altNames = splitName.Length >= 3 ? Regex.Unescape(splitName[2]).Split(new char[] { _valueDelimiter }) : Array.Empty<string>();
-                        string[] _prefixes = splitName.Length >= 4 ? Regex.Unescape(splitName[3]).Split(new char[] { _valueDelimiter }) : Array.Empty<string>();
-                        string[] _suffixes = splitName.Length >= 5 ? Regex.Unescape(splitName[4]).Split(new char[] { _valueDelimiter }) : Array.Empty<string>();
+                        string[] _altNames = splitName.Length >= 3 ? Regex.Unescape(splitName[2]).Split(new char[] { VcardConstants._valueDelimiter }) : Array.Empty<string>();
+                        string[] _prefixes = splitName.Length >= 4 ? Regex.Unescape(splitName[3]).Split(new char[] { VcardConstants._valueDelimiter }) : Array.Empty<string>();
+                        string[] _suffixes = splitName.Length >= 5 ? Regex.Unescape(splitName[4]).Split(new char[] { VcardConstants._valueDelimiter }) : Array.Empty<string>();
                         NameInfo _name = new(0, Array.Empty<string>(), _firstName, _lastName, _altNames, _prefixes, _suffixes);
                         _names.Add(_name);
 
@@ -161,10 +121,10 @@ namespace VisualCard.Parsers.Three
                     }
 
                     // Full name (FN:John Sanders)
-                    if (_value.StartsWith(_fullNameSpecifier))
+                    if (_value.StartsWith(VcardConstants._fullNameSpecifier))
                     {
                         // Get the value
-                        string fullNameValue = _value.Substring(_fullNameSpecifier.Length);
+                        string fullNameValue = _value.Substring(VcardConstants._fullNameSpecifier.Length);
 
                         // Populate field
                         _fullName = Regex.Unescape(fullNameValue);
@@ -174,19 +134,19 @@ namespace VisualCard.Parsers.Three
                     }
 
                     // Telephone (TEL;TYPE=cell,home:495-522-3560)
-                    if (_value.StartsWith(_telephoneSpecifierWithType))
+                    if (_value.StartsWith(VcardConstants._telephoneSpecifierWithType))
                     {
                         // Get the value
-                        string telValue = _value.Substring(_telephoneSpecifierWithType.Length);
-                        string[] splitTel = telValue.Split(_argumentDelimiter);
+                        string telValue = _value.Substring(VcardConstants._telephoneSpecifierWithType.Length);
+                        string[] splitTel = telValue.Split(VcardConstants._argumentDelimiter);
                         string[] splitTypes;
                         if (splitTel.Length != 2)
                             throw new InvalidDataException("Telephone field must specify exactly two values (Type (must be prepended with TYPE=), and phone number)");
 
                         // Check to see if the type is prepended with the TYPE= argument
-                        if (splitTel[0].StartsWith(_typeArgumentSpecifier))
+                        if (splitTel[0].StartsWith(VcardConstants._typeArgumentSpecifier))
                             // Get the types
-                            splitTypes = splitTel[0].Substring(_typeArgumentSpecifier.Length).Split(_valueDelimiter);
+                            splitTypes = splitTel[0].Substring(VcardConstants._typeArgumentSpecifier.Length).Split(VcardConstants._valueDelimiter);
                         else if (string.IsNullOrEmpty(splitTel[0]))
                             // We're confronted with an empty type. Assume that it's a CELL.
                             splitTypes = new string[] { "CELL" };
@@ -202,10 +162,10 @@ namespace VisualCard.Parsers.Three
                     }
 
                     // Telephone (TEL:495-522-3560)
-                    if (_value.StartsWith(_telephoneSpecifier))
+                    if (_value.StartsWith(VcardConstants._telephoneSpecifier))
                     {
                         // Get the value
-                        string telValue = _value.Substring(_telephoneSpecifier.Length);
+                        string telValue = _value.Substring(VcardConstants._telephoneSpecifier.Length);
 
                         // Populate the fields
                         string[] _telephoneTypes = new string[] { "CELL" };
@@ -215,19 +175,19 @@ namespace VisualCard.Parsers.Three
                     }
 
                     // Address (ADR;TYPE=HOME:;;Los Angeles, USA;;;;)
-                    if (_value.StartsWith(_addressSpecifierWithType))
+                    if (_value.StartsWith(VcardConstants._addressSpecifierWithType))
                     {
                         // Get the value
-                        string adrValue = _value.Substring(_addressSpecifierWithType.Length);
-                        string[] splitAdr = adrValue.Split(_argumentDelimiter);
+                        string adrValue = _value.Substring(VcardConstants._addressSpecifierWithType.Length);
+                        string[] splitAdr = adrValue.Split(VcardConstants._argumentDelimiter);
                         string[] splitTypes;
                         if (splitAdr.Length != 2)
                             throw new InvalidDataException("Address field must specify exactly two values (Type (must be prepended with TYPE=), and address information)");
 
                         // Check to see if the type is prepended with the TYPE= argument
-                        if (splitAdr[0].StartsWith(_typeArgumentSpecifier))
+                        if (splitAdr[0].StartsWith(VcardConstants._typeArgumentSpecifier))
                             // Get the types
-                            splitTypes = splitAdr[0].Substring(_typeArgumentSpecifier.Length).Split(_valueDelimiter);
+                            splitTypes = splitAdr[0].Substring(VcardConstants._typeArgumentSpecifier.Length).Split(VcardConstants._valueDelimiter);
                         else if (string.IsNullOrEmpty(splitAdr[0]))
                             // We're confronted with an empty type. Assume that it's a HOME address.
                             splitTypes = new string[] { "HOME" };
@@ -236,7 +196,7 @@ namespace VisualCard.Parsers.Three
                             throw new InvalidDataException("Address type must be prepended with TYPE=");
 
                         // Check the provided address
-                        string[] splitAddressValues = splitAdr[1].Split(_fieldDelimiter);
+                        string[] splitAddressValues = splitAdr[1].Split(VcardConstants._fieldDelimiter);
                         if (splitAddressValues.Length != 7)
                             throw new InvalidDataException("Address information must specify exactly seven values (P.O. Box, extended address, street address, locality, region, postal code, and country)");
 
@@ -254,20 +214,20 @@ namespace VisualCard.Parsers.Three
                     }
 
                     // Email (EMAIL;TYPE=HOME,INTERNET:john.s@acme.co)
-                    if (_value.StartsWith(_emailSpecifier))
+                    if (_value.StartsWith(VcardConstants._emailSpecifier))
                     {
                         // Get the value
-                        string mailValue = _value.Substring(_emailSpecifier.Length);
-                        string[] splitMail = mailValue.Split(_argumentDelimiter);
+                        string mailValue = _value.Substring(VcardConstants._emailSpecifier.Length);
+                        string[] splitMail = mailValue.Split(VcardConstants._argumentDelimiter);
                         string[] splitTypes;
                         MailAddress mail;
                         if (splitMail.Length != 2)
                             throw new InvalidDataException("E-mail field must specify exactly two values (Type (must be prepended with TYPE=), and a valid e-mail address)");
 
                         // Check to see if the type is prepended with the TYPE= argument
-                        if (splitMail[0].StartsWith(_typeArgumentSpecifier))
+                        if (splitMail[0].StartsWith(VcardConstants._typeArgumentSpecifier))
                             // Get the types
-                            splitTypes = splitMail[0].Substring(_typeArgumentSpecifier.Length).Split(_valueDelimiter);
+                            splitTypes = splitMail[0].Substring(VcardConstants._typeArgumentSpecifier.Length).Split(VcardConstants._valueDelimiter);
                         else if (string.IsNullOrEmpty(splitMail[0]))
                             // We're confronted with an empty type. Assume that it's an INTERNET mail.
                             splitTypes = new string[] { "INTERNET" };
@@ -293,11 +253,11 @@ namespace VisualCard.Parsers.Three
                     }
 
                     // Organization (ORG:Acme Co. or ORG:ABC, Inc.;North American Division;Marketing)
-                    if (_value.StartsWith(_orgSpecifier))
+                    if (_value.StartsWith(VcardConstants._orgSpecifier))
                     {
                         // Get the value
-                        string orgValue = _value.Substring(_orgSpecifier.Length);
-                        string[] splitOrg = orgValue.Split(_fieldDelimiter);
+                        string orgValue = _value.Substring(VcardConstants._orgSpecifier.Length);
+                        string[] splitOrg = orgValue.Split(VcardConstants._fieldDelimiter);
 
                         // Populate the fields
                         string[] splitTypes = new string[] { "WORK" };
@@ -309,19 +269,19 @@ namespace VisualCard.Parsers.Three
                     }
 
                     // Organization (ORG;TYPE=WORK:Acme Co. or ORG:ABC, Inc.;North American Division;Marketing)
-                    if (_value.StartsWith(_orgSpecifierWithType))
+                    if (_value.StartsWith(VcardConstants._orgSpecifierWithType))
                     {
                         // Get the value
-                        string orgValue = _value.Substring(_orgSpecifierWithType.Length);
-                        string[] splitOrg = orgValue.Split(_argumentDelimiter);
+                        string orgValue = _value.Substring(VcardConstants._orgSpecifierWithType.Length);
+                        string[] splitOrg = orgValue.Split(VcardConstants._argumentDelimiter);
                         string[] splitTypes;
                         if (splitOrg.Length != 2)
                             throw new InvalidDataException("Organization field must specify exactly two values (Type (must be prepended with TYPE=), and address information)");
 
                         // Check to see if the type is prepended with the TYPE= argument
-                        if (splitOrg[0].StartsWith(_typeArgumentSpecifier))
+                        if (splitOrg[0].StartsWith(VcardConstants._typeArgumentSpecifier))
                             // Get the types
-                            splitTypes = splitOrg[0].Substring(_typeArgumentSpecifier.Length).Split(_valueDelimiter);
+                            splitTypes = splitOrg[0].Substring(VcardConstants._typeArgumentSpecifier.Length).Split(VcardConstants._valueDelimiter);
                         else if (string.IsNullOrEmpty(splitOrg[0]))
                             // We're confronted with an empty type. Assume that it's a WORK organization.
                             splitTypes = new string[] { "WORK" };
@@ -330,7 +290,7 @@ namespace VisualCard.Parsers.Three
                             throw new InvalidDataException("Organization type must be prepended with TYPE=");
 
                         // Check the provided organization
-                        string[] splitOrganizationValues = splitOrg[1].Split(_fieldDelimiter);
+                        string[] splitOrganizationValues = splitOrg[1].Split(VcardConstants._fieldDelimiter);
                         if (splitOrganizationValues.Length != 3)
                             throw new InvalidDataException("Organization information must specify exactly three values (name, unit, and role)");
 
@@ -343,10 +303,10 @@ namespace VisualCard.Parsers.Three
                     }
 
                     // Title (TITLE:Product Manager)
-                    if (_value.StartsWith(_titleSpecifier))
+                    if (_value.StartsWith(VcardConstants._titleSpecifier))
                     {
                         // Get the value
-                        string titleValue = _value.Substring(_titleSpecifier.Length);
+                        string titleValue = _value.Substring(VcardConstants._titleSpecifier.Length);
 
                         // Populate field
                         string _title = Regex.Unescape(titleValue);
@@ -355,10 +315,10 @@ namespace VisualCard.Parsers.Three
                     }
 
                     // Website link (URL:https://sso.org/)
-                    if (_value.StartsWith(_urlSpecifier))
+                    if (_value.StartsWith(VcardConstants._urlSpecifier))
                     {
                         // Get the value
-                        string urlValue = _value.Substring(_urlSpecifier.Length);
+                        string urlValue = _value.Substring(VcardConstants._urlSpecifier.Length);
 
                         // Try to parse the URL to ensure that it conforms to IETF RFC 1738: Uniform Resource Locators
                         if (!Uri.TryCreate(urlValue, UriKind.Absolute, out Uri uri))
@@ -369,22 +329,22 @@ namespace VisualCard.Parsers.Three
                     }
 
                     // Note (NOTE:Product Manager)
-                    if (_value.StartsWith(_noteSpecifier))
+                    if (_value.StartsWith(VcardConstants._noteSpecifier))
                     {
                         // Get the value
-                        string noteValue = _value.Substring(_noteSpecifier.Length);
+                        string noteValue = _value.Substring(VcardConstants._noteSpecifier.Length);
 
                         // Populate field
                         _note = Regex.Unescape(noteValue);
                     }
 
                     // Photo (PHOTO;ENCODING=BASE64;JPEG:... or PHOTO;VALUE=URL:file:///jqpublic.gif or PHOTO;ENCODING=BASE64;TYPE=GIF:...)
-                    if (_value.StartsWith(_photoSpecifierWithType))
+                    if (_value.StartsWith(VcardConstants._photoSpecifierWithType))
                     {
                         // Get the value
-                        string photoValue = _value.Substring(_photoSpecifierWithType.Length);
-                        string[] splitPhoto = photoValue.Split(_argumentDelimiter);
-                        string[] splitPhotoArgs = photoValue.Split(_fieldDelimiter);
+                        string photoValue = _value.Substring(VcardConstants._photoSpecifierWithType.Length);
+                        string[] splitPhoto = photoValue.Split(VcardConstants._argumentDelimiter);
+                        string[] splitPhotoArgs = photoValue.Split(VcardConstants._fieldDelimiter);
 
                         // Check to see if the value is prepended by the VALUE= argument
                         bool isUrl = false;
@@ -408,9 +368,9 @@ namespace VisualCard.Parsers.Three
                         string photoType = "";
                         if (splitPhotoArgs.Length >= 1)
                         {
-                            photoType = splitPhotoArgs[1].StartsWith(_typeArgumentSpecifier) ?
-                                        splitPhotoArgs[1].Substring(_typeArgumentSpecifier.Length).Substring(0, splitPhotoArgs[1].IndexOf(_argumentDelimiter)) :
-                                        splitPhotoArgs[1].Substring(0, splitPhotoArgs[1].IndexOf(_argumentDelimiter));
+                            photoType = splitPhotoArgs[1].StartsWith(VcardConstants._typeArgumentSpecifier) ?
+                                        splitPhotoArgs[1].Substring(VcardConstants._typeArgumentSpecifier.Length).Substring(0, splitPhotoArgs[1].IndexOf(VcardConstants._argumentDelimiter)) :
+                                        splitPhotoArgs[1].Substring(0, splitPhotoArgs[1].IndexOf(VcardConstants._argumentDelimiter));
                         }
 
                         // Now, get the encoded photo
@@ -435,12 +395,12 @@ namespace VisualCard.Parsers.Three
                     }
 
                     // Logo (LOGO;ENCODING=BASE64;JPEG:... or LOGO;VALUE=URL:file:///jqpublic.gif or LOGO;ENCODING=BASE64;TYPE=GIF:...)
-                    if (_value.StartsWith(_logoSpecifierWithType))
+                    if (_value.StartsWith(VcardConstants._logoSpecifierWithType))
                     {
                         // Get the value
-                        string logoValue = _value.Substring(_logoSpecifierWithType.Length);
-                        string[] splitLogo = logoValue.Split(_argumentDelimiter);
-                        string[] splitLogoArgs = logoValue.Split(_fieldDelimiter);
+                        string logoValue = _value.Substring(VcardConstants._logoSpecifierWithType.Length);
+                        string[] splitLogo = logoValue.Split(VcardConstants._argumentDelimiter);
+                        string[] splitLogoArgs = logoValue.Split(VcardConstants._fieldDelimiter);
 
                         // Check to see if the value is prepended by the VALUE= argument
                         bool isUrl = false;
@@ -464,9 +424,9 @@ namespace VisualCard.Parsers.Three
                         string logoType = "";
                         if (splitLogoArgs.Length >= 1)
                         {
-                            logoType = splitLogoArgs[1].StartsWith(_typeArgumentSpecifier) ?
-                                       splitLogoArgs[1].Substring(_typeArgumentSpecifier.Length).Substring(0, splitLogoArgs[1].IndexOf(_argumentDelimiter)) :
-                                       splitLogoArgs[1].Substring(0, splitLogoArgs[1].IndexOf(_argumentDelimiter));
+                            logoType = splitLogoArgs[1].StartsWith(VcardConstants._typeArgumentSpecifier) ?
+                                       splitLogoArgs[1].Substring(VcardConstants._typeArgumentSpecifier.Length).Substring(0, splitLogoArgs[1].IndexOf(VcardConstants._argumentDelimiter)) :
+                                       splitLogoArgs[1].Substring(0, splitLogoArgs[1].IndexOf(VcardConstants._argumentDelimiter));
                         }
 
                         // Now, get the encoded logo
@@ -491,12 +451,12 @@ namespace VisualCard.Parsers.Three
                     }
 
                     // Sound (SOUND;VALUE=URL:file///multimed/audio/jqpublic.wav or SOUND;WAVE;BASE64:... or SOUND;TYPE=WAVE;ENCODING=BASE64:...)
-                    if (_value.StartsWith(_soundSpecifierWithType))
+                    if (_value.StartsWith(VcardConstants._soundSpecifierWithType))
                     {
                         // Get the value
-                        string soundValue = _value.Substring(_soundSpecifierWithType.Length);
-                        string[] splitSound = soundValue.Split(_argumentDelimiter);
-                        string[] splitSoundArgs = soundValue.Split(_fieldDelimiter);
+                        string soundValue = _value.Substring(VcardConstants._soundSpecifierWithType.Length);
+                        string[] splitSound = soundValue.Split(VcardConstants._argumentDelimiter);
+                        string[] splitSoundArgs = soundValue.Split(VcardConstants._fieldDelimiter);
 
                         // Check to see if the value is prepended by the VALUE= argument
                         bool isUrl = false;
@@ -512,8 +472,8 @@ namespace VisualCard.Parsers.Three
                         string soundType = "";
                         if (splitSoundArgs.Length > 1)
                         {
-                            soundType = splitSoundArgs[0].StartsWith(_typeArgumentSpecifier) ?
-                                        splitSoundArgs[0].Substring(_typeArgumentSpecifier.Length) :
+                            soundType = splitSoundArgs[0].StartsWith(VcardConstants._typeArgumentSpecifier) ?
+                                        splitSoundArgs[0].Substring(VcardConstants._typeArgumentSpecifier.Length) :
                                         splitSoundArgs[0];
                         }
 
@@ -523,8 +483,8 @@ namespace VisualCard.Parsers.Three
                         {
                             const string _encodingArgumentSpecifier = "ENCODING=";
                             soundEncoding = splitSoundArgs[1].StartsWith(_encodingArgumentSpecifier) ?
-                                            splitSoundArgs[1].Substring(_encodingArgumentSpecifier.Length).Substring(0, splitSoundArgs[1].IndexOf(_argumentDelimiter)) :
-                                            splitSoundArgs[1].Substring(0, splitSoundArgs[1].IndexOf(_argumentDelimiter));
+                                            splitSoundArgs[1].Substring(_encodingArgumentSpecifier.Length).Substring(0, splitSoundArgs[1].IndexOf(VcardConstants._argumentDelimiter)) :
+                                            splitSoundArgs[1].Substring(0, splitSoundArgs[1].IndexOf(VcardConstants._argumentDelimiter));
                         }
 
                         // Now, get the encoded sound
@@ -549,29 +509,29 @@ namespace VisualCard.Parsers.Three
                     }
 
                     // Revision (REV:1995-10-31T22:27:10Z or REV:19951031T222710)
-                    if (_value.StartsWith(_revSpecifier))
+                    if (_value.StartsWith(VcardConstants._revSpecifier))
                     {
                         // Get the value
-                        string revValue = _value.Substring(_revSpecifier.Length);
+                        string revValue = _value.Substring(VcardConstants._revSpecifier.Length);
 
                         // Populate field
                         _rev = DateTime.Parse(revValue);
                     }
 
                     // Nickname (NICKNAME;TYPE=work:Boss)
-                    if (_value.StartsWith(_nicknameSpecifierWithType))
+                    if (_value.StartsWith(VcardConstants._nicknameSpecifierWithType))
                     {
                         // Get the value
-                        string nickValue = _value.Substring(_nicknameSpecifierWithType.Length);
-                        string[] splitNick = nickValue.Split(_argumentDelimiter);
+                        string nickValue = _value.Substring(VcardConstants._nicknameSpecifierWithType.Length);
+                        string[] splitNick = nickValue.Split(VcardConstants._argumentDelimiter);
                         string[] splitTypes;
                         if (splitNick.Length != 2)
                             throw new InvalidDataException("Nickname field must specify exactly two values (Type (must be prepended with TYPE=), and nickname)");
 
                         // Check to see if the type is prepended with the TYPE= argument
-                        if (splitNick[0].StartsWith(_typeArgumentSpecifier))
+                        if (splitNick[0].StartsWith(VcardConstants._typeArgumentSpecifier))
                             // Get the types
-                            splitTypes = splitNick[0].Substring(_typeArgumentSpecifier.Length).Split(_valueDelimiter);
+                            splitTypes = splitNick[0].Substring(VcardConstants._typeArgumentSpecifier.Length).Split(VcardConstants._valueDelimiter);
                         else if (string.IsNullOrEmpty(splitNick[0]))
                             // We're confronted with an empty type. Assume that it's HOME.
                             splitTypes = new string[] { "HOME" };
@@ -587,10 +547,10 @@ namespace VisualCard.Parsers.Three
                     }
 
                     // Nickname (NICKNAME:Jim)
-                    if (_value.StartsWith(_nicknameSpecifier))
+                    if (_value.StartsWith(VcardConstants._nicknameSpecifier))
                     {
                         // Get the value
-                        string nickValue = _value.Substring(_nicknameSpecifier.Length);
+                        string nickValue = _value.Substring(VcardConstants._nicknameSpecifier.Length);
 
                         // Populate the fields
                         string[] _nicknameTypes = new string[] { "HOME" };
@@ -600,30 +560,30 @@ namespace VisualCard.Parsers.Three
                     }
 
                     // Birthdate (BDAY:19950415 or BDAY:1953-10-15T23:10:00Z)
-                    if (_value.StartsWith(_birthSpecifier))
+                    if (_value.StartsWith(VcardConstants._birthSpecifier))
                     {
                         // Get the value
-                        string bdayValue = _value.Substring(_birthSpecifier.Length);
+                        string bdayValue = _value.Substring(VcardConstants._birthSpecifier.Length);
 
                         // Populate field
                         _bday = DateTime.Parse(bdayValue);
                     }
 
                     // Mailer (MAILER:ccMail 2.2 or MAILER:PigeonMail 2.1)
-                    if (_value.StartsWith(_mailerSpecifier))
+                    if (_value.StartsWith(VcardConstants._mailerSpecifier))
                     {
                         // Get the value
-                        string mailerValue = _value.Substring(_mailerSpecifier.Length);
+                        string mailerValue = _value.Substring(VcardConstants._mailerSpecifier.Length);
 
                         // Populate field
                         _mailer = Regex.Unescape(mailerValue);
                     }
 
                     // Role (ROLE:Programmer)
-                    if (_value.StartsWith(_roleSpecifier))
+                    if (_value.StartsWith(VcardConstants._roleSpecifier))
                     {
                         // Get the value
-                        string roleValue = _value.Substring(_roleSpecifier.Length);
+                        string roleValue = _value.Substring(VcardConstants._roleSpecifier.Length);
 
                         // Populate the fields
                         RoleInfo _role = new(0, Array.Empty<string>(), roleValue);
@@ -631,49 +591,49 @@ namespace VisualCard.Parsers.Three
                     }
 
                     // Categories (CATEGORIES:INTERNET or CATEGORIES:INTERNET,IETF,INDUSTRY,INFORMATION TECHNOLOGY)
-                    if (_value.StartsWith(_categoriesSpecifier))
+                    if (_value.StartsWith(VcardConstants._categoriesSpecifier))
                     {
                         // Get the value
-                        string categoriesValue = _value.Substring(_categoriesSpecifier.Length);
+                        string categoriesValue = _value.Substring(VcardConstants._categoriesSpecifier.Length);
 
                         // Populate field
                         _categories.AddRange(Regex.Unescape(categoriesValue).Split(','));
                     }
 
                     // Product ID (PRODID:-//ONLINE DIRECTORY//NONSGML Version 1//EN)
-                    if (_value.StartsWith(_productIdSpecifier))
+                    if (_value.StartsWith(VcardConstants._productIdSpecifier))
                     {
                         // Get the value
-                        string prodIdValue = _value.Substring(_productIdSpecifier.Length);
+                        string prodIdValue = _value.Substring(VcardConstants._productIdSpecifier.Length);
 
                         // Populate field
                         _prodId = Regex.Unescape(prodIdValue);
                     }
 
                     // Sort string (SORT-STRING:Harten)
-                    if (_value.StartsWith(_sortStringSpecifier))
+                    if (_value.StartsWith(VcardConstants._sortStringSpecifier))
                     {
                         // Get the value
-                        string sortStringValue = _value.Substring(_sortStringSpecifier.Length);
+                        string sortStringValue = _value.Substring(VcardConstants._sortStringSpecifier.Length);
 
                         // Populate field
                         _sortString = Regex.Unescape(sortStringValue);
                     }
 
                     // Time Zone (TZ;VALUE=text:-05:00; EST; Raleigh/North America)
-                    if (_value.StartsWith(_timeZoneSpecifierWithType))
+                    if (_value.StartsWith(VcardConstants._timeZoneSpecifierWithType))
                     {
                         // Get the value
-                        string tzValue = _value.Substring(_timeZoneSpecifierWithType.Length);
-                        string[] splitTz = tzValue.Split(_argumentDelimiter);
+                        string tzValue = _value.Substring(VcardConstants._timeZoneSpecifierWithType.Length);
+                        string[] splitTz = tzValue.Split(VcardConstants._argumentDelimiter);
                         string[] splitTypes;
                         if (splitTz.Length != 1)
                             throw new InvalidDataException("Time Zone field must specify exactly one value (VALUE=\"text\" / \"uri\" / \"utc-offset\")");
 
                         // Check to see if the type is prepended with the VALUE= argument
-                        if (splitTz[0].StartsWith(_valueArgumentSpecifier))
+                        if (splitTz[0].StartsWith(VcardConstants._valueArgumentSpecifier))
                             // Get the types
-                            splitTypes = splitTz[0].Substring(_valueArgumentSpecifier.Length).Split(_valueDelimiter);
+                            splitTypes = splitTz[0].Substring(VcardConstants._valueArgumentSpecifier.Length).Split(VcardConstants._valueDelimiter);
                         else if (string.IsNullOrEmpty(splitTz[0]))
                             // We're confronted with an empty type. Assume that it's a uri-offset.
                             splitTypes = new string[] { "uri-offset" };
@@ -689,10 +649,10 @@ namespace VisualCard.Parsers.Three
                     }
 
                     // Time Zone (TZ:-05:00)
-                    if (_value.StartsWith(_timeZoneSpecifier))
+                    if (_value.StartsWith(VcardConstants._timeZoneSpecifier))
                     {
                         // Get the value
-                        string tzValue = _value.Substring(_timeZoneSpecifier.Length);
+                        string tzValue = _value.Substring(VcardConstants._timeZoneSpecifier.Length);
 
                         // Populate the fields
                         string[] _timeZoneTypes = new string[] { "uri-offset" };
@@ -702,19 +662,19 @@ namespace VisualCard.Parsers.Three
                     }
 
                     // Geo (GEO;VALUE=uri:https://...)
-                    if (_value.StartsWith(_geoSpecifierWithType))
+                    if (_value.StartsWith(VcardConstants._geoSpecifierWithType))
                     {
                         // Get the value
-                        string geoValue = _value.Substring(_geoSpecifierWithType.Length);
-                        string[] splitGeo = geoValue.Split(_argumentDelimiter);
+                        string geoValue = _value.Substring(VcardConstants._geoSpecifierWithType.Length);
+                        string[] splitGeo = geoValue.Split(VcardConstants._argumentDelimiter);
                         string[] splitTypes;
                         if (splitGeo.Length != 1)
                             throw new InvalidDataException("Geo field must specify exactly one value (VALUE=\"uri\")");
 
                         // Check to see if the type is prepended with the VALUE= argument
-                        if (splitGeo[0].StartsWith(_valueArgumentSpecifier))
+                        if (splitGeo[0].StartsWith(VcardConstants._valueArgumentSpecifier))
                             // Get the types
-                            splitTypes = splitGeo[0].Substring(_valueArgumentSpecifier.Length).Split(_valueDelimiter);
+                            splitTypes = splitGeo[0].Substring(VcardConstants._valueArgumentSpecifier.Length).Split(VcardConstants._valueDelimiter);
                         else if (string.IsNullOrEmpty(splitGeo[0]))
                             // We're confronted with an empty type. Assume that it's a uri.
                             splitTypes = new string[] { "uri" };
@@ -730,10 +690,10 @@ namespace VisualCard.Parsers.Three
                     }
 
                     // Geo (GEO:geo:37.386013,-122.082932)
-                    if (_value.StartsWith(_geoSpecifier))
+                    if (_value.StartsWith(VcardConstants._geoSpecifier))
                     {
                         // Get the value
-                        string geoValue = _value.Substring(_geoSpecifier.Length);
+                        string geoValue = _value.Substring(VcardConstants._geoSpecifier.Length);
 
                         // Populate the fields
                         string[] _geoTypes = new string[] { "uri" };
@@ -743,20 +703,20 @@ namespace VisualCard.Parsers.Three
                     }
 
                     // IMPP information (IMPP;TYPE=home:sip:test)
-                    if (_value.StartsWith(_imppSpecifierWithType))
+                    if (_value.StartsWith(VcardConstants._imppSpecifierWithType))
                     {
                         // Get the value
-                        string imppValue = _value.Substring(_imppSpecifierWithType.Length);
-                        string[] splitImpp = imppValue.Split(_argumentDelimiter);
+                        string imppValue = _value.Substring(VcardConstants._imppSpecifierWithType.Length);
+                        string[] splitImpp = imppValue.Split(VcardConstants._argumentDelimiter);
 
                         string[] splitTypes;
                         if (splitImpp.Length < 2)
                             throw new InvalidDataException("IMPP information field must specify exactly two values (Type (must be prepended with TYPE=), and impp)");
 
                         // Check to see if the type is prepended with the TYPE= argument
-                        if (splitImpp[0].StartsWith(_typeArgumentSpecifier))
+                        if (splitImpp[0].StartsWith(VcardConstants._typeArgumentSpecifier))
                             // Get the types
-                            splitTypes = splitImpp[0].Substring(_typeArgumentSpecifier.Length).Split(_valueDelimiter);
+                            splitTypes = splitImpp[0].Substring(VcardConstants._typeArgumentSpecifier.Length).Split(VcardConstants._valueDelimiter);
                         else if (string.IsNullOrEmpty(splitImpp[0]))
                             // We're confronted with an empty type. Assume that it's HOME.
                             splitTypes = new string[] { "HOME" };
@@ -772,10 +732,10 @@ namespace VisualCard.Parsers.Three
                     }
 
                     // IMPP information (IMPP:sip:test)
-                    if (_value.StartsWith(_imppSpecifier))
+                    if (_value.StartsWith(VcardConstants._imppSpecifier))
                     {
                         // Get the value
-                        string imppValue = _value.Substring(_imppSpecifier.Length);
+                        string imppValue = _value.Substring(VcardConstants._imppSpecifier.Length);
 
                         // Populate the fields
                         string[] _imppTypes = new string[] { "HOME" };
@@ -785,23 +745,23 @@ namespace VisualCard.Parsers.Three
                     }
 
                     // X-nonstandard (X-AIM:john.s or X-DL;Design Work Group:List Item 1;List Item 2;List Item 3)
-                    if (_value.StartsWith(_xSpecifier))
+                    if (_value.StartsWith(VcardConstants._xSpecifier))
                     {
                         // Get the value
-                        string xValue = _value.Substring(_xSpecifier.Length);
-                        string[] splitX = xValue.Split(_argumentDelimiter);
+                        string xValue = _value.Substring(VcardConstants._xSpecifier.Length);
+                        string[] splitX = xValue.Split(VcardConstants._argumentDelimiter);
 
                         // Populate the name
-                        string _xName = splitX[0].Contains(_fieldDelimiter.ToString()) ?
-                                        splitX[0].Substring(0, splitX[0].IndexOf(_fieldDelimiter)) :
+                        string _xName = splitX[0].Contains(VcardConstants._fieldDelimiter.ToString()) ?
+                                        splitX[0].Substring(0, splitX[0].IndexOf(VcardConstants._fieldDelimiter)) :
                                         splitX[0];
 
                         // Populate the fields
-                        string[] _xTypes = splitX[0].Contains(_fieldDelimiter.ToString()) ?
-                                           splitX[0].Substring(splitX[0].IndexOf(_fieldDelimiter) + 1)
-                                                    .Split(_fieldDelimiter) :
+                        string[] _xTypes = splitX[0].Contains(VcardConstants._fieldDelimiter.ToString()) ?
+                                           splitX[0].Substring(splitX[0].IndexOf(VcardConstants._fieldDelimiter) + 1)
+                                                    .Split(VcardConstants._fieldDelimiter) :
                                            Array.Empty<string>();
-                        string[] _xValues = splitX[1].Split(_fieldDelimiter);
+                        string[] _xValues = splitX[1].Split(VcardConstants._fieldDelimiter);
                         XNameInfo _x = new(0, Array.Empty<string>(), _xName, _xValues, _xTypes);
                         _xes.Add(_x);
                     }
@@ -841,81 +801,81 @@ namespace VisualCard.Parsers.Three
 
             // Then, write the full name and the name
             if (!string.IsNullOrWhiteSpace(card.ContactFullName))
-                cardBuilder.AppendLine($"{_fullNameSpecifier}{card.ContactFullName}");
+                cardBuilder.AppendLine($"{VcardConstants._fullNameSpecifier}{card.ContactFullName}");
             foreach (NameInfo name in card.ContactNames)
             {
-                string altNamesStr = string.Join(_valueDelimiter.ToString(), name.AltNames);
-                string prefixesStr = string.Join(_valueDelimiter.ToString(), name.Prefixes);
-                string suffixesStr = string.Join(_valueDelimiter.ToString(), name.Suffixes);
+                string altNamesStr = string.Join(VcardConstants._valueDelimiter.ToString(), name.AltNames);
+                string prefixesStr = string.Join(VcardConstants._valueDelimiter.ToString(), name.Prefixes);
+                string suffixesStr = string.Join(VcardConstants._valueDelimiter.ToString(), name.Suffixes);
                 cardBuilder.AppendLine(
-                    $"{_nameSpecifier}" +
-                    $"{name.ContactLastName}{_fieldDelimiter}" +
-                    $"{name.ContactFirstName}{_fieldDelimiter}" +
-                    $"{altNamesStr}{_fieldDelimiter}" +
-                    $"{prefixesStr}{_fieldDelimiter}" +
-                    $"{suffixesStr}{_fieldDelimiter}"
+                    $"{VcardConstants._nameSpecifier}" +
+                    $"{name.ContactLastName}{VcardConstants._fieldDelimiter}" +
+                    $"{name.ContactFirstName}{VcardConstants._fieldDelimiter}" +
+                    $"{altNamesStr}{VcardConstants._fieldDelimiter}" +
+                    $"{prefixesStr}{VcardConstants._fieldDelimiter}" +
+                    $"{suffixesStr}{VcardConstants._fieldDelimiter}"
                 );
             }
 
             // Now, start filling in the rest...
             foreach (TelephoneInfo telephone in card.ContactTelephones)
                 cardBuilder.AppendLine(
-                    $"{_telephoneSpecifierWithType}" +
-                    $"TYPE={string.Join(",", telephone.ContactPhoneTypes)}{_argumentDelimiter}" +
+                    $"{VcardConstants._telephoneSpecifierWithType}" +
+                    $"TYPE={string.Join(",", telephone.ContactPhoneTypes)}{VcardConstants._argumentDelimiter}" +
                     $"{telephone.ContactPhoneNumber}"
                 );
             foreach (AddressInfo address in card.ContactAddresses)
                 cardBuilder.AppendLine(
-                    $"{_addressSpecifierWithType}" +
-                    $"TYPE={string.Join(",", address.AddressTypes)}{_argumentDelimiter}" +
-                    $"{address.PostOfficeBox}{_fieldDelimiter}" +
-                    $"{address.ExtendedAddress}{_fieldDelimiter}" +
-                    $"{address.StreetAddress}{_fieldDelimiter}" +
-                    $"{address.Locality}{_fieldDelimiter}" +
-                    $"{address.Region}{_fieldDelimiter}" +
-                    $"{address.PostalCode}{_fieldDelimiter}" +
+                    $"{VcardConstants._addressSpecifierWithType}" +
+                    $"TYPE={string.Join(",", address.AddressTypes)}{VcardConstants._argumentDelimiter}" +
+                    $"{address.PostOfficeBox}{VcardConstants._fieldDelimiter}" +
+                    $"{address.ExtendedAddress}{VcardConstants._fieldDelimiter}" +
+                    $"{address.StreetAddress}{VcardConstants._fieldDelimiter}" +
+                    $"{address.Locality}{VcardConstants._fieldDelimiter}" +
+                    $"{address.Region}{VcardConstants._fieldDelimiter}" +
+                    $"{address.PostalCode}{VcardConstants._fieldDelimiter}" +
                     $"{address.Country}"
                 );
             foreach (EmailInfo email in card.ContactMails)
                 cardBuilder.AppendLine(
-                    $"{_emailSpecifier}" +
-                    $"TYPE={string.Join(",", email.ContactEmailTypes)}{_argumentDelimiter}" +
+                    $"{VcardConstants._emailSpecifier}" +
+                    $"TYPE={string.Join(",", email.ContactEmailTypes)}{VcardConstants._argumentDelimiter}" +
                     $"{email.ContactEmailAddress}"
                 );
             foreach (OrganizationInfo organization in card.ContactOrganizations)
                 cardBuilder.AppendLine(
-                    $"{_orgSpecifierWithType}" +
-                    $"TYPE={string.Join(",", organization.OrgTypes)}{_argumentDelimiter}" +
-                    $"{organization.Name}{_fieldDelimiter}" +
-                    $"{organization.Unit}{_fieldDelimiter}" +
+                    $"{VcardConstants._orgSpecifierWithType}" +
+                    $"TYPE={string.Join(",", organization.OrgTypes)}{VcardConstants._argumentDelimiter}" +
+                    $"{organization.Name}{VcardConstants._fieldDelimiter}" +
+                    $"{organization.Unit}{VcardConstants._fieldDelimiter}" +
                     $"{organization.Role}"
                 );
             foreach (TitleInfo title in card.ContactTitles)
                 cardBuilder.AppendLine(
-                    $"{_titleSpecifier}" +
+                    $"{VcardConstants._titleSpecifier}" +
                     $"{title.ContactTitle}"
                 );
             if (!string.IsNullOrWhiteSpace(card.ContactURL))
-                cardBuilder.AppendLine($"{_urlSpecifier}{card.ContactURL}");
+                cardBuilder.AppendLine($"{VcardConstants._urlSpecifier}{card.ContactURL}");
             if (!string.IsNullOrWhiteSpace(card.ContactNotes))
-                cardBuilder.AppendLine($"{_noteSpecifier}{card.ContactNotes}");
+                cardBuilder.AppendLine($"{VcardConstants._noteSpecifier}{card.ContactNotes}");
             foreach (PhotoInfo photo in card.ContactPhotos)
             {
                 if (photo.ValueType == "uri" || photo.ValueType == "url")
                 {
                     cardBuilder.AppendLine(
-                        $"{_photoSpecifierWithType}" +
-                        $"VALUE={photo.ValueType}{_argumentDelimiter}" +
+                        $"{VcardConstants._photoSpecifierWithType}" +
+                        $"VALUE={photo.ValueType}{VcardConstants._argumentDelimiter}" +
                         $"{photo.PhotoEncoded}"
                     );
                 }
                 else
                 {
                     string photoArgsLine =
-                        $"{_photoSpecifierWithType}" +
-                        $"VALUE={photo.ValueType}{_fieldDelimiter}" +
-                        $"ENCODING={photo.Encoding}{_fieldDelimiter}" +
-                        $"TYPE={photo.PhotoType}{_argumentDelimiter}";
+                        $"{VcardConstants._photoSpecifierWithType}" +
+                        $"VALUE={photo.ValueType}{VcardConstants._fieldDelimiter}" +
+                        $"ENCODING={photo.Encoding}{VcardConstants._fieldDelimiter}" +
+                        $"TYPE={photo.PhotoType}{VcardConstants._argumentDelimiter}";
                     cardBuilder.Append(photoArgsLine);
                     cardBuilder.AppendLine(MakeStringBlock(photo.PhotoEncoded, photoArgsLine.Length));
                 }
@@ -925,18 +885,18 @@ namespace VisualCard.Parsers.Three
                 if (logo.ValueType == "uri" || logo.ValueType == "url")
                 {
                     cardBuilder.AppendLine(
-                        $"{_logoSpecifierWithType}" +
-                        $"VALUE={logo.ValueType}{_argumentDelimiter}" +
+                        $"{VcardConstants._logoSpecifierWithType}" +
+                        $"VALUE={logo.ValueType}{VcardConstants._argumentDelimiter}" +
                         $"{logo.LogoEncoded}"
                     );
                 }
                 else
                 {
                     string logoArgsLine =
-                        $"{_logoSpecifierWithType}" +
-                        $"VALUE={logo.ValueType}{_fieldDelimiter}" +
-                        $"ENCODING={logo.Encoding}{_fieldDelimiter}" +
-                        $"TYPE={logo.LogoType}{_argumentDelimiter}";
+                        $"{VcardConstants._logoSpecifierWithType}" +
+                        $"VALUE={logo.ValueType}{VcardConstants._fieldDelimiter}" +
+                        $"ENCODING={logo.Encoding}{VcardConstants._fieldDelimiter}" +
+                        $"TYPE={logo.LogoType}{VcardConstants._argumentDelimiter}";
                     cardBuilder.Append(logoArgsLine);
                     cardBuilder.AppendLine(MakeStringBlock(logo.LogoEncoded, logoArgsLine.Length));
                 }
@@ -946,67 +906,67 @@ namespace VisualCard.Parsers.Three
                 if (sound.ValueType == "uri" || sound.ValueType == "url")
                 {
                     cardBuilder.AppendLine(
-                        $"{_soundSpecifierWithType}" +
-                        $"VALUE={sound.ValueType}{_argumentDelimiter}" +
+                        $"{VcardConstants._soundSpecifierWithType}" +
+                        $"VALUE={sound.ValueType}{VcardConstants._argumentDelimiter}" +
                         $"{sound.SoundEncoded}"
                     );
                 }
                 else
                 {
                     string soundArgsLine =
-                        $"{_soundSpecifierWithType}" +
-                        $"VALUE={sound.ValueType}{_fieldDelimiter}" +
-                        $"ENCODING={sound.Encoding}{_fieldDelimiter}" +
-                        $"TYPE={sound.SoundType}{_argumentDelimiter}";
+                        $"{VcardConstants._soundSpecifierWithType}" +
+                        $"VALUE={sound.ValueType}{VcardConstants._fieldDelimiter}" +
+                        $"ENCODING={sound.Encoding}{VcardConstants._fieldDelimiter}" +
+                        $"TYPE={sound.SoundType}{VcardConstants._argumentDelimiter}";
                     cardBuilder.Append(soundArgsLine);
                     cardBuilder.AppendLine(MakeStringBlock(sound.SoundEncoded, soundArgsLine.Length));
                 }
             }
             if (card.CardRevision is not null && card.CardRevision != DateTime.MinValue)
-                cardBuilder.AppendLine($"{_revSpecifier}{card.CardRevision:dd-MM-yyyy_HH-mm-ss}");
+                cardBuilder.AppendLine($"{VcardConstants._revSpecifier}{card.CardRevision:dd-MM-yyyy_HH-mm-ss}");
             foreach (NicknameInfo nickname in card.ContactNicknames)
                 cardBuilder.AppendLine(
-                    $"{_nicknameSpecifierWithType}" +
-                    $"TYPE={string.Join(",", nickname.NicknameTypes)}{_argumentDelimiter}" +
+                    $"{VcardConstants._nicknameSpecifierWithType}" +
+                    $"TYPE={string.Join(",", nickname.NicknameTypes)}{VcardConstants._argumentDelimiter}" +
                     $"{nickname.ContactNickname}"
                 );
             if (card.ContactBirthdate is not null && card.ContactBirthdate != DateTime.MinValue)
-                cardBuilder.AppendLine($"{_birthSpecifier}{card.ContactBirthdate:dd-MM-yyyy}");
+                cardBuilder.AppendLine($"{VcardConstants._birthSpecifier}{card.ContactBirthdate:dd-MM-yyyy}");
             if (!string.IsNullOrWhiteSpace(card.ContactMailer))
-                cardBuilder.AppendLine($"{_mailerSpecifier}{card.ContactMailer}");
+                cardBuilder.AppendLine($"{VcardConstants._mailerSpecifier}{card.ContactMailer}");
             foreach (RoleInfo role in card.ContactRoles)
                 cardBuilder.AppendLine(
-                    $"{_roleSpecifier}" +
+                    $"{VcardConstants._roleSpecifier}" +
                     $"{role.ContactRole}"
                 );
             if (card.ContactCategories is not null && card.ContactCategories.Length > 0)
-                cardBuilder.AppendLine($"{_categoriesSpecifier}{string.Join(",", card.ContactCategories)}");
+                cardBuilder.AppendLine($"{VcardConstants._categoriesSpecifier}{string.Join(",", card.ContactCategories)}");
             if (!string.IsNullOrWhiteSpace(card.ContactProdId))
-                cardBuilder.AppendLine($"{_productIdSpecifier}{card.ContactProdId}");
+                cardBuilder.AppendLine($"{VcardConstants._productIdSpecifier}{card.ContactProdId}");
             if (!string.IsNullOrWhiteSpace(card.ContactSortString))
-                cardBuilder.AppendLine($"{_sortStringSpecifier}{card.ContactSortString}");
+                cardBuilder.AppendLine($"{VcardConstants._sortStringSpecifier}{card.ContactSortString}");
             foreach (TimeZoneInfo timeZone in card.ContactTimeZone)
                 cardBuilder.AppendLine(
-                    $"{_timeZoneSpecifier}" +
+                    $"{VcardConstants._timeZoneSpecifier}" +
                     $"{timeZone.TimeZone}"
                 );
             foreach (GeoInfo geo in card.ContactGeo)
                 cardBuilder.AppendLine(
-                    $"{_geoSpecifier}" +
+                    $"{VcardConstants._geoSpecifier}" +
                     $"{geo.Geo}"
                 );
             foreach (ImppInfo impp in card.ContactImpps)
                 cardBuilder.AppendLine(
-                    $"{_imppSpecifierWithType}" +
-                    $"TYPE={string.Join(",", impp.ImppTypes)}{_argumentDelimiter}" +
+                    $"{VcardConstants._imppSpecifierWithType}" +
+                    $"TYPE={string.Join(",", impp.ImppTypes)}{VcardConstants._argumentDelimiter}" +
                     $"{impp.ContactIMPP}"
                 );
             foreach (XNameInfo xname in card.ContactXNames)
                 cardBuilder.AppendLine(
-                    $"{_xSpecifier}" +
-                    $"{xname.XKeyName}{(xname.XKeyTypes.Length > 0 ? _fieldDelimiter : _argumentDelimiter)}" +
-                    $"{(xname.XKeyTypes.Length > 0 ? string.Join(_fieldDelimiter.ToString(), xname.XKeyTypes) + _argumentDelimiter : "")}" +
-                    $"{string.Join(_fieldDelimiter.ToString(), xname.XValues)}"
+                    $"{VcardConstants._xSpecifier}" +
+                    $"{xname.XKeyName}{(xname.XKeyTypes.Length > 0 ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter)}" +
+                    $"{(xname.XKeyTypes.Length > 0 ? string.Join(VcardConstants._fieldDelimiter.ToString(), xname.XKeyTypes) + VcardConstants._argumentDelimiter : "")}" +
+                    $"{string.Join(VcardConstants._fieldDelimiter.ToString(), xname.XValues)}"
                 );
 
             // Finally, end the card and return it
