@@ -36,6 +36,10 @@ namespace VisualCard.Parts
         /// </summary>
         public int AltId { get; }
         /// <summary>
+        /// Arguments that follow the AltId
+        /// </summary>
+        public string[] AltArguments { get; }
+        /// <summary>
         /// The contact's organization types
         /// </summary>
         public string[] OrgTypes { get; }
@@ -78,6 +82,7 @@ namespace VisualCard.Parts
             // Check all the properties
             return
                 source.OrgTypes.SequenceEqual(target.OrgTypes) &&
+                source.AltArguments.SequenceEqual(target.AltArguments) &&
                 source.AltId == target.AltId &&
                 source.Name == target.Name &&
                 source.Unit == target.Unit &&
@@ -87,8 +92,9 @@ namespace VisualCard.Parts
 
         public override int GetHashCode()
         {
-            int hashCode = -1277624027;
+            int hashCode = 374840165;
             hashCode = hashCode * -1521134295 + AltId.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(AltArguments);
             hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(OrgTypes);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Name);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Unit);
@@ -98,9 +104,10 @@ namespace VisualCard.Parts
 
         internal OrganizationInfo() { }
 
-        internal OrganizationInfo(int altId, string name, string unit, string role, string[] orgTypes)
+        internal OrganizationInfo(int altId, string[] altArguments, string name, string unit, string role, string[] orgTypes)
         {
             AltId = altId;
+            AltArguments = altArguments;
             Name = name;
             Unit = unit;
             Role = role;

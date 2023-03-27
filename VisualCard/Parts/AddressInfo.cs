@@ -36,6 +36,10 @@ namespace VisualCard.Parts
         /// </summary>
         public int AltId { get; }
         /// <summary>
+        /// Arguments that follow the AltId
+        /// </summary>
+        public string[] AltArguments { get; }
+        /// <summary>
         /// The contact's address types
         /// </summary>
         public string[] AddressTypes { get; }
@@ -94,6 +98,7 @@ namespace VisualCard.Parts
             // Check all the properties
             return
                 source.AddressTypes.SequenceEqual(target.AddressTypes) &&
+                source.AltArguments.SequenceEqual(target.AltArguments) &&
                 source.AltId == target.AltId &&
                 source.PostOfficeBox == target.PostOfficeBox &&
                 source.ExtendedAddress == target.ExtendedAddress &&
@@ -107,8 +112,9 @@ namespace VisualCard.Parts
 
         public override int GetHashCode()
         {
-            int hashCode = -1822094836;
+            int hashCode = -1858114484;
             hashCode = hashCode * -1521134295 + AltId.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(AltArguments);
             hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(AddressTypes);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(PostOfficeBox);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ExtendedAddress);
@@ -122,9 +128,10 @@ namespace VisualCard.Parts
 
         internal AddressInfo() { }
 
-        internal AddressInfo(int altId, string[] addressTypes, string postOfficeBox, string extendedAddress, string streetAddress, string locality, string region, string postalCode, string country)
+        internal AddressInfo(int altId, string[] altArguments, string[] addressTypes, string postOfficeBox, string extendedAddress, string streetAddress, string locality, string region, string postalCode, string country)
         {
             AltId = altId;
+            AltArguments = altArguments;
             AddressTypes = addressTypes;
             PostOfficeBox = postOfficeBox;
             ExtendedAddress = extendedAddress;

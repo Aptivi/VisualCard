@@ -281,7 +281,7 @@ namespace VisualCard.Parsers.Four
                         // Populate the fields
                         string[] _telephoneTypes = splitTypes;
                         string _telephoneNumber = Regex.Unescape(splitTel[1]);
-                        TelephoneInfo _telephone = new(altId, _telephoneTypes, _telephoneNumber);
+                        TelephoneInfo _telephone = new(altId, finalArgs.ToArray(), _telephoneTypes, _telephoneNumber);
                         _telephones.Add(_telephone);
                     }
 
@@ -295,7 +295,7 @@ namespace VisualCard.Parsers.Four
                         // Populate the fields
                         string[] _telephoneTypes = new string[] { "CELL" };
                         string _telephoneNumber = Regex.Unescape(telValue);
-                        TelephoneInfo _telephone = new(altId, _telephoneTypes, _telephoneNumber);
+                        TelephoneInfo _telephone = new(altId, Array.Empty<string>(), _telephoneTypes, _telephoneNumber);
                         _telephones.Add(_telephone);
                     }
 
@@ -335,7 +335,7 @@ namespace VisualCard.Parsers.Four
                         string _addressRegion = Regex.Unescape(splitAddressValues[4]);
                         string _addressPostalCode = Regex.Unescape(splitAddressValues[5]);
                         string _addressCountry = Regex.Unescape(splitAddressValues[6]);
-                        AddressInfo _address = new(altId, _addressTypes, _addressPOBox, _addressExtended, _addressStreet, _addressLocality, _addressRegion, _addressPostalCode, _addressCountry);
+                        AddressInfo _address = new(altId, finalArgs.ToArray(), _addressTypes, _addressPOBox, _addressExtended, _addressStreet, _addressLocality, _addressRegion, _addressPostalCode, _addressCountry);
                         _addresses.Add(_address);
                     }
 
@@ -375,7 +375,7 @@ namespace VisualCard.Parsers.Four
                         // Populate the fields
                         string[] _emailTypes = splitTypes;
                         string _emailAddress = mail.Address;
-                        EmailInfo _email = new(altId, _emailTypes, _emailAddress);
+                        EmailInfo _email = new(altId, finalArgs.ToArray(), _emailTypes, _emailAddress);
                         _emails.Add(_email);
                     }
 
@@ -392,7 +392,7 @@ namespace VisualCard.Parsers.Four
                         string _orgName = Regex.Unescape(splitOrg[0]);
                         string _orgUnit = Regex.Unescape(splitOrg.Length >= 2 ? splitOrg[1] : "");
                         string _orgUnitRole = Regex.Unescape(splitOrg.Length >= 3 ? splitOrg[2] : "");
-                        OrganizationInfo _org = new(altId, _orgName, _orgUnit, _orgUnitRole, splitTypes);
+                        OrganizationInfo _org = new(altId, Array.Empty<string>(), _orgName, _orgUnit, _orgUnitRole, splitTypes);
                         _orgs.Add(_org);
                     }
 
@@ -427,7 +427,7 @@ namespace VisualCard.Parsers.Four
                         string _orgName = Regex.Unescape(splitOrganizationValues[0]);
                         string _orgUnit = Regex.Unescape(splitOrganizationValues.Length >= 2 ? splitOrganizationValues[1] : "");
                         string _orgUnitRole = Regex.Unescape(splitOrganizationValues.Length >= 3 ? splitOrganizationValues[2] : "");
-                        OrganizationInfo _org = new(altId, _orgName, _orgUnit, _orgUnitRole, splitTypes);
+                        OrganizationInfo _org = new(altId, finalArgs.ToArray(), _orgName, _orgUnit, _orgUnitRole, splitTypes);
                         _orgs.Add(_org);
                     }
 
@@ -802,7 +802,7 @@ namespace VisualCard.Parsers.Four
                         // Populate the fields
                         string[] _timeZoneTypes = splitTypes;
                         string _timeZoneNumber = Regex.Unescape(splitTz[1]);
-                        TimeZoneInfo _timeZone = new(altId, _timeZoneTypes, _timeZoneNumber);
+                        TimeZoneInfo _timeZone = new(altId, finalArgs.ToArray(), _timeZoneTypes, _timeZoneNumber);
                         _timezones.Add(_timeZone);
                     }
 
@@ -816,7 +816,7 @@ namespace VisualCard.Parsers.Four
                         // Populate the fields
                         string[] _timeZoneTypes = new string[] { "uri-offset" };
                         string _timeZoneNumber = Regex.Unescape(tzValue);
-                        TimeZoneInfo _timeZone = new(altId, _timeZoneTypes, _timeZoneNumber);
+                        TimeZoneInfo _timeZone = new(altId, Array.Empty<string>(), _timeZoneTypes, _timeZoneNumber);
                         _timezones.Add(_timeZone);
                     }
 
@@ -845,7 +845,7 @@ namespace VisualCard.Parsers.Four
                         // Populate the fields
                         string[] _geoTypes = splitTypes;
                         string _geoNumber = Regex.Unescape(splitGeo[1]);
-                        GeoInfo _geo = new(altId, _geoTypes, _geoNumber);
+                        GeoInfo _geo = new(altId, finalArgs.ToArray(), _geoTypes, _geoNumber);
                         _geos.Add(_geo);
                     }
 
@@ -859,7 +859,7 @@ namespace VisualCard.Parsers.Four
                         // Populate the fields
                         string[] _geoTypes = new string[] { "uri" };
                         string _geoNumber = Regex.Unescape(geoValue);
-                        GeoInfo _geo = new(altId, _geoTypes, _geoNumber);
+                        GeoInfo _geo = new(altId, Array.Empty<string>(), _geoTypes, _geoNumber);
                         _geos.Add(_geo);
                     }
 
@@ -926,7 +926,7 @@ namespace VisualCard.Parsers.Four
                                                     .Split(_fieldDelimiter) :
                                            Array.Empty<string>();
                         string[] _xValues = splitX[1].Split(_fieldDelimiter);
-                        XNameInfo _x = new(altId, _xName, _xValues, _xTypes);
+                        XNameInfo _x = new(altId, finalArgs.ToArray(), _xName, _xValues, _xTypes);
                         _xes.Add(_x);
                     }
                 }

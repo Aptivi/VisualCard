@@ -175,7 +175,7 @@ namespace VisualCard.Parsers.Two
                         // Populate the fields
                         string[] _telephoneTypes = splitTypes;
                         string _telephoneNumber = Regex.Unescape(splitTel[1]);
-                        TelephoneInfo _telephone = new(0, _telephoneTypes, _telephoneNumber);
+                        TelephoneInfo _telephone = new(0, Array.Empty<string>(), _telephoneTypes, _telephoneNumber);
                         _telephones.Add(_telephone);
                     }
 
@@ -188,7 +188,7 @@ namespace VisualCard.Parsers.Two
                         // Populate the fields
                         string[] _telephoneTypes = new string[] { "CELL" };
                         string _telephoneNumber = Regex.Unescape(telValue);
-                        TelephoneInfo _telephone = new(0, _telephoneTypes, _telephoneNumber);
+                        TelephoneInfo _telephone = new(0, Array.Empty<string>(), _telephoneTypes, _telephoneNumber);
                         _telephones.Add(_telephone);
                     }
 
@@ -220,7 +220,7 @@ namespace VisualCard.Parsers.Two
                         string _addressRegion = Regex.Unescape(splitAddressValues[4]);
                         string _addressPostalCode = Regex.Unescape(splitAddressValues[5]);
                         string _addressCountry = Regex.Unescape(splitAddressValues[6]);
-                        AddressInfo _address = new(0, _addressTypes, _addressPOBox, _addressExtended, _addressStreet, _addressLocality, _addressRegion, _addressPostalCode, _addressCountry);
+                        AddressInfo _address = new(0, Array.Empty<string>(), _addressTypes, _addressPOBox, _addressExtended, _addressStreet, _addressLocality, _addressRegion, _addressPostalCode, _addressCountry);
                         _addresses.Add(_address);
                     }
 
@@ -252,7 +252,7 @@ namespace VisualCard.Parsers.Two
                         // Populate the fields
                         string[] _emailTypes = splitTypes;
                         string _emailAddress = mail.Address;
-                        EmailInfo _email = new(0, _emailTypes, _emailAddress);
+                        EmailInfo _email = new(0, Array.Empty<string>(), _emailTypes, _emailAddress);
                         _emails.Add(_email);
                     }
 
@@ -268,7 +268,7 @@ namespace VisualCard.Parsers.Two
                         string _orgName = Regex.Unescape(splitOrg[0]);
                         string _orgUnit = Regex.Unescape(splitOrg.Length >= 2 ? splitOrg[1] : "");
                         string _orgUnitRole = Regex.Unescape(splitOrg.Length >= 3 ? splitOrg[2] : "");
-                        OrganizationInfo _org = new(0, _orgName, _orgUnit, _orgUnitRole, splitTypes);
+                        OrganizationInfo _org = new(0, Array.Empty<string>(), _orgName, _orgUnit, _orgUnitRole, splitTypes);
                         _orgs.Add(_org);
                     }
 
@@ -295,7 +295,7 @@ namespace VisualCard.Parsers.Two
                         string _orgName = Regex.Unescape(splitOrganizationValues[0]);
                         string _orgUnit = Regex.Unescape(splitOrganizationValues.Length >= 2 ? splitOrganizationValues[1] : "");
                         string _orgUnitRole = Regex.Unescape(splitOrganizationValues.Length >= 3 ? splitOrganizationValues[2] : "");
-                        OrganizationInfo _org = new(0, _orgName, _orgUnit, _orgUnitRole, splitTypes);
+                        OrganizationInfo _org = new(0, Array.Empty<string>(), _orgName, _orgUnit, _orgUnitRole, splitTypes);
                         _orgs.Add(_org);
                     }
 
@@ -563,7 +563,7 @@ namespace VisualCard.Parsers.Two
                         // Populate the fields
                         string[] _timeZoneTypes = splitTypes;
                         string _timeZoneNumber = Regex.Unescape(splitTz[1]);
-                        TimeZoneInfo _timeZone = new(0, _timeZoneTypes, _timeZoneNumber);
+                        TimeZoneInfo _timeZone = new(0, Array.Empty<string>(), _timeZoneTypes, _timeZoneNumber);
                         _timezones.Add(_timeZone);
                     }
 
@@ -575,7 +575,7 @@ namespace VisualCard.Parsers.Two
 
                         // Populate the fields
                         string _timeZoneStr = Regex.Unescape(tzValue);
-                        TimeZoneInfo _timeZone = new(0, Array.Empty<string>(), _timeZoneStr);
+                        TimeZoneInfo _timeZone = new(0, Array.Empty<string>(), Array.Empty<string>(), _timeZoneStr);
                         _timezones.Add(_timeZone);
                     }
 
@@ -596,7 +596,7 @@ namespace VisualCard.Parsers.Two
                         // Populate the fields
                         string[] _geoTypes = splitTypes;
                         string _geoNumber = Regex.Unescape(splitGeo[1]);
-                        GeoInfo _geo = new(0, _geoTypes, _geoNumber);
+                        GeoInfo _geo = new(0, Array.Empty<string>(), _geoTypes, _geoNumber);
                         _geos.Add(_geo);
                     }
 
@@ -608,7 +608,7 @@ namespace VisualCard.Parsers.Two
 
                         // Populate the fields
                         string _geoStr = Regex.Unescape(geoValue);
-                        GeoInfo _geo = new(0, Array.Empty<string>(), _geoStr);
+                        GeoInfo _geo = new(0, Array.Empty<string>(), Array.Empty<string>(), _geoStr);
                         _geos.Add(_geo);
                     }
 
@@ -672,7 +672,7 @@ namespace VisualCard.Parsers.Two
                                                      .Split(_fieldDelimiter) :
                                             Array.Empty<string>();
                         string[] _xValues = splitX[1].Split(_fieldDelimiter);
-                        XNameInfo _x = new(0, _xName, _xValues, _xTypes);
+                        XNameInfo _x = new(0, Array.Empty<string>(), _xName, _xValues, _xTypes);
                         _xes.Add(_x);
                     }
                 }

@@ -40,6 +40,10 @@ namespace VisualCard.Parts
         /// </summary>
         public string[] AltArguments { get; }
         /// <summary>
+        /// The contact's geographical information types
+        /// </summary>
+        public string[] GeoTypes { get; }
+        /// <summary>
         /// The contact's geographical information
         /// </summary>
         public string Geo { get; }
@@ -70,6 +74,7 @@ namespace VisualCard.Parts
             // Check all the properties
             return
                 source.AltArguments.SequenceEqual(target.AltArguments) &&
+                source.GeoTypes.SequenceEqual(target.GeoTypes) &&
                 source.AltId == target.AltId &&
                 source.Geo == target.Geo
             ;
@@ -77,19 +82,21 @@ namespace VisualCard.Parts
 
         public override int GetHashCode()
         {
-            int hashCode = -1590428453;
+            int hashCode = -772623698;
             hashCode = hashCode * -1521134295 + AltId.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(AltArguments);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(GeoTypes);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Geo);
             return hashCode;
         }
 
         internal GeoInfo() { }
 
-        internal GeoInfo(int altId, string[] altArguments, string geo)
+        internal GeoInfo(int altId, string[] altArguments, string[] geoTypes, string geo)
         {
             AltId = altId;
             AltArguments = altArguments;
+            GeoTypes = geoTypes;
             Geo = geo;
         }
     }

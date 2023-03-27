@@ -36,6 +36,10 @@ namespace VisualCard.Parts
         /// </summary>
         public int AltId { get; }
         /// <summary>
+        /// Arguments that follow the AltId
+        /// </summary>
+        public string[] AltArguments { get; }
+        /// <summary>
         /// X- key name
         /// </summary>
         public string XKeyName { get; }
@@ -73,6 +77,7 @@ namespace VisualCard.Parts
 
             // Check all the properties
             return
+                source.AltArguments.SequenceEqual(target.AltArguments) &&
                 source.XKeyTypes.SequenceEqual(target.XKeyTypes) &&
                 source.XValues.SequenceEqual(target.XValues) &&
                 source.AltId == target.AltId &&
@@ -82,8 +87,9 @@ namespace VisualCard.Parts
 
         public override int GetHashCode()
         {
-            int hashCode = 174715714;
+            int hashCode = 1235403650;
             hashCode = hashCode * -1521134295 + AltId.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(AltArguments);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(XKeyName);
             hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(XKeyTypes);
             hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(XValues);
@@ -92,9 +98,10 @@ namespace VisualCard.Parts
 
         internal XNameInfo() { }
 
-        internal XNameInfo(int altId, string xKeyName, string[] xValues, string[] xKeyTypes)
+        internal XNameInfo(int altId, string[] altArguments, string xKeyName, string[] xValues, string[] xKeyTypes)
         {
             AltId = altId;
+            AltArguments = altArguments;
             XKeyName = xKeyName;
             XValues = xValues;
             XKeyTypes = xKeyTypes;

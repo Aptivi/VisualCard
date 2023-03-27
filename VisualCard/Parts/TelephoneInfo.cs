@@ -36,6 +36,10 @@ namespace VisualCard.Parts
         /// </summary>
         public int AltId { get; }
         /// <summary>
+        /// Arguments that follow the AltId
+        /// </summary>
+        public string[] AltArguments { get; }
+        /// <summary>
         /// The contact's phone types
         /// </summary>
         public string[] ContactPhoneTypes { get; }
@@ -70,6 +74,7 @@ namespace VisualCard.Parts
             // Check all the properties
             return
                 source.ContactPhoneTypes.SequenceEqual(target.ContactPhoneTypes) &&
+                source.AltArguments.SequenceEqual(target.AltArguments) &&
                 source.AltId == target.AltId &&
                 source.ContactPhoneNumber == target.ContactPhoneNumber
             ;
@@ -77,8 +82,9 @@ namespace VisualCard.Parts
 
         public override int GetHashCode()
         {
-            int hashCode = 620218187;
+            int hashCode = -986063477;
             hashCode = hashCode * -1521134295 + AltId.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(AltArguments);
             hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(ContactPhoneTypes);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactPhoneNumber);
             return hashCode;
@@ -86,9 +92,10 @@ namespace VisualCard.Parts
 
         internal TelephoneInfo() { }
 
-        internal TelephoneInfo(int altId, string[] contactPhoneTypes, string contactPhoneNumber)
+        internal TelephoneInfo(int altId, string[] altArguments, string[] contactPhoneTypes, string contactPhoneNumber)
         {
             AltId = altId;
+            AltArguments = altArguments;
             ContactPhoneTypes = contactPhoneTypes;
             ContactPhoneNumber = contactPhoneNumber;
         }

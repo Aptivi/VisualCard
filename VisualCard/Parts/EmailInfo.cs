@@ -36,6 +36,10 @@ namespace VisualCard.Parts
         /// </summary>
         public int AltId { get; }
         /// <summary>
+        /// Arguments that follow the AltId
+        /// </summary>
+        public string[] AltArguments { get; }
+        /// <summary>
         /// The contact's email types
         /// </summary>
         public string[] ContactEmailTypes { get; }
@@ -77,8 +81,9 @@ namespace VisualCard.Parts
 
         public override int GetHashCode()
         {
-            int hashCode = -596836290;
+            int hashCode = 2091849342;
             hashCode = hashCode * -1521134295 + AltId.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(AltArguments);
             hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(ContactEmailTypes);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactEmailAddress);
             return hashCode;
@@ -86,9 +91,10 @@ namespace VisualCard.Parts
 
         internal EmailInfo() { }
 
-        internal EmailInfo(int altId, string[] contactEmailTypes, string contactEmailAddress)
+        internal EmailInfo(int altId, string[] altArguments, string[] contactEmailTypes, string contactEmailAddress)
         {
             AltId = altId;
+            AltArguments = altArguments;
             ContactEmailTypes = contactEmailTypes;
             ContactEmailAddress = contactEmailAddress;
         }

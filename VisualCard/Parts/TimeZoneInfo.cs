@@ -40,6 +40,10 @@ namespace VisualCard.Parts
         /// </summary>
         public string[] AltArguments { get; }
         /// <summary>
+        /// The contact's time zone types
+        /// </summary>
+        public string[] TimeZoneTypes { get; }
+        /// <summary>
         /// The contact's time zone
         /// </summary>
         public string TimeZone { get; }
@@ -70,6 +74,7 @@ namespace VisualCard.Parts
             // Check all the properties
             return
                 source.AltArguments.SequenceEqual(target.AltArguments) &&
+                source.TimeZoneTypes.SequenceEqual(target.TimeZoneTypes) &&
                 source.AltId == target.AltId &&
                 source.TimeZone == target.TimeZone
             ;
@@ -77,19 +82,21 @@ namespace VisualCard.Parts
 
         public override int GetHashCode()
         {
-            int hashCode = 854699035;
+            int hashCode = 1304261678;
             hashCode = hashCode * -1521134295 + AltId.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(AltArguments);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(TimeZoneTypes);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(TimeZone);
             return hashCode;
         }
 
         internal TimeZoneInfo() { }
 
-        internal TimeZoneInfo(int altId, string[] altArguments, string timeZone)
+        internal TimeZoneInfo(int altId, string[] altArguments, string[] timeZoneTypes, string timeZone)
         {
             AltId = altId;
             AltArguments = altArguments;
+            TimeZoneTypes = timeZoneTypes;
             TimeZone = timeZone;
         }
     }
