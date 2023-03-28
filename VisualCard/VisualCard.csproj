@@ -7,6 +7,7 @@
     <FileVersion>0.3.0</FileVersion>
     <Version>0.3.0</Version>
     <Company>Aptivi</Company>
+    <Authors>Aptivi</Authors>
     <Description>A managed VCard contact file parser</Description>
     <Copyright>Copyright (c) 2021 - 2022 Aptivi.</Copyright>
     <PackageIcon>OfficialAppIcon-VisualCard-512.png</PackageIcon>
