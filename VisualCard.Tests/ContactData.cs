@@ -356,11 +356,11 @@ namespace VisualCard.Tests
             "John Sanders",
             new TelephoneInfo[]
             {
-                new TelephoneInfo(0, new string[] { "TYPE=cell" }, new string[] { "cell" }, "495-522-3560")
+                new TelephoneInfo(0, Array.Empty<string>(), new string[] { "cell" }, "495-522-3560")
             },
             new AddressInfo[]
             {
-                new AddressInfo(0, new string[] { "TYPE=home" }, new string[] { "home" }, "", "", "Los Angeles, USA", "", "", "", "")
+                new AddressInfo(0, Array.Empty<string>(), new string[] { "home" }, "", "", "Los Angeles, USA", "", "", "", "")
             },
             new OrganizationInfo[]
             {
@@ -374,7 +374,7 @@ namespace VisualCard.Tests
             "Note test for VisualCard",
             new EmailInfo[]
             {
-                new EmailInfo(0, new string[] { "TYPE=HOME" }, new string[] { "HOME" }, "john.s@acme.co")
+                new EmailInfo(0, Array.Empty<string>(), new string[] { "HOME" }, "john.s@acme.co")
             },
             new XNameInfo[]
             {
@@ -835,15 +835,15 @@ namespace VisualCard.Tests
             "Neville Navasquillo",
             new TelephoneInfo[]
             {
-                new TelephoneInfo(0, new string[] { "TYPE=work" }, new string[] { "work" }, "098-765-4321"),
-                new TelephoneInfo(0, new string[] { "TYPE=cell" }, new string[] { "cell" }, "1-234-567-890"),
-                new TelephoneInfo(0, new string[] { "TYPE=voice" }, new string[] { "voice" }, "078-494-6434"),
-                new TelephoneInfo(0, new string[] { "TYPE=home" }, new string[] { "home" }, "348-404-8404"),
+                new TelephoneInfo(0, Array.Empty<string>(), new string[] { "work" }, "098-765-4321"),
+                new TelephoneInfo(0, Array.Empty<string>(), new string[] { "cell" }, "1-234-567-890"),
+                new TelephoneInfo(0, Array.Empty<string>(), new string[] { "voice" }, "078-494-6434"),
+                new TelephoneInfo(0, Array.Empty<string>(), new string[] { "home" }, "348-404-8404"),
             },
             new AddressInfo[]
             {
-                new AddressInfo(0, new string[] { "TYPE=work" }, new string[] { "work" }, "POBOX", "", "Street Address ExtAddress", "Reg", "Loc", "Postal", "Country"),
-                new AddressInfo(0, new string[] { "TYPE=home" }, new string[] { "home" }, "", "", "Street Address", "", "", "", ""),
+                new AddressInfo(0, Array.Empty<string>(), new string[] { "work" }, "POBOX", "", "Street Address ExtAddress", "Reg", "Loc", "Postal", "Country"),
+                new AddressInfo(0, Array.Empty<string>(), new string[] { "home" }, "", "", "Street Address", "", "", "", ""),
             },
             new OrganizationInfo[]
             {
@@ -857,8 +857,8 @@ namespace VisualCard.Tests
             "Notes",
             new EmailInfo[]
             {
-                new EmailInfo(0, new string[] { "TYPE=HOME" }, new string[] { "HOME" }, "neville.nvs@gmail.com"),
-                new EmailInfo(0, new string[] { "TYPE=WORK" }, new string[] { "WORK" }, "neville.nvs@nvsc.com"),
+                new EmailInfo(0, Array.Empty<string>(), new string[] { "HOME" }, "neville.nvs@gmail.com"),
+                new EmailInfo(0, Array.Empty<string>(), new string[] { "WORK" }, "neville.nvs@nvsc.com"),
             },
             new XNameInfo[]
             {
@@ -880,9 +880,9 @@ namespace VisualCard.Tests
             Array.Empty<SoundInfo>(),
             new ImppInfo[] 
             { 
-                new ImppInfo(0, new string[] { "TYPE=HOME" }, "aim:IM", new string[] { "HOME" }),
-                new ImppInfo(0, new string[] { "TYPE=HOME" }, "msn:Windows LIVE", new string[] { "HOME" }),
-                new ImppInfo(0, new string[] { "TYPE=HOME" }, "ymsgr:Yahoo", new string[] { "HOME" })
+                new ImppInfo(0, Array.Empty<string>(), "aim:IM", new string[] { "HOME" }),
+                new ImppInfo(0, Array.Empty<string>(), "msn:Windows LIVE", new string[] { "HOME" }),
+                new ImppInfo(0, Array.Empty<string>(), "ymsgr:Yahoo", new string[] { "HOME" })
             }
         );
         private static readonly Card multipleVcardFourContactsInstanceThree = new
@@ -896,11 +896,11 @@ namespace VisualCard.Tests
             "Sarah Santos",
             new TelephoneInfo[]
             {
-                new TelephoneInfo(0, new string[] { "TYPE=cell" }, new string[] { "cell" }, "589-210-1059")
+                new TelephoneInfo(0, Array.Empty<string>(), new string[] { "cell" }, "589-210-1059")
             },
             new AddressInfo[]
             {
-                new AddressInfo(0, new string[] { "TYPE=home" }, new string[] { "home" }, "", "", "New York, USA", "", "", "", "")
+                new AddressInfo(0, Array.Empty<string>(), new string[] { "home" }, "", "", "New York, USA", "", "", "", "")
             },
             new OrganizationInfo[]
             {
@@ -914,8 +914,8 @@ namespace VisualCard.Tests
             "",
             new EmailInfo[]
             {
-                new EmailInfo(0, new string[] { "TYPE=HOME" }, new string[] { "HOME" }, "sarah.s@gmail.com"),
-                new EmailInfo(0, new string[] { "TYPE=WORK" }, new string[] { "WORK" }, "sarah.s@sso.org"),
+                new EmailInfo(0, Array.Empty<string>(), new string[] { "HOME" }, "sarah.s@gmail.com"),
+                new EmailInfo(0, Array.Empty<string>(), new string[] { "WORK" }, "sarah.s@sso.org"),
             },
             new XNameInfo[]
             {

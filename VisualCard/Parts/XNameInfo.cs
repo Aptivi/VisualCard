@@ -118,8 +118,8 @@ namespace VisualCard.Parts
 
         internal string ToStringVcardFour()
         {
-            bool installAltId = AltId > 0;
-            bool installType = installAltId || XKeyTypes.Length > 0;
+            bool installAltId = AltId >= 0 && AltArguments.Length > 0;
+            bool installType = installAltId && XKeyTypes.Length > 0;
             return
                 $"{VcardConstants._xSpecifier}" +
                 $"{XKeyName}{(installType ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter)}" +

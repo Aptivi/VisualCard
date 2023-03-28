@@ -107,7 +107,7 @@ namespace VisualCard.Parts
 
         internal string ToStringVcardFour()
         {
-            bool installAltId = AltId > 0 && AltArguments.Length > 0;
+            bool installAltId = AltId >= 0 && AltArguments.Length > 0;
             return
                 $"{(installAltId ? VcardConstants._geoSpecifierWithType : VcardConstants._geoSpecifier)}" +
                 $"{(installAltId ? "ALTID=" + AltId + VcardConstants._fieldDelimiter : "")}" +

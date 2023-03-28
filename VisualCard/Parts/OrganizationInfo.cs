@@ -127,7 +127,7 @@ namespace VisualCard.Parts
 
         internal string ToStringVcardFour()
         {
-            bool installAltId = AltId > 0 && AltArguments.Length > 0;
+            bool installAltId = AltId >= 0 && AltArguments.Length > 0;
             bool installType = (installAltId || OrgTypes.Length > 0) && OrgTypes[0].ToUpper() != "WORK";
             return
                 $"{(installType ? VcardConstants._orgSpecifierWithType : VcardConstants._orgSpecifier)}" +

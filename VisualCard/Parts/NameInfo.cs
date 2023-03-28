@@ -140,7 +140,7 @@ namespace VisualCard.Parts
 
         internal string ToStringVcardFour()
         {
-            bool installAltId = AltId > 0 && AltArguments.Length > 0;
+            bool installAltId = AltId >= 0 && AltArguments.Length > 0;
             string altNamesStr = string.Join(VcardConstants._valueDelimiter.ToString(), AltNames);
             string prefixesStr = string.Join(VcardConstants._valueDelimiter.ToString(), Prefixes);
             string suffixesStr = string.Join(VcardConstants._valueDelimiter.ToString(), Suffixes);

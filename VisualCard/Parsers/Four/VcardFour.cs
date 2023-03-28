@@ -124,10 +124,13 @@ namespace VisualCard.Parsers.Four
                         }
 
                         // Finalize the arguments
-                        if (splitArgs[0].StartsWith(VcardConstants._altIdArgumentSpecifier))
-                            finalArgs.AddRange(splitArgs.Except(new string[] { splitArgs[0] }));
-                        else
-                            finalArgs.AddRange(splitArgs);
+                        finalArgs.AddRange(splitArgs.Except(
+                            splitArgs.Where((arg) =>
+                                arg.StartsWith(VcardConstants._altIdArgumentSpecifier) ||
+                                arg.StartsWith(VcardConstants._valueArgumentSpecifier) ||
+                                arg.StartsWith(VcardConstants._typeArgumentSpecifier)
+                            )
+                        ));
                     }
 
                     // Card type (KIND:individual, KIND:group, KIND:org, KIND:location, ...)
