@@ -105,9 +105,10 @@ namespace VisualCard.Parts
 
         internal string ToStringVcardTwo()
         {
+            bool installType = OrgTypes.Length > 0 && OrgTypes[0].ToUpper() != "WORK";
             return
-                $"{VcardConstants._orgSpecifierWithType}" +
-                $"TYPE={string.Join(",", OrgTypes)}{VcardConstants._argumentDelimiter}" +
+                $"{(installType ? VcardConstants._orgSpecifierWithType : VcardConstants._orgSpecifier)}" +
+                $"{(installType ? $"TYPE={string.Join(",", OrgTypes)}{VcardConstants._argumentDelimiter}" : "")}" +
                 $"{Name}{VcardConstants._fieldDelimiter}" +
                 $"{Unit}{VcardConstants._fieldDelimiter}" +
                 $"{Role}";
@@ -115,9 +116,10 @@ namespace VisualCard.Parts
 
         internal string ToStringVcardThree()
         {
+            bool installType = OrgTypes.Length > 0 && OrgTypes[0].ToUpper() != "WORK";
             return
-                $"{VcardConstants._orgSpecifierWithType}" +
-                $"TYPE={string.Join(",", OrgTypes)}{VcardConstants._argumentDelimiter}" +
+                $"{(installType ? VcardConstants._orgSpecifierWithType : VcardConstants._orgSpecifier)}" +
+                $"{(installType ? $"TYPE={string.Join(",", OrgTypes)}{VcardConstants._argumentDelimiter}" : "")}" +
                 $"{Name}{VcardConstants._fieldDelimiter}" +
                 $"{Unit}{VcardConstants._fieldDelimiter}" +
                 $"{Role}";
@@ -126,10 +128,11 @@ namespace VisualCard.Parts
         internal string ToStringVcardFour()
         {
             bool installAltId = AltId > 0 && AltArguments.Length > 0;
+            bool installType = (installAltId || OrgTypes.Length > 0) && OrgTypes[0].ToUpper() != "WORK";
             return
-                $"{VcardConstants._orgSpecifierWithType}" +
-                $"{(installAltId ? "ALTID=" + AltId + VcardConstants._fieldDelimiter : "")}" +
-                $"TYPE={string.Join(",", OrgTypes)}{VcardConstants._argumentDelimiter}" +
+                $"{(installType ? VcardConstants._orgSpecifierWithType : VcardConstants._orgSpecifier)}" +
+                $"{(installAltId ? "ALTID=" + AltId + (installType ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter) : "")}" +
+                $"{(installType ? $"TYPE={string.Join(",", OrgTypes)}{VcardConstants._argumentDelimiter}" : "")}" +
                 $"{Name}{VcardConstants._fieldDelimiter}" +
                 $"{Unit}{VcardConstants._fieldDelimiter}" +
                 $"{Role}";

@@ -47,7 +47,7 @@ namespace VisualCard.Tests
             "2.1",
             new NameInfo[]
             { 
-                new NameInfo(0, Array.Empty<string>(), "Rick", "Hood", new string[] { "" }, new string[] { "" }, new string[] { "" }) 
+                new NameInfo(0, Array.Empty<string>(), "Rick", "Hood", Array.Empty<string>(), Array.Empty<string>(), Array.Empty<string>()) 
             },
             "Rick Hood",
             Array.Empty<TelephoneInfo>(),
@@ -93,7 +93,7 @@ namespace VisualCard.Tests
             "3.0",
             new NameInfo[]
             { 
-                new NameInfo(0, Array.Empty<string>(), "Rick", "Hood", new string[] { "" }, new string[] { "" }, new string[] { "" })
+                new NameInfo(0, Array.Empty<string>(), "Rick", "Hood", Array.Empty<string>(), Array.Empty<string>(), Array.Empty<string>())
             },
             "Rick Hood",
             Array.Empty<TelephoneInfo>(),
@@ -139,7 +139,7 @@ namespace VisualCard.Tests
             "4.0",
             new NameInfo[]
             {
-                new NameInfo(0, Array.Empty<string>(), "Rick", "Hood", new string[] { "" }, new string[] { "" }, new string[] { "" })
+                new NameInfo(0, Array.Empty<string>(), "Rick", "Hood", Array.Empty<string>(), Array.Empty<string>(), Array.Empty<string>())
             },
             "Rick Hood",
             Array.Empty<TelephoneInfo>(),
@@ -195,7 +195,7 @@ namespace VisualCard.Tests
             "2.1",
             new NameInfo[]
             {
-                new NameInfo(0, Array.Empty<string>(), "John", "Sanders", new string[] { "" }, new string[] { "" }, new string[] { "" })
+                new NameInfo(0, Array.Empty<string>(), "John", "Sanders", Array.Empty<string>(), Array.Empty<string>(), Array.Empty<string>())
             },
             "John Sanders",
             new TelephoneInfo[]
@@ -272,7 +272,7 @@ namespace VisualCard.Tests
             "3.0",
             new NameInfo[]
             {
-                new NameInfo(0, Array.Empty<string>(), "John", "Sanders", new string[] { "" }, new string[] { "" }, new string[] { "" })
+                new NameInfo(0, Array.Empty<string>(), "John", "Sanders", Array.Empty<string>(), Array.Empty<string>(), Array.Empty<string>())
             },
             "John Sanders",
             new TelephoneInfo[]
@@ -351,7 +351,7 @@ namespace VisualCard.Tests
             "4.0",
             new NameInfo[]
             {
-                new NameInfo(0, Array.Empty<string>(), "John", "Sanders", new string[] { "" }, new string[] { "" }, new string[] { "" })
+                new NameInfo(0, Array.Empty<string>(), "John", "Sanders", Array.Empty<string>(), Array.Empty<string>(), Array.Empty<string>())
             },
             "John Sanders",
             new TelephoneInfo[]
@@ -472,7 +472,7 @@ namespace VisualCard.Tests
             "2.1",
             new NameInfo[]
             {
-                new NameInfo(0, Array.Empty<string>(), "Sarah", "Santos", new string[] { "" }, new string[] { "" }, new string[] { "" })
+                new NameInfo(0, Array.Empty<string>(), "Sarah", "Santos", Array.Empty<string>(), Array.Empty<string>(), Array.Empty<string>())
             },
             "Sarah Santos",
             new TelephoneInfo[]
@@ -649,7 +649,7 @@ namespace VisualCard.Tests
             "3.0",
             new NameInfo[]
             {
-                new NameInfo(0, Array.Empty<string>(), "Sarah", "Santos", new string[] { "" }, new string[] { "" }, new string[] { "" })
+                new NameInfo(0, Array.Empty<string>(), "Sarah", "Santos", Array.Empty<string>(), Array.Empty<string>(), Array.Empty<string>())
             },
             "Sarah Santos",
             new TelephoneInfo[]
@@ -891,7 +891,7 @@ namespace VisualCard.Tests
             "4.0",
             new NameInfo[]
             {
-                new NameInfo(0, Array.Empty<string>(), "Sarah", "Santos", new string[] { "" }, new string[] { "" }, new string[] { "" })
+                new NameInfo(0, Array.Empty<string>(), "Sarah", "Santos", Array.Empty<string>(), Array.Empty<string>(), Array.Empty<string>())
             },
             "Sarah Santos",
             new TelephoneInfo[]
