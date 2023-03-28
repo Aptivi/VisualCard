@@ -26,6 +26,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using VisualCard.Parsers;
 
 namespace VisualCard.Parts
 {
@@ -100,6 +101,38 @@ namespace VisualCard.Parts
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Unit);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Role);
             return hashCode;
+        }
+
+        internal string ToStringVcardTwo()
+        {
+            return
+                $"{VcardConstants._orgSpecifierWithType}" +
+                $"TYPE={string.Join(",", OrgTypes)}{VcardConstants._argumentDelimiter}" +
+                $"{Name}{VcardConstants._fieldDelimiter}" +
+                $"{Unit}{VcardConstants._fieldDelimiter}" +
+                $"{Role}";
+        }
+
+        internal string ToStringVcardThree()
+        {
+            return
+                $"{VcardConstants._orgSpecifierWithType}" +
+                $"TYPE={string.Join(",", OrgTypes)}{VcardConstants._argumentDelimiter}" +
+                $"{Name}{VcardConstants._fieldDelimiter}" +
+                $"{Unit}{VcardConstants._fieldDelimiter}" +
+                $"{Role}";
+        }
+
+        internal string ToStringVcardFour()
+        {
+            bool installAltId = AltId > 0 && AltArguments.Length > 0;
+            return
+                $"{VcardConstants._orgSpecifierWithType}" +
+                $"{(installAltId ? "ALTID=" + AltId + VcardConstants._fieldDelimiter : "")}" +
+                $"TYPE={string.Join(",", OrgTypes)}{VcardConstants._argumentDelimiter}" +
+                $"{Name}{VcardConstants._fieldDelimiter}" +
+                $"{Unit}{VcardConstants._fieldDelimiter}" +
+                $"{Role}";
         }
 
         internal OrganizationInfo() { }

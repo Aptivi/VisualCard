@@ -25,6 +25,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Net.Mail;
 using System.Text;
@@ -624,125 +625,29 @@ namespace VisualCard.Parsers.Two
             if (!string.IsNullOrWhiteSpace(card.ContactFullName))
                 cardBuilder.AppendLine($"{VcardConstants._fullNameSpecifier}{card.ContactFullName}");
             foreach (NameInfo name in card.ContactNames)
-            {
-                string altNamesStr = string.Join(VcardConstants._valueDelimiter.ToString(), name.AltNames);
-                string prefixesStr = string.Join(VcardConstants._valueDelimiter.ToString(), name.Prefixes);
-                string suffixesStr = string.Join(VcardConstants._valueDelimiter.ToString(), name.Suffixes);
-                cardBuilder.AppendLine(
-                    $"{VcardConstants._nameSpecifier}" +
-                    $"{name.ContactLastName}{VcardConstants._fieldDelimiter}" +
-                    $"{name.ContactFirstName}{VcardConstants._fieldDelimiter}" +
-                    $"{altNamesStr}{VcardConstants._fieldDelimiter}" +
-                    $"{prefixesStr}{VcardConstants._fieldDelimiter}" +
-                    $"{suffixesStr}{VcardConstants._fieldDelimiter}"
-                );
-            }
+                cardBuilder.AppendLine(name.ToStringVcardTwo());
 
             // Now, start filling in the rest...
             foreach (TelephoneInfo telephone in card.ContactTelephones)
-                cardBuilder.AppendLine(
-                    $"{VcardConstants._telephoneSpecifierWithType}" +
-                    $"TYPE={string.Join(",", telephone.ContactPhoneTypes)}{VcardConstants._argumentDelimiter}" +
-                    $"{telephone.ContactPhoneNumber}"
-                );
+                cardBuilder.AppendLine(telephone.ToStringVcardTwo());
             foreach (AddressInfo address in card.ContactAddresses)
-                cardBuilder.AppendLine(
-                    $"{VcardConstants._addressSpecifierWithType}" +
-                    $"TYPE={string.Join(",", address.AddressTypes)}{VcardConstants._argumentDelimiter}" +
-                    $"{address.PostOfficeBox}{VcardConstants._fieldDelimiter}" +
-                    $"{address.ExtendedAddress}{VcardConstants._fieldDelimiter}" +
-                    $"{address.StreetAddress}{VcardConstants._fieldDelimiter}" +
-                    $"{address.Locality}{VcardConstants._fieldDelimiter}" +
-                    $"{address.Region}{VcardConstants._fieldDelimiter}" +
-                    $"{address.PostalCode}{VcardConstants._fieldDelimiter}" +
-                    $"{address.Country}"
-                );
+                cardBuilder.AppendLine(address.ToStringVcardTwo());
             foreach (EmailInfo email in card.ContactMails)
-                cardBuilder.AppendLine(
-                    $"{VcardConstants._emailSpecifier}" +
-                    $"TYPE={string.Join(",", email.ContactEmailTypes)}{VcardConstants._argumentDelimiter}" +
-                    $"{email.ContactEmailAddress}"
-                );
+                cardBuilder.AppendLine(email.ToStringVcardTwo());
             foreach (OrganizationInfo organization in card.ContactOrganizations)
-                cardBuilder.AppendLine(
-                    $"{VcardConstants._orgSpecifierWithType}" +
-                    $"TYPE={string.Join(",", organization.OrgTypes)}{VcardConstants._argumentDelimiter}" +
-                    $"{organization.Name}{VcardConstants._fieldDelimiter}" +
-                    $"{organization.Unit}{VcardConstants._fieldDelimiter}" +
-                    $"{organization.Role}"
-                );
+                cardBuilder.AppendLine(organization.ToStringVcardTwo());
             foreach (TitleInfo title in card.ContactTitles)
-                cardBuilder.AppendLine(
-                    $"{VcardConstants._titleSpecifier}" +
-                    $"{title.ContactTitle}"
-                );
+                cardBuilder.AppendLine(title.ToStringVcardTwo());
             if (!string.IsNullOrWhiteSpace(card.ContactURL))
                 cardBuilder.AppendLine($"{VcardConstants._urlSpecifier}{card.ContactURL}");
             if (!string.IsNullOrWhiteSpace(card.ContactNotes))
                 cardBuilder.AppendLine($"{VcardConstants._noteSpecifier}{card.ContactNotes}");
             foreach (PhotoInfo photo in card.ContactPhotos)
-            {
-                if (photo.ValueType == "uri" || photo.ValueType == "url")
-                {
-                    cardBuilder.AppendLine(
-                        $"{VcardConstants._photoSpecifierWithType}" +
-                        $"VALUE={photo.ValueType}{VcardConstants._argumentDelimiter}" +
-                        $"{photo.PhotoEncoded}"
-                    );
-                }
-                else
-                {
-                    string photoArgsLine =
-                        $"{VcardConstants._photoSpecifierWithType}" +
-                        $"VALUE={photo.ValueType}{VcardConstants._fieldDelimiter}" +
-                        $"ENCODING={photo.Encoding}{VcardConstants._fieldDelimiter}" +
-                        $"TYPE={photo.PhotoType}{VcardConstants._argumentDelimiter}";
-                    cardBuilder.Append(photoArgsLine);
-                    cardBuilder.AppendLine(MakeStringBlock(photo.PhotoEncoded, photoArgsLine.Length));
-                }
-            }
+                cardBuilder.AppendLine(photo.ToStringVcardTwo());
             foreach (LogoInfo logo in card.ContactLogos)
-            {
-                if (logo.ValueType == "uri" || logo.ValueType == "url")
-                {
-                    cardBuilder.AppendLine(
-                        $"{VcardConstants._logoSpecifierWithType}" +
-                        $"VALUE={logo.ValueType}{VcardConstants._argumentDelimiter}" +
-                        $"{logo.LogoEncoded}"
-                    );
-                }
-                else
-                {
-                    string logoArgsLine =
-                        $"{VcardConstants._logoSpecifierWithType}" +
-                        $"VALUE={logo.ValueType}{VcardConstants._fieldDelimiter}" +
-                        $"ENCODING={logo.Encoding}{VcardConstants._fieldDelimiter}" +
-                        $"TYPE={logo.LogoType}{VcardConstants._argumentDelimiter}";
-                    cardBuilder.Append(logoArgsLine);
-                    cardBuilder.AppendLine(MakeStringBlock(logo.LogoEncoded, logoArgsLine.Length));
-                }
-            }
+                cardBuilder.AppendLine(logo.ToStringVcardTwo());
             foreach (SoundInfo sound in card.ContactSounds)
-            {
-                if (sound.ValueType == "uri" || sound.ValueType == "url")
-                {
-                    cardBuilder.AppendLine(
-                        $"{VcardConstants._soundSpecifierWithType}" +
-                        $"VALUE={sound.ValueType}{VcardConstants._argumentDelimiter}" +
-                        $"{sound.SoundEncoded}"
-                    );
-                }
-                else
-                {
-                    string soundArgsLine =
-                        $"{VcardConstants._soundSpecifierWithType}" +
-                        $"VALUE={sound.ValueType}{VcardConstants._fieldDelimiter}" +
-                        $"ENCODING={sound.Encoding}{VcardConstants._fieldDelimiter}" +
-                        $"TYPE={sound.SoundType}{VcardConstants._argumentDelimiter}";
-                    cardBuilder.Append(soundArgsLine);
-                    cardBuilder.AppendLine(MakeStringBlock(sound.SoundEncoded, soundArgsLine.Length));
-                }
-            }
+                cardBuilder.AppendLine(sound.ToStringVcardTwo());
             if (card.CardRevision is not null && card.CardRevision != DateTime.MinValue)
                 cardBuilder.AppendLine($"{VcardConstants._revSpecifier}{card.CardRevision:dd-MM-yyyy_HH-mm-ss}");
             if (card.ContactBirthdate is not null && card.ContactBirthdate != DateTime.MinValue)
@@ -750,33 +655,15 @@ namespace VisualCard.Parsers.Two
             if (!string.IsNullOrWhiteSpace(card.ContactMailer))
                 cardBuilder.AppendLine($"{VcardConstants._mailerSpecifier}{card.ContactMailer}");
             foreach (RoleInfo role in card.ContactRoles)
-                cardBuilder.AppendLine(
-                    $"{VcardConstants._roleSpecifier}" +
-                    $"{role.ContactRole}"
-                );
+                cardBuilder.AppendLine(role.ToStringVcardTwo());
             foreach (TimeZoneInfo timeZone in card.ContactTimeZone)
-                cardBuilder.AppendLine(
-                    $"{VcardConstants._timeZoneSpecifier}" +
-                    $"{timeZone.TimeZone}"
-                );
+                cardBuilder.AppendLine(timeZone.ToStringVcardTwo());
             foreach (GeoInfo geo in card.ContactGeo)
-                cardBuilder.AppendLine(
-                    $"{VcardConstants._geoSpecifier}" +
-                    $"{geo.Geo}"
-                );
+                cardBuilder.AppendLine(geo.ToStringVcardTwo());
             foreach (ImppInfo impp in card.ContactImpps)
-                cardBuilder.AppendLine(
-                    $"{VcardConstants._imppSpecifierWithType}" +
-                    $"TYPE={string.Join(",", impp.ImppTypes)}{VcardConstants._argumentDelimiter}" +
-                    $"{impp.ContactIMPP}"
-                );
+                cardBuilder.AppendLine(impp.ToStringVcardTwo());
             foreach (XNameInfo xname in card.ContactXNames)
-                cardBuilder.AppendLine(
-                    $"{VcardConstants._xSpecifier}" +
-                    $"{xname.XKeyName}{(xname.XKeyTypes.Length > 0 ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter)}" +
-                    $"{(xname.XKeyTypes.Length > 0 ? string.Join(VcardConstants._fieldDelimiter.ToString(), xname.XKeyTypes) + VcardConstants._argumentDelimiter : "")}" +
-                    $"{string.Join(VcardConstants._fieldDelimiter.ToString(), xname.XValues)}"
-                );
+                cardBuilder.AppendLine(xname.ToStringVcardTwo());
 
             // Finally, end the card and return it
             cardBuilder.AppendLine("END:VCARD");
@@ -796,30 +683,6 @@ namespace VisualCard.Parsers.Two
             // Save all the changes to the file
             var cardString = SaveToString(card);
             File.WriteAllText(path, cardString);
-        }
-
-        private string MakeStringBlock(string target, int firstLength)
-        {
-            const int maxChars = 74;
-            int maxCharsFirst = maxChars - firstLength;
-
-            // Construct the block
-            StringBuilder block = new();
-            int selectedMax = maxCharsFirst;
-            int processed = 0;
-            for (int currCharNum = 0; currCharNum < target.Length; currCharNum++)
-            {
-                block.Append(target[currCharNum]);
-                processed++;
-                if (processed >= selectedMax)
-                {
-                    // Append a new line because we reached the maximum limit
-                    selectedMax = maxChars;
-                    processed = 0;
-                    block.Append("\n ");
-                }
-            }
-            return block.ToString();
         }
 
         internal VcardTwo(string cardContent, string cardVersion)

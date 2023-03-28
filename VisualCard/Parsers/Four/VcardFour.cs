@@ -25,6 +25,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Net.Mail;
@@ -922,189 +923,37 @@ namespace VisualCard.Parsers.Four
             if (!string.IsNullOrWhiteSpace(card.ContactFullName))
                 cardBuilder.AppendLine($"{VcardConstants._fullNameSpecifier}{card.ContactFullName}");
             foreach (NameInfo name in card.ContactNames)
-            {
-                bool installAltId = name.AltId >= 0 && name.AltArguments.Length > 0;
-                string altNamesStr = string.Join(VcardConstants._valueDelimiter.ToString(), name.AltNames);
-                string prefixesStr = string.Join(VcardConstants._valueDelimiter.ToString(), name.Prefixes);
-                string suffixesStr = string.Join(VcardConstants._valueDelimiter.ToString(), name.Suffixes);
-                cardBuilder.AppendLine(
-                    $"{(installAltId ? VcardConstants._nameSpecifierWithType : VcardConstants._nameSpecifier)}" +
-                    $"{(installAltId ? "ALTID=" + name.AltId + VcardConstants._fieldDelimiter : "")}" +
-                    $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), name.AltArguments) + VcardConstants._argumentDelimiter : "")}" +
-                    $"{name.ContactLastName}{VcardConstants._fieldDelimiter}" +
-                    $"{name.ContactFirstName}{VcardConstants._fieldDelimiter}" +
-                    $"{altNamesStr}{VcardConstants._fieldDelimiter}" +
-                    $"{prefixesStr}{VcardConstants._fieldDelimiter}" +
-                    $"{suffixesStr}{VcardConstants._fieldDelimiter}"
-                );
-            }
+                cardBuilder.AppendLine(name.ToStringVcardFour());
 
             // Now, start filling in the rest...
             foreach (TelephoneInfo telephone in card.ContactTelephones)
-            {
-                bool installAltId = telephone.AltId > 0;
-                cardBuilder.AppendLine(
-                    $"{VcardConstants._telephoneSpecifierWithType}" +
-                    $"{(installAltId ? "ALTID=" + telephone.AltId + VcardConstants._fieldDelimiter : "")}" +
-                    $"TYPE={string.Join(",", telephone.ContactPhoneTypes)}{VcardConstants._argumentDelimiter}" +
-                    $"{telephone.ContactPhoneNumber}"
-                );
-            }
+                cardBuilder.AppendLine(telephone.ToStringVcardFour());
             foreach (AddressInfo address in card.ContactAddresses)
-            {
-                bool installAltId = address.AltId > 0;
-                cardBuilder.AppendLine(
-                    $"{VcardConstants._addressSpecifierWithType}" +
-                    $"{(installAltId ? "ALTID=" + address.AltId + VcardConstants._fieldDelimiter : "")}" +
-                    $"TYPE={string.Join(",", address.AddressTypes)}{VcardConstants._argumentDelimiter}" +
-                    $"{address.PostOfficeBox}{VcardConstants._fieldDelimiter}" +
-                    $"{address.ExtendedAddress}{VcardConstants._fieldDelimiter}" +
-                    $"{address.StreetAddress}{VcardConstants._fieldDelimiter}" +
-                    $"{address.Locality}{VcardConstants._fieldDelimiter}" +
-                    $"{address.Region}{VcardConstants._fieldDelimiter}" +
-                    $"{address.PostalCode}{VcardConstants._fieldDelimiter}" +
-                    $"{address.Country}"
-                );
-            }
+                cardBuilder.AppendLine(address.ToStringVcardFour());
             foreach (EmailInfo email in card.ContactMails)
-            {
-                bool installAltId = email.AltId > 0;
-                cardBuilder.AppendLine(
-                    $"{VcardConstants._emailSpecifier}" +
-                    $"{(installAltId ? "ALTID=" + email.AltId + VcardConstants._fieldDelimiter : "")}" +
-                    $"TYPE={string.Join(",", email.ContactEmailTypes)}{VcardConstants._argumentDelimiter}" +
-                    $"{email.ContactEmailAddress}"
-                );
-            }
+                cardBuilder.AppendLine(email.ToStringVcardFour());
             foreach (OrganizationInfo organization in card.ContactOrganizations)
-            {
-                bool installAltId = organization.AltId > 0;
-                cardBuilder.AppendLine(
-                    $"{VcardConstants._orgSpecifierWithType}" +
-                    $"{(installAltId ? "ALTID=" + organization.AltId + VcardConstants._fieldDelimiter : "")}" +
-                    $"TYPE={string.Join(",", organization.OrgTypes)}{VcardConstants._argumentDelimiter}" +
-                    $"{organization.Name}{VcardConstants._fieldDelimiter}" +
-                    $"{organization.Unit}{VcardConstants._fieldDelimiter}" +
-                    $"{organization.Role}"
-                );
-            }
+                cardBuilder.AppendLine(organization.ToStringVcardFour());
             foreach (TitleInfo title in card.ContactTitles)
-            {
-                bool installAltId = title.AltId >= 0 && title.AltArguments.Length > 0;
-                cardBuilder.AppendLine(
-                    $"{(installAltId ? VcardConstants._titleSpecifierWithArguments : VcardConstants._titleSpecifier)}" +
-                    $"{(installAltId ? "ALTID=" + title.AltId + VcardConstants._fieldDelimiter : "")}" +
-                    $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), title.AltArguments) + VcardConstants._argumentDelimiter : "")}" +
-                    $"{title.ContactTitle}"
-                );
-            }
+                cardBuilder.AppendLine(title.ToStringVcardFour());
             if (!string.IsNullOrWhiteSpace(card.ContactURL))
                 cardBuilder.AppendLine($"{VcardConstants._urlSpecifier}{card.ContactURL}");
             if (!string.IsNullOrWhiteSpace(card.ContactNotes))
                 cardBuilder.AppendLine($"{VcardConstants._noteSpecifier}{card.ContactNotes}");
             foreach (PhotoInfo photo in card.ContactPhotos)
-            {
-                bool installAltId = photo.AltId >= 0 && photo.AltArguments.Length > 0;
-                if (photo.ValueType == "uri" || photo.ValueType == "url")
-                {
-                    cardBuilder.AppendLine(
-                        $"{VcardConstants._photoSpecifierWithType}" +
-                        $"{(installAltId ? "ALTID=" + photo.AltId + VcardConstants._fieldDelimiter : "")}" +
-                        $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), photo.AltArguments) + VcardConstants._fieldDelimiter : "")}" +
-                        $"VALUE={photo.ValueType}{VcardConstants._argumentDelimiter}" +
-                        $"{photo.PhotoEncoded}"
-                    );
-                }
-                else
-                {
-                    string photoArgsLine =
-                        $"{VcardConstants._photoSpecifierWithType}" +
-                        $"{(installAltId ? "ALTID=" + photo.AltId + VcardConstants._fieldDelimiter : "")}" +
-                        $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), photo.AltArguments) + VcardConstants._fieldDelimiter : "")}" +
-                        $"VALUE={photo.ValueType}{VcardConstants._fieldDelimiter}" +
-                        $"ENCODING={photo.Encoding}{VcardConstants._fieldDelimiter}" +
-                        $"TYPE={photo.PhotoType}{VcardConstants._argumentDelimiter}";
-                    cardBuilder.Append(photoArgsLine);
-                    cardBuilder.AppendLine(MakeStringBlock(photo.PhotoEncoded, photoArgsLine.Length));
-                }
-            }
+                cardBuilder.AppendLine(photo.ToStringVcardFour());
             foreach (LogoInfo logo in card.ContactLogos)
-            {
-                bool installAltId = logo.AltId >= 0 && logo.AltArguments.Length > 0;
-                if (logo.ValueType == "uri" || logo.ValueType == "url")
-                {
-                    cardBuilder.AppendLine(
-                        $"{VcardConstants._logoSpecifierWithType}" +
-                        $"{(installAltId ? "ALTID=" + logo.AltId + VcardConstants._fieldDelimiter : "")}" +
-                        $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), logo.AltArguments) + VcardConstants._fieldDelimiter : "")}" +
-                        $"VALUE={logo.ValueType}{VcardConstants._argumentDelimiter}" +
-                        $"{logo.LogoEncoded}"
-                    );
-                }
-                else
-                {
-                    string logoArgsLine =
-                        $"{VcardConstants._logoSpecifierWithType}" +
-                        $"{(installAltId ? "ALTID=" + logo.AltId + VcardConstants._fieldDelimiter : "")}" +
-                        $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), logo.AltArguments) + VcardConstants._fieldDelimiter : "")}" +
-                        $"VALUE={logo.ValueType}{VcardConstants._fieldDelimiter}" +
-                        $"ENCODING={logo.Encoding}{VcardConstants._fieldDelimiter}" +
-                        $"TYPE={logo.LogoType}{VcardConstants._argumentDelimiter}";
-                    cardBuilder.Append(logoArgsLine);
-                    cardBuilder.AppendLine(MakeStringBlock(logo.LogoEncoded, logoArgsLine.Length));
-                }
-            }
+                cardBuilder.AppendLine(logo.ToStringVcardFour());
             foreach (SoundInfo sound in card.ContactSounds)
-            {
-                bool installAltId = sound.AltId >= 0 && sound.AltArguments.Length > 0;
-                if (sound.ValueType == "uri" || sound.ValueType == "url")
-                {
-                    cardBuilder.AppendLine(
-                        $"{VcardConstants._soundSpecifierWithType}" +
-                        $"{(installAltId ? "ALTID=" + sound.AltId + VcardConstants._fieldDelimiter : "")}" +
-                        $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), sound.AltArguments) + VcardConstants._fieldDelimiter : "")}" +
-                        $"VALUE={sound.ValueType}{VcardConstants._argumentDelimiter}" +
-                        $"{sound.SoundEncoded}"
-                    );
-                }
-                else
-                {
-                    string soundArgsLine =
-                        $"{VcardConstants._soundSpecifierWithType}" +
-                        $"{(installAltId ? "ALTID=" + sound.AltId + VcardConstants._fieldDelimiter : "")}" +
-                        $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), sound.AltArguments) + VcardConstants._fieldDelimiter : "")}" +
-                        $"VALUE={sound.ValueType}{VcardConstants._fieldDelimiter}" +
-                        $"ENCODING={sound.Encoding}{VcardConstants._fieldDelimiter}" +
-                        $"TYPE={sound.SoundType}{VcardConstants._argumentDelimiter}";
-                    cardBuilder.Append(soundArgsLine);
-                    cardBuilder.AppendLine(MakeStringBlock(sound.SoundEncoded, soundArgsLine.Length));
-                }
-            }
+                cardBuilder.AppendLine(sound.ToStringVcardFour());
             if (card.CardRevision is not null && card.CardRevision != DateTime.MinValue)
                 cardBuilder.AppendLine($"{VcardConstants._revSpecifier}{card.CardRevision:dd-MM-yyyy_HH-mm-ss}");
             foreach (NicknameInfo nickname in card.ContactNicknames)
-            {
-                bool installAltId = nickname.AltId >= 0 && nickname.AltArguments.Length > 0;
-                cardBuilder.AppendLine(
-                    $"{(installAltId ? VcardConstants._nicknameSpecifierWithType : VcardConstants._nicknameSpecifier)}" +
-                    $"{(installAltId ? "ALTID=" + nickname.AltId + VcardConstants._fieldDelimiter : "")}" +
-                    $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), nickname.AltArguments) + VcardConstants._fieldDelimiter : "")}" +
-                    $"TYPE={string.Join(",", nickname.NicknameTypes)}{VcardConstants._argumentDelimiter}" +
-                    $"{nickname.ContactNickname}"
-                );
-            }
+                cardBuilder.AppendLine(nickname.ToStringVcardFour());
             if (card.ContactBirthdate is not null && card.ContactBirthdate != DateTime.MinValue)
                 cardBuilder.AppendLine($"{VcardConstants._birthSpecifier}{card.ContactBirthdate:dd-MM-yyyy}");
             foreach (RoleInfo role in card.ContactRoles)
-            {
-                bool installAltId = role.AltId >= 0 && role.AltArguments.Length > 0;
-                cardBuilder.AppendLine(
-                    $"{(installAltId ? VcardConstants._roleSpecifierWithType : VcardConstants._roleSpecifier)}" +
-                    $"{(installAltId ? "ALTID=" + role.AltId + VcardConstants._fieldDelimiter : "")}" +
-                    $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), role.AltArguments) + VcardConstants._argumentDelimiter : "")}" +
-                    $"{role.ContactRole}"
-                );
-            }
+                cardBuilder.AppendLine(role.ToStringVcardFour());
             if (card.ContactCategories is not null && card.ContactCategories.Length > 0)
                 cardBuilder.AppendLine($"{VcardConstants._categoriesSpecifier}{string.Join(",", card.ContactCategories)}");
             if (!string.IsNullOrWhiteSpace(card.ContactProdId))
@@ -1112,47 +961,13 @@ namespace VisualCard.Parsers.Four
             if (!string.IsNullOrWhiteSpace(card.ContactSortString))
                 cardBuilder.AppendLine($"{VcardConstants._sortStringSpecifier}{card.ContactSortString}");
             foreach (TimeZoneInfo timeZone in card.ContactTimeZone)
-            {
-                bool installAltId = timeZone.AltId > 0;
-                cardBuilder.AppendLine(
-                    $"{(installAltId ? VcardConstants._timeZoneSpecifierWithType : VcardConstants._timeZoneSpecifier)}" +
-                    $"{(installAltId ? "ALTID=" + timeZone.AltId + VcardConstants._fieldDelimiter : "")}" +
-                    $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), timeZone.AltArguments) + VcardConstants._argumentDelimiter : "")}" +
-                    $"{timeZone.TimeZone}"
-                );
-            }
+                cardBuilder.AppendLine(timeZone.ToStringVcardFour());
             foreach (GeoInfo geo in card.ContactGeo)
-            {
-                bool installAltId = geo.AltId > 0;
-                cardBuilder.AppendLine(
-                    $"{(installAltId ? VcardConstants._geoSpecifierWithType : VcardConstants._geoSpecifier)}" +
-                    $"{(installAltId ? "ALTID=" + geo.AltId + VcardConstants._fieldDelimiter : "")}" +
-                    $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), geo.AltArguments) + VcardConstants._argumentDelimiter : "")}" +
-                    $"{geo.Geo}"
-                );
-            }
+                cardBuilder.AppendLine(geo.ToStringVcardFour());
             foreach (ImppInfo impp in card.ContactImpps)
-            {
-                bool installAltId = impp.AltId > 0;
-                cardBuilder.AppendLine(
-                    $"{(installAltId ? VcardConstants._imppSpecifierWithType : VcardConstants._imppSpecifier)}" +
-                    $"{(installAltId ? "ALTID=" + impp.AltId + VcardConstants._fieldDelimiter : "")}" +
-                    $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), impp.AltArguments) + VcardConstants._argumentDelimiter : "")}" +
-                    $"{impp.ContactIMPP}"
-                );
-            }
+                cardBuilder.AppendLine(impp.ToStringVcardFour());
             foreach (XNameInfo xname in card.ContactXNames)
-            {
-                bool installAltId = xname.AltId > 0;
-                bool installType = installAltId || xname.XKeyTypes.Length > 0;
-                cardBuilder.AppendLine(
-                    $"{VcardConstants._xSpecifier}" +
-                    $"{xname.XKeyName}{(installType ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter)}" +
-                    $"{(installAltId ? "ALTID=" + xname.AltId + VcardConstants._fieldDelimiter : "")}" +
-                    $"{(xname.XKeyTypes.Length > 0 ? string.Join(VcardConstants._fieldDelimiter.ToString(), xname.XKeyTypes) + VcardConstants._argumentDelimiter : "")}" +
-                    $"{string.Join(VcardConstants._fieldDelimiter.ToString(), xname.XValues)}"
-                );
-            }
+                cardBuilder.AppendLine(xname.ToStringVcardFour());
 
             // Finally, end the card and return it
             cardBuilder.AppendLine("END:VCARD");
@@ -1172,30 +987,6 @@ namespace VisualCard.Parsers.Four
             // Save all the changes to the file
             var cardString = SaveToString(card);
             File.WriteAllText(path, cardString);
-        }
-
-        private string MakeStringBlock(string target, int firstLength)
-        {
-            const int maxChars = 74;
-            int maxCharsFirst = maxChars - firstLength;
-
-            // Construct the block
-            StringBuilder block = new();
-            int selectedMax = maxCharsFirst;
-            int processed = 0;
-            for (int currCharNum = 0; currCharNum < target.Length; currCharNum++)
-            {
-                block.Append(target[currCharNum]);
-                processed++;
-                if (processed >= selectedMax)
-                {
-                    // Append a new line because we reached the maximum limit
-                    selectedMax = maxChars;
-                    processed = 0;
-                    block.Append("\n ");
-                }
-            }
-            return block.ToString();
         }
 
         internal VcardFour(string cardContent, string cardVersion)

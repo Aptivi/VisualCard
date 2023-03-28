@@ -26,6 +26,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using VisualCard.Parsers;
 
 namespace VisualCard.Parts
 {
@@ -88,6 +89,30 @@ namespace VisualCard.Parts
             hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(GeoTypes);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Geo);
             return hashCode;
+        }
+
+        internal string ToStringVcardTwo()
+        {
+            return
+                $"{VcardConstants._geoSpecifier}" +
+                $"{Geo}";
+        }
+
+        internal string ToStringVcardThree()
+        {
+            return
+                $"{VcardConstants._geoSpecifier}" +
+                $"{Geo}";
+        }
+
+        internal string ToStringVcardFour()
+        {
+            bool installAltId = AltId > 0 && AltArguments.Length > 0;
+            return
+                $"{(installAltId ? VcardConstants._geoSpecifierWithType : VcardConstants._geoSpecifier)}" +
+                $"{(installAltId ? "ALTID=" + AltId + VcardConstants._fieldDelimiter : "")}" +
+                $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._argumentDelimiter : "")}" +
+                $"{Geo}";
         }
 
         internal GeoInfo() { }

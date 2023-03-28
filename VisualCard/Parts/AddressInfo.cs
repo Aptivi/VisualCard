@@ -26,6 +26,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Xml.Linq;
+using VisualCard.Parsers;
 
 namespace VisualCard.Parts
 {
@@ -124,6 +127,50 @@ namespace VisualCard.Parts
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(PostalCode);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Country);
             return hashCode;
+        }
+
+        internal string ToStringVcardTwo()
+        {
+            return
+                $"{VcardConstants._addressSpecifierWithType}" +
+                $"TYPE={string.Join(",", AddressTypes)}{VcardConstants._argumentDelimiter}" +
+                $"{PostOfficeBox}{VcardConstants._fieldDelimiter}" +
+                $"{ExtendedAddress}{VcardConstants._fieldDelimiter}" +
+                $"{StreetAddress}{VcardConstants._fieldDelimiter}" +
+                $"{Locality}{VcardConstants._fieldDelimiter}" +
+                $"{Region}{VcardConstants._fieldDelimiter}" +
+                $"{PostalCode}{VcardConstants._fieldDelimiter}" +
+                $"{Country}";
+        }
+
+        internal string ToStringVcardThree()
+        {
+            return
+                $"{VcardConstants._addressSpecifierWithType}" +
+                $"TYPE={string.Join(",", AddressTypes)}{VcardConstants._argumentDelimiter}" +
+                $"{PostOfficeBox}{VcardConstants._fieldDelimiter}" +
+                $"{ExtendedAddress}{VcardConstants._fieldDelimiter}" +
+                $"{StreetAddress}{VcardConstants._fieldDelimiter}" +
+                $"{Locality}{VcardConstants._fieldDelimiter}" +
+                $"{Region}{VcardConstants._fieldDelimiter}" +
+                $"{PostalCode}{VcardConstants._fieldDelimiter}" +
+                $"{Country}";
+        }
+
+        internal string ToStringVcardFour()
+        {
+            bool installAltId = AltId > 0 && AltArguments.Length > 0;
+            return
+                $"{VcardConstants._addressSpecifierWithType}" +
+                $"{(installAltId ? "ALTID=" + AltId + VcardConstants._fieldDelimiter : "")}" +
+                $"TYPE={string.Join(",", AddressTypes)}{VcardConstants._argumentDelimiter}" +
+                $"{PostOfficeBox}{VcardConstants._fieldDelimiter}" +
+                $"{ExtendedAddress}{VcardConstants._fieldDelimiter}" +
+                $"{StreetAddress}{VcardConstants._fieldDelimiter}" +
+                $"{Locality}{VcardConstants._fieldDelimiter}" +
+                $"{Region}{VcardConstants._fieldDelimiter}" +
+                $"{PostalCode}{VcardConstants._fieldDelimiter}" +
+                $"{Country}";
         }
 
         internal AddressInfo() { }

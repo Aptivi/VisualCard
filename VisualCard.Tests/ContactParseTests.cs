@@ -87,6 +87,47 @@ namespace VisualCard.Tests
         }
 
         [Test]
+        [TestCaseSource(typeof(ContactData), nameof(ContactData.singleVcardContactShorts))]
+        [TestCaseSource(typeof(ContactData), nameof(ContactData.singleVcardContacts))]
+        [TestCaseSource(typeof(ContactData), nameof(ContactData.multipleVcardContacts))]
+        [TestCaseSource(typeof(ContactData), nameof(ContactData.remainingContacts))]
+        public void ParseDifferentContactsSaveToStringAndTestEquality(string cardText)
+        {
+            List<BaseVcardParser> parsers = new();
+            List<Card> cards = new();
+            List<Card> savedCards = new();
+
+            // Parse the cards
+            Should.NotThrow(() => parsers = CardTools.GetCardParsersFromString(cardText));
+            foreach (BaseVcardParser parser in parsers)
+                cards.Add(Should.NotThrow(parser.Parse));
+
+            // Save all the cards to strings and re-parse
+            foreach (Card card in cards)
+            {
+                string saved = Should.NotThrow(card.SaveToString);
+                Should.NotThrow(() => parsers = CardTools.GetCardParsersFromString(saved));
+                foreach (BaseVcardParser parser in parsers)
+                    savedCards.Add(Should.NotThrow(parser.Parse));
+            }
+
+            // Test equality with available data
+            List<bool> foundCards = new();
+            foreach (Card card in savedCards)
+            {
+                bool found = false;
+                foreach (Card expectedCard in ContactData.vCardContactsInstances)
+                    if (expectedCard == card)
+                    {
+                        found = true;
+                        break;
+                    }
+                foundCards.Add(found);
+            }
+            foundCards.ShouldAllBe((b) => b);
+        }
+
+        [Test]
         [TestCaseSource(typeof(ContactDataBogus), nameof(ContactDataBogus.invalidContacts))]
         public void InvalidContactShouldThrowWhenGettingCardParsers(string cardText)
             => Should.Throw<InvalidDataException>(() => CardTools.GetCardParsersFromString(cardText));

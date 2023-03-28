@@ -26,6 +26,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using VisualCard.Parsers;
+using VisualCard.Parsers.Four;
+using VisualCard.Parsers.Three;
+using VisualCard.Parsers.Two;
 
 namespace VisualCard.Parts
 {
@@ -100,6 +104,71 @@ namespace VisualCard.Parts
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(LogoType);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(LogoEncoded);
             return hashCode;
+        }
+
+        internal string ToStringVcardTwo()
+        {
+            if (ValueType == "uri" || ValueType == "url")
+            {
+                return
+                    $"{VcardConstants._logoSpecifierWithType}" +
+                    $"VALUE={ValueType}{VcardConstants._argumentDelimiter}" +
+                    $"{LogoEncoded}";
+            }
+            else
+            {
+                string logoArgsLine =
+                    $"{VcardConstants._logoSpecifierWithType}" +
+                    $"VALUE={ValueType}{VcardConstants._fieldDelimiter}" +
+                    $"ENCODING={Encoding}{VcardConstants._fieldDelimiter}" +
+                    $"TYPE={LogoType}{VcardConstants._argumentDelimiter}";
+                return logoArgsLine + BaseVcardParser.MakeStringBlock(LogoEncoded, logoArgsLine.Length);
+            }
+        }
+
+        internal string ToStringVcardThree()
+        {
+            if (ValueType == "uri" || ValueType == "url")
+            {
+                return
+                    $"{VcardConstants._logoSpecifierWithType}" +
+                    $"VALUE={ValueType}{VcardConstants._argumentDelimiter}" +
+                    $"{LogoEncoded}";
+            }
+            else
+            {
+                string logoArgsLine =
+                    $"{VcardConstants._logoSpecifierWithType}" +
+                    $"VALUE={ValueType}{VcardConstants._fieldDelimiter}" +
+                    $"ENCODING={Encoding}{VcardConstants._fieldDelimiter}" +
+                    $"TYPE={LogoType}{VcardConstants._argumentDelimiter}";
+                return logoArgsLine + BaseVcardParser.MakeStringBlock(LogoEncoded, logoArgsLine.Length);
+            }
+        }
+
+        internal string ToStringVcardFour()
+        {
+            bool installAltId = AltId > 0 && AltArguments.Length > 0;
+            if (ValueType == "uri" || ValueType == "url")
+            {
+                return
+                    $"{VcardConstants._logoSpecifierWithType}" +
+                    $"{(installAltId ? "ALTID=" + AltId + VcardConstants._fieldDelimiter : "")}" +
+                    $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._fieldDelimiter : "")}" +
+                    $"VALUE={ValueType}{VcardConstants._argumentDelimiter}" +
+                    $"{LogoEncoded}";
+            }
+            else
+            {
+                string logoArgsLine =
+                    $"{VcardConstants._logoSpecifierWithType}" +
+                    $"{(installAltId ? "ALTID=" + AltId + VcardConstants._fieldDelimiter : "")}" +
+                    $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._fieldDelimiter : "")}" +
+                    $"VALUE={ValueType}{VcardConstants._fieldDelimiter}" +
+                    $"ENCODING={Encoding}{VcardConstants._fieldDelimiter}" +
+                    $"TYPE={LogoType}{VcardConstants._argumentDelimiter}";
+                return logoArgsLine + BaseVcardParser.MakeStringBlock(LogoEncoded, logoArgsLine.Length);
+            }
         }
 
         internal LogoInfo() { }

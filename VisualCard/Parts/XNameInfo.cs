@@ -26,6 +26,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
+using VisualCard.Parsers;
 
 namespace VisualCard.Parts
 {
@@ -94,6 +96,36 @@ namespace VisualCard.Parts
             hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(XKeyTypes);
             hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(XValues);
             return hashCode;
+        }
+
+        internal string ToStringVcardTwo()
+        {
+            return
+                $"{VcardConstants._xSpecifier}" +
+                $"{XKeyName}{(XKeyTypes.Length > 0 ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter)}" +
+                $"{(XKeyTypes.Length > 0 ? string.Join(VcardConstants._fieldDelimiter.ToString(), XKeyTypes) + VcardConstants._argumentDelimiter : "")}" +
+                $"{string.Join(VcardConstants._fieldDelimiter.ToString(), XValues)}";
+        }
+
+        internal string ToStringVcardThree()
+        {
+            return
+                $"{VcardConstants._xSpecifier}" +
+                $"{XKeyName}{(XKeyTypes.Length > 0 ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter)}" +
+                $"{(XKeyTypes.Length > 0 ? string.Join(VcardConstants._fieldDelimiter.ToString(), XKeyTypes) + VcardConstants._argumentDelimiter : "")}" +
+                $"{string.Join(VcardConstants._fieldDelimiter.ToString(), XValues)}";
+        }
+
+        internal string ToStringVcardFour()
+        {
+            bool installAltId = AltId > 0;
+            bool installType = installAltId || XKeyTypes.Length > 0;
+            return
+                $"{VcardConstants._xSpecifier}" +
+                $"{XKeyName}{(installType ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter)}" +
+                $"{(installAltId ? "ALTID=" + AltId + VcardConstants._fieldDelimiter : "")}" +
+                $"{(XKeyTypes.Length > 0 ? string.Join(VcardConstants._fieldDelimiter.ToString(), XKeyTypes) + VcardConstants._argumentDelimiter : "")}" +
+                $"{string.Join(VcardConstants._fieldDelimiter.ToString(), XValues)}";
         }
 
         internal XNameInfo() { }

@@ -25,7 +25,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using VisualCard.Parsers;
 
 namespace VisualCard.Parts
 {
@@ -82,6 +84,30 @@ namespace VisualCard.Parts
             hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(AltArguments);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactRole);
             return hashCode;
+        }
+
+        internal string ToStringVcardTwo()
+        {
+            return
+                $"{VcardConstants._roleSpecifier}" +
+                $"{ContactRole}";
+        }
+
+        internal string ToStringVcardThree()
+        {
+            return
+                $"{VcardConstants._roleSpecifier}" +
+                $"{ContactRole}";
+        }
+
+        internal string ToStringVcardFour()
+        {
+            bool installAltId = AltId > 0 && AltArguments.Length > 0;
+            return
+                $"{(installAltId ? VcardConstants._roleSpecifierWithType : VcardConstants._roleSpecifier)}" +
+                $"{(installAltId ? "ALTID=" + AltId + VcardConstants._fieldDelimiter : "")}" +
+                $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._argumentDelimiter : "")}" +
+                $"{ContactRole}";
         }
 
         internal RoleInfo() { }

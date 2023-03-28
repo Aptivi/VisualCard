@@ -26,6 +26,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
+using VisualCard.Parsers;
 
 namespace VisualCard.Parts
 {
@@ -106,6 +108,51 @@ namespace VisualCard.Parts
             hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(Prefixes);
             hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(Suffixes);
             return hashCode;
+        }
+
+        internal string ToStringVcardTwo()
+        {
+            string altNamesStr = string.Join(VcardConstants._valueDelimiter.ToString(), AltNames);
+            string prefixesStr = string.Join(VcardConstants._valueDelimiter.ToString(), Prefixes);
+            string suffixesStr = string.Join(VcardConstants._valueDelimiter.ToString(), Suffixes);
+            return
+                $"{VcardConstants._nameSpecifier}" +
+                $"{ContactLastName}{VcardConstants._fieldDelimiter}" +
+                $"{ContactFirstName}{VcardConstants._fieldDelimiter}" +
+                $"{altNamesStr}{VcardConstants._fieldDelimiter}" +
+                $"{prefixesStr}{VcardConstants._fieldDelimiter}" +
+                $"{suffixesStr}{VcardConstants._fieldDelimiter}";
+        }
+
+        internal string ToStringVcardThree()
+        {
+            string altNamesStr = string.Join(VcardConstants._valueDelimiter.ToString(), AltNames);
+            string prefixesStr = string.Join(VcardConstants._valueDelimiter.ToString(), Prefixes);
+            string suffixesStr = string.Join(VcardConstants._valueDelimiter.ToString(), Suffixes);
+            return
+                $"{VcardConstants._nameSpecifier}" +
+                $"{ContactLastName}{VcardConstants._fieldDelimiter}" +
+                $"{ContactFirstName}{VcardConstants._fieldDelimiter}" +
+                $"{altNamesStr}{VcardConstants._fieldDelimiter}" +
+                $"{prefixesStr}{VcardConstants._fieldDelimiter}" +
+                $"{suffixesStr}{VcardConstants._fieldDelimiter}";
+        }
+
+        internal string ToStringVcardFour()
+        {
+            bool installAltId = AltId > 0 && AltArguments.Length > 0;
+            string altNamesStr = string.Join(VcardConstants._valueDelimiter.ToString(), AltNames);
+            string prefixesStr = string.Join(VcardConstants._valueDelimiter.ToString(), Prefixes);
+            string suffixesStr = string.Join(VcardConstants._valueDelimiter.ToString(), Suffixes);
+            return
+                $"{(installAltId ? VcardConstants._nameSpecifierWithType : VcardConstants._nameSpecifier)}" +
+                $"{(installAltId ? "ALTID=" + AltId + VcardConstants._fieldDelimiter : "")}" +
+                $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._argumentDelimiter : "")}" +
+                $"{ContactLastName}{VcardConstants._fieldDelimiter}" +
+                $"{ContactFirstName}{VcardConstants._fieldDelimiter}" +
+                $"{altNamesStr}{VcardConstants._fieldDelimiter}" +
+                $"{prefixesStr}{VcardConstants._fieldDelimiter}" +
+                $"{suffixesStr}{VcardConstants._fieldDelimiter}";
         }
 
         internal NameInfo() { }

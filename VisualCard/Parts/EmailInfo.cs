@@ -26,6 +26,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
+using VisualCard.Parsers;
 
 namespace VisualCard.Parts
 {
@@ -87,6 +89,32 @@ namespace VisualCard.Parts
             hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(ContactEmailTypes);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactEmailAddress);
             return hashCode;
+        }
+
+        internal string ToStringVcardTwo()
+        {
+            return
+                $"{VcardConstants._emailSpecifier}" +
+                $"TYPE={string.Join(",", ContactEmailTypes)}{VcardConstants._argumentDelimiter}" +
+                $"{ContactEmailAddress}";
+        }
+
+        internal string ToStringVcardThree()
+        {
+            return
+                $"{VcardConstants._emailSpecifier}" +
+                $"TYPE={string.Join(",", ContactEmailTypes)}{VcardConstants._argumentDelimiter}" +
+                $"{ContactEmailAddress}";
+        }
+
+        internal string ToStringVcardFour()
+        {
+            bool installAltId = AltId > 0 && AltArguments.Length > 0;
+            return
+                $"{VcardConstants._emailSpecifier}" +
+                $"{(installAltId ? "ALTID=" + AltId + VcardConstants._fieldDelimiter : "")}" +
+                $"TYPE={string.Join(",", ContactEmailTypes)}{VcardConstants._argumentDelimiter}" +
+                $"{ContactEmailAddress}";
         }
 
         internal EmailInfo() { }

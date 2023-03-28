@@ -26,6 +26,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using VisualCard.Parsers;
 
 namespace VisualCard.Parts
 {
@@ -88,6 +89,32 @@ namespace VisualCard.Parts
             hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(ContactPhoneTypes);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactPhoneNumber);
             return hashCode;
+        }
+
+        internal string ToStringVcardTwo()
+        {
+            return
+                $"{VcardConstants._telephoneSpecifierWithType}" +
+                $"TYPE={string.Join(",", ContactPhoneTypes)}{VcardConstants._argumentDelimiter}" +
+                $"{ContactPhoneNumber}";
+        }
+
+        internal string ToStringVcardThree()
+        {
+            return
+                $"{VcardConstants._telephoneSpecifierWithType}" +
+                $"TYPE={string.Join(",", ContactPhoneTypes)}{VcardConstants._argumentDelimiter}" +
+                $"{ContactPhoneNumber}";
+        }
+
+        internal string ToStringVcardFour()
+        {
+            bool installAltId = AltId > 0 && AltArguments.Length > 0;
+            return
+                $"{VcardConstants._telephoneSpecifierWithType}" +
+                $"{(installAltId ? "ALTID=" + AltId + VcardConstants._fieldDelimiter : "")}" +
+                $"TYPE={string.Join(",", ContactPhoneTypes)}{VcardConstants._argumentDelimiter}" +
+                $"{ContactPhoneNumber}";
         }
 
         internal TelephoneInfo() { }

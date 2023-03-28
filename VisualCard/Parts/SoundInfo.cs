@@ -26,6 +26,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using VisualCard.Parsers;
+using VisualCard.Parsers.Four;
+using VisualCard.Parsers.Three;
+using VisualCard.Parsers.Two;
 
 namespace VisualCard.Parts
 {
@@ -100,6 +104,71 @@ namespace VisualCard.Parts
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(SoundType);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(SoundEncoded);
             return hashCode;
+        }
+
+        internal string ToStringVcardTwo()
+        {
+            if (ValueType == "uri" || ValueType == "url")
+            {
+                return
+                    $"{VcardConstants._soundSpecifierWithType}" +
+                    $"VALUE={ValueType}{VcardConstants._argumentDelimiter}" +
+                    $"{SoundEncoded}";
+            }
+            else
+            {
+                string soundArgsLine =
+                    $"{VcardConstants._soundSpecifierWithType}" +
+                    $"VALUE={ValueType}{VcardConstants._fieldDelimiter}" +
+                    $"ENCODING={Encoding}{VcardConstants._fieldDelimiter}" +
+                    $"TYPE={SoundType}{VcardConstants._argumentDelimiter}";
+                return soundArgsLine + BaseVcardParser.MakeStringBlock(SoundEncoded, soundArgsLine.Length);
+            }
+        }
+
+        internal string ToStringVcardThree()
+        {
+            if (ValueType == "uri" || ValueType == "url")
+            {
+                return
+                    $"{VcardConstants._soundSpecifierWithType}" +
+                    $"VALUE={ValueType}{VcardConstants._argumentDelimiter}" +
+                    $"{SoundEncoded}";
+            }
+            else
+            {
+                string soundArgsLine =
+                    $"{VcardConstants._soundSpecifierWithType}" +
+                    $"VALUE={ValueType}{VcardConstants._fieldDelimiter}" +
+                    $"ENCODING={Encoding}{VcardConstants._fieldDelimiter}" +
+                    $"TYPE={SoundType}{VcardConstants._argumentDelimiter}";
+                return soundArgsLine + BaseVcardParser.MakeStringBlock(SoundEncoded, soundArgsLine.Length);
+            }
+        }
+
+        internal string ToStringVcardFour()
+        {
+            bool installAltId = AltId > 0 && AltArguments.Length > 0;
+            if (ValueType == "uri" || ValueType == "url")
+            {
+                return
+                    $"{VcardConstants._soundSpecifierWithType}" +
+                    $"{(installAltId ? "ALTID=" + AltId + VcardConstants._fieldDelimiter : "")}" +
+                    $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._fieldDelimiter : "")}" +
+                    $"VALUE={ValueType}{VcardConstants._argumentDelimiter}" +
+                    $"{SoundEncoded}";
+            }
+            else
+            {
+                string soundArgsLine =
+                    $"{VcardConstants._soundSpecifierWithType}" +
+                    $"{(installAltId ? "ALTID=" + AltId + VcardConstants._fieldDelimiter : "")}" +
+                    $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._fieldDelimiter : "")}" +
+                    $"VALUE={ValueType}{VcardConstants._fieldDelimiter}" +
+                    $"ENCODING={Encoding}{VcardConstants._fieldDelimiter}" +
+                    $"TYPE={SoundType}{VcardConstants._argumentDelimiter}";
+                return soundArgsLine + BaseVcardParser.MakeStringBlock(SoundEncoded, soundArgsLine.Length);
+            }
         }
 
         internal SoundInfo() { }

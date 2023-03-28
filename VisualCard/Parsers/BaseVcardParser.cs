@@ -23,6 +23,7 @@
  * 
  */
 
+using System.Text;
 using VisualCard.Parts;
 
 namespace VisualCard.Parsers
@@ -35,5 +36,29 @@ namespace VisualCard.Parsers
         public abstract Card Parse();
         internal abstract string SaveToString(Card card);
         internal abstract void SaveTo(string path, Card card);
+
+        internal static string MakeStringBlock(string target, int firstLength)
+        {
+            const int maxChars = 74;
+            int maxCharsFirst = maxChars - firstLength;
+
+            // Construct the block
+            StringBuilder block = new();
+            int selectedMax = maxCharsFirst;
+            int processed = 0;
+            for (int currCharNum = 0; currCharNum < target.Length; currCharNum++)
+            {
+                block.Append(target[currCharNum]);
+                processed++;
+                if (processed >= selectedMax)
+                {
+                    // Append a new line because we reached the maximum limit
+                    selectedMax = maxChars;
+                    processed = 0;
+                    block.Append("\n ");
+                }
+            }
+            return block.ToString();
+        }
     }
 }

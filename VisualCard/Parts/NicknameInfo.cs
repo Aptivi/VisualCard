@@ -26,6 +26,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using VisualCard.Parsers;
 
 namespace VisualCard.Parts
 {
@@ -88,6 +89,30 @@ namespace VisualCard.Parts
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactNickname);
             hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(NicknameTypes);
             return hashCode;
+        }
+
+        internal string ToStringVcardTwo()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal string ToStringVcardThree()
+        {
+            return
+                $"{VcardConstants._nicknameSpecifierWithType}" +
+                $"TYPE={string.Join(",", NicknameTypes)}{VcardConstants._argumentDelimiter}" +
+                $"{ContactNickname}";
+        }
+
+        internal string ToStringVcardFour()
+        {
+            bool installAltId = AltId > 0 && AltArguments.Length > 0;
+            return
+                $"{(installAltId ? VcardConstants._nicknameSpecifierWithType : VcardConstants._nicknameSpecifier)}" +
+                $"{(installAltId ? "ALTID=" + AltId + VcardConstants._fieldDelimiter : "")}" +
+                $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._fieldDelimiter : "")}" +
+                $"TYPE={string.Join(",", NicknameTypes)}{VcardConstants._argumentDelimiter}" +
+                $"{ContactNickname}";
         }
 
         internal NicknameInfo() { }
