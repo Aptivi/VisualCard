@@ -40,7 +40,7 @@ namespace VisualCard.Parsers
         internal static string MakeStringBlock(string target, int firstLength)
         {
             const int maxChars = 74;
-            int maxCharsFirst = maxChars - firstLength;
+            int maxCharsFirst = maxChars - firstLength + 1;
 
             // Construct the block
             StringBuilder block = new();
