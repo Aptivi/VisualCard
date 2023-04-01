@@ -58,6 +58,7 @@ namespace VisualCard.Parsers
         internal const string _xSpecifier = "X-";
         internal const string _typeArgumentSpecifier = "TYPE=";
         internal const string _valueArgumentSpecifier = "VALUE=";
+        internal const string _encodingArgumentSpecifier = "ENCODING=";
 
         // Available in vCard 3.0 and vCard 4.0
         internal const string _nicknameSpecifier = "NICKNAME:";
