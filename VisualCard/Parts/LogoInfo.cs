@@ -112,16 +112,16 @@ namespace VisualCard.Parts
             {
                 return
                     $"{VcardConstants._logoSpecifierWithType}" +
-                    $"VALUE={ValueType}{VcardConstants._argumentDelimiter}" +
+                    $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._argumentDelimiter}" +
                     $"{LogoEncoded}";
             }
             else
             {
                 string logoArgsLine =
                     $"{VcardConstants._logoSpecifierWithType}" +
-                    $"VALUE={ValueType}{VcardConstants._fieldDelimiter}" +
-                    $"ENCODING={Encoding}{VcardConstants._fieldDelimiter}" +
-                    $"TYPE={LogoType}{VcardConstants._argumentDelimiter}";
+                    $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._fieldDelimiter}" +
+                    $"{VcardConstants._encodingArgumentSpecifier}{Encoding}{VcardConstants._fieldDelimiter}" +
+                    $"{VcardConstants._typeArgumentSpecifier}{LogoType}{VcardConstants._argumentDelimiter}";
                 return logoArgsLine + BaseVcardParser.MakeStringBlock(LogoEncoded, logoArgsLine.Length);
             }
         }
@@ -132,16 +132,16 @@ namespace VisualCard.Parts
             {
                 return
                     $"{VcardConstants._logoSpecifierWithType}" +
-                    $"VALUE={ValueType}{VcardConstants._argumentDelimiter}" +
+                    $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._argumentDelimiter}" +
                     $"{LogoEncoded}";
             }
             else
             {
                 string logoArgsLine =
                     $"{VcardConstants._logoSpecifierWithType}" +
-                    $"VALUE={ValueType}{VcardConstants._fieldDelimiter}" +
-                    $"ENCODING={Encoding}{VcardConstants._fieldDelimiter}" +
-                    $"TYPE={LogoType}{VcardConstants._argumentDelimiter}";
+                    $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._fieldDelimiter}" +
+                    $"{VcardConstants._encodingArgumentSpecifier}{Encoding}{VcardConstants._fieldDelimiter}" +
+                    $"{VcardConstants._typeArgumentSpecifier}{LogoType}{VcardConstants._argumentDelimiter}";
                 return logoArgsLine + BaseVcardParser.MakeStringBlock(LogoEncoded, logoArgsLine.Length);
             }
         }
@@ -153,20 +153,20 @@ namespace VisualCard.Parts
             {
                 return
                     $"{VcardConstants._logoSpecifierWithType}" +
-                    $"{(installAltId ? "ALTID=" + AltId + VcardConstants._fieldDelimiter : "")}" +
+                    $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
                     $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._fieldDelimiter : "")}" +
-                    $"VALUE={ValueType}{VcardConstants._argumentDelimiter}" +
+                    $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._argumentDelimiter}" +
                     $"{LogoEncoded}";
             }
             else
             {
                 string logoArgsLine =
                     $"{VcardConstants._logoSpecifierWithType}" +
-                    $"{(installAltId ? "ALTID=" + AltId + VcardConstants._fieldDelimiter : "")}" +
+                    $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
                     $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._fieldDelimiter : "")}" +
-                    $"VALUE={ValueType}{VcardConstants._fieldDelimiter}" +
-                    $"ENCODING={Encoding}{VcardConstants._fieldDelimiter}" +
-                    $"TYPE={LogoType}{VcardConstants._argumentDelimiter}";
+                    $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._fieldDelimiter}" +
+                    $"{VcardConstants._encodingArgumentSpecifier}{Encoding}{VcardConstants._fieldDelimiter}" +
+                    $"{VcardConstants._typeArgumentSpecifier}{LogoType}{VcardConstants._argumentDelimiter}";
                 return logoArgsLine + BaseVcardParser.MakeStringBlock(LogoEncoded, logoArgsLine.Length);
             }
         }

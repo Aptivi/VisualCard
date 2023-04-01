@@ -108,7 +108,7 @@ namespace VisualCard.Parts
             bool installType = OrgTypes.Length > 0 && OrgTypes[0].ToUpper() != "WORK";
             return
                 $"{(installType ? VcardConstants._orgSpecifierWithType : VcardConstants._orgSpecifier)}" +
-                $"{(installType ? $"TYPE={string.Join(",", OrgTypes)}{VcardConstants._argumentDelimiter}" : "")}" +
+                $"{(installType ? $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", OrgTypes)}{VcardConstants._argumentDelimiter}" : "")}" +
                 $"{Name}{VcardConstants._fieldDelimiter}" +
                 $"{Unit}{VcardConstants._fieldDelimiter}" +
                 $"{Role}";
@@ -119,7 +119,7 @@ namespace VisualCard.Parts
             bool installType = OrgTypes.Length > 0 && OrgTypes[0].ToUpper() != "WORK";
             return
                 $"{(installType ? VcardConstants._orgSpecifierWithType : VcardConstants._orgSpecifier)}" +
-                $"{(installType ? $"TYPE={string.Join(",", OrgTypes)}{VcardConstants._argumentDelimiter}" : "")}" +
+                $"{(installType ? $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", OrgTypes)}{VcardConstants._argumentDelimiter}" : "")}" +
                 $"{Name}{VcardConstants._fieldDelimiter}" +
                 $"{Unit}{VcardConstants._fieldDelimiter}" +
                 $"{Role}";
@@ -131,8 +131,8 @@ namespace VisualCard.Parts
             bool installType = (installAltId || OrgTypes.Length > 0) && OrgTypes[0].ToUpper() != "WORK";
             return
                 $"{(installType ? VcardConstants._orgSpecifierWithType : VcardConstants._orgSpecifier)}" +
-                $"{(installAltId ? "ALTID=" + AltId + (installType ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter) : "")}" +
-                $"{(installType ? $"TYPE={string.Join(",", OrgTypes)}{VcardConstants._argumentDelimiter}" : "")}" +
+                $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + (installType ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter) : "")}" +
+                $"{(installType ? $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", OrgTypes)}{VcardConstants._argumentDelimiter}" : "")}" +
                 $"{Name}{VcardConstants._fieldDelimiter}" +
                 $"{Unit}{VcardConstants._fieldDelimiter}" +
                 $"{Role}";

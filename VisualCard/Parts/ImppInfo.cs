@@ -95,7 +95,7 @@ namespace VisualCard.Parts
         {
             return
                 $"{VcardConstants._imppSpecifierWithType}" +
-                $"TYPE={string.Join(",", ImppTypes)}{VcardConstants._argumentDelimiter}" +
+                $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", ImppTypes)}{VcardConstants._argumentDelimiter}" +
                 $"{ContactIMPP}";
         }
 
@@ -103,7 +103,7 @@ namespace VisualCard.Parts
         {
             return
                 $"{VcardConstants._imppSpecifierWithType}" +
-                $"TYPE={string.Join(",", ImppTypes)}{VcardConstants._argumentDelimiter}" +
+                $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", ImppTypes)}{VcardConstants._argumentDelimiter}" +
                 $"{ContactIMPP}";
         }
 
@@ -112,7 +112,7 @@ namespace VisualCard.Parts
             bool installAltId = AltId >= 0 && AltArguments.Length > 0;
             return
                 $"{(installAltId ? VcardConstants._imppSpecifierWithType : VcardConstants._imppSpecifier)}" +
-                $"{(installAltId ? "ALTID=" + AltId + VcardConstants._fieldDelimiter : "")}" +
+                $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
                 $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._argumentDelimiter : "")}" +
                 $"{ContactIMPP}";
         }

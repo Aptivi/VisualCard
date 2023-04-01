@@ -100,7 +100,7 @@ namespace VisualCard.Parts
         {
             return
                 $"{VcardConstants._nicknameSpecifierWithType}" +
-                $"TYPE={string.Join(",", NicknameTypes)}{VcardConstants._argumentDelimiter}" +
+                $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", NicknameTypes)}{VcardConstants._argumentDelimiter}" +
                 $"{ContactNickname}";
         }
 
@@ -109,9 +109,9 @@ namespace VisualCard.Parts
             bool installAltId = AltId >= 0 && AltArguments.Length > 0;
             return
                 $"{(installAltId ? VcardConstants._nicknameSpecifierWithType : VcardConstants._nicknameSpecifier)}" +
-                $"{(installAltId ? "ALTID=" + AltId + VcardConstants._fieldDelimiter : "")}" +
+                $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
                 $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._fieldDelimiter : "")}" +
-                $"TYPE={string.Join(",", NicknameTypes)}{VcardConstants._argumentDelimiter}" +
+                $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", NicknameTypes)}{VcardConstants._argumentDelimiter}" +
                 $"{ContactNickname}";
         }
 

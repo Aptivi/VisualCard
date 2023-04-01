@@ -146,7 +146,7 @@ namespace VisualCard.Parts
             string suffixesStr = string.Join(VcardConstants._valueDelimiter.ToString(), Suffixes);
             return
                 $"{(installAltId ? VcardConstants._nameSpecifierWithType : VcardConstants._nameSpecifier)}" +
-                $"{(installAltId ? "ALTID=" + AltId + VcardConstants._fieldDelimiter : "")}" +
+                $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
                 $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._argumentDelimiter : "")}" +
                 $"{ContactLastName}{VcardConstants._fieldDelimiter}" +
                 $"{ContactFirstName}{VcardConstants._fieldDelimiter}" +

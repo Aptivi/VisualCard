@@ -112,16 +112,16 @@ namespace VisualCard.Parts
             {
                 return
                     $"{VcardConstants._photoSpecifierWithType}" +
-                    $"VALUE={ValueType}{VcardConstants._argumentDelimiter}" +
+                    $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._argumentDelimiter}" +
                     $"{PhotoEncoded}";
             }
             else
             {
                 string photoArgsLine =
                     $"{VcardConstants._photoSpecifierWithType}" +
-                    $"VALUE={ValueType}{VcardConstants._fieldDelimiter}" +
-                    $"ENCODING={Encoding}{VcardConstants._fieldDelimiter}" +
-                    $"TYPE={PhotoType}{VcardConstants._argumentDelimiter}";
+                    $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._fieldDelimiter}" +
+                    $"{VcardConstants._encodingArgumentSpecifier}{Encoding}{VcardConstants._fieldDelimiter}" +
+                    $"{VcardConstants._typeArgumentSpecifier}{PhotoType}{VcardConstants._argumentDelimiter}";
                 return photoArgsLine + BaseVcardParser.MakeStringBlock(PhotoEncoded, photoArgsLine.Length);
             }
         }
@@ -132,16 +132,16 @@ namespace VisualCard.Parts
             {
                 return
                     $"{VcardConstants._photoSpecifierWithType}" +
-                    $"VALUE={ValueType}{VcardConstants._argumentDelimiter}" +
+                    $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._argumentDelimiter}" +
                     $"{PhotoEncoded}";
             }
             else
             {
                 string photoArgsLine =
                     $"{VcardConstants._photoSpecifierWithType}" +
-                    $"VALUE={ValueType}{VcardConstants._fieldDelimiter}" +
-                    $"ENCODING={Encoding}{VcardConstants._fieldDelimiter}" +
-                    $"TYPE={PhotoType}{VcardConstants._argumentDelimiter}";
+                    $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._fieldDelimiter}" +
+                    $"{VcardConstants._encodingArgumentSpecifier}{Encoding}{VcardConstants._fieldDelimiter}" +
+                    $"{VcardConstants._typeArgumentSpecifier}{PhotoType}{VcardConstants._argumentDelimiter}";
                 return photoArgsLine + BaseVcardParser.MakeStringBlock(PhotoEncoded, photoArgsLine.Length);
             }
         }
@@ -153,20 +153,20 @@ namespace VisualCard.Parts
             {
                 return
                     $"{VcardConstants._photoSpecifierWithType}" +
-                    $"{(installAltId ? "ALTID=" + AltId + VcardConstants._fieldDelimiter : "")}" +
+                    $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
                     $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._fieldDelimiter : "")}" +
-                    $"VALUE={ValueType}{VcardConstants._argumentDelimiter}" +
+                    $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._argumentDelimiter}" +
                     $"{PhotoEncoded}";
             }
             else
             {
                 string photoArgsLine =
                     $"{VcardConstants._photoSpecifierWithType}" +
-                    $"{(installAltId ? "ALTID=" + AltId + VcardConstants._fieldDelimiter : "")}" +
+                    $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
                     $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._fieldDelimiter : "")}" +
-                    $"VALUE={ValueType}{VcardConstants._fieldDelimiter}" +
-                    $"ENCODING={Encoding}{VcardConstants._fieldDelimiter}" +
-                    $"TYPE={PhotoType}{VcardConstants._argumentDelimiter}";
+                    $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._fieldDelimiter}" +
+                    $"{VcardConstants._encodingArgumentSpecifier}{Encoding}{VcardConstants._fieldDelimiter}" +
+                    $"{VcardConstants._typeArgumentSpecifier}{PhotoType}{VcardConstants._argumentDelimiter}";
                 return photoArgsLine + BaseVcardParser.MakeStringBlock(PhotoEncoded, photoArgsLine.Length);
             }
         }

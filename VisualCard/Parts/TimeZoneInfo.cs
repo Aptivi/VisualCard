@@ -110,7 +110,7 @@ namespace VisualCard.Parts
             bool installAltId = AltId >= 0 && AltArguments.Length > 0;
             return
                 $"{(installAltId ? VcardConstants._timeZoneSpecifierWithType : VcardConstants._timeZoneSpecifier)}" +
-                $"{(installAltId ? "ALTID=" + AltId + VcardConstants._fieldDelimiter : "")}" +
+                $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
                 $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._argumentDelimiter : "")}" +
                 $"{TimeZone}";
         }

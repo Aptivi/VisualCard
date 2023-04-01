@@ -95,7 +95,7 @@ namespace VisualCard.Parts
         {
             return
                 $"{VcardConstants._emailSpecifier}" +
-                $"TYPE={string.Join(",", ContactEmailTypes)}{VcardConstants._argumentDelimiter}" +
+                $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", ContactEmailTypes)}{VcardConstants._argumentDelimiter}" +
                 $"{ContactEmailAddress}";
         }
 
@@ -103,7 +103,7 @@ namespace VisualCard.Parts
         {
             return
                 $"{VcardConstants._emailSpecifier}" +
-                $"TYPE={string.Join(",", ContactEmailTypes)}{VcardConstants._argumentDelimiter}" +
+                $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", ContactEmailTypes)}{VcardConstants._argumentDelimiter}" +
                 $"{ContactEmailAddress}";
         }
 
@@ -112,8 +112,8 @@ namespace VisualCard.Parts
             bool installAltId = AltId >= 0 && AltArguments.Length > 0;
             return
                 $"{VcardConstants._emailSpecifier}" +
-                $"{(installAltId ? "ALTID=" + AltId + VcardConstants._fieldDelimiter : "")}" +
-                $"TYPE={string.Join(",", ContactEmailTypes)}{VcardConstants._argumentDelimiter}" +
+                $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
+                $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", ContactEmailTypes)}{VcardConstants._argumentDelimiter}" +
                 $"{ContactEmailAddress}";
         }
 

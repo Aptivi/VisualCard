@@ -133,7 +133,7 @@ namespace VisualCard.Parts
         {
             return
                 $"{VcardConstants._addressSpecifierWithType}" +
-                $"TYPE={string.Join(",", AddressTypes)}{VcardConstants._argumentDelimiter}" +
+                $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", AddressTypes)}{VcardConstants._argumentDelimiter}" +
                 $"{PostOfficeBox}{VcardConstants._fieldDelimiter}" +
                 $"{ExtendedAddress}{VcardConstants._fieldDelimiter}" +
                 $"{StreetAddress}{VcardConstants._fieldDelimiter}" +
@@ -147,7 +147,7 @@ namespace VisualCard.Parts
         {
             return
                 $"{VcardConstants._addressSpecifierWithType}" +
-                $"TYPE={string.Join(",", AddressTypes)}{VcardConstants._argumentDelimiter}" +
+                $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", AddressTypes)}{VcardConstants._argumentDelimiter}" +
                 $"{PostOfficeBox}{VcardConstants._fieldDelimiter}" +
                 $"{ExtendedAddress}{VcardConstants._fieldDelimiter}" +
                 $"{StreetAddress}{VcardConstants._fieldDelimiter}" +
@@ -162,8 +162,8 @@ namespace VisualCard.Parts
             bool installAltId = AltId >= 0 && AltArguments.Length > 0;
             return
                 $"{VcardConstants._addressSpecifierWithType}" +
-                $"{(installAltId ? "ALTID=" + AltId + VcardConstants._fieldDelimiter : "")}" +
-                $"TYPE={string.Join(",", AddressTypes)}{VcardConstants._argumentDelimiter}" +
+                $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
+                $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", AddressTypes)}{VcardConstants._argumentDelimiter}" +
                 $"{PostOfficeBox}{VcardConstants._fieldDelimiter}" +
                 $"{ExtendedAddress}{VcardConstants._fieldDelimiter}" +
                 $"{StreetAddress}{VcardConstants._fieldDelimiter}" +

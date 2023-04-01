@@ -112,16 +112,16 @@ namespace VisualCard.Parts
             {
                 return
                     $"{VcardConstants._soundSpecifierWithType}" +
-                    $"VALUE={ValueType}{VcardConstants._argumentDelimiter}" +
+                    $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._argumentDelimiter}" +
                     $"{SoundEncoded}";
             }
             else
             {
                 string soundArgsLine =
                     $"{VcardConstants._soundSpecifierWithType}" +
-                    $"VALUE={ValueType}{VcardConstants._fieldDelimiter}" +
-                    $"ENCODING={Encoding}{VcardConstants._fieldDelimiter}" +
-                    $"TYPE={SoundType}{VcardConstants._argumentDelimiter}";
+                    $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._fieldDelimiter}" +
+                    $"{VcardConstants._encodingArgumentSpecifier}{Encoding}{VcardConstants._fieldDelimiter}" +
+                    $"{VcardConstants._typeArgumentSpecifier}{SoundType}{VcardConstants._argumentDelimiter}";
                 return soundArgsLine + BaseVcardParser.MakeStringBlock(SoundEncoded, soundArgsLine.Length);
             }
         }
@@ -132,16 +132,16 @@ namespace VisualCard.Parts
             {
                 return
                     $"{VcardConstants._soundSpecifierWithType}" +
-                    $"VALUE={ValueType}{VcardConstants._argumentDelimiter}" +
+                    $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._argumentDelimiter}" +
                     $"{SoundEncoded}";
             }
             else
             {
                 string soundArgsLine =
                     $"{VcardConstants._soundSpecifierWithType}" +
-                    $"VALUE={ValueType}{VcardConstants._fieldDelimiter}" +
-                    $"ENCODING={Encoding}{VcardConstants._fieldDelimiter}" +
-                    $"TYPE={SoundType}{VcardConstants._argumentDelimiter}";
+                    $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._fieldDelimiter}" +
+                    $"{VcardConstants._encodingArgumentSpecifier}{Encoding}{VcardConstants._fieldDelimiter}" +
+                    $"{VcardConstants._typeArgumentSpecifier}{SoundType}{VcardConstants._argumentDelimiter}";
                 return soundArgsLine + BaseVcardParser.MakeStringBlock(SoundEncoded, soundArgsLine.Length);
             }
         }
@@ -153,20 +153,20 @@ namespace VisualCard.Parts
             {
                 return
                     $"{VcardConstants._soundSpecifierWithType}" +
-                    $"{(installAltId ? "ALTID=" + AltId + VcardConstants._fieldDelimiter : "")}" +
+                    $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
                     $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._fieldDelimiter : "")}" +
-                    $"VALUE={ValueType}{VcardConstants._argumentDelimiter}" +
+                    $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._argumentDelimiter}" +
                     $"{SoundEncoded}";
             }
             else
             {
                 string soundArgsLine =
                     $"{VcardConstants._soundSpecifierWithType}" +
-                    $"{(installAltId ? "ALTID=" + AltId + VcardConstants._fieldDelimiter : "")}" +
+                    $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
                     $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._fieldDelimiter : "")}" +
-                    $"VALUE={ValueType}{VcardConstants._fieldDelimiter}" +
-                    $"ENCODING={Encoding}{VcardConstants._fieldDelimiter}" +
-                    $"TYPE={SoundType}{VcardConstants._argumentDelimiter}";
+                    $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._fieldDelimiter}" +
+                    $"{VcardConstants._encodingArgumentSpecifier}{Encoding}{VcardConstants._fieldDelimiter}" +
+                    $"{VcardConstants._typeArgumentSpecifier}{SoundType}{VcardConstants._argumentDelimiter}";
                 return soundArgsLine + BaseVcardParser.MakeStringBlock(SoundEncoded, soundArgsLine.Length);
             }
         }
