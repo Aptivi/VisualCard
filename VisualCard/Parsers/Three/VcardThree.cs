@@ -313,7 +313,38 @@ namespace VisualCard.Parsers.Three
                 throw new InvalidDataException("The full name specifier, \"FN:\", is required.");
 
             // Make a new instance of the card
-            return new Card(this, CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), "individual", _photos.ToArray(), _rev, _nicks.ToArray(), _bday, _mailer, _roles.ToArray(), _categories.ToArray(), _logos.ToArray(), _prodId, _sortString, _timezones.ToArray(), _geos.ToArray(), _sounds.ToArray(), _impps.ToArray(), _source, "", "", "", "");
+            return new Card(this, CardVersion, "individual")
+            {
+                CardRevision = _rev,
+                ContactNames = _names.ToArray(),
+                ContactFullName = _fullName,
+                ContactTelephones = _telephones.ToArray(),
+                ContactAddresses = _addresses.ToArray(),
+                ContactOrganizations = _orgs.ToArray(),
+                ContactTitles = _titles.ToArray(),
+                ContactURL = _url,
+                ContactNotes = _note,
+                ContactMails = _emails.ToArray(),
+                ContactXNames = _xes.ToArray(),
+                ContactPhotos = _photos.ToArray(),
+                ContactNicknames = _nicks.ToArray(),
+                ContactBirthdate = _bday,
+                ContactMailer = _mailer,
+                ContactRoles = _roles.ToArray(),
+                ContactCategories = _categories.ToArray(),
+                ContactLogos = _logos.ToArray(),
+                ContactProdId = _prodId,
+                ContactSortString = _sortString,
+                ContactTimeZone = _timezones.ToArray(),
+                ContactGeo = _geos.ToArray(),
+                ContactSounds = _sounds.ToArray(),
+                ContactImpps = _impps.ToArray(),
+                ContactSource = _source,
+                ContactXml = "",
+                ContactFreeBusyUrl = "",
+                ContactCalendarUrl = "",
+                ContactCalendarSchedulingRequestUrl = ""
+            };
         }
 
         internal override string SaveToString(Card card)

@@ -37,127 +37,127 @@ namespace VisualCard.Parts
         /// <summary>
         /// The VCard version
         /// </summary>
-        public string CardVersion { get; }
+        public string CardVersion { get; } = "";
         /// <summary>
         /// The VCard kind (individual is the default)
         /// </summary>
-        public string CardKind { get; }
+        public string CardKind { get; } = "individual";
         /// <summary>
         /// The contact's names
         /// </summary>
-        public NameInfo[] ContactNames { get; set; }
+        public NameInfo[] ContactNames { get; set; } = Array.Empty<NameInfo>();
         /// <summary>
         /// The contact's full name
         /// </summary>
-        public string ContactFullName { get; set; }
+        public string ContactFullName { get; set; } = "";
         /// <summary>
         /// The contact's telephones
         /// </summary>
-        public TelephoneInfo[] ContactTelephones { get; set; }
+        public TelephoneInfo[] ContactTelephones { get; set; } = Array.Empty<TelephoneInfo>();
         /// <summary>
         /// The contact's addresses
         /// </summary>
-        public AddressInfo[] ContactAddresses { get; set; }
+        public AddressInfo[] ContactAddresses { get; set; } = Array.Empty<AddressInfo>();
         /// <summary>
         /// The contact's e-mails
         /// </summary>
-        public EmailInfo[] ContactMails { get; set; }
+        public EmailInfo[] ContactMails { get; set; } = Array.Empty<EmailInfo>();
         /// <summary>
         /// The contact's organizations
         /// </summary>
-        public OrganizationInfo[] ContactOrganizations { get; set; }
+        public OrganizationInfo[] ContactOrganizations { get; set; } = Array.Empty<OrganizationInfo>();
         /// <summary>
         /// The contact's titles
         /// </summary>
-        public TitleInfo[] ContactTitles { get; set; }
+        public TitleInfo[] ContactTitles { get; set; } = Array.Empty<TitleInfo>();
         /// <summary>
         /// The contact's URL
         /// </summary>
-        public string ContactURL { get; set; }
+        public string ContactURL { get; set; } = "";
         /// <summary>
         /// The contact's photos
         /// </summary>
-        public PhotoInfo[] ContactPhotos { get; set; }
+        public PhotoInfo[] ContactPhotos { get; set; } = Array.Empty<PhotoInfo>();
         /// <summary>
         /// The contact's notes
         /// </summary>
-        public string ContactNotes { get; set; }
+        public string ContactNotes { get; set; } = "";
         /// <summary>
         /// The contact's extended options (usually starts with X-SOMETHING:Value1;Value2...)
         /// </summary>
-        public XNameInfo[] ContactXNames { get; set; }
+        public XNameInfo[] ContactXNames { get; set; } = Array.Empty<XNameInfo>();
         /// <summary>
         /// The card revision
         /// </summary>
-        public DateTime? CardRevision { get; set; }
+        public DateTime? CardRevision { get; set; } = default(DateTime);
         /// <summary>
         /// The contact's nicknames
         /// </summary>
-        public NicknameInfo[] ContactNicknames { get; set; }
+        public NicknameInfo[] ContactNicknames { get; set; } = Array.Empty<NicknameInfo>();
         /// <summary>
         /// The contact's birthdate
         /// </summary>
-        public DateTime? ContactBirthdate { get; set; }
+        public DateTime? ContactBirthdate { get; set; } = default(DateTime);
         /// <summary>
         /// The contact's mailing software
         /// </summary>
-        public string ContactMailer { get; set; }
+        public string ContactMailer { get; set; } = "";
         /// <summary>
         /// The contact's roles
         /// </summary>
-        public RoleInfo[] ContactRoles { get; set; }
+        public RoleInfo[] ContactRoles { get; set; } = Array.Empty<RoleInfo>();
         /// <summary>
         /// The contact's categories
         /// </summary>
-        public string[] ContactCategories { get; set; }
+        public string[] ContactCategories { get; set; } = Array.Empty<string>();
         /// <summary>
         /// The contact's logos
         /// </summary>
-        public LogoInfo[] ContactLogos { get; set; }
+        public LogoInfo[] ContactLogos { get; set; } = Array.Empty<LogoInfo>();
         /// <summary>
         /// The contact's product ID
         /// </summary>
-        public string ContactProdId { get; set; }
+        public string ContactProdId { get; set; } = "";
         /// <summary>
         /// The contact's sort string
         /// </summary>
-        public string ContactSortString { get; set; }
+        public string ContactSortString { get; set; } = "";
         /// <summary>
         /// The contact's time zones
         /// </summary>
-        public TimeZoneInfo[] ContactTimeZone { get; set; }
+        public TimeZoneInfo[] ContactTimeZone { get; set; } = Array.Empty<TimeZoneInfo>();
         /// <summary>
         /// The contact's geographical coordinates in (lat;long)
         /// </summary>
-        public GeoInfo[] ContactGeo { get; set; }
+        public GeoInfo[] ContactGeo { get; set; } = Array.Empty<GeoInfo>();
         /// <summary>
         /// The contact's sounds
         /// </summary>
-        public SoundInfo[] ContactSounds { get; set; }
+        public SoundInfo[] ContactSounds { get; set; } = Array.Empty<SoundInfo>();
         /// <summary>
         /// The contact's IMPP information
         /// </summary>
-        public ImppInfo[] ContactImpps { get; set; }
+        public ImppInfo[] ContactImpps { get; set; } = Array.Empty<ImppInfo>();
         /// <summary>
         /// The contact's card source
         /// </summary>
-        public string ContactSource { get; set; }
+        public string ContactSource { get; set; } = "";
         /// <summary>
         /// The contact's XML code
         /// </summary>
-        public string ContactXml { get; set; }
+        public string ContactXml { get; set; } = "";
         /// <summary>
         /// The contact's free/busy indicator URL
         /// </summary>
-        public string ContactFreeBusyUrl { get; set; }
+        public string ContactFreeBusyUrl { get; set; } = "";
         /// <summary>
         /// The contact's calendar URL
         /// </summary>
-        public string ContactCalendarUrl { get; set; }
+        public string ContactCalendarUrl { get; set; } = "";
         /// <summary>
         /// The contact's calendar scheduling request URL
         /// </summary>
-        public string ContactCalendarSchedulingRequestUrl { get; set; }
+        public string ContactCalendarSchedulingRequestUrl { get; set; } = "";
 
         internal BaseVcardParser Parser => _parser;
 
@@ -222,7 +222,12 @@ namespace VisualCard.Parts
                 source.ContactBirthdate == target.ContactBirthdate &&
                 source.ContactMailer == target.ContactMailer &&
                 source.ContactProdId == target.ContactProdId &&
-                source.ContactSortString == target.ContactSortString
+                source.ContactSortString == target.ContactSortString &&
+                source.ContactSource == target.ContactSource &&
+                source.ContactXml == target.ContactXml &&
+                source.ContactFreeBusyUrl == target.ContactFreeBusyUrl &&
+                source.ContactCalendarUrl == target.ContactCalendarUrl &&
+                source.ContactCalendarSchedulingRequestUrl == target.ContactCalendarSchedulingRequestUrl
             ;
         }
 
@@ -267,40 +272,11 @@ namespace VisualCard.Parts
         public static bool operator !=(Card a, Card b)
             => !a.Equals(b);
 
-        internal Card(BaseVcardParser parser, string cardVersion, NameInfo[] contactNames, string contactFullName, TelephoneInfo[] contactTelephones, AddressInfo[] contactAddresses, OrganizationInfo[] contactOrganizations, TitleInfo[] contactTitles, string contactURL, string contactNotes, EmailInfo[] contactMails, XNameInfo[] contactXNames, string cardKind, PhotoInfo[] contactPhotos, DateTime cardRevision, NicknameInfo[] contactNicknames, DateTime? contactBirthdate, string contactMailer, RoleInfo[] contactRoles, string[] contactCategories, LogoInfo[] contactLogos, string contactProdId, string contactSortString, TimeZoneInfo[] contactTimeZone, GeoInfo[] contactGeo, SoundInfo[] contactSounds, ImppInfo[] contactImpps, string contactSource, string contactXml, string contactFreeBusyUrl, string contactCalendarUrl, string contactCalendarSchedulingRequestUrl)
+        internal Card(BaseVcardParser parser, string cardVersion, string cardKind = "individual")
         {
             _parser = parser;
             CardVersion = cardVersion;
-            ContactNames = contactNames;
-            ContactFullName = contactFullName;
-            ContactTelephones = contactTelephones;
-            ContactAddresses = contactAddresses;
-            ContactOrganizations = contactOrganizations;
-            ContactTitles = contactTitles;
-            ContactURL = contactURL;
-            ContactNotes = contactNotes;
-            ContactMails = contactMails;
-            ContactXNames = contactXNames;
             CardKind = cardKind;
-            ContactPhotos = contactPhotos;
-            CardRevision = cardRevision;
-            ContactNicknames = contactNicknames;
-            ContactBirthdate = contactBirthdate;
-            ContactMailer = contactMailer;
-            ContactRoles = contactRoles;
-            ContactCategories = contactCategories;
-            ContactLogos = contactLogos;
-            ContactProdId = contactProdId;
-            ContactSortString = contactSortString;
-            ContactTimeZone = contactTimeZone;
-            ContactGeo = contactGeo;
-            ContactSounds = contactSounds;
-            ContactImpps = contactImpps;
-            ContactSource = contactSource;
-            ContactXml = contactXml;
-            ContactFreeBusyUrl = contactFreeBusyUrl;
-            ContactCalendarUrl = contactCalendarUrl;
-            ContactCalendarSchedulingRequestUrl = contactCalendarSchedulingRequestUrl;
         }
     }
 }
