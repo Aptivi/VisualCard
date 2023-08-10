@@ -65,6 +65,7 @@ namespace VisualCard.Parsers.Three
             string _mailer = "";
             string _prodId = "";
             string _sortString = "";
+            string _source = "";
             DateTime _rev = DateTime.MinValue;
             DateTime _bday = DateTime.MinValue;
             List<NameInfo> _names = new();
@@ -281,6 +282,20 @@ namespace VisualCard.Parsers.Three
                     if (_value.StartsWith(VcardConstants._imppSpecifier))
                         _impps.Add(ImppInfo.FromStringVcardThree(_value));
 
+                    // Source (SOURCE:http://johndoe.com/vcard.vcf)
+                    if (_value.StartsWith(VcardConstants._sourceSpecifier))
+                    {
+                        // Get the value
+                        string sourceStringValue = _value.Substring(VcardConstants._sourceSpecifier.Length);
+
+                        // Try to parse the URL to ensure that it conforms to IETF RFC 1738: Uniform Resource Locators
+                        if (!Uri.TryCreate(sourceStringValue, UriKind.Absolute, out Uri uri))
+                            throw new InvalidDataException($"URL {sourceStringValue} is invalid");
+
+                        // Populate field
+                        _source = uri.ToString();
+                    }
+
                     // X-nonstandard (X-AIM:john.s or X-DL;Design Work Group:List Item 1;List Item 2;List Item 3)
                     if (_value.StartsWith(VcardConstants._xSpecifier))
                         _xes.Add(XNameInfo.FromStringVcardThree(_value));
@@ -298,7 +313,7 @@ namespace VisualCard.Parsers.Three
                 throw new InvalidDataException("The full name specifier, \"FN:\", is required.");
 
             // Make a new instance of the card
-            return new Card(this, CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), "individual", _photos.ToArray(), _rev, _nicks.ToArray(), _bday, _mailer, _roles.ToArray(), _categories.ToArray(), _logos.ToArray(), _prodId, _sortString, _timezones.ToArray(), _geos.ToArray(), _sounds.ToArray(), _impps.ToArray());
+            return new Card(this, CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), "individual", _photos.ToArray(), _rev, _nicks.ToArray(), _bday, _mailer, _roles.ToArray(), _categories.ToArray(), _logos.ToArray(), _prodId, _sortString, _timezones.ToArray(), _geos.ToArray(), _sounds.ToArray(), _impps.ToArray(), _source, "", "", "", "");
         }
 
         internal override string SaveToString(Card card)

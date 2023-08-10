@@ -66,6 +66,11 @@ namespace VisualCard.Parsers.Four
             string _note                    = "";
             string _prodId                  = "";
             string _sortString              = "";
+            string _source                  = "";
+            string _xml                     = "";
+            string _fbUrl                   = "";
+            string _calUri                  = "";
+            string _caladrUri               = "";
             DateTime _rev                   = DateTime.MinValue;
             DateTime _bday                  = DateTime.MinValue;
             List<NameInfo> _names           = new();
@@ -366,6 +371,77 @@ namespace VisualCard.Parsers.Four
                     if (_value.StartsWith(VcardConstants._imppSpecifier))
                         _impps.Add(ImppInfo.FromStringVcardFour(_value, altId));
 
+                    // Source (SOURCE:http://johndoe.com/vcard.vcf)
+                    // Here, we don't support ALTID.
+                    if (_value.StartsWith(VcardConstants._sourceSpecifier))
+                    {
+                        // Get the value
+                        string sourceStringValue = _value.Substring(VcardConstants._sourceSpecifier.Length);
+
+                        // Try to parse the URL to ensure that it conforms to IETF RFC 1738: Uniform Resource Locators
+                        if (!Uri.TryCreate(sourceStringValue, UriKind.Absolute, out Uri uri))
+                            throw new InvalidDataException($"URL {sourceStringValue} is invalid");
+
+                        // Populate field
+                        _source = uri.ToString();
+                    }
+
+                    // XML code (XML:<b>Not an xCard XML element</b>)
+                    // Here, we don't support ALTID.
+                    if (_value.StartsWith(VcardConstants._xmlSpecifier))
+                    {
+                        // Get the value
+                        string xmlStringValue = _value.Substring(VcardConstants._xmlSpecifier.Length);
+
+                        // Populate field
+                        _xml = Regex.Unescape(xmlStringValue);
+                    }
+
+                    // Free/busy URL (FBURL:http://example.com/fb/jdoe)
+                    // Here, we don't support ALTID.
+                    if (_value.StartsWith(VcardConstants._fbUrlSpecifier))
+                    {
+                        // Get the value
+                        string fbUrlStringValue = _value.Substring(VcardConstants._fbUrlSpecifier.Length);
+
+                        // Try to parse the URL to ensure that it conforms to IETF RFC 1738: Uniform Resource Locators
+                        if (!Uri.TryCreate(fbUrlStringValue, UriKind.Absolute, out Uri uri))
+                            throw new InvalidDataException($"URL {fbUrlStringValue} is invalid");
+
+                        // Populate field
+                        _fbUrl = uri.ToString();
+                    }
+
+                    // Calendar URL (CALURI:http://example.com/calendar/jdoe)
+                    // Here, we don't support ALTID.
+                    if (_value.StartsWith(VcardConstants._calUriSpecifier))
+                    {
+                        // Get the value
+                        string calUriStringValue = _value.Substring(VcardConstants._calUriSpecifier.Length);
+
+                        // Try to parse the URL to ensure that it conforms to IETF RFC 1738: Uniform Resource Locators
+                        if (!Uri.TryCreate(calUriStringValue, UriKind.Absolute, out Uri uri))
+                            throw new InvalidDataException($"URL {calUriStringValue} is invalid");
+
+                        // Populate field
+                        _calUri = uri.ToString();
+                    }
+
+                    // Calendar Request URL (CALADRURI:http://example.com/calendar/jdoe)
+                    // Here, we don't support ALTID.
+                    if (_value.StartsWith(VcardConstants._caladrUriSpecifier))
+                    {
+                        // Get the value
+                        string caladrUriStringValue = _value.Substring(VcardConstants._caladrUriSpecifier.Length);
+
+                        // Try to parse the URL to ensure that it conforms to IETF RFC 1738: Uniform Resource Locators
+                        if (!Uri.TryCreate(caladrUriStringValue, UriKind.Absolute, out Uri uri))
+                            throw new InvalidDataException($"URL {caladrUriStringValue} is invalid");
+
+                        // Populate field
+                        _caladrUri = uri.ToString();
+                    }
+
                     // X-nonstandard (X-AIM:john.s or X-DL;Design Work Group:List Item 1;List Item 2;List Item 3)
                     // ALTID is supported.
                     if (_value.StartsWith(VcardConstants._xSpecifier))
@@ -382,7 +458,7 @@ namespace VisualCard.Parsers.Four
                 throw new InvalidDataException("The full name specifier, \"FN:\", is required.");
 
             // Make a new instance of the card
-            return new Card(this, CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), _kind, _photos.ToArray(), _rev, _nicks.ToArray(), _bday, "", _roles.ToArray(), _categories.ToArray(), _logos.ToArray(), _prodId, _sortString, _timezones.ToArray(), _geos.ToArray(), _sounds.ToArray(), _impps.ToArray());
+            return new Card(this, CardVersion, _names.ToArray(), _fullName, _telephones.ToArray(), _addresses.ToArray(), _orgs.ToArray(), _titles.ToArray(), _url, _note, _emails.ToArray(), _xes.ToArray(), _kind, _photos.ToArray(), _rev, _nicks.ToArray(), _bday, "", _roles.ToArray(), _categories.ToArray(), _logos.ToArray(), _prodId, _sortString, _timezones.ToArray(), _geos.ToArray(), _sounds.ToArray(), _impps.ToArray(), _source, _xml, _fbUrl, _calUri, _caladrUri);
         }
 
         internal override string SaveToString(Card card)

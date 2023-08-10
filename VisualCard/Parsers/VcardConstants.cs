@@ -55,6 +55,11 @@ namespace VisualCard.Parsers
         internal const string _geoSpecifierWithType = "GEO;";
         internal const string _imppSpecifier = "IMPP:";
         internal const string _imppSpecifierWithType = "IMPP;";
+        internal const string _sourceSpecifier = "SOURCE:";
+        internal const string _xmlSpecifier = "XML:";
+        internal const string _fbUrlSpecifier = "FBURL:";
+        internal const string _calUriSpecifier = "CALURI:";
+        internal const string _caladrUriSpecifier = "CALADRURI:";
         internal const string _xSpecifier = "X-";
         internal const string _typeArgumentSpecifier = "TYPE=";
         internal const string _valueArgumentSpecifier = "VALUE=";

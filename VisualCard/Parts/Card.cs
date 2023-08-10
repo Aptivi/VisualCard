@@ -138,6 +138,27 @@ namespace VisualCard.Parts
         /// The contact's IMPP information
         /// </summary>
         public ImppInfo[] ContactImpps { get; set; }
+        /// <summary>
+        /// The contact's card source
+        /// </summary>
+        public string ContactSource { get; set; }
+        /// <summary>
+        /// The contact's XML code
+        /// </summary>
+        public string ContactXml { get; set; }
+        /// <summary>
+        /// The contact's free/busy indicator URL
+        /// </summary>
+        public string ContactFreeBusyUrl { get; set; }
+        /// <summary>
+        /// The contact's calendar URL
+        /// </summary>
+        public string ContactCalendarUrl { get; set; }
+        /// <summary>
+        /// The contact's calendar scheduling request URL
+        /// </summary>
+        public string ContactCalendarSchedulingRequestUrl { get; set; }
+
         internal BaseVcardParser Parser => _parser;
 
         /// <summary>
@@ -207,7 +228,7 @@ namespace VisualCard.Parts
 
         public override int GetHashCode()
         {
-            int hashCode = -952271737;
+            int hashCode = 1867659713;
             hashCode = hashCode * -1521134295 + EqualityComparer<NameInfo[]>.Default.GetHashCode(ContactNames);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactFullName);
             hashCode = hashCode * -1521134295 + EqualityComparer<TelephoneInfo[]>.Default.GetHashCode(ContactTelephones);
@@ -232,6 +253,11 @@ namespace VisualCard.Parts
             hashCode = hashCode * -1521134295 + EqualityComparer<GeoInfo[]>.Default.GetHashCode(ContactGeo);
             hashCode = hashCode * -1521134295 + EqualityComparer<SoundInfo[]>.Default.GetHashCode(ContactSounds);
             hashCode = hashCode * -1521134295 + EqualityComparer<ImppInfo[]>.Default.GetHashCode(ContactImpps);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactSource);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactXml);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactFreeBusyUrl);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactCalendarUrl);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactCalendarSchedulingRequestUrl);
             return hashCode;
         }
 
@@ -241,7 +267,7 @@ namespace VisualCard.Parts
         public static bool operator !=(Card a, Card b)
             => !a.Equals(b);
 
-        internal Card(BaseVcardParser parser, string cardVersion, NameInfo[] contactNames, string contactFullName, TelephoneInfo[] contactTelephones, AddressInfo[] contactAddresses, OrganizationInfo[] contactOrganizations, TitleInfo[] contactTitles, string contactURL, string contactNotes, EmailInfo[] contactMails, XNameInfo[] contactXNames, string cardKind, PhotoInfo[] contactPhotos, DateTime cardRevision, NicknameInfo[] contactNicknames, DateTime? contactBirthdate, string contactMailer, RoleInfo[] contactRoles, string[] contactCategories, LogoInfo[] contactLogos, string contactProdId, string contactSortString, TimeZoneInfo[] contactTimeZone, GeoInfo[] contactGeo, SoundInfo[] contactSounds, ImppInfo[] contactImpps)
+        internal Card(BaseVcardParser parser, string cardVersion, NameInfo[] contactNames, string contactFullName, TelephoneInfo[] contactTelephones, AddressInfo[] contactAddresses, OrganizationInfo[] contactOrganizations, TitleInfo[] contactTitles, string contactURL, string contactNotes, EmailInfo[] contactMails, XNameInfo[] contactXNames, string cardKind, PhotoInfo[] contactPhotos, DateTime cardRevision, NicknameInfo[] contactNicknames, DateTime? contactBirthdate, string contactMailer, RoleInfo[] contactRoles, string[] contactCategories, LogoInfo[] contactLogos, string contactProdId, string contactSortString, TimeZoneInfo[] contactTimeZone, GeoInfo[] contactGeo, SoundInfo[] contactSounds, ImppInfo[] contactImpps, string contactSource, string contactXml, string contactFreeBusyUrl, string contactCalendarUrl, string contactCalendarSchedulingRequestUrl)
         {
             _parser = parser;
             CardVersion = cardVersion;
@@ -270,6 +296,11 @@ namespace VisualCard.Parts
             ContactGeo = contactGeo;
             ContactSounds = contactSounds;
             ContactImpps = contactImpps;
+            ContactSource = contactSource;
+            ContactXml = contactXml;
+            ContactFreeBusyUrl = contactFreeBusyUrl;
+            ContactCalendarUrl = contactCalendarUrl;
+            ContactCalendarSchedulingRequestUrl = contactCalendarSchedulingRequestUrl;
         }
     }
 }
