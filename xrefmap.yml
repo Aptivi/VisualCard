@@ -601,6 +601,32 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Card.ContactBirthdate
   nameWithType: Card.ContactBirthdate
+- uid: VisualCard.Parts.Card.ContactCalendarSchedulingRequestUrl
+  name: ContactCalendarSchedulingRequestUrl
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactCalendarSchedulingRequestUrl
+  commentId: P:VisualCard.Parts.Card.ContactCalendarSchedulingRequestUrl
+  fullName: VisualCard.Parts.Card.ContactCalendarSchedulingRequestUrl
+  nameWithType: Card.ContactCalendarSchedulingRequestUrl
+- uid: VisualCard.Parts.Card.ContactCalendarSchedulingRequestUrl*
+  name: ContactCalendarSchedulingRequestUrl
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactCalendarSchedulingRequestUrl_
+  commentId: Overload:VisualCard.Parts.Card.ContactCalendarSchedulingRequestUrl
+  isSpec: "True"
+  fullName: VisualCard.Parts.Card.ContactCalendarSchedulingRequestUrl
+  nameWithType: Card.ContactCalendarSchedulingRequestUrl
+- uid: VisualCard.Parts.Card.ContactCalendarUrl
+  name: ContactCalendarUrl
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactCalendarUrl
+  commentId: P:VisualCard.Parts.Card.ContactCalendarUrl
+  fullName: VisualCard.Parts.Card.ContactCalendarUrl
+  nameWithType: Card.ContactCalendarUrl
+- uid: VisualCard.Parts.Card.ContactCalendarUrl*
+  name: ContactCalendarUrl
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactCalendarUrl_
+  commentId: Overload:VisualCard.Parts.Card.ContactCalendarUrl
+  isSpec: "True"
+  fullName: VisualCard.Parts.Card.ContactCalendarUrl
+  nameWithType: Card.ContactCalendarUrl
 - uid: VisualCard.Parts.Card.ContactCategories
   name: ContactCategories
   href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactCategories
@@ -614,6 +640,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Card.ContactCategories
   nameWithType: Card.ContactCategories
+- uid: VisualCard.Parts.Card.ContactFreeBusyUrl
+  name: ContactFreeBusyUrl
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactFreeBusyUrl
+  commentId: P:VisualCard.Parts.Card.ContactFreeBusyUrl
+  fullName: VisualCard.Parts.Card.ContactFreeBusyUrl
+  nameWithType: Card.ContactFreeBusyUrl
+- uid: VisualCard.Parts.Card.ContactFreeBusyUrl*
+  name: ContactFreeBusyUrl
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactFreeBusyUrl_
+  commentId: Overload:VisualCard.Parts.Card.ContactFreeBusyUrl
+  isSpec: "True"
+  fullName: VisualCard.Parts.Card.ContactFreeBusyUrl
+  nameWithType: Card.ContactFreeBusyUrl
 - uid: VisualCard.Parts.Card.ContactFullName
   name: ContactFullName
   href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactFullName
@@ -809,6 +848,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Card.ContactSounds
   nameWithType: Card.ContactSounds
+- uid: VisualCard.Parts.Card.ContactSource
+  name: ContactSource
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactSource
+  commentId: P:VisualCard.Parts.Card.ContactSource
+  fullName: VisualCard.Parts.Card.ContactSource
+  nameWithType: Card.ContactSource
+- uid: VisualCard.Parts.Card.ContactSource*
+  name: ContactSource
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactSource_
+  commentId: Overload:VisualCard.Parts.Card.ContactSource
+  isSpec: "True"
+  fullName: VisualCard.Parts.Card.ContactSource
+  nameWithType: Card.ContactSource
 - uid: VisualCard.Parts.Card.ContactTelephones
   name: ContactTelephones
   href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactTelephones
@@ -861,6 +913,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Card.ContactURL
   nameWithType: Card.ContactURL
+- uid: VisualCard.Parts.Card.ContactXml
+  name: ContactXml
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactXml
+  commentId: P:VisualCard.Parts.Card.ContactXml
+  fullName: VisualCard.Parts.Card.ContactXml
+  nameWithType: Card.ContactXml
+- uid: VisualCard.Parts.Card.ContactXml*
+  name: ContactXml
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactXml_
+  commentId: Overload:VisualCard.Parts.Card.ContactXml
+  isSpec: "True"
+  fullName: VisualCard.Parts.Card.ContactXml
+  nameWithType: Card.ContactXml
 - uid: VisualCard.Parts.Card.ContactXNames
   name: ContactXNames
   href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactXNames
