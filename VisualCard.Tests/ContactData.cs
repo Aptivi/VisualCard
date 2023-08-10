@@ -72,7 +72,12 @@ namespace VisualCard.Tests
             Array.Empty<Parts.TimeZoneInfo>(),
             Array.Empty<GeoInfo>(),
             Array.Empty<SoundInfo>(),
-            Array.Empty<ImppInfo>()
+            Array.Empty<ImppInfo>(),
+            "",
+            "",
+            "",
+            "",
+            ""
         );
         #endregion
 
@@ -118,7 +123,12 @@ namespace VisualCard.Tests
             Array.Empty<Parts.TimeZoneInfo>(),
             Array.Empty<GeoInfo>(),
             Array.Empty<SoundInfo>(),
-            Array.Empty<ImppInfo>()
+            Array.Empty<ImppInfo>(),
+            "",
+            "",
+            "",
+            "",
+            ""
         );
         #endregion
 
@@ -164,7 +174,12 @@ namespace VisualCard.Tests
             Array.Empty<Parts.TimeZoneInfo>(),
             Array.Empty<GeoInfo>(),
             Array.Empty<SoundInfo>(),
-            Array.Empty<ImppInfo>()
+            Array.Empty<ImppInfo>(),
+            "",
+            "",
+            "",
+            "",
+            ""
         );
         #endregion
 
@@ -241,7 +256,12 @@ namespace VisualCard.Tests
             Array.Empty<Parts.TimeZoneInfo>(),
             Array.Empty<GeoInfo>(),
             Array.Empty<SoundInfo>(),
-            Array.Empty<ImppInfo>()
+            Array.Empty<ImppInfo>(),
+            "",
+            "",
+            "",
+            "",
+            ""
         );
         #endregion
 
@@ -320,7 +340,12 @@ namespace VisualCard.Tests
             Array.Empty<Parts.TimeZoneInfo>(),
             Array.Empty<GeoInfo>(),
             Array.Empty<SoundInfo>(),
-            Array.Empty<ImppInfo>()
+            Array.Empty<ImppInfo>(),
+            "",
+            "",
+            "",
+            "",
+            ""
         );
         #endregion
 
@@ -399,7 +424,12 @@ namespace VisualCard.Tests
             new ImppInfo[]
             {
                 new ImppInfo(0, Array.Empty<string>(), "aim:john.s", new string[] { "HOME" })
-            }
+            },
+            "",
+            "",
+            "",
+            "",
+            ""
         );
         #endregion
 
@@ -516,7 +546,12 @@ namespace VisualCard.Tests
             Array.Empty<Parts.TimeZoneInfo>(),
             Array.Empty<GeoInfo>(),
             Array.Empty<SoundInfo>(),
-            Array.Empty<ImppInfo>()
+            Array.Empty<ImppInfo>(),
+            "",
+            "",
+            "",
+            "",
+            ""
         );
         private static readonly Card multipleVcardTwoContactsInstanceThree = new
         (
@@ -575,7 +610,12 @@ namespace VisualCard.Tests
             Array.Empty<Parts.TimeZoneInfo>(),
             Array.Empty<GeoInfo>(),
             Array.Empty<SoundInfo>(),
-            Array.Empty<ImppInfo>()
+            Array.Empty<ImppInfo>(),
+            "",
+            "",
+            "",
+            "",
+            ""
         );
         private static readonly Card multipleVcardTwoContactsInstanceFour = singleVcardTwoContactShortInstance;
         #endregion
@@ -693,7 +733,12 @@ namespace VisualCard.Tests
             Array.Empty<Parts.TimeZoneInfo>(),
             Array.Empty<GeoInfo>(),
             Array.Empty<SoundInfo>(),
-            Array.Empty<ImppInfo>()
+            Array.Empty<ImppInfo>(),
+            "",
+            "",
+            "",
+            "",
+            ""
         );
         private static readonly Card multipleVcardThreeContactsInstanceThree = new
         (
@@ -754,7 +799,12 @@ namespace VisualCard.Tests
             Array.Empty<Parts.TimeZoneInfo>(),
             Array.Empty<GeoInfo>(),
             Array.Empty<SoundInfo>(),
-            Array.Empty<ImppInfo>()
+            Array.Empty<ImppInfo>(),
+            "",
+            "",
+            "",
+            "",
+            ""
         );
         private static readonly Card multipleVcardThreeContactsInstanceFour = singleVcardThreeContactShortInstance;
         #endregion
@@ -883,7 +933,12 @@ namespace VisualCard.Tests
                 new ImppInfo(0, Array.Empty<string>(), "aim:IM", new string[] { "HOME" }),
                 new ImppInfo(0, Array.Empty<string>(), "msn:Windows LIVE", new string[] { "HOME" }),
                 new ImppInfo(0, Array.Empty<string>(), "ymsgr:Yahoo", new string[] { "HOME" })
-            }
+            },
+            "",
+            "",
+            "",
+            "",
+            ""
         );
         private static readonly Card multipleVcardFourContactsInstanceThree = new
         (
@@ -935,7 +990,12 @@ namespace VisualCard.Tests
             Array.Empty<Parts.TimeZoneInfo>(),
             Array.Empty<GeoInfo>(),
             Array.Empty<SoundInfo>(),
-            Array.Empty<ImppInfo>()
+            Array.Empty<ImppInfo>(),
+            "",
+            "",
+            "",
+            "",
+            ""
         );
         private static readonly Card multipleVcardFourContactsInstanceFour = singleVcardFourContactInstance;
         #endregion
@@ -1016,7 +1076,12 @@ namespace VisualCard.Tests
             Array.Empty<Parts.TimeZoneInfo>(),
             Array.Empty<GeoInfo>(),
             Array.Empty<SoundInfo>(),
-            Array.Empty<ImppInfo>()
+            Array.Empty<ImppInfo>(),
+            "",
+            "",
+            "",
+            "",
+            ""
         );
         private static readonly Card vcardThreeOldSampleInstanceTwo = new
         (
@@ -1061,7 +1126,12 @@ namespace VisualCard.Tests
             Array.Empty<Parts.TimeZoneInfo>(),
             Array.Empty<GeoInfo>(),
             Array.Empty<SoundInfo>(),
-            Array.Empty<ImppInfo>()
+            Array.Empty<ImppInfo>(),
+            "",
+            "",
+            "",
+            "",
+            ""
         );
         private static readonly Card vcardThreeOldSampleInstanceThree = new
         (
@@ -1097,7 +1167,12 @@ namespace VisualCard.Tests
             Array.Empty<Parts.TimeZoneInfo>(),
             Array.Empty<GeoInfo>(),
             Array.Empty<SoundInfo>(),
-            Array.Empty<ImppInfo>()
+            Array.Empty<ImppInfo>(),
+            "",
+            "",
+            "",
+            "",
+            ""
         );
         #endregion
 
