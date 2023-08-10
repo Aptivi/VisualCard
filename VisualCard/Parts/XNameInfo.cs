@@ -26,7 +26,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Linq;
 using VisualCard.Parsers;
 
 namespace VisualCard.Parts

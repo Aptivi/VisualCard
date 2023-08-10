@@ -27,9 +27,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using VisualCard.Parsers;
-using VisualCard.Parsers.Four;
-using VisualCard.Parsers.Three;
-using VisualCard.Parsers.Two;
 
 namespace VisualCard.Parts
 {

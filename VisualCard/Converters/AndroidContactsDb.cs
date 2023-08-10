@@ -28,7 +28,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using System.Xml.Linq;
 using VisualCard.Parsers;
 
 namespace VisualCard.Converters
