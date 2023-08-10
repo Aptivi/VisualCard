@@ -25,7 +25,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using VisualCard.Parsers;
 
 namespace VisualCard.Parts
@@ -107,6 +109,51 @@ namespace VisualCard.Parts
                 $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
                 $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._argumentDelimiter : "")}" +
                 $"{ContactTitle}";
+        }
+
+        internal static TitleInfo FromStringVcardTwo(string value)
+        {
+            // Get the value
+            string titleValue = value.Substring(VcardConstants._titleSpecifier.Length);
+
+            // Populate field
+            string _title = Regex.Unescape(titleValue);
+            TitleInfo title = new(0, Array.Empty<string>(), _title);
+            return title;
+        }
+
+        internal static TitleInfo FromStringVcardThree(string value)
+        {
+            // Get the value
+            string titleValue = value.Substring(VcardConstants._titleSpecifier.Length);
+
+            // Populate field
+            string _title = Regex.Unescape(titleValue);
+            TitleInfo title = new(0, Array.Empty<string>(), _title);
+            return title;
+        }
+
+        internal static TitleInfo FromStringVcardFour(string value, int altId)
+        {
+            // Get the value
+            string titleValue = value.Substring(VcardConstants._titleSpecifier.Length);
+
+            // Populate field
+            string _title = Regex.Unescape(titleValue);
+            TitleInfo title = new(altId, Array.Empty<string>(), _title);
+            return title;
+        }
+
+        internal static TitleInfo FromStringVcardFourWithType(string value, List<string> finalArgs, int altId)
+        {
+            // Get the value
+            string titleValue = value.Substring(VcardConstants._titleSpecifierWithArguments.Length);
+            string[] splitTitleParts = titleValue.Split(VcardConstants._argumentDelimiter);
+
+            // Populate field
+            string _title = Regex.Unescape(splitTitleParts[1]);
+            TitleInfo title = new(altId, finalArgs.ToArray(), _title);
+            return title;
         }
 
         internal TitleInfo() { }

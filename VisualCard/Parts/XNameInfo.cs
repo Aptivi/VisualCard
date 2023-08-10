@@ -25,7 +25,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using VisualCard.Parsers;
 
 namespace VisualCard.Parts
@@ -125,6 +127,64 @@ namespace VisualCard.Parts
                 $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
                 $"{(XKeyTypes.Length > 0 ? string.Join(VcardConstants._fieldDelimiter.ToString(), XKeyTypes) + VcardConstants._argumentDelimiter : "")}" +
                 $"{string.Join(VcardConstants._fieldDelimiter.ToString(), XValues)}";
+        }
+
+        internal static XNameInfo FromStringVcardTwo(string value)
+        {
+            string xValue = value.Substring(VcardConstants._xSpecifier.Length);
+            string[] splitX = xValue.Split(VcardConstants._argumentDelimiter);
+            string _xName = splitX[0].Contains(VcardConstants._fieldDelimiter.ToString()) ?
+                            splitX[0].Substring(0, splitX[0].IndexOf(VcardConstants._fieldDelimiter)) :
+                            splitX[0];
+            string[] _xTypes = splitX[0].Contains(VcardConstants._fieldDelimiter.ToString()) ?
+                               splitX[0].Substring(splitX[0].IndexOf(VcardConstants._fieldDelimiter) + 1)
+                                        .Split(VcardConstants._fieldDelimiter) :
+                               Array.Empty<string>();
+            string[] _xValues = splitX[1].Split(VcardConstants._fieldDelimiter);
+            XNameInfo _x = new(0, Array.Empty<string>(), _xName, _xValues, _xTypes);
+            return _x;
+        }
+
+        internal static XNameInfo FromStringVcardThree(string value)
+        {
+            // Get the value
+            string xValue = value.Substring(VcardConstants._xSpecifier.Length);
+            string[] splitX = xValue.Split(VcardConstants._argumentDelimiter);
+
+            // Populate the name
+            string _xName = splitX[0].Contains(VcardConstants._fieldDelimiter.ToString()) ?
+                            splitX[0].Substring(0, splitX[0].IndexOf(VcardConstants._fieldDelimiter)) :
+                            splitX[0];
+
+            // Populate the fields
+            string[] _xTypes = splitX[0].Contains(VcardConstants._fieldDelimiter.ToString()) ?
+                               splitX[0].Substring(splitX[0].IndexOf(VcardConstants._fieldDelimiter) + 1)
+                                        .Split(VcardConstants._fieldDelimiter) :
+                               Array.Empty<string>();
+            string[] _xValues = splitX[1].Split(VcardConstants._fieldDelimiter);
+            XNameInfo _x = new(0, Array.Empty<string>(), _xName, _xValues, _xTypes);
+            return _x;
+        }
+
+        internal static XNameInfo FromStringVcardFour(string value, List<string> finalArgs, int altId)
+        {
+            // Get the value
+            string xValue = value.Substring(VcardConstants._xSpecifier.Length);
+            string[] splitX = xValue.Split(VcardConstants._argumentDelimiter);
+
+            // Populate the name
+            string _xName = splitX[0].Contains(VcardConstants._fieldDelimiter.ToString()) ?
+                            splitX[0].Substring(0, splitX[0].IndexOf(VcardConstants._fieldDelimiter)) :
+                            splitX[0];
+
+            // Populate the fields
+            string[] _xTypes = splitX[0].Contains(VcardConstants._fieldDelimiter.ToString()) ?
+                               splitX[0].Substring(splitX[0].IndexOf(VcardConstants._fieldDelimiter) + 1)
+                                        .Split(VcardConstants._fieldDelimiter) :
+                               Array.Empty<string>();
+            string[] _xValues = splitX[1].Split(VcardConstants._fieldDelimiter);
+            XNameInfo _x = new(altId, finalArgs.ToArray(), _xName, _xValues, _xTypes);
+            return _x;
         }
 
         internal XNameInfo() { }

@@ -25,7 +25,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using VisualCard.Parsers;
 
 namespace VisualCard.Parts
@@ -115,6 +117,87 @@ namespace VisualCard.Parts
                 $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
                 $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", ContactPhoneTypes)}{VcardConstants._argumentDelimiter}" +
                 $"{ContactPhoneNumber}";
+        }
+
+        internal static TelephoneInfo FromStringVcardTwo(string value)
+        {
+            // Get the value
+            string telValue = value.Substring(VcardConstants._telephoneSpecifier.Length);
+
+            // Populate the fields
+            string[] _telephoneTypes = new string[] { "CELL" };
+            string _telephoneNumber = Regex.Unescape(telValue);
+            TelephoneInfo _telephone = new(0, Array.Empty<string>(), _telephoneTypes, _telephoneNumber);
+            return _telephone;
+        }
+
+        internal static TelephoneInfo FromStringVcardTwoWithType(string value)
+        {
+            // Get the value
+            string telValue = value.Substring(VcardConstants._telephoneSpecifierWithType.Length);
+            string[] splitTel = telValue.Split(VcardConstants._argumentDelimiter);
+            if (splitTel.Length < 2)
+                throw new InvalidDataException("Telephone field must specify exactly two values (Type (optionally prepended with TYPE=), and phone number)");
+
+            // Populate the fields
+            string[] _telephoneTypes = VcardParserTools.GetTypes(splitTel, "CELL", false);
+            string _telephoneNumber = Regex.Unescape(splitTel[1]);
+            TelephoneInfo _telephone = new(0, Array.Empty<string>(), _telephoneTypes, _telephoneNumber);
+            return _telephone;
+        }
+
+        internal static TelephoneInfo FromStringVcardThree(string value)
+        {
+            // Get the value
+            string telValue = value.Substring(VcardConstants._telephoneSpecifier.Length);
+
+            // Populate the fields
+            string[] _telephoneTypes = new string[] { "CELL" };
+            string _telephoneNumber = Regex.Unescape(telValue);
+            TelephoneInfo _telephone = new(0, Array.Empty<string>(), _telephoneTypes, _telephoneNumber);
+            return _telephone;
+        }
+
+        internal static TelephoneInfo FromStringVcardThreeWithType(string value)
+        {
+            // Get the value
+            string telValue = value.Substring(VcardConstants._telephoneSpecifierWithType.Length);
+            string[] splitTel = telValue.Split(VcardConstants._argumentDelimiter);
+            if (splitTel.Length < 2)
+                throw new InvalidDataException("Telephone field must specify exactly two values (Type (must be prepended with TYPE=), and phone number)");
+
+            // Populate the fields
+            string[] _telephoneTypes = VcardParserTools.GetTypes(splitTel, "CELL", true);
+            string _telephoneNumber = Regex.Unescape(splitTel[1]);
+            TelephoneInfo _telephone = new(0, Array.Empty<string>(), _telephoneTypes, _telephoneNumber);
+            return _telephone;
+        }
+
+        internal static TelephoneInfo FromStringVcardFour(string value, int altId)
+        {
+            // Get the value
+            string telValue = value.Substring(VcardConstants._telephoneSpecifier.Length);
+
+            // Populate the fields
+            string[] _telephoneTypes = new string[] { "CELL" };
+            string _telephoneNumber = Regex.Unescape(telValue);
+            TelephoneInfo _telephone = new(altId, Array.Empty<string>(), _telephoneTypes, _telephoneNumber);
+            return _telephone;
+        }
+
+        internal static TelephoneInfo FromStringVcardFourWithType(string value, List<string> finalArgs, int altId)
+        {
+            // Get the value
+            string telValue = value.Substring(VcardConstants._telephoneSpecifierWithType.Length);
+            string[] splitTel = telValue.Split(VcardConstants._argumentDelimiter);
+            if (splitTel.Length < 2)
+                throw new InvalidDataException("Telephone field must specify exactly two values (Type (must be prepended with TYPE=), and phone number)");
+
+            // Populate the fields
+            string[] _telephoneTypes = VcardParserTools.GetTypes(splitTel, "CELL", true);
+            string _telephoneNumber = Regex.Unescape(splitTel[1]);
+            TelephoneInfo _telephone = new(altId, finalArgs.ToArray(), _telephoneTypes, _telephoneNumber);
+            return _telephone;
         }
 
         internal TelephoneInfo() { }

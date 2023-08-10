@@ -101,20 +101,8 @@ namespace VisualCard.Parsers.Three
                     // The name (N:Sanders;John;;;)
                     if (_value.StartsWith(VcardConstants._nameSpecifier))
                     {
-                        // Check the line
-                        string nameValue = _value.Substring(VcardConstants._nameSpecifier.Length);
-                        string[] splitName = nameValue.Split(VcardConstants._fieldDelimiter);
-                        if (splitName.Length < 2)
-                            throw new InvalidDataException("Name field must specify exactly five values (Last name, first name, alt names, prefixes, and suffixes)");
-
-                        // Populate fields
-                        string _lastName = Regex.Unescape(splitName[0]);
-                        string _firstName = Regex.Unescape(splitName[1]);
-                        string[] _altNames = splitName.Length >= 3 ? Regex.Unescape(splitName[2]).Split(new char[] { VcardConstants._valueDelimiter }, StringSplitOptions.RemoveEmptyEntries) : Array.Empty<string>();
-                        string[] _prefixes = splitName.Length >= 4 ? Regex.Unescape(splitName[3]).Split(new char[] { VcardConstants._valueDelimiter }, StringSplitOptions.RemoveEmptyEntries) : Array.Empty<string>();
-                        string[] _suffixes = splitName.Length >= 5 ? Regex.Unescape(splitName[4]).Split(new char[] { VcardConstants._valueDelimiter }, StringSplitOptions.RemoveEmptyEntries) : Array.Empty<string>();
-                        NameInfo _name = new(0, Array.Empty<string>(), _firstName, _lastName, _altNames, _prefixes, _suffixes);
-                        _names.Add(_name);
+                        // Get the name
+                        _names.Add(NameInfo.FromStringVcardThree(_value));
 
                         // Set flag to indicate that the required field is spotted
                         nameSpecifierSpotted = true;
@@ -135,137 +123,31 @@ namespace VisualCard.Parsers.Three
 
                     // Telephone (TEL;TYPE=cell,home:495-522-3560)
                     if (_value.StartsWith(VcardConstants._telephoneSpecifierWithType))
-                    {
-                        // Get the value
-                        string telValue = _value.Substring(VcardConstants._telephoneSpecifierWithType.Length);
-                        string[] splitTel = telValue.Split(VcardConstants._argumentDelimiter);
-                        if (splitTel.Length < 2)
-                            throw new InvalidDataException("Telephone field must specify exactly two values (Type (must be prepended with TYPE=), and phone number)");
-
-                        // Populate the fields
-                        string[] _telephoneTypes = VcardParserTools.GetTypes(splitTel, "CELL", true);
-                        string _telephoneNumber = Regex.Unescape(splitTel[1]);
-                        TelephoneInfo _telephone = new(0, Array.Empty<string>(), _telephoneTypes, _telephoneNumber);
-                        _telephones.Add(_telephone);
-                    }
+                        _telephones.Add(TelephoneInfo.FromStringVcardThreeWithType(_value));
 
                     // Telephone (TEL:495-522-3560)
                     if (_value.StartsWith(VcardConstants._telephoneSpecifier))
-                    {
-                        // Get the value
-                        string telValue = _value.Substring(VcardConstants._telephoneSpecifier.Length);
-
-                        // Populate the fields
-                        string[] _telephoneTypes = new string[] { "CELL" };
-                        string _telephoneNumber = Regex.Unescape(telValue);
-                        TelephoneInfo _telephone = new(0, Array.Empty<string>(), _telephoneTypes, _telephoneNumber);
-                        _telephones.Add(_telephone);
-                    }
+                        _telephones.Add(TelephoneInfo.FromStringVcardThree(_value));
 
                     // Address (ADR;TYPE=HOME:;;Los Angeles, USA;;;;)
                     if (_value.StartsWith(VcardConstants._addressSpecifierWithType))
-                    {
-                        // Get the value
-                        string adrValue = _value.Substring(VcardConstants._addressSpecifierWithType.Length);
-                        string[] splitAdr = adrValue.Split(VcardConstants._argumentDelimiter);
-                        if (splitAdr.Length < 2)
-                            throw new InvalidDataException("Address field must specify exactly two values (Type (must be prepended with TYPE=), and address information)");
-
-                        // Check the provided address
-                        string[] splitAddressValues = splitAdr[1].Split(VcardConstants._fieldDelimiter);
-                        if (splitAddressValues.Length < 7)
-                            throw new InvalidDataException("Address information must specify exactly seven values (P.O. Box, extended address, street address, locality, region, postal code, and country)");
-
-                        // Populate the fields
-                        string[] _addressTypes = VcardParserTools.GetTypes(splitAdr, "HOME", true);
-                        string _addressPOBox = Regex.Unescape(splitAddressValues[0]);
-                        string _addressExtended = Regex.Unescape(splitAddressValues[1]);
-                        string _addressStreet = Regex.Unescape(splitAddressValues[2]);
-                        string _addressLocality = Regex.Unescape(splitAddressValues[3]);
-                        string _addressRegion = Regex.Unescape(splitAddressValues[4]);
-                        string _addressPostalCode = Regex.Unescape(splitAddressValues[5]);
-                        string _addressCountry = Regex.Unescape(splitAddressValues[6]);
-                        AddressInfo _address = new(0, Array.Empty<string>(), _addressTypes, _addressPOBox, _addressExtended, _addressStreet, _addressLocality, _addressRegion, _addressPostalCode, _addressCountry);
-                        _addresses.Add(_address);
-                    }
+                        _addresses.Add(AddressInfo.FromStringVcardThreeWithType(_value));
 
                     // Email (EMAIL;TYPE=HOME,INTERNET:john.s@acme.co)
                     if (_value.StartsWith(VcardConstants._emailSpecifier))
-                    {
-                        // Get the value
-                        string mailValue = _value.Substring(VcardConstants._emailSpecifier.Length);
-                        string[] splitMail = mailValue.Split(VcardConstants._argumentDelimiter);
-                        MailAddress mail;
-                        if (splitMail.Length < 2)
-                            throw new InvalidDataException("E-mail field must specify exactly two values (Type (must be prepended with TYPE=), and a valid e-mail address)");
-
-                        // Try to create mail address
-                        try
-                        {
-                            mail = new MailAddress(splitMail[1]);
-                        }
-                        catch (ArgumentException aex)
-                        {
-                            throw new InvalidDataException("E-mail address is invalid", aex);
-                        }
-
-                        // Populate the fields
-                        string[] _emailTypes = VcardParserTools.GetTypes(splitMail, "HOME", true);
-                        string _emailAddress = mail.Address;
-                        EmailInfo _email = new(0, Array.Empty<string>(), _emailTypes, _emailAddress);
-                        _emails.Add(_email);
-                    }
+                        _emails.Add(EmailInfo.FromStringVcardThreeWithType(_value));
 
                     // Organization (ORG:Acme Co. or ORG:ABC, Inc.;North American Division;Marketing)
                     if (_value.StartsWith(VcardConstants._orgSpecifier))
-                    {
-                        // Get the value
-                        string orgValue = _value.Substring(VcardConstants._orgSpecifier.Length);
-                        string[] splitOrg = orgValue.Split(VcardConstants._fieldDelimiter);
-
-                        // Populate the fields
-                        string[] splitTypes = new string[] { "WORK" };
-                        string _orgName = Regex.Unescape(splitOrg[0]);
-                        string _orgUnit = Regex.Unescape(splitOrg.Length >= 2 ? splitOrg[1] : "");
-                        string _orgUnitRole = Regex.Unescape(splitOrg.Length >= 3 ? splitOrg[2] : "");
-                        OrganizationInfo _org = new(0, Array.Empty<string>(), _orgName, _orgUnit, _orgUnitRole, splitTypes);
-                        _orgs.Add(_org);
-                    }
+                        _orgs.Add(OrganizationInfo.FromStringVcardThree(_value));
 
                     // Organization (ORG;TYPE=WORK:Acme Co. or ORG:ABC, Inc.;North American Division;Marketing)
                     if (_value.StartsWith(VcardConstants._orgSpecifierWithType))
-                    {
-                        // Get the value
-                        string orgValue = _value.Substring(VcardConstants._orgSpecifierWithType.Length);
-                        string[] splitOrg = orgValue.Split(VcardConstants._argumentDelimiter);
-                        if (splitOrg.Length < 2)
-                            throw new InvalidDataException("Organization field must specify exactly two values (Type (must be prepended with TYPE=), and address information)");
-
-                        // Check the provided organization
-                        string[] splitOrganizationValues = splitOrg[1].Split(VcardConstants._fieldDelimiter);
-                        if (splitOrganizationValues.Length < 3)
-                            throw new InvalidDataException("Organization information must specify exactly three values (name, unit, and role)");
-
-                        // Populate the fields
-                        string _orgName = Regex.Unescape(splitOrganizationValues[0]);
-                        string _orgUnit = Regex.Unescape(splitOrganizationValues.Length >= 2 ? splitOrganizationValues[1] : "");
-                        string _orgUnitRole = Regex.Unescape(splitOrganizationValues.Length >= 3 ? splitOrganizationValues[2] : "");
-                        string[] _orgTypes = VcardParserTools.GetTypes(splitOrg, "WORK", true);
-                        OrganizationInfo _org = new(0, Array.Empty<string>(), _orgName, _orgUnit, _orgUnitRole, _orgTypes);
-                        _orgs.Add(_org);
-                    }
+                        _orgs.Add(OrganizationInfo.FromStringVcardThreeWithType(_value));
 
                     // Title (TITLE:Product Manager)
                     if (_value.StartsWith(VcardConstants._titleSpecifier))
-                    {
-                        // Get the value
-                        string titleValue = _value.Substring(VcardConstants._titleSpecifier.Length);
-
-                        // Populate field
-                        string _title = Regex.Unescape(titleValue);
-                        TitleInfo title = new(0, Array.Empty<string>(), _title);
-                        _titles.Add(title);
-                    }
+                        _titles.Add(TitleInfo.FromStringVcardThree(_value));
 
                     // Website link (URL:https://sso.org/)
                     if (_value.StartsWith(VcardConstants._urlSpecifier))
@@ -293,123 +175,15 @@ namespace VisualCard.Parsers.Three
 
                     // Photo (PHOTO;ENCODING=BASE64;JPEG:... or PHOTO;VALUE=URL:file:///jqpublic.gif or PHOTO;ENCODING=BASE64;TYPE=GIF:...)
                     if (_value.StartsWith(VcardConstants._photoSpecifierWithType))
-                    {
-                        // Get the value
-                        string photoValue = _value.Substring(VcardConstants._photoSpecifierWithType.Length);
-                        string[] splitPhoto = photoValue.Split(VcardConstants._argumentDelimiter);
-                        if (splitPhoto.Length >= 2)
-                            throw new InvalidDataException("Photo field must specify exactly two values (Type and arguments, and photo information)");
-
-                        // Check to see if the value is prepended by the VALUE= argument
-                        string valueType = VcardParserTools.GetValuesString(splitPhoto, "", VcardConstants._valueArgumentSpecifier).ToLower();
-                        bool isUrl = valueType == "url" || valueType == "uri";
-
-                        // Check to see if the value is prepended by the ENCODING= argument
-                        string photoEncoding = VcardParserTools.GetValuesString(splitPhoto, "BASE64", VcardConstants._encodingArgumentSpecifier);
-
-                        // Check to see if the value is prepended with the TYPE= argument
-                        string photoType = VcardParserTools.GetTypesString(splitPhoto, "JPEG", true);
-
-                        // Now, get the encoded photo
-                        StringBuilder encodedPhoto = new();
-                        if (splitPhoto.Length == 2)
-                            encodedPhoto.Append(splitPhoto[1]);
-
-                        // Make sure to get all the blocks until we reach an empty line
-                        if (!isUrl)
-                        {
-                            string lineToBeAppended = CardContentReader.ReadLine();
-                            while (!string.IsNullOrWhiteSpace(lineToBeAppended) && lineToBeAppended.StartsWith(" "))
-                            {
-                                encodedPhoto.Append(lineToBeAppended.Trim());
-                                lineToBeAppended = CardContentReader.ReadLine();
-                            }
-                        }
-
-                        // Populate the fields
-                        PhotoInfo _photo = new(0, Array.Empty<string>(), valueType, photoEncoding, photoType, encodedPhoto.ToString());
-                        _photos.Add(_photo);
-                    }
+                        _photos.Add(PhotoInfo.FromStringVcardThreeWithType(_value, CardContentReader));
 
                     // Logo (LOGO;ENCODING=BASE64;JPEG:... or LOGO;VALUE=URL:file:///jqpublic.gif or LOGO;ENCODING=BASE64;TYPE=GIF:...)
                     if (_value.StartsWith(VcardConstants._logoSpecifierWithType))
-                    {
-                        // Get the value
-                        string logoValue = _value.Substring(VcardConstants._logoSpecifierWithType.Length);
-                        string[] splitLogo = logoValue.Split(VcardConstants._argumentDelimiter);
-                        if (splitLogo.Length >= 2)
-                            throw new InvalidDataException("Logo field must specify exactly two values (Type and arguments, and logo information)");
-
-                        // Check to see if the value is prepended by the VALUE= argument
-                        string valueType = VcardParserTools.GetValuesString(splitLogo, "", VcardConstants._valueArgumentSpecifier).ToLower();
-                        bool isUrl = valueType == "url" || valueType == "uri";
-
-                        // Check to see if the value is prepended by the ENCODING= argument
-                        string logoEncoding = VcardParserTools.GetValuesString(splitLogo, "BASE64", VcardConstants._encodingArgumentSpecifier);
-
-                        // Check to see if the value is prepended with the TYPE= argument
-                        string logoType = VcardParserTools.GetTypesString(splitLogo, "JPEG", true);
-
-                        // Now, get the encoded logo
-                        StringBuilder encodedLogo = new();
-                        if (splitLogo.Length == 2)
-                            encodedLogo.Append(splitLogo[1]);
-
-                        // Make sure to get all the blocks until we reach an empty line
-                        if (!isUrl)
-                        {
-                            string lineToBeAppended = CardContentReader.ReadLine();
-                            while (!string.IsNullOrWhiteSpace(lineToBeAppended) && lineToBeAppended.StartsWith(" "))
-                            {
-                                encodedLogo.Append(lineToBeAppended.Trim());
-                                lineToBeAppended = CardContentReader.ReadLine();
-                            }
-                        }
-
-                        // Populate the fields
-                        LogoInfo _logo = new(0, Array.Empty<string>(), valueType, logoEncoding, logoType, encodedLogo.ToString());
-                        _logos.Add(_logo);
-                    }
+                        _logos.Add(LogoInfo.FromStringVcardThreeWithType(_value, CardContentReader));
 
                     // Sound (SOUND;VALUE=URL:file///multimed/audio/jqpublic.wav or SOUND;WAVE;BASE64:... or SOUND;TYPE=WAVE;ENCODING=BASE64:...)
                     if (_value.StartsWith(VcardConstants._soundSpecifierWithType))
-                    {
-                        // Get the value
-                        string soundValue = _value.Substring(VcardConstants._soundSpecifierWithType.Length);
-                        string[] splitSound = soundValue.Split(VcardConstants._argumentDelimiter);
-                        if (splitSound.Length >= 2)
-                            throw new InvalidDataException("Sound field must specify exactly two values (Type and arguments, and sound information)");
-
-                        // Check to see if the value is prepended by the VALUE= argument
-                        string valueType = VcardParserTools.GetValuesString(splitSound, "", VcardConstants._valueArgumentSpecifier).ToLower();
-                        bool isUrl = valueType == "url" || valueType == "uri";
-
-                        // Check to see if the value is prepended by the ENCODING= argument
-                        string soundEncoding = VcardParserTools.GetValuesString(splitSound, "BASE64", VcardConstants._encodingArgumentSpecifier);
-
-                        // Check to see if the value is prepended with the TYPE= argument
-                        string soundType = VcardParserTools.GetTypesString(splitSound, "WAVE", true);
-
-                        // Now, get the encoded sound
-                        StringBuilder encodedSound = new();
-                        if (splitSound.Length == 2)
-                            encodedSound.Append(splitSound[1]);
-
-                        // Make sure to get all the blocks until we reach an empty line
-                        if (!isUrl)
-                        {
-                            string lineToBeAppended = CardContentReader.ReadLine();
-                            while (!string.IsNullOrWhiteSpace(lineToBeAppended))
-                            {
-                                encodedSound.Append(lineToBeAppended);
-                                lineToBeAppended = CardContentReader.ReadLine()?.Trim();
-                            }
-                        }
-
-                        // Populate the fields
-                        SoundInfo _sound = new(0, Array.Empty<string>(), valueType, soundEncoding, soundType, encodedSound.ToString());
-                        _sounds.Add(_sound);
-                    }
+                        _sounds.Add(SoundInfo.FromStringVcardThreeWithType(_value, CardContentReader));
 
                     // Revision (REV:1995-10-31T22:27:10Z or REV:19951031T222710)
                     if (_value.StartsWith(VcardConstants._revSpecifier))
@@ -423,32 +197,11 @@ namespace VisualCard.Parsers.Three
 
                     // Nickname (NICKNAME;TYPE=work:Boss)
                     if (_value.StartsWith(VcardConstants._nicknameSpecifierWithType))
-                    {
-                        // Get the value
-                        string nickValue = _value.Substring(VcardConstants._nicknameSpecifierWithType.Length);
-                        string[] splitNick = nickValue.Split(VcardConstants._argumentDelimiter);
-                        if (splitNick.Length < 2)
-                            throw new InvalidDataException("Nickname field must specify exactly two values (Type (must be prepended with TYPE=), and nickname)");
-
-                        // Populate the fields
-                        string[] _nicknameTypes = VcardParserTools.GetTypes(splitNick, "WORK", true);
-                        string _nick = Regex.Unescape(splitNick[1]);
-                        NicknameInfo _nickInstance = new(0, Array.Empty<string>(), _nick, _nicknameTypes);
-                        _nicks.Add(_nickInstance);
-                    }
+                        _nicks.Add(NicknameInfo.FromStringVcardThreeWithType(_value));
 
                     // Nickname (NICKNAME:Jim)
                     if (_value.StartsWith(VcardConstants._nicknameSpecifier))
-                    {
-                        // Get the value
-                        string nickValue = _value.Substring(VcardConstants._nicknameSpecifier.Length);
-
-                        // Populate the fields
-                        string[] _nicknameTypes = new string[] { "HOME" };
-                        string _nick = Regex.Unescape(nickValue);
-                        NicknameInfo _nickInstance = new(0, Array.Empty<string>(), _nick, _nicknameTypes);
-                        _nicks.Add(_nickInstance);
-                    }
+                        _nicks.Add(NicknameInfo.FromStringVcardThree(_value));
 
                     // Birthdate (BDAY:19950415 or BDAY:1953-10-15T23:10:00Z)
                     if (_value.StartsWith(VcardConstants._birthSpecifier))
@@ -472,14 +225,7 @@ namespace VisualCard.Parsers.Three
 
                     // Role (ROLE:Programmer)
                     if (_value.StartsWith(VcardConstants._roleSpecifier))
-                    {
-                        // Get the value
-                        string roleValue = _value.Substring(VcardConstants._roleSpecifier.Length);
-
-                        // Populate the fields
-                        RoleInfo _role = new(0, Array.Empty<string>(), roleValue);
-                        _roles.Add(_role);
-                    }
+                        _roles.Add(RoleInfo.FromStringVcardThree(_value));
 
                     // Categories (CATEGORIES:INTERNET or CATEGORIES:INTERNET,IETF,INDUSTRY,INFORMATION TECHNOLOGY)
                     if (_value.StartsWith(VcardConstants._categoriesSpecifier))
@@ -513,116 +259,31 @@ namespace VisualCard.Parsers.Three
 
                     // Time Zone (TZ;VALUE=text:-05:00; EST; Raleigh/North America)
                     if (_value.StartsWith(VcardConstants._timeZoneSpecifierWithType))
-                    {
-                        // Get the value
-                        string tzValue = _value.Substring(VcardConstants._timeZoneSpecifierWithType.Length);
-                        string[] splitTz = tzValue.Split(VcardConstants._argumentDelimiter);
-                        if (splitTz.Length < 2)
-                            throw new InvalidDataException("Time Zone field must specify exactly two values (VALUE=\"text\" / \"uri\" / \"utc-offset\", and time zone info)");
-
-                        // Get the types and the number
-                        string[] _timeZoneTypes = VcardParserTools.GetValues(splitTz, "", VcardConstants._valueArgumentSpecifier);
-                        string _timeZoneNumber = Regex.Unescape(splitTz[1]);
-
-                        // Add the fetched information
-                        TimeZoneInfo _timeZone = new(0, Array.Empty<string>(), _timeZoneTypes, _timeZoneNumber);
-                        _timezones.Add(_timeZone);
-                    }
+                        _timezones.Add(TimeZoneInfo.FromStringVcardThreeWithType(_value));
 
                     // Time Zone (TZ:-05:00)
                     if (_value.StartsWith(VcardConstants._timeZoneSpecifier))
-                    {
-                        // Get the value
-                        string tzValue = _value.Substring(VcardConstants._timeZoneSpecifier.Length);
-
-                        // Populate the fields
-                        string[] _timeZoneTypes = new string[] { "uri-offset" };
-                        string _timeZoneNumber = Regex.Unescape(tzValue);
-                        TimeZoneInfo _timeZone = new(0, Array.Empty<string>(), _timeZoneTypes, _timeZoneNumber);
-                        _timezones.Add(_timeZone);
-                    }
+                        _timezones.Add(TimeZoneInfo.FromStringVcardThree(_value));
 
                     // Geo (GEO;VALUE=uri:https://...)
                     if (_value.StartsWith(VcardConstants._geoSpecifierWithType))
-                    {
-                        // Get the value
-                        string geoValue = _value.Substring(VcardConstants._geoSpecifierWithType.Length);
-                        string[] splitGeo = geoValue.Split(VcardConstants._argumentDelimiter);
-                        if (splitGeo.Length < 2)
-                            throw new InvalidDataException("Geo field must specify exactly two values (VALUE=\"uri\", and geo info)");
-
-                        // Get the types and the number
-                        string[] _geoTypes = VcardParserTools.GetValues(splitGeo, "", VcardConstants._valueArgumentSpecifier);
-                        string _geoNumber = Regex.Unescape(splitGeo[1]);
-
-                        // Add the fetched information
-                        GeoInfo _geo = new(0, Array.Empty<string>(), _geoTypes, _geoNumber);
-                        _geos.Add(_geo);
-                    }
+                        _geos.Add(GeoInfo.FromStringVcardThreeWithType(_value));
 
                     // Geo (GEO:geo:37.386013,-122.082932)
                     if (_value.StartsWith(VcardConstants._geoSpecifier))
-                    {
-                        // Get the value
-                        string geoValue = _value.Substring(VcardConstants._geoSpecifier.Length);
-
-                        // Populate the fields
-                        string[] _geoTypes = new string[] { "uri" };
-                        string _geoNumber = Regex.Unescape(geoValue);
-                        GeoInfo _geo = new(0, Array.Empty<string>(), _geoTypes, _geoNumber);
-                        _geos.Add(_geo);
-                    }
+                        _geos.Add(GeoInfo.FromStringVcardThree(_value));
 
                     // IMPP information (IMPP;TYPE=home:sip:test)
                     if (_value.StartsWith(VcardConstants._imppSpecifierWithType))
-                    {
-                        // Get the value
-                        string imppValue = _value.Substring(VcardConstants._imppSpecifierWithType.Length);
-                        string[] splitImpp = imppValue.Split(VcardConstants._argumentDelimiter);
-                        if (splitImpp.Length < 2)
-                            throw new InvalidDataException("IMPP information field must specify exactly two values (Type (must be prepended with TYPE=), and impp)");
-
-                        // Install the values
-                        string[] _imppTypes = VcardParserTools.GetTypes(splitImpp, "SIP", true);
-                        string _impp = Regex.Unescape(imppValue.Substring(imppValue.IndexOf(":") + 1));
-                        ImppInfo _imppInstance = new(0, Array.Empty<string>(), _impp, _imppTypes);
-                        _impps.Add(_imppInstance);
-                    }
+                        _impps.Add(ImppInfo.FromStringVcardThreeWithType(_value));
 
                     // IMPP information (IMPP:sip:test)
                     if (_value.StartsWith(VcardConstants._imppSpecifier))
-                    {
-                        // Get the value
-                        string imppValue = _value.Substring(VcardConstants._imppSpecifier.Length);
-
-                        // Populate the fields
-                        string[] _imppTypes = new string[] { "HOME" };
-                        string _impp = Regex.Unescape(imppValue);
-                        ImppInfo _imppInstance = new(0, Array.Empty<string>(), _impp, _imppTypes);
-                        _impps.Add(_imppInstance);
-                    }
+                        _impps.Add(ImppInfo.FromStringVcardThree(_value));
 
                     // X-nonstandard (X-AIM:john.s or X-DL;Design Work Group:List Item 1;List Item 2;List Item 3)
                     if (_value.StartsWith(VcardConstants._xSpecifier))
-                    {
-                        // Get the value
-                        string xValue = _value.Substring(VcardConstants._xSpecifier.Length);
-                        string[] splitX = xValue.Split(VcardConstants._argumentDelimiter);
-
-                        // Populate the name
-                        string _xName = splitX[0].Contains(VcardConstants._fieldDelimiter.ToString()) ?
-                                        splitX[0].Substring(0, splitX[0].IndexOf(VcardConstants._fieldDelimiter)) :
-                                        splitX[0];
-
-                        // Populate the fields
-                        string[] _xTypes = splitX[0].Contains(VcardConstants._fieldDelimiter.ToString()) ?
-                                           splitX[0].Substring(splitX[0].IndexOf(VcardConstants._fieldDelimiter) + 1)
-                                                    .Split(VcardConstants._fieldDelimiter) :
-                                           Array.Empty<string>();
-                        string[] _xValues = splitX[1].Split(VcardConstants._fieldDelimiter);
-                        XNameInfo _x = new(0, Array.Empty<string>(), _xName, _xValues, _xTypes);
-                        _xes.Add(_x);
-                    }
+                        _xes.Add(XNameInfo.FromStringVcardThree(_value));
                 }
                 catch (Exception ex)
                 {

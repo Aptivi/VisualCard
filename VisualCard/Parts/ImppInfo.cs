@@ -25,7 +25,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using VisualCard.Parsers;
 
 namespace VisualCard.Parts
@@ -115,6 +117,83 @@ namespace VisualCard.Parts
                 $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
                 $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._argumentDelimiter : "")}" +
                 $"{ContactIMPP}";
+        }
+
+        internal static ImppInfo FromStringVcardTwo(string value)
+        {
+            string imppValue = value.Substring(VcardConstants._imppSpecifier.Length);
+            string[] _imppTypes = new string[] { "HOME" };
+            string _impp = Regex.Unescape(imppValue);
+            ImppInfo _imppInstance = new(0, Array.Empty<string>(), _impp, _imppTypes);
+            return _imppInstance;
+        }
+
+        internal static ImppInfo FromStringVcardTwoWithType(string value)
+        {
+            string imppValue = value.Substring(VcardConstants._imppSpecifierWithType.Length);
+            string[] splitImpp = imppValue.Split(VcardConstants._argumentDelimiter);
+            if (splitImpp.Length < 2)
+                throw new InvalidDataException("IMPP information field must specify exactly two values (Type (must be prepended with TYPE=), and impp)");
+
+            // Install the values
+            string[] _imppTypes = VcardParserTools.GetTypes(splitImpp, "SIP", false);
+            string _impp = Regex.Unescape(imppValue.Substring(imppValue.IndexOf(":") + 1));
+            ImppInfo _imppInstance = new(0, Array.Empty<string>(), _impp, _imppTypes);
+            return _imppInstance;
+        }
+
+        internal static ImppInfo FromStringVcardThree(string value)
+        {
+            // Get the value
+            string imppValue = value.Substring(VcardConstants._imppSpecifier.Length);
+
+            // Populate the fields
+            string[] _imppTypes = new string[] { "HOME" };
+            string _impp = Regex.Unescape(imppValue);
+            ImppInfo _imppInstance = new(0, Array.Empty<string>(), _impp, _imppTypes);
+            return _imppInstance;
+        }
+
+        internal static ImppInfo FromStringVcardThreeWithType(string value)
+        {
+            // Get the value
+            string imppValue = value.Substring(VcardConstants._imppSpecifierWithType.Length);
+            string[] splitImpp = imppValue.Split(VcardConstants._argumentDelimiter);
+            if (splitImpp.Length < 2)
+                throw new InvalidDataException("IMPP information field must specify exactly two values (Type (must be prepended with TYPE=), and impp)");
+
+            // Install the values
+            string[] _imppTypes = VcardParserTools.GetTypes(splitImpp, "SIP", true);
+            string _impp = Regex.Unescape(imppValue.Substring(imppValue.IndexOf(":") + 1));
+            ImppInfo _imppInstance = new(0, Array.Empty<string>(), _impp, _imppTypes);
+            return _imppInstance;
+        }
+
+        internal static ImppInfo FromStringVcardFour(string value, int altId)
+        {
+            // Get the value
+            string imppValue = value.Substring(VcardConstants._imppSpecifier.Length);
+
+            // Populate the fields
+            string[] _imppTypes = new string[] { "HOME" };
+            string _impp = Regex.Unescape(imppValue);
+            ImppInfo _imppInstance = new(altId, Array.Empty<string>(), _impp, _imppTypes);
+            return _imppInstance;
+        }
+
+        internal static ImppInfo FromStringVcardFourWithType(string value, List<string> finalArgs, int altId)
+        {
+            // Get the value
+            string imppValue = value.Substring(VcardConstants._imppSpecifierWithType.Length);
+            string[] splitImpp = imppValue.Split(VcardConstants._argumentDelimiter);
+            if (splitImpp.Length < 2)
+                throw new InvalidDataException("IMPP information field must specify exactly two values (Type (must be prepended with TYPE=), and impp)");
+
+            // Install the values
+            string[] _imppTypes = VcardParserTools.GetTypes(splitImpp, "SIP", true);
+            string _impp = Regex.Unescape(imppValue.Substring(imppValue.IndexOf(":") + 1));
+            ImppInfo _imppInstance = new(altId, finalArgs.ToArray(), _impp, _imppTypes);
+            return _imppInstance;
         }
 
         internal ImppInfo() { }

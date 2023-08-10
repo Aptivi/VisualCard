@@ -25,7 +25,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using VisualCard.Parsers;
 
 namespace VisualCard.Parts
@@ -166,6 +168,123 @@ namespace VisualCard.Parts
                     $"{VcardConstants._typeArgumentSpecifier}{SoundType}{VcardConstants._argumentDelimiter}";
                 return soundArgsLine + BaseVcardParser.MakeStringBlock(SoundEncoded, soundArgsLine.Length);
             }
+        }
+
+        internal static SoundInfo FromStringVcardTwoWithType(string value, StreamReader cardContentReader)
+        {
+            // Get the value
+            string soundValue = value.Substring(VcardConstants._soundSpecifierWithType.Length);
+            string[] splitSound = soundValue.Split(VcardConstants._argumentDelimiter);
+            if (splitSound.Length < 2)
+                throw new InvalidDataException("Sound field must specify exactly two values (Type and arguments, and sound information)");
+
+            // Check to see if the value is prepended by the VALUE= argument
+            string valueType = VcardParserTools.GetValuesString(splitSound, "", VcardConstants._valueArgumentSpecifier).ToLower();
+            bool isUrl = valueType == "url" || valueType == "uri";
+
+            // Check to see if the value is prepended by the ENCODING= argument
+            string soundEncoding = VcardParserTools.GetValuesString(splitSound, "BASE64", VcardConstants._encodingArgumentSpecifier);
+
+            // Check to see if the value is prepended with the TYPE= argument
+            string soundType = VcardParserTools.GetTypesString(splitSound, "WAVE", false);
+
+            // Now, get the encoded sound
+            StringBuilder encodedSound = new();
+            if (splitSound.Length == 2)
+                encodedSound.Append(splitSound[1]);
+
+            // Make sure to get all the blocks until we reach an empty line
+            if (!isUrl)
+            {
+                string lineToBeAppended = cardContentReader.ReadLine();
+                while (!string.IsNullOrWhiteSpace(lineToBeAppended))
+                {
+                    encodedSound.Append(lineToBeAppended);
+                    lineToBeAppended = cardContentReader.ReadLine()?.Trim();
+                }
+            }
+
+            // Populate the fields
+            SoundInfo _sound = new(0, Array.Empty<string>(), valueType, soundEncoding, soundType, encodedSound.ToString());
+            return _sound;
+        }
+
+        internal static SoundInfo FromStringVcardThreeWithType(string value, StreamReader cardContentReader)
+        {
+            // Get the value
+            string soundValue = value.Substring(VcardConstants._soundSpecifierWithType.Length);
+            string[] splitSound = soundValue.Split(VcardConstants._argumentDelimiter);
+            if (splitSound.Length >= 2)
+                throw new InvalidDataException("Sound field must specify exactly two values (Type and arguments, and sound information)");
+
+            // Check to see if the value is prepended by the VALUE= argument
+            string valueType = VcardParserTools.GetValuesString(splitSound, "", VcardConstants._valueArgumentSpecifier).ToLower();
+            bool isUrl = valueType == "url" || valueType == "uri";
+
+            // Check to see if the value is prepended by the ENCODING= argument
+            string soundEncoding = VcardParserTools.GetValuesString(splitSound, "BASE64", VcardConstants._encodingArgumentSpecifier);
+
+            // Check to see if the value is prepended with the TYPE= argument
+            string soundType = VcardParserTools.GetTypesString(splitSound, "WAVE", true);
+
+            // Now, get the encoded sound
+            StringBuilder encodedSound = new();
+            if (splitSound.Length == 2)
+                encodedSound.Append(splitSound[1]);
+
+            // Make sure to get all the blocks until we reach an empty line
+            if (!isUrl)
+            {
+                string lineToBeAppended = cardContentReader.ReadLine();
+                while (!string.IsNullOrWhiteSpace(lineToBeAppended))
+                {
+                    encodedSound.Append(lineToBeAppended);
+                    lineToBeAppended = cardContentReader.ReadLine()?.Trim();
+                }
+            }
+
+            // Populate the fields
+            SoundInfo _sound = new(0, Array.Empty<string>(), valueType, soundEncoding, soundType, encodedSound.ToString());
+            return _sound;
+        }
+
+        internal static SoundInfo FromStringVcardFourWithType(string value, List<string> finalArgs, int altId, StreamReader cardContentReader)
+        {
+            // Get the value
+            string soundValue = value.Substring(VcardConstants._soundSpecifierWithType.Length);
+            string[] splitSound = soundValue.Split(VcardConstants._argumentDelimiter);
+            if (splitSound.Length >= 2)
+                throw new InvalidDataException("Sound field must specify exactly two values (Type and arguments, and sound information)");
+
+            // Check to see if the value is prepended by the VALUE= argument
+            string valueType = VcardParserTools.GetValuesString(splitSound, "", VcardConstants._valueArgumentSpecifier).ToLower();
+            bool isUrl = valueType == "url" || valueType == "uri";
+
+            // Check to see if the value is prepended by the ENCODING= argument
+            string soundEncoding = VcardParserTools.GetValuesString(splitSound, "BASE64", VcardConstants._encodingArgumentSpecifier);
+
+            // Check to see if the value is prepended with the TYPE= argument
+            string soundType = VcardParserTools.GetTypesString(splitSound, "WAVE", true);
+
+            // Now, get the encoded sound
+            StringBuilder encodedSound = new();
+            if (splitSound.Length == 2)
+                encodedSound.Append(splitSound[1]);
+
+            // Make sure to get all the blocks until we reach an empty line
+            if (!isUrl)
+            {
+                string lineToBeAppended = cardContentReader.ReadLine();
+                while (!string.IsNullOrWhiteSpace(lineToBeAppended))
+                {
+                    encodedSound.Append(lineToBeAppended);
+                    lineToBeAppended = cardContentReader.ReadLine()?.Trim();
+                }
+            }
+
+            // Populate the fields
+            SoundInfo _sound = new(altId, finalArgs.ToArray(), valueType, soundEncoding, soundType, encodedSound.ToString());
+            return _sound;
         }
 
         internal SoundInfo() { }

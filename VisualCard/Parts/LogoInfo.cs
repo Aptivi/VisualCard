@@ -25,7 +25,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using VisualCard.Parsers;
 
 namespace VisualCard.Parts
@@ -166,6 +168,123 @@ namespace VisualCard.Parts
                     $"{VcardConstants._typeArgumentSpecifier}{LogoType}{VcardConstants._argumentDelimiter}";
                 return logoArgsLine + BaseVcardParser.MakeStringBlock(LogoEncoded, logoArgsLine.Length);
             }
+        }
+
+        internal static LogoInfo FromStringVcardTwoWithType(string value, StreamReader cardContentReader)
+        {
+            // Get the value
+            string logoValue = value.Substring(VcardConstants._logoSpecifierWithType.Length);
+            string[] splitLogo = logoValue.Split(VcardConstants._argumentDelimiter);
+            if (splitLogo.Length < 2)
+                throw new InvalidDataException("Logo field must specify exactly two values (Type and arguments, and logo information)");
+
+            // Check to see if the value is prepended by the VALUE= argument
+            string valueType = VcardParserTools.GetValuesString(splitLogo, "", VcardConstants._valueArgumentSpecifier).ToLower();
+            bool isUrl = valueType == "url" || valueType == "uri";
+
+            // Check to see if the value is prepended by the ENCODING= argument
+            string logoEncoding = VcardParserTools.GetValuesString(splitLogo, "BASE64", VcardConstants._encodingArgumentSpecifier);
+
+            // Check to see if the value is prepended with the TYPE= argument
+            string logoType = VcardParserTools.GetTypesString(splitLogo, "JPEG", false);
+
+            // Now, get the encoded logo
+            StringBuilder encodedLogo = new();
+            if (splitLogo.Length == 2)
+                encodedLogo.Append(splitLogo[1]);
+
+            // Make sure to get all the blocks until we reach an empty line
+            if (!isUrl)
+            {
+                string lineToBeAppended = cardContentReader.ReadLine();
+                while (!string.IsNullOrWhiteSpace(lineToBeAppended) && lineToBeAppended.StartsWith(" "))
+                {
+                    encodedLogo.Append(lineToBeAppended.Trim());
+                    lineToBeAppended = cardContentReader.ReadLine();
+                }
+            }
+
+            // Populate the fields
+            LogoInfo _logo = new(0, Array.Empty<string>(), valueType, logoEncoding, logoType, encodedLogo.ToString());
+            return _logo;
+        }
+
+        internal static LogoInfo FromStringVcardThreeWithType(string value, StreamReader cardContentReader)
+        {
+            // Get the value
+            string logoValue = value.Substring(VcardConstants._logoSpecifierWithType.Length);
+            string[] splitLogo = logoValue.Split(VcardConstants._argumentDelimiter);
+            if (splitLogo.Length >= 2)
+                throw new InvalidDataException("Logo field must specify exactly two values (Type and arguments, and logo information)");
+
+            // Check to see if the value is prepended by the VALUE= argument
+            string valueType = VcardParserTools.GetValuesString(splitLogo, "", VcardConstants._valueArgumentSpecifier).ToLower();
+            bool isUrl = valueType == "url" || valueType == "uri";
+
+            // Check to see if the value is prepended by the ENCODING= argument
+            string logoEncoding = VcardParserTools.GetValuesString(splitLogo, "BASE64", VcardConstants._encodingArgumentSpecifier);
+
+            // Check to see if the value is prepended with the TYPE= argument
+            string logoType = VcardParserTools.GetTypesString(splitLogo, "JPEG", true);
+
+            // Now, get the encoded logo
+            StringBuilder encodedLogo = new();
+            if (splitLogo.Length == 2)
+                encodedLogo.Append(splitLogo[1]);
+
+            // Make sure to get all the blocks until we reach an empty line
+            if (!isUrl)
+            {
+                string lineToBeAppended = cardContentReader.ReadLine();
+                while (!string.IsNullOrWhiteSpace(lineToBeAppended) && lineToBeAppended.StartsWith(" "))
+                {
+                    encodedLogo.Append(lineToBeAppended.Trim());
+                    lineToBeAppended = cardContentReader.ReadLine();
+                }
+            }
+
+            // Populate the fields
+            LogoInfo _logo = new(0, Array.Empty<string>(), valueType, logoEncoding, logoType, encodedLogo.ToString());
+            return _logo;
+        }
+
+        internal static LogoInfo FromStringVcardFourWithType(string value, List<string> finalArgs, int altId, StreamReader cardContentReader)
+        {
+            // Get the value
+            string logoValue = value.Substring(VcardConstants._logoSpecifierWithType.Length);
+            string[] splitLogo = logoValue.Split(VcardConstants._argumentDelimiter);
+            if (splitLogo.Length >= 2)
+                throw new InvalidDataException("Logo field must specify exactly two values (Type and arguments, and logo information)");
+
+            // Check to see if the value is prepended by the VALUE= argument
+            string valueType = VcardParserTools.GetValuesString(splitLogo, "", VcardConstants._valueArgumentSpecifier).ToLower();
+            bool isUrl = valueType == "url" || valueType == "uri";
+
+            // Check to see if the value is prepended by the ENCODING= argument
+            string logoEncoding = VcardParserTools.GetValuesString(splitLogo, "BASE64", VcardConstants._encodingArgumentSpecifier);
+
+            // Check to see if the value is prepended with the TYPE= argument
+            string logoType = VcardParserTools.GetTypesString(splitLogo, "JPEG", true);
+
+            // Now, get the encoded logo
+            StringBuilder encodedLogo = new();
+            if (splitLogo.Length == 2)
+                encodedLogo.Append(splitLogo[1]);
+
+            // Make sure to get all the blocks until we reach an empty line
+            if (!isUrl)
+            {
+                string lineToBeAppended = cardContentReader.ReadLine();
+                while (!string.IsNullOrWhiteSpace(lineToBeAppended) && lineToBeAppended.StartsWith(" "))
+                {
+                    encodedLogo.Append(lineToBeAppended.Trim());
+                    lineToBeAppended = cardContentReader.ReadLine();
+                }
+            }
+
+            // Populate the fields
+            LogoInfo _logo = new(altId, finalArgs.ToArray(), valueType, logoEncoding, logoType, encodedLogo.ToString());
+            return _logo;
         }
 
         internal LogoInfo() { }

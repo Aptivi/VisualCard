@@ -25,7 +25,10 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 using VisualCard.Parsers;
 
 namespace VisualCard.Parts
@@ -166,6 +169,123 @@ namespace VisualCard.Parts
                     $"{VcardConstants._typeArgumentSpecifier}{PhotoType}{VcardConstants._argumentDelimiter}";
                 return photoArgsLine + BaseVcardParser.MakeStringBlock(PhotoEncoded, photoArgsLine.Length);
             }
+        }
+
+        internal static PhotoInfo FromStringVcardTwoWithType(string value, StreamReader cardContentReader)
+        {
+            // Get the value
+            string photoValue = value.Substring(VcardConstants._photoSpecifierWithType.Length);
+            string[] splitPhoto = photoValue.Split(VcardConstants._argumentDelimiter);
+            if (splitPhoto.Length < 2)
+                throw new InvalidDataException("Photo field must specify exactly two values (Type and arguments, and photo information)");
+
+            // Check to see if the value is prepended by the VALUE= argument
+            string valueType = VcardParserTools.GetValuesString(splitPhoto, "", VcardConstants._valueArgumentSpecifier).ToLower();
+            bool isUrl = valueType == "url" || valueType == "uri";
+
+            // Check to see if the value is prepended by the ENCODING= argument
+            string photoEncoding = VcardParserTools.GetValuesString(splitPhoto, "BASE64", VcardConstants._encodingArgumentSpecifier);
+
+            // Check to see if the value is prepended with the TYPE= argument
+            string photoType = VcardParserTools.GetTypesString(splitPhoto, "JPEG", false);
+
+            // Now, get the encoded photo
+            StringBuilder encodedPhoto = new();
+            if (splitPhoto.Length == 2)
+                encodedPhoto.Append(splitPhoto[1]);
+
+            // Make sure to get all the blocks until we reach an empty line
+            if (!isUrl)
+            {
+                string lineToBeAppended = cardContentReader.ReadLine();
+                while (!string.IsNullOrWhiteSpace(lineToBeAppended) && lineToBeAppended.StartsWith(" "))
+                {
+                    encodedPhoto.Append(lineToBeAppended.Trim());
+                    lineToBeAppended = cardContentReader.ReadLine();
+                }
+            }
+
+            // Populate the fields
+            PhotoInfo _photo = new(0, Array.Empty<string>(), valueType, photoEncoding, photoType, encodedPhoto.ToString());
+            return _photo;
+        }
+
+        internal static PhotoInfo FromStringVcardThreeWithType(string value, StreamReader cardContentReader)
+        {
+            // Get the value
+            string photoValue = value.Substring(VcardConstants._photoSpecifierWithType.Length);
+            string[] splitPhoto = photoValue.Split(VcardConstants._argumentDelimiter);
+            if (splitPhoto.Length >= 2)
+                throw new InvalidDataException("Photo field must specify exactly two values (Type and arguments, and photo information)");
+
+            // Check to see if the value is prepended by the VALUE= argument
+            string valueType = VcardParserTools.GetValuesString(splitPhoto, "", VcardConstants._valueArgumentSpecifier).ToLower();
+            bool isUrl = valueType == "url" || valueType == "uri";
+
+            // Check to see if the value is prepended by the ENCODING= argument
+            string photoEncoding = VcardParserTools.GetValuesString(splitPhoto, "BASE64", VcardConstants._encodingArgumentSpecifier);
+
+            // Check to see if the value is prepended with the TYPE= argument
+            string photoType = VcardParserTools.GetTypesString(splitPhoto, "JPEG", true);
+
+            // Now, get the encoded photo
+            StringBuilder encodedPhoto = new();
+            if (splitPhoto.Length == 2)
+                encodedPhoto.Append(splitPhoto[1]);
+
+            // Make sure to get all the blocks until we reach an empty line
+            if (!isUrl)
+            {
+                string lineToBeAppended = cardContentReader.ReadLine();
+                while (!string.IsNullOrWhiteSpace(lineToBeAppended) && lineToBeAppended.StartsWith(" "))
+                {
+                    encodedPhoto.Append(lineToBeAppended.Trim());
+                    lineToBeAppended = cardContentReader.ReadLine();
+                }
+            }
+
+            // Populate the fields
+            PhotoInfo _photo = new(0, Array.Empty<string>(), valueType, photoEncoding, photoType, encodedPhoto.ToString());
+            return _photo;
+        }
+
+        internal static PhotoInfo FromStringVcardFourWithType(string value, List<string> finalArgs, int altId, StreamReader cardContentReader)
+        {
+            // Get the value
+            string photoValue = value.Substring(VcardConstants._photoSpecifierWithType.Length);
+            string[] splitPhoto = photoValue.Split(VcardConstants._argumentDelimiter);
+            if (splitPhoto.Length >= 2)
+                throw new InvalidDataException("Photo field must specify exactly two values (Type and arguments, and photo information)");
+
+            // Check to see if the value is prepended by the VALUE= argument
+            string valueType = VcardParserTools.GetValuesString(splitPhoto, "", VcardConstants._valueArgumentSpecifier).ToLower();
+            bool isUrl = valueType == "url" || valueType == "uri";
+
+            // Check to see if the value is prepended by the ENCODING= argument
+            string photoEncoding = VcardParserTools.GetValuesString(splitPhoto, "BASE64", VcardConstants._encodingArgumentSpecifier);
+
+            // Check to see if the value is prepended with the TYPE= argument
+            string photoType = VcardParserTools.GetTypesString(splitPhoto, "JPEG", true);
+
+            // Now, get the encoded photo
+            StringBuilder encodedPhoto = new();
+            if (splitPhoto.Length == 2)
+                encodedPhoto.Append(splitPhoto[1]);
+
+            // Make sure to get all the blocks until we reach an empty line
+            if (!isUrl)
+            {
+                string lineToBeAppended = cardContentReader.ReadLine();
+                while (!string.IsNullOrWhiteSpace(lineToBeAppended) && lineToBeAppended.StartsWith(" "))
+                {
+                    encodedPhoto.Append(lineToBeAppended.Trim());
+                    lineToBeAppended = cardContentReader.ReadLine();
+                }
+            }
+
+            // Populate the fields
+            PhotoInfo _photo = new(altId, finalArgs.ToArray(), valueType, photoEncoding, photoType, encodedPhoto.ToString());
+            return _photo;
         }
 
         internal PhotoInfo() { }

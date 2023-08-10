@@ -25,7 +25,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using VisualCard.Parsers;
 
 namespace VisualCard.Parts
@@ -113,6 +115,88 @@ namespace VisualCard.Parts
                 $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
                 $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._argumentDelimiter : "")}" +
                 $"{Geo}";
+        }
+
+        internal static GeoInfo FromStringVcardTwo(string value)
+        {
+            string geoValue = value.Substring(VcardConstants._geoSpecifier.Length);
+            string _geoStr = Regex.Unescape(geoValue);
+            GeoInfo _geo = new(0, Array.Empty<string>(), Array.Empty<string>(), _geoStr);
+            return _geo;
+        }
+
+        internal static GeoInfo FromStringVcardTwoWithType(string value)
+        {
+            string geoValue = value.Substring(VcardConstants._geoSpecifierWithType.Length);
+            string[] splitGeo = geoValue.Split(VcardConstants._argumentDelimiter);
+            if (splitGeo.Length < 2)
+                throw new InvalidDataException("Geo field must specify exactly two values (VALUE=\"uri\", and geo info)");
+
+            // Get the types and the number
+            string[] _geoTypes = VcardParserTools.GetValues(splitGeo, "", VcardConstants._valueArgumentSpecifier);
+            string _geoNumber = Regex.Unescape(splitGeo[1]);
+
+            // Add the fetched information
+            GeoInfo _geo = new(0, Array.Empty<string>(), _geoTypes, _geoNumber);
+            return _geo;
+        }
+
+        internal static GeoInfo FromStringVcardThree(string value)
+        {
+            // Get the value
+            string geoValue = value.Substring(VcardConstants._geoSpecifier.Length);
+
+            // Populate the fields
+            string[] _geoTypes = new string[] { "uri" };
+            string _geoNumber = Regex.Unescape(geoValue);
+            GeoInfo _geo = new(0, Array.Empty<string>(), _geoTypes, _geoNumber);
+            return _geo;
+        }
+
+        internal static GeoInfo FromStringVcardThreeWithType(string value)
+        {
+            // Get the value
+            string geoValue = value.Substring(VcardConstants._geoSpecifierWithType.Length);
+            string[] splitGeo = geoValue.Split(VcardConstants._argumentDelimiter);
+            if (splitGeo.Length < 2)
+                throw new InvalidDataException("Geo field must specify exactly two values (VALUE=\"uri\", and geo info)");
+
+            // Get the types and the number
+            string[] _geoTypes = VcardParserTools.GetValues(splitGeo, "", VcardConstants._valueArgumentSpecifier);
+            string _geoNumber = Regex.Unescape(splitGeo[1]);
+
+            // Add the fetched information
+            GeoInfo _geo = new(0, Array.Empty<string>(), _geoTypes, _geoNumber);
+            return _geo;
+        }
+
+        internal static GeoInfo FromStringVcardFour(string value, int altId)
+        {
+            // Get the value
+            string geoValue = value.Substring(VcardConstants._geoSpecifier.Length);
+
+            // Populate the fields
+            string[] _geoTypes = new string[] { "uri" };
+            string _geoNumber = Regex.Unescape(geoValue);
+            GeoInfo _geo = new(altId, Array.Empty<string>(), _geoTypes, _geoNumber);
+            return _geo;
+        }
+
+        internal static GeoInfo FromStringVcardFourWithType(string value, List<string> finalArgs, int altId)
+        {
+            // Get the value
+            string geoValue = value.Substring(VcardConstants._geoSpecifierWithType.Length);
+            string[] splitGeo = geoValue.Split(VcardConstants._argumentDelimiter);
+            if (splitGeo.Length < 2)
+                throw new InvalidDataException("Geo field must specify exactly two values (VALUE=\"uri\", and geo info)");
+
+            // Get the types and the number
+            string[] _geoTypes = VcardParserTools.GetValues(splitGeo, "", VcardConstants._valueArgumentSpecifier);
+            string _geoNumber = Regex.Unescape(splitGeo[1]);
+
+            // Add the fetched information
+            GeoInfo _geo = new(altId, finalArgs.ToArray(), _geoTypes, _geoNumber);
+            return _geo;
         }
 
         internal GeoInfo() { }

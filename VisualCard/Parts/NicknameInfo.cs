@@ -25,7 +25,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using VisualCard.Parsers;
 
 namespace VisualCard.Parts
@@ -113,6 +115,60 @@ namespace VisualCard.Parts
                 $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._fieldDelimiter : "")}" +
                 $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", NicknameTypes)}{VcardConstants._argumentDelimiter}" +
                 $"{ContactNickname}";
+        }
+
+        internal static NicknameInfo FromStringVcardThree(string value)
+        {
+            // Get the value
+            string nickValue = value.Substring(VcardConstants._nicknameSpecifier.Length);
+
+            // Populate the fields
+            string[] _nicknameTypes = new string[] { "HOME" };
+            string _nick = Regex.Unescape(nickValue);
+            NicknameInfo _nickInstance = new(0, Array.Empty<string>(), _nick, _nicknameTypes);
+            return _nickInstance;
+        }
+
+        internal static NicknameInfo FromStringVcardThreeWithType(string value)
+        {
+            // Get the value
+            string nickValue = value.Substring(VcardConstants._nicknameSpecifierWithType.Length);
+            string[] splitNick = nickValue.Split(VcardConstants._argumentDelimiter);
+            if (splitNick.Length < 2)
+                throw new InvalidDataException("Nickname field must specify exactly two values (Type (must be prepended with TYPE=), and nickname)");
+
+            // Populate the fields
+            string[] _nicknameTypes = VcardParserTools.GetTypes(splitNick, "WORK", true);
+            string _nick = Regex.Unescape(splitNick[1]);
+            NicknameInfo _nickInstance = new(0, Array.Empty<string>(), _nick, _nicknameTypes);
+            return _nickInstance;
+        }
+
+        internal static NicknameInfo FromStringVcardFour(string value, int altId)
+        {
+            // Get the value
+            string nickValue = value.Substring(VcardConstants._nicknameSpecifier.Length);
+
+            // Populate the fields
+            string[] _nicknameTypes = new string[] { "HOME" };
+            string _nick = Regex.Unescape(nickValue);
+            NicknameInfo _nickInstance = new(altId, Array.Empty<string>(), _nick, _nicknameTypes);
+            return _nickInstance;
+        }
+
+        internal static NicknameInfo FromStringVcardFourWithType(string value, List<string> finalArgs, int altId)
+        {
+            // Get the value
+            string nickValue = value.Substring(VcardConstants._nicknameSpecifierWithType.Length);
+            string[] splitNick = nickValue.Split(VcardConstants._argumentDelimiter);
+            if (splitNick.Length < 2)
+                throw new InvalidDataException("Nickname field must specify exactly two values (Type (must be prepended with TYPE=), and nickname)");
+
+            // Populate the fields
+            string[] _nicknameTypes = VcardParserTools.GetTypes(splitNick, "WORK", true);
+            string _nick = Regex.Unescape(splitNick[1]);
+            NicknameInfo _nickInstance = new(altId, finalArgs.ToArray(), _nick, _nicknameTypes);
+            return _nickInstance;
         }
 
         internal NicknameInfo() { }

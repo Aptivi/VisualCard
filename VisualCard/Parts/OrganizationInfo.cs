@@ -25,7 +25,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using VisualCard.Parsers;
 
 namespace VisualCard.Parts
@@ -136,6 +138,117 @@ namespace VisualCard.Parts
                 $"{Name}{VcardConstants._fieldDelimiter}" +
                 $"{Unit}{VcardConstants._fieldDelimiter}" +
                 $"{Role}";
+        }
+
+        internal static OrganizationInfo FromStringVcardTwo(string value)
+        {
+            // Get the value
+            string orgValue = value.Substring(VcardConstants._orgSpecifier.Length);
+            string[] splitOrg = orgValue.Split(VcardConstants._fieldDelimiter);
+
+            // Populate the fields
+            string[] splitTypes = new string[] { "WORK" };
+            string _orgName = Regex.Unescape(splitOrg[0]);
+            string _orgUnit = Regex.Unescape(splitOrg.Length >= 2 ? splitOrg[1] : "");
+            string _orgUnitRole = Regex.Unescape(splitOrg.Length >= 3 ? splitOrg[2] : "");
+            OrganizationInfo _org = new(0, Array.Empty<string>(), _orgName, _orgUnit, _orgUnitRole, splitTypes);
+            return _org;
+        }
+
+        internal static OrganizationInfo FromStringVcardTwoWithType(string value)
+        {
+            // Get the value
+            string orgValue = value.Substring(VcardConstants._orgSpecifierWithType.Length);
+            string[] splitOrg = orgValue.Split(VcardConstants._argumentDelimiter);
+            if (splitOrg.Length < 2)
+                throw new InvalidDataException("Organization field must specify exactly two values (Type, and address information)");
+
+            // Check the provided organization
+            string[] splitOrganizationValues = splitOrg[1].Split(VcardConstants._fieldDelimiter);
+            if (splitOrganizationValues.Length < 3)
+                throw new InvalidDataException("Organization information must specify exactly three values (name, unit, and role)");
+
+            // Populate the fields
+            string _orgName = Regex.Unescape(splitOrganizationValues[0]);
+            string _orgUnit = Regex.Unescape(splitOrganizationValues.Length >= 2 ? splitOrganizationValues[1] : "");
+            string _orgUnitRole = Regex.Unescape(splitOrganizationValues.Length >= 3 ? splitOrganizationValues[2] : "");
+            string[] _orgTypes = VcardParserTools.GetTypes(splitOrg, "WORK", false);
+            OrganizationInfo _org = new(0, Array.Empty<string>(), _orgName, _orgUnit, _orgUnitRole, _orgTypes);
+            return _org;
+        }
+
+        internal static OrganizationInfo FromStringVcardThree(string value)
+        {
+            // Get the value
+            string orgValue = value.Substring(VcardConstants._orgSpecifier.Length);
+            string[] splitOrg = orgValue.Split(VcardConstants._fieldDelimiter);
+
+            // Populate the fields
+            string[] splitTypes = new string[] { "WORK" };
+            string _orgName = Regex.Unescape(splitOrg[0]);
+            string _orgUnit = Regex.Unescape(splitOrg.Length >= 2 ? splitOrg[1] : "");
+            string _orgUnitRole = Regex.Unescape(splitOrg.Length >= 3 ? splitOrg[2] : "");
+            OrganizationInfo _org = new(0, Array.Empty<string>(), _orgName, _orgUnit, _orgUnitRole, splitTypes);
+            return _org;
+        }
+
+        internal static OrganizationInfo FromStringVcardThreeWithType(string value)
+        {
+            // Get the value
+            string orgValue = value.Substring(VcardConstants._orgSpecifierWithType.Length);
+            string[] splitOrg = orgValue.Split(VcardConstants._argumentDelimiter);
+            if (splitOrg.Length < 2)
+                throw new InvalidDataException("Organization field must specify exactly two values (Type (must be prepended with TYPE=), and address information)");
+
+            // Check the provided organization
+            string[] splitOrganizationValues = splitOrg[1].Split(VcardConstants._fieldDelimiter);
+            if (splitOrganizationValues.Length < 3)
+                throw new InvalidDataException("Organization information must specify exactly three values (name, unit, and role)");
+
+            // Populate the fields
+            string _orgName = Regex.Unescape(splitOrganizationValues[0]);
+            string _orgUnit = Regex.Unescape(splitOrganizationValues.Length >= 2 ? splitOrganizationValues[1] : "");
+            string _orgUnitRole = Regex.Unescape(splitOrganizationValues.Length >= 3 ? splitOrganizationValues[2] : "");
+            string[] _orgTypes = VcardParserTools.GetTypes(splitOrg, "WORK", true);
+            OrganizationInfo _org = new(0, Array.Empty<string>(), _orgName, _orgUnit, _orgUnitRole, _orgTypes);
+            return _org;
+        }
+
+        internal static OrganizationInfo FromStringVcardFour(string value, int altId)
+        {
+            // Get the value
+            string orgValue = value.Substring(VcardConstants._orgSpecifier.Length);
+            string[] splitOrg = orgValue.Split(VcardConstants._fieldDelimiter);
+
+            // Populate the fields
+            string[] splitTypes = new string[] { "WORK" };
+            string _orgName = Regex.Unescape(splitOrg[0]);
+            string _orgUnit = Regex.Unescape(splitOrg.Length >= 2 ? splitOrg[1] : "");
+            string _orgUnitRole = Regex.Unescape(splitOrg.Length >= 3 ? splitOrg[2] : "");
+            OrganizationInfo _org = new(altId, Array.Empty<string>(), _orgName, _orgUnit, _orgUnitRole, splitTypes);
+            return _org;
+        }
+
+        internal static OrganizationInfo FromStringVcardFourWithType(string value, List<string> finalArgs, int altId)
+        {
+            // Get the value
+            string orgValue = value.Substring(VcardConstants._orgSpecifierWithType.Length);
+            string[] splitOrg = orgValue.Split(VcardConstants._argumentDelimiter);
+            if (splitOrg.Length < 2)
+                throw new InvalidDataException("Organization field must specify exactly two values (Type (must be prepended with TYPE=), and address information)");
+
+            // Check the provided organization
+            string[] splitOrganizationValues = splitOrg[1].Split(VcardConstants._fieldDelimiter);
+            if (splitOrganizationValues.Length < 3)
+                throw new InvalidDataException("Organization information must specify exactly three values (name, unit, and role)");
+
+            // Populate the fields
+            string _orgName = Regex.Unescape(splitOrganizationValues[0]);
+            string _orgUnit = Regex.Unescape(splitOrganizationValues.Length >= 2 ? splitOrganizationValues[1] : "");
+            string _orgUnitRole = Regex.Unescape(splitOrganizationValues.Length >= 3 ? splitOrganizationValues[2] : "");
+            string[] _orgTypes = VcardParserTools.GetTypes(splitOrg, "WORK", true);
+            OrganizationInfo _org = new(altId, finalArgs.ToArray(), _orgName, _orgUnit, _orgUnitRole, _orgTypes);
+            return _org;
         }
 
         internal OrganizationInfo() { }

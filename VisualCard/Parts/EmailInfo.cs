@@ -25,7 +25,10 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Mail;
+using System.Text.RegularExpressions;
 using VisualCard.Parsers;
 
 namespace VisualCard.Parts
@@ -114,6 +117,84 @@ namespace VisualCard.Parts
                 $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
                 $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", ContactEmailTypes)}{VcardConstants._argumentDelimiter}" +
                 $"{ContactEmailAddress}";
+        }
+
+        internal static EmailInfo FromStringVcardTwoWithType(string value)
+        {
+            // Get the value
+            string mailValue = value.Substring(VcardConstants._emailSpecifier.Length);
+            string[] splitMail = mailValue.Split(VcardConstants._argumentDelimiter);
+            MailAddress mail;
+            if (splitMail.Length < 2)
+                throw new InvalidDataException("E-mail field must specify exactly two values (Type (optionally prepended with TYPE=), and a valid e-mail address)");
+
+            // Try to create mail address
+            try
+            {
+                mail = new MailAddress(splitMail[1]);
+            }
+            catch (ArgumentException aex)
+            {
+                throw new InvalidDataException("E-mail address is invalid", aex);
+            }
+
+            // Populate the fields
+            string[] _emailTypes = VcardParserTools.GetTypes(splitMail, "HOME", false);
+            string _emailAddress = mail.Address;
+            EmailInfo _email = new(0, Array.Empty<string>(), _emailTypes, _emailAddress);
+            return _email;
+        }
+
+        internal static EmailInfo FromStringVcardThreeWithType(string value)
+        {
+            // Get the value
+            string mailValue = value.Substring(VcardConstants._emailSpecifier.Length);
+            string[] splitMail = mailValue.Split(VcardConstants._argumentDelimiter);
+            MailAddress mail;
+            if (splitMail.Length < 2)
+                throw new InvalidDataException("E-mail field must specify exactly two values (Type (must be prepended with TYPE=), and a valid e-mail address)");
+
+            // Try to create mail address
+            try
+            {
+                mail = new MailAddress(splitMail[1]);
+            }
+            catch (ArgumentException aex)
+            {
+                throw new InvalidDataException("E-mail address is invalid", aex);
+            }
+
+            // Populate the fields
+            string[] _emailTypes = VcardParserTools.GetTypes(splitMail, "HOME", true);
+            string _emailAddress = mail.Address;
+            EmailInfo _email = new(0, Array.Empty<string>(), _emailTypes, _emailAddress);
+            return _email;
+        }
+
+        internal static EmailInfo FromStringVcardFourWithType(string value, List<string> finalArgs, int altId)
+        {
+            // Get the value
+            string mailValue = value.Substring(VcardConstants._emailSpecifier.Length);
+            string[] splitMail = mailValue.Split(VcardConstants._argumentDelimiter);
+            MailAddress mail;
+            if (splitMail.Length < 2)
+                throw new InvalidDataException("E-mail field must specify exactly two values (Type (must be prepended with TYPE=), and a valid e-mail address)");
+
+            // Try to create mail address
+            try
+            {
+                mail = new MailAddress(splitMail[1]);
+            }
+            catch (ArgumentException aex)
+            {
+                throw new InvalidDataException("E-mail address is invalid", aex);
+            }
+
+            // Populate the fields
+            string[] _emailTypes = VcardParserTools.GetTypes(splitMail, "HOME", true);
+            string _emailAddress = mail.Address;
+            EmailInfo _email = new(altId, finalArgs.ToArray(), _emailTypes, _emailAddress);
+            return _email;
         }
 
         internal EmailInfo() { }

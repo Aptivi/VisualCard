@@ -25,7 +25,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using VisualCard.Parsers;
 
 namespace VisualCard.Parts
@@ -107,6 +109,46 @@ namespace VisualCard.Parts
                 $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
                 $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._argumentDelimiter : "")}" +
                 $"{ContactRole}";
+        }
+
+        internal static RoleInfo FromStringVcardTwo(string value)
+        {
+            // Get the value
+            string roleValue = value.Substring(VcardConstants._roleSpecifier.Length);
+
+            // Populate the fields
+            RoleInfo _role = new(0, Array.Empty<string>(), roleValue);
+            return _role;
+        }
+
+        internal static RoleInfo FromStringVcardThree(string value)
+        {
+            // Get the value
+            string roleValue = value.Substring(VcardConstants._roleSpecifier.Length);
+
+            // Populate the fields
+            RoleInfo _role = new(0, Array.Empty<string>(), roleValue);
+            return _role;
+        }
+
+        internal static RoleInfo FromStringVcardFour(string value, int altId)
+        {
+            // Get the value
+            string roleValue = value.Substring(VcardConstants._roleSpecifier.Length);
+
+            // Populate the fields
+            RoleInfo _role = new(altId, Array.Empty<string>(), roleValue);
+            return _role;
+        }
+
+        internal static RoleInfo FromStringVcardFourWithType(string value, List<string> finalArgs, int altId)
+        {
+            // Get the value
+            string roleValue = value.Substring(VcardConstants._roleSpecifier.Length);
+
+            // Populate the fields
+            RoleInfo _role = new(altId, finalArgs.ToArray(), roleValue);
+            return _role;
         }
 
         internal RoleInfo() { }
