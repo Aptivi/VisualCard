@@ -45,17 +45,26 @@ namespace VisualCard.ShowContacts
                 bool save = args.Contains("-save");
                 bool dbg = args.Contains("-debug");
                 bool android = args.Contains("-android");
+                bool mecard = args.Contains("-mecard");
 
                 // If debug, wait for debugger
                 if (dbg)
                     Debugger.Launch();
+
+                // If mecard, get a MeCard string
+                string meCardString = "";
+                if (mecard)
+                    meCardString = args[^1];
 
                 // Initialize stopwatch
                 Stopwatch elapsed = new();
                 elapsed.Start();
 
                 // Get parsers
-                List<BaseVcardParser> ContactParsers = android ? AndroidContactsDb.GetContactsFromDb(args[0]) : CardTools.GetCardParsers(args[0]);
+                List<BaseVcardParser> ContactParsers = 
+                    android ? AndroidContactsDb.GetContactsFromDb(args[0]) : 
+                    mecard ? MeCard.GetContactsFromMeCardString(meCardString) :
+                    CardTools.GetCardParsers(args[0]);
                 List<Card> Contacts = new();
 
                 // Parse all contacts
