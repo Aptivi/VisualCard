@@ -70,6 +70,25 @@ references:
   isSpec: "True"
   fullName: VisualCard.Converters.AndroidContactsDb.GetContactsFromDb
   nameWithType: AndroidContactsDb.GetContactsFromDb
+- uid: VisualCard.Converters.MeCard
+  name: MeCard
+  href: api/VisualCard.Converters.MeCard.html
+  commentId: T:VisualCard.Converters.MeCard
+  fullName: VisualCard.Converters.MeCard
+  nameWithType: MeCard
+- uid: VisualCard.Converters.MeCard.GetContactsFromMeCardString(System.String)
+  name: GetContactsFromMeCardString(String)
+  href: api/VisualCard.Converters.MeCard.html#VisualCard_Converters_MeCard_GetContactsFromMeCardString_System_String_
+  commentId: M:VisualCard.Converters.MeCard.GetContactsFromMeCardString(System.String)
+  fullName: VisualCard.Converters.MeCard.GetContactsFromMeCardString(System.String)
+  nameWithType: MeCard.GetContactsFromMeCardString(String)
+- uid: VisualCard.Converters.MeCard.GetContactsFromMeCardString*
+  name: GetContactsFromMeCardString
+  href: api/VisualCard.Converters.MeCard.html#VisualCard_Converters_MeCard_GetContactsFromMeCardString_
+  commentId: Overload:VisualCard.Converters.MeCard.GetContactsFromMeCardString
+  isSpec: "True"
+  fullName: VisualCard.Converters.MeCard.GetContactsFromMeCardString
+  nameWithType: MeCard.GetContactsFromMeCardString
 - uid: VisualCard.Exceptions
   name: VisualCard.Exceptions
   href: api/VisualCard.Exceptions.html

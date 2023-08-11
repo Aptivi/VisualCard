@@ -41,11 +41,23 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Converters.MeCard.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Converters.MeCard.html",
+          "hash": "rR0GDWDb/bxlvEMvL6uOxe/3O2eY4svDM7tOWHx1L9k="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/VisualCard.Converters.yml",
       "output": {
         ".html": {
           "relative_path": "api/VisualCard.Converters.html",
-          "hash": "FgLHOnL7pW+bflUWfl7WSc4ENZhHvvyLatajo8zbTDM="
+          "hash": "2MT/yaE3yo7u3eyV7x+UfzLfjeCfwhN53AlebXXLfdI="
         }
       },
       "is_incremental": false,
@@ -405,7 +417,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "5JzLIFY762KXDuIzXDouuSb+mSt7f5mUIJgk+qRhJK4="
+          "hash": "29zSQ1Bk3HP+Ip7r/g90BP5krkZCfqxdxmmiRD3FMp8="
         }
       },
       "is_incremental": false,
@@ -456,7 +468,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 32,
+          "total_file_count": 33,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {

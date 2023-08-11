@@ -12,7 +12,12 @@
   "api/VisualCard.Converters.html": {
     "href": "api/VisualCard.Converters.html",
     "title": "Namespace VisualCard.Converters | VisualCard API - Eofla Internals",
-    "keywords": "Namespace VisualCard.Converters Classes AndroidContactsDb Android contacts database management class"
+    "keywords": "Namespace VisualCard.Converters Classes AndroidContactsDb Android contacts database management class MeCard MeCard string generator and converter"
+  },
+  "api/VisualCard.Converters.MeCard.html": {
+    "href": "api/VisualCard.Converters.MeCard.html",
+    "title": "Class MeCard | VisualCard API - Eofla Internals",
+    "keywords": "Class MeCard MeCard string generator and converter Inheritance System.Object MeCard Namespace : VisualCard.Converters Assembly : VisualCard.dll Syntax public static class MeCard : object Methods GetContactsFromMeCardString(String) Gets all contacts from a MeCard string Declaration public static List<BaseVcardParser> GetContactsFromMeCardString(string meCardString) Parameters Type Name Description System.String meCardString MeCard string Returns Type Description List < BaseVcardParser >"
   },
   "api/VisualCard.Exceptions.html": {
     "href": "api/VisualCard.Exceptions.html",
