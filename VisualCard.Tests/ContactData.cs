@@ -31,6 +31,23 @@ namespace VisualCard.Tests
     public static class ContactData
     {
         #region singleVcardTwoContactShort
+        private static readonly string singleMeCardContactShort =
+            """
+            MECARD:N:Hood,Rick,,,;;
+            """
+        ;
+
+        private static readonly string singleVcardContactShortFromMeCard =
+            """
+            BEGIN:VCARD
+            VERSION:3.0
+            FN:Rick Hood
+            N:Hood;Rick;;;;
+            END:VCARD
+
+            """
+        ;
+
         private static readonly string singleVcardTwoContactShort =
             """
             BEGIN:VCARD
@@ -40,6 +57,19 @@ namespace VisualCard.Tests
             END:VCARD
             """
         ;
+
+        private static readonly Card singleVcardContactShortFromMeCardInstance = new
+        (
+            null,
+            "3.0"
+        )
+        {
+            ContactNames = new NameInfo[]
+            {
+                new NameInfo(0, Array.Empty<string>(), "Rick", "Hood", Array.Empty<string>(), Array.Empty<string>(), Array.Empty<string>())
+            },
+            ContactFullName = "Rick Hood"
+        };
 
         private static readonly Card singleVcardTwoContactShortInstance = new
         (
@@ -106,6 +136,53 @@ namespace VisualCard.Tests
         #endregion
 
         #region singleVcardTwoContact
+        private static readonly string singleMeCardContact =
+            """
+            MECARD:N:Sanders,John,,,;TEL:495-522-3560;EMAIL:john.s@acme.co;ADR:,,Los Angeles,,,,USA;NOTE:Note test for VisualCard;;
+            """
+        ;
+
+        private static readonly string singleVcardContactFromMeCard =
+            """
+            BEGIN:VCARD
+            VERSION:3.0
+            FN:John Sanders
+            N:Sanders;John;;;;
+            TEL;TYPE=CELL:495-522-3560
+            ADR;TYPE=HOME:;;Los Angeles;;;;USA
+            EMAIL;TYPE=HOME:john.s@acme.co
+            NOTE:Note test for VisualCard
+            END:VCARD
+
+            """
+        ;
+
+        private static readonly Card singleVcardContactInstanceFromMeCard = new
+        (
+            null,
+            "3.0"
+        )
+        {
+            ContactNames = new NameInfo[]
+            {
+                new NameInfo(0, Array.Empty<string>(), "John", "Sanders", Array.Empty<string>(), Array.Empty<string>(), Array.Empty<string>())
+            },
+            ContactFullName = "John Sanders",
+            ContactTelephones = new TelephoneInfo[]
+            {
+                new TelephoneInfo(0, Array.Empty<string>(), new string[] { "CELL" }, "495-522-3560")
+            },
+            ContactAddresses = new AddressInfo[]
+            {
+                new AddressInfo(0, Array.Empty<string>(), new string[] { "HOME" }, "", "", "Los Angeles", "", "", "", "USA")
+            },
+            ContactNotes = "Note test for VisualCard",
+            ContactMails = new EmailInfo[]
+            {
+                new EmailInfo(0, Array.Empty<string>(), new string[] { "HOME" }, "john.s@acme.co")
+            }
+        };
+
         private static readonly string singleVcardTwoContact =
             """
             BEGIN:VCARD
@@ -893,6 +970,24 @@ namespace VisualCard.Tests
         };
 
         /// <summary>
+        /// Test MeCard contacts
+        /// </summary>
+        public static readonly string[] meCardContacts =
+        {
+            singleMeCardContactShort,
+            singleMeCardContact,
+        };
+
+        /// <summary>
+        /// Test MeCard contacts
+        /// </summary>
+        public static readonly (string, string)[] vCardFromMeCardContacts =
+        {
+            (singleMeCardContactShort, singleVcardContactShortFromMeCard),
+            (singleMeCardContact, singleVcardContactFromMeCard),
+        };
+
+        /// <summary>
         /// All the remaining valid contacts
         /// </summary>
         public static readonly string[] remainingContacts =
@@ -926,6 +1021,8 @@ namespace VisualCard.Tests
             vcardThreeOldSampleInstanceOne,
             vcardThreeOldSampleInstanceTwo,
             vcardThreeOldSampleInstanceThree,
+            singleVcardContactInstanceFromMeCard,
+            singleVcardContactShortFromMeCardInstance,
         };
     }
 }

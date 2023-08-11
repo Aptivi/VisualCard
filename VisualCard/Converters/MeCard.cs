@@ -88,6 +88,10 @@ namespace VisualCard.Converters
                     if (value.StartsWith("ADR:"))
                         values[i] = $"ADR;TYPE=HOME{values[i].Substring(3)}";
 
+                    // As VisualCard doesn't support EMAIL: yet, why don't we just make it EMAIL; until we improve type detecion?
+                    if (value.StartsWith("EMAIL:"))
+                        values[i] = $"EMAIL;TYPE=HOME{values[i].Substring(5)}";
+
                     // MeCard stores birthday date in this format:
                     // 19700310
                     // Digit 1-4: Year
