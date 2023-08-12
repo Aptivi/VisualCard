@@ -110,14 +110,14 @@ namespace VisualCard.Parts
             if (ValueType == "uri" || ValueType == "url")
             {
                 return
-                    $"{VcardConstants._soundSpecifierWithType}" +
+                    $"{VcardConstants._soundSpecifier};" +
                     $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._argumentDelimiter}" +
                     $"{SoundEncoded}";
             }
             else
             {
                 string soundArgsLine =
-                    $"{VcardConstants._soundSpecifierWithType}" +
+                    $"{VcardConstants._soundSpecifier};" +
                     $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._fieldDelimiter}" +
                     $"{VcardConstants._encodingArgumentSpecifier}{Encoding}{VcardConstants._fieldDelimiter}" +
                     $"{VcardConstants._typeArgumentSpecifier}{SoundType}{VcardConstants._argumentDelimiter}";
@@ -130,14 +130,14 @@ namespace VisualCard.Parts
             if (ValueType == "uri" || ValueType == "url")
             {
                 return
-                    $"{VcardConstants._soundSpecifierWithType}" +
+                    $"{VcardConstants._soundSpecifier};" +
                     $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._argumentDelimiter}" +
                     $"{SoundEncoded}";
             }
             else
             {
                 string soundArgsLine =
-                    $"{VcardConstants._soundSpecifierWithType}" +
+                    $"{VcardConstants._soundSpecifier};" +
                     $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._fieldDelimiter}" +
                     $"{VcardConstants._encodingArgumentSpecifier}{Encoding}{VcardConstants._fieldDelimiter}" +
                     $"{VcardConstants._typeArgumentSpecifier}{SoundType}{VcardConstants._argumentDelimiter}";
@@ -151,7 +151,7 @@ namespace VisualCard.Parts
             if (ValueType == "uri" || ValueType == "url")
             {
                 return
-                    $"{VcardConstants._soundSpecifierWithType}" +
+                    $"{VcardConstants._soundSpecifier};" +
                     $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
                     $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._fieldDelimiter : "")}" +
                     $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._argumentDelimiter}" +
@@ -160,7 +160,7 @@ namespace VisualCard.Parts
             else
             {
                 string soundArgsLine =
-                    $"{VcardConstants._soundSpecifierWithType}" +
+                    $"{VcardConstants._soundSpecifier};" +
                     $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
                     $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._fieldDelimiter : "")}" +
                     $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._fieldDelimiter}" +
@@ -173,7 +173,7 @@ namespace VisualCard.Parts
         internal static SoundInfo FromStringVcardTwoWithType(string value, StreamReader cardContentReader)
         {
             // Get the value
-            string soundValue = value.Substring(VcardConstants._soundSpecifierWithType.Length);
+            string soundValue = value.Substring(VcardConstants._soundSpecifier.Length + 1);
             string[] splitSound = soundValue.Split(VcardConstants._argumentDelimiter);
             if (splitSound.Length < 2)
                 throw new InvalidDataException("Sound field must specify exactly two values (Type and arguments, and sound information)");
@@ -212,7 +212,7 @@ namespace VisualCard.Parts
         internal static SoundInfo FromStringVcardThreeWithType(string value, StreamReader cardContentReader)
         {
             // Get the value
-            string soundValue = value.Substring(VcardConstants._soundSpecifierWithType.Length);
+            string soundValue = value.Substring(VcardConstants._soundSpecifier.Length + 1);
             string[] splitSound = soundValue.Split(VcardConstants._argumentDelimiter);
             if (splitSound.Length >= 2)
                 throw new InvalidDataException("Sound field must specify exactly two values (Type and arguments, and sound information)");
@@ -251,7 +251,7 @@ namespace VisualCard.Parts
         internal static SoundInfo FromStringVcardFourWithType(string value, List<string> finalArgs, int altId, StreamReader cardContentReader)
         {
             // Get the value
-            string soundValue = value.Substring(VcardConstants._soundSpecifierWithType.Length);
+            string soundValue = value.Substring(VcardConstants._soundSpecifier.Length + 1);
             string[] splitSound = soundValue.Split(VcardConstants._argumentDelimiter);
             if (splitSound.Length >= 2)
                 throw new InvalidDataException("Sound field must specify exactly two values (Type and arguments, and sound information)");

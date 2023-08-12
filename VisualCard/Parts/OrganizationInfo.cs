@@ -109,7 +109,7 @@ namespace VisualCard.Parts
         {
             bool installType = OrgTypes.Length > 0 && OrgTypes[0].ToUpper() != "WORK";
             return
-                $"{(installType ? VcardConstants._orgSpecifierWithType : VcardConstants._orgSpecifier)}" +
+                $"{VcardConstants._orgSpecifier}{(installType ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter)}" +
                 $"{(installType ? $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", OrgTypes)}{VcardConstants._argumentDelimiter}" : "")}" +
                 $"{Name}{VcardConstants._fieldDelimiter}" +
                 $"{Unit}{VcardConstants._fieldDelimiter}" +
@@ -120,7 +120,7 @@ namespace VisualCard.Parts
         {
             bool installType = OrgTypes.Length > 0 && OrgTypes[0].ToUpper() != "WORK";
             return
-                $"{(installType ? VcardConstants._orgSpecifierWithType : VcardConstants._orgSpecifier)}" +
+                $"{VcardConstants._orgSpecifier}{(installType ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter)}" +
                 $"{(installType ? $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", OrgTypes)}{VcardConstants._argumentDelimiter}" : "")}" +
                 $"{Name}{VcardConstants._fieldDelimiter}" +
                 $"{Unit}{VcardConstants._fieldDelimiter}" +
@@ -132,7 +132,7 @@ namespace VisualCard.Parts
             bool installAltId = AltId >= 0 && AltArguments.Length > 0;
             bool installType = (installAltId || OrgTypes.Length > 0) && OrgTypes[0].ToUpper() != "WORK";
             return
-                $"{(installType ? VcardConstants._orgSpecifierWithType : VcardConstants._orgSpecifier)}" +
+                $"{VcardConstants._orgSpecifier}{(installType || installAltId ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter)}" +
                 $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + (installType ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter) : "")}" +
                 $"{(installType ? $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", OrgTypes)}{VcardConstants._argumentDelimiter}" : "")}" +
                 $"{Name}{VcardConstants._fieldDelimiter}" +
@@ -143,7 +143,7 @@ namespace VisualCard.Parts
         internal static OrganizationInfo FromStringVcardTwo(string value)
         {
             // Get the value
-            string orgValue = value.Substring(VcardConstants._orgSpecifier.Length);
+            string orgValue = value.Substring(VcardConstants._orgSpecifier.Length + 1);
             string[] splitOrg = orgValue.Split(VcardConstants._fieldDelimiter);
 
             // Populate the fields
@@ -158,7 +158,7 @@ namespace VisualCard.Parts
         internal static OrganizationInfo FromStringVcardTwoWithType(string value)
         {
             // Get the value
-            string orgValue = value.Substring(VcardConstants._orgSpecifierWithType.Length);
+            string orgValue = value.Substring(VcardConstants._orgSpecifier.Length + 1);
             string[] splitOrg = orgValue.Split(VcardConstants._argumentDelimiter);
             if (splitOrg.Length < 2)
                 throw new InvalidDataException("Organization field must specify exactly two values (Type, and address information)");
@@ -180,7 +180,7 @@ namespace VisualCard.Parts
         internal static OrganizationInfo FromStringVcardThree(string value)
         {
             // Get the value
-            string orgValue = value.Substring(VcardConstants._orgSpecifier.Length);
+            string orgValue = value.Substring(VcardConstants._orgSpecifier.Length + 1);
             string[] splitOrg = orgValue.Split(VcardConstants._fieldDelimiter);
 
             // Populate the fields
@@ -195,7 +195,7 @@ namespace VisualCard.Parts
         internal static OrganizationInfo FromStringVcardThreeWithType(string value)
         {
             // Get the value
-            string orgValue = value.Substring(VcardConstants._orgSpecifierWithType.Length);
+            string orgValue = value.Substring(VcardConstants._orgSpecifier.Length + 1);
             string[] splitOrg = orgValue.Split(VcardConstants._argumentDelimiter);
             if (splitOrg.Length < 2)
                 throw new InvalidDataException("Organization field must specify exactly two values (Type (must be prepended with TYPE=), and address information)");
@@ -217,7 +217,7 @@ namespace VisualCard.Parts
         internal static OrganizationInfo FromStringVcardFour(string value, int altId)
         {
             // Get the value
-            string orgValue = value.Substring(VcardConstants._orgSpecifier.Length);
+            string orgValue = value.Substring(VcardConstants._orgSpecifier.Length + 1);
             string[] splitOrg = orgValue.Split(VcardConstants._fieldDelimiter);
 
             // Populate the fields
@@ -232,7 +232,7 @@ namespace VisualCard.Parts
         internal static OrganizationInfo FromStringVcardFourWithType(string value, List<string> finalArgs, int altId)
         {
             // Get the value
-            string orgValue = value.Substring(VcardConstants._orgSpecifierWithType.Length);
+            string orgValue = value.Substring(VcardConstants._orgSpecifier.Length + 1);
             string[] splitOrg = orgValue.Split(VcardConstants._argumentDelimiter);
             if (splitOrg.Length < 2)
                 throw new InvalidDataException("Organization field must specify exactly two values (Type (must be prepended with TYPE=), and address information)");

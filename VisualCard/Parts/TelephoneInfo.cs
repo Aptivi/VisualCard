@@ -96,7 +96,7 @@ namespace VisualCard.Parts
         internal string ToStringVcardTwo()
         {
             return
-                $"{VcardConstants._telephoneSpecifierWithType}" +
+                $"{VcardConstants._telephoneSpecifier};" +
                 $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", ContactPhoneTypes)}{VcardConstants._argumentDelimiter}" +
                 $"{ContactPhoneNumber}";
         }
@@ -104,7 +104,7 @@ namespace VisualCard.Parts
         internal string ToStringVcardThree()
         {
             return
-                $"{VcardConstants._telephoneSpecifierWithType}" +
+                $"{VcardConstants._telephoneSpecifier};" +
                 $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", ContactPhoneTypes)}{VcardConstants._argumentDelimiter}" +
                 $"{ContactPhoneNumber}";
         }
@@ -113,7 +113,7 @@ namespace VisualCard.Parts
         {
             bool installAltId = AltId >= 0 && AltArguments.Length > 0;
             return
-                $"{VcardConstants._telephoneSpecifierWithType}" +
+                $"{VcardConstants._telephoneSpecifier};" +
                 $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
                 $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", ContactPhoneTypes)}{VcardConstants._argumentDelimiter}" +
                 $"{ContactPhoneNumber}";
@@ -122,7 +122,7 @@ namespace VisualCard.Parts
         internal static TelephoneInfo FromStringVcardTwo(string value)
         {
             // Get the value
-            string telValue = value.Substring(VcardConstants._telephoneSpecifier.Length);
+            string telValue = value.Substring(VcardConstants._telephoneSpecifier.Length + 1);
 
             // Populate the fields
             string[] _telephoneTypes = new string[] { "CELL" };
@@ -134,7 +134,7 @@ namespace VisualCard.Parts
         internal static TelephoneInfo FromStringVcardTwoWithType(string value)
         {
             // Get the value
-            string telValue = value.Substring(VcardConstants._telephoneSpecifierWithType.Length);
+            string telValue = value.Substring(VcardConstants._telephoneSpecifier.Length + 1);
             string[] splitTel = telValue.Split(VcardConstants._argumentDelimiter);
             if (splitTel.Length < 2)
                 throw new InvalidDataException("Telephone field must specify exactly two values (Type (optionally prepended with TYPE=), and phone number)");
@@ -149,7 +149,7 @@ namespace VisualCard.Parts
         internal static TelephoneInfo FromStringVcardThree(string value)
         {
             // Get the value
-            string telValue = value.Substring(VcardConstants._telephoneSpecifier.Length);
+            string telValue = value.Substring(VcardConstants._telephoneSpecifier.Length + 1);
 
             // Populate the fields
             string[] _telephoneTypes = new string[] { "CELL" };
@@ -161,7 +161,7 @@ namespace VisualCard.Parts
         internal static TelephoneInfo FromStringVcardThreeWithType(string value)
         {
             // Get the value
-            string telValue = value.Substring(VcardConstants._telephoneSpecifierWithType.Length);
+            string telValue = value.Substring(VcardConstants._telephoneSpecifier.Length + 1);
             string[] splitTel = telValue.Split(VcardConstants._argumentDelimiter);
             if (splitTel.Length < 2)
                 throw new InvalidDataException("Telephone field must specify exactly two values (Type (must be prepended with TYPE=), and phone number)");
@@ -176,7 +176,7 @@ namespace VisualCard.Parts
         internal static TelephoneInfo FromStringVcardFour(string value, int altId)
         {
             // Get the value
-            string telValue = value.Substring(VcardConstants._telephoneSpecifier.Length);
+            string telValue = value.Substring(VcardConstants._telephoneSpecifier.Length + 1);
 
             // Populate the fields
             string[] _telephoneTypes = new string[] { "CELL" };
@@ -188,7 +188,7 @@ namespace VisualCard.Parts
         internal static TelephoneInfo FromStringVcardFourWithType(string value, List<string> finalArgs, int altId)
         {
             // Get the value
-            string telValue = value.Substring(VcardConstants._telephoneSpecifierWithType.Length);
+            string telValue = value.Substring(VcardConstants._telephoneSpecifier.Length + 1);
             string[] splitTel = telValue.Split(VcardConstants._argumentDelimiter);
             if (splitTel.Length < 2)
                 throw new InvalidDataException("Telephone field must specify exactly two values (Type (must be prepended with TYPE=), and phone number)");

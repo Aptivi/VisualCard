@@ -42,7 +42,7 @@ namespace VisualCard.Tests
             BEGIN:VCARD
             VERSION:3.0
             FN:Rick Hood
-            N:Hood;Rick;;;;
+            N:Hood;Rick;;;
             END:VCARD
 
             """
@@ -147,7 +147,7 @@ namespace VisualCard.Tests
             BEGIN:VCARD
             VERSION:3.0
             FN:John Sanders
-            N:Sanders;John;;;;
+            N:Sanders;John;;;
             TEL;TYPE=CELL:495-522-3560
             ADR;TYPE=HOME:;;Los Angeles;;;;USA
             EMAIL;TYPE=HOME:john.s@acme.co
@@ -720,6 +720,7 @@ namespace VisualCard.Tests
             TEL;TYPE=cell:589-210-1059
             TITLE:Chief Executive Officer
             URL:https://sso.org/
+            BDAY:19890222
             X-SIP-SIP:sip test
             END:VCARD
 
@@ -789,7 +790,7 @@ namespace VisualCard.Tests
                 new ImppInfo(0, Array.Empty<string>(), "aim:IM", new string[] { "HOME" }),
                 new ImppInfo(0, Array.Empty<string>(), "msn:Windows LIVE", new string[] { "HOME" }),
                 new ImppInfo(0, Array.Empty<string>(), "ymsgr:Yahoo", new string[] { "HOME" })
-            }
+            },
         };
         private static readonly Card multipleVcardFourContactsInstanceThree = new
         (
@@ -827,7 +828,8 @@ namespace VisualCard.Tests
             ContactXNames = new XNameInfo[]
             {
                 new XNameInfo(0, Array.Empty<string>(), "SIP-SIP", new string[] { "sip test" }, Array.Empty<string>()),
-            }
+            },
+            ContactBirthdate = new DateTime(1989, 2, 22),
         };
         private static readonly Card multipleVcardFourContactsInstanceFour = singleVcardFourContactInstance;
         #endregion
@@ -891,7 +893,8 @@ namespace VisualCard.Tests
             ContactMails = new EmailInfo[]
             {
                 new EmailInfo(0, Array.Empty<string>(), new string[] { "INTERNET" }, "deriks@Microsoft.com")
-            }
+            },
+            ContactBirthdate = new DateTime(1963, 9, 21),
         };
         private static readonly Card vcardThreeOldSampleInstanceTwo = new
         (

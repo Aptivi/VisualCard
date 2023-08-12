@@ -90,14 +90,14 @@ namespace VisualCard.Parts
         internal string ToStringVcardTwo()
         {
             return
-                $"{VcardConstants._titleSpecifier}" +
+                $"{VcardConstants._titleSpecifier}:" +
                 $"{ContactTitle}";
         }
 
         internal string ToStringVcardThree()
         {
             return
-                $"{VcardConstants._titleSpecifier}" +
+                $"{VcardConstants._titleSpecifier}:" +
                 $"{ContactTitle}";
         }
 
@@ -105,7 +105,7 @@ namespace VisualCard.Parts
         {
             bool installAltId = AltId >= 0 && AltArguments.Length > 0;
             return
-                $"{(installAltId ? VcardConstants._titleSpecifierWithArguments : VcardConstants._titleSpecifier)}" +
+                $"{(installAltId ? $"{VcardConstants._titleSpecifier};" : $"{VcardConstants._titleSpecifier}:")}" +
                 $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
                 $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._argumentDelimiter : "")}" +
                 $"{ContactTitle}";
@@ -114,7 +114,7 @@ namespace VisualCard.Parts
         internal static TitleInfo FromStringVcardTwo(string value)
         {
             // Get the value
-            string titleValue = value.Substring(VcardConstants._titleSpecifier.Length);
+            string titleValue = value.Substring(VcardConstants._titleSpecifier.Length + 1);
 
             // Populate field
             string _title = Regex.Unescape(titleValue);
@@ -125,7 +125,7 @@ namespace VisualCard.Parts
         internal static TitleInfo FromStringVcardThree(string value)
         {
             // Get the value
-            string titleValue = value.Substring(VcardConstants._titleSpecifier.Length);
+            string titleValue = value.Substring(VcardConstants._titleSpecifier.Length + 1);
 
             // Populate field
             string _title = Regex.Unescape(titleValue);
@@ -136,7 +136,7 @@ namespace VisualCard.Parts
         internal static TitleInfo FromStringVcardFour(string value, int altId)
         {
             // Get the value
-            string titleValue = value.Substring(VcardConstants._titleSpecifier.Length);
+            string titleValue = value.Substring(VcardConstants._titleSpecifier.Length + 1);
 
             // Populate field
             string _title = Regex.Unescape(titleValue);
@@ -147,7 +147,7 @@ namespace VisualCard.Parts
         internal static TitleInfo FromStringVcardFourWithType(string value, List<string> finalArgs, int altId)
         {
             // Get the value
-            string titleValue = value.Substring(VcardConstants._titleSpecifierWithArguments.Length);
+            string titleValue = value.Substring(VcardConstants._titleSpecifier.Length + 1);
             string[] splitTitleParts = titleValue.Split(VcardConstants._argumentDelimiter);
 
             // Populate field

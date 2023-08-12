@@ -101,7 +101,7 @@ namespace VisualCard.Parts
         internal string ToStringVcardThree()
         {
             return
-                $"{VcardConstants._nicknameSpecifierWithType}" +
+                $"{VcardConstants._nicknameSpecifier};" +
                 $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", NicknameTypes)}{VcardConstants._argumentDelimiter}" +
                 $"{ContactNickname}";
         }
@@ -110,7 +110,7 @@ namespace VisualCard.Parts
         {
             bool installAltId = AltId >= 0 && AltArguments.Length > 0;
             return
-                $"{(installAltId ? VcardConstants._nicknameSpecifierWithType : VcardConstants._nicknameSpecifier)}" +
+                $"{VcardConstants._nicknameSpecifier};" +
                 $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
                 $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._fieldDelimiter : "")}" +
                 $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", NicknameTypes)}{VcardConstants._argumentDelimiter}" +
@@ -120,7 +120,7 @@ namespace VisualCard.Parts
         internal static NicknameInfo FromStringVcardThree(string value)
         {
             // Get the value
-            string nickValue = value.Substring(VcardConstants._nicknameSpecifier.Length);
+            string nickValue = value.Substring(VcardConstants._nicknameSpecifier.Length + 1);
 
             // Populate the fields
             string[] _nicknameTypes = new string[] { "HOME" };
@@ -132,7 +132,7 @@ namespace VisualCard.Parts
         internal static NicknameInfo FromStringVcardThreeWithType(string value)
         {
             // Get the value
-            string nickValue = value.Substring(VcardConstants._nicknameSpecifierWithType.Length);
+            string nickValue = value.Substring(VcardConstants._nicknameSpecifier.Length + 1);
             string[] splitNick = nickValue.Split(VcardConstants._argumentDelimiter);
             if (splitNick.Length < 2)
                 throw new InvalidDataException("Nickname field must specify exactly two values (Type (must be prepended with TYPE=), and nickname)");
@@ -147,7 +147,7 @@ namespace VisualCard.Parts
         internal static NicknameInfo FromStringVcardFour(string value, int altId)
         {
             // Get the value
-            string nickValue = value.Substring(VcardConstants._nicknameSpecifier.Length);
+            string nickValue = value.Substring(VcardConstants._nicknameSpecifier.Length + 1);
 
             // Populate the fields
             string[] _nicknameTypes = new string[] { "HOME" };
@@ -159,7 +159,7 @@ namespace VisualCard.Parts
         internal static NicknameInfo FromStringVcardFourWithType(string value, List<string> finalArgs, int altId)
         {
             // Get the value
-            string nickValue = value.Substring(VcardConstants._nicknameSpecifierWithType.Length);
+            string nickValue = value.Substring(VcardConstants._nicknameSpecifier.Length + 1);
             string[] splitNick = nickValue.Split(VcardConstants._argumentDelimiter);
             if (splitNick.Length < 2)
                 throw new InvalidDataException("Nickname field must specify exactly two values (Type (must be prepended with TYPE=), and nickname)");

@@ -96,14 +96,14 @@ namespace VisualCard.Parts
         internal string ToStringVcardTwo()
         {
             return
-                $"{VcardConstants._geoSpecifier}" +
+                $"{VcardConstants._geoSpecifier}:" +
                 $"{Geo}";
         }
 
         internal string ToStringVcardThree()
         {
             return
-                $"{VcardConstants._geoSpecifier}" +
+                $"{VcardConstants._geoSpecifier}:" +
                 $"{Geo}";
         }
 
@@ -111,7 +111,7 @@ namespace VisualCard.Parts
         {
             bool installAltId = AltId >= 0 && AltArguments.Length > 0;
             return
-                $"{(installAltId ? VcardConstants._geoSpecifierWithType : VcardConstants._geoSpecifier)}" +
+                $"{VcardConstants._geoSpecifier}{(installAltId ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter)}" +
                 $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
                 $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._argumentDelimiter : "")}" +
                 $"{Geo}";
@@ -119,7 +119,7 @@ namespace VisualCard.Parts
 
         internal static GeoInfo FromStringVcardTwo(string value)
         {
-            string geoValue = value.Substring(VcardConstants._geoSpecifier.Length);
+            string geoValue = value.Substring(VcardConstants._geoSpecifier.Length + 1);
             string _geoStr = Regex.Unescape(geoValue);
             GeoInfo _geo = new(0, Array.Empty<string>(), Array.Empty<string>(), _geoStr);
             return _geo;
@@ -127,7 +127,7 @@ namespace VisualCard.Parts
 
         internal static GeoInfo FromStringVcardTwoWithType(string value)
         {
-            string geoValue = value.Substring(VcardConstants._geoSpecifierWithType.Length);
+            string geoValue = value.Substring(VcardConstants._geoSpecifier.Length + 1);
             string[] splitGeo = geoValue.Split(VcardConstants._argumentDelimiter);
             if (splitGeo.Length < 2)
                 throw new InvalidDataException("Geo field must specify exactly two values (VALUE=\"uri\", and geo info)");
@@ -144,7 +144,7 @@ namespace VisualCard.Parts
         internal static GeoInfo FromStringVcardThree(string value)
         {
             // Get the value
-            string geoValue = value.Substring(VcardConstants._geoSpecifier.Length);
+            string geoValue = value.Substring(VcardConstants._geoSpecifier.Length + 1);
 
             // Populate the fields
             string[] _geoTypes = new string[] { "uri" };
@@ -156,7 +156,7 @@ namespace VisualCard.Parts
         internal static GeoInfo FromStringVcardThreeWithType(string value)
         {
             // Get the value
-            string geoValue = value.Substring(VcardConstants._geoSpecifierWithType.Length);
+            string geoValue = value.Substring(VcardConstants._geoSpecifier.Length + 1);
             string[] splitGeo = geoValue.Split(VcardConstants._argumentDelimiter);
             if (splitGeo.Length < 2)
                 throw new InvalidDataException("Geo field must specify exactly two values (VALUE=\"uri\", and geo info)");
@@ -173,7 +173,7 @@ namespace VisualCard.Parts
         internal static GeoInfo FromStringVcardFour(string value, int altId)
         {
             // Get the value
-            string geoValue = value.Substring(VcardConstants._geoSpecifier.Length);
+            string geoValue = value.Substring(VcardConstants._geoSpecifier.Length + 1);
 
             // Populate the fields
             string[] _geoTypes = new string[] { "uri" };
@@ -185,7 +185,7 @@ namespace VisualCard.Parts
         internal static GeoInfo FromStringVcardFourWithType(string value, List<string> finalArgs, int altId)
         {
             // Get the value
-            string geoValue = value.Substring(VcardConstants._geoSpecifierWithType.Length);
+            string geoValue = value.Substring(VcardConstants._geoSpecifier.Length + 1);
             string[] splitGeo = geoValue.Split(VcardConstants._argumentDelimiter);
             if (splitGeo.Length < 2)
                 throw new InvalidDataException("Geo field must specify exactly two values (VALUE=\"uri\", and geo info)");

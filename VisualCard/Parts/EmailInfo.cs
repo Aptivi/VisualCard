@@ -96,7 +96,7 @@ namespace VisualCard.Parts
         internal string ToStringVcardTwo()
         {
             return
-                $"{VcardConstants._emailSpecifier}" +
+                $"{VcardConstants._emailSpecifier};" +
                 $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", ContactEmailTypes)}{VcardConstants._argumentDelimiter}" +
                 $"{ContactEmailAddress}";
         }
@@ -104,7 +104,7 @@ namespace VisualCard.Parts
         internal string ToStringVcardThree()
         {
             return
-                $"{VcardConstants._emailSpecifier}" +
+                $"{VcardConstants._emailSpecifier};" +
                 $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", ContactEmailTypes)}{VcardConstants._argumentDelimiter}" +
                 $"{ContactEmailAddress}";
         }
@@ -113,16 +113,40 @@ namespace VisualCard.Parts
         {
             bool installAltId = AltId >= 0 && AltArguments.Length > 0;
             return
-                $"{VcardConstants._emailSpecifier}" +
+                $"{VcardConstants._emailSpecifier};" +
                 $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
                 $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", ContactEmailTypes)}{VcardConstants._argumentDelimiter}" +
                 $"{ContactEmailAddress}";
         }
 
+        internal static EmailInfo FromStringVcardTwo(string value)
+        {
+            // Get the value
+            string mailValue = value.Substring(VcardConstants._emailSpecifier.Length + 1);
+            string[] splitMail = mailValue.Split(VcardConstants._argumentDelimiter);
+            MailAddress mail;
+
+            // Try to create mail address
+            try
+            {
+                mail = new MailAddress(splitMail[0]);
+            }
+            catch (ArgumentException aex)
+            {
+                throw new InvalidDataException("E-mail address is invalid", aex);
+            }
+
+            // Populate the fields
+            string[] _emailTypes = new string[] { "HOME" };
+            string _emailAddress = mail.Address;
+            EmailInfo _email = new(0, Array.Empty<string>(), _emailTypes, _emailAddress);
+            return _email;
+        }
+
         internal static EmailInfo FromStringVcardTwoWithType(string value)
         {
             // Get the value
-            string mailValue = value.Substring(VcardConstants._emailSpecifier.Length);
+            string mailValue = value.Substring(VcardConstants._emailSpecifier.Length + 1);
             string[] splitMail = mailValue.Split(VcardConstants._argumentDelimiter);
             MailAddress mail;
             if (splitMail.Length < 2)
@@ -145,10 +169,34 @@ namespace VisualCard.Parts
             return _email;
         }
 
+        internal static EmailInfo FromStringVcardThree(string value)
+        {
+            // Get the value
+            string mailValue = value.Substring(VcardConstants._emailSpecifier.Length + 1);
+            string[] splitMail = mailValue.Split(VcardConstants._argumentDelimiter);
+            MailAddress mail;
+
+            // Try to create mail address
+            try
+            {
+                mail = new MailAddress(splitMail[0]);
+            }
+            catch (ArgumentException aex)
+            {
+                throw new InvalidDataException("E-mail address is invalid", aex);
+            }
+
+            // Populate the fields
+            string[] _emailTypes = new string[] { "HOME" };
+            string _emailAddress = mail.Address;
+            EmailInfo _email = new(0, Array.Empty<string>(), _emailTypes, _emailAddress);
+            return _email;
+        }
+
         internal static EmailInfo FromStringVcardThreeWithType(string value)
         {
             // Get the value
-            string mailValue = value.Substring(VcardConstants._emailSpecifier.Length);
+            string mailValue = value.Substring(VcardConstants._emailSpecifier.Length + 1);
             string[] splitMail = mailValue.Split(VcardConstants._argumentDelimiter);
             MailAddress mail;
             if (splitMail.Length < 2)
@@ -171,10 +219,34 @@ namespace VisualCard.Parts
             return _email;
         }
 
+        internal static EmailInfo FromStringVcardFour(string value, int altId)
+        {
+            // Get the value
+            string mailValue = value.Substring(VcardConstants._emailSpecifier.Length + 1);
+            string[] splitMail = mailValue.Split(VcardConstants._argumentDelimiter);
+            MailAddress mail;
+
+            // Try to create mail address
+            try
+            {
+                mail = new MailAddress(splitMail[0]);
+            }
+            catch (ArgumentException aex)
+            {
+                throw new InvalidDataException("E-mail address is invalid", aex);
+            }
+
+            // Populate the fields
+            string[] _emailTypes = new string[] { "HOME" };
+            string _emailAddress = mail.Address;
+            EmailInfo _email = new(altId, Array.Empty<string>(), _emailTypes, _emailAddress);
+            return _email;
+        }
+
         internal static EmailInfo FromStringVcardFourWithType(string value, List<string> finalArgs, int altId)
         {
             // Get the value
-            string mailValue = value.Substring(VcardConstants._emailSpecifier.Length);
+            string mailValue = value.Substring(VcardConstants._emailSpecifier.Length + 1);
             string[] splitMail = mailValue.Split(VcardConstants._argumentDelimiter);
             MailAddress mail;
             if (splitMail.Length < 2)

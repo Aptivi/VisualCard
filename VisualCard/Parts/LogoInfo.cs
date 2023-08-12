@@ -110,14 +110,14 @@ namespace VisualCard.Parts
             if (ValueType == "uri" || ValueType == "url")
             {
                 return
-                    $"{VcardConstants._logoSpecifierWithType}" +
+                    $"{VcardConstants._logoSpecifier};" +
                     $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._argumentDelimiter}" +
                     $"{LogoEncoded}";
             }
             else
             {
                 string logoArgsLine =
-                    $"{VcardConstants._logoSpecifierWithType}" +
+                    $"{VcardConstants._logoSpecifier};" +
                     $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._fieldDelimiter}" +
                     $"{VcardConstants._encodingArgumentSpecifier}{Encoding}{VcardConstants._fieldDelimiter}" +
                     $"{VcardConstants._typeArgumentSpecifier}{LogoType}{VcardConstants._argumentDelimiter}";
@@ -130,14 +130,14 @@ namespace VisualCard.Parts
             if (ValueType == "uri" || ValueType == "url")
             {
                 return
-                    $"{VcardConstants._logoSpecifierWithType}" +
+                    $"{VcardConstants._logoSpecifier};" +
                     $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._argumentDelimiter}" +
                     $"{LogoEncoded}";
             }
             else
             {
                 string logoArgsLine =
-                    $"{VcardConstants._logoSpecifierWithType}" +
+                    $"{VcardConstants._logoSpecifier};" +
                     $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._fieldDelimiter}" +
                     $"{VcardConstants._encodingArgumentSpecifier}{Encoding}{VcardConstants._fieldDelimiter}" +
                     $"{VcardConstants._typeArgumentSpecifier}{LogoType}{VcardConstants._argumentDelimiter}";
@@ -151,7 +151,7 @@ namespace VisualCard.Parts
             if (ValueType == "uri" || ValueType == "url")
             {
                 return
-                    $"{VcardConstants._logoSpecifierWithType}" +
+                    $"{VcardConstants._logoSpecifier};" +
                     $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
                     $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._fieldDelimiter : "")}" +
                     $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._argumentDelimiter}" +
@@ -160,7 +160,7 @@ namespace VisualCard.Parts
             else
             {
                 string logoArgsLine =
-                    $"{VcardConstants._logoSpecifierWithType}" +
+                    $"{VcardConstants._logoSpecifier};" +
                     $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
                     $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._fieldDelimiter : "")}" +
                     $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._fieldDelimiter}" +
@@ -173,7 +173,7 @@ namespace VisualCard.Parts
         internal static LogoInfo FromStringVcardTwoWithType(string value, StreamReader cardContentReader)
         {
             // Get the value
-            string logoValue = value.Substring(VcardConstants._logoSpecifierWithType.Length);
+            string logoValue = value.Substring(VcardConstants._logoSpecifier.Length + 1);
             string[] splitLogo = logoValue.Split(VcardConstants._argumentDelimiter);
             if (splitLogo.Length < 2)
                 throw new InvalidDataException("Logo field must specify exactly two values (Type and arguments, and logo information)");
@@ -212,7 +212,7 @@ namespace VisualCard.Parts
         internal static LogoInfo FromStringVcardThreeWithType(string value, StreamReader cardContentReader)
         {
             // Get the value
-            string logoValue = value.Substring(VcardConstants._logoSpecifierWithType.Length);
+            string logoValue = value.Substring(VcardConstants._logoSpecifier.Length + 1);
             string[] splitLogo = logoValue.Split(VcardConstants._argumentDelimiter);
             if (splitLogo.Length >= 2)
                 throw new InvalidDataException("Logo field must specify exactly two values (Type and arguments, and logo information)");
@@ -251,7 +251,7 @@ namespace VisualCard.Parts
         internal static LogoInfo FromStringVcardFourWithType(string value, List<string> finalArgs, int altId, StreamReader cardContentReader)
         {
             // Get the value
-            string logoValue = value.Substring(VcardConstants._logoSpecifierWithType.Length);
+            string logoValue = value.Substring(VcardConstants._logoSpecifier.Length + 1);
             string[] splitLogo = logoValue.Split(VcardConstants._argumentDelimiter);
             if (splitLogo.Length >= 2)
                 throw new InvalidDataException("Logo field must specify exactly two values (Type and arguments, and logo information)");

@@ -132,7 +132,7 @@ namespace VisualCard.Parts
         internal string ToStringVcardTwo()
         {
             return
-                $"{VcardConstants._addressSpecifierWithType}" +
+                $"{VcardConstants._addressSpecifier};" +
                 $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", AddressTypes)}{VcardConstants._argumentDelimiter}" +
                 $"{PostOfficeBox}{VcardConstants._fieldDelimiter}" +
                 $"{ExtendedAddress}{VcardConstants._fieldDelimiter}" +
@@ -146,7 +146,7 @@ namespace VisualCard.Parts
         internal string ToStringVcardThree()
         {
             return
-                $"{VcardConstants._addressSpecifierWithType}" +
+                $"{VcardConstants._addressSpecifier};" +
                 $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", AddressTypes)}{VcardConstants._argumentDelimiter}" +
                 $"{PostOfficeBox}{VcardConstants._fieldDelimiter}" +
                 $"{ExtendedAddress}{VcardConstants._fieldDelimiter}" +
@@ -161,7 +161,7 @@ namespace VisualCard.Parts
         {
             bool installAltId = AltId >= 0 && AltArguments.Length > 0;
             return
-                $"{VcardConstants._addressSpecifierWithType}" +
+                $"{VcardConstants._addressSpecifier};" +
                 $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
                 $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", AddressTypes)}{VcardConstants._argumentDelimiter}" +
                 $"{PostOfficeBox}{VcardConstants._fieldDelimiter}" +
@@ -173,10 +173,34 @@ namespace VisualCard.Parts
                 $"{Country}";
         }
 
+        internal static AddressInfo FromStringVcardTwo(string value)
+        {
+            // Get the value
+            string adrValue = value.Substring(VcardConstants._addressSpecifier.Length + 1);
+            string[] splitAdr = adrValue.Split(VcardConstants._argumentDelimiter);
+
+            // Check the provided address
+            string[] splitAddressValues = splitAdr[0].Split(VcardConstants._fieldDelimiter);
+            if (splitAddressValues.Length < 7)
+                throw new InvalidDataException("Address information must specify exactly seven values (P.O. Box, extended address, street address, locality, region, postal code, and country)");
+
+            // Populate the fields
+            string[] _addressTypes = new string[] { "HOME" };
+            string _addressPOBox = Regex.Unescape(splitAddressValues[0]);
+            string _addressExtended = Regex.Unescape(splitAddressValues[1]);
+            string _addressStreet = Regex.Unescape(splitAddressValues[2]);
+            string _addressLocality = Regex.Unescape(splitAddressValues[3]);
+            string _addressRegion = Regex.Unescape(splitAddressValues[4]);
+            string _addressPostalCode = Regex.Unescape(splitAddressValues[5]);
+            string _addressCountry = Regex.Unescape(splitAddressValues[6]);
+            AddressInfo _address = new(0, Array.Empty<string>(), _addressTypes, _addressPOBox, _addressExtended, _addressStreet, _addressLocality, _addressRegion, _addressPostalCode, _addressCountry);
+            return _address;
+        }
+
         internal static AddressInfo FromStringVcardTwoWithType(string value)
         {
             // Get the value
-            string adrValue = value.Substring(VcardConstants._addressSpecifierWithType.Length);
+            string adrValue = value.Substring(VcardConstants._addressSpecifier.Length + 1);
             string[] splitAdr = adrValue.Split(VcardConstants._argumentDelimiter);
             if (splitAdr.Length < 2)
                 throw new InvalidDataException("Address field must specify exactly two values (Type (optionally prepended with TYPE=), and address information)");
@@ -199,10 +223,34 @@ namespace VisualCard.Parts
             return _address;
         }
 
+        internal static AddressInfo FromStringVcardThree(string value)
+        {
+            // Get the value
+            string adrValue = value.Substring(VcardConstants._addressSpecifier.Length + 1);
+            string[] splitAdr = adrValue.Split(VcardConstants._argumentDelimiter);
+
+            // Check the provided address
+            string[] splitAddressValues = splitAdr[0].Split(VcardConstants._fieldDelimiter);
+            if (splitAddressValues.Length < 7)
+                throw new InvalidDataException("Address information must specify exactly seven values (P.O. Box, extended address, street address, locality, region, postal code, and country)");
+
+            // Populate the fields
+            string[] _addressTypes = new string[] { "HOME" };
+            string _addressPOBox = Regex.Unescape(splitAddressValues[0]);
+            string _addressExtended = Regex.Unescape(splitAddressValues[1]);
+            string _addressStreet = Regex.Unescape(splitAddressValues[2]);
+            string _addressLocality = Regex.Unescape(splitAddressValues[3]);
+            string _addressRegion = Regex.Unescape(splitAddressValues[4]);
+            string _addressPostalCode = Regex.Unescape(splitAddressValues[5]);
+            string _addressCountry = Regex.Unescape(splitAddressValues[6]);
+            AddressInfo _address = new(0, Array.Empty<string>(), _addressTypes, _addressPOBox, _addressExtended, _addressStreet, _addressLocality, _addressRegion, _addressPostalCode, _addressCountry);
+            return _address;
+        }
+
         internal static AddressInfo FromStringVcardThreeWithType(string value)
         {
             // Get the value
-            string adrValue = value.Substring(VcardConstants._addressSpecifierWithType.Length);
+            string adrValue = value.Substring(VcardConstants._addressSpecifier.Length + 1);
             string[] splitAdr = adrValue.Split(VcardConstants._argumentDelimiter);
             if (splitAdr.Length < 2)
                 throw new InvalidDataException("Address field must specify exactly two values (Type (must be prepended with TYPE=), and address information)");
@@ -225,10 +273,34 @@ namespace VisualCard.Parts
             return _address;
         }
 
+        internal static AddressInfo FromStringVcardFour(string value, int altId)
+        {
+            // Get the value
+            string adrValue = value.Substring(VcardConstants._addressSpecifier.Length + 1);
+            string[] splitAdr = adrValue.Split(VcardConstants._argumentDelimiter);
+
+            // Check the provided address
+            string[] splitAddressValues = splitAdr[0].Split(VcardConstants._fieldDelimiter);
+            if (splitAddressValues.Length < 7)
+                throw new InvalidDataException("Address information must specify exactly seven values (P.O. Box, extended address, street address, locality, region, postal code, and country)");
+
+            // Populate the fields
+            string[] _addressTypes = new string[] { "HOME" };
+            string _addressPOBox = Regex.Unescape(splitAddressValues[0]);
+            string _addressExtended = Regex.Unescape(splitAddressValues[1]);
+            string _addressStreet = Regex.Unescape(splitAddressValues[2]);
+            string _addressLocality = Regex.Unescape(splitAddressValues[3]);
+            string _addressRegion = Regex.Unescape(splitAddressValues[4]);
+            string _addressPostalCode = Regex.Unescape(splitAddressValues[5]);
+            string _addressCountry = Regex.Unescape(splitAddressValues[6]);
+            AddressInfo _address = new(altId, Array.Empty<string>(), _addressTypes, _addressPOBox, _addressExtended, _addressStreet, _addressLocality, _addressRegion, _addressPostalCode, _addressCountry);
+            return _address;
+        }
+
         internal static AddressInfo FromStringVcardFourWithType(string value, List<string> finalArgs, int altId)
         {
             // Get the value
-            string adrValue = value.Substring(VcardConstants._addressSpecifierWithType.Length);
+            string adrValue = value.Substring(VcardConstants._addressSpecifier.Length + 1);
             string[] splitAdr = adrValue.Split(VcardConstants._argumentDelimiter);
             if (splitAdr.Length < 2)
                 throw new InvalidDataException("Address field must specify exactly two values (Type (must be prepended with TYPE=), and address information)");

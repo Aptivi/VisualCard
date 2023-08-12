@@ -118,12 +118,12 @@ namespace VisualCard.Parts
             string prefixesStr = string.Join(VcardConstants._valueDelimiter.ToString(), Prefixes);
             string suffixesStr = string.Join(VcardConstants._valueDelimiter.ToString(), Suffixes);
             return
-                $"{VcardConstants._nameSpecifier}" +
+                $"{VcardConstants._nameSpecifier}:" +
                 $"{ContactLastName}{VcardConstants._fieldDelimiter}" +
                 $"{ContactFirstName}{VcardConstants._fieldDelimiter}" +
                 $"{altNamesStr}{VcardConstants._fieldDelimiter}" +
                 $"{prefixesStr}{VcardConstants._fieldDelimiter}" +
-                $"{suffixesStr}{VcardConstants._fieldDelimiter}";
+                $"{suffixesStr}";
         }
 
         internal string ToStringVcardThree()
@@ -132,12 +132,12 @@ namespace VisualCard.Parts
             string prefixesStr = string.Join(VcardConstants._valueDelimiter.ToString(), Prefixes);
             string suffixesStr = string.Join(VcardConstants._valueDelimiter.ToString(), Suffixes);
             return
-                $"{VcardConstants._nameSpecifier}" +
+                $"{VcardConstants._nameSpecifier}:" +
                 $"{ContactLastName}{VcardConstants._fieldDelimiter}" +
                 $"{ContactFirstName}{VcardConstants._fieldDelimiter}" +
                 $"{altNamesStr}{VcardConstants._fieldDelimiter}" +
                 $"{prefixesStr}{VcardConstants._fieldDelimiter}" +
-                $"{suffixesStr}{VcardConstants._fieldDelimiter}";
+                $"{suffixesStr}";
         }
 
         internal string ToStringVcardFour()
@@ -147,20 +147,20 @@ namespace VisualCard.Parts
             string prefixesStr = string.Join(VcardConstants._valueDelimiter.ToString(), Prefixes);
             string suffixesStr = string.Join(VcardConstants._valueDelimiter.ToString(), Suffixes);
             return
-                $"{(installAltId ? VcardConstants._nameSpecifierWithType : VcardConstants._nameSpecifier)}" +
+                $"{VcardConstants._nameSpecifier}{(installAltId ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter)}" +
                 $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
                 $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._argumentDelimiter : "")}" +
                 $"{ContactLastName}{VcardConstants._fieldDelimiter}" +
                 $"{ContactFirstName}{VcardConstants._fieldDelimiter}" +
                 $"{altNamesStr}{VcardConstants._fieldDelimiter}" +
                 $"{prefixesStr}{VcardConstants._fieldDelimiter}" +
-                $"{suffixesStr}{VcardConstants._fieldDelimiter}";
+                $"{suffixesStr}";
         }
 
         internal static NameInfo FromStringVcardTwo(string value)
         {
             // Check the line
-            string nameValue = value.Substring(VcardConstants._nameSpecifier.Length);
+            string nameValue = value.Substring(VcardConstants._nameSpecifier.Length + 1);
             string[] splitName = nameValue.Split(VcardConstants._fieldDelimiter);
             if (splitName.Length < 2)
                 throw new InvalidDataException("Name field must specify the first two or more of the five values (Last name, first name, alt names, prefixes, and suffixes)");
@@ -178,7 +178,7 @@ namespace VisualCard.Parts
         internal static NameInfo FromStringVcardThree(string value)
         {
             // Check the line
-            string nameValue = value.Substring(VcardConstants._nameSpecifier.Length);
+            string nameValue = value.Substring(VcardConstants._nameSpecifier.Length + 1);
             string[] splitName = nameValue.Split(VcardConstants._fieldDelimiter);
             if (splitName.Length < 2)
                 throw new InvalidDataException("Name field must specify exactly five values (Last name, first name, alt names, prefixes, and suffixes)");
@@ -216,7 +216,7 @@ namespace VisualCard.Parts
         internal static NameInfo FromStringVcardFourWithType(string value, string[] splitArgs, List<string> finalArgs, int altId, List<NameInfo> _names, bool idReservedForName)
         {
             // Check the line
-            string nameValue = value.Substring(VcardConstants._nameSpecifierWithType.Length);
+            string nameValue = value.Substring(VcardConstants._nameSpecifier.Length + 1);
             string[] splitNameParts = nameValue.Split(VcardConstants._argumentDelimiter);
             string[] splitName = splitNameParts[1].Split(VcardConstants._fieldDelimiter);
             if (splitName.Length < 2)

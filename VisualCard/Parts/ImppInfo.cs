@@ -95,33 +95,36 @@ namespace VisualCard.Parts
 
         internal string ToStringVcardTwo()
         {
+            bool installType = ImppTypes.Length > 0 && ImppTypes[0].ToUpper() != "HOME";
             return
-                $"{VcardConstants._imppSpecifierWithType}" +
-                $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", ImppTypes)}{VcardConstants._argumentDelimiter}" +
+                $"{VcardConstants._imppSpecifier}{(installType ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter)}" +
+                $"{(installType ? $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", ImppTypes)}{VcardConstants._argumentDelimiter}" : "")}" +
                 $"{ContactIMPP}";
         }
 
         internal string ToStringVcardThree()
         {
+            bool installType = ImppTypes.Length > 0 && ImppTypes[0].ToUpper() != "HOME";
             return
-                $"{VcardConstants._imppSpecifierWithType}" +
-                $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", ImppTypes)}{VcardConstants._argumentDelimiter}" +
+                $"{VcardConstants._imppSpecifier}{(installType ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter)}" +
+                $"{(installType ? $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", ImppTypes)}{VcardConstants._argumentDelimiter}" : "")}" +
                 $"{ContactIMPP}";
         }
 
         internal string ToStringVcardFour()
         {
             bool installAltId = AltId >= 0 && AltArguments.Length > 0;
+            bool installType = ImppTypes.Length > 0 && ImppTypes[0].ToUpper() != "HOME";
             return
-                $"{(installAltId ? VcardConstants._imppSpecifierWithType : VcardConstants._imppSpecifier)}" +
-                $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
-                $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._argumentDelimiter : "")}" +
+                $"{VcardConstants._imppSpecifier}{(installType || installAltId ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter)}" +
+                $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + (installType ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter) : "")}" +
+                $"{(installType ? $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", ImppTypes)}{VcardConstants._argumentDelimiter}" : "")}" +
                 $"{ContactIMPP}";
         }
 
         internal static ImppInfo FromStringVcardTwo(string value)
         {
-            string imppValue = value.Substring(VcardConstants._imppSpecifier.Length);
+            string imppValue = value.Substring(VcardConstants._imppSpecifier.Length + 1);
             string[] _imppTypes = new string[] { "HOME" };
             string _impp = Regex.Unescape(imppValue);
             ImppInfo _imppInstance = new(0, Array.Empty<string>(), _impp, _imppTypes);
@@ -130,7 +133,7 @@ namespace VisualCard.Parts
 
         internal static ImppInfo FromStringVcardTwoWithType(string value)
         {
-            string imppValue = value.Substring(VcardConstants._imppSpecifierWithType.Length);
+            string imppValue = value.Substring(VcardConstants._imppSpecifier.Length + 1);
             string[] splitImpp = imppValue.Split(VcardConstants._argumentDelimiter);
             if (splitImpp.Length < 2)
                 throw new InvalidDataException("IMPP information field must specify exactly two values (Type (must be prepended with TYPE=), and impp)");
@@ -145,7 +148,7 @@ namespace VisualCard.Parts
         internal static ImppInfo FromStringVcardThree(string value)
         {
             // Get the value
-            string imppValue = value.Substring(VcardConstants._imppSpecifier.Length);
+            string imppValue = value.Substring(VcardConstants._imppSpecifier.Length + 1);
 
             // Populate the fields
             string[] _imppTypes = new string[] { "HOME" };
@@ -157,7 +160,7 @@ namespace VisualCard.Parts
         internal static ImppInfo FromStringVcardThreeWithType(string value)
         {
             // Get the value
-            string imppValue = value.Substring(VcardConstants._imppSpecifierWithType.Length);
+            string imppValue = value.Substring(VcardConstants._imppSpecifier.Length + 1);
             string[] splitImpp = imppValue.Split(VcardConstants._argumentDelimiter);
             if (splitImpp.Length < 2)
                 throw new InvalidDataException("IMPP information field must specify exactly two values (Type (must be prepended with TYPE=), and impp)");
@@ -172,7 +175,7 @@ namespace VisualCard.Parts
         internal static ImppInfo FromStringVcardFour(string value, int altId)
         {
             // Get the value
-            string imppValue = value.Substring(VcardConstants._imppSpecifier.Length);
+            string imppValue = value.Substring(VcardConstants._imppSpecifier.Length + 1);
 
             // Populate the fields
             string[] _imppTypes = new string[] { "HOME" };
@@ -184,7 +187,7 @@ namespace VisualCard.Parts
         internal static ImppInfo FromStringVcardFourWithType(string value, List<string> finalArgs, int altId)
         {
             // Get the value
-            string imppValue = value.Substring(VcardConstants._imppSpecifierWithType.Length);
+            string imppValue = value.Substring(VcardConstants._imppSpecifier.Length + 1);
             string[] splitImpp = imppValue.Split(VcardConstants._argumentDelimiter);
             if (splitImpp.Length < 2)
                 throw new InvalidDataException("IMPP information field must specify exactly two values (Type (must be prepended with TYPE=), and impp)");

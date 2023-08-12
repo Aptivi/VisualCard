@@ -83,31 +83,6 @@ namespace VisualCard.Converters
                         var nameSplits = value.Substring(2).Split(',');
                         fullName = $"{nameSplits[1]} {nameSplits[0]}";
                     }
-
-                    // As VisualCard doesn't support ADR: yet, why don't we just make it ADR; until we improve type detecion?
-                    if (value.StartsWith("ADR:"))
-                        values[i] = $"ADR;TYPE=HOME{values[i].Substring(3)}";
-
-                    // As VisualCard doesn't support EMAIL: yet, why don't we just make it EMAIL; until we improve type detecion?
-                    if (value.StartsWith("EMAIL:"))
-                        values[i] = $"EMAIL;TYPE=HOME{values[i].Substring(5)}";
-
-                    // MeCard stores birthday date in this format:
-                    // 19700310
-                    // Digit 1-4: Year
-                    // Digit 5-6: Month
-                    // Digit 7-8: Day
-                    // However, .NET's DateTime doesn't support it, so we verify the number, split it, and make an appropriate string for this.
-                    if (value.StartsWith("BDAY:"))
-                    {
-                        int birthNum = int.Parse(value.Substring(5));
-                        var birthDigits = GetDigits(birthNum).ToList();
-                        int birthYear  = (birthDigits[0] * 1000) + (birthDigits[1] * 100) + (birthDigits[2] * 10) + birthDigits[3];
-                        int birthMonth = (birthDigits[4] * 10) + birthDigits[5];
-                        int birthDay   = (birthDigits[6] * 10) + birthDigits[7];
-                        var birthDate = new DateTime(birthYear, birthMonth, birthDay);
-                        values[i] = $"BDAY:{birthDate:g}";
-                    }
                 }
 
                 // Install the values!
@@ -130,19 +105,6 @@ namespace VisualCard.Converters
             }
 
             return cardParsers;
-        }
-
-        private static IEnumerable<int> GetDigits(int num)
-        {
-            int individualFactor = 0;
-            int tennerFactor = Convert.ToInt32(Math.Pow(10, num.ToString().Length));
-            while (tennerFactor > 1)
-            {
-                num -= tennerFactor * individualFactor;
-                tennerFactor /= 10;
-                individualFactor = num / tennerFactor;
-                yield return individualFactor;
-            }
         }
 
     }

@@ -90,14 +90,14 @@ namespace VisualCard.Parts
         internal string ToStringVcardTwo()
         {
             return
-                $"{VcardConstants._roleSpecifier}" +
+                $"{VcardConstants._roleSpecifier};" +
                 $"{ContactRole}";
         }
 
         internal string ToStringVcardThree()
         {
             return
-                $"{VcardConstants._roleSpecifier}" +
+                $"{VcardConstants._roleSpecifier};" +
                 $"{ContactRole}";
         }
 
@@ -105,7 +105,7 @@ namespace VisualCard.Parts
         {
             bool installAltId = AltId >= 0 && AltArguments.Length > 0;
             return
-                $"{(installAltId ? VcardConstants._roleSpecifierWithType : VcardConstants._roleSpecifier)}" +
+                $"{VcardConstants._roleSpecifier}{(installAltId ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter)}" +
                 $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
                 $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._argumentDelimiter : "")}" +
                 $"{ContactRole}";
@@ -114,7 +114,7 @@ namespace VisualCard.Parts
         internal static RoleInfo FromStringVcardTwo(string value)
         {
             // Get the value
-            string roleValue = value.Substring(VcardConstants._roleSpecifier.Length);
+            string roleValue = value.Substring(VcardConstants._roleSpecifier.Length + 1);
 
             // Populate the fields
             RoleInfo _role = new(0, Array.Empty<string>(), roleValue);
@@ -124,7 +124,7 @@ namespace VisualCard.Parts
         internal static RoleInfo FromStringVcardThree(string value)
         {
             // Get the value
-            string roleValue = value.Substring(VcardConstants._roleSpecifier.Length);
+            string roleValue = value.Substring(VcardConstants._roleSpecifier.Length + 1);
 
             // Populate the fields
             RoleInfo _role = new(0, Array.Empty<string>(), roleValue);
@@ -134,7 +134,7 @@ namespace VisualCard.Parts
         internal static RoleInfo FromStringVcardFour(string value, int altId)
         {
             // Get the value
-            string roleValue = value.Substring(VcardConstants._roleSpecifier.Length);
+            string roleValue = value.Substring(VcardConstants._roleSpecifier.Length + 1);
 
             // Populate the fields
             RoleInfo _role = new(altId, Array.Empty<string>(), roleValue);
@@ -144,7 +144,7 @@ namespace VisualCard.Parts
         internal static RoleInfo FromStringVcardFourWithType(string value, List<string> finalArgs, int altId)
         {
             // Get the value
-            string roleValue = value.Substring(VcardConstants._roleSpecifier.Length);
+            string roleValue = value.Substring(VcardConstants._roleSpecifier.Length + 1);
 
             // Populate the fields
             RoleInfo _role = new(altId, finalArgs.ToArray(), roleValue);

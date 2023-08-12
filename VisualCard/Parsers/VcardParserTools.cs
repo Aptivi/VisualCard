@@ -23,6 +23,8 @@
  * 
  */
 
+using System.Collections.Generic;
+using System;
 using System.IO;
 using System.Linq;
 
@@ -86,5 +88,25 @@ namespace VisualCard.Parsers
 
         internal static string[] GetValues(string[] args, string @default, string argSpecifier) =>
             GetValuesString(args, @default, argSpecifier).Split(VcardConstants._valueDelimiter);
+
+        internal static string[] SplitToKeyAndValueFromString(string line)
+        {
+            string key = line.Substring(0, line.IndexOf(':'));
+            string value = line.Substring(line.IndexOf(':'));
+            return new[] { key, value };
+        }
+
+        internal static IEnumerable<int> GetDigits(int num)
+        {
+            int individualFactor = 0;
+            int tennerFactor = Convert.ToInt32(Math.Pow(10, num.ToString().Length));
+            while (tennerFactor > 1)
+            {
+                num -= tennerFactor * individualFactor;
+                tennerFactor /= 10;
+                individualFactor = num / tennerFactor;
+                yield return individualFactor;
+            }
+        }
     }
 }

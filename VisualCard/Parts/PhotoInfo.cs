@@ -111,14 +111,14 @@ namespace VisualCard.Parts
             if (ValueType == "uri" || ValueType == "url")
             {
                 return
-                    $"{VcardConstants._photoSpecifierWithType}" +
+                    $"{VcardConstants._photoSpecifier};" +
                     $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._argumentDelimiter}" +
                     $"{PhotoEncoded}";
             }
             else
             {
                 string photoArgsLine =
-                    $"{VcardConstants._photoSpecifierWithType}" +
+                    $"{VcardConstants._photoSpecifier};" +
                     $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._fieldDelimiter}" +
                     $"{VcardConstants._encodingArgumentSpecifier}{Encoding}{VcardConstants._fieldDelimiter}" +
                     $"{VcardConstants._typeArgumentSpecifier}{PhotoType}{VcardConstants._argumentDelimiter}";
@@ -131,14 +131,14 @@ namespace VisualCard.Parts
             if (ValueType == "uri" || ValueType == "url")
             {
                 return
-                    $"{VcardConstants._photoSpecifierWithType}" +
+                    $"{VcardConstants._photoSpecifier};" +
                     $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._argumentDelimiter}" +
                     $"{PhotoEncoded}";
             }
             else
             {
                 string photoArgsLine =
-                    $"{VcardConstants._photoSpecifierWithType}" +
+                    $"{VcardConstants._photoSpecifier};" +
                     $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._fieldDelimiter}" +
                     $"{VcardConstants._encodingArgumentSpecifier}{Encoding}{VcardConstants._fieldDelimiter}" +
                     $"{VcardConstants._typeArgumentSpecifier}{PhotoType}{VcardConstants._argumentDelimiter}";
@@ -152,7 +152,7 @@ namespace VisualCard.Parts
             if (ValueType == "uri" || ValueType == "url")
             {
                 return
-                    $"{VcardConstants._photoSpecifierWithType}" +
+                    $"{VcardConstants._photoSpecifier};" +
                     $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
                     $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._fieldDelimiter : "")}" +
                     $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._argumentDelimiter}" +
@@ -161,7 +161,7 @@ namespace VisualCard.Parts
             else
             {
                 string photoArgsLine =
-                    $"{VcardConstants._photoSpecifierWithType}" +
+                    $"{VcardConstants._photoSpecifier};" +
                     $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
                     $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._fieldDelimiter : "")}" +
                     $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._fieldDelimiter}" +
@@ -174,7 +174,7 @@ namespace VisualCard.Parts
         internal static PhotoInfo FromStringVcardTwoWithType(string value, StreamReader cardContentReader)
         {
             // Get the value
-            string photoValue = value.Substring(VcardConstants._photoSpecifierWithType.Length);
+            string photoValue = value.Substring(VcardConstants._photoSpecifier.Length + 1);
             string[] splitPhoto = photoValue.Split(VcardConstants._argumentDelimiter);
             if (splitPhoto.Length < 2)
                 throw new InvalidDataException("Photo field must specify exactly two values (Type and arguments, and photo information)");
@@ -213,7 +213,7 @@ namespace VisualCard.Parts
         internal static PhotoInfo FromStringVcardThreeWithType(string value, StreamReader cardContentReader)
         {
             // Get the value
-            string photoValue = value.Substring(VcardConstants._photoSpecifierWithType.Length);
+            string photoValue = value.Substring(VcardConstants._photoSpecifier.Length + 1);
             string[] splitPhoto = photoValue.Split(VcardConstants._argumentDelimiter);
             if (splitPhoto.Length >= 2)
                 throw new InvalidDataException("Photo field must specify exactly two values (Type and arguments, and photo information)");
@@ -252,7 +252,7 @@ namespace VisualCard.Parts
         internal static PhotoInfo FromStringVcardFourWithType(string value, List<string> finalArgs, int altId, StreamReader cardContentReader)
         {
             // Get the value
-            string photoValue = value.Substring(VcardConstants._photoSpecifierWithType.Length);
+            string photoValue = value.Substring(VcardConstants._photoSpecifier.Length + 1);
             string[] splitPhoto = photoValue.Split(VcardConstants._argumentDelimiter);
             if (splitPhoto.Length >= 2)
                 throw new InvalidDataException("Photo field must specify exactly two values (Type and arguments, and photo information)");

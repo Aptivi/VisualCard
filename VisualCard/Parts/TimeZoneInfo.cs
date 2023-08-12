@@ -96,14 +96,14 @@ namespace VisualCard.Parts
         internal string ToStringVcardTwo()
         {
             return
-                $"{VcardConstants._timeZoneSpecifier}" +
+                $"{VcardConstants._timeZoneSpecifier}:" +
                 $"{TimeZone}";
         }
 
         internal string ToStringVcardThree()
         {
             return
-                $"{VcardConstants._timeZoneSpecifier}" +
+                $"{VcardConstants._timeZoneSpecifier}:" +
                 $"{TimeZone}";
         }
 
@@ -111,7 +111,7 @@ namespace VisualCard.Parts
         {
             bool installAltId = AltId >= 0 && AltArguments.Length > 0;
             return
-                $"{(installAltId ? VcardConstants._timeZoneSpecifierWithType : VcardConstants._timeZoneSpecifier)}" +
+                $"{VcardConstants._timeZoneSpecifier}{(installAltId ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter)}" +
                 $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
                 $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._argumentDelimiter : "")}" +
                 $"{TimeZone}";
@@ -119,7 +119,7 @@ namespace VisualCard.Parts
 
         internal static TimeZoneInfo FromStringVcardTwo(string value)
         {
-            string tzValue = value.Substring(VcardConstants._timeZoneSpecifier.Length);
+            string tzValue = value.Substring(VcardConstants._timeZoneSpecifier.Length + 1);
             string _timeZoneStr = Regex.Unescape(tzValue);
             TimeZoneInfo _timeZone = new(0, Array.Empty<string>(), Array.Empty<string>(), _timeZoneStr);
             return _timeZone;
@@ -127,7 +127,7 @@ namespace VisualCard.Parts
 
         internal static TimeZoneInfo FromStringVcardTwoWithType(string value)
         {
-            string tzValue = value.Substring(VcardConstants._timeZoneSpecifierWithType.Length);
+            string tzValue = value.Substring(VcardConstants._timeZoneSpecifier.Length + 1);
             string[] splitTz = tzValue.Split(VcardConstants._argumentDelimiter);
             if (splitTz.Length < 2)
                 throw new InvalidDataException("Time Zone field must specify exactly two values (VALUE=\"text\" / \"uri\" / \"utc-offset\", and time zone info)");
@@ -144,7 +144,7 @@ namespace VisualCard.Parts
         internal static TimeZoneInfo FromStringVcardThree(string value)
         {
             // Get the value
-            string tzValue = value.Substring(VcardConstants._timeZoneSpecifier.Length);
+            string tzValue = value.Substring(VcardConstants._timeZoneSpecifier.Length + 1);
 
             // Populate the fields
             string[] _timeZoneTypes = new string[] { "uri-offset" };
@@ -156,7 +156,7 @@ namespace VisualCard.Parts
         internal static TimeZoneInfo FromStringVcardThreeWithType(string value)
         {
             // Get the value
-            string tzValue = value.Substring(VcardConstants._timeZoneSpecifierWithType.Length);
+            string tzValue = value.Substring(VcardConstants._timeZoneSpecifier.Length + 1);
             string[] splitTz = tzValue.Split(VcardConstants._argumentDelimiter);
             if (splitTz.Length < 2)
                 throw new InvalidDataException("Time Zone field must specify exactly two values (VALUE=\"text\" / \"uri\" / \"utc-offset\", and time zone info)");
@@ -173,7 +173,7 @@ namespace VisualCard.Parts
         internal static TimeZoneInfo FromStringVcardFour(string value, int altId)
         {
             // Get the value
-            string tzValue = value.Substring(VcardConstants._timeZoneSpecifier.Length);
+            string tzValue = value.Substring(VcardConstants._timeZoneSpecifier.Length + 1);
 
             // Populate the fields
             string[] _timeZoneTypes = new string[] { "uri-offset" };
@@ -185,7 +185,7 @@ namespace VisualCard.Parts
         internal static TimeZoneInfo FromStringVcardFourWithType(string value, List<string> finalArgs, int altId)
         {
             // Get the value
-            string tzValue = value.Substring(VcardConstants._timeZoneSpecifierWithType.Length);
+            string tzValue = value.Substring(VcardConstants._timeZoneSpecifier.Length + 1);
             string[] splitTz = tzValue.Split(VcardConstants._argumentDelimiter);
             if (splitTz.Length < 2)
                 throw new InvalidDataException("Time Zone field must specify exactly two values (VALUE=\"text\" / \"uri\" / \"utc-offset\", and time zone info)");
