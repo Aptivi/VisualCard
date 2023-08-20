@@ -13,18 +13,21 @@ references:
   commentId: T:VisualCard.CardTools
   fullName: VisualCard.CardTools
   nameWithType: CardTools
-- uid: VisualCard.CardTools.GetCardParsers(StreamReader)
+- uid: VisualCard.CardTools.GetCardParsers(System.IO.StreamReader)
   name: GetCardParsers(StreamReader)
-  href: api/VisualCard.CardTools.html#VisualCard_CardTools_GetCardParsers_StreamReader_
-  commentId: M:VisualCard.CardTools.GetCardParsers(StreamReader)
-  fullName: VisualCard.CardTools.GetCardParsers(StreamReader)
+  href: api/VisualCard.CardTools.html#VisualCard_CardTools_GetCardParsers_System_IO_StreamReader_
+  commentId: M:VisualCard.CardTools.GetCardParsers(System.IO.StreamReader)
+  fullName: VisualCard.CardTools.GetCardParsers(System.IO.StreamReader)
   nameWithType: CardTools.GetCardParsers(StreamReader)
 - uid: VisualCard.CardTools.GetCardParsers(System.String)
-  name: GetCardParsers(String)
+  name: GetCardParsers(string)
   href: api/VisualCard.CardTools.html#VisualCard_CardTools_GetCardParsers_System_String_
   commentId: M:VisualCard.CardTools.GetCardParsers(System.String)
-  fullName: VisualCard.CardTools.GetCardParsers(System.String)
-  nameWithType: CardTools.GetCardParsers(String)
+  name.vb: GetCardParsers(String)
+  fullName: VisualCard.CardTools.GetCardParsers(string)
+  fullName.vb: VisualCard.CardTools.GetCardParsers(String)
+  nameWithType: CardTools.GetCardParsers(string)
+  nameWithType.vb: CardTools.GetCardParsers(String)
 - uid: VisualCard.CardTools.GetCardParsers*
   name: GetCardParsers
   href: api/VisualCard.CardTools.html#VisualCard_CardTools_GetCardParsers_
@@ -33,11 +36,14 @@ references:
   fullName: VisualCard.CardTools.GetCardParsers
   nameWithType: CardTools.GetCardParsers
 - uid: VisualCard.CardTools.GetCardParsersFromString(System.String)
-  name: GetCardParsersFromString(String)
+  name: GetCardParsersFromString(string)
   href: api/VisualCard.CardTools.html#VisualCard_CardTools_GetCardParsersFromString_System_String_
   commentId: M:VisualCard.CardTools.GetCardParsersFromString(System.String)
-  fullName: VisualCard.CardTools.GetCardParsersFromString(System.String)
-  nameWithType: CardTools.GetCardParsersFromString(String)
+  name.vb: GetCardParsersFromString(String)
+  fullName: VisualCard.CardTools.GetCardParsersFromString(string)
+  fullName.vb: VisualCard.CardTools.GetCardParsersFromString(String)
+  nameWithType: CardTools.GetCardParsersFromString(string)
+  nameWithType.vb: CardTools.GetCardParsersFromString(String)
 - uid: VisualCard.CardTools.GetCardParsersFromString*
   name: GetCardParsersFromString
   href: api/VisualCard.CardTools.html#VisualCard_CardTools_GetCardParsersFromString_
@@ -58,11 +64,14 @@ references:
   fullName: VisualCard.Converters.AndroidContactsDb
   nameWithType: AndroidContactsDb
 - uid: VisualCard.Converters.AndroidContactsDb.GetContactsFromDb(System.String)
-  name: GetContactsFromDb(String)
+  name: GetContactsFromDb(string)
   href: api/VisualCard.Converters.AndroidContactsDb.html#VisualCard_Converters_AndroidContactsDb_GetContactsFromDb_System_String_
   commentId: M:VisualCard.Converters.AndroidContactsDb.GetContactsFromDb(System.String)
-  fullName: VisualCard.Converters.AndroidContactsDb.GetContactsFromDb(System.String)
-  nameWithType: AndroidContactsDb.GetContactsFromDb(String)
+  name.vb: GetContactsFromDb(String)
+  fullName: VisualCard.Converters.AndroidContactsDb.GetContactsFromDb(string)
+  fullName.vb: VisualCard.Converters.AndroidContactsDb.GetContactsFromDb(String)
+  nameWithType: AndroidContactsDb.GetContactsFromDb(string)
+  nameWithType.vb: AndroidContactsDb.GetContactsFromDb(String)
 - uid: VisualCard.Converters.AndroidContactsDb.GetContactsFromDb*
   name: GetContactsFromDb
   href: api/VisualCard.Converters.AndroidContactsDb.html#VisualCard_Converters_AndroidContactsDb_GetContactsFromDb_
@@ -77,11 +86,14 @@ references:
   fullName: VisualCard.Converters.MeCard
   nameWithType: MeCard
 - uid: VisualCard.Converters.MeCard.GetContactsFromMeCardString(System.String)
-  name: GetContactsFromMeCardString(String)
+  name: GetContactsFromMeCardString(string)
   href: api/VisualCard.Converters.MeCard.html#VisualCard_Converters_MeCard_GetContactsFromMeCardString_System_String_
   commentId: M:VisualCard.Converters.MeCard.GetContactsFromMeCardString(System.String)
-  fullName: VisualCard.Converters.MeCard.GetContactsFromMeCardString(System.String)
-  nameWithType: MeCard.GetContactsFromMeCardString(String)
+  name.vb: GetContactsFromMeCardString(String)
+  fullName: VisualCard.Converters.MeCard.GetContactsFromMeCardString(string)
+  fullName.vb: VisualCard.Converters.MeCard.GetContactsFromMeCardString(String)
+  nameWithType: MeCard.GetContactsFromMeCardString(string)
+  nameWithType.vb: MeCard.GetContactsFromMeCardString(String)
 - uid: VisualCard.Converters.MeCard.GetContactsFromMeCardString*
   name: GetContactsFromMeCardString
   href: api/VisualCard.Converters.MeCard.html#VisualCard_Converters_MeCard_GetContactsFromMeCardString_
@@ -105,21 +117,30 @@ references:
   name: VCardParseException()
   href: api/VisualCard.Exceptions.VCardParseException.html#VisualCard_Exceptions_VCardParseException__ctor
   commentId: M:VisualCard.Exceptions.VCardParseException.#ctor
+  name.vb: New()
   fullName: VisualCard.Exceptions.VCardParseException.VCardParseException()
+  fullName.vb: VisualCard.Exceptions.VCardParseException.New()
   nameWithType: VCardParseException.VCardParseException()
-- uid: VisualCard.Exceptions.VCardParseException.#ctor(System.String,System.String,System.Int32,Exception)
-  name: VCardParseException(String, String, Int32, Exception)
-  href: api/VisualCard.Exceptions.VCardParseException.html#VisualCard_Exceptions_VCardParseException__ctor_System_String_System_String_System_Int32_Exception_
-  commentId: M:VisualCard.Exceptions.VCardParseException.#ctor(System.String,System.String,System.Int32,Exception)
-  fullName: VisualCard.Exceptions.VCardParseException.VCardParseException(System.String, System.String, System.Int32, Exception)
-  nameWithType: VCardParseException.VCardParseException(String, String, Int32, Exception)
+  nameWithType.vb: VCardParseException.New()
+- uid: VisualCard.Exceptions.VCardParseException.#ctor(System.String,System.String,System.Int32,System.Exception)
+  name: VCardParseException(string, string, int, Exception)
+  href: api/VisualCard.Exceptions.VCardParseException.html#VisualCard_Exceptions_VCardParseException__ctor_System_String_System_String_System_Int32_System_Exception_
+  commentId: M:VisualCard.Exceptions.VCardParseException.#ctor(System.String,System.String,System.Int32,System.Exception)
+  name.vb: New(String, String, Integer, Exception)
+  fullName: VisualCard.Exceptions.VCardParseException.VCardParseException(string, string, int, System.Exception)
+  fullName.vb: VisualCard.Exceptions.VCardParseException.New(String, String, Integer, System.Exception)
+  nameWithType: VCardParseException.VCardParseException(string, string, int, Exception)
+  nameWithType.vb: VCardParseException.New(String, String, Integer, Exception)
 - uid: VisualCard.Exceptions.VCardParseException.#ctor*
   name: VCardParseException
   href: api/VisualCard.Exceptions.VCardParseException.html#VisualCard_Exceptions_VCardParseException__ctor_
   commentId: Overload:VisualCard.Exceptions.VCardParseException.#ctor
   isSpec: "True"
+  name.vb: New
   fullName: VisualCard.Exceptions.VCardParseException.VCardParseException
+  fullName.vb: VisualCard.Exceptions.VCardParseException.New
   nameWithType: VCardParseException.VCardParseException
+  nameWithType.vb: VCardParseException.New
 - uid: VisualCard.Parsers
   name: VisualCard.Parsers
   href: api/VisualCard.Parsers.html
@@ -434,11 +455,14 @@ references:
   fullName: VisualCard.Parts.AddressInfo.Country
   nameWithType: AddressInfo.Country
 - uid: VisualCard.Parts.AddressInfo.Equals(System.Object)
-  name: Equals(Object)
+  name: Equals(object)
   href: api/VisualCard.Parts.AddressInfo.html#VisualCard_Parts_AddressInfo_Equals_System_Object_
   commentId: M:VisualCard.Parts.AddressInfo.Equals(System.Object)
-  fullName: VisualCard.Parts.AddressInfo.Equals(System.Object)
-  nameWithType: AddressInfo.Equals(Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Parts.AddressInfo.Equals(object)
+  fullName.vb: VisualCard.Parts.AddressInfo.Equals(Object)
+  nameWithType: AddressInfo.Equals(object)
+  nameWithType.vb: AddressInfo.Equals(Object)
 - uid: VisualCard.Parts.AddressInfo.Equals(VisualCard.Parts.AddressInfo)
   name: Equals(AddressInfo)
   href: api/VisualCard.Parts.AddressInfo.html#VisualCard_Parts_AddressInfo_Equals_VisualCard_Parts_AddressInfo_
@@ -497,19 +521,6 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.AddressInfo.Locality
   nameWithType: AddressInfo.Locality
-- uid: VisualCard.Parts.AddressInfo.PostalCode
-  name: PostalCode
-  href: api/VisualCard.Parts.AddressInfo.html#VisualCard_Parts_AddressInfo_PostalCode
-  commentId: P:VisualCard.Parts.AddressInfo.PostalCode
-  fullName: VisualCard.Parts.AddressInfo.PostalCode
-  nameWithType: AddressInfo.PostalCode
-- uid: VisualCard.Parts.AddressInfo.PostalCode*
-  name: PostalCode
-  href: api/VisualCard.Parts.AddressInfo.html#VisualCard_Parts_AddressInfo_PostalCode_
-  commentId: Overload:VisualCard.Parts.AddressInfo.PostalCode
-  isSpec: "True"
-  fullName: VisualCard.Parts.AddressInfo.PostalCode
-  nameWithType: AddressInfo.PostalCode
 - uid: VisualCard.Parts.AddressInfo.PostOfficeBox
   name: PostOfficeBox
   href: api/VisualCard.Parts.AddressInfo.html#VisualCard_Parts_AddressInfo_PostOfficeBox
@@ -523,6 +534,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.AddressInfo.PostOfficeBox
   nameWithType: AddressInfo.PostOfficeBox
+- uid: VisualCard.Parts.AddressInfo.PostalCode
+  name: PostalCode
+  href: api/VisualCard.Parts.AddressInfo.html#VisualCard_Parts_AddressInfo_PostalCode
+  commentId: P:VisualCard.Parts.AddressInfo.PostalCode
+  fullName: VisualCard.Parts.AddressInfo.PostalCode
+  nameWithType: AddressInfo.PostalCode
+- uid: VisualCard.Parts.AddressInfo.PostalCode*
+  name: PostalCode
+  href: api/VisualCard.Parts.AddressInfo.html#VisualCard_Parts_AddressInfo_PostalCode_
+  commentId: Overload:VisualCard.Parts.AddressInfo.PostalCode
+  isSpec: "True"
+  fullName: VisualCard.Parts.AddressInfo.PostalCode
+  nameWithType: AddressInfo.PostalCode
 - uid: VisualCard.Parts.AddressInfo.Region
   name: Region
   href: api/VisualCard.Parts.AddressInfo.html#VisualCard_Parts_AddressInfo_Region
@@ -932,19 +956,6 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Card.ContactURL
   nameWithType: Card.ContactURL
-- uid: VisualCard.Parts.Card.ContactXml
-  name: ContactXml
-  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactXml
-  commentId: P:VisualCard.Parts.Card.ContactXml
-  fullName: VisualCard.Parts.Card.ContactXml
-  nameWithType: Card.ContactXml
-- uid: VisualCard.Parts.Card.ContactXml*
-  name: ContactXml
-  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactXml_
-  commentId: Overload:VisualCard.Parts.Card.ContactXml
-  isSpec: "True"
-  fullName: VisualCard.Parts.Card.ContactXml
-  nameWithType: Card.ContactXml
 - uid: VisualCard.Parts.Card.ContactXNames
   name: ContactXNames
   href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactXNames
@@ -958,12 +969,28 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Card.ContactXNames
   nameWithType: Card.ContactXNames
+- uid: VisualCard.Parts.Card.ContactXml
+  name: ContactXml
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactXml
+  commentId: P:VisualCard.Parts.Card.ContactXml
+  fullName: VisualCard.Parts.Card.ContactXml
+  nameWithType: Card.ContactXml
+- uid: VisualCard.Parts.Card.ContactXml*
+  name: ContactXml
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactXml_
+  commentId: Overload:VisualCard.Parts.Card.ContactXml
+  isSpec: "True"
+  fullName: VisualCard.Parts.Card.ContactXml
+  nameWithType: Card.ContactXml
 - uid: VisualCard.Parts.Card.Equals(System.Object)
-  name: Equals(Object)
+  name: Equals(object)
   href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_Equals_System_Object_
   commentId: M:VisualCard.Parts.Card.Equals(System.Object)
-  fullName: VisualCard.Parts.Card.Equals(System.Object)
-  nameWithType: Card.Equals(Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Parts.Card.Equals(object)
+  fullName.vb: VisualCard.Parts.Card.Equals(Object)
+  nameWithType: Card.Equals(object)
+  nameWithType.vb: Card.Equals(Object)
 - uid: VisualCard.Parts.Card.Equals(VisualCard.Parts.Card)
   name: Equals(Card)
   href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_Equals_VisualCard_Parts_Card_
@@ -996,38 +1023,15 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Card.GetHashCode
   nameWithType: Card.GetHashCode
-- uid: VisualCard.Parts.Card.op_Equality(VisualCard.Parts.Card,VisualCard.Parts.Card)
-  name: Equality(Card, Card)
-  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_op_Equality_VisualCard_Parts_Card_VisualCard_Parts_Card_
-  commentId: M:VisualCard.Parts.Card.op_Equality(VisualCard.Parts.Card,VisualCard.Parts.Card)
-  fullName: VisualCard.Parts.Card.Equality(VisualCard.Parts.Card, VisualCard.Parts.Card)
-  nameWithType: Card.Equality(Card, Card)
-- uid: VisualCard.Parts.Card.op_Equality*
-  name: Equality
-  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_op_Equality_
-  commentId: Overload:VisualCard.Parts.Card.op_Equality
-  isSpec: "True"
-  fullName: VisualCard.Parts.Card.Equality
-  nameWithType: Card.Equality
-- uid: VisualCard.Parts.Card.op_Inequality(VisualCard.Parts.Card,VisualCard.Parts.Card)
-  name: Inequality(Card, Card)
-  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_op_Inequality_VisualCard_Parts_Card_VisualCard_Parts_Card_
-  commentId: M:VisualCard.Parts.Card.op_Inequality(VisualCard.Parts.Card,VisualCard.Parts.Card)
-  fullName: VisualCard.Parts.Card.Inequality(VisualCard.Parts.Card, VisualCard.Parts.Card)
-  nameWithType: Card.Inequality(Card, Card)
-- uid: VisualCard.Parts.Card.op_Inequality*
-  name: Inequality
-  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_op_Inequality_
-  commentId: Overload:VisualCard.Parts.Card.op_Inequality
-  isSpec: "True"
-  fullName: VisualCard.Parts.Card.Inequality
-  nameWithType: Card.Inequality
 - uid: VisualCard.Parts.Card.SaveTo(System.String)
-  name: SaveTo(String)
+  name: SaveTo(string)
   href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_SaveTo_System_String_
   commentId: M:VisualCard.Parts.Card.SaveTo(System.String)
-  fullName: VisualCard.Parts.Card.SaveTo(System.String)
-  nameWithType: Card.SaveTo(String)
+  name.vb: SaveTo(String)
+  fullName: VisualCard.Parts.Card.SaveTo(string)
+  fullName.vb: VisualCard.Parts.Card.SaveTo(String)
+  nameWithType: Card.SaveTo(string)
+  nameWithType.vb: Card.SaveTo(String)
 - uid: VisualCard.Parts.Card.SaveTo*
   name: SaveTo
   href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_SaveTo_
@@ -1048,6 +1052,44 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Card.SaveToString
   nameWithType: Card.SaveToString
+- uid: VisualCard.Parts.Card.op_Equality(VisualCard.Parts.Card,VisualCard.Parts.Card)
+  name: operator ==(Card, Card)
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_op_Equality_VisualCard_Parts_Card_VisualCard_Parts_Card_
+  commentId: M:VisualCard.Parts.Card.op_Equality(VisualCard.Parts.Card,VisualCard.Parts.Card)
+  name.vb: =(Card, Card)
+  fullName: VisualCard.Parts.Card.operator ==(VisualCard.Parts.Card, VisualCard.Parts.Card)
+  fullName.vb: VisualCard.Parts.Card.=(VisualCard.Parts.Card, VisualCard.Parts.Card)
+  nameWithType: Card.operator ==(Card, Card)
+  nameWithType.vb: Card.=(Card, Card)
+- uid: VisualCard.Parts.Card.op_Equality*
+  name: operator ==
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_op_Equality_
+  commentId: Overload:VisualCard.Parts.Card.op_Equality
+  isSpec: "True"
+  name.vb: =
+  fullName: VisualCard.Parts.Card.operator ==
+  fullName.vb: VisualCard.Parts.Card.=
+  nameWithType: Card.operator ==
+  nameWithType.vb: Card.=
+- uid: VisualCard.Parts.Card.op_Inequality(VisualCard.Parts.Card,VisualCard.Parts.Card)
+  name: operator !=(Card, Card)
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_op_Inequality_VisualCard_Parts_Card_VisualCard_Parts_Card_
+  commentId: M:VisualCard.Parts.Card.op_Inequality(VisualCard.Parts.Card,VisualCard.Parts.Card)
+  name.vb: <>(Card, Card)
+  fullName: VisualCard.Parts.Card.operator !=(VisualCard.Parts.Card, VisualCard.Parts.Card)
+  fullName.vb: VisualCard.Parts.Card.<>(VisualCard.Parts.Card, VisualCard.Parts.Card)
+  nameWithType: Card.operator !=(Card, Card)
+  nameWithType.vb: Card.<>(Card, Card)
+- uid: VisualCard.Parts.Card.op_Inequality*
+  name: operator !=
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_op_Inequality_
+  commentId: Overload:VisualCard.Parts.Card.op_Inequality
+  isSpec: "True"
+  name.vb: <>
+  fullName: VisualCard.Parts.Card.operator !=
+  fullName.vb: VisualCard.Parts.Card.<>
+  nameWithType: Card.operator !=
+  nameWithType.vb: Card.<>
 - uid: VisualCard.Parts.EmailInfo
   name: EmailInfo
   href: api/VisualCard.Parts.EmailInfo.html
@@ -1107,11 +1149,14 @@ references:
   fullName: VisualCard.Parts.EmailInfo.ContactEmailTypes
   nameWithType: EmailInfo.ContactEmailTypes
 - uid: VisualCard.Parts.EmailInfo.Equals(System.Object)
-  name: Equals(Object)
+  name: Equals(object)
   href: api/VisualCard.Parts.EmailInfo.html#VisualCard_Parts_EmailInfo_Equals_System_Object_
   commentId: M:VisualCard.Parts.EmailInfo.Equals(System.Object)
-  fullName: VisualCard.Parts.EmailInfo.Equals(System.Object)
-  nameWithType: EmailInfo.Equals(Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Parts.EmailInfo.Equals(object)
+  fullName.vb: VisualCard.Parts.EmailInfo.Equals(Object)
+  nameWithType: EmailInfo.Equals(object)
+  nameWithType.vb: EmailInfo.Equals(Object)
 - uid: VisualCard.Parts.EmailInfo.Equals(VisualCard.Parts.EmailInfo)
   name: Equals(EmailInfo)
   href: api/VisualCard.Parts.EmailInfo.html#VisualCard_Parts_EmailInfo_Equals_VisualCard_Parts_EmailInfo_
@@ -1177,11 +1222,14 @@ references:
   fullName: VisualCard.Parts.GeoInfo.AltId
   nameWithType: GeoInfo.AltId
 - uid: VisualCard.Parts.GeoInfo.Equals(System.Object)
-  name: Equals(Object)
+  name: Equals(object)
   href: api/VisualCard.Parts.GeoInfo.html#VisualCard_Parts_GeoInfo_Equals_System_Object_
   commentId: M:VisualCard.Parts.GeoInfo.Equals(System.Object)
-  fullName: VisualCard.Parts.GeoInfo.Equals(System.Object)
-  nameWithType: GeoInfo.Equals(Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Parts.GeoInfo.Equals(object)
+  fullName.vb: VisualCard.Parts.GeoInfo.Equals(Object)
+  nameWithType: GeoInfo.Equals(object)
+  nameWithType.vb: GeoInfo.Equals(Object)
 - uid: VisualCard.Parts.GeoInfo.Equals(VisualCard.Parts.GeoInfo)
   name: Equals(GeoInfo)
   href: api/VisualCard.Parts.GeoInfo.html#VisualCard_Parts_GeoInfo_Equals_VisualCard_Parts_GeoInfo_
@@ -1286,11 +1334,14 @@ references:
   fullName: VisualCard.Parts.ImppInfo.ContactIMPP
   nameWithType: ImppInfo.ContactIMPP
 - uid: VisualCard.Parts.ImppInfo.Equals(System.Object)
-  name: Equals(Object)
+  name: Equals(object)
   href: api/VisualCard.Parts.ImppInfo.html#VisualCard_Parts_ImppInfo_Equals_System_Object_
   commentId: M:VisualCard.Parts.ImppInfo.Equals(System.Object)
-  fullName: VisualCard.Parts.ImppInfo.Equals(System.Object)
-  nameWithType: ImppInfo.Equals(Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Parts.ImppInfo.Equals(object)
+  fullName.vb: VisualCard.Parts.ImppInfo.Equals(Object)
+  nameWithType: ImppInfo.Equals(object)
+  nameWithType.vb: ImppInfo.Equals(Object)
 - uid: VisualCard.Parts.ImppInfo.Equals(VisualCard.Parts.ImppInfo)
   name: Equals(ImppInfo)
   href: api/VisualCard.Parts.ImppInfo.html#VisualCard_Parts_ImppInfo_Equals_VisualCard_Parts_ImppInfo_
@@ -1382,11 +1433,14 @@ references:
   fullName: VisualCard.Parts.LogoInfo.Encoding
   nameWithType: LogoInfo.Encoding
 - uid: VisualCard.Parts.LogoInfo.Equals(System.Object)
-  name: Equals(Object)
+  name: Equals(object)
   href: api/VisualCard.Parts.LogoInfo.html#VisualCard_Parts_LogoInfo_Equals_System_Object_
   commentId: M:VisualCard.Parts.LogoInfo.Equals(System.Object)
-  fullName: VisualCard.Parts.LogoInfo.Equals(System.Object)
-  nameWithType: LogoInfo.Equals(Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Parts.LogoInfo.Equals(object)
+  fullName.vb: VisualCard.Parts.LogoInfo.Equals(Object)
+  nameWithType: LogoInfo.Equals(object)
+  nameWithType.vb: LogoInfo.Equals(Object)
 - uid: VisualCard.Parts.LogoInfo.Equals(VisualCard.Parts.LogoInfo)
   name: Equals(LogoInfo)
   href: api/VisualCard.Parts.LogoInfo.html#VisualCard_Parts_LogoInfo_Equals_VisualCard_Parts_LogoInfo_
@@ -1530,11 +1584,14 @@ references:
   fullName: VisualCard.Parts.NameInfo.ContactLastName
   nameWithType: NameInfo.ContactLastName
 - uid: VisualCard.Parts.NameInfo.Equals(System.Object)
-  name: Equals(Object)
+  name: Equals(object)
   href: api/VisualCard.Parts.NameInfo.html#VisualCard_Parts_NameInfo_Equals_System_Object_
   commentId: M:VisualCard.Parts.NameInfo.Equals(System.Object)
-  fullName: VisualCard.Parts.NameInfo.Equals(System.Object)
-  nameWithType: NameInfo.Equals(Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Parts.NameInfo.Equals(object)
+  fullName.vb: VisualCard.Parts.NameInfo.Equals(Object)
+  nameWithType: NameInfo.Equals(object)
+  nameWithType.vb: NameInfo.Equals(Object)
 - uid: VisualCard.Parts.NameInfo.Equals(VisualCard.Parts.NameInfo)
   name: Equals(NameInfo)
   href: api/VisualCard.Parts.NameInfo.html#VisualCard_Parts_NameInfo_Equals_VisualCard_Parts_NameInfo_
@@ -1639,11 +1696,14 @@ references:
   fullName: VisualCard.Parts.NicknameInfo.ContactNickname
   nameWithType: NicknameInfo.ContactNickname
 - uid: VisualCard.Parts.NicknameInfo.Equals(System.Object)
-  name: Equals(Object)
+  name: Equals(object)
   href: api/VisualCard.Parts.NicknameInfo.html#VisualCard_Parts_NicknameInfo_Equals_System_Object_
   commentId: M:VisualCard.Parts.NicknameInfo.Equals(System.Object)
-  fullName: VisualCard.Parts.NicknameInfo.Equals(System.Object)
-  nameWithType: NicknameInfo.Equals(Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Parts.NicknameInfo.Equals(object)
+  fullName.vb: VisualCard.Parts.NicknameInfo.Equals(Object)
+  nameWithType: NicknameInfo.Equals(object)
+  nameWithType.vb: NicknameInfo.Equals(Object)
 - uid: VisualCard.Parts.NicknameInfo.Equals(VisualCard.Parts.NicknameInfo)
   name: Equals(NicknameInfo)
   href: api/VisualCard.Parts.NicknameInfo.html#VisualCard_Parts_NicknameInfo_Equals_VisualCard_Parts_NicknameInfo_
@@ -1722,11 +1782,14 @@ references:
   fullName: VisualCard.Parts.OrganizationInfo.AltId
   nameWithType: OrganizationInfo.AltId
 - uid: VisualCard.Parts.OrganizationInfo.Equals(System.Object)
-  name: Equals(Object)
+  name: Equals(object)
   href: api/VisualCard.Parts.OrganizationInfo.html#VisualCard_Parts_OrganizationInfo_Equals_System_Object_
   commentId: M:VisualCard.Parts.OrganizationInfo.Equals(System.Object)
-  fullName: VisualCard.Parts.OrganizationInfo.Equals(System.Object)
-  nameWithType: OrganizationInfo.Equals(Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Parts.OrganizationInfo.Equals(object)
+  fullName.vb: VisualCard.Parts.OrganizationInfo.Equals(Object)
+  nameWithType: OrganizationInfo.Equals(object)
+  nameWithType.vb: OrganizationInfo.Equals(Object)
 - uid: VisualCard.Parts.OrganizationInfo.Equals(VisualCard.Parts.OrganizationInfo)
   name: Equals(OrganizationInfo)
   href: api/VisualCard.Parts.OrganizationInfo.html#VisualCard_Parts_OrganizationInfo_Equals_VisualCard_Parts_OrganizationInfo_
@@ -1857,11 +1920,14 @@ references:
   fullName: VisualCard.Parts.PhotoInfo.Encoding
   nameWithType: PhotoInfo.Encoding
 - uid: VisualCard.Parts.PhotoInfo.Equals(System.Object)
-  name: Equals(Object)
+  name: Equals(object)
   href: api/VisualCard.Parts.PhotoInfo.html#VisualCard_Parts_PhotoInfo_Equals_System_Object_
   commentId: M:VisualCard.Parts.PhotoInfo.Equals(System.Object)
-  fullName: VisualCard.Parts.PhotoInfo.Equals(System.Object)
-  nameWithType: PhotoInfo.Equals(Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Parts.PhotoInfo.Equals(object)
+  fullName.vb: VisualCard.Parts.PhotoInfo.Equals(Object)
+  nameWithType: PhotoInfo.Equals(object)
+  nameWithType.vb: PhotoInfo.Equals(Object)
 - uid: VisualCard.Parts.PhotoInfo.Equals(VisualCard.Parts.PhotoInfo)
   name: Equals(PhotoInfo)
   href: api/VisualCard.Parts.PhotoInfo.html#VisualCard_Parts_PhotoInfo_Equals_VisualCard_Parts_PhotoInfo_
@@ -1979,11 +2045,14 @@ references:
   fullName: VisualCard.Parts.RoleInfo.ContactRole
   nameWithType: RoleInfo.ContactRole
 - uid: VisualCard.Parts.RoleInfo.Equals(System.Object)
-  name: Equals(Object)
+  name: Equals(object)
   href: api/VisualCard.Parts.RoleInfo.html#VisualCard_Parts_RoleInfo_Equals_System_Object_
   commentId: M:VisualCard.Parts.RoleInfo.Equals(System.Object)
-  fullName: VisualCard.Parts.RoleInfo.Equals(System.Object)
-  nameWithType: RoleInfo.Equals(Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Parts.RoleInfo.Equals(object)
+  fullName.vb: VisualCard.Parts.RoleInfo.Equals(Object)
+  nameWithType: RoleInfo.Equals(object)
+  nameWithType.vb: RoleInfo.Equals(Object)
 - uid: VisualCard.Parts.RoleInfo.Equals(VisualCard.Parts.RoleInfo)
   name: Equals(RoleInfo)
   href: api/VisualCard.Parts.RoleInfo.html#VisualCard_Parts_RoleInfo_Equals_VisualCard_Parts_RoleInfo_
@@ -2062,11 +2131,14 @@ references:
   fullName: VisualCard.Parts.SoundInfo.Encoding
   nameWithType: SoundInfo.Encoding
 - uid: VisualCard.Parts.SoundInfo.Equals(System.Object)
-  name: Equals(Object)
+  name: Equals(object)
   href: api/VisualCard.Parts.SoundInfo.html#VisualCard_Parts_SoundInfo_Equals_System_Object_
   commentId: M:VisualCard.Parts.SoundInfo.Equals(System.Object)
-  fullName: VisualCard.Parts.SoundInfo.Equals(System.Object)
-  nameWithType: SoundInfo.Equals(Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Parts.SoundInfo.Equals(object)
+  fullName.vb: VisualCard.Parts.SoundInfo.Equals(Object)
+  nameWithType: SoundInfo.Equals(object)
+  nameWithType.vb: SoundInfo.Equals(Object)
 - uid: VisualCard.Parts.SoundInfo.Equals(VisualCard.Parts.SoundInfo)
   name: Equals(SoundInfo)
   href: api/VisualCard.Parts.SoundInfo.html#VisualCard_Parts_SoundInfo_Equals_VisualCard_Parts_SoundInfo_
@@ -2197,11 +2269,14 @@ references:
   fullName: VisualCard.Parts.TelephoneInfo.ContactPhoneTypes
   nameWithType: TelephoneInfo.ContactPhoneTypes
 - uid: VisualCard.Parts.TelephoneInfo.Equals(System.Object)
-  name: Equals(Object)
+  name: Equals(object)
   href: api/VisualCard.Parts.TelephoneInfo.html#VisualCard_Parts_TelephoneInfo_Equals_System_Object_
   commentId: M:VisualCard.Parts.TelephoneInfo.Equals(System.Object)
-  fullName: VisualCard.Parts.TelephoneInfo.Equals(System.Object)
-  nameWithType: TelephoneInfo.Equals(Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Parts.TelephoneInfo.Equals(object)
+  fullName.vb: VisualCard.Parts.TelephoneInfo.Equals(Object)
+  nameWithType: TelephoneInfo.Equals(object)
+  nameWithType.vb: TelephoneInfo.Equals(Object)
 - uid: VisualCard.Parts.TelephoneInfo.Equals(VisualCard.Parts.TelephoneInfo)
   name: Equals(TelephoneInfo)
   href: api/VisualCard.Parts.TelephoneInfo.html#VisualCard_Parts_TelephoneInfo_Equals_VisualCard_Parts_TelephoneInfo_
@@ -2267,11 +2342,14 @@ references:
   fullName: VisualCard.Parts.TimeZoneInfo.AltId
   nameWithType: TimeZoneInfo.AltId
 - uid: VisualCard.Parts.TimeZoneInfo.Equals(System.Object)
-  name: Equals(Object)
+  name: Equals(object)
   href: api/VisualCard.Parts.TimeZoneInfo.html#VisualCard_Parts_TimeZoneInfo_Equals_System_Object_
   commentId: M:VisualCard.Parts.TimeZoneInfo.Equals(System.Object)
-  fullName: VisualCard.Parts.TimeZoneInfo.Equals(System.Object)
-  nameWithType: TimeZoneInfo.Equals(Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Parts.TimeZoneInfo.Equals(object)
+  fullName.vb: VisualCard.Parts.TimeZoneInfo.Equals(Object)
+  nameWithType: TimeZoneInfo.Equals(object)
+  nameWithType.vb: TimeZoneInfo.Equals(Object)
 - uid: VisualCard.Parts.TimeZoneInfo.Equals(VisualCard.Parts.TimeZoneInfo)
   name: Equals(TimeZoneInfo)
   href: api/VisualCard.Parts.TimeZoneInfo.html#VisualCard_Parts_TimeZoneInfo_Equals_VisualCard_Parts_TimeZoneInfo_
@@ -2376,11 +2454,14 @@ references:
   fullName: VisualCard.Parts.TitleInfo.ContactTitle
   nameWithType: TitleInfo.ContactTitle
 - uid: VisualCard.Parts.TitleInfo.Equals(System.Object)
-  name: Equals(Object)
+  name: Equals(object)
   href: api/VisualCard.Parts.TitleInfo.html#VisualCard_Parts_TitleInfo_Equals_System_Object_
   commentId: M:VisualCard.Parts.TitleInfo.Equals(System.Object)
-  fullName: VisualCard.Parts.TitleInfo.Equals(System.Object)
-  nameWithType: TitleInfo.Equals(Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Parts.TitleInfo.Equals(object)
+  fullName.vb: VisualCard.Parts.TitleInfo.Equals(Object)
+  nameWithType: TitleInfo.Equals(object)
+  nameWithType.vb: TitleInfo.Equals(Object)
 - uid: VisualCard.Parts.TitleInfo.Equals(VisualCard.Parts.TitleInfo)
   name: Equals(TitleInfo)
   href: api/VisualCard.Parts.TitleInfo.html#VisualCard_Parts_TitleInfo_Equals_VisualCard_Parts_TitleInfo_
@@ -2446,11 +2527,14 @@ references:
   fullName: VisualCard.Parts.XNameInfo.AltId
   nameWithType: XNameInfo.AltId
 - uid: VisualCard.Parts.XNameInfo.Equals(System.Object)
-  name: Equals(Object)
+  name: Equals(object)
   href: api/VisualCard.Parts.XNameInfo.html#VisualCard_Parts_XNameInfo_Equals_System_Object_
   commentId: M:VisualCard.Parts.XNameInfo.Equals(System.Object)
-  fullName: VisualCard.Parts.XNameInfo.Equals(System.Object)
-  nameWithType: XNameInfo.Equals(Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Parts.XNameInfo.Equals(object)
+  fullName.vb: VisualCard.Parts.XNameInfo.Equals(Object)
+  nameWithType: XNameInfo.Equals(object)
+  nameWithType.vb: XNameInfo.Equals(Object)
 - uid: VisualCard.Parts.XNameInfo.Equals(VisualCard.Parts.XNameInfo)
   name: Equals(XNameInfo)
   href: api/VisualCard.Parts.XNameInfo.html#VisualCard_Parts_XNameInfo_Equals_VisualCard_Parts_XNameInfo_

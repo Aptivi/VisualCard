@@ -12,19 +12,16 @@
         "resource": {
           "relative_path": "index.json"
         }
-      },
-      "is_incremental": false
+      }
     },
     {
       "type": "ManagedReference",
       "source_relative_path": "api/VisualCard.CardTools.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.CardTools.html",
-          "hash": "7BviIN/vsm/xwJYw4/Hrk/g0oBuhCIa1W5Ps0WhSeRo="
+          "relative_path": "api/VisualCard.CardTools.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -32,11 +29,9 @@
       "source_relative_path": "api/VisualCard.Converters.AndroidContactsDb.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Converters.AndroidContactsDb.html",
-          "hash": "Rpz4jenI+qezDlVmB1IbpeRJM9jeQgPu9LlAhO3lVp8="
+          "relative_path": "api/VisualCard.Converters.AndroidContactsDb.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -44,11 +39,9 @@
       "source_relative_path": "api/VisualCard.Converters.MeCard.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Converters.MeCard.html",
-          "hash": "rR0GDWDb/bxlvEMvL6uOxe/3O2eY4svDM7tOWHx1L9k="
+          "relative_path": "api/VisualCard.Converters.MeCard.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -56,11 +49,9 @@
       "source_relative_path": "api/VisualCard.Converters.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Converters.html",
-          "hash": "2MT/yaE3yo7u3eyV7x+UfzLfjeCfwhN53AlebXXLfdI="
+          "relative_path": "api/VisualCard.Converters.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -68,11 +59,9 @@
       "source_relative_path": "api/VisualCard.Exceptions.VCardParseException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Exceptions.VCardParseException.html",
-          "hash": "o4BJqrQHx+P/LvpEAj8UPzY+izqNVwFpFWfwlCcQ3A8="
+          "relative_path": "api/VisualCard.Exceptions.VCardParseException.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -80,11 +69,9 @@
       "source_relative_path": "api/VisualCard.Exceptions.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Exceptions.html",
-          "hash": "LAY0Fpz2VZA8F8gns+yMU6vr2aevYf/JYLiE5+XfBQ0="
+          "relative_path": "api/VisualCard.Exceptions.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -92,11 +79,9 @@
       "source_relative_path": "api/VisualCard.Parsers.BaseVcardParser.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parsers.BaseVcardParser.html",
-          "hash": "IzfJtR47jk5bx8FqS4lTdCNFAKgdYvyNKkYvbiHkmcs="
+          "relative_path": "api/VisualCard.Parsers.BaseVcardParser.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -104,11 +89,9 @@
       "source_relative_path": "api/VisualCard.Parsers.Four.VcardFour.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parsers.Four.VcardFour.html",
-          "hash": "Az2YSZ1ZE8GUpHDKNvJXSNttqf1odQII567v/3b/58M="
+          "relative_path": "api/VisualCard.Parsers.Four.VcardFour.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -116,11 +99,9 @@
       "source_relative_path": "api/VisualCard.Parsers.Four.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parsers.Four.html",
-          "hash": "fLyg0CxcFv2Q21L8LZdrNXrjtX1W3J8uNOWtVPyLeSQ="
+          "relative_path": "api/VisualCard.Parsers.Four.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -128,11 +109,9 @@
       "source_relative_path": "api/VisualCard.Parsers.IVcardParser.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parsers.IVcardParser.html",
-          "hash": "tdRR0Jx5TlqI8TV60/EdQeDmSli7p3DMOj591gmV+PE="
+          "relative_path": "api/VisualCard.Parsers.IVcardParser.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -140,11 +119,9 @@
       "source_relative_path": "api/VisualCard.Parsers.Three.VcardThree.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parsers.Three.VcardThree.html",
-          "hash": "Fc0g3JBQLp+0Nxh4d6HeevnfbPceTDRwD7dJ2vQVd+I="
+          "relative_path": "api/VisualCard.Parsers.Three.VcardThree.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -152,11 +129,9 @@
       "source_relative_path": "api/VisualCard.Parsers.Three.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parsers.Three.html",
-          "hash": "Bqbm+tru9THH3fh9zOAqnHy7xbEWlvw8owoVyQ7CBRE="
+          "relative_path": "api/VisualCard.Parsers.Three.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -164,11 +139,9 @@
       "source_relative_path": "api/VisualCard.Parsers.Two.VcardTwo.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parsers.Two.VcardTwo.html",
-          "hash": "XB++fAjeU7RF63cXfTVcfrE1ttGPqz6gfgIY2XOMtcQ="
+          "relative_path": "api/VisualCard.Parsers.Two.VcardTwo.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -176,11 +149,9 @@
       "source_relative_path": "api/VisualCard.Parsers.Two.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parsers.Two.html",
-          "hash": "BN32JNc+MsbHzVsw3MWnBdGkVviW4ooToJXHvqW/i7o="
+          "relative_path": "api/VisualCard.Parsers.Two.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -188,11 +159,9 @@
       "source_relative_path": "api/VisualCard.Parsers.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parsers.html",
-          "hash": "mFUDO6Gv6FVr6gkaYELIWF3fM+uBgt7RhEnGMsG7wi8="
+          "relative_path": "api/VisualCard.Parsers.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -200,11 +169,9 @@
       "source_relative_path": "api/VisualCard.Parts.AddressInfo.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parts.AddressInfo.html",
-          "hash": "52A0DW//HDELSZlr55MW8zeKQ/idI4KgJzW4u+qGWH4="
+          "relative_path": "api/VisualCard.Parts.AddressInfo.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -212,11 +179,9 @@
       "source_relative_path": "api/VisualCard.Parts.Card.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parts.Card.html",
-          "hash": "FU93OYoJUfBi8U+nQ6U9wOAn6WGDo15FHMGLn45lfAI="
+          "relative_path": "api/VisualCard.Parts.Card.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -224,11 +189,9 @@
       "source_relative_path": "api/VisualCard.Parts.EmailInfo.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parts.EmailInfo.html",
-          "hash": "RN/D+6igybbVIZbmHidZeWvAqSU7rJMLXZ2UdjKjxdM="
+          "relative_path": "api/VisualCard.Parts.EmailInfo.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -236,11 +199,9 @@
       "source_relative_path": "api/VisualCard.Parts.GeoInfo.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parts.GeoInfo.html",
-          "hash": "9ZKe2FWJCBeuT0+ZTdEfAPjRDeJyD6JPjhGRFjPK4yM="
+          "relative_path": "api/VisualCard.Parts.GeoInfo.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -248,11 +209,9 @@
       "source_relative_path": "api/VisualCard.Parts.ImppInfo.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parts.ImppInfo.html",
-          "hash": "cGjil7APMvo9bVFK6ulPxe1WMReBPH5FIjAPQv0mPfk="
+          "relative_path": "api/VisualCard.Parts.ImppInfo.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -260,11 +219,9 @@
       "source_relative_path": "api/VisualCard.Parts.LogoInfo.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parts.LogoInfo.html",
-          "hash": "+qrg4PsDVO6+Ot0Z7BmbfFTOn3zuM18xp9PkiTR6NmA="
+          "relative_path": "api/VisualCard.Parts.LogoInfo.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -272,11 +229,9 @@
       "source_relative_path": "api/VisualCard.Parts.NameInfo.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parts.NameInfo.html",
-          "hash": "xEjQYvOoG1HvD8sYUQXLuOkI/50XTHtV2xIim69x378="
+          "relative_path": "api/VisualCard.Parts.NameInfo.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -284,11 +239,9 @@
       "source_relative_path": "api/VisualCard.Parts.NicknameInfo.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parts.NicknameInfo.html",
-          "hash": "OflMc+JFkv4QadY6bjgkEffvJ+MnxEk91Udlj3BujV4="
+          "relative_path": "api/VisualCard.Parts.NicknameInfo.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -296,11 +249,9 @@
       "source_relative_path": "api/VisualCard.Parts.OrganizationInfo.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parts.OrganizationInfo.html",
-          "hash": "BShMkGaApKQcBwmJCfcRJ4tpi7O2h6g/OrGjO9ADpWg="
+          "relative_path": "api/VisualCard.Parts.OrganizationInfo.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -308,11 +259,9 @@
       "source_relative_path": "api/VisualCard.Parts.PhotoInfo.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parts.PhotoInfo.html",
-          "hash": "dYux4NcDWf2wSZfeavzdqbnVoONVSCj4eGnfcFXPs4Q="
+          "relative_path": "api/VisualCard.Parts.PhotoInfo.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -320,11 +269,9 @@
       "source_relative_path": "api/VisualCard.Parts.RoleInfo.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parts.RoleInfo.html",
-          "hash": "BfNtVBdXXPYVN3tVPkryhqlcl/yhy/YU6EenYEVHQ9Y="
+          "relative_path": "api/VisualCard.Parts.RoleInfo.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -332,11 +279,9 @@
       "source_relative_path": "api/VisualCard.Parts.SoundInfo.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parts.SoundInfo.html",
-          "hash": "iBqkaCoQMarZVTcR2jkR+dddR+lbmdC8EQHP9nG2u9Q="
+          "relative_path": "api/VisualCard.Parts.SoundInfo.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -344,11 +289,9 @@
       "source_relative_path": "api/VisualCard.Parts.TelephoneInfo.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parts.TelephoneInfo.html",
-          "hash": "KnOaw7PXvgiG1ovn1R27+WdejrzpQ62YByo8qsc6zPc="
+          "relative_path": "api/VisualCard.Parts.TelephoneInfo.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -356,11 +299,9 @@
       "source_relative_path": "api/VisualCard.Parts.TimeZoneInfo.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parts.TimeZoneInfo.html",
-          "hash": "mvghcEYyE92vOf41HvW1nd5zI+HJ6ur2digcvXZsMQA="
+          "relative_path": "api/VisualCard.Parts.TimeZoneInfo.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -368,11 +309,9 @@
       "source_relative_path": "api/VisualCard.Parts.TitleInfo.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parts.TitleInfo.html",
-          "hash": "UYSAQ2YA++bunwAPO+6pmHQgJSnepwcIJmJN3iFcwLw="
+          "relative_path": "api/VisualCard.Parts.TitleInfo.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -380,11 +319,9 @@
       "source_relative_path": "api/VisualCard.Parts.XNameInfo.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parts.XNameInfo.html",
-          "hash": "0oqqX7GZqovaDFcTQ0jsStiZw3KFsZx32xH0yQuP4G0="
+          "relative_path": "api/VisualCard.Parts.XNameInfo.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -392,11 +329,9 @@
       "source_relative_path": "api/VisualCard.Parts.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parts.html",
-          "hash": "VWOuqtdAA/Kk+He0u3Nx+iABLLkpmbuxskvATJvMkvE="
+          "relative_path": "api/VisualCard.Parts.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -404,11 +339,9 @@
       "source_relative_path": "api/VisualCard.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.html",
-          "hash": "0nHuP5pPvQyEGHpSxFUBH2NYwwmkAcuTXj3lRTrIYH0="
+          "relative_path": "api/VisualCard.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -416,11 +349,9 @@
       "source_relative_path": "api/toc.yml",
       "output": {
         ".html": {
-          "relative_path": "api/toc.html",
-          "hash": "29zSQ1Bk3HP+Ip7r/g90BP5krkZCfqxdxmmiRD3FMp8="
+          "relative_path": "api/toc.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -428,11 +359,9 @@
       "source_relative_path": "index.md",
       "output": {
         ".html": {
-          "relative_path": "index.html",
-          "hash": "ws9Z9yTNrNWTqNxx7Hp7juJNwnd8JLuTdO2W/wT4E54="
+          "relative_path": "index.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -440,55 +369,10 @@
       "source_relative_path": "toc.yml",
       "output": {
         ".html": {
-          "relative_path": "toc.html",
-          "hash": "vh9FCYLI5D9o5meOkVjAIc/lrozSYwiejEBF3YqZpCw="
+          "relative_path": "toc.html"
         }
       },
-      "is_incremental": false,
       "version": ""
-    }
-  ],
-  "incremental_info": [
-    {
-      "status": {
-        "can_incremental": false,
-        "details": "Cannot build incrementally because last build info is missing.",
-        "incrementalPhase": "build",
-        "total_file_count": 0,
-        "skipped_file_count": 0,
-        "full_build_reason_code": "NoAvailableBuildCache"
-      },
-      "processors": {
-        "ConceptualDocumentProcessor": {
-          "can_incremental": false,
-          "incrementalPhase": "build",
-          "total_file_count": 1,
-          "skipped_file_count": 0
-        },
-        "ManagedReferenceDocumentProcessor": {
-          "can_incremental": false,
-          "incrementalPhase": "build",
-          "total_file_count": 33,
-          "skipped_file_count": 0
-        },
-        "TocDocumentProcessor": {
-          "can_incremental": false,
-          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
-          "incrementalPhase": "build",
-          "total_file_count": 0,
-          "skipped_file_count": 0
-        }
-      }
-    },
-    {
-      "status": {
-        "can_incremental": false,
-        "details": "Cannot support incremental post processing, the reason is: should not trace intermediate info.",
-        "incrementalPhase": "postProcessing",
-        "total_file_count": 0,
-        "skipped_file_count": 0
-      },
-      "processors": {}
     }
   ],
   "version_info": {},
