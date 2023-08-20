@@ -22,9 +22,9 @@ jobs:
       with:
         dotnet-version: '6.0.x'
     - name: Solution Compilation
-      run: dotnet build --configuration Debug "VisualCard.sln"
+      run: dotnet build --configuration Debug
     - name: Testing
-      run: dotnet test --configuration Debug "VisualCard.sln"
+      run: dotnet test --configuration Debug
     - uses: actions/upload-artifact@v3
       if: success() || failure()
       with:

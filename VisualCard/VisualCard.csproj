@@ -18,6 +18,8 @@
     <PackageTags>vcf;contacts;parsers</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <IncludeSymbols>True</IncludeSymbols>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <LangVersion>latest</LangVersion>
     <PackageVersion>0.6.0</PackageVersion>
   </PropertyGroup>
