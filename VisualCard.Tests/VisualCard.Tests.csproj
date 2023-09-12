@@ -4,6 +4,8 @@
     <TargetFramework>net6.0</TargetFramework>
     <LangVersion>latest</LangVersion>
     <IsPackable>false</IsPackable>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\aptivi_snk.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <ItemGroup>
