@@ -23,13 +23,11 @@
  * 
  */
 
-using Microsoft.Data.Sqlite;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System;
 using VisualCard.Parsers;
-using System.Linq;
 
 namespace VisualCard.Converters
 {
