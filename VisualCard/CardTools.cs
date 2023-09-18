@@ -41,7 +41,7 @@ namespace VisualCard
         /// <summary>
         /// Gets the list of parsers for single/multiple contacts from the string
         /// </summary>
-        /// <param name="Path">Contacts text</param>
+        /// <param name="cardText">Contacts text</param>
         /// <returns>List of contact parsers for single or multiple contacts</returns>
         public static List<BaseVcardParser> GetCardParsersFromString(string cardText)
         {

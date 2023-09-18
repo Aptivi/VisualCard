@@ -32,6 +32,9 @@ using VisualCard.Parsers;
 
 namespace VisualCard.Parts
 {
+    /// <summary>
+    /// Contact job title info
+    /// </summary>
     public class TitleInfo : IEquatable<TitleInfo>
     {
         /// <summary>
@@ -47,6 +50,7 @@ namespace VisualCard.Parts
         /// </summary>
         public string ContactTitle { get; }
 
+        /// <inheritdoc/>
         public override bool Equals(object obj) =>
             base.Equals(obj);
 
@@ -78,6 +82,7 @@ namespace VisualCard.Parts
             ;
         }
 
+        /// <inheritdoc/>
         public override int GetHashCode()
         {
             int hashCode = -1478940212;

@@ -28,11 +28,24 @@ using VisualCard.Parts;
 
 namespace VisualCard.Parsers
 {
+    /// <summary>
+    /// The base VCard parser
+    /// </summary>
     public abstract class BaseVcardParser : IVcardParser
     {
+        /// <summary>
+        /// VCard card content
+        /// </summary>
         public virtual string CardContent => "";
+        /// <summary>
+        /// VCard card version
+        /// </summary>
         public virtual string CardVersion => "";
 
+        /// <summary>
+        /// Parses a VCard contact
+        /// </summary>
+        /// <returns>A strongly-typed <see cref="Card"/> instance holding information about the card</returns>
         public abstract Card Parse();
         internal abstract string SaveToString(Card card);
         internal abstract void SaveTo(string path, Card card);

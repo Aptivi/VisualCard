@@ -27,13 +27,24 @@ using System;
 
 namespace VisualCard.Exceptions
 {
+    /// <summary>
+    /// Exception of VCard parsing
+    /// </summary>
     public class VCardParseException : Exception
     {
+        /// <inheritdoc/>
         public VCardParseException()
             : base("General contact parsing error.")
         {
         }
 
+        /// <summary>
+        /// Indicates that there was something wrong with parsing
+        /// </summary>
+        /// <param name="message">The message to clarify the reasoning for the error</param>
+        /// <param name="line">Line in which it caused the error</param>
+        /// <param name="linenumber">Line number in which it caused the error</param>
+        /// <param name="innerException">Inner exception (if any)</param>
         public VCardParseException(string message, string line, int linenumber, Exception innerException)
             : base($"An error occurred while parsing the VCard contact\n" +
                    $"Error: {message}\n" +

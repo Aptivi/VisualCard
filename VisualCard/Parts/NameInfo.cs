@@ -33,6 +33,9 @@ using VisualCard.Parsers;
 
 namespace VisualCard.Parts
 {
+    /// <summary>
+    /// Name information
+    /// </summary>
     public class NameInfo : IEquatable<NameInfo>
     {
         /// <summary>
@@ -64,6 +67,7 @@ namespace VisualCard.Parts
         /// </summary>
         public string[] Suffixes { get; }
 
+        /// <inheritdoc/>
         public override bool Equals(object obj) =>
             base.Equals(obj);
 
@@ -99,6 +103,7 @@ namespace VisualCard.Parts
             ;
         }
 
+        /// <inheritdoc/>
         public override int GetHashCode()
         {
             int hashCode = 357851718;

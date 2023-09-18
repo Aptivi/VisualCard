@@ -32,6 +32,9 @@ using VisualCard.Parsers;
 
 namespace VisualCard.Parts
 {
+    /// <summary>
+    /// Contact non-standard field entry information
+    /// </summary>
     public class XNameInfo : IEquatable<XNameInfo>
     {
         /// <summary>
@@ -55,6 +58,7 @@ namespace VisualCard.Parts
         /// </summary>
         public string[] XValues { get; }
 
+        /// <inheritdoc/>
         public override bool Equals(object obj) =>
             base.Equals(obj);
 
@@ -88,6 +92,7 @@ namespace VisualCard.Parts
             ;
         }
 
+        /// <inheritdoc/>
         public override int GetHashCode()
         {
             int hashCode = 1235403650;

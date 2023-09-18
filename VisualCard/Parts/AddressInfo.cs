@@ -32,6 +32,9 @@ using VisualCard.Parsers;
 
 namespace VisualCard.Parts
 {
+    /// <summary>
+    /// Contact address information
+    /// </summary>
     public class AddressInfo : IEquatable<AddressInfo>
     {
         /// <summary>
@@ -75,6 +78,7 @@ namespace VisualCard.Parts
         /// </summary>
         public string Country { get; }
 
+        /// <inheritdoc/>
         public override bool Equals(object obj) =>
             base.Equals(obj);
 
@@ -113,6 +117,7 @@ namespace VisualCard.Parts
             ;
         }
 
+        /// <inheritdoc/>
         public override int GetHashCode()
         {
             int hashCode = -1858114484;

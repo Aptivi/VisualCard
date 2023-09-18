@@ -32,6 +32,9 @@ using VisualCard.Parsers;
 
 namespace VisualCard.Parts
 {
+    /// <summary>
+    /// Contact organization info
+    /// </summary>
     public class OrganizationInfo : IEquatable<OrganizationInfo>
     {
         /// <summary>
@@ -59,6 +62,7 @@ namespace VisualCard.Parts
         /// </summary>
         public string Role { get; }
 
+        /// <inheritdoc/>
         public override bool Equals(object obj) =>
             base.Equals(obj);
 
@@ -93,6 +97,7 @@ namespace VisualCard.Parts
             ;
         }
 
+        /// <inheritdoc/>
         public override int GetHashCode()
         {
             int hashCode = 374840165;

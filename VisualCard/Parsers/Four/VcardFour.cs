@@ -41,9 +41,12 @@ namespace VisualCard.Parsers.Four
     /// </summary>
     public class VcardFour : BaseVcardParser, IVcardParser
     {
+        /// <inheritdoc/>
         public override string CardContent { get; }
+        /// <inheritdoc/>
         public override string CardVersion { get; }
 
+        /// <inheritdoc/>
         public override Card Parse()
         {
             // Check the version to ensure that we're really dealing with VCard 4.0 contact

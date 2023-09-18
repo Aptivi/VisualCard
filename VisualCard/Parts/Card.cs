@@ -30,6 +30,9 @@ using VisualCard.Parsers;
 
 namespace VisualCard.Parts
 {
+    /// <summary>
+    /// A VCard card
+    /// </summary>
     public class Card : IEquatable<Card>
     {
         private readonly BaseVcardParser _parser;
@@ -174,6 +177,7 @@ namespace VisualCard.Parts
         public string SaveToString() =>
             Parser.SaveToString(this);
 
+        /// <inheritdoc/>
         public override bool Equals(object obj) =>
             base.Equals(obj);
 
@@ -231,6 +235,7 @@ namespace VisualCard.Parts
             ;
         }
 
+        /// <inheritdoc/>
         public override int GetHashCode()
         {
             int hashCode = 1867659713;
@@ -266,9 +271,11 @@ namespace VisualCard.Parts
             return hashCode;
         }
 
+        /// <inheritdoc/>
         public static bool operator ==(Card a, Card b)
             => a.Equals(b);
 
+        /// <inheritdoc/>
         public static bool operator !=(Card a, Card b)
             => !a.Equals(b);
 

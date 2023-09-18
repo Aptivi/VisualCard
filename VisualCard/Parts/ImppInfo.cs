@@ -32,6 +32,9 @@ using VisualCard.Parsers;
 
 namespace VisualCard.Parts
 {
+    /// <summary>
+    /// Contact IMPP info
+    /// </summary>
     public class ImppInfo : IEquatable<ImppInfo>
     {
         /// <summary>
@@ -51,6 +54,7 @@ namespace VisualCard.Parts
         /// </summary>
         public string[] ImppTypes { get; }
 
+        /// <inheritdoc/>
         public override bool Equals(object obj) =>
             base.Equals(obj);
 
@@ -83,6 +87,7 @@ namespace VisualCard.Parts
             ;
         }
 
+        /// <inheritdoc/>
         public override int GetHashCode()
         {
             int hashCode = -700274766;

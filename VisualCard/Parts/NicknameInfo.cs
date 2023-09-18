@@ -32,6 +32,9 @@ using VisualCard.Parsers;
 
 namespace VisualCard.Parts
 {
+    /// <summary>
+    /// Contact nickname info
+    /// </summary>
     public class NicknameInfo : IEquatable<NicknameInfo>
     {
         /// <summary>
@@ -51,6 +54,7 @@ namespace VisualCard.Parts
         /// </summary>
         public string[] NicknameTypes { get; }
 
+        /// <inheritdoc/>
         public override bool Equals(object obj) =>
             base.Equals(obj);
 
@@ -83,6 +87,7 @@ namespace VisualCard.Parts
             ;
         }
 
+        /// <inheritdoc/>
         public override int GetHashCode()
         {
             int hashCode = -1183179154;

@@ -33,6 +33,9 @@ using VisualCard.Parsers;
 
 namespace VisualCard.Parts
 {
+    /// <summary>
+    /// Contact e-mail information
+    /// </summary>
     public class EmailInfo : IEquatable<EmailInfo>
     {
         /// <summary>
@@ -52,6 +55,7 @@ namespace VisualCard.Parts
         /// </summary>
         public string ContactEmailAddress { get; }
 
+        /// <inheritdoc/>
         public override bool Equals(object obj) =>
             base.Equals(obj);
 
@@ -83,6 +87,7 @@ namespace VisualCard.Parts
             ;
         }
 
+        /// <inheritdoc/>
         public override int GetHashCode()
         {
             int hashCode = 2091849342;
