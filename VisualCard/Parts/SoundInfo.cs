@@ -25,6 +25,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -35,6 +36,7 @@ namespace VisualCard.Parts
     /// <summary>
     /// Contact sound info
     /// </summary>
+    [DebuggerDisplay("Sound, {Encoding}, {SoundType}, {ValueType}")]
     public class SoundInfo : IEquatable<SoundInfo>
     {
         /// <summary>
@@ -54,7 +56,7 @@ namespace VisualCard.Parts
         /// </summary>
         public string Encoding { get; }
         /// <summary>
-        /// Sound type (JPEG, ...)
+        /// Sound type (MP3, ...)
         /// </summary>
         public string SoundType { get; }
         /// <summary>

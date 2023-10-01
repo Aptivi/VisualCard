@@ -25,6 +25,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using VisualCard.Parsers;
 
@@ -33,6 +34,7 @@ namespace VisualCard.Parts
     /// <summary>
     /// Contact non-standard field entry information
     /// </summary>
+    [DebuggerDisplay("Non-standard = {XKeyName}")]
     public class XNameInfo : IEquatable<XNameInfo>
     {
         /// <summary>

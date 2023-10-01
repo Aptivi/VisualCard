@@ -25,6 +25,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -35,6 +36,7 @@ namespace VisualCard.Parts
     /// <summary>
     /// Contact time zone info
     /// </summary>
+    [DebuggerDisplay("Time zone = {TimeZone}")]
     public class TimeZoneInfo : IEquatable<TimeZoneInfo>
     {
         /// <summary>

@@ -25,6 +25,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -35,6 +36,7 @@ namespace VisualCard.Parts
     /// <summary>
     /// Contact photo info
     /// </summary>
+    [DebuggerDisplay("Photo, {Encoding}, {PhotoType}, {ValueType}")]
     public class PhotoInfo : IEquatable<PhotoInfo>
     {
         /// <summary>

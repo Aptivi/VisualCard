@@ -25,6 +25,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using VisualCard.Parsers;
 
@@ -33,6 +34,7 @@ namespace VisualCard.Parts
     /// <summary>
     /// A VCard card
     /// </summary>
+    [DebuggerDisplay("VCard version {CardVersion}, kind: {CardKind}, name: {ContactFullName}")]
     public class Card : IEquatable<Card>
     {
         private readonly BaseVcardParser _parser;

@@ -25,6 +25,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.Mail;
@@ -35,6 +36,7 @@ namespace VisualCard.Parts
     /// <summary>
     /// Contact e-mail information
     /// </summary>
+    [DebuggerDisplay("E-mail = {ContactEmailAddress}")]
     public class EmailInfo : IEquatable<EmailInfo>
     {
         /// <summary>

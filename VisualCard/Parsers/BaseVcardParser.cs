@@ -23,6 +23,7 @@
  * 
  */
 
+using System.Diagnostics;
 using System.Text;
 using VisualCard.Parts;
 
@@ -31,6 +32,7 @@ namespace VisualCard.Parsers
     /// <summary>
     /// The base VCard parser
     /// </summary>
+    [DebuggerDisplay("VCard contact, version {CardVersion}")]
     public abstract class BaseVcardParser : IVcardParser
     {
         /// <summary>

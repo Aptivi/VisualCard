@@ -25,6 +25,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
 using VisualCard.Parsers;
@@ -34,6 +35,7 @@ namespace VisualCard.Parts
     /// <summary>
     /// Contact job title info
     /// </summary>
+    [DebuggerDisplay("Job title = {ContactTitle}")]
     public class TitleInfo : IEquatable<TitleInfo>
     {
         /// <summary>

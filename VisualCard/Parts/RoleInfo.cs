@@ -25,6 +25,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using VisualCard.Parsers;
 
@@ -33,6 +34,7 @@ namespace VisualCard.Parts
     /// <summary>
     /// Contact role info
     /// </summary>
+    [DebuggerDisplay("Role = {ContactRole}")]
     public class RoleInfo : IEquatable<RoleInfo>
     {
         /// <summary>

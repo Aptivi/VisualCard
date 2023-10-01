@@ -25,6 +25,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -35,6 +36,7 @@ namespace VisualCard.Parts
     /// <summary>
     /// Contact address information
     /// </summary>
+    [DebuggerDisplay("Address = {PostOfficeBox}, {ExtendedAddress}, {StreetAddress}, {Locality}, {Region}, {PostalCode}, {Country}")]
     public class AddressInfo : IEquatable<AddressInfo>
     {
         /// <summary>
