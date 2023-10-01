@@ -122,6 +122,7 @@ namespace VisualCard.Converters
                     """
                 );
                 bool idChanged = false;
+                bool birthdaySeen = false;
                 string lastId = "";
                 while (reader.Read())
                 {
@@ -170,7 +171,6 @@ namespace VisualCard.Converters
                     // so we have to figure things out.
                     switch (mtype)
                     {
-                        // HACK: Not a complete list of vnd.android.cursor.item/* for contacts, so things may appear incomplete.
                         case "vnd.android.cursor.item/name":
                             // Example:
                             //
@@ -209,7 +209,7 @@ namespace VisualCard.Converters
                             {
                                 // Let's do some translation work!
                                 // From Android's source code:
-                                // https://cs.android.com/android/platform/superproject/+/master:frameworks/base/core/java/android/provider/ContactsContract.java;l=6297
+                                // https://cs.android.com/android/platform/superproject/+/main:frameworks/base/core/java/android/provider/ContactsContract.java;l=6297
                                 //
                                 // public static final int TYPE_HOME = 1;
                                 // public static final int TYPE_MOBILE = 2;
@@ -233,7 +233,7 @@ namespace VisualCard.Converters
                                 // public static final int TYPE_MMS = 20;
                                 //
                                 // Translation to VCard code is found here:
-                                // https://cs.android.com/android/platform/superproject/+/master:frameworks/opt/vcard/java/com/android/vcard/VCardBuilder.java;l=1589
+                                // https://cs.android.com/android/platform/superproject/+/main:frameworks/opt/vcard/java/com/android/vcard/VCardBuilder.java;l=1589
                                 case "1":
                                     // TYPE_HOME -> home
                                     _telephoneTypeName = "home";
@@ -322,7 +322,7 @@ namespace VisualCard.Converters
                             {
                                 // Let's do some translation work!
                                 // From Android's source code:
-                                // https://cs.android.com/android/platform/superproject/+/master:frameworks/base/core/java/android/provider/ContactsContract.java;l=6582
+                                // https://cs.android.com/android/platform/superproject/+/main:frameworks/base/core/java/android/provider/ContactsContract.java;l=6582
                                 //
                                 // public static final int TYPE_HOME = 1;
                                 // public static final int TYPE_WORK = 2;
@@ -330,7 +330,7 @@ namespace VisualCard.Converters
                                 // public static final int TYPE_MOBILE = 4;
                                 //
                                 // Translation to VCard code is found here:
-                                // https://cs.android.com/android/platform/superproject/+/master:frameworks/opt/vcard/java/com/android/vcard/VCardBuilder.java;l=1526
+                                // https://cs.android.com/android/platform/superproject/+/main:frameworks/opt/vcard/java/com/android/vcard/VCardBuilder.java;l=1526
                                 case "2":
                                     // TYPE_WORK -> work
                                     _emailTypeName = "work";
@@ -367,14 +367,14 @@ namespace VisualCard.Converters
                             {
                                 // Let's do some translation work!
                                 // From Android's source code:
-                                // https://cs.android.com/android/platform/superproject/+/master:frameworks/base/core/java/android/provider/ContactsContract.java;l=6733
+                                // https://cs.android.com/android/platform/superproject/+/main:frameworks/base/core/java/android/provider/ContactsContract.java;l=6733
                                 //
                                 // public static final int TYPE_HOME = 1;
                                 // public static final int TYPE_WORK = 2;
                                 // public static final int TYPE_OTHER = 3;
                                 //
                                 // Translation to VCard code is found here:
-                                // https://cs.android.com/android/platform/superproject/+/master:frameworks/opt/vcard/java/com/android/vcard/VCardBuilder.java;l=1444
+                                // https://cs.android.com/android/platform/superproject/+/main:frameworks/opt/vcard/java/com/android/vcard/VCardBuilder.java;l=1444
                                 case "2":
                                     // TYPE_WORK -> work
                                     _addressTypeName = "work";
@@ -407,14 +407,14 @@ namespace VisualCard.Converters
                             {
                                 // Let's do some translation work!
                                 // From Android's source code:
-                                // https://cs.android.com/android/platform/superproject/+/master:frameworks/base/core/java/android/provider/ContactsContract.java;l=6900
+                                // https://cs.android.com/android/platform/superproject/+/main:frameworks/base/core/java/android/provider/ContactsContract.java;l=6900
                                 //
                                 // public static final int TYPE_HOME = 1;
                                 // public static final int TYPE_WORK = 2;
                                 // public static final int TYPE_OTHER = 3;
                                 //
                                 // Translation to VCard code is found here:
-                                // https://cs.android.com/android/platform/superproject/+/master:frameworks/opt/vcard/java/com/android/vcard/VCardBuilder.java;l=1178
+                                // https://cs.android.com/android/platform/superproject/+/main:frameworks/opt/vcard/java/com/android/vcard/VCardBuilder.java;l=1178
                                 case "2":
                                     // TYPE_WORK -> work
                                     _imTypeName = "work";
@@ -439,7 +439,7 @@ namespace VisualCard.Converters
                                 // public static final String PROPERTY_X_QQ = "X-QQ";
                                 // public static final String PROPERTY_X_NETMEETING = "X-NETMEETING";
                                 //
-                                // Taken from: https://cs.android.com/android/platform/superproject/+/master:frameworks/opt/vcard/java/com/android/vcard/VCardConstants.java;l=78
+                                // Taken from: https://cs.android.com/android/platform/superproject/+/main:frameworks/opt/vcard/java/com/android/vcard/VCardConstants.java;l=78
                                 case "1":
                                     // PROPERTY_X_MSN => X-MSN
                                     _imSpecifier = "X-MSN";
@@ -493,13 +493,13 @@ namespace VisualCard.Converters
                             {
                                 // Let's do some translation work!
                                 // From Android's source code:
-                                // https://cs.android.com/android/platform/superproject/+/master:frameworks/base/core/java/android/provider/ContactsContract.java;l=7120
+                                // https://cs.android.com/android/platform/superproject/+/main:frameworks/base/core/java/android/provider/ContactsContract.java;l=7120
                                 //
                                 // public static final int TYPE_WORK = 1;
                                 // public static final int TYPE_OTHER = 2;
                                 //
                                 // Translation to VCard code is found here:
-                                // https://cs.android.com/android/platform/superproject/+/master:frameworks/opt/vcard/java/com/android/vcard/VCardBuilder.java;l=1178
+                                // https://cs.android.com/android/platform/superproject/+/main:frameworks/opt/vcard/java/com/android/vcard/VCardBuilder.java;l=1178
                                 case "2":
                                     // TYPE_OTHER -> x-other
                                     _orgTypeName = "x-other";
@@ -536,14 +536,14 @@ namespace VisualCard.Converters
                             {
                                 // Let's do some translation work!
                                 // From Android's source code:
-                                // https://cs.android.com/android/platform/superproject/+/master:frameworks/base/core/java/android/provider/ContactsContract.java;l=7711
+                                // https://cs.android.com/android/platform/superproject/+/main:frameworks/base/core/java/android/provider/ContactsContract.java;l=7711
                                 //
                                 // public static final int TYPE_HOME = 1;
                                 // public static final int TYPE_WORK = 2;
                                 // public static final int TYPE_OTHER = 3;
                                 //
                                 // Translation to VCard code is found here:
-                                // https://cs.android.com/android/platform/superproject/+/master:frameworks/opt/vcard/java/com/android/vcard/VCardBuilder.java;l=1782
+                                // https://cs.android.com/android/platform/superproject/+/main:frameworks/opt/vcard/java/com/android/vcard/VCardBuilder.java;l=1782
                                 case "2":
                                     // TYPE_WORK -> work
                                     _imppTypeName = "work";
@@ -554,6 +554,63 @@ namespace VisualCard.Converters
                                     break;
                             }
                             masterContactBuilder.AppendLine($"{_imppSpecifierWithType}TYPE={_imppTypeName}:sip:{d1}");
+                            break;
+                        case "vnd.android.cursor.item/relation":
+                            // Example:
+                            //
+                            // _id    mimetype                            data1   data2
+                            // 7      vnd.android.cursor.item/relation    Name    2
+                            //
+                            // | d1: Relative name
+                            // | d2: Relative type
+                            // ---> will get converted to VCard line:
+                            //      X-ANDROID-CUSTOM:vnd.android.cursor.item/relation;Name;2;;;;;;;;;;;;;
+                            const string _relativeSpecifierWithType = "X-ANDROID-CUSTOM:vnd.android.cursor.item/relation;";
+                            masterContactBuilder.AppendLine($"{_relativeSpecifierWithType}{d1};{d2};;;;;;;;;;;;;");
+                            break;
+                        case "vnd.android.cursor.item/contact_event":
+                            // Example:
+                            //
+                            // _id    mimetype                                 data1        data2
+                            // 7      vnd.android.cursor.item/contact_event    07/21/1993   1
+                            //
+                            // | d1: Event date
+                            // | d2: Event type
+                            // ---> will get converted to VCard line for birthday events:
+                            //      BDAY:07/21/1993
+                            // ---> will get converted to VCard line for other events:
+                            //      X-ANDROID-CUSTOM:vnd.android.cursor.item/contact_event;07/21/1993;1;;;;;;;;;;;;;
+                            const string _contactEventSpecifierWithType = "X-ANDROID-CUSTOM:vnd.android.cursor.item/contact_event;";
+                            const string _contactEventBirthdaySpecifierWithType = "BDAY:";
+
+                            // According to the translation done below, these are supported:
+                            //
+                            // public static final int TYPE_ANNIVERSARY = 1;
+                            // public static final int TYPE_OTHER = 2;
+                            // public static final int TYPE_BIRTHDAY = 3;
+                            //
+                            // Taken from https://cs.android.com/android/platform/superproject/+/main:frameworks/base/core/java/android/provider/ContactsContract.java;l=7379
+                            if (d2 == "3" && !birthdaySeen)
+                            {
+                                // This event is a birthday, so we need not to add more than one.
+                                birthdaySeen = true;
+                                masterContactBuilder.AppendLine($"{_contactEventBirthdaySpecifierWithType}{d1}");
+                            }
+                            else
+                                masterContactBuilder.AppendLine($"{_contactEventSpecifierWithType}{d1};{d2};;;;;;;;;;;;;");
+                            break;
+                        case "vnd.android.cursor.item/identity":
+                            // Example:
+                            //
+                            // _id    mimetype                            data1   data2
+                            // 7      vnd.android.cursor.item/identity    myid    com.aptivi
+                            //
+                            // | d1: Identity
+                            // | d2: Identity namespace
+                            // ---> will get converted to VCard line:
+                            //      X-ANDROID-CUSTOM:vnd.android.cursor.item/identity;myid;com.aptivi;;;;;;;;;;;;;
+                            const string _identitySpecifierWithType = "X-ANDROID-CUSTOM:vnd.android.cursor.item/identity;";
+                            masterContactBuilder.AppendLine($"{_identitySpecifierWithType}{d1};{d2};;;;;;;;;;;;;");
                             break;
                         case "vnd.android.cursor.item/note":
                             // Example:
