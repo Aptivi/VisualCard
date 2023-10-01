@@ -618,6 +618,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Card.CardVersion
   nameWithType: Card.CardVersion
+- uid: VisualCard.Parts.Card.ContactAccessClassification
+  name: ContactAccessClassification
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactAccessClassification
+  commentId: P:VisualCard.Parts.Card.ContactAccessClassification
+  fullName: VisualCard.Parts.Card.ContactAccessClassification
+  nameWithType: Card.ContactAccessClassification
+- uid: VisualCard.Parts.Card.ContactAccessClassification*
+  name: ContactAccessClassification
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactAccessClassification_
+  commentId: Overload:VisualCard.Parts.Card.ContactAccessClassification
+  isSpec: "True"
+  fullName: VisualCard.Parts.Card.ContactAccessClassification
+  nameWithType: Card.ContactAccessClassification
 - uid: VisualCard.Parts.Card.ContactAddresses
   name: ContactAddresses
   href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactAddresses
