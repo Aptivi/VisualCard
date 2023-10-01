@@ -64,6 +64,10 @@ namespace VisualCard.Parts
         /// </summary>
         public AddressInfo[] ContactAddresses { get; set; } = Array.Empty<AddressInfo>();
         /// <summary>
+        /// The contact's delivery address labels
+        /// </summary>
+        public LabelAddressInfo[] ContactLabels { get; set; } = Array.Empty<LabelAddressInfo>();
+        /// <summary>
         /// The contact's e-mails
         /// </summary>
         public EmailInfo[] ContactMails { get; set; } = Array.Empty<EmailInfo>();
@@ -208,6 +212,7 @@ namespace VisualCard.Parts
                 source.ContactNames.SequenceEqual(target.ContactNames) &&
                 source.ContactTelephones.SequenceEqual(target.ContactTelephones) &&
                 source.ContactAddresses.SequenceEqual(target.ContactAddresses) &&
+                source.ContactLabels.SequenceEqual(target.ContactLabels) &&
                 source.ContactMails.SequenceEqual(target.ContactMails) &&
                 source.ContactOrganizations.SequenceEqual(target.ContactOrganizations) &&
                 source.ContactTitles.SequenceEqual(target.ContactTitles) &&
@@ -240,11 +245,14 @@ namespace VisualCard.Parts
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = 1867659713;
+            int hashCode = 214013967;
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(CardVersion);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(CardKind);
             hashCode = hashCode * -1521134295 + EqualityComparer<NameInfo[]>.Default.GetHashCode(ContactNames);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactFullName);
             hashCode = hashCode * -1521134295 + EqualityComparer<TelephoneInfo[]>.Default.GetHashCode(ContactTelephones);
             hashCode = hashCode * -1521134295 + EqualityComparer<AddressInfo[]>.Default.GetHashCode(ContactAddresses);
+            hashCode = hashCode * -1521134295 + EqualityComparer<LabelAddressInfo[]>.Default.GetHashCode(ContactLabels);
             hashCode = hashCode * -1521134295 + EqualityComparer<EmailInfo[]>.Default.GetHashCode(ContactMails);
             hashCode = hashCode * -1521134295 + EqualityComparer<OrganizationInfo[]>.Default.GetHashCode(ContactOrganizations);
             hashCode = hashCode * -1521134295 + EqualityComparer<TitleInfo[]>.Default.GetHashCode(ContactTitles);

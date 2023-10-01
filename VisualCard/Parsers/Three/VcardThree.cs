@@ -75,6 +75,7 @@ namespace VisualCard.Parsers.Three
             List<TelephoneInfo> _telephones = new();
             List<EmailInfo> _emails = new();
             List<AddressInfo> _addresses = new();
+            List<LabelAddressInfo> _labels = new();
             List<OrganizationInfo> _orgs = new();
             List<TitleInfo> _titles = new();
             List<PhotoInfo> _photos = new();
@@ -149,6 +150,15 @@ namespace VisualCard.Parsers.Three
                             _addresses.Add(AddressInfo.FromStringVcardThreeWithType(_value));
                         else
                             _addresses.Add(AddressInfo.FromStringVcardThree(_value));
+                    }
+
+                    // Label (LABEL;TYPE=dom,home,postal,parcel:Mr.John Q. Public\, Esq.\nMail Drop: TNE QB\n123 Main Street\nAny Town\, CA  91921 - 1234\nU.S.A.)
+                    if (_value.StartsWith(VcardConstants._labelSpecifier + delimiter))
+                    {
+                        if (isWithType)
+                            _labels.Add(LabelAddressInfo.FromStringVcardThreeWithType(_value));
+                        else
+                            _labels.Add(LabelAddressInfo.FromStringVcardThree(_value));
                     }
 
                     // Email (EMAIL;TYPE=HOME,INTERNET:john.s@acme.co)
@@ -376,6 +386,7 @@ namespace VisualCard.Parsers.Three
                 ContactFullName = _fullName,
                 ContactTelephones = _telephones.ToArray(),
                 ContactAddresses = _addresses.ToArray(),
+                ContactLabels = _labels.ToArray(),
                 ContactOrganizations = _orgs.ToArray(),
                 ContactTitles = _titles.ToArray(),
                 ContactURL = _url,
@@ -431,6 +442,8 @@ namespace VisualCard.Parsers.Three
                 cardBuilder.AppendLine(telephone.ToStringVcardThree());
             foreach (AddressInfo address in card.ContactAddresses)
                 cardBuilder.AppendLine(address.ToStringVcardThree());
+            foreach (LabelAddressInfo label in card.ContactLabels)
+                cardBuilder.AppendLine(label.ToStringVcardThree());
             foreach (EmailInfo email in card.ContactMails)
                 cardBuilder.AppendLine(email.ToStringVcardThree());
             foreach (OrganizationInfo organization in card.ContactOrganizations)

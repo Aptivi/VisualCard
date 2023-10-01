@@ -35,6 +35,7 @@ namespace VisualCard.Parsers
         internal const string _fullNameSpecifier = "FN";
         internal const string _telephoneSpecifier = "TEL";
         internal const string _addressSpecifier = "ADR";
+        internal const string _labelSpecifier = "LABEL";
         internal const string _emailSpecifier = "EMAIL";
         internal const string _orgSpecifier = "ORG";
         internal const string _titleSpecifier = "TITLE";
