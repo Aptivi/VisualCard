@@ -357,7 +357,8 @@ namespace VisualCard.Parsers.Two
                 ContactXml = "",
                 ContactFreeBusyUrl = "",
                 ContactCalendarUrl = "",
-                ContactCalendarSchedulingRequestUrl = ""
+                ContactCalendarSchedulingRequestUrl = "",
+                ContactAccessClassification = ""
             };
         }
 

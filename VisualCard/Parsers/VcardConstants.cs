@@ -35,7 +35,6 @@ namespace VisualCard.Parsers
         internal const string _fullNameSpecifier = "FN";
         internal const string _telephoneSpecifier = "TEL";
         internal const string _addressSpecifier = "ADR";
-        internal const string _labelSpecifier = "LABEL";
         internal const string _emailSpecifier = "EMAIL";
         internal const string _orgSpecifier = "ORG";
         internal const string _titleSpecifier = "TITLE";
@@ -60,6 +59,12 @@ namespace VisualCard.Parsers
         internal const string _typeArgumentSpecifier = "TYPE=";
         internal const string _valueArgumentSpecifier = "VALUE=";
         internal const string _encodingArgumentSpecifier = "ENCODING=";
+
+        // Available in vCard 2.1 and 3.0
+        internal const string _labelSpecifier = "LABEL";
+
+        // Available in vCard 3.0
+        internal const string _classSpecifier = "CLASS";
 
         // Available in vCard 3.0 and vCard 4.0
         internal const string _nicknameSpecifier = "NICKNAME";

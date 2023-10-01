@@ -69,6 +69,7 @@ namespace VisualCard.Parsers.Three
             string _prodId = "";
             string _sortString = "";
             string _source = "";
+            string _class = "";
             DateTime _rev = DateTime.MinValue;
             DateTime _bday = DateTime.MinValue;
             List<NameInfo> _names = new();
@@ -362,6 +363,16 @@ namespace VisualCard.Parsers.Three
                         _source = uri.ToString();
                     }
 
+                    // Class (CLASS:PUBLIC, CLASS:PRIVATE, or CLASS:CONFIDENTIAL)
+                    if (_value.StartsWith(VcardConstants._classSpecifier + delimiter))
+                    {
+                        // Get the value
+                        string classValue = _value.Substring(VcardConstants._classSpecifier.Length + 1);
+
+                        // Populate field
+                        _class = Regex.Unescape(classValue);
+                    }
+
                     // X-nonstandard (X-AIM:john.s or X-DL;Design Work Group:List Item 1;List Item 2;List Item 3)
                     if (_value.StartsWith(VcardConstants._xSpecifier))
                         _xes.Add(XNameInfo.FromStringVcardThree(_value));
@@ -410,7 +421,8 @@ namespace VisualCard.Parsers.Three
                 ContactXml = "",
                 ContactFreeBusyUrl = "",
                 ContactCalendarUrl = "",
-                ContactCalendarSchedulingRequestUrl = ""
+                ContactCalendarSchedulingRequestUrl = "",
+                ContactAccessClassification = _class
             };
         }
 
@@ -482,6 +494,8 @@ namespace VisualCard.Parsers.Three
                 cardBuilder.AppendLine(geo.ToStringVcardThree());
             foreach (ImppInfo impp in card.ContactImpps)
                 cardBuilder.AppendLine(impp.ToStringVcardThree());
+            if (!string.IsNullOrWhiteSpace(card.ContactAccessClassification))
+                cardBuilder.AppendLine($"{VcardConstants._classSpecifier}:{card.ContactAccessClassification}");
             foreach (XNameInfo xname in card.ContactXNames)
                 cardBuilder.AppendLine(xname.ToStringVcardThree());
 

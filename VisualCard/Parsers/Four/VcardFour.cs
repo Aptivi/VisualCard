@@ -527,7 +527,8 @@ namespace VisualCard.Parsers.Four
                 ContactXml = _xml,
                 ContactFreeBusyUrl = _fbUrl,
                 ContactCalendarUrl = _calUri,
-                ContactCalendarSchedulingRequestUrl = _caladrUri
+                ContactCalendarSchedulingRequestUrl = _caladrUri,
+                ContactAccessClassification = ""
             };
         }
 

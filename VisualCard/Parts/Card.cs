@@ -167,6 +167,10 @@ namespace VisualCard.Parts
         /// The contact's calendar scheduling request URL
         /// </summary>
         public string ContactCalendarSchedulingRequestUrl { get; set; } = "";
+        /// <summary>
+        /// The contact's access classification
+        /// </summary>
+        public string ContactAccessClassification { get; set; } = "";
 
         internal BaseVcardParser Parser => _parser;
 
@@ -238,14 +242,15 @@ namespace VisualCard.Parts
                 source.ContactXml == target.ContactXml &&
                 source.ContactFreeBusyUrl == target.ContactFreeBusyUrl &&
                 source.ContactCalendarUrl == target.ContactCalendarUrl &&
-                source.ContactCalendarSchedulingRequestUrl == target.ContactCalendarSchedulingRequestUrl
+                source.ContactCalendarSchedulingRequestUrl == target.ContactCalendarSchedulingRequestUrl &&
+                source.ContactAccessClassification == target.ContactAccessClassification
             ;
         }
 
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = 214013967;
+            int hashCode = -1385056220;
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(CardVersion);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(CardKind);
             hashCode = hashCode * -1521134295 + EqualityComparer<NameInfo[]>.Default.GetHashCode(ContactNames);
@@ -278,6 +283,7 @@ namespace VisualCard.Parts
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactFreeBusyUrl);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactCalendarUrl);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactCalendarSchedulingRequestUrl);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactAccessClassification);
             return hashCode;
         }
 
