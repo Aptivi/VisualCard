@@ -657,7 +657,7 @@ namespace VisualCard.Converters
                                     photoBlock.Append("\n ");
                                 }
                             }
-                            masterContactBuilder.AppendLine($"{_photoSpecifierWithType}ENCODING=BLOB;JPEG:{photoBlock}");
+                            masterContactBuilder.AppendLine($"{_photoSpecifierWithType}ENCODING=BLOB;TYPE=JPEG:{photoBlock}");
                             break;
                     }
 

@@ -221,7 +221,7 @@ namespace VisualCard.Parts
             // Get the value
             string soundValue = value.Substring(VcardConstants._soundSpecifier.Length + 1);
             string[] splitSound = soundValue.Split(VcardConstants._argumentDelimiter);
-            if (splitSound.Length >= 2)
+            if (splitSound.Length < 2)
                 throw new InvalidDataException("Sound field must specify exactly two values (Type and arguments, and sound information)");
 
             // Check to see if the value is prepended by the VALUE= argument
@@ -260,7 +260,7 @@ namespace VisualCard.Parts
             // Get the value
             string soundValue = value.Substring(VcardConstants._soundSpecifier.Length + 1);
             string[] splitSound = soundValue.Split(VcardConstants._argumentDelimiter);
-            if (splitSound.Length >= 2)
+            if (splitSound.Length < 2)
                 throw new InvalidDataException("Sound field must specify exactly two values (Type and arguments, and sound information)");
 
             // Check to see if the value is prepended by the VALUE= argument

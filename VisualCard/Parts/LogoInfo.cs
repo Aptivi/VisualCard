@@ -221,7 +221,7 @@ namespace VisualCard.Parts
             // Get the value
             string logoValue = value.Substring(VcardConstants._logoSpecifier.Length + 1);
             string[] splitLogo = logoValue.Split(VcardConstants._argumentDelimiter);
-            if (splitLogo.Length >= 2)
+            if (splitLogo.Length < 2)
                 throw new InvalidDataException("Logo field must specify exactly two values (Type and arguments, and logo information)");
 
             // Check to see if the value is prepended by the VALUE= argument
@@ -260,7 +260,7 @@ namespace VisualCard.Parts
             // Get the value
             string logoValue = value.Substring(VcardConstants._logoSpecifier.Length + 1);
             string[] splitLogo = logoValue.Split(VcardConstants._argumentDelimiter);
-            if (splitLogo.Length >= 2)
+            if (splitLogo.Length < 2)
                 throw new InvalidDataException("Logo field must specify exactly two values (Type and arguments, and logo information)");
 
             // Check to see if the value is prepended by the VALUE= argument

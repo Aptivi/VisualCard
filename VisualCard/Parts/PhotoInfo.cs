@@ -221,7 +221,7 @@ namespace VisualCard.Parts
             // Get the value
             string photoValue = value.Substring(VcardConstants._photoSpecifier.Length + 1);
             string[] splitPhoto = photoValue.Split(VcardConstants._argumentDelimiter);
-            if (splitPhoto.Length >= 2)
+            if (splitPhoto.Length < 2)
                 throw new InvalidDataException("Photo field must specify exactly two values (Type and arguments, and photo information)");
 
             // Check to see if the value is prepended by the VALUE= argument
@@ -260,7 +260,7 @@ namespace VisualCard.Parts
             // Get the value
             string photoValue = value.Substring(VcardConstants._photoSpecifier.Length + 1);
             string[] splitPhoto = photoValue.Split(VcardConstants._argumentDelimiter);
-            if (splitPhoto.Length >= 2)
+            if (splitPhoto.Length < 2)
                 throw new InvalidDataException("Photo field must specify exactly two values (Type and arguments, and photo information)");
 
             // Check to see if the value is prepended by the VALUE= argument
