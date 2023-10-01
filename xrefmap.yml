@@ -735,6 +735,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Card.ContactImpps
   nameWithType: Card.ContactImpps
+- uid: VisualCard.Parts.Card.ContactLabels
+  name: ContactLabels
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactLabels
+  commentId: P:VisualCard.Parts.Card.ContactLabels
+  fullName: VisualCard.Parts.Card.ContactLabels
+  nameWithType: Card.ContactLabels
+- uid: VisualCard.Parts.Card.ContactLabels*
+  name: ContactLabels
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactLabels_
+  commentId: Overload:VisualCard.Parts.Card.ContactLabels
+  isSpec: "True"
+  fullName: VisualCard.Parts.Card.ContactLabels
+  nameWithType: Card.ContactLabels
 - uid: VisualCard.Parts.Card.ContactLogos
   name: ContactLogos
   href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactLogos
@@ -1387,6 +1400,105 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.ImppInfo.ImppTypes
   nameWithType: ImppInfo.ImppTypes
+- uid: VisualCard.Parts.LabelAddressInfo
+  name: LabelAddressInfo
+  href: api/VisualCard.Parts.LabelAddressInfo.html
+  commentId: T:VisualCard.Parts.LabelAddressInfo
+  fullName: VisualCard.Parts.LabelAddressInfo
+  nameWithType: LabelAddressInfo
+- uid: VisualCard.Parts.LabelAddressInfo.AddressTypes
+  name: AddressTypes
+  href: api/VisualCard.Parts.LabelAddressInfo.html#VisualCard_Parts_LabelAddressInfo_AddressTypes
+  commentId: P:VisualCard.Parts.LabelAddressInfo.AddressTypes
+  fullName: VisualCard.Parts.LabelAddressInfo.AddressTypes
+  nameWithType: LabelAddressInfo.AddressTypes
+- uid: VisualCard.Parts.LabelAddressInfo.AddressTypes*
+  name: AddressTypes
+  href: api/VisualCard.Parts.LabelAddressInfo.html#VisualCard_Parts_LabelAddressInfo_AddressTypes_
+  commentId: Overload:VisualCard.Parts.LabelAddressInfo.AddressTypes
+  isSpec: "True"
+  fullName: VisualCard.Parts.LabelAddressInfo.AddressTypes
+  nameWithType: LabelAddressInfo.AddressTypes
+- uid: VisualCard.Parts.LabelAddressInfo.AltArguments
+  name: AltArguments
+  href: api/VisualCard.Parts.LabelAddressInfo.html#VisualCard_Parts_LabelAddressInfo_AltArguments
+  commentId: P:VisualCard.Parts.LabelAddressInfo.AltArguments
+  fullName: VisualCard.Parts.LabelAddressInfo.AltArguments
+  nameWithType: LabelAddressInfo.AltArguments
+- uid: VisualCard.Parts.LabelAddressInfo.AltArguments*
+  name: AltArguments
+  href: api/VisualCard.Parts.LabelAddressInfo.html#VisualCard_Parts_LabelAddressInfo_AltArguments_
+  commentId: Overload:VisualCard.Parts.LabelAddressInfo.AltArguments
+  isSpec: "True"
+  fullName: VisualCard.Parts.LabelAddressInfo.AltArguments
+  nameWithType: LabelAddressInfo.AltArguments
+- uid: VisualCard.Parts.LabelAddressInfo.AltId
+  name: AltId
+  href: api/VisualCard.Parts.LabelAddressInfo.html#VisualCard_Parts_LabelAddressInfo_AltId
+  commentId: P:VisualCard.Parts.LabelAddressInfo.AltId
+  fullName: VisualCard.Parts.LabelAddressInfo.AltId
+  nameWithType: LabelAddressInfo.AltId
+- uid: VisualCard.Parts.LabelAddressInfo.AltId*
+  name: AltId
+  href: api/VisualCard.Parts.LabelAddressInfo.html#VisualCard_Parts_LabelAddressInfo_AltId_
+  commentId: Overload:VisualCard.Parts.LabelAddressInfo.AltId
+  isSpec: "True"
+  fullName: VisualCard.Parts.LabelAddressInfo.AltId
+  nameWithType: LabelAddressInfo.AltId
+- uid: VisualCard.Parts.LabelAddressInfo.DeliveryLabel
+  name: DeliveryLabel
+  href: api/VisualCard.Parts.LabelAddressInfo.html#VisualCard_Parts_LabelAddressInfo_DeliveryLabel
+  commentId: P:VisualCard.Parts.LabelAddressInfo.DeliveryLabel
+  fullName: VisualCard.Parts.LabelAddressInfo.DeliveryLabel
+  nameWithType: LabelAddressInfo.DeliveryLabel
+- uid: VisualCard.Parts.LabelAddressInfo.DeliveryLabel*
+  name: DeliveryLabel
+  href: api/VisualCard.Parts.LabelAddressInfo.html#VisualCard_Parts_LabelAddressInfo_DeliveryLabel_
+  commentId: Overload:VisualCard.Parts.LabelAddressInfo.DeliveryLabel
+  isSpec: "True"
+  fullName: VisualCard.Parts.LabelAddressInfo.DeliveryLabel
+  nameWithType: LabelAddressInfo.DeliveryLabel
+- uid: VisualCard.Parts.LabelAddressInfo.Equals(System.Object)
+  name: Equals(object)
+  href: api/VisualCard.Parts.LabelAddressInfo.html#VisualCard_Parts_LabelAddressInfo_Equals_System_Object_
+  commentId: M:VisualCard.Parts.LabelAddressInfo.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Parts.LabelAddressInfo.Equals(object)
+  fullName.vb: VisualCard.Parts.LabelAddressInfo.Equals(Object)
+  nameWithType: LabelAddressInfo.Equals(object)
+  nameWithType.vb: LabelAddressInfo.Equals(Object)
+- uid: VisualCard.Parts.LabelAddressInfo.Equals(VisualCard.Parts.LabelAddressInfo)
+  name: Equals(LabelAddressInfo)
+  href: api/VisualCard.Parts.LabelAddressInfo.html#VisualCard_Parts_LabelAddressInfo_Equals_VisualCard_Parts_LabelAddressInfo_
+  commentId: M:VisualCard.Parts.LabelAddressInfo.Equals(VisualCard.Parts.LabelAddressInfo)
+  fullName: VisualCard.Parts.LabelAddressInfo.Equals(VisualCard.Parts.LabelAddressInfo)
+  nameWithType: LabelAddressInfo.Equals(LabelAddressInfo)
+- uid: VisualCard.Parts.LabelAddressInfo.Equals(VisualCard.Parts.LabelAddressInfo,VisualCard.Parts.LabelAddressInfo)
+  name: Equals(LabelAddressInfo, LabelAddressInfo)
+  href: api/VisualCard.Parts.LabelAddressInfo.html#VisualCard_Parts_LabelAddressInfo_Equals_VisualCard_Parts_LabelAddressInfo_VisualCard_Parts_LabelAddressInfo_
+  commentId: M:VisualCard.Parts.LabelAddressInfo.Equals(VisualCard.Parts.LabelAddressInfo,VisualCard.Parts.LabelAddressInfo)
+  fullName: VisualCard.Parts.LabelAddressInfo.Equals(VisualCard.Parts.LabelAddressInfo, VisualCard.Parts.LabelAddressInfo)
+  nameWithType: LabelAddressInfo.Equals(LabelAddressInfo, LabelAddressInfo)
+- uid: VisualCard.Parts.LabelAddressInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Parts.LabelAddressInfo.html#VisualCard_Parts_LabelAddressInfo_Equals_
+  commentId: Overload:VisualCard.Parts.LabelAddressInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Parts.LabelAddressInfo.Equals
+  nameWithType: LabelAddressInfo.Equals
+- uid: VisualCard.Parts.LabelAddressInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Parts.LabelAddressInfo.html#VisualCard_Parts_LabelAddressInfo_GetHashCode
+  commentId: M:VisualCard.Parts.LabelAddressInfo.GetHashCode
+  fullName: VisualCard.Parts.LabelAddressInfo.GetHashCode()
+  nameWithType: LabelAddressInfo.GetHashCode()
+- uid: VisualCard.Parts.LabelAddressInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Parts.LabelAddressInfo.html#VisualCard_Parts_LabelAddressInfo_GetHashCode_
+  commentId: Overload:VisualCard.Parts.LabelAddressInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Parts.LabelAddressInfo.GetHashCode
+  nameWithType: LabelAddressInfo.GetHashCode
 - uid: VisualCard.Parts.LogoInfo
   name: LogoInfo
   href: api/VisualCard.Parts.LogoInfo.html
