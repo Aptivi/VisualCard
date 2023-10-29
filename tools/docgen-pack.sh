@@ -1,20 +1,20 @@
 #!/bin/bash
 
-# This script builds and packs the artifacts. Use when you have MSBuild installed.
-version=$(cat version)
+# This script builds KS and packs the artifacts. Use when you have MSBuild installed.
+ksversion=$(cat version)
 
 # Check for dependencies
-rarpath=`which rar`
+zippath=`which zip`
 if [ ! $? == 0 ]; then
-	echo rar is not found.
+	echo zip is not found.
 	exit 1
 fi
 
 # Pack documentation
 echo Packing documentation...
-"$rarpath" a -ep1 -r -m5 /tmp/$version-doc.rar "../docs/"
+cd "../docs/" && "$zippath" -r /tmp/$ksversion-doc.zip . && cd -
 if [ ! $? == 0 ]; then
-	echo Packing using rar failed.
+	echo Packing failed.
 	exit 1
 fi
 
@@ -22,6 +22,6 @@ fi
 rm -rf "../DocGen/api"
 rm -rf "../DocGen/obj"
 rm -rf "../docs"
-mv /tmp/$version-doc.rar .
+mv /tmp/$ksversion-doc.zip .
 echo Pack successful.
 exit 0
