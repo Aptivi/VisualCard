@@ -24,6 +24,8 @@
  */
 
 using System.Diagnostics;
+using Terminaux.Colors;
+using Terminaux.Writer.ConsoleWriters;
 using VisualCard.Converters;
 using VisualCard.Parsers;
 using VisualCard.Parts;
@@ -36,7 +38,7 @@ namespace VisualCard.ShowContacts
         {
             if (args.Length == 0)
             {
-                Console.WriteLine("Path to contact file is required.");
+                TextWriterColor.WriteColor("Path to contact file is required.", ConsoleColors.Red);
             }
             else
             {
@@ -80,101 +82,105 @@ namespace VisualCard.ShowContacts
                 elapsed.Stop();
                 if (!print)
                 {
-                    Console.WriteLine("Elapsed time: {0}", elapsed.Elapsed.ToString());
+                    TextWriterColor.Write("Elapsed time: {0}", elapsed.Elapsed.ToString());
                     return;
                 }
 
                 // Show contact information
                 foreach (Card Contact in Contacts)
                 {
-                    Console.WriteLine("----------------------------");
-                    Console.WriteLine("Name:                    {0}", Contact.ContactFullName);
-                    Console.WriteLine("Revision:                {0}", Contact.CardRevision);
+                    TextWriterColor.WriteColor("----------------------------", ConsoleColors.Green);
+                    TextWriterColor.WriteColor("Name:                    {0}", ConsoleColors.Green, Contact.ContactFullName);
+                    TextWriterColor.WriteColor("Revision:                {0}", ConsoleColors.Green, Contact.CardRevision);
 
                     // List names
                     foreach (NameInfo name in Contact.ContactNames)
                     {
-                        Console.WriteLine("First name:              {0}", name.ContactFirstName);
-                        Console.WriteLine("Last name:               {0}", name.ContactLastName);
-                        Console.WriteLine("ALTID:                   {0}", name.AltId);
+                        TextWriterColor.Write("First name:              {0}", name.ContactFirstName);
+                        TextWriterColor.Write("Last name:               {0}", name.ContactLastName);
+                        TextWriterColor.Write("ALTID:                   {0}", name.AltId);
                         if (name.AltArguments?.Length > 0)
-                            Console.WriteLine("Reason for ALTID:        {0}", name.AltArguments);
+                            TextWriterColor.Write("Reason for ALTID:        {0}", name.AltArguments);
                     }
 
                     // List titles
                     foreach (TitleInfo title in Contact.ContactTitles)
                     { 
-                        Console.WriteLine("Title or Job:            {0}", title.ContactTitle);
-                        Console.WriteLine("ALTID:                   {0}", title.AltId);
+                        TextWriterColor.Write("Title or Job:            {0}", title.ContactTitle);
+                        TextWriterColor.Write("ALTID:                   {0}", title.AltId);
                         if (title.AltArguments?.Length > 0)
-                            Console.WriteLine("Reason for ALTID:        {0}", title.AltArguments);
+                            TextWriterColor.Write("Reason for ALTID:        {0}", title.AltArguments);
                     }
 
                     // List addresses
                     foreach (AddressInfo Address in Contact.ContactAddresses)
                     {
-                        Console.WriteLine("P.O. Box:                {0}", Address.PostOfficeBox);
-                        Console.WriteLine("Extended Address:        {0}", Address.ExtendedAddress);
-                        Console.WriteLine("Street Address:          {0}", Address.StreetAddress);
-                        Console.WriteLine("Region:                  {0}", Address.Region);
-                        Console.WriteLine("Locality:                {0}", Address.Locality);
-                        Console.WriteLine("Postal Code:             {0}", Address.PostalCode);
-                        Console.WriteLine("Country:                 {0}", Address.Country);
+                        TextWriterColor.Write("P.O. Box:                {0}", Address.PostOfficeBox);
+                        TextWriterColor.Write("Extended Address:        {0}", Address.ExtendedAddress);
+                        TextWriterColor.Write("Street Address:          {0}", Address.StreetAddress);
+                        TextWriterColor.Write("Region:                  {0}", Address.Region);
+                        TextWriterColor.Write("Locality:                {0}", Address.Locality);
+                        TextWriterColor.Write("Postal Code:             {0}", Address.PostalCode);
+                        TextWriterColor.Write("Country:                 {0}", Address.Country);
                     }
 
                     // List e-mails
                     foreach (EmailInfo Email in Contact.ContactMails)
                     {
-                        Console.WriteLine("Email types:             {0}", Email.ContactEmailTypes);
-                        Console.WriteLine("Email address:           {0}", Email.ContactEmailAddress);
+                        TextWriterColor.Write("Email types:             {0}", Email.ContactEmailTypes);
+                        TextWriterColor.Write("Email address:           {0}", Email.ContactEmailAddress);
                     }
 
                     // List organizations
                     foreach (OrganizationInfo Organization in Contact.ContactOrganizations)
                     {
-                        Console.WriteLine("Organization Name:       {0}", Organization.Name);
-                        Console.WriteLine("Organization Unit:       {0}", Organization.Unit);
-                        Console.WriteLine("Organization Unit Role:  {0}", Organization.Role);
+                        TextWriterColor.Write("Organization Name:       {0}", Organization.Name);
+                        TextWriterColor.Write("Organization Unit:       {0}", Organization.Unit);
+                        TextWriterColor.Write("Organization Unit Role:  {0}", Organization.Role);
                     }
 
                     // List telephones
                     foreach (TelephoneInfo Telephone in Contact.ContactTelephones)
                     {
-                        Console.WriteLine("Phone types:             {0}", Telephone.ContactPhoneTypes);
-                        Console.WriteLine("Phone number:            {0}", Telephone.ContactPhoneNumber);
+                        TextWriterColor.Write("Phone types:             {0}", Telephone.ContactPhoneTypes);
+                        TextWriterColor.Write("Phone number:            {0}", Telephone.ContactPhoneNumber);
                     }
 
                     // List photos
                     foreach (PhotoInfo Photo in Contact.ContactPhotos)
                     {
-                        Console.WriteLine("Photo encoding:          {0}", Photo.Encoding);
-                        Console.WriteLine("Photo type:              {0}", Photo.PhotoType);
-                        Console.WriteLine("Photo value type:        {0}", Photo.ValueType);
-                        Console.WriteLine("ALTID:                   {0}", Photo.AltId);
+                        TextWriterColor.Write("Photo encoding:          {0}", Photo.Encoding);
+                        TextWriterColor.Write("Photo type:              {0}", Photo.PhotoType);
+                        TextWriterColor.Write("Photo value type:        {0}", Photo.ValueType);
+                        TextWriterColor.Write("ALTID:                   {0}", Photo.AltId);
                         if (Photo.AltArguments?.Length > 0)
-                            Console.WriteLine("Reason for ALTID:        {0}", Photo.AltArguments);
-                        Console.WriteLine("Photo data: \n{0}", Photo.PhotoEncoded);
+                            TextWriterColor.Write("Reason for ALTID:        {0}", Photo.AltArguments);
+                        TextWriterColor.Write("Photo data: \n{0}", Photo.PhotoEncoded);
                     }
 
                     // List roles
                     foreach (RoleInfo Role in Contact.ContactRoles)
                     {
-                        Console.WriteLine("Role:                    {0}", Role.ContactRole);
-                        Console.WriteLine("ALTID:                   {0}", Role.AltId);
+                        TextWriterColor.Write("Role:                    {0}", Role.ContactRole);
+                        TextWriterColor.Write("ALTID:                   {0}", Role.AltId);
                         if (Role.AltArguments?.Length > 0)
-                            Console.WriteLine("Reason for ALTID:        {0}", Role.AltArguments);
+                            TextWriterColor.Write("Reason for ALTID:        {0}", Role.AltArguments);
                     }
 
                     // List remaining
-                    Console.WriteLine("Contact birthdate:       {0}", Contact.ContactBirthdate);
-                    Console.WriteLine("Contact mailer:          {0}", Contact.ContactMailer);
-                    Console.WriteLine("Contact URL:             {0}", Contact.ContactURL);
-                    Console.WriteLine("Contact Note:            {0}", Contact.ContactNotes);
+                    TextWriterColor.Write("Contact birthdate:       {0}", Contact.ContactBirthdate);
+                    TextWriterColor.Write("Contact mailer:          {0}", Contact.ContactMailer);
+                    TextWriterColor.Write("Contact URL:             {0}", Contact.ContactURL);
+                    TextWriterColor.Write("Contact Note:            {0}", Contact.ContactNotes);
 
                     // Print VCard
-                    Console.WriteLine("\nRaw VCard\n" +
-                                        "---------\n");
-                    Console.WriteLine(Contact.SaveToString());
+                    string raw = Contact.SaveToString();
+                    TextWriterColor.WriteColor(
+                        "\nRaw VCard\n" +
+                        "---------\n"
+                        , ConsoleColors.Green
+                    );
+                    TextWriterColor.Write(raw);
                 }
             }
         }
