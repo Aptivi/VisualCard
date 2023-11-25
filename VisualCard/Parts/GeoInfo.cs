@@ -128,7 +128,7 @@ namespace VisualCard.Parts
         {
             string geoValue = value.Substring(VcardConstants._geoSpecifier.Length + 1);
             string _geoStr = Regex.Unescape(geoValue);
-            GeoInfo _geo = new(0, Array.Empty<string>(), Array.Empty<string>(), _geoStr);
+            GeoInfo _geo = new(0, [], [], _geoStr);
             return _geo;
         }
 
@@ -144,7 +144,7 @@ namespace VisualCard.Parts
             string _geoNumber = Regex.Unescape(splitGeo[1]);
 
             // Add the fetched information
-            GeoInfo _geo = new(0, Array.Empty<string>(), _geoTypes, _geoNumber);
+            GeoInfo _geo = new(0, [], _geoTypes, _geoNumber);
             return _geo;
         }
 
@@ -156,7 +156,7 @@ namespace VisualCard.Parts
             // Populate the fields
             string[] _geoTypes = new string[] { "uri" };
             string _geoNumber = Regex.Unescape(geoValue);
-            GeoInfo _geo = new(0, Array.Empty<string>(), _geoTypes, _geoNumber);
+            GeoInfo _geo = new(0, [], _geoTypes, _geoNumber);
             return _geo;
         }
 
@@ -173,7 +173,7 @@ namespace VisualCard.Parts
             string _geoNumber = Regex.Unescape(splitGeo[1]);
 
             // Add the fetched information
-            GeoInfo _geo = new(0, Array.Empty<string>(), _geoTypes, _geoNumber);
+            GeoInfo _geo = new(0, [], _geoTypes, _geoNumber);
             return _geo;
         }
 
@@ -185,7 +185,7 @@ namespace VisualCard.Parts
             // Populate the fields
             string[] _geoTypes = new string[] { "uri" };
             string _geoNumber = Regex.Unescape(geoValue);
-            GeoInfo _geo = new(altId, Array.Empty<string>(), _geoTypes, _geoNumber);
+            GeoInfo _geo = new(altId, [], _geoTypes, _geoNumber);
             return _geo;
         }
 
@@ -202,7 +202,7 @@ namespace VisualCard.Parts
             string _geoNumber = Regex.Unescape(splitGeo[1]);
 
             // Add the fetched information
-            GeoInfo _geo = new(altId, finalArgs.ToArray(), _geoTypes, _geoNumber);
+            GeoInfo _geo = new(altId, [.. finalArgs], _geoTypes, _geoNumber);
             return _geo;
         }
 

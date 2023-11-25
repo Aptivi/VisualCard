@@ -130,7 +130,7 @@ namespace VisualCard.Parts
             // Populate the fields
             string[] _addressTypes = new string[] { "HOME" };
             string _addressLabel = Regex.Unescape(splitAddressValues[0]);
-            LabelAddressInfo _address = new(0, Array.Empty<string>(), _addressTypes, _addressLabel);
+            LabelAddressInfo _address = new(0, [], _addressTypes, _addressLabel);
             return _address;
         }
 
@@ -150,7 +150,7 @@ namespace VisualCard.Parts
             // Populate the fields
             string[] _addressTypes = VcardParserTools.GetTypes(splitAdr, "HOME", false);
             string _addressLabel = Regex.Unescape(splitAddressValues[0]);
-            LabelAddressInfo _address = new(0, Array.Empty<string>(), _addressTypes, _addressLabel);
+            LabelAddressInfo _address = new(0, [], _addressTypes, _addressLabel);
             return _address;
         }
 
@@ -168,7 +168,7 @@ namespace VisualCard.Parts
             // Populate the fields
             string[] _addressTypes = new string[] { "HOME" };
             string _addressLabel = Regex.Unescape(splitAddressValues[0]);
-            LabelAddressInfo _address = new(0, Array.Empty<string>(), _addressTypes, _addressLabel);
+            LabelAddressInfo _address = new(0, [], _addressTypes, _addressLabel);
             return _address;
         }
 
@@ -188,7 +188,7 @@ namespace VisualCard.Parts
             // Populate the fields
             string[] _addressTypes = VcardParserTools.GetTypes(splitAdr, "HOME", true);
             string _addressLabel = Regex.Unescape(splitAddressValues[0]);
-            LabelAddressInfo _address = new(0, Array.Empty<string>(), _addressTypes, _addressLabel);
+            LabelAddressInfo _address = new(0, [], _addressTypes, _addressLabel);
             return _address;
         }
 

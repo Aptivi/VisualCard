@@ -134,7 +134,7 @@ namespace VisualCard.Parts
             // Populate the fields
             string[] _telephoneTypes = new string[] { "CELL" };
             string _telephoneNumber = Regex.Unescape(telValue);
-            TelephoneInfo _telephone = new(0, Array.Empty<string>(), _telephoneTypes, _telephoneNumber);
+            TelephoneInfo _telephone = new(0, [], _telephoneTypes, _telephoneNumber);
             return _telephone;
         }
 
@@ -149,7 +149,7 @@ namespace VisualCard.Parts
             // Populate the fields
             string[] _telephoneTypes = VcardParserTools.GetTypes(splitTel, "CELL", false);
             string _telephoneNumber = Regex.Unescape(splitTel[1]);
-            TelephoneInfo _telephone = new(0, Array.Empty<string>(), _telephoneTypes, _telephoneNumber);
+            TelephoneInfo _telephone = new(0, [], _telephoneTypes, _telephoneNumber);
             return _telephone;
         }
 
@@ -161,7 +161,7 @@ namespace VisualCard.Parts
             // Populate the fields
             string[] _telephoneTypes = new string[] { "CELL" };
             string _telephoneNumber = Regex.Unescape(telValue);
-            TelephoneInfo _telephone = new(0, Array.Empty<string>(), _telephoneTypes, _telephoneNumber);
+            TelephoneInfo _telephone = new(0, [], _telephoneTypes, _telephoneNumber);
             return _telephone;
         }
 
@@ -176,7 +176,7 @@ namespace VisualCard.Parts
             // Populate the fields
             string[] _telephoneTypes = VcardParserTools.GetTypes(splitTel, "CELL", true);
             string _telephoneNumber = Regex.Unescape(splitTel[1]);
-            TelephoneInfo _telephone = new(0, Array.Empty<string>(), _telephoneTypes, _telephoneNumber);
+            TelephoneInfo _telephone = new(0, [], _telephoneTypes, _telephoneNumber);
             return _telephone;
         }
 
@@ -188,7 +188,7 @@ namespace VisualCard.Parts
             // Populate the fields
             string[] _telephoneTypes = new string[] { "CELL" };
             string _telephoneNumber = Regex.Unescape(telValue);
-            TelephoneInfo _telephone = new(altId, Array.Empty<string>(), _telephoneTypes, _telephoneNumber);
+            TelephoneInfo _telephone = new(altId, [], _telephoneTypes, _telephoneNumber);
             return _telephone;
         }
 
@@ -203,7 +203,7 @@ namespace VisualCard.Parts
             // Populate the fields
             string[] _telephoneTypes = VcardParserTools.GetTypes(splitTel, "CELL", true);
             string _telephoneNumber = Regex.Unescape(splitTel[1]);
-            TelephoneInfo _telephone = new(altId, finalArgs.ToArray(), _telephoneTypes, _telephoneNumber);
+            TelephoneInfo _telephone = new(altId, [.. finalArgs], _telephoneTypes, _telephoneNumber);
             return _telephone;
         }
 

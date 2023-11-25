@@ -65,7 +65,7 @@ namespace VisualCard.ShowContacts
                     android ? AndroidContactsDb.GetContactsFromDb(args[0]) : 
                     mecard ? MeCard.GetContactsFromMeCardString(meCardString) :
                     CardTools.GetCardParsers(args[0]);
-                List<Card> Contacts = new();
+                List<Card> Contacts = [];
 
                 // Parse all contacts
                 foreach (BaseVcardParser ContactParser in ContactParsers)

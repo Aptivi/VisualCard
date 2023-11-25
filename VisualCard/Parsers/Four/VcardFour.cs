@@ -75,22 +75,22 @@ namespace VisualCard.Parsers.Four
             string _caladrUri               = "";
             DateTime _rev                   = DateTime.MinValue;
             DateTime _bday                  = DateTime.MinValue;
-            List<NameInfo> _names           = new();
-            List<TelephoneInfo> _telephones = new();
-            List<EmailInfo> _emails         = new();
-            List<AddressInfo> _addresses    = new();
-            List<OrganizationInfo> _orgs    = new();
-            List<TitleInfo> _titles         = new();
-            List<LogoInfo> _logos           = new();
-            List<PhotoInfo> _photos         = new();
-            List<SoundInfo> _sounds         = new();
-            List<NicknameInfo> _nicks       = new();
-            List<RoleInfo> _roles           = new();
-            List<string> _categories        = new();
-            List<TimeZoneInfo> _timezones   = new();
-            List<GeoInfo> _geos             = new();
-            List<ImppInfo> _impps           = new();
-            List<XNameInfo> _xes            = new();
+            List<NameInfo> _names           = [];
+            List<TelephoneInfo> _telephones = [];
+            List<EmailInfo> _emails         = [];
+            List<AddressInfo> _addresses    = [];
+            List<OrganizationInfo> _orgs    = [];
+            List<TitleInfo> _titles         = [];
+            List<LogoInfo> _logos           = [];
+            List<PhotoInfo> _photos         = [];
+            List<SoundInfo> _sounds         = [];
+            List<NicknameInfo> _nicks       = [];
+            List<RoleInfo> _roles           = [];
+            List<string> _categories        = [];
+            List<TimeZoneInfo> _timezones   = [];
+            List<GeoInfo> _geos             = [];
+            List<ImppInfo> _impps           = [];
+            List<XNameInfo> _xes            = [];
 
             // Full Name specifier is required
             bool fullNameSpecifierSpotted = false;
@@ -120,7 +120,7 @@ namespace VisualCard.Parsers.Four
                     string[] splitArgs = splitValueParts[0].Split(VcardConstants._fieldDelimiter);
                     splitArgs = splitArgs.Except(new string[] { splitArgs[0] }).ToArray();
                     string[] splitValues = splitValueParts[1].Split(VcardConstants._fieldDelimiter);
-                    List<string> finalArgs = new();
+                    List<string> finalArgs = [];
                     int altId = 0;
 
                     if (splitArgs.Length > 0)
@@ -500,29 +500,29 @@ namespace VisualCard.Parsers.Four
             return new Card(this, CardVersion, _kind)
             {
                 CardRevision = _rev,
-                ContactNames = _names.ToArray(),
+                ContactNames = [.. _names],
                 ContactFullName = _fullName,
-                ContactTelephones = _telephones.ToArray(),
-                ContactAddresses = _addresses.ToArray(),
-                ContactOrganizations = _orgs.ToArray(),
-                ContactTitles = _titles.ToArray(),
+                ContactTelephones = [.. _telephones],
+                ContactAddresses = [.. _addresses],
+                ContactOrganizations = [.. _orgs],
+                ContactTitles = [.. _titles],
                 ContactURL = _url,
                 ContactNotes = _note,
-                ContactMails = _emails.ToArray(),
-                ContactXNames = _xes.ToArray(),
-                ContactPhotos = _photos.ToArray(),
-                ContactNicknames = _nicks.ToArray(),
+                ContactMails = [.. _emails],
+                ContactXNames = [.. _xes],
+                ContactPhotos = [.. _photos],
+                ContactNicknames = [.. _nicks],
                 ContactBirthdate = _bday,
                 ContactMailer = "",
-                ContactRoles = _roles.ToArray(),
-                ContactCategories = _categories.ToArray(),
-                ContactLogos = _logos.ToArray(),
+                ContactRoles = [.. _roles],
+                ContactCategories = [.. _categories],
+                ContactLogos = [.. _logos],
                 ContactProdId = _prodId,
                 ContactSortString = _sortString,
-                ContactTimeZone = _timezones.ToArray(),
-                ContactGeo = _geos.ToArray(),
-                ContactSounds = _sounds.ToArray(),
-                ContactImpps = _impps.ToArray(),
+                ContactTimeZone = [.. _timezones],
+                ContactGeo = [.. _geos],
+                ContactSounds = [.. _sounds],
+                ContactImpps = [.. _impps],
                 ContactSource = _source,
                 ContactXml = _xml,
                 ContactFreeBusyUrl = _fbUrl,

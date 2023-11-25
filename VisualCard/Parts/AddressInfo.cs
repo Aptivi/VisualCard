@@ -200,7 +200,7 @@ namespace VisualCard.Parts
             string _addressRegion = Regex.Unescape(splitAddressValues[4]);
             string _addressPostalCode = Regex.Unescape(splitAddressValues[5]);
             string _addressCountry = Regex.Unescape(splitAddressValues[6]);
-            AddressInfo _address = new(0, Array.Empty<string>(), _addressTypes, _addressPOBox, _addressExtended, _addressStreet, _addressLocality, _addressRegion, _addressPostalCode, _addressCountry);
+            AddressInfo _address = new(0, [], _addressTypes, _addressPOBox, _addressExtended, _addressStreet, _addressLocality, _addressRegion, _addressPostalCode, _addressCountry);
             return _address;
         }
 
@@ -226,7 +226,7 @@ namespace VisualCard.Parts
             string _addressRegion = Regex.Unescape(splitAddressValues[4]);
             string _addressPostalCode = Regex.Unescape(splitAddressValues[5]);
             string _addressCountry = Regex.Unescape(splitAddressValues[6]);
-            AddressInfo _address = new(0, Array.Empty<string>(), _addressTypes, _addressPOBox, _addressExtended, _addressStreet, _addressLocality, _addressRegion, _addressPostalCode, _addressCountry);
+            AddressInfo _address = new(0, [], _addressTypes, _addressPOBox, _addressExtended, _addressStreet, _addressLocality, _addressRegion, _addressPostalCode, _addressCountry);
             return _address;
         }
 
@@ -250,7 +250,7 @@ namespace VisualCard.Parts
             string _addressRegion = Regex.Unescape(splitAddressValues[4]);
             string _addressPostalCode = Regex.Unescape(splitAddressValues[5]);
             string _addressCountry = Regex.Unescape(splitAddressValues[6]);
-            AddressInfo _address = new(0, Array.Empty<string>(), _addressTypes, _addressPOBox, _addressExtended, _addressStreet, _addressLocality, _addressRegion, _addressPostalCode, _addressCountry);
+            AddressInfo _address = new(0, [], _addressTypes, _addressPOBox, _addressExtended, _addressStreet, _addressLocality, _addressRegion, _addressPostalCode, _addressCountry);
             return _address;
         }
 
@@ -276,7 +276,7 @@ namespace VisualCard.Parts
             string _addressRegion = Regex.Unescape(splitAddressValues[4]);
             string _addressPostalCode = Regex.Unescape(splitAddressValues[5]);
             string _addressCountry = Regex.Unescape(splitAddressValues[6]);
-            AddressInfo _address = new(0, Array.Empty<string>(), _addressTypes, _addressPOBox, _addressExtended, _addressStreet, _addressLocality, _addressRegion, _addressPostalCode, _addressCountry);
+            AddressInfo _address = new(0, [], _addressTypes, _addressPOBox, _addressExtended, _addressStreet, _addressLocality, _addressRegion, _addressPostalCode, _addressCountry);
             return _address;
         }
 
@@ -300,7 +300,7 @@ namespace VisualCard.Parts
             string _addressRegion = Regex.Unescape(splitAddressValues[4]);
             string _addressPostalCode = Regex.Unescape(splitAddressValues[5]);
             string _addressCountry = Regex.Unescape(splitAddressValues[6]);
-            AddressInfo _address = new(altId, Array.Empty<string>(), _addressTypes, _addressPOBox, _addressExtended, _addressStreet, _addressLocality, _addressRegion, _addressPostalCode, _addressCountry);
+            AddressInfo _address = new(altId, [], _addressTypes, _addressPOBox, _addressExtended, _addressStreet, _addressLocality, _addressRegion, _addressPostalCode, _addressCountry);
             return _address;
         }
 
@@ -326,7 +326,7 @@ namespace VisualCard.Parts
             string _addressRegion = Regex.Unescape(splitAddressValues[4]);
             string _addressPostalCode = Regex.Unescape(splitAddressValues[5]);
             string _addressCountry = Regex.Unescape(splitAddressValues[6]);
-            AddressInfo _address = new(altId, finalArgs.ToArray(), _addressTypes, _addressPOBox, _addressExtended, _addressStreet, _addressLocality, _addressRegion, _addressPostalCode, _addressCountry);
+            AddressInfo _address = new(altId, [.. finalArgs], _addressTypes, _addressPOBox, _addressExtended, _addressStreet, _addressLocality, _addressRegion, _addressPostalCode, _addressCountry);
             return _address;
         }
 

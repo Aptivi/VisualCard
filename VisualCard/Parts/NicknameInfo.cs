@@ -132,7 +132,7 @@ namespace VisualCard.Parts
             // Populate the fields
             string[] _nicknameTypes = new string[] { "HOME" };
             string _nick = Regex.Unescape(nickValue);
-            NicknameInfo _nickInstance = new(0, Array.Empty<string>(), _nick, _nicknameTypes);
+            NicknameInfo _nickInstance = new(0, [], _nick, _nicknameTypes);
             return _nickInstance;
         }
 
@@ -147,7 +147,7 @@ namespace VisualCard.Parts
             // Populate the fields
             string[] _nicknameTypes = VcardParserTools.GetTypes(splitNick, "WORK", true);
             string _nick = Regex.Unescape(splitNick[1]);
-            NicknameInfo _nickInstance = new(0, Array.Empty<string>(), _nick, _nicknameTypes);
+            NicknameInfo _nickInstance = new(0, [], _nick, _nicknameTypes);
             return _nickInstance;
         }
 
@@ -159,7 +159,7 @@ namespace VisualCard.Parts
             // Populate the fields
             string[] _nicknameTypes = new string[] { "HOME" };
             string _nick = Regex.Unescape(nickValue);
-            NicknameInfo _nickInstance = new(altId, Array.Empty<string>(), _nick, _nicknameTypes);
+            NicknameInfo _nickInstance = new(altId, [], _nick, _nicknameTypes);
             return _nickInstance;
         }
 
@@ -174,7 +174,7 @@ namespace VisualCard.Parts
             // Populate the fields
             string[] _nicknameTypes = VcardParserTools.GetTypes(splitNick, "WORK", true);
             string _nick = Regex.Unescape(splitNick[1]);
-            NicknameInfo _nickInstance = new(altId, finalArgs.ToArray(), _nick, _nicknameTypes);
+            NicknameInfo _nickInstance = new(altId, [.. finalArgs], _nick, _nicknameTypes);
             return _nickInstance;
         }
 

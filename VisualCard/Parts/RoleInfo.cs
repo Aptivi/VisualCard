@@ -122,7 +122,7 @@ namespace VisualCard.Parts
             string roleValue = value.Substring(VcardConstants._roleSpecifier.Length + 1);
 
             // Populate the fields
-            RoleInfo _role = new(0, Array.Empty<string>(), roleValue);
+            RoleInfo _role = new(0, [], roleValue);
             return _role;
         }
 
@@ -132,7 +132,7 @@ namespace VisualCard.Parts
             string roleValue = value.Substring(VcardConstants._roleSpecifier.Length + 1);
 
             // Populate the fields
-            RoleInfo _role = new(0, Array.Empty<string>(), roleValue);
+            RoleInfo _role = new(0, [], roleValue);
             return _role;
         }
 
@@ -142,7 +142,7 @@ namespace VisualCard.Parts
             string roleValue = value.Substring(VcardConstants._roleSpecifier.Length + 1);
 
             // Populate the fields
-            RoleInfo _role = new(altId, Array.Empty<string>(), roleValue);
+            RoleInfo _role = new(altId, [], roleValue);
             return _role;
         }
 
@@ -152,7 +152,7 @@ namespace VisualCard.Parts
             string roleValue = value.Substring(VcardConstants._roleSpecifier.Length + 1);
 
             // Populate the fields
-            RoleInfo _role = new(altId, finalArgs.ToArray(), roleValue);
+            RoleInfo _role = new(altId, [.. finalArgs], roleValue);
             return _role;
         }
 

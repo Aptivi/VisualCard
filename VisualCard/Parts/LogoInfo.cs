@@ -212,7 +212,7 @@ namespace VisualCard.Parts
             }
 
             // Populate the fields
-            LogoInfo _logo = new(0, Array.Empty<string>(), valueType, logoEncoding, logoType, encodedLogo.ToString());
+            LogoInfo _logo = new(0, [], valueType, logoEncoding, logoType, encodedLogo.ToString());
             return _logo;
         }
 
@@ -251,7 +251,7 @@ namespace VisualCard.Parts
             }
 
             // Populate the fields
-            LogoInfo _logo = new(0, Array.Empty<string>(), valueType, logoEncoding, logoType, encodedLogo.ToString());
+            LogoInfo _logo = new(0, [], valueType, logoEncoding, logoType, encodedLogo.ToString());
             return _logo;
         }
 
@@ -290,7 +290,7 @@ namespace VisualCard.Parts
             }
 
             // Populate the fields
-            LogoInfo _logo = new(altId, finalArgs.ToArray(), valueType, logoEncoding, logoType, encodedLogo.ToString());
+            LogoInfo _logo = new(altId, [.. finalArgs], valueType, logoEncoding, logoType, encodedLogo.ToString());
             return _logo;
         }
 

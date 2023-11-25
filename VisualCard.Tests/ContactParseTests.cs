@@ -50,7 +50,7 @@ namespace VisualCard.Tests
         [TestCaseSource(typeof(ContactData), nameof(ContactData.remainingContacts))]
         public void ParseDifferentContacts(string cardText)
         {
-            List<BaseVcardParser> parsers = new();
+            List<BaseVcardParser> parsers = [];
             Should.NotThrow(() => parsers = CardTools.GetCardParsersFromString(cardText));
             foreach (BaseVcardParser parser in parsers)
                 Should.NotThrow(parser.Parse);
@@ -63,8 +63,8 @@ namespace VisualCard.Tests
         [TestCaseSource(typeof(ContactData), nameof(ContactData.remainingContacts))]
         public void ParseDifferentContactsAndTestEquality(string cardText)
         {
-            List<BaseVcardParser> parsers = new();
-            List<Card> cards = new();
+            List<BaseVcardParser> parsers = [];
+            List<Card> cards = [];
 
             // Parse the cards
             Should.NotThrow(() => parsers = CardTools.GetCardParsersFromString(cardText));
@@ -72,7 +72,7 @@ namespace VisualCard.Tests
                 cards.Add(Should.NotThrow(parser.Parse));
 
             // Test equality with available data
-            List<bool> foundCards = new();
+            List<bool> foundCards = [];
             foreach (Card card in cards)
             {
                 bool found = false;
@@ -94,9 +94,9 @@ namespace VisualCard.Tests
         [TestCaseSource(typeof(ContactData), nameof(ContactData.remainingContacts))]
         public void ParseDifferentContactsSaveToStringAndTestEquality(string cardText)
         {
-            List<BaseVcardParser> parsers = new();
-            List<Card> cards = new();
-            List<Card> savedCards = new();
+            List<BaseVcardParser> parsers = [];
+            List<Card> cards = [];
+            List<Card> savedCards = [];
 
             // Parse the cards
             Should.NotThrow(() => parsers = CardTools.GetCardParsersFromString(cardText));
@@ -113,7 +113,7 @@ namespace VisualCard.Tests
             }
 
             // Test equality with available data
-            List<bool> foundCards = new();
+            List<bool> foundCards = [];
             foreach (Card card in savedCards)
             {
                 bool found = false;
@@ -132,7 +132,7 @@ namespace VisualCard.Tests
         [TestCaseSource(typeof(ContactData), nameof(ContactData.vCardFromMeCardContacts))]
         public void ParseAndCheckDifferentMeCardContacts((string, string) cardText)
         {
-            List<BaseVcardParser> parsers = new();
+            List<BaseVcardParser> parsers = [];
             Should.NotThrow(() => parsers = MeCard.GetContactsFromMeCardString(cardText.Item1));
             Card card = default;
             foreach (BaseVcardParser parser in parsers)
@@ -144,7 +144,7 @@ namespace VisualCard.Tests
         [TestCaseSource(typeof(ContactData), nameof(ContactData.meCardContacts))]
         public void ParseDifferentMeCardContacts(string cardText)
         {
-            List<BaseVcardParser> parsers = new();
+            List<BaseVcardParser> parsers = [];
             Should.NotThrow(() => parsers = MeCard.GetContactsFromMeCardString(cardText));
             foreach (BaseVcardParser parser in parsers)
                 Should.NotThrow(parser.Parse);
@@ -154,8 +154,8 @@ namespace VisualCard.Tests
         [TestCaseSource(typeof(ContactData), nameof(ContactData.meCardContacts))]
         public void ParseDifferentMeCardContactsAndTestEquality(string cardText)
         {
-            List<BaseVcardParser> parsers = new();
-            List<Card> cards = new();
+            List<BaseVcardParser> parsers = [];
+            List<Card> cards = [];
 
             // Parse the cards
             Should.NotThrow(() => parsers = MeCard.GetContactsFromMeCardString(cardText));
@@ -163,7 +163,7 @@ namespace VisualCard.Tests
                 cards.Add(Should.NotThrow(parser.Parse));
 
             // Test equality with available data
-            List<bool> foundCards = new();
+            List<bool> foundCards = [];
             foreach (Card card in cards)
             {
                 bool found = false;
@@ -182,9 +182,9 @@ namespace VisualCard.Tests
         [TestCaseSource(typeof(ContactData), nameof(ContactData.meCardContacts))]
         public void ParseDifferentMeCardContactsSaveToStringAndTestEquality(string cardText)
         {
-            List<BaseVcardParser> parsers = new();
-            List<Card> cards = new();
-            List<Card> savedCards = new();
+            List<BaseVcardParser> parsers = [];
+            List<Card> cards = [];
+            List<Card> savedCards = [];
 
             // Parse the cards
             Should.NotThrow(() => parsers = MeCard.GetContactsFromMeCardString(cardText));
@@ -201,7 +201,7 @@ namespace VisualCard.Tests
             }
 
             // Test equality with available data
-            List<bool> foundCards = new();
+            List<bool> foundCards = [];
             foreach (Card card in savedCards)
             {
                 bool found = false;
@@ -225,7 +225,7 @@ namespace VisualCard.Tests
         [TestCaseSource(typeof(ContactDataBogus), nameof(ContactDataBogus.invalidContactsParser))]
         public void InvalidContactShouldThrowWhenParsing(string cardText)
         {
-            List<BaseVcardParser> parsers = new();
+            List<BaseVcardParser> parsers = [];
             Should.NotThrow(() => parsers = CardTools.GetCardParsersFromString(cardText));
             foreach (BaseVcardParser parser in parsers)
                 Should.Throw<InvalidDataException>(parser.Parse);
@@ -240,7 +240,7 @@ namespace VisualCard.Tests
         [TestCaseSource(typeof(ContactDataBogus), nameof(ContactDataBogus.seemsValidContacts))]
         public void BogusButSeemsValidShouldNotThrowWhenParsing(string cardText)
         {
-            List<BaseVcardParser> parsers = new();
+            List<BaseVcardParser> parsers = [];
             Should.NotThrow(() => parsers = CardTools.GetCardParsersFromString(cardText));
             foreach (BaseVcardParser parser in parsers)
                 Should.NotThrow(parser.Parse);

@@ -144,9 +144,9 @@ namespace VisualCard.Parts
             string[] _xTypes = splitX[0].Contains(VcardConstants._fieldDelimiter.ToString()) ?
                                splitX[0].Substring(splitX[0].IndexOf(VcardConstants._fieldDelimiter) + 1)
                                         .Split(VcardConstants._fieldDelimiter) :
-                               Array.Empty<string>();
+                               [];
             string[] _xValues = splitX[1].Split(VcardConstants._fieldDelimiter);
-            XNameInfo _x = new(0, Array.Empty<string>(), _xName, _xValues, _xTypes);
+            XNameInfo _x = new(0, [], _xName, _xValues, _xTypes);
             return _x;
         }
 
@@ -165,9 +165,9 @@ namespace VisualCard.Parts
             string[] _xTypes = splitX[0].Contains(VcardConstants._fieldDelimiter.ToString()) ?
                                splitX[0].Substring(splitX[0].IndexOf(VcardConstants._fieldDelimiter) + 1)
                                         .Split(VcardConstants._fieldDelimiter) :
-                               Array.Empty<string>();
+                               [];
             string[] _xValues = splitX[1].Split(VcardConstants._fieldDelimiter);
-            XNameInfo _x = new(0, Array.Empty<string>(), _xName, _xValues, _xTypes);
+            XNameInfo _x = new(0, [], _xName, _xValues, _xTypes);
             return _x;
         }
 
@@ -186,9 +186,9 @@ namespace VisualCard.Parts
             string[] _xTypes = splitX[0].Contains(VcardConstants._fieldDelimiter.ToString()) ?
                                splitX[0].Substring(splitX[0].IndexOf(VcardConstants._fieldDelimiter) + 1)
                                         .Split(VcardConstants._fieldDelimiter) :
-                               Array.Empty<string>();
+                               [];
             string[] _xValues = splitX[1].Split(VcardConstants._fieldDelimiter);
-            XNameInfo _x = new(altId, finalArgs.ToArray(), _xName, _xValues, _xTypes);
+            XNameInfo _x = new(altId, [.. finalArgs], _xName, _xValues, _xTypes);
             return _x;
         }
 

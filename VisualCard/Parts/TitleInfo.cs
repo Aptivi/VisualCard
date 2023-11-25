@@ -124,7 +124,7 @@ namespace VisualCard.Parts
 
             // Populate field
             string _title = Regex.Unescape(titleValue);
-            TitleInfo title = new(0, Array.Empty<string>(), _title);
+            TitleInfo title = new(0, [], _title);
             return title;
         }
 
@@ -135,7 +135,7 @@ namespace VisualCard.Parts
 
             // Populate field
             string _title = Regex.Unescape(titleValue);
-            TitleInfo title = new(0, Array.Empty<string>(), _title);
+            TitleInfo title = new(0, [], _title);
             return title;
         }
 
@@ -146,7 +146,7 @@ namespace VisualCard.Parts
 
             // Populate field
             string _title = Regex.Unescape(titleValue);
-            TitleInfo title = new(altId, Array.Empty<string>(), _title);
+            TitleInfo title = new(altId, [], _title);
             return title;
         }
 
@@ -158,7 +158,7 @@ namespace VisualCard.Parts
 
             // Populate field
             string _title = Regex.Unescape(splitTitleParts[1]);
-            TitleInfo title = new(altId, finalArgs.ToArray(), _title);
+            TitleInfo title = new(altId, [.. finalArgs], _title);
             return title;
         }
 

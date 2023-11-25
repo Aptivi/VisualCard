@@ -72,7 +72,7 @@ namespace VisualCard
         public static List<BaseVcardParser> GetCardParsers(StreamReader stream)
         {
             // Variables and flags
-            List<BaseVcardParser> FinalParsers = new();
+            List<BaseVcardParser> FinalParsers = [];
             bool BeginSpotted = false;
             bool VersionSpotted = false;
             bool EndSpotted = false;

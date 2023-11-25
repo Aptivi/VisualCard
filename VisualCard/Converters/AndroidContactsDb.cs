@@ -55,7 +55,7 @@ namespace VisualCard.Converters
                 "folder, for example, /data/user/0/com.motorola.blur.providers.contacts/databases/.";
             if (!File.Exists(pathToDb))
                 throw new FileNotFoundException("The Android contact database file obtained from the contact provider is not found." + dbObtainTip);
-            List<BaseVcardParser> cardParsers = new();
+            List<BaseVcardParser> cardParsers = [];
 
             try
             {

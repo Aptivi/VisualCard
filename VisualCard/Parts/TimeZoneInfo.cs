@@ -128,7 +128,7 @@ namespace VisualCard.Parts
         {
             string tzValue = value.Substring(VcardConstants._timeZoneSpecifier.Length + 1);
             string _timeZoneStr = Regex.Unescape(tzValue);
-            TimeZoneInfo _timeZone = new(0, Array.Empty<string>(), Array.Empty<string>(), _timeZoneStr);
+            TimeZoneInfo _timeZone = new(0, [], [], _timeZoneStr);
             return _timeZone;
         }
 
@@ -144,7 +144,7 @@ namespace VisualCard.Parts
             string _timeZoneNumber = Regex.Unescape(splitTz[1]);
 
             // Add the fetched information
-            TimeZoneInfo _timeZone = new(0, Array.Empty<string>(), _timeZoneTypes, _timeZoneNumber);
+            TimeZoneInfo _timeZone = new(0, [], _timeZoneTypes, _timeZoneNumber);
             return _timeZone;
         }
 
@@ -156,7 +156,7 @@ namespace VisualCard.Parts
             // Populate the fields
             string[] _timeZoneTypes = new string[] { "uri-offset" };
             string _timeZoneNumber = Regex.Unescape(tzValue);
-            TimeZoneInfo _timeZone = new(0, Array.Empty<string>(), _timeZoneTypes, _timeZoneNumber);
+            TimeZoneInfo _timeZone = new(0, [], _timeZoneTypes, _timeZoneNumber);
             return _timeZone;
         }
 
@@ -173,7 +173,7 @@ namespace VisualCard.Parts
             string _timeZoneNumber = Regex.Unescape(splitTz[1]);
 
             // Add the fetched information
-            TimeZoneInfo _timeZone = new(0, Array.Empty<string>(), _timeZoneTypes, _timeZoneNumber);
+            TimeZoneInfo _timeZone = new(0, [], _timeZoneTypes, _timeZoneNumber);
             return _timeZone;
         }
 
@@ -185,7 +185,7 @@ namespace VisualCard.Parts
             // Populate the fields
             string[] _timeZoneTypes = new string[] { "uri-offset" };
             string _timeZoneNumber = Regex.Unescape(tzValue);
-            TimeZoneInfo _timeZone = new(altId, Array.Empty<string>(), _timeZoneTypes, _timeZoneNumber);
+            TimeZoneInfo _timeZone = new(altId, [], _timeZoneTypes, _timeZoneNumber);
             return _timeZone;
         }
 
@@ -202,7 +202,7 @@ namespace VisualCard.Parts
             string _timeZoneNumber = Regex.Unescape(splitTz[1]);
 
             // Add the fetched information
-            TimeZoneInfo _timeZone = new(altId, finalArgs.ToArray(), _timeZoneTypes, _timeZoneNumber);
+            TimeZoneInfo _timeZone = new(altId, [.. finalArgs], _timeZoneTypes, _timeZoneNumber);
             return _timeZone;
         }
 

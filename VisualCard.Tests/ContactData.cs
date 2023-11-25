@@ -66,7 +66,7 @@ namespace VisualCard.Tests
         {
             ContactNames = new NameInfo[]
             {
-                new NameInfo(0, Array.Empty<string>(), "Rick", "Hood", Array.Empty<string>(), Array.Empty<string>(), Array.Empty<string>())
+                new NameInfo(0, [], "Rick", "Hood", [], [], [])
             },
             ContactFullName = "Rick Hood"
         };
@@ -79,7 +79,7 @@ namespace VisualCard.Tests
         {
             ContactNames = new NameInfo[]
             {
-                new NameInfo(0, Array.Empty<string>(), "Rick", "Hood", Array.Empty<string>(), Array.Empty<string>(), Array.Empty<string>())
+                new NameInfo(0, [], "Rick", "Hood", [], [], [])
             },
             ContactFullName = "Rick Hood"
         };
@@ -104,7 +104,7 @@ namespace VisualCard.Tests
         {
             ContactNames = new NameInfo[]
             {
-                new NameInfo(0, Array.Empty<string>(), "Rick", "Hood", Array.Empty<string>(), Array.Empty<string>(), Array.Empty<string>())
+                new NameInfo(0, [], "Rick", "Hood", [], [], [])
             },
             ContactFullName = "Rick Hood"
         };
@@ -129,7 +129,7 @@ namespace VisualCard.Tests
         {
             ContactNames = new NameInfo[]
             {
-                new NameInfo(0, Array.Empty<string>(), "Rick", "Hood", Array.Empty<string>(), Array.Empty<string>(), Array.Empty<string>())
+                new NameInfo(0, [], "Rick", "Hood", [], [], [])
             },
             ContactFullName = "Rick Hood"
         };
@@ -165,21 +165,21 @@ namespace VisualCard.Tests
         {
             ContactNames = new NameInfo[]
             {
-                new NameInfo(0, Array.Empty<string>(), "John", "Sanders", Array.Empty<string>(), Array.Empty<string>(), Array.Empty<string>())
+                new NameInfo(0, [], "John", "Sanders", [], [], [])
             },
             ContactFullName = "John Sanders",
             ContactTelephones = new TelephoneInfo[]
             {
-                new TelephoneInfo(0, Array.Empty<string>(), new string[] { "CELL" }, "495-522-3560")
+                new TelephoneInfo(0, [], new string[] { "CELL" }, "495-522-3560")
             },
             ContactAddresses = new AddressInfo[]
             {
-                new AddressInfo(0, Array.Empty<string>(), new string[] { "HOME" }, "", "", "Los Angeles", "", "", "", "USA")
+                new AddressInfo(0, [], new string[] { "HOME" }, "", "", "Los Angeles", "", "", "", "USA")
             },
             ContactNotes = "Note test for VisualCard",
             ContactMails = new EmailInfo[]
             {
-                new EmailInfo(0, Array.Empty<string>(), new string[] { "HOME" }, "john.s@acme.co")
+                new EmailInfo(0, [], new string[] { "HOME" }, "john.s@acme.co")
             }
         };
 
@@ -211,36 +211,36 @@ namespace VisualCard.Tests
         {
             ContactNames = new NameInfo[]
             {
-                new NameInfo(0, Array.Empty<string>(), "John", "Sanders", Array.Empty<string>(), Array.Empty<string>(), Array.Empty<string>())
+                new NameInfo(0, [], "John", "Sanders", [], [], [])
             },
             ContactFullName = "John Sanders",
             ContactTelephones = new TelephoneInfo[]
             {
-                new TelephoneInfo(0, Array.Empty<string>(), new string[] { "CELL" }, "495-522-3560")
+                new TelephoneInfo(0, [], new string[] { "CELL" }, "495-522-3560")
             },
             ContactAddresses = new AddressInfo[]
             {
-                new AddressInfo(0, Array.Empty<string>(), new string[] { "HOME" }, "", "", "Los Angeles, USA", "", "", "", "")
+                new AddressInfo(0, [], new string[] { "HOME" }, "", "", "Los Angeles, USA", "", "", "", "")
             },
             ContactOrganizations = new OrganizationInfo[]
             {
-                new OrganizationInfo(0, Array.Empty<string>(), "Acme Co.", "", "", new string[] { "WORK" })
+                new OrganizationInfo(0, [], "Acme Co.", "", "", new string[] { "WORK" })
             },
             ContactTitles = new TitleInfo[]
             {
-                new TitleInfo(0, Array.Empty<string>(), "Product Manager")
+                new TitleInfo(0, [], "Product Manager")
             },
             ContactNotes = "Note test for VisualCard",
             ContactMails = new EmailInfo[]
             {
-                new EmailInfo(0, Array.Empty<string>(), new string[] { "HOME" }, "john.s@acme.co")
+                new EmailInfo(0, [], new string[] { "HOME" }, "john.s@acme.co")
             },
             ContactXNames = new XNameInfo[]
             {
-                new XNameInfo(0, Array.Empty<string>(), "PHONETIC-FIRST-NAME", new string[] { "Saunders" }, Array.Empty<string>()),
-                new XNameInfo(0, Array.Empty<string>(), "PHONETIC-LAST-NAME",  new string[] { "John" }, Array.Empty<string>()),
-                new XNameInfo(0, Array.Empty<string>(), "ANDROID-CUSTOM", new string[] { "vnd.android.cursor.item/nickname", "JS", "1", "", "", "", "", "", "", "", "", "", "", "", "", "" }, Array.Empty<string>()),
-                new XNameInfo(0, Array.Empty<string>(), "AIM", new string[] { "john.s" }, Array.Empty<string>()),
+                new XNameInfo(0, [], "PHONETIC-FIRST-NAME", new string[] { "Saunders" }, []),
+                new XNameInfo(0, [], "PHONETIC-LAST-NAME",  new string[] { "John" }, []),
+                new XNameInfo(0, [], "ANDROID-CUSTOM", new string[] { "vnd.android.cursor.item/nickname", "JS", "1", "", "", "", "", "", "", "", "", "", "", "", "", "" }, []),
+                new XNameInfo(0, [], "AIM", new string[] { "john.s" }, []),
             }
         };
         #endregion
@@ -274,39 +274,39 @@ namespace VisualCard.Tests
         {
             ContactNames = new NameInfo[]
             {
-                new NameInfo(0, Array.Empty<string>(), "John", "Sanders", Array.Empty<string>(), Array.Empty<string>(), Array.Empty<string>())
+                new NameInfo(0, [], "John", "Sanders", [], [], [])
             },
             ContactFullName = "John Sanders",
             ContactTelephones = new TelephoneInfo[]
             {
-                new TelephoneInfo(0, Array.Empty<string>(), new string[] { "cell" }, "495-522-3560")
+                new TelephoneInfo(0, [], new string[] { "cell" }, "495-522-3560")
             },
             ContactAddresses = new AddressInfo[]
             {
-                new AddressInfo(0, Array.Empty<string>(), new string[] { "home" }, "", "", "Los Angeles, USA", "", "", "", "")
+                new AddressInfo(0, [], new string[] { "home" }, "", "", "Los Angeles, USA", "", "", "", "")
             },
             ContactOrganizations = new OrganizationInfo[]
             {
-                new OrganizationInfo(0, Array.Empty<string>(), "Acme Co.", "", "", new string[] { "WORK" })
+                new OrganizationInfo(0, [], "Acme Co.", "", "", new string[] { "WORK" })
             },
             ContactTitles = new TitleInfo[]
             {
-                new TitleInfo(0, Array.Empty<string>(), "Product Manager")
+                new TitleInfo(0, [], "Product Manager")
             },
             ContactNotes = "Note test for VisualCard",
             ContactMails = new EmailInfo[]
             {
-                new EmailInfo(0, Array.Empty<string>(), new string[] { "home" }, "john.s@acme.co")
+                new EmailInfo(0, [], new string[] { "home" }, "john.s@acme.co")
             },
             ContactXNames = new XNameInfo[]
             {
-                new XNameInfo(0, Array.Empty<string>(), "PHONETIC-FIRST-NAME", new string[] { "Saunders" }, Array.Empty<string>()),
-                new XNameInfo(0, Array.Empty<string>(), "PHONETIC-LAST-NAME",  new string[] { "John" }, Array.Empty<string>()),
-                new XNameInfo(0, Array.Empty<string>(), "AIM", new string[] { "john.s" }, Array.Empty<string>()),
+                new XNameInfo(0, [], "PHONETIC-FIRST-NAME", new string[] { "Saunders" }, []),
+                new XNameInfo(0, [], "PHONETIC-LAST-NAME",  new string[] { "John" }, []),
+                new XNameInfo(0, [], "AIM", new string[] { "john.s" }, []),
             },
             ContactNicknames = new NicknameInfo[]
             {
-                new NicknameInfo(0, Array.Empty<string>(), "JS", new string[] { "HOME" })
+                new NicknameInfo(0, [], "JS", new string[] { "HOME" })
             }
         };
         #endregion
@@ -340,39 +340,39 @@ namespace VisualCard.Tests
         {
             ContactNames = new NameInfo[]
             {
-                new NameInfo(0, Array.Empty<string>(), "John", "Sanders", Array.Empty<string>(), Array.Empty<string>(), Array.Empty<string>())
+                new NameInfo(0, [], "John", "Sanders", [], [], [])
             },
             ContactFullName = "John Sanders",
             ContactTelephones = new TelephoneInfo[]
             {
-                new TelephoneInfo(0, Array.Empty<string>(), new string[] { "cell" }, "495-522-3560")
+                new TelephoneInfo(0, [], new string[] { "cell" }, "495-522-3560")
             },
             ContactAddresses = new AddressInfo[]
             {
-                new AddressInfo(0, Array.Empty<string>(), new string[] { "home" }, "", "", "Los Angeles, USA", "", "", "", "")
+                new AddressInfo(0, [], new string[] { "home" }, "", "", "Los Angeles, USA", "", "", "", "")
             },
             ContactOrganizations = new OrganizationInfo[]
             {
-                new OrganizationInfo(0, Array.Empty<string>(), "Acme Co.", "", "", new string[] { "WORK" })
+                new OrganizationInfo(0, [], "Acme Co.", "", "", new string[] { "WORK" })
             },
             ContactTitles = new TitleInfo[]
             {
-                new TitleInfo(0, Array.Empty<string>(), "Product Manager")
+                new TitleInfo(0, [], "Product Manager")
             },
             ContactNotes = "Note test for VisualCard",
             ContactMails = new EmailInfo[]
             {
-                new EmailInfo(0, Array.Empty<string>(), new string[] { "HOME" }, "john.s@acme.co")
+                new EmailInfo(0, [], new string[] { "HOME" }, "john.s@acme.co")
             },
             ContactXNames = new XNameInfo[]
             {
-                new XNameInfo(0, Array.Empty<string>(), "ANDROID-CUSTOM", new string[] { "vnd.android.cursor.item/nickname", "JS", "1", "", "", "", "", "", "", "", "", "", "", "", "", "" }, Array.Empty<string>()),
-                new XNameInfo(0, Array.Empty<string>(), "PHONETIC-FIRST-NAME", new string[] { "Saunders" }, Array.Empty<string>()),
-                new XNameInfo(0, Array.Empty<string>(), "PHONETIC-LAST-NAME",  new string[] { "John" }, Array.Empty<string>())
+                new XNameInfo(0, [], "ANDROID-CUSTOM", new string[] { "vnd.android.cursor.item/nickname", "JS", "1", "", "", "", "", "", "", "", "", "", "", "", "", "" }, []),
+                new XNameInfo(0, [], "PHONETIC-FIRST-NAME", new string[] { "Saunders" }, []),
+                new XNameInfo(0, [], "PHONETIC-LAST-NAME",  new string[] { "John" }, [])
             },
             ContactImpps = new ImppInfo[]
             {
-                new ImppInfo(0, Array.Empty<string>(), "aim:john.s", new string[] { "HOME" })
+                new ImppInfo(0, [], "aim:john.s", new string[] { "HOME" })
             }
         };
         #endregion
@@ -448,34 +448,34 @@ namespace VisualCard.Tests
         {
             ContactNames = new NameInfo[]
             {
-                new NameInfo(0, Array.Empty<string>(), "Sarah", "Santos", Array.Empty<string>(), Array.Empty<string>(), Array.Empty<string>())
+                new NameInfo(0, [], "Sarah", "Santos", [], [], [])
             },
             ContactFullName = "Sarah Santos",
             ContactTelephones = new TelephoneInfo[]
             {
-                new TelephoneInfo(0, Array.Empty<string>(), new string[] { "CELL" }, "589-210-1059")
+                new TelephoneInfo(0, [], new string[] { "CELL" }, "589-210-1059")
             },
             ContactAddresses = new AddressInfo[]
             {
-                new AddressInfo(0, Array.Empty<string>(), new string[] { "HOME" }, "", "", "New York, USA", "", "", "", "")
+                new AddressInfo(0, [], new string[] { "HOME" }, "", "", "New York, USA", "", "", "", "")
             },
             ContactOrganizations = new OrganizationInfo[]
             {
-                new OrganizationInfo(0, Array.Empty<string>(), "Support Scammer Outcry Organization", "", "", new string[] { "WORK" })
+                new OrganizationInfo(0, [], "Support Scammer Outcry Organization", "", "", new string[] { "WORK" })
             },
             ContactTitles = new TitleInfo[]
             {
-                new TitleInfo(0, Array.Empty<string>(), "Chief Executive Officer")
+                new TitleInfo(0, [], "Chief Executive Officer")
             },
             ContactURL = "https://sso.org/",
             ContactMails = new EmailInfo[]
             {
-                new EmailInfo(0, Array.Empty<string>(), new string[] { "HOME" }, "sarah.s@gmail.com"),
-                new EmailInfo(0, Array.Empty<string>(), new string[] { "WORK" }, "sarah.s@sso.org"),
+                new EmailInfo(0, [], new string[] { "HOME" }, "sarah.s@gmail.com"),
+                new EmailInfo(0, [], new string[] { "WORK" }, "sarah.s@sso.org"),
             },
             ContactXNames = new XNameInfo[]
             {
-                new XNameInfo(0, Array.Empty<string>(), "SIP", new string[] { "sip test" }, Array.Empty<string>()),
+                new XNameInfo(0, [], "SIP", new string[] { "sip test" }, []),
             }
         };
         private static readonly Card multipleVcardTwoContactsInstanceThree = new
@@ -486,41 +486,41 @@ namespace VisualCard.Tests
         {
             ContactNames = new NameInfo[]
             {
-                new NameInfo(0, Array.Empty<string>(), "Neville", "Navasquillo", new string[] { "Neville", "Nevile" }, new string[] { "Mr." }, new string[] { "Jr." })
+                new NameInfo(0, [], "Neville", "Navasquillo", new string[] { "Neville", "Nevile" }, new string[] { "Mr." }, new string[] { "Jr." })
             },
             ContactFullName = "Neville Navasquillo",
             ContactTelephones = new TelephoneInfo[]
             {
-                new TelephoneInfo(0, Array.Empty<string>(), new string[] { "CELL" }, "1-234-567-890"),
-                new TelephoneInfo(0, Array.Empty<string>(), new string[] { "WORK" }, "098-765-4321"),
-                new TelephoneInfo(0, Array.Empty<string>(), new string[] { "VOICE" }, "078-494-6434"),
-                new TelephoneInfo(0, Array.Empty<string>(), new string[] { "HOME" }, "348-404-8404"),
+                new TelephoneInfo(0, [], new string[] { "CELL" }, "1-234-567-890"),
+                new TelephoneInfo(0, [], new string[] { "WORK" }, "098-765-4321"),
+                new TelephoneInfo(0, [], new string[] { "VOICE" }, "078-494-6434"),
+                new TelephoneInfo(0, [], new string[] { "HOME" }, "348-404-8404"),
             },
             ContactAddresses = new AddressInfo[]
             {
-                new AddressInfo(0, Array.Empty<string>(), new string[] { "WORK" }, "POBOX", "", "Street Address ExtAddress", "Reg", "Loc", "Postal", "Country"),
-                new AddressInfo(0, Array.Empty<string>(), new string[] { "HOME" }, "", "", "Street Address", "", "", "", ""),
+                new AddressInfo(0, [], new string[] { "WORK" }, "POBOX", "", "Street Address ExtAddress", "Reg", "Loc", "Postal", "Country"),
+                new AddressInfo(0, [], new string[] { "HOME" }, "", "", "Street Address", "", "", "", ""),
             },
             ContactOrganizations = new OrganizationInfo[]
             {
-                new OrganizationInfo(0, Array.Empty<string>(), "Organization", "", "", new string[] { "WORK" })
+                new OrganizationInfo(0, [], "Organization", "", "", new string[] { "WORK" })
             },
             ContactTitles = new TitleInfo[]
             {
-                new TitleInfo(0, Array.Empty<string>(), "Title")
+                new TitleInfo(0, [], "Title")
             },
             ContactNotes = "Notes",
             ContactMails = new EmailInfo[]
             {
-                new EmailInfo(0, Array.Empty<string>(), new string[] { "HOME" }, "neville.nvs@gmail.com"),
-                new EmailInfo(0, Array.Empty<string>(), new string[] { "WORK" }, "neville.nvs@nvsc.com"),
+                new EmailInfo(0, [], new string[] { "HOME" }, "neville.nvs@gmail.com"),
+                new EmailInfo(0, [], new string[] { "WORK" }, "neville.nvs@nvsc.com"),
             },
             ContactXNames = new XNameInfo[]
             {
-                new XNameInfo(0, Array.Empty<string>(), "ANDROID-CUSTOM", new string[] { "vnd.android.cursor.item/nickname", "NVL.N", "1", "", "", "", "", "", "", "", "", "", "", "", "", "" }, Array.Empty<string>()),
-                new XNameInfo(0, Array.Empty<string>(), "AIM", new string[] { "IM" }, new string[] { "HOME" }),
-                new XNameInfo(0, Array.Empty<string>(), "MSN", new string[] { "Windows LIVE" }, new string[] { "HOME" }),
-                new XNameInfo(0, Array.Empty<string>(), "YAHOO", new string[] { "Yahoo" }, new string[] { "HOME" }),
+                new XNameInfo(0, [], "ANDROID-CUSTOM", new string[] { "vnd.android.cursor.item/nickname", "NVL.N", "1", "", "", "", "", "", "", "", "", "", "", "", "", "" }, []),
+                new XNameInfo(0, [], "AIM", new string[] { "IM" }, new string[] { "HOME" }),
+                new XNameInfo(0, [], "MSN", new string[] { "Windows LIVE" }, new string[] { "HOME" }),
+                new XNameInfo(0, [], "YAHOO", new string[] { "Yahoo" }, new string[] { "HOME" }),
             }
         };
         private static readonly Card multipleVcardTwoContactsInstanceFour = singleVcardTwoContactShortInstance;
@@ -597,34 +597,34 @@ namespace VisualCard.Tests
         {
             ContactNames = new NameInfo[]
             {
-                new NameInfo(0, Array.Empty<string>(), "Sarah", "Santos", Array.Empty<string>(), Array.Empty<string>(), Array.Empty<string>())
+                new NameInfo(0, [], "Sarah", "Santos", [], [], [])
             },
             ContactFullName = "Sarah Santos",
             ContactTelephones = new TelephoneInfo[]
             {
-                new TelephoneInfo(0, Array.Empty<string>(), new string[] { "cell" }, "589-210-1059")
+                new TelephoneInfo(0, [], new string[] { "cell" }, "589-210-1059")
             },
             ContactAddresses = new AddressInfo[]
             {
-                new AddressInfo(0, Array.Empty<string>(), new string[] { "home" }, "", "", "New York, USA", "", "", "", "")
+                new AddressInfo(0, [], new string[] { "home" }, "", "", "New York, USA", "", "", "", "")
             },
             ContactOrganizations = new OrganizationInfo[]
             {
-                new OrganizationInfo(0, Array.Empty<string>(), "Support Scammer Outcry Organization", "", "", new string[] { "WORK" })
+                new OrganizationInfo(0, [], "Support Scammer Outcry Organization", "", "", new string[] { "WORK" })
             },
             ContactTitles = new TitleInfo[]
             {
-                new TitleInfo(0, Array.Empty<string>(), "Chief Executive Officer")
+                new TitleInfo(0, [], "Chief Executive Officer")
             },
             ContactURL = "https://sso.org/",
             ContactMails = new EmailInfo[]
             {
-                new EmailInfo(0, Array.Empty<string>(), new string[] { "home" }, "sarah.s@gmail.com"),
-                new EmailInfo(0, Array.Empty<string>(), new string[] { "work" }, "sarah.s@sso.org"),
+                new EmailInfo(0, [], new string[] { "home" }, "sarah.s@gmail.com"),
+                new EmailInfo(0, [], new string[] { "work" }, "sarah.s@sso.org"),
             },
             ContactXNames = new XNameInfo[]
             {
-                new XNameInfo(0, Array.Empty<string>(), "SIP", new string[] { "sip test" }, Array.Empty<string>()),
+                new XNameInfo(0, [], "SIP", new string[] { "sip test" }, []),
             }
         };
         private static readonly Card multipleVcardThreeContactsInstanceThree = new
@@ -635,44 +635,44 @@ namespace VisualCard.Tests
         {
             ContactNames = new NameInfo[]
             {
-                new NameInfo(0, Array.Empty<string>(), "Neville", "Navasquillo", new string[] { "Neville", "Nevile" }, new string[] { "Mr." }, new string[] { "Jr." })
+                new NameInfo(0, [], "Neville", "Navasquillo", new string[] { "Neville", "Nevile" }, new string[] { "Mr." }, new string[] { "Jr." })
             },
             ContactFullName = "Neville Navasquillo",
             ContactTelephones = new TelephoneInfo[]
             {
-                new TelephoneInfo(0, Array.Empty<string>(), new string[] { "cell" }, "1-234-567-890"),
-                new TelephoneInfo(0, Array.Empty<string>(), new string[] { "work" }, "098-765-4321"),
-                new TelephoneInfo(0, Array.Empty<string>(), new string[] { "voice" }, "078-494-6434"),
-                new TelephoneInfo(0, Array.Empty<string>(), new string[] { "home" }, "348-404-8404"),
+                new TelephoneInfo(0, [], new string[] { "cell" }, "1-234-567-890"),
+                new TelephoneInfo(0, [], new string[] { "work" }, "098-765-4321"),
+                new TelephoneInfo(0, [], new string[] { "voice" }, "078-494-6434"),
+                new TelephoneInfo(0, [], new string[] { "home" }, "348-404-8404"),
             },
             ContactAddresses = new AddressInfo[]
             {
-                new AddressInfo(0, Array.Empty<string>(), new string[] { "work" }, "POBOX", "", "Street Address ExtAddress", "Reg", "Loc", "Postal", "Country"),
-                new AddressInfo(0, Array.Empty<string>(), new string[] { "home" }, "", "", "Street Address", "", "", "", ""),
+                new AddressInfo(0, [], new string[] { "work" }, "POBOX", "", "Street Address ExtAddress", "Reg", "Loc", "Postal", "Country"),
+                new AddressInfo(0, [], new string[] { "home" }, "", "", "Street Address", "", "", "", ""),
             },
             ContactOrganizations = new OrganizationInfo[]
             {
-                new OrganizationInfo(0, Array.Empty<string>(), "Organization", "", "", new string[] { "WORK" })
+                new OrganizationInfo(0, [], "Organization", "", "", new string[] { "WORK" })
             },
             ContactTitles = new TitleInfo[]
             {
-                new TitleInfo(0, Array.Empty<string>(), "Title")
+                new TitleInfo(0, [], "Title")
             },
             ContactNotes = "Notes",
             ContactMails = new EmailInfo[]
             {
-                new EmailInfo(0, Array.Empty<string>(), new string[] { "home" }, "neville.nvs@gmail.com"),
-                new EmailInfo(0, Array.Empty<string>(), new string[] { "work" }, "neville.nvs@nvsc.com"),
+                new EmailInfo(0, [], new string[] { "home" }, "neville.nvs@gmail.com"),
+                new EmailInfo(0, [], new string[] { "work" }, "neville.nvs@nvsc.com"),
             },
             ContactXNames = new XNameInfo[]
             {
-                new XNameInfo(0, Array.Empty<string>(), "AIM", new string[] { "IM" }, new string[] { "HOME" }),
-                new XNameInfo(0, Array.Empty<string>(), "MSN", new string[] { "Windows LIVE" }, new string[] { "HOME" }),
-                new XNameInfo(0, Array.Empty<string>(), "YAHOO", new string[] { "Yahoo" }, new string[] { "HOME" }),
+                new XNameInfo(0, [], "AIM", new string[] { "IM" }, new string[] { "HOME" }),
+                new XNameInfo(0, [], "MSN", new string[] { "Windows LIVE" }, new string[] { "HOME" }),
+                new XNameInfo(0, [], "YAHOO", new string[] { "Yahoo" }, new string[] { "HOME" }),
             },
             ContactNicknames = new NicknameInfo[]
             {
-                new NicknameInfo(0, Array.Empty<string>(), "NVL.N", new string[] { "HOME" })
+                new NicknameInfo(0, [], "NVL.N", new string[] { "HOME" })
             }
         };
         private static readonly Card multipleVcardThreeContactsInstanceFour = singleVcardThreeContactShortInstance;
@@ -751,45 +751,45 @@ namespace VisualCard.Tests
         {
             ContactNames = new NameInfo[]
             {
-                new NameInfo(0, Array.Empty<string>(), "Neville", "Navasquillo", new string[] { "Neville", "Nevile" }, new string[] { "Mr." }, new string[] { "Jr." }),
+                new NameInfo(0, [], "Neville", "Navasquillo", new string[] { "Neville", "Nevile" }, new string[] { "Mr." }, new string[] { "Jr." }),
                 new NameInfo(0, new string[] { "LANGUAGE=de" }, "Neville", "NAVASQUILLO", new string[] { "Neville", "Nevile" }, new string[] { "Mr." }, new string[] { "Jr." })
             },
             ContactFullName = "Neville Navasquillo",
             ContactTelephones = new TelephoneInfo[]
             {
-                new TelephoneInfo(0, Array.Empty<string>(), new string[] { "work" }, "098-765-4321"),
-                new TelephoneInfo(0, Array.Empty<string>(), new string[] { "cell" }, "1-234-567-890"),
-                new TelephoneInfo(0, Array.Empty<string>(), new string[] { "voice" }, "078-494-6434"),
-                new TelephoneInfo(0, Array.Empty<string>(), new string[] { "home" }, "348-404-8404"),
+                new TelephoneInfo(0, [], new string[] { "work" }, "098-765-4321"),
+                new TelephoneInfo(0, [], new string[] { "cell" }, "1-234-567-890"),
+                new TelephoneInfo(0, [], new string[] { "voice" }, "078-494-6434"),
+                new TelephoneInfo(0, [], new string[] { "home" }, "348-404-8404"),
             },
             ContactAddresses = new AddressInfo[]
             {
-                new AddressInfo(0, Array.Empty<string>(), new string[] { "work" }, "POBOX", "", "Street Address ExtAddress", "Reg", "Loc", "Postal", "Country"),
-                new AddressInfo(0, Array.Empty<string>(), new string[] { "home" }, "", "", "Street Address", "", "", "", ""),
+                new AddressInfo(0, [], new string[] { "work" }, "POBOX", "", "Street Address ExtAddress", "Reg", "Loc", "Postal", "Country"),
+                new AddressInfo(0, [], new string[] { "home" }, "", "", "Street Address", "", "", "", ""),
             },
             ContactOrganizations = new OrganizationInfo[]
             {
-                new OrganizationInfo(0, Array.Empty<string>(), "Organization", "", "", new string[] { "WORK" })
+                new OrganizationInfo(0, [], "Organization", "", "", new string[] { "WORK" })
             },
             ContactTitles = new TitleInfo[]
             {
-                new TitleInfo(0, Array.Empty<string>(), "Title")
+                new TitleInfo(0, [], "Title")
             },
             ContactNotes = "Notes",
             ContactMails = new EmailInfo[]
             {
-                new EmailInfo(0, Array.Empty<string>(), new string[] { "HOME" }, "neville.nvs@gmail.com"),
-                new EmailInfo(0, Array.Empty<string>(), new string[] { "WORK" }, "neville.nvs@nvsc.com"),
+                new EmailInfo(0, [], new string[] { "HOME" }, "neville.nvs@gmail.com"),
+                new EmailInfo(0, [], new string[] { "WORK" }, "neville.nvs@nvsc.com"),
             },
             ContactXNames = new XNameInfo[]
             {
-                new XNameInfo(0, Array.Empty<string>(), "ANDROID-CUSTOM", new string[] { "vnd.android.cursor.item/nickname", "NVL.N", "1", "", "", "", "", "", "", "", "", "", "", "", "", "" }, Array.Empty<string>()),
+                new XNameInfo(0, [], "ANDROID-CUSTOM", new string[] { "vnd.android.cursor.item/nickname", "NVL.N", "1", "", "", "", "", "", "", "", "", "", "", "", "", "" }, []),
             },
             ContactImpps = new ImppInfo[]
             {
-                new ImppInfo(0, Array.Empty<string>(), "aim:IM", new string[] { "HOME" }),
-                new ImppInfo(0, Array.Empty<string>(), "msn:Windows LIVE", new string[] { "HOME" }),
-                new ImppInfo(0, Array.Empty<string>(), "ymsgr:Yahoo", new string[] { "HOME" })
+                new ImppInfo(0, [], "aim:IM", new string[] { "HOME" }),
+                new ImppInfo(0, [], "msn:Windows LIVE", new string[] { "HOME" }),
+                new ImppInfo(0, [], "ymsgr:Yahoo", new string[] { "HOME" })
             },
         };
         private static readonly Card multipleVcardFourContactsInstanceThree = new
@@ -800,34 +800,34 @@ namespace VisualCard.Tests
         {
             ContactNames = new NameInfo[]
             {
-                new NameInfo(0, Array.Empty<string>(), "Sarah", "Santos", Array.Empty<string>(), Array.Empty<string>(), Array.Empty<string>())
+                new NameInfo(0, [], "Sarah", "Santos", [], [], [])
             },
             ContactFullName = "Sarah Santos",
             ContactTelephones = new TelephoneInfo[]
             {
-                new TelephoneInfo(0, Array.Empty<string>(), new string[] { "cell" }, "589-210-1059")
+                new TelephoneInfo(0, [], new string[] { "cell" }, "589-210-1059")
             },
             ContactAddresses = new AddressInfo[]
             {
-                new AddressInfo(0, Array.Empty<string>(), new string[] { "home" }, "", "", "New York, USA", "", "", "", "")
+                new AddressInfo(0, [], new string[] { "home" }, "", "", "New York, USA", "", "", "", "")
             },
             ContactOrganizations = new OrganizationInfo[]
             {
-                new OrganizationInfo(0, Array.Empty<string>(), "Support Scammer Outcry Organization", "", "", new string[] { "WORK" })
+                new OrganizationInfo(0, [], "Support Scammer Outcry Organization", "", "", new string[] { "WORK" })
             },
             ContactTitles = new TitleInfo[]
             {
-                new TitleInfo(0, Array.Empty<string>(), "Chief Executive Officer")
+                new TitleInfo(0, [], "Chief Executive Officer")
             },
             ContactURL = "https://sso.org/",
             ContactMails = new EmailInfo[]
             {
-                new EmailInfo(0, Array.Empty<string>(), new string[] { "HOME" }, "sarah.s@gmail.com"),
-                new EmailInfo(0, Array.Empty<string>(), new string[] { "WORK" }, "sarah.s@sso.org"),
+                new EmailInfo(0, [], new string[] { "HOME" }, "sarah.s@gmail.com"),
+                new EmailInfo(0, [], new string[] { "WORK" }, "sarah.s@sso.org"),
             },
             ContactXNames = new XNameInfo[]
             {
-                new XNameInfo(0, Array.Empty<string>(), "SIP-SIP", new string[] { "sip test" }, Array.Empty<string>()),
+                new XNameInfo(0, [], "SIP-SIP", new string[] { "sip test" }, []),
             },
             ContactBirthdate = new DateTime(1989, 2, 22),
         };
@@ -874,25 +874,25 @@ namespace VisualCard.Tests
         {
             ContactNames = new NameInfo[]
             {
-                new NameInfo(0, Array.Empty<string>(), "Derik", "Stenerson", Array.Empty<string>(), Array.Empty<string>(), Array.Empty<string>())
+                new NameInfo(0, [], "Derik", "Stenerson", [], [], [])
             },
             ContactFullName = "Derik Stenerson",
             ContactTelephones = new TelephoneInfo[]
             {
-                new TelephoneInfo(0, Array.Empty<string>(), new string[] { "WORK", "MSG" }, "+1-425-936-5522"),
-                new TelephoneInfo(0, Array.Empty<string>(), new string[] { "WORK", "FAX" }, "+1-425-936-7329")
+                new TelephoneInfo(0, [], new string[] { "WORK", "MSG" }, "+1-425-936-5522"),
+                new TelephoneInfo(0, [], new string[] { "WORK", "FAX" }, "+1-425-936-7329")
             },
             ContactAddresses = new AddressInfo[]
             {
-                new AddressInfo(0, Array.Empty<string>(), new string[] { "WORK", "POSTAL", "PARCEL" }, "", "", "One Microsoft Way", "Redmond", "WA", "98052-6399", "USA")
+                new AddressInfo(0, [], new string[] { "WORK", "POSTAL", "PARCEL" }, "", "", "One Microsoft Way", "Redmond", "WA", "98052-6399", "USA")
             },
             ContactOrganizations = new OrganizationInfo[]
             {
-                new OrganizationInfo(0, Array.Empty<string>(), "Microsoft Corporation", "", "", new string[] { "WORK" })
+                new OrganizationInfo(0, [], "Microsoft Corporation", "", "", new string[] { "WORK" })
             },
             ContactMails = new EmailInfo[]
             {
-                new EmailInfo(0, Array.Empty<string>(), new string[] { "INTERNET" }, "deriks@Microsoft.com")
+                new EmailInfo(0, [], new string[] { "INTERNET" }, "deriks@Microsoft.com")
             },
             ContactBirthdate = new DateTime(1963, 9, 21),
         };
@@ -904,24 +904,24 @@ namespace VisualCard.Tests
         {
             ContactNames = new NameInfo[]
             {
-                new NameInfo(0, Array.Empty<string>(), "Anik", "Ganguly", Array.Empty<string>(), Array.Empty<string>(), Array.Empty<string>())
+                new NameInfo(0, [], "Anik", "Ganguly", [], [], [])
             },
             ContactFullName = "Anik Ganguly",
             ContactTelephones = new TelephoneInfo[]
             {
-                new TelephoneInfo(0, Array.Empty<string>(), new string[] { "WORK", "MSG" }, "+1-734-542-5955")
+                new TelephoneInfo(0, [], new string[] { "WORK", "MSG" }, "+1-734-542-5955")
             },
             ContactAddresses = new AddressInfo[]
             {
-                new AddressInfo(0, Array.Empty<string>(), new string[] { "WORK", "POSTAL", "PARCEL" }, "", "Suite 101", "38777 West Six Mile Road", "Livonia", "MI", "48152", "USA")
+                new AddressInfo(0, [], new string[] { "WORK", "POSTAL", "PARCEL" }, "", "Suite 101", "38777 West Six Mile Road", "Livonia", "MI", "48152", "USA")
             },
             ContactOrganizations = new OrganizationInfo[]
             {
-                new OrganizationInfo(0, Array.Empty<string>(), " Open Text Inc.", "", "", new string[] { "WORK" })
+                new OrganizationInfo(0, [], " Open Text Inc.", "", "", new string[] { "WORK" })
             },
             ContactMails = new EmailInfo[]
             {
-                new EmailInfo(0, Array.Empty<string>(), new string[] { "INTERNET" }, "ganguly@acm.org")
+                new EmailInfo(0, [], new string[] { "INTERNET" }, "ganguly@acm.org")
             }
         };
         private static readonly Card vcardThreeOldSampleInstanceThree = new
@@ -932,12 +932,12 @@ namespace VisualCard.Tests
         {
             ContactNames = new NameInfo[]
             {
-                new NameInfo(0, Array.Empty<string>(), "Robert", "Moskowitz", Array.Empty<string>(), Array.Empty<string>(), Array.Empty<string>())
+                new NameInfo(0, [], "Robert", "Moskowitz", [], [], [])
             },
             ContactFullName = "Robert Moskowitz",
             ContactMails = new EmailInfo[]
             {
-                new EmailInfo(0, Array.Empty<string>(), new string[] { "INTERNET" }, "rgm-ietf@htt-consult.com")
+                new EmailInfo(0, [], new string[] { "INTERNET" }, "rgm-ietf@htt-consult.com")
             }
         };
         #endregion

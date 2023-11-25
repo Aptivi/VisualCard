@@ -50,7 +50,7 @@ namespace VisualCard.Parts
         /// <summary>
         /// The contact's names
         /// </summary>
-        public NameInfo[] ContactNames { get; set; } = Array.Empty<NameInfo>();
+        public NameInfo[] ContactNames { get; set; } = [];
         /// <summary>
         /// The contact's full name
         /// </summary>
@@ -58,27 +58,27 @@ namespace VisualCard.Parts
         /// <summary>
         /// The contact's telephones
         /// </summary>
-        public TelephoneInfo[] ContactTelephones { get; set; } = Array.Empty<TelephoneInfo>();
+        public TelephoneInfo[] ContactTelephones { get; set; } = [];
         /// <summary>
         /// The contact's addresses
         /// </summary>
-        public AddressInfo[] ContactAddresses { get; set; } = Array.Empty<AddressInfo>();
+        public AddressInfo[] ContactAddresses { get; set; } = [];
         /// <summary>
         /// The contact's delivery address labels
         /// </summary>
-        public LabelAddressInfo[] ContactLabels { get; set; } = Array.Empty<LabelAddressInfo>();
+        public LabelAddressInfo[] ContactLabels { get; set; } = [];
         /// <summary>
         /// The contact's e-mails
         /// </summary>
-        public EmailInfo[] ContactMails { get; set; } = Array.Empty<EmailInfo>();
+        public EmailInfo[] ContactMails { get; set; } = [];
         /// <summary>
         /// The contact's organizations
         /// </summary>
-        public OrganizationInfo[] ContactOrganizations { get; set; } = Array.Empty<OrganizationInfo>();
+        public OrganizationInfo[] ContactOrganizations { get; set; } = [];
         /// <summary>
         /// The contact's titles
         /// </summary>
-        public TitleInfo[] ContactTitles { get; set; } = Array.Empty<TitleInfo>();
+        public TitleInfo[] ContactTitles { get; set; } = [];
         /// <summary>
         /// The contact's URL
         /// </summary>
@@ -86,7 +86,7 @@ namespace VisualCard.Parts
         /// <summary>
         /// The contact's photos
         /// </summary>
-        public PhotoInfo[] ContactPhotos { get; set; } = Array.Empty<PhotoInfo>();
+        public PhotoInfo[] ContactPhotos { get; set; } = [];
         /// <summary>
         /// The contact's notes
         /// </summary>
@@ -94,7 +94,7 @@ namespace VisualCard.Parts
         /// <summary>
         /// The contact's extended options (usually starts with X-SOMETHING:Value1;Value2...)
         /// </summary>
-        public XNameInfo[] ContactXNames { get; set; } = Array.Empty<XNameInfo>();
+        public XNameInfo[] ContactXNames { get; set; } = [];
         /// <summary>
         /// The card revision
         /// </summary>
@@ -102,7 +102,7 @@ namespace VisualCard.Parts
         /// <summary>
         /// The contact's nicknames
         /// </summary>
-        public NicknameInfo[] ContactNicknames { get; set; } = Array.Empty<NicknameInfo>();
+        public NicknameInfo[] ContactNicknames { get; set; } = [];
         /// <summary>
         /// The contact's birthdate
         /// </summary>
@@ -114,15 +114,15 @@ namespace VisualCard.Parts
         /// <summary>
         /// The contact's roles
         /// </summary>
-        public RoleInfo[] ContactRoles { get; set; } = Array.Empty<RoleInfo>();
+        public RoleInfo[] ContactRoles { get; set; } = [];
         /// <summary>
         /// The contact's categories
         /// </summary>
-        public string[] ContactCategories { get; set; } = Array.Empty<string>();
+        public string[] ContactCategories { get; set; } = [];
         /// <summary>
         /// The contact's logos
         /// </summary>
-        public LogoInfo[] ContactLogos { get; set; } = Array.Empty<LogoInfo>();
+        public LogoInfo[] ContactLogos { get; set; } = [];
         /// <summary>
         /// The contact's product ID
         /// </summary>
@@ -134,19 +134,19 @@ namespace VisualCard.Parts
         /// <summary>
         /// The contact's time zones
         /// </summary>
-        public TimeZoneInfo[] ContactTimeZone { get; set; } = Array.Empty<TimeZoneInfo>();
+        public TimeZoneInfo[] ContactTimeZone { get; set; } = [];
         /// <summary>
         /// The contact's geographical coordinates in (lat;long)
         /// </summary>
-        public GeoInfo[] ContactGeo { get; set; } = Array.Empty<GeoInfo>();
+        public GeoInfo[] ContactGeo { get; set; } = [];
         /// <summary>
         /// The contact's sounds
         /// </summary>
-        public SoundInfo[] ContactSounds { get; set; } = Array.Empty<SoundInfo>();
+        public SoundInfo[] ContactSounds { get; set; } = [];
         /// <summary>
         /// The contact's IMPP information
         /// </summary>
-        public ImppInfo[] ContactImpps { get; set; } = Array.Empty<ImppInfo>();
+        public ImppInfo[] ContactImpps { get; set; } = [];
         /// <summary>
         /// The contact's card source
         /// </summary>

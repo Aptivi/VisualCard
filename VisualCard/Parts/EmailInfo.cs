@@ -145,7 +145,7 @@ namespace VisualCard.Parts
             // Populate the fields
             string[] _emailTypes = new string[] { "HOME" };
             string _emailAddress = mail.Address;
-            EmailInfo _email = new(0, Array.Empty<string>(), _emailTypes, _emailAddress);
+            EmailInfo _email = new(0, [], _emailTypes, _emailAddress);
             return _email;
         }
 
@@ -171,7 +171,7 @@ namespace VisualCard.Parts
             // Populate the fields
             string[] _emailTypes = VcardParserTools.GetTypes(splitMail, "HOME", false);
             string _emailAddress = mail.Address;
-            EmailInfo _email = new(0, Array.Empty<string>(), _emailTypes, _emailAddress);
+            EmailInfo _email = new(0, [], _emailTypes, _emailAddress);
             return _email;
         }
 
@@ -195,7 +195,7 @@ namespace VisualCard.Parts
             // Populate the fields
             string[] _emailTypes = new string[] { "HOME" };
             string _emailAddress = mail.Address;
-            EmailInfo _email = new(0, Array.Empty<string>(), _emailTypes, _emailAddress);
+            EmailInfo _email = new(0, [], _emailTypes, _emailAddress);
             return _email;
         }
 
@@ -221,7 +221,7 @@ namespace VisualCard.Parts
             // Populate the fields
             string[] _emailTypes = VcardParserTools.GetTypes(splitMail, "HOME", true);
             string _emailAddress = mail.Address;
-            EmailInfo _email = new(0, Array.Empty<string>(), _emailTypes, _emailAddress);
+            EmailInfo _email = new(0, [], _emailTypes, _emailAddress);
             return _email;
         }
 
@@ -245,7 +245,7 @@ namespace VisualCard.Parts
             // Populate the fields
             string[] _emailTypes = new string[] { "HOME" };
             string _emailAddress = mail.Address;
-            EmailInfo _email = new(altId, Array.Empty<string>(), _emailTypes, _emailAddress);
+            EmailInfo _email = new(altId, [], _emailTypes, _emailAddress);
             return _email;
         }
 
@@ -271,7 +271,7 @@ namespace VisualCard.Parts
             // Populate the fields
             string[] _emailTypes = VcardParserTools.GetTypes(splitMail, "HOME", true);
             string _emailAddress = mail.Address;
-            EmailInfo _email = new(altId, finalArgs.ToArray(), _emailTypes, _emailAddress);
+            EmailInfo _email = new(altId, [.. finalArgs], _emailTypes, _emailAddress);
             return _email;
         }
 

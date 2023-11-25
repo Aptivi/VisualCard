@@ -134,7 +134,7 @@ namespace VisualCard.Parts
             string imppValue = value.Substring(VcardConstants._imppSpecifier.Length + 1);
             string[] _imppTypes = new string[] { "HOME" };
             string _impp = Regex.Unescape(imppValue);
-            ImppInfo _imppInstance = new(0, Array.Empty<string>(), _impp, _imppTypes);
+            ImppInfo _imppInstance = new(0, [], _impp, _imppTypes);
             return _imppInstance;
         }
 
@@ -148,7 +148,7 @@ namespace VisualCard.Parts
             // Install the values
             string[] _imppTypes = VcardParserTools.GetTypes(splitImpp, "SIP", false);
             string _impp = Regex.Unescape(imppValue.Substring(imppValue.IndexOf(":") + 1));
-            ImppInfo _imppInstance = new(0, Array.Empty<string>(), _impp, _imppTypes);
+            ImppInfo _imppInstance = new(0, [], _impp, _imppTypes);
             return _imppInstance;
         }
 
@@ -160,7 +160,7 @@ namespace VisualCard.Parts
             // Populate the fields
             string[] _imppTypes = new string[] { "HOME" };
             string _impp = Regex.Unescape(imppValue);
-            ImppInfo _imppInstance = new(0, Array.Empty<string>(), _impp, _imppTypes);
+            ImppInfo _imppInstance = new(0, [], _impp, _imppTypes);
             return _imppInstance;
         }
 
@@ -175,7 +175,7 @@ namespace VisualCard.Parts
             // Install the values
             string[] _imppTypes = VcardParserTools.GetTypes(splitImpp, "SIP", true);
             string _impp = Regex.Unescape(imppValue.Substring(imppValue.IndexOf(":") + 1));
-            ImppInfo _imppInstance = new(0, Array.Empty<string>(), _impp, _imppTypes);
+            ImppInfo _imppInstance = new(0, [], _impp, _imppTypes);
             return _imppInstance;
         }
 
@@ -187,7 +187,7 @@ namespace VisualCard.Parts
             // Populate the fields
             string[] _imppTypes = new string[] { "HOME" };
             string _impp = Regex.Unescape(imppValue);
-            ImppInfo _imppInstance = new(altId, Array.Empty<string>(), _impp, _imppTypes);
+            ImppInfo _imppInstance = new(altId, [], _impp, _imppTypes);
             return _imppInstance;
         }
 
@@ -202,7 +202,7 @@ namespace VisualCard.Parts
             // Install the values
             string[] _imppTypes = VcardParserTools.GetTypes(splitImpp, "SIP", true);
             string _impp = Regex.Unescape(imppValue.Substring(imppValue.IndexOf(":") + 1));
-            ImppInfo _imppInstance = new(altId, finalArgs.ToArray(), _impp, _imppTypes);
+            ImppInfo _imppInstance = new(altId, [.. finalArgs], _impp, _imppTypes);
             return _imppInstance;
         }
 

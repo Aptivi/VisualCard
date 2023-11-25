@@ -158,7 +158,7 @@ namespace VisualCard.Parts
             string _orgName = Regex.Unescape(splitOrg[0]);
             string _orgUnit = Regex.Unescape(splitOrg.Length >= 2 ? splitOrg[1] : "");
             string _orgUnitRole = Regex.Unescape(splitOrg.Length >= 3 ? splitOrg[2] : "");
-            OrganizationInfo _org = new(0, Array.Empty<string>(), _orgName, _orgUnit, _orgUnitRole, splitTypes);
+            OrganizationInfo _org = new(0, [], _orgName, _orgUnit, _orgUnitRole, splitTypes);
             return _org;
         }
 
@@ -180,7 +180,7 @@ namespace VisualCard.Parts
             string _orgUnit = Regex.Unescape(splitOrganizationValues.Length >= 2 ? splitOrganizationValues[1] : "");
             string _orgUnitRole = Regex.Unescape(splitOrganizationValues.Length >= 3 ? splitOrganizationValues[2] : "");
             string[] _orgTypes = VcardParserTools.GetTypes(splitOrg, "WORK", false);
-            OrganizationInfo _org = new(0, Array.Empty<string>(), _orgName, _orgUnit, _orgUnitRole, _orgTypes);
+            OrganizationInfo _org = new(0, [], _orgName, _orgUnit, _orgUnitRole, _orgTypes);
             return _org;
         }
 
@@ -195,7 +195,7 @@ namespace VisualCard.Parts
             string _orgName = Regex.Unescape(splitOrg[0]);
             string _orgUnit = Regex.Unescape(splitOrg.Length >= 2 ? splitOrg[1] : "");
             string _orgUnitRole = Regex.Unescape(splitOrg.Length >= 3 ? splitOrg[2] : "");
-            OrganizationInfo _org = new(0, Array.Empty<string>(), _orgName, _orgUnit, _orgUnitRole, splitTypes);
+            OrganizationInfo _org = new(0, [], _orgName, _orgUnit, _orgUnitRole, splitTypes);
             return _org;
         }
 
@@ -217,7 +217,7 @@ namespace VisualCard.Parts
             string _orgUnit = Regex.Unescape(splitOrganizationValues.Length >= 2 ? splitOrganizationValues[1] : "");
             string _orgUnitRole = Regex.Unescape(splitOrganizationValues.Length >= 3 ? splitOrganizationValues[2] : "");
             string[] _orgTypes = VcardParserTools.GetTypes(splitOrg, "WORK", true);
-            OrganizationInfo _org = new(0, Array.Empty<string>(), _orgName, _orgUnit, _orgUnitRole, _orgTypes);
+            OrganizationInfo _org = new(0, [], _orgName, _orgUnit, _orgUnitRole, _orgTypes);
             return _org;
         }
 
@@ -232,7 +232,7 @@ namespace VisualCard.Parts
             string _orgName = Regex.Unescape(splitOrg[0]);
             string _orgUnit = Regex.Unescape(splitOrg.Length >= 2 ? splitOrg[1] : "");
             string _orgUnitRole = Regex.Unescape(splitOrg.Length >= 3 ? splitOrg[2] : "");
-            OrganizationInfo _org = new(altId, Array.Empty<string>(), _orgName, _orgUnit, _orgUnitRole, splitTypes);
+            OrganizationInfo _org = new(altId, [], _orgName, _orgUnit, _orgUnitRole, splitTypes);
             return _org;
         }
 
@@ -254,7 +254,7 @@ namespace VisualCard.Parts
             string _orgUnit = Regex.Unescape(splitOrganizationValues.Length >= 2 ? splitOrganizationValues[1] : "");
             string _orgUnitRole = Regex.Unescape(splitOrganizationValues.Length >= 3 ? splitOrganizationValues[2] : "");
             string[] _orgTypes = VcardParserTools.GetTypes(splitOrg, "WORK", true);
-            OrganizationInfo _org = new(altId, finalArgs.ToArray(), _orgName, _orgUnit, _orgUnitRole, _orgTypes);
+            OrganizationInfo _org = new(altId, [.. finalArgs], _orgName, _orgUnit, _orgUnitRole, _orgTypes);
             return _org;
         }
 

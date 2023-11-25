@@ -212,7 +212,7 @@ namespace VisualCard.Parts
             }
 
             // Populate the fields
-            PhotoInfo _photo = new(0, Array.Empty<string>(), valueType, photoEncoding, photoType, encodedPhoto.ToString());
+            PhotoInfo _photo = new(0, [], valueType, photoEncoding, photoType, encodedPhoto.ToString());
             return _photo;
         }
 
@@ -251,7 +251,7 @@ namespace VisualCard.Parts
             }
 
             // Populate the fields
-            PhotoInfo _photo = new(0, Array.Empty<string>(), valueType, photoEncoding, photoType, encodedPhoto.ToString());
+            PhotoInfo _photo = new(0, [], valueType, photoEncoding, photoType, encodedPhoto.ToString());
             return _photo;
         }
 
@@ -290,7 +290,7 @@ namespace VisualCard.Parts
             }
 
             // Populate the fields
-            PhotoInfo _photo = new(altId, finalArgs.ToArray(), valueType, photoEncoding, photoType, encodedPhoto.ToString());
+            PhotoInfo _photo = new(altId, [.. finalArgs], valueType, photoEncoding, photoType, encodedPhoto.ToString());
             return _photo;
         }
 

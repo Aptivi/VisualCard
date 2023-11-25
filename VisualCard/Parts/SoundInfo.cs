@@ -212,7 +212,7 @@ namespace VisualCard.Parts
             }
 
             // Populate the fields
-            SoundInfo _sound = new(0, Array.Empty<string>(), valueType, soundEncoding, soundType, encodedSound.ToString());
+            SoundInfo _sound = new(0, [], valueType, soundEncoding, soundType, encodedSound.ToString());
             return _sound;
         }
 
@@ -251,7 +251,7 @@ namespace VisualCard.Parts
             }
 
             // Populate the fields
-            SoundInfo _sound = new(0, Array.Empty<string>(), valueType, soundEncoding, soundType, encodedSound.ToString());
+            SoundInfo _sound = new(0, [], valueType, soundEncoding, soundType, encodedSound.ToString());
             return _sound;
         }
 
@@ -290,7 +290,7 @@ namespace VisualCard.Parts
             }
 
             // Populate the fields
-            SoundInfo _sound = new(altId, finalArgs.ToArray(), valueType, soundEncoding, soundType, encodedSound.ToString());
+            SoundInfo _sound = new(altId, [.. finalArgs], valueType, soundEncoding, soundType, encodedSound.ToString());
             return _sound;
         }
 
