@@ -17,7 +17,7 @@ fi
 # Pack binary
 echo Packing binary...
 cd "../VisualCard/bin/$releaseconf/netstandard2.0/" && "$zippath" -r /tmp/$version-bin.zip . && cd -
-cd "../VisualCard.ShowContacts/bin/$releaseconf/net6.0/" && "$zippath" -r /tmp/$version-bin.zip . && cd -
+cd "../VisualCard.ShowContacts/bin/$releaseconf/net8.0/" && "$zippath" -r /tmp/$version-bin.zip . && cd -
 if [ ! $? == 0 ]; then
 	echo Packing using zip failed.
 	exit 1
