@@ -92,30 +92,30 @@ namespace VisualCard.Tests
         /// <see cref="CardTools.GetCardParsers(System.IO.StreamReader)"/> function.
         /// </summary>
         public static readonly string[] invalidContacts =
-        {
+        [
             vcardZeroByte,
             vcardNonexistentVersion,
-        };
+        ];
 
         /// <summary>
         /// All of the contacts in this field with invalid syntax or omitted requirements may be accepted by the
         /// <see cref="CardTools.GetCardParsers(System.IO.StreamReader)"/> function.
         /// </summary>
         public static readonly string[] seemsValidContacts =
-        {
+        [
             vcardTwoNoFullName,
-        };
+        ];
 
         /// <summary>
         /// All of the contacts in this field should fail immediately upon calling <see cref="BaseVcardParser.Parse()"/>.
         /// These usually resemble contacts with invalid syntax.
         /// </summary>
         public static readonly string[] invalidContactsParser =
-        {
+        [
             vcardThreeNoFullName,
             vcardTwoBarren,
             vcardThreeBarren,
             vcardFourBarren,
-        };
+        ];
     }
 }

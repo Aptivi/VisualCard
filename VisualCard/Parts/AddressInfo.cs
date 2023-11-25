@@ -192,7 +192,7 @@ namespace VisualCard.Parts
                 throw new InvalidDataException("Address information must specify exactly seven values (P.O. Box, extended address, street address, locality, region, postal code, and country)");
 
             // Populate the fields
-            string[] _addressTypes = new string[] { "HOME" };
+            string[] _addressTypes = ["HOME"];
             string _addressPOBox = Regex.Unescape(splitAddressValues[0]);
             string _addressExtended = Regex.Unescape(splitAddressValues[1]);
             string _addressStreet = Regex.Unescape(splitAddressValues[2]);
@@ -242,7 +242,7 @@ namespace VisualCard.Parts
                 throw new InvalidDataException("Address information must specify exactly seven values (P.O. Box, extended address, street address, locality, region, postal code, and country)");
 
             // Populate the fields
-            string[] _addressTypes = new string[] { "HOME" };
+            string[] _addressTypes = ["HOME"];
             string _addressPOBox = Regex.Unescape(splitAddressValues[0]);
             string _addressExtended = Regex.Unescape(splitAddressValues[1]);
             string _addressStreet = Regex.Unescape(splitAddressValues[2]);
@@ -292,7 +292,7 @@ namespace VisualCard.Parts
                 throw new InvalidDataException("Address information must specify exactly seven values (P.O. Box, extended address, street address, locality, region, postal code, and country)");
 
             // Populate the fields
-            string[] _addressTypes = new string[] { "HOME" };
+            string[] _addressTypes = ["HOME"];
             string _addressPOBox = Regex.Unescape(splitAddressValues[0]);
             string _addressExtended = Regex.Unescape(splitAddressValues[1]);
             string _addressStreet = Regex.Unescape(splitAddressValues[2]);

@@ -132,7 +132,7 @@ namespace VisualCard.Parts
         internal static ImppInfo FromStringVcardTwo(string value)
         {
             string imppValue = value.Substring(VcardConstants._imppSpecifier.Length + 1);
-            string[] _imppTypes = new string[] { "HOME" };
+            string[] _imppTypes = ["HOME"];
             string _impp = Regex.Unescape(imppValue);
             ImppInfo _imppInstance = new(0, [], _impp, _imppTypes);
             return _imppInstance;
@@ -158,7 +158,7 @@ namespace VisualCard.Parts
             string imppValue = value.Substring(VcardConstants._imppSpecifier.Length + 1);
 
             // Populate the fields
-            string[] _imppTypes = new string[] { "HOME" };
+            string[] _imppTypes = ["HOME"];
             string _impp = Regex.Unescape(imppValue);
             ImppInfo _imppInstance = new(0, [], _impp, _imppTypes);
             return _imppInstance;
@@ -185,7 +185,7 @@ namespace VisualCard.Parts
             string imppValue = value.Substring(VcardConstants._imppSpecifier.Length + 1);
 
             // Populate the fields
-            string[] _imppTypes = new string[] { "HOME" };
+            string[] _imppTypes = ["HOME"];
             string _impp = Regex.Unescape(imppValue);
             ImppInfo _imppInstance = new(altId, [], _impp, _imppTypes);
             return _imppInstance;

@@ -154,7 +154,7 @@ namespace VisualCard.Parts
             string geoValue = value.Substring(VcardConstants._geoSpecifier.Length + 1);
 
             // Populate the fields
-            string[] _geoTypes = new string[] { "uri" };
+            string[] _geoTypes = ["uri"];
             string _geoNumber = Regex.Unescape(geoValue);
             GeoInfo _geo = new(0, [], _geoTypes, _geoNumber);
             return _geo;
@@ -183,7 +183,7 @@ namespace VisualCard.Parts
             string geoValue = value.Substring(VcardConstants._geoSpecifier.Length + 1);
 
             // Populate the fields
-            string[] _geoTypes = new string[] { "uri" };
+            string[] _geoTypes = ["uri"];
             string _geoNumber = Regex.Unescape(geoValue);
             GeoInfo _geo = new(altId, [], _geoTypes, _geoNumber);
             return _geo;

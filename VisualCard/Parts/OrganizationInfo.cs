@@ -154,7 +154,7 @@ namespace VisualCard.Parts
             string[] splitOrg = orgValue.Split(VcardConstants._fieldDelimiter);
 
             // Populate the fields
-            string[] splitTypes = new string[] { "WORK" };
+            string[] splitTypes = ["WORK"];
             string _orgName = Regex.Unescape(splitOrg[0]);
             string _orgUnit = Regex.Unescape(splitOrg.Length >= 2 ? splitOrg[1] : "");
             string _orgUnitRole = Regex.Unescape(splitOrg.Length >= 3 ? splitOrg[2] : "");
@@ -191,7 +191,7 @@ namespace VisualCard.Parts
             string[] splitOrg = orgValue.Split(VcardConstants._fieldDelimiter);
 
             // Populate the fields
-            string[] splitTypes = new string[] { "WORK" };
+            string[] splitTypes = ["WORK"];
             string _orgName = Regex.Unescape(splitOrg[0]);
             string _orgUnit = Regex.Unescape(splitOrg.Length >= 2 ? splitOrg[1] : "");
             string _orgUnitRole = Regex.Unescape(splitOrg.Length >= 3 ? splitOrg[2] : "");
@@ -228,7 +228,7 @@ namespace VisualCard.Parts
             string[] splitOrg = orgValue.Split(VcardConstants._fieldDelimiter);
 
             // Populate the fields
-            string[] splitTypes = new string[] { "WORK" };
+            string[] splitTypes = ["WORK"];
             string _orgName = Regex.Unescape(splitOrg[0]);
             string _orgUnit = Regex.Unescape(splitOrg.Length >= 2 ? splitOrg[1] : "");
             string _orgUnitRole = Regex.Unescape(splitOrg.Length >= 3 ? splitOrg[2] : "");

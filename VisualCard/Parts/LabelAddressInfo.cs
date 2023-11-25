@@ -128,7 +128,7 @@ namespace VisualCard.Parts
                 throw new InvalidDataException("Label address information must specify exactly one value (address label)");
 
             // Populate the fields
-            string[] _addressTypes = new string[] { "HOME" };
+            string[] _addressTypes = ["HOME"];
             string _addressLabel = Regex.Unescape(splitAddressValues[0]);
             LabelAddressInfo _address = new(0, [], _addressTypes, _addressLabel);
             return _address;
@@ -166,7 +166,7 @@ namespace VisualCard.Parts
                 throw new InvalidDataException("Label address information must specify exactly one value (address label)");
 
             // Populate the fields
-            string[] _addressTypes = new string[] { "HOME" };
+            string[] _addressTypes = ["HOME"];
             string _addressLabel = Regex.Unescape(splitAddressValues[0]);
             LabelAddressInfo _address = new(0, [], _addressTypes, _addressLabel);
             return _address;

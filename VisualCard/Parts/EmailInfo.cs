@@ -143,7 +143,7 @@ namespace VisualCard.Parts
             }
 
             // Populate the fields
-            string[] _emailTypes = new string[] { "HOME" };
+            string[] _emailTypes = ["HOME"];
             string _emailAddress = mail.Address;
             EmailInfo _email = new(0, [], _emailTypes, _emailAddress);
             return _email;
@@ -193,7 +193,7 @@ namespace VisualCard.Parts
             }
 
             // Populate the fields
-            string[] _emailTypes = new string[] { "HOME" };
+            string[] _emailTypes = ["HOME"];
             string _emailAddress = mail.Address;
             EmailInfo _email = new(0, [], _emailTypes, _emailAddress);
             return _email;
@@ -243,7 +243,7 @@ namespace VisualCard.Parts
             }
 
             // Populate the fields
-            string[] _emailTypes = new string[] { "HOME" };
+            string[] _emailTypes = ["HOME"];
             string _emailAddress = mail.Address;
             EmailInfo _email = new(altId, [], _emailTypes, _emailAddress);
             return _email;

@@ -132,7 +132,7 @@ namespace VisualCard.Parts
             string telValue = value.Substring(VcardConstants._telephoneSpecifier.Length + 1);
 
             // Populate the fields
-            string[] _telephoneTypes = new string[] { "CELL" };
+            string[] _telephoneTypes = ["CELL"];
             string _telephoneNumber = Regex.Unescape(telValue);
             TelephoneInfo _telephone = new(0, [], _telephoneTypes, _telephoneNumber);
             return _telephone;
@@ -159,7 +159,7 @@ namespace VisualCard.Parts
             string telValue = value.Substring(VcardConstants._telephoneSpecifier.Length + 1);
 
             // Populate the fields
-            string[] _telephoneTypes = new string[] { "CELL" };
+            string[] _telephoneTypes = ["CELL"];
             string _telephoneNumber = Regex.Unescape(telValue);
             TelephoneInfo _telephone = new(0, [], _telephoneTypes, _telephoneNumber);
             return _telephone;
@@ -186,7 +186,7 @@ namespace VisualCard.Parts
             string telValue = value.Substring(VcardConstants._telephoneSpecifier.Length + 1);
 
             // Populate the fields
-            string[] _telephoneTypes = new string[] { "CELL" };
+            string[] _telephoneTypes = ["CELL"];
             string _telephoneNumber = Regex.Unescape(telValue);
             TelephoneInfo _telephone = new(altId, [], _telephoneTypes, _telephoneNumber);
             return _telephone;

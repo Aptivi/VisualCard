@@ -154,7 +154,7 @@ namespace VisualCard.Parts
             string tzValue = value.Substring(VcardConstants._timeZoneSpecifier.Length + 1);
 
             // Populate the fields
-            string[] _timeZoneTypes = new string[] { "uri-offset" };
+            string[] _timeZoneTypes = ["uri-offset"];
             string _timeZoneNumber = Regex.Unescape(tzValue);
             TimeZoneInfo _timeZone = new(0, [], _timeZoneTypes, _timeZoneNumber);
             return _timeZone;
@@ -183,7 +183,7 @@ namespace VisualCard.Parts
             string tzValue = value.Substring(VcardConstants._timeZoneSpecifier.Length + 1);
 
             // Populate the fields
-            string[] _timeZoneTypes = new string[] { "uri-offset" };
+            string[] _timeZoneTypes = ["uri-offset"];
             string _timeZoneNumber = Regex.Unescape(tzValue);
             TimeZoneInfo _timeZone = new(altId, [], _timeZoneTypes, _timeZoneNumber);
             return _timeZone;

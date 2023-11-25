@@ -92,10 +92,10 @@ namespace VisualCard.Parsers
         internal static string[] SplitToKeyAndValueFromString(string line)
         {
             if (line.IndexOf(':') < 0)
-                return new[] { line, "" };
+                return [line, ""];
             string key = line.Substring(0, line.IndexOf(':'));
             string value = line.Substring(line.IndexOf(':'));
-            return new[] { key, value };
+            return [key, value];
         }
 
         internal static IEnumerable<int> GetDigits(int num)

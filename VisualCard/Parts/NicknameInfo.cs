@@ -130,7 +130,7 @@ namespace VisualCard.Parts
             string nickValue = value.Substring(VcardConstants._nicknameSpecifier.Length + 1);
 
             // Populate the fields
-            string[] _nicknameTypes = new string[] { "HOME" };
+            string[] _nicknameTypes = ["HOME"];
             string _nick = Regex.Unescape(nickValue);
             NicknameInfo _nickInstance = new(0, [], _nick, _nicknameTypes);
             return _nickInstance;
@@ -157,7 +157,7 @@ namespace VisualCard.Parts
             string nickValue = value.Substring(VcardConstants._nicknameSpecifier.Length + 1);
 
             // Populate the fields
-            string[] _nicknameTypes = new string[] { "HOME" };
+            string[] _nicknameTypes = ["HOME"];
             string _nick = Regex.Unescape(nickValue);
             NicknameInfo _nickInstance = new(altId, [], _nick, _nicknameTypes);
             return _nickInstance;
