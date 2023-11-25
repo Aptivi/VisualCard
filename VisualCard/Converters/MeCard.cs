@@ -88,7 +88,13 @@ namespace VisualCard.Converters
                    $"""
                     BEGIN:VCARD
                     VERSION:3.0
-                    {string.Join(Environment.NewLine, values)}
+
+                    """
+                );
+                foreach (var value in values)
+                    masterContactBuilder.AppendLine(value);
+                masterContactBuilder.AppendLine(
+                   $"""
                     FN:{fullName}
                     END:VCARD
                     """
