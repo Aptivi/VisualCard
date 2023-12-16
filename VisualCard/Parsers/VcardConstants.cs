@@ -63,6 +63,7 @@ namespace VisualCard.Parsers
         // Available in vCard 2.1, 3.0, and 5.0
         internal const string _labelSpecifier = "LABEL";
         internal const string _sortStringSpecifier = "SORT-STRING";
+        internal const string _agentSpecifier = "AGENT";
 
         // Available in vCard 3.0, 4.0, and 5.0
         internal const string _nicknameSpecifier = "NICKNAME";

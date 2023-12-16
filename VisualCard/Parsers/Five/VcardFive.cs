@@ -91,6 +91,7 @@ namespace VisualCard.Parsers.Five
             List<TimeZoneInfo> _timezones   = [];
             List<GeoInfo> _geos             = [];
             List<ImppInfo> _impps           = [];
+            List<AgentInfo> _agents         = [];
             List<XNameInfo> _xes            = [];
 
             // Name and Full Name specifiers are required
@@ -211,12 +212,23 @@ namespace VisualCard.Parsers.Five
                     }
 
                     // Label (LABEL;TYPE=dom,home,postal,parcel:Mr.John Q. Public\, Esq.\nMail Drop: TNE QB\n123 Main Street\nAny Town\, CA  91921 - 1234\nU.S.A.)
+                    // ALTID is supported.
                     if (_value.StartsWith(VcardConstants._labelSpecifier + delimiter))
                     {
                         if (isWithType)
                             _labels.Add(LabelAddressInfo.FromStringVcardFiveWithType(_value, finalArgs, altId));
                         else
                             _labels.Add(LabelAddressInfo.FromStringVcardFive(_value, altId));
+                    }
+
+                    // Agent (AGENT:BEGIN:VCARD\nFN:Joe Friday\nTEL:+1...)
+                    // ALTID is supported.
+                    if (_value.StartsWith(VcardConstants._agentSpecifier + delimiter))
+                    {
+                        if (isWithType)
+                            _agents.Add(AgentInfo.FromStringVcardFiveWithType(_value, finalArgs, altId));
+                        else
+                            _agents.Add(AgentInfo.FromStringVcardFive(_value, altId));
                     }
 
                     // Email (EMAIL;TYPE=HOME,INTERNET:john.s@acme.co)
@@ -530,6 +542,7 @@ namespace VisualCard.Parsers.Five
                 ContactTelephones = [.. _telephones],
                 ContactAddresses = [.. _addresses],
                 ContactLabels = [.. _labels],
+                ContactAgents = [.. _agents],
                 ContactOrganizations = [.. _orgs],
                 ContactTitles = [.. _titles],
                 ContactURL = _url,
@@ -588,6 +601,8 @@ namespace VisualCard.Parsers.Five
                 cardBuilder.AppendLine(address.ToStringVcardFive());
             foreach (LabelAddressInfo label in card.ContactLabels)
                 cardBuilder.AppendLine(label.ToStringVcardFive());
+            foreach (AgentInfo agent in card.ContactAgents)
+                cardBuilder.AppendLine(agent.ToStringVcardFive());
             foreach (EmailInfo email in card.ContactMails)
                 cardBuilder.AppendLine(email.ToStringVcardFive());
             foreach (OrganizationInfo organization in card.ContactOrganizations)

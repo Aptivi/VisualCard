@@ -29,6 +29,7 @@ using VisualCard.Parsers;
 using VisualCard.Parsers.Two;
 using VisualCard.Parsers.Three;
 using VisualCard.Parsers.Four;
+using VisualCard.Parsers.Five;
 
 namespace VisualCard
 {
@@ -139,6 +140,10 @@ namespace VisualCard
                             break;
                         case "4.0":
                             CardParser = new VcardFour(CardContent.ToString(), CardVersion);
+                            FinalParsers.Add(CardParser);
+                            break;
+                        case "5.0":
+                            CardParser = new VcardFive(CardContent.ToString(), CardVersion);
                             FinalParsers.Add(CardParser);
                             break;
                     }

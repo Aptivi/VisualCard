@@ -87,6 +87,7 @@ namespace VisualCard.Parsers.Three
             List<TimeZoneInfo> _timezones = [];
             List<GeoInfo> _geos = [];
             List<ImppInfo> _impps = [];
+            List<AgentInfo> _agents = [];
             List<XNameInfo> _xes = [];
 
             // Name and Full Name specifiers are required
@@ -159,6 +160,15 @@ namespace VisualCard.Parsers.Three
                             _labels.Add(LabelAddressInfo.FromStringVcardThreeWithType(_value));
                         else
                             _labels.Add(LabelAddressInfo.FromStringVcardThree(_value));
+                    }
+
+                    // Agent (AGENT:BEGIN:VCARD\nFN:Joe Friday\nTEL:+1...)
+                    if (_value.StartsWith(VcardConstants._agentSpecifier + delimiter))
+                    {
+                        if (isWithType)
+                            _agents.Add(AgentInfo.FromStringVcardThreeWithType(_value));
+                        else
+                            _agents.Add(AgentInfo.FromStringVcardThree(_value));
                     }
 
                     // Email (EMAIL;TYPE=HOME,INTERNET:john.s@acme.co)
@@ -397,6 +407,7 @@ namespace VisualCard.Parsers.Three
                 ContactTelephones = [.. _telephones],
                 ContactAddresses = [.. _addresses],
                 ContactLabels = [.. _labels],
+                ContactAgents = [.. _agents],
                 ContactOrganizations = [.. _orgs],
                 ContactTitles = [.. _titles],
                 ContactURL = _url,
@@ -455,6 +466,8 @@ namespace VisualCard.Parsers.Three
                 cardBuilder.AppendLine(address.ToStringVcardThree());
             foreach (LabelAddressInfo label in card.ContactLabels)
                 cardBuilder.AppendLine(label.ToStringVcardThree());
+            foreach (AgentInfo agent in card.ContactAgents)
+                cardBuilder.AppendLine(agent.ToStringVcardThree());
             foreach (EmailInfo email in card.ContactMails)
                 cardBuilder.AppendLine(email.ToStringVcardThree());
             foreach (OrganizationInfo organization in card.ContactOrganizations)
