@@ -79,6 +79,7 @@ namespace VisualCard.Parsers.Two
             List<LogoInfo> _logos = [];
             List<SoundInfo> _sounds = [];
             List<RoleInfo> _roles = [];
+            List<string> _categories = [];
             List<TimeZoneInfo> _timezones = [];
             List<GeoInfo> _geos = [];
             List<ImppInfo> _impps = [];
@@ -269,6 +270,16 @@ namespace VisualCard.Parsers.Two
                     if (_value.StartsWith(VcardConstants._roleSpecifier + delimiter))
                         _roles.Add(RoleInfo.FromStringVcardTwo(_value));
 
+                    // Categories (CATEGORIES:INTERNET or CATEGORIES:INTERNET,IETF,INDUSTRY,INFORMATION TECHNOLOGY)
+                    if (_value.StartsWith(VcardConstants._categoriesSpecifier + delimiter))
+                    {
+                        // Get the value
+                        string categoriesValue = _value.Substring(VcardConstants._categoriesSpecifier.Length + 1);
+
+                        // Populate field
+                        _categories.AddRange(Regex.Unescape(categoriesValue).Split(','));
+                    }
+
                     // Time Zone (TZ;VALUE=text:-05:00; EST; Raleigh/North America)
                     if (_value.StartsWith(VcardConstants._timeZoneSpecifier + delimiter))
                     {
@@ -344,7 +355,7 @@ namespace VisualCard.Parsers.Two
                 ContactBirthdate = _bday,
                 ContactMailer = _mailer,
                 ContactRoles = [.. _roles],
-                ContactCategories = [],
+                ContactCategories = [.. _categories],
                 ContactLogos = [.. _logos],
                 ContactProdId = "",
                 ContactSortString = "",
@@ -415,6 +426,8 @@ namespace VisualCard.Parsers.Two
                 cardBuilder.AppendLine($"{VcardConstants._mailerSpecifier}:{card.ContactMailer}");
             foreach (RoleInfo role in card.ContactRoles)
                 cardBuilder.AppendLine(role.ToStringVcardTwo());
+            if (card.ContactCategories is not null && card.ContactCategories.Length > 0)
+                cardBuilder.AppendLine($"{VcardConstants._categoriesSpecifier}:{string.Join(",", card.ContactCategories)}");
             foreach (TimeZoneInfo timeZone in card.ContactTimeZone)
                 cardBuilder.AppendLine(timeZone.ToStringVcardTwo());
             foreach (GeoInfo geo in card.ContactGeo)
