@@ -32,7 +32,17 @@
   "api/VisualCard.Parsers.BaseVcardParser.html": {
     "href": "api/VisualCard.Parsers.BaseVcardParser.html",
     "title": "Class BaseVcardParser | VisualCard API - Aptivi",
-    "keywords": "Class BaseVcardParser The base VCard parser Inheritance object BaseVcardParser VcardFour VcardThree VcardTwo Implements IVcardParser Namespace: VisualCard.Parsers Assembly: VisualCard.dll Syntax public abstract class BaseVcardParser : IVcardParser Properties | Edit this page View Source CardContent VCard card content Declaration public virtual string CardContent { get; } Property Value Type Description string | Edit this page View Source CardVersion VCard card version Declaration public virtual string CardVersion { get; } Property Value Type Description string Methods | Edit this page View Source Parse() Parses a VCard contact Declaration public abstract Card Parse() Returns Type Description Card A strongly-typed Card instance holding information about the card Implements IVcardParser"
+    "keywords": "Class BaseVcardParser The base VCard parser Inheritance object BaseVcardParser VcardFive VcardFour VcardThree VcardTwo Implements IVcardParser Namespace: VisualCard.Parsers Assembly: VisualCard.dll Syntax public abstract class BaseVcardParser : IVcardParser Properties | Edit this page View Source CardContent VCard card content Declaration public virtual string CardContent { get; } Property Value Type Description string | Edit this page View Source CardVersion VCard card version Declaration public virtual string CardVersion { get; } Property Value Type Description string Methods | Edit this page View Source Parse() Parses a VCard contact Declaration public abstract Card Parse() Returns Type Description Card A strongly-typed Card instance holding information about the card Implements IVcardParser"
+  },
+  "api/VisualCard.Parsers.Five.VcardFive.html": {
+    "href": "api/VisualCard.Parsers.Five.VcardFive.html",
+    "title": "Class VcardFive | VisualCard API - Aptivi",
+    "keywords": "Class VcardFive Parser for VCard version 5.0. Consult the vcard-40-rfc6350.txt file in source for the specification. Inheritance object BaseVcardParser VcardFive Implements IVcardParser Namespace: VisualCard.Parsers.Five Assembly: VisualCard.dll Syntax public class VcardFive : BaseVcardParser, IVcardParser Properties | Edit this page View Source CardContent VCard card content Declaration public override string CardContent { get; } Property Value Type Description string Overrides BaseVcardParser.CardContent | Edit this page View Source CardVersion VCard card version Declaration public override string CardVersion { get; } Property Value Type Description string Overrides BaseVcardParser.CardVersion Methods | Edit this page View Source Parse() Parses a VCard contact Declaration public override Card Parse() Returns Type Description Card A strongly-typed Card instance holding information about the card Overrides BaseVcardParser.Parse() Implements IVcardParser"
+  },
+  "api/VisualCard.Parsers.Five.html": {
+    "href": "api/VisualCard.Parsers.Five.html",
+    "title": "Namespace VisualCard.Parsers.Five | VisualCard API - Aptivi",
+    "keywords": "Namespace VisualCard.Parsers.Five Classes VcardFive Parser for VCard version 5.0. Consult the vcard-40-rfc6350.txt file in source for the specification."
   },
   "api/VisualCard.Parsers.Four.VcardFour.html": {
     "href": "api/VisualCard.Parsers.Four.VcardFour.html",

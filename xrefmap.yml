@@ -192,6 +192,57 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parsers.BaseVcardParser.Parse
   nameWithType: BaseVcardParser.Parse
+- uid: VisualCard.Parsers.Five
+  name: VisualCard.Parsers.Five
+  href: api/VisualCard.Parsers.Five.html
+  commentId: N:VisualCard.Parsers.Five
+  fullName: VisualCard.Parsers.Five
+  nameWithType: VisualCard.Parsers.Five
+- uid: VisualCard.Parsers.Five.VcardFive
+  name: VcardFive
+  href: api/VisualCard.Parsers.Five.VcardFive.html
+  commentId: T:VisualCard.Parsers.Five.VcardFive
+  fullName: VisualCard.Parsers.Five.VcardFive
+  nameWithType: VcardFive
+- uid: VisualCard.Parsers.Five.VcardFive.CardContent
+  name: CardContent
+  href: api/VisualCard.Parsers.Five.VcardFive.html#VisualCard_Parsers_Five_VcardFive_CardContent
+  commentId: P:VisualCard.Parsers.Five.VcardFive.CardContent
+  fullName: VisualCard.Parsers.Five.VcardFive.CardContent
+  nameWithType: VcardFive.CardContent
+- uid: VisualCard.Parsers.Five.VcardFive.CardContent*
+  name: CardContent
+  href: api/VisualCard.Parsers.Five.VcardFive.html#VisualCard_Parsers_Five_VcardFive_CardContent_
+  commentId: Overload:VisualCard.Parsers.Five.VcardFive.CardContent
+  isSpec: "True"
+  fullName: VisualCard.Parsers.Five.VcardFive.CardContent
+  nameWithType: VcardFive.CardContent
+- uid: VisualCard.Parsers.Five.VcardFive.CardVersion
+  name: CardVersion
+  href: api/VisualCard.Parsers.Five.VcardFive.html#VisualCard_Parsers_Five_VcardFive_CardVersion
+  commentId: P:VisualCard.Parsers.Five.VcardFive.CardVersion
+  fullName: VisualCard.Parsers.Five.VcardFive.CardVersion
+  nameWithType: VcardFive.CardVersion
+- uid: VisualCard.Parsers.Five.VcardFive.CardVersion*
+  name: CardVersion
+  href: api/VisualCard.Parsers.Five.VcardFive.html#VisualCard_Parsers_Five_VcardFive_CardVersion_
+  commentId: Overload:VisualCard.Parsers.Five.VcardFive.CardVersion
+  isSpec: "True"
+  fullName: VisualCard.Parsers.Five.VcardFive.CardVersion
+  nameWithType: VcardFive.CardVersion
+- uid: VisualCard.Parsers.Five.VcardFive.Parse
+  name: Parse()
+  href: api/VisualCard.Parsers.Five.VcardFive.html#VisualCard_Parsers_Five_VcardFive_Parse
+  commentId: M:VisualCard.Parsers.Five.VcardFive.Parse
+  fullName: VisualCard.Parsers.Five.VcardFive.Parse()
+  nameWithType: VcardFive.Parse()
+- uid: VisualCard.Parsers.Five.VcardFive.Parse*
+  name: Parse
+  href: api/VisualCard.Parsers.Five.VcardFive.html#VisualCard_Parsers_Five_VcardFive_Parse_
+  commentId: Overload:VisualCard.Parsers.Five.VcardFive.Parse
+  isSpec: "True"
+  fullName: VisualCard.Parsers.Five.VcardFive.Parse
+  nameWithType: VcardFive.Parse
 - uid: VisualCard.Parsers.Four
   name: VisualCard.Parsers.Four
   href: api/VisualCard.Parsers.Four.html

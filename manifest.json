@@ -85,6 +85,26 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parsers.Five.VcardFive.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parsers.Five.VcardFive.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parsers.Five.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parsers.Five.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/VisualCard.Parsers.Four.VcardFour.yml",
       "output": {
         ".html": {
