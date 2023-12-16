@@ -624,6 +624,92 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.AddressInfo.StreetAddress
   nameWithType: AddressInfo.StreetAddress
+- uid: VisualCard.Parts.AgentInfo
+  name: AgentInfo
+  href: api/VisualCard.Parts.AgentInfo.html
+  commentId: T:VisualCard.Parts.AgentInfo
+  fullName: VisualCard.Parts.AgentInfo
+  nameWithType: AgentInfo
+- uid: VisualCard.Parts.AgentInfo.AgentCards
+  name: AgentCards
+  href: api/VisualCard.Parts.AgentInfo.html#VisualCard_Parts_AgentInfo_AgentCards
+  commentId: P:VisualCard.Parts.AgentInfo.AgentCards
+  fullName: VisualCard.Parts.AgentInfo.AgentCards
+  nameWithType: AgentInfo.AgentCards
+- uid: VisualCard.Parts.AgentInfo.AgentCards*
+  name: AgentCards
+  href: api/VisualCard.Parts.AgentInfo.html#VisualCard_Parts_AgentInfo_AgentCards_
+  commentId: Overload:VisualCard.Parts.AgentInfo.AgentCards
+  isSpec: "True"
+  fullName: VisualCard.Parts.AgentInfo.AgentCards
+  nameWithType: AgentInfo.AgentCards
+- uid: VisualCard.Parts.AgentInfo.AltArguments
+  name: AltArguments
+  href: api/VisualCard.Parts.AgentInfo.html#VisualCard_Parts_AgentInfo_AltArguments
+  commentId: P:VisualCard.Parts.AgentInfo.AltArguments
+  fullName: VisualCard.Parts.AgentInfo.AltArguments
+  nameWithType: AgentInfo.AltArguments
+- uid: VisualCard.Parts.AgentInfo.AltArguments*
+  name: AltArguments
+  href: api/VisualCard.Parts.AgentInfo.html#VisualCard_Parts_AgentInfo_AltArguments_
+  commentId: Overload:VisualCard.Parts.AgentInfo.AltArguments
+  isSpec: "True"
+  fullName: VisualCard.Parts.AgentInfo.AltArguments
+  nameWithType: AgentInfo.AltArguments
+- uid: VisualCard.Parts.AgentInfo.AltId
+  name: AltId
+  href: api/VisualCard.Parts.AgentInfo.html#VisualCard_Parts_AgentInfo_AltId
+  commentId: P:VisualCard.Parts.AgentInfo.AltId
+  fullName: VisualCard.Parts.AgentInfo.AltId
+  nameWithType: AgentInfo.AltId
+- uid: VisualCard.Parts.AgentInfo.AltId*
+  name: AltId
+  href: api/VisualCard.Parts.AgentInfo.html#VisualCard_Parts_AgentInfo_AltId_
+  commentId: Overload:VisualCard.Parts.AgentInfo.AltId
+  isSpec: "True"
+  fullName: VisualCard.Parts.AgentInfo.AltId
+  nameWithType: AgentInfo.AltId
+- uid: VisualCard.Parts.AgentInfo.Equals(System.Object)
+  name: Equals(object)
+  href: api/VisualCard.Parts.AgentInfo.html#VisualCard_Parts_AgentInfo_Equals_System_Object_
+  commentId: M:VisualCard.Parts.AgentInfo.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Parts.AgentInfo.Equals(object)
+  fullName.vb: VisualCard.Parts.AgentInfo.Equals(Object)
+  nameWithType: AgentInfo.Equals(object)
+  nameWithType.vb: AgentInfo.Equals(Object)
+- uid: VisualCard.Parts.AgentInfo.Equals(VisualCard.Parts.AgentInfo)
+  name: Equals(AgentInfo)
+  href: api/VisualCard.Parts.AgentInfo.html#VisualCard_Parts_AgentInfo_Equals_VisualCard_Parts_AgentInfo_
+  commentId: M:VisualCard.Parts.AgentInfo.Equals(VisualCard.Parts.AgentInfo)
+  fullName: VisualCard.Parts.AgentInfo.Equals(VisualCard.Parts.AgentInfo)
+  nameWithType: AgentInfo.Equals(AgentInfo)
+- uid: VisualCard.Parts.AgentInfo.Equals(VisualCard.Parts.AgentInfo,VisualCard.Parts.AgentInfo)
+  name: Equals(AgentInfo, AgentInfo)
+  href: api/VisualCard.Parts.AgentInfo.html#VisualCard_Parts_AgentInfo_Equals_VisualCard_Parts_AgentInfo_VisualCard_Parts_AgentInfo_
+  commentId: M:VisualCard.Parts.AgentInfo.Equals(VisualCard.Parts.AgentInfo,VisualCard.Parts.AgentInfo)
+  fullName: VisualCard.Parts.AgentInfo.Equals(VisualCard.Parts.AgentInfo, VisualCard.Parts.AgentInfo)
+  nameWithType: AgentInfo.Equals(AgentInfo, AgentInfo)
+- uid: VisualCard.Parts.AgentInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Parts.AgentInfo.html#VisualCard_Parts_AgentInfo_Equals_
+  commentId: Overload:VisualCard.Parts.AgentInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Parts.AgentInfo.Equals
+  nameWithType: AgentInfo.Equals
+- uid: VisualCard.Parts.AgentInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Parts.AgentInfo.html#VisualCard_Parts_AgentInfo_GetHashCode
+  commentId: M:VisualCard.Parts.AgentInfo.GetHashCode
+  fullName: VisualCard.Parts.AgentInfo.GetHashCode()
+  nameWithType: AgentInfo.GetHashCode()
+- uid: VisualCard.Parts.AgentInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Parts.AgentInfo.html#VisualCard_Parts_AgentInfo_GetHashCode_
+  commentId: Overload:VisualCard.Parts.AgentInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Parts.AgentInfo.GetHashCode
+  nameWithType: AgentInfo.GetHashCode
 - uid: VisualCard.Parts.Card
   name: Card
   href: api/VisualCard.Parts.Card.html
@@ -695,6 +781,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Card.ContactAddresses
   nameWithType: Card.ContactAddresses
+- uid: VisualCard.Parts.Card.ContactAgents
+  name: ContactAgents
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactAgents
+  commentId: P:VisualCard.Parts.Card.ContactAgents
+  fullName: VisualCard.Parts.Card.ContactAgents
+  nameWithType: Card.ContactAgents
+- uid: VisualCard.Parts.Card.ContactAgents*
+  name: ContactAgents
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactAgents_
+  commentId: Overload:VisualCard.Parts.Card.ContactAgents
+  isSpec: "True"
+  fullName: VisualCard.Parts.Card.ContactAgents
+  nameWithType: Card.ContactAgents
 - uid: VisualCard.Parts.Card.ContactBirthdate
   name: ContactBirthdate
   href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ContactBirthdate
@@ -1129,6 +1228,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Card.SaveToString
   nameWithType: Card.SaveToString
+- uid: VisualCard.Parts.Card.ToString
+  name: ToString()
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ToString
+  commentId: M:VisualCard.Parts.Card.ToString
+  fullName: VisualCard.Parts.Card.ToString()
+  nameWithType: Card.ToString()
+- uid: VisualCard.Parts.Card.ToString*
+  name: ToString
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ToString_
+  commentId: Overload:VisualCard.Parts.Card.ToString
+  isSpec: "True"
+  fullName: VisualCard.Parts.Card.ToString
+  nameWithType: Card.ToString
 - uid: VisualCard.Parts.Card.op_Equality(VisualCard.Parts.Card,VisualCard.Parts.Card)
   name: operator ==(Card, Card)
   href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_op_Equality_VisualCard_Parts_Card_VisualCard_Parts_Card_
