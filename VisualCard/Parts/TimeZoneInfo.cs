@@ -123,6 +123,9 @@ namespace VisualCard.Parts
                 $"{TimeZone}";
         }
 
+        internal string ToStringVcardFive() =>
+            ToStringVcardFour();
+
         internal static TimeZoneInfo FromStringVcardTwo(string value)
         {
             string tzValue = value.Substring(VcardConstants._timeZoneSpecifier.Length + 1);
@@ -204,6 +207,12 @@ namespace VisualCard.Parts
             TimeZoneInfo _timeZone = new(altId, [.. finalArgs], _timeZoneTypes, _timeZoneNumber);
             return _timeZone;
         }
+
+        internal static TimeZoneInfo FromStringVcardFive(string value, int altId) =>
+            FromStringVcardFour(value, altId);
+
+        internal static TimeZoneInfo FromStringVcardFiveWithType(string value, List<string> finalArgs, int altId) =>
+            FromStringVcardFourWithType(value, finalArgs, altId);
 
         internal TimeZoneInfo() { }
 

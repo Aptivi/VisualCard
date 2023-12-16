@@ -133,6 +133,9 @@ namespace VisualCard.Parts
                 $"{string.Join(VcardConstants._fieldDelimiter.ToString(), XValues)}";
         }
 
+        internal string ToStringVcardFive() =>
+            ToStringVcardFour();
+
         internal static XNameInfo FromStringVcardTwo(string value)
         {
             string xValue = value.Substring(VcardConstants._xSpecifier.Length);
@@ -190,6 +193,9 @@ namespace VisualCard.Parts
             XNameInfo _x = new(altId, [.. finalArgs], _xName, _xValues, _xTypes);
             return _x;
         }
+
+        internal static XNameInfo FromStringVcardFive(string value, List<string> finalArgs, int altId) =>
+            FromStringVcardFour(value, finalArgs, altId);
 
         internal XNameInfo() { }
 

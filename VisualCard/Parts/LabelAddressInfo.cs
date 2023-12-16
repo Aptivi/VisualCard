@@ -102,7 +102,7 @@ namespace VisualCard.Parts
         internal string ToStringVcardTwo()
         {
             return
-                $"{VcardConstants._addressSpecifier};" +
+                $"{VcardConstants._labelSpecifier};" +
                 $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", AddressTypes)}{VcardConstants._argumentDelimiter}" +
                 $"{DeliveryLabel}";
         }
@@ -110,7 +110,17 @@ namespace VisualCard.Parts
         internal string ToStringVcardThree()
         {
             return
-                $"{VcardConstants._addressSpecifier};" +
+                $"{VcardConstants._labelSpecifier};" +
+                $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", AddressTypes)}{VcardConstants._argumentDelimiter}" +
+                $"{DeliveryLabel}";
+        }
+
+        internal string ToStringVcardFive()
+        {
+            bool installAltId = AltId >= 0 && AltArguments.Length > 0;
+            return
+                $"{VcardConstants._labelSpecifier};" +
+                $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
                 $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", AddressTypes)}{VcardConstants._argumentDelimiter}" +
                 $"{DeliveryLabel}";
         }
@@ -118,7 +128,7 @@ namespace VisualCard.Parts
         internal static LabelAddressInfo FromStringVcardTwo(string value)
         {
             // Get the value
-            string adrValue = value.Substring(VcardConstants._addressSpecifier.Length + 1);
+            string adrValue = value.Substring(VcardConstants._labelSpecifier.Length + 1);
             string[] splitAdr = adrValue.Split(VcardConstants._argumentDelimiter);
 
             // Check the provided address
@@ -136,7 +146,7 @@ namespace VisualCard.Parts
         internal static LabelAddressInfo FromStringVcardTwoWithType(string value)
         {
             // Get the value
-            string adrValue = value.Substring(VcardConstants._addressSpecifier.Length + 1);
+            string adrValue = value.Substring(VcardConstants._labelSpecifier.Length + 1);
             string[] splitAdr = adrValue.Split(VcardConstants._argumentDelimiter);
             if (splitAdr.Length < 2)
                 throw new InvalidDataException("Label address field must specify exactly two values (Type (optionally prepended with TYPE=), and address information)");
@@ -156,7 +166,7 @@ namespace VisualCard.Parts
         internal static LabelAddressInfo FromStringVcardThree(string value)
         {
             // Get the value
-            string adrValue = value.Substring(VcardConstants._addressSpecifier.Length + 1);
+            string adrValue = value.Substring(VcardConstants._labelSpecifier.Length + 1);
             string[] splitAdr = adrValue.Split(VcardConstants._argumentDelimiter);
 
             // Check the provided address
@@ -174,7 +184,7 @@ namespace VisualCard.Parts
         internal static LabelAddressInfo FromStringVcardThreeWithType(string value)
         {
             // Get the value
-            string adrValue = value.Substring(VcardConstants._addressSpecifier.Length + 1);
+            string adrValue = value.Substring(VcardConstants._labelSpecifier.Length + 1);
             string[] splitAdr = adrValue.Split(VcardConstants._argumentDelimiter);
             if (splitAdr.Length < 2)
                 throw new InvalidDataException("Label address field must specify exactly two values (Type (must be prepended with TYPE=), and address information)");
@@ -188,6 +198,44 @@ namespace VisualCard.Parts
             string[] _addressTypes = VcardParserTools.GetTypes(splitAdr, "HOME", true);
             string _addressLabel = Regex.Unescape(splitAddressValues[0]);
             LabelAddressInfo _address = new(0, [], _addressTypes, _addressLabel);
+            return _address;
+        }
+
+        internal static LabelAddressInfo FromStringVcardFive(string value, int altId)
+        {
+            // Get the value
+            string adrValue = value.Substring(VcardConstants._labelSpecifier.Length + 1);
+            string[] splitAdr = adrValue.Split(VcardConstants._argumentDelimiter);
+
+            // Check the provided address
+            string[] splitAddressValues = splitAdr[0].Split(VcardConstants._fieldDelimiter);
+            if (splitAddressValues.Length < 1)
+                throw new InvalidDataException("Label address information must specify exactly one value (address label)");
+
+            // Populate the fields
+            string[] _addressTypes = ["HOME"];
+            string _addressLabel = Regex.Unescape(splitAddressValues[0]);
+            LabelAddressInfo _address = new(altId, [], _addressTypes, _addressLabel);
+            return _address;
+        }
+
+        internal static LabelAddressInfo FromStringVcardFiveWithType(string value, List<string> finalArgs, int altId)
+        {
+            // Get the value
+            string adrValue = value.Substring(VcardConstants._labelSpecifier.Length + 1);
+            string[] splitAdr = adrValue.Split(VcardConstants._argumentDelimiter);
+            if (splitAdr.Length < 2)
+                throw new InvalidDataException("Label address field must specify exactly two values (Type (must be prepended with TYPE=), and address information)");
+
+            // Check the provided address
+            string[] splitAddressValues = splitAdr[1].Split(VcardConstants._fieldDelimiter);
+            if (splitAddressValues.Length < 1)
+                throw new InvalidDataException("Label address information must specify exactly one value (address label)");
+
+            // Populate the fields
+            string[] _addressTypes = VcardParserTools.GetTypes(splitAdr, "HOME", true);
+            string _addressLabel = Regex.Unescape(splitAddressValues[0]);
+            LabelAddressInfo _address = new(altId, [.. finalArgs], _addressTypes, _addressLabel);
             return _address;
         }
 

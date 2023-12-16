@@ -1,0 +1,203 @@
+------------------------------------------------------------------------------------
+
+ ▲ Copyright (c) 2014-2023 Aptivi OSS
+-------------------------------------
+
+   This document is property of Aptivi OSS and the parent, Aptivi, and may
+   be viewed, edited, and re-distributed, as long as the license which comes
+   with this document is followed. It may not be re-sold. Any unauthorized
+   re-selling of any information at any price at the current currency, local
+   or foreign, are subject to actions determined by the criminal or civil laws.
+   
+   | <-- Margin is here                               80-character width limit --> |
+
+------------------------------------------------------------------------------------
+
+   This document contains info about the vCard 5.0 specification.
+
+   Date created:  December 16th, 2023              Document ID: A-INT-0028-121623
+   Date modified: Check the filesystem entry       Doc Record:  f7650b80-054ba689
+   Author:        Aptivi OSS                       Content SHA: a8d9b1437508ce58f
+
+------------------------------------------------------------------------------------
+
+Specification Details
+=====================
+
+   This specification is basically the same as vCard 4.0, except that it is a fusion
+   of the three vCard versions with one feature removed. References below:
+   
+     - vCard 2.1
+        https://github.com/Aptivi/VisualCard/blob/main/VisualCard/Specs/vcard-21.txt
+     - vCard 3.0
+        https://github.com/Aptivi/VisualCard/blob/main/VisualCard/Specs/vcard-30-rfc
+        2426.txt
+     - vCard 4.0
+        https://github.com/Aptivi/VisualCard/blob/main/VisualCard/Specs/vcard-40-rfc
+        6350.txt
+   
+   This new version of vCard is currently exclusive to VisualCard. Any application
+   that supports this version of vCard should print the below statement in their
+   appropriate "About" section (beginning of the application, About dialog box, etc-
+   etera):
+   
+   ---------------------------------------------------------------------------------
+   This application uses vCard 5.0, a revised version of vCard 4.0, made by Aptivi.
+   ---------------------------------------------------------------------------------
+   
+   Every vCard file that conforms to this spec should have the below contents:
+   
+     BEGIN:VCARD
+     VERSION:5.0
+     (...)
+     END:VCARD
+
+Supported types
+===============
+
+   According to the three versions of vCard in their own RFC documents, the
+   following types are supported on vCard 5.0:
+   
+   ---------------------------------------------------------------------------------
+   Key            vCard 2.1    vCard 3.0    vCard 4.0    vCard 5.0    Difference
+   =================================================================================
+   ADR            Optional     Optional     Optional     Optional
+   AGENT          Optional     Optional     Undefined    Optional     + [Add]
+   ANNIVERSARY    Undefined    Undefined    Optional     Optional
+   BDAY           Optional     Optional     Optional     Optional
+   BEGIN          Required     Required     Required     Required
+   CALADRURI      Undefined    Undefined    Optional     Optional
+   CALURI         Undefined    Undefined    Optional     Optional
+   CATEGORIES     Optional     Optional     Optional     Optional
+   CLASS          Undefined    Optional     Undefined    Optional     + [Add]
+   CLIENTPIDMAP   Undefined    Undefined    Optional     Undefined    - [Del]
+   EMAIL          Optional     Optional     Optional     Optional
+   END            Required     Required     Required     Required
+   FBURL          Undefined    Undefined    Optional     Optional
+   FN             Optional     Required     Required     Required
+   GENDER         Undefined    Undefined    Optional     Optional
+   GEO            Optional     Optional     Optional     Optional
+   IMPP           Undefined    Maybe        Optional     Optional
+   KEY            Optional     Optional     Optional     Optional
+   KIND           Undefined    Undefined    Optional     Optional
+   LABEL          Optional     Optional     Undefined    Optional     + [Add]
+   LANG           Undefined    Undefined    Optional     Optional
+   LOGO           Optional     Optional     Optional     Optional
+   MAILER         Optional     Optional     Undefined    Optional     + [Add]
+   MEMBER         Undefined    Undefined    Optional     Undefined    - [Del]
+   N              Required     Required     Optional     Required     * [Mod]
+   NAME           Undefined    Optional     Undefined    Optional     + [Add]
+   NICKNAME       Undefined    Optional     Optional     Optional
+   NOTE           Optional     Optional     Optional     Optional
+   ORG            Optional     Optional     Optional     Optional
+   PHOTO          Optional     Optional     Optional     Optional
+   PRODID         Undefined    Optional     Optional     Optional
+   PROFILE        Optional     Optional     Undefined    Optional     + [Add]
+   RELATED        Undefined    Undefined    Optional     Undefined    - [Del]
+   REV            Optional     Optional     Optional     Optional
+   ROLE           Optional     Optional     Optional     Optional
+   SORT-STRING    Undefined    Optional     Undefined    Optional     + [Add]
+   SOUND          Optional     Optional     Optional     Optional
+   SOURCE         Optional     Optional     Optional     Optional
+   TEL            Optional     Optional     Optional     Optional
+   TITLE          Optional     Optional     Optional     Optional
+   TZ             Optional     Optional     Optional     Optional
+   UID            Optional     Optional     Optional     Undefined    - [Del]
+   URL            Optional     Optional     Optional     Optional
+   VERSION        Required     Required     Required     Required
+   XML            Undefined    Undefined    Optional     Undefined    - [Del]
+   =================================================================================
+   44 keys                                                            13 changes
+   ---------------------------------------------------------------------------------
+   
+   Added features to vCard 5.0 are (7):
+   
+     - AGENT
+     - CLASS
+     - LABEL
+     - MAILER
+     - NAME
+     - PROFILE
+     - SORT-STRING
+   
+   Removed features from vCard 5.0 are (5):
+   
+     - CLIENTPIDMAP
+     - MEMBER
+     - RELATED
+     - UID
+     - XML
+   
+   Modified features on vCard 5.0 are (1):
+   
+     - N (Changed from Optional to Required)
+   
+   All the syntaxes are the same. However, all the features related to relationship,
+   such as UID, CLIENTPIDMAP, RELATED, etc. and their optional parameters for every
+   vCard value type, such as PID, are removed. Otherwise, all the features from the
+   three vCard versions exist.
+
+Examples
+========
+
+   Here are the four examples for vCard 5.0:
+   
+   BEGIN:VCARD
+   VERSION:5.0
+   FN:Rick Hood
+   N:Hood;Rick;;;
+   END:VCARD
+
+   BEGIN:VCARD
+   VERSION:5.0
+   ADR;TYPE=work:POBOX;;Street Address ExtAddress;Reg;Loc;Postal;Country
+   ADR;TYPE=home:;;Street Address;;;;
+   EMAIL;TYPE=HOME:neville.nvs@gmail.com
+   EMAIL;TYPE=WORK:neville.nvs@nvsc.com
+   FN:Neville Navasquillo
+   IMPP;TYPE=HOME:aim:IM
+   IMPP;TYPE=HOME:msn:Windows LIVE
+   IMPP;TYPE=HOME:ymsgr:Yahoo
+   N:Navasquillo;Neville;Neville\,Nevile;Mr.;Jr.
+   N;ALTID=0;LANGUAGE=de:NAVASQUILLO;Neville;Neville\,Nevile;Mr.;Jr.
+   NOTE:Notes
+   ORG:Organization
+   TEL;TYPE=work:098-765-4321
+   TEL;TYPE=cell:1-234-567-890
+   TEL;TYPE=voice:078-494-6434
+   TEL;TYPE=home:348-404-8404
+   TITLE:Title
+   X-ANDROID-CUSTOM:vnd.android.cursor.item/nickname;NVL.N;1;;;;;;;;;;;;;
+   END:VCARD
+
+   BEGIN:VCARD
+   VERSION:5.0
+   ADR;TYPE=home:;;New York\, USA;;;;
+   EMAIL;TYPE=HOME:sarah.s@gmail.com
+   EMAIL;TYPE=WORK:sarah.s@sso.org
+   FN:Sarah Santos
+   N:Santos;Sarah;;;
+   ORG:Support Scammer Outcry Organization
+   TEL;TYPE=cell:589-210-1059
+   TITLE:Chief Executive Officer
+   URL:https://sso.org/
+   X-SIP-SIP:sip test
+   SORT-STRING:sarahsantos
+   END:VCARD
+
+   BEGIN:VCARD
+   VERSION:5.0
+   ADR;TYPE=home:;;Los Angeles\, USA;;;;
+   EMAIL;TYPE=HOME:john.s@acme.co
+   FN:John Sanders
+   IMPP:aim:john.s
+   N:Sanders;John;;;
+   NOTE:Note test for VisualCard
+   ORG:Acme Co.
+   TEL;TYPE=cell:495-522-3560
+   TITLE:Product Manager
+   X-ANDROID-CUSTOM:vnd.android.cursor.item/nickname;JS;1;;;;;;;;;;;;;
+   X-PHONETIC-FIRST-NAME:Saunders
+   X-PHONETIC-LAST-NAME:John
+   SORT-STRING:johnsanders
+   END:VCARD

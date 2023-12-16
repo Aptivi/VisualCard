@@ -146,6 +146,9 @@ namespace VisualCard.Parts
                 $"{Role}";
         }
 
+        internal string ToStringVcardFive() =>
+            ToStringVcardFour();
+
         internal static OrganizationInfo FromStringVcardTwo(string value)
         {
             // Get the value
@@ -256,6 +259,12 @@ namespace VisualCard.Parts
             OrganizationInfo _org = new(altId, [.. finalArgs], _orgName, _orgUnit, _orgUnitRole, _orgTypes);
             return _org;
         }
+
+        internal static OrganizationInfo FromStringVcardFive(string value, int altId) =>
+            FromStringVcardFour(value, altId);
+
+        internal static OrganizationInfo FromStringVcardFiveWithType(string value, List<string> finalArgs, int altId) =>
+            FromStringVcardFourWithType(value, finalArgs, altId);
 
         internal OrganizationInfo() { }
 

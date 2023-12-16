@@ -176,6 +176,9 @@ namespace VisualCard.Parts
             }
         }
 
+        internal string ToStringVcardFive() =>
+            ToStringVcardFour();
+
         internal static PhotoInfo FromStringVcardTwoWithType(string value, StreamReader cardContentReader)
         {
             // Get the value
@@ -292,6 +295,9 @@ namespace VisualCard.Parts
             PhotoInfo _photo = new(altId, [.. finalArgs], valueType, photoEncoding, photoType, encodedPhoto.ToString());
             return _photo;
         }
+
+        internal static PhotoInfo FromStringVcardFiveWithType(string value, List<string> finalArgs, int altId, StreamReader cardContentReader) =>
+            FromStringVcardFourWithType(value, finalArgs, altId, cardContentReader);
 
         internal PhotoInfo() { }
 

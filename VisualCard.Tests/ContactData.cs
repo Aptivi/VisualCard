@@ -134,6 +134,31 @@ namespace VisualCard.Tests
         };
         #endregion
 
+        #region singleVcardFiveContactShort
+        private static readonly string singleVcardFiveContactShort =
+            """
+            BEGIN:VCARD
+            VERSION:5.0
+            N:Hood;Rick;;;
+            FN:Rick Hood
+            END:VCARD
+            """
+        ;
+
+        private static readonly Card singleVcardFiveContactShortInstance = new
+        (
+            null,
+            "5.0"
+        )
+        {
+            ContactNames =
+            [
+                new NameInfo(0, [], "Rick", "Hood", [], [], [])
+            ],
+            ContactFullName = "Rick Hood"
+        };
+        #endregion
+
         #region singleVcardTwoContact
         private static readonly string singleMeCardContact =
             """
@@ -373,6 +398,74 @@ namespace VisualCard.Tests
             [
                 new ImppInfo(0, [], "aim:john.s", ["HOME"])
             ]
+        };
+        #endregion
+
+        #region singleVcardFiveContact
+        private static readonly string singleVcardFiveContact =
+            """
+            BEGIN:VCARD
+            VERSION:5.0
+            ADR;TYPE=home:;;Los Angeles\, USA;;;;
+            EMAIL;TYPE=HOME:john.s@acme.co
+            FN:John Sanders
+            IMPP:aim:john.s
+            N:Sanders;John;;;
+            NOTE:Note test for VisualCard
+            ORG:Acme Co.
+            TEL;TYPE=cell:495-522-3560
+            TITLE:Product Manager
+            X-ANDROID-CUSTOM:vnd.android.cursor.item/nickname;JS;1;;;;;;;;;;;;;
+            X-PHONETIC-FIRST-NAME:Saunders
+            X-PHONETIC-LAST-NAME:John
+            SORT-STRING:johnsanders
+            END:VCARD
+            """
+        ;
+
+        private static readonly Card singleVcardFiveContactInstance = new
+        (
+            null,
+            "5.0"
+        )
+        {
+            ContactNames =
+            [
+                new NameInfo(0, [], "John", "Sanders", [], [], [])
+            ],
+            ContactFullName = "John Sanders",
+            ContactTelephones =
+            [
+                new TelephoneInfo(0, [], ["cell"], "495-522-3560")
+            ],
+            ContactAddresses =
+            [
+                new AddressInfo(0, [], ["home"], "", "", "Los Angeles, USA", "", "", "", "")
+            ],
+            ContactOrganizations =
+            [
+                new OrganizationInfo(0, [], "Acme Co.", "", "", ["WORK"])
+            ],
+            ContactTitles =
+            [
+                new TitleInfo(0, [], "Product Manager")
+            ],
+            ContactNotes = "Note test for VisualCard",
+            ContactMails =
+            [
+                new EmailInfo(0, [], ["HOME"], "john.s@acme.co")
+            ],
+            ContactXNames =
+            [
+                new XNameInfo(0, [], "ANDROID-CUSTOM", ["vnd.android.cursor.item/nickname", "JS", "1", "", "", "", "", "", "", "", "", "", "", "", "", ""], []),
+                new XNameInfo(0, [], "PHONETIC-FIRST-NAME", ["Saunders"], []),
+                new XNameInfo(0, [], "PHONETIC-LAST-NAME",  ["John"], [])
+            ],
+            ContactImpps =
+            [
+                new ImppInfo(0, [], "aim:john.s", ["HOME"])
+            ],
+            ContactSortString = "johnsanders"
         };
         #endregion
 
@@ -833,6 +926,165 @@ namespace VisualCard.Tests
         private static readonly Card multipleVcardFourContactsInstanceFour = singleVcardFourContactInstance;
         #endregion
 
+        #region multipleVcardFiveContacts
+        private static readonly string multipleVcardFiveContacts =
+            """
+            BEGIN:VCARD
+            VERSION:5.0
+            FN:Rick Hood
+            N:Hood;Rick;;;
+            END:VCARD
+
+            BEGIN:VCARD
+            VERSION:5.0
+            ADR;TYPE=work:POBOX;;Street Address ExtAddress;Reg;Loc;Postal;Country
+            ADR;TYPE=home:;;Street Address;;;;
+            EMAIL;TYPE=HOME:neville.nvs@gmail.com
+            EMAIL;TYPE=WORK:neville.nvs@nvsc.com
+            FN:Neville Navasquillo
+            IMPP;TYPE=HOME:aim:IM
+            IMPP;TYPE=HOME:msn:Windows LIVE
+            IMPP;TYPE=HOME:ymsgr:Yahoo
+            N:Navasquillo;Neville;Neville\,Nevile;Mr.;Jr.
+            N;ALTID=0;LANGUAGE=de:NAVASQUILLO;Neville;Neville\,Nevile;Mr.;Jr.
+            NOTE:Notes
+            ORG:Organization
+            TEL;TYPE=work:098-765-4321
+            TEL;TYPE=cell:1-234-567-890
+            TEL;TYPE=voice:078-494-6434
+            TEL;TYPE=home:348-404-8404
+            TITLE:Title
+            X-ANDROID-CUSTOM:vnd.android.cursor.item/nickname;NVL.N;1;;;;;;;;;;;;;
+            END:VCARD
+
+            BEGIN:VCARD
+            VERSION:5.0
+            ADR;TYPE=home:;;New York\, USA;;;;
+            EMAIL;TYPE=HOME:sarah.s@gmail.com
+            EMAIL;TYPE=WORK:sarah.s@sso.org
+            FN:Sarah Santos
+            N:Santos;Sarah;;;
+            ORG:Support Scammer Outcry Organization
+            TEL;TYPE=cell:589-210-1059
+            TITLE:Chief Executive Officer
+            URL:https://sso.org/
+            BDAY:19890222
+            X-SIP-SIP:sip test
+            SORT-STRING:sarahsantos
+            END:VCARD
+
+            BEGIN:VCARD
+            VERSION:5.0
+            ADR;TYPE=home:;;Los Angeles\, USA;;;;
+            EMAIL;TYPE=HOME:john.s@acme.co
+            FN:John Sanders
+            IMPP:aim:john.s
+            N:Sanders;John;;;
+            NOTE:Note test for VisualCard
+            ORG:Acme Co.
+            TEL;TYPE=cell:495-522-3560
+            TITLE:Product Manager
+            X-ANDROID-CUSTOM:vnd.android.cursor.item/nickname;JS;1;;;;;;;;;;;;;
+            X-PHONETIC-FIRST-NAME:Saunders
+            X-PHONETIC-LAST-NAME:John
+            SORT-STRING:johnsanders
+            END:VCARD
+            """
+        ;
+
+        private static readonly Card multipleVcardFiveContactsInstanceOne = singleVcardFiveContactShortInstance;
+        private static readonly Card multipleVcardFiveContactsInstanceTwo = new
+        (
+            null,
+            "5.0"
+        )
+        {
+            ContactNames =
+            [
+                new NameInfo(0, [], "Neville", "Navasquillo", ["Neville", "Nevile"], ["Mr."], ["Jr."]),
+                new NameInfo(0, ["LANGUAGE=de"], "Neville", "NAVASQUILLO", ["Neville", "Nevile"], ["Mr."], ["Jr."])
+            ],
+            ContactFullName = "Neville Navasquillo",
+            ContactTelephones =
+            [
+                new TelephoneInfo(0, [], ["work"], "098-765-4321"),
+                new TelephoneInfo(0, [], ["cell"], "1-234-567-890"),
+                new TelephoneInfo(0, [], ["voice"], "078-494-6434"),
+                new TelephoneInfo(0, [], ["home"], "348-404-8404"),
+            ],
+            ContactAddresses =
+            [
+                new AddressInfo(0, [], ["work"], "POBOX", "", "Street Address ExtAddress", "Reg", "Loc", "Postal", "Country"),
+                new AddressInfo(0, [], ["home"], "", "", "Street Address", "", "", "", ""),
+            ],
+            ContactOrganizations =
+            [
+                new OrganizationInfo(0, [], "Organization", "", "", ["WORK"])
+            ],
+            ContactTitles =
+            [
+                new TitleInfo(0, [], "Title")
+            ],
+            ContactNotes = "Notes",
+            ContactMails =
+            [
+                new EmailInfo(0, [], ["HOME"], "neville.nvs@gmail.com"),
+                new EmailInfo(0, [], ["WORK"], "neville.nvs@nvsc.com"),
+            ],
+            ContactXNames =
+            [
+                new XNameInfo(0, [], "ANDROID-CUSTOM", ["vnd.android.cursor.item/nickname", "NVL.N", "1", "", "", "", "", "", "", "", "", "", "", "", "", ""], []),
+            ],
+            ContactImpps =
+            [
+                new ImppInfo(0, [], "aim:IM", ["HOME"]),
+                new ImppInfo(0, [], "msn:Windows LIVE", ["HOME"]),
+                new ImppInfo(0, [], "ymsgr:Yahoo", ["HOME"])
+            ],
+        };
+        private static readonly Card multipleVcardFiveContactsInstanceThree = new
+        (
+            null,
+            "5.0"
+        )
+        {
+            ContactNames =
+            [
+                new NameInfo(0, [], "Sarah", "Santos", [], [], [])
+            ],
+            ContactFullName = "Sarah Santos",
+            ContactTelephones =
+            [
+                new TelephoneInfo(0, [], ["cell"], "589-210-1059")
+            ],
+            ContactAddresses =
+            [
+                new AddressInfo(0, [], ["home"], "", "", "New York, USA", "", "", "", "")
+            ],
+            ContactOrganizations =
+            [
+                new OrganizationInfo(0, [], "Support Scammer Outcry Organization", "", "", ["WORK"])
+            ],
+            ContactTitles =
+            [
+                new TitleInfo(0, [], "Chief Executive Officer")
+            ],
+            ContactURL = "https://sso.org/",
+            ContactMails =
+            [
+                new EmailInfo(0, [], ["HOME"], "sarah.s@gmail.com"),
+                new EmailInfo(0, [], ["WORK"], "sarah.s@sso.org"),
+            ],
+            ContactXNames =
+            [
+                new XNameInfo(0, [], "SIP-SIP", ["sip test"], []),
+            ],
+            ContactBirthdate = new DateTime(1989, 2, 22),
+            ContactSortString = "sarahsantos"
+        };
+        private static readonly Card multipleVcardFiveContactsInstanceFour = singleVcardFiveContactInstance;
+        #endregion
+
         #region vcardThreeOldSample
         private static readonly string vcardThreeOldSample =
             """
@@ -949,6 +1201,7 @@ namespace VisualCard.Tests
             singleVcardTwoContactShort,
             singleVcardThreeContactShort,
             singleVcardFourContactShort,
+            singleVcardFiveContactShort,
         ];
 
         /// <summary>
@@ -959,6 +1212,7 @@ namespace VisualCard.Tests
             singleVcardTwoContact,
             singleVcardThreeContact,
             singleVcardFourContact,
+            singleVcardFiveContact,
         ];
 
         /// <summary>
@@ -969,6 +1223,7 @@ namespace VisualCard.Tests
             multipleVcardTwoContacts,
             multipleVcardThreeContacts,
             multipleVcardFourContacts,
+            multipleVcardFiveContacts,
         ];
 
         /// <summary>
@@ -1005,9 +1260,11 @@ namespace VisualCard.Tests
             singleVcardTwoContactShortInstance,
             singleVcardThreeContactShortInstance,
             singleVcardFourContactShortInstance,
+            singleVcardFiveContactShortInstance,
             singleVcardTwoContactInstance,
             singleVcardThreeContactInstance,
             singleVcardFourContactInstance,
+            singleVcardFiveContactInstance,
             multipleVcardTwoContactsInstanceOne,
             multipleVcardTwoContactsInstanceTwo,
             multipleVcardTwoContactsInstanceThree,
@@ -1020,6 +1277,10 @@ namespace VisualCard.Tests
             multipleVcardFourContactsInstanceTwo,
             multipleVcardFourContactsInstanceThree,
             multipleVcardFourContactsInstanceFour,
+            multipleVcardFiveContactsInstanceOne,
+            multipleVcardFiveContactsInstanceTwo,
+            multipleVcardFiveContactsInstanceThree,
+            multipleVcardFiveContactsInstanceFour,
             vcardThreeOldSampleInstanceOne,
             vcardThreeOldSampleInstanceTwo,
             vcardThreeOldSampleInstanceThree,

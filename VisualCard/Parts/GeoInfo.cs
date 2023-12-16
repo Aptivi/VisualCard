@@ -123,6 +123,9 @@ namespace VisualCard.Parts
                 $"{Geo}";
         }
 
+        internal string ToStringVcardFive() =>
+            ToStringVcardFour();
+
         internal static GeoInfo FromStringVcardTwo(string value)
         {
             string geoValue = value.Substring(VcardConstants._geoSpecifier.Length + 1);
@@ -204,6 +207,12 @@ namespace VisualCard.Parts
             GeoInfo _geo = new(altId, [.. finalArgs], _geoTypes, _geoNumber);
             return _geo;
         }
+
+        internal static GeoInfo FromStringVcardFive(string value, int altId) =>
+            FromStringVcardFour(value, altId);
+
+        internal static GeoInfo FromStringVcardFiveWithType(string value, List<string> finalArgs, int altId) =>
+            FromStringVcardFourWithType(value, finalArgs, altId);
 
         internal GeoInfo() { }
 

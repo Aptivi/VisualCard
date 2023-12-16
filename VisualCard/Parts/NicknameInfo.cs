@@ -123,6 +123,9 @@ namespace VisualCard.Parts
                 $"{ContactNickname}";
         }
 
+        internal string ToStringVcardFive() =>
+            ToStringVcardFour();
+
         internal static NicknameInfo FromStringVcardThree(string value)
         {
             // Get the value
@@ -176,6 +179,12 @@ namespace VisualCard.Parts
             NicknameInfo _nickInstance = new(altId, [.. finalArgs], _nick, _nicknameTypes);
             return _nickInstance;
         }
+
+        internal static NicknameInfo FromStringVcardFive(string value, int altId) =>
+            FromStringVcardFour(value, altId);
+
+        internal static NicknameInfo FromStringVcardFiveWithType(string value, List<string> finalArgs, int altId) =>
+            FromStringVcardFourWithType(value, finalArgs, altId);
 
         internal NicknameInfo() { }
 

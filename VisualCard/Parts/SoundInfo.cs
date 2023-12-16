@@ -176,6 +176,9 @@ namespace VisualCard.Parts
             }
         }
 
+        internal string ToStringVcardFive() =>
+            ToStringVcardFour();
+
         internal static SoundInfo FromStringVcardTwoWithType(string value, StreamReader cardContentReader)
         {
             // Get the value
@@ -292,6 +295,9 @@ namespace VisualCard.Parts
             SoundInfo _sound = new(altId, [.. finalArgs], valueType, soundEncoding, soundType, encodedSound.ToString());
             return _sound;
         }
+
+        internal static SoundInfo FromStringVcardFiveWithType(string value, List<string> finalArgs, int altId, StreamReader cardContentReader) =>
+            FromStringVcardFourWithType(value, finalArgs, altId, cardContentReader);
 
         internal SoundInfo() { }
 

@@ -176,6 +176,9 @@ namespace VisualCard.Parts
             }
         }
 
+        internal string ToStringVcardFive() =>
+            ToStringVcardFour();
+
         internal static LogoInfo FromStringVcardTwoWithType(string value, StreamReader cardContentReader)
         {
             // Get the value
@@ -292,6 +295,9 @@ namespace VisualCard.Parts
             LogoInfo _logo = new(altId, [.. finalArgs], valueType, logoEncoding, logoType, encodedLogo.ToString());
             return _logo;
         }
+
+        internal static LogoInfo FromStringVcardFiveWithType(string value, List<string> finalArgs, int altId, StreamReader cardContentReader) =>
+            FromStringVcardFourWithType(value, finalArgs, altId, cardContentReader);
 
         internal LogoInfo() { }
 

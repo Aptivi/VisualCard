@@ -124,6 +124,9 @@ namespace VisualCard.Parts
                 $"{ContactEmailAddress}";
         }
 
+        internal string ToStringVcardFive() =>
+            ToStringVcardFour();
+
         internal static EmailInfo FromStringVcardTwo(string value)
         {
             // Get the value
@@ -273,6 +276,12 @@ namespace VisualCard.Parts
             EmailInfo _email = new(altId, [.. finalArgs], _emailTypes, _emailAddress);
             return _email;
         }
+
+        internal static EmailInfo FromStringVcardFive(string value, int altId) =>
+            FromStringVcardFour(value, altId);
+
+        internal static EmailInfo FromStringVcardFiveWithType(string value, List<string> finalArgs, int altId) =>
+            FromStringVcardFourWithType(value, finalArgs, altId);
 
         internal EmailInfo() { }
 

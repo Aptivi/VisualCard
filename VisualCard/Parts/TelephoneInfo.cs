@@ -125,6 +125,9 @@ namespace VisualCard.Parts
                 $"{ContactPhoneNumber}";
         }
 
+        internal string ToStringVcardFive() =>
+            ToStringVcardFour();
+
         internal static TelephoneInfo FromStringVcardTwo(string value)
         {
             // Get the value
@@ -205,6 +208,12 @@ namespace VisualCard.Parts
             TelephoneInfo _telephone = new(altId, [.. finalArgs], _telephoneTypes, _telephoneNumber);
             return _telephone;
         }
+
+        internal static TelephoneInfo FromStringVcardFive(string value, int altId) =>
+            FromStringVcardFour(value, altId);
+
+        internal static TelephoneInfo FromStringVcardFiveWithType(string value, List<string> finalArgs, int altId) =>
+            FromStringVcardFourWithType(value, finalArgs, altId);
 
         internal TelephoneInfo() { }
 

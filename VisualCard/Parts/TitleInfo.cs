@@ -116,6 +116,9 @@ namespace VisualCard.Parts
                 $"{ContactTitle}";
         }
 
+        internal string ToStringVcardFive() =>
+            ToStringVcardFour();
+
         internal static TitleInfo FromStringVcardTwo(string value)
         {
             // Get the value
@@ -160,6 +163,12 @@ namespace VisualCard.Parts
             TitleInfo title = new(altId, [.. finalArgs], _title);
             return title;
         }
+
+        internal static TitleInfo FromStringVcardFive(string value, int altId) =>
+            FromStringVcardFour(value, altId);
+
+        internal static TitleInfo FromStringVcardFiveWithType(string value, List<string> finalArgs, int altId) =>
+            FromStringVcardFourWithType(value, finalArgs, altId);
 
         internal TitleInfo() { }
 

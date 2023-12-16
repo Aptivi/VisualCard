@@ -86,6 +86,7 @@ namespace VisualCard.ShowContacts
                 }
 
                 // Show contact information
+                bool showVcard5Disclaimer = Contacts.Any((card) => card.CardVersion == "5.0");
                 foreach (Card Contact in Contacts)
                 {
                     TextWriterColor.WriteColor("----------------------------", ConsoleColors.Green);
@@ -181,6 +182,8 @@ namespace VisualCard.ShowContacts
                     );
                     TextWriterColor.Write(raw);
                 }
+                if (showVcard5Disclaimer)
+                    TextWriterColor.WriteColor("This application uses vCard 5.0, a revised version of vCard 4.0, made by Aptivi.", ConsoleColors.Gray);
             }
         }
     }

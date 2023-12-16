@@ -32,12 +32,12 @@ using VisualCard.Exceptions;
 using VisualCard.Parts;
 using TimeZoneInfo = VisualCard.Parts.TimeZoneInfo;
 
-namespace VisualCard.Parsers.Four
+namespace VisualCard.Parsers.Five
 {
     /// <summary>
-    /// Parser for VCard version 4.0. Consult the vcard-40-rfc6350.txt file in source for the specification.
+    /// Parser for VCard version 5.0. Consult the vcard-40-rfc6350.txt file in source for the specification.
     /// </summary>
-    public class VcardFour : BaseVcardParser, IVcardParser
+    public class VcardFive : BaseVcardParser, IVcardParser
     {
         /// <inheritdoc/>
         public override string CardContent { get; }
@@ -47,9 +47,9 @@ namespace VisualCard.Parsers.Four
         /// <inheritdoc/>
         public override Card Parse()
         {
-            // Check the version to ensure that we're really dealing with VCard 4.0 contact
-            if (CardVersion != "4.0")
-                throw new InvalidDataException($"Card version {CardVersion} doesn't match expected \"4.0\".");
+            // Check the version to ensure that we're really dealing with VCard 5.0 contact
+            if (CardVersion != "5.0")
+                throw new InvalidDataException($"Card version {CardVersion} doesn't match expected \"5.0\".");
 
             // Check the content to ensure that we really have data
             if (string.IsNullOrEmpty(CardContent))
@@ -66,17 +66,20 @@ namespace VisualCard.Parsers.Four
             string _url                     = "";
             string _note                    = "";
             string _prodId                  = "";
+            string _sortString              = "";
             string _source                  = "";
-            string _xml                     = "";
             string _fbUrl                   = "";
             string _calUri                  = "";
             string _caladrUri               = "";
+            string _class                   = "";
+            string _mailer                  = "";
             DateTime _rev                   = DateTime.MinValue;
             DateTime _bday                  = DateTime.MinValue;
             List<NameInfo> _names           = [];
             List<TelephoneInfo> _telephones = [];
             List<EmailInfo> _emails         = [];
             List<AddressInfo> _addresses    = [];
+            List<LabelAddressInfo> _labels  = [];
             List<OrganizationInfo> _orgs    = [];
             List<TitleInfo> _titles         = [];
             List<LogoInfo> _logos           = [];
@@ -90,7 +93,8 @@ namespace VisualCard.Parsers.Four
             List<ImppInfo> _impps           = [];
             List<XNameInfo> _xes            = [];
 
-            // Full Name specifier is required
+            // Name and Full Name specifiers are required
+            bool nameSpecifierSpotted = false;
             bool fullNameSpecifierSpotted = false;
 
             // Flags
@@ -162,9 +166,12 @@ namespace VisualCard.Parsers.Four
                     {
                         // Get the name
                         if (isWithType)
-                            _names.Add(NameInfo.FromStringVcardFourWithType(_value, splitArgs, finalArgs, altId, _names, idReservedForName));
+                            _names.Add(NameInfo.FromStringVcardFiveWithType(_value, splitArgs, finalArgs, altId, _names, idReservedForName));
                         else
-                            _names.Add(NameInfo.FromStringVcardFour(splitValues, idReservedForName));
+                            _names.Add(NameInfo.FromStringVcardFive(splitValues, idReservedForName));
+
+                        // Set flag to indicate that the required field is spotted
+                        nameSpecifierSpotted = true;
 
                         // Since we've reserved id 0, set the flag
                         idReservedForName = true;
@@ -189,18 +196,27 @@ namespace VisualCard.Parsers.Four
                     if (_value.StartsWith(VcardConstants._telephoneSpecifier + delimiter))
                     {
                         if (isWithType)
-                            _telephones.Add(TelephoneInfo.FromStringVcardFourWithType(_value, finalArgs, altId));
+                            _telephones.Add(TelephoneInfo.FromStringVcardFiveWithType(_value, finalArgs, altId));
                         else
-                            _telephones.Add(TelephoneInfo.FromStringVcardFour(_value, altId));
+                            _telephones.Add(TelephoneInfo.FromStringVcardFive(_value, altId));
                     }
 
                     // Address (ADR;TYPE=HOME:;;Los Angeles, USA;;;; or ADR:;;Los Angeles, USA;;;;)
                     if (_value.StartsWith(VcardConstants._addressSpecifier + delimiter))
                     {
                         if (isWithType)
-                            _addresses.Add(AddressInfo.FromStringVcardFourWithType(_value, finalArgs, altId));
+                            _addresses.Add(AddressInfo.FromStringVcardFiveWithType(_value, finalArgs, altId));
                         else
-                            _addresses.Add(AddressInfo.FromStringVcardFour(_value, altId));
+                            _addresses.Add(AddressInfo.FromStringVcardFive(_value, altId));
+                    }
+
+                    // Label (LABEL;TYPE=dom,home,postal,parcel:Mr.John Q. Public\, Esq.\nMail Drop: TNE QB\n123 Main Street\nAny Town\, CA  91921 - 1234\nU.S.A.)
+                    if (_value.StartsWith(VcardConstants._labelSpecifier + delimiter))
+                    {
+                        if (isWithType)
+                            _labels.Add(LabelAddressInfo.FromStringVcardFiveWithType(_value, finalArgs, altId));
+                        else
+                            _labels.Add(LabelAddressInfo.FromStringVcardFive(_value, altId));
                     }
 
                     // Email (EMAIL;TYPE=HOME,INTERNET:john.s@acme.co)
@@ -208,9 +224,9 @@ namespace VisualCard.Parsers.Four
                     if (_value.StartsWith(VcardConstants._emailSpecifier + delimiter))
                     {
                         if (isWithType)
-                            _emails.Add(EmailInfo.FromStringVcardFourWithType(_value, finalArgs, altId));
+                            _emails.Add(EmailInfo.FromStringVcardFiveWithType(_value, finalArgs, altId));
                         else
-                            _emails.Add(EmailInfo.FromStringVcardFour(_value, altId));
+                            _emails.Add(EmailInfo.FromStringVcardFive(_value, altId));
                     }
 
                     // Organization (ORG:Acme Co. or ORG:ABC, Inc.;North American Division;Marketing)
@@ -218,9 +234,9 @@ namespace VisualCard.Parsers.Four
                     if (_value.StartsWith(VcardConstants._orgSpecifier + delimiter))
                     {
                         if (isWithType)
-                            _orgs.Add(OrganizationInfo.FromStringVcardFourWithType(_value, finalArgs, altId));
+                            _orgs.Add(OrganizationInfo.FromStringVcardFiveWithType(_value, finalArgs, altId));
                         else
-                            _orgs.Add(OrganizationInfo.FromStringVcardFour(_value, altId));
+                            _orgs.Add(OrganizationInfo.FromStringVcardFive(_value, altId));
                     }
 
                     // Title (TITLE:Product Manager)
@@ -228,9 +244,9 @@ namespace VisualCard.Parsers.Four
                     if (_value.StartsWith(VcardConstants._titleSpecifier + delimiter))
                     {
                         if (isWithType)
-                            _titles.Add(TitleInfo.FromStringVcardFourWithType(_value, finalArgs, altId));
+                            _titles.Add(TitleInfo.FromStringVcardFiveWithType(_value, finalArgs, altId));
                         else
-                            _titles.Add(TitleInfo.FromStringVcardFour(_value, altId));
+                            _titles.Add(TitleInfo.FromStringVcardFive(_value, altId));
                     }
 
                     // Website link (URL:https://sso.org/)
@@ -264,7 +280,7 @@ namespace VisualCard.Parsers.Four
                     if (_value.StartsWith(VcardConstants._photoSpecifier + delimiter))
                     {
                         if (isWithType)
-                            _photos.Add(PhotoInfo.FromStringVcardFourWithType(_value, finalArgs, altId, CardContentReader));
+                            _photos.Add(PhotoInfo.FromStringVcardFiveWithType(_value, finalArgs, altId, CardContentReader));
                         else
                             throw new InvalidDataException("Photo field must not have empty type.");
                     }
@@ -274,7 +290,7 @@ namespace VisualCard.Parsers.Four
                     if (_value.StartsWith(VcardConstants._logoSpecifier + delimiter))
                     {
                         if (isWithType)
-                            _logos.Add(LogoInfo.FromStringVcardFourWithType(_value, finalArgs, altId, CardContentReader));
+                            _logos.Add(LogoInfo.FromStringVcardFiveWithType(_value, finalArgs, altId, CardContentReader));
                         else
                             throw new InvalidDataException("Photo field must not have empty type.");
                     }
@@ -284,7 +300,7 @@ namespace VisualCard.Parsers.Four
                     if (_value.StartsWith(VcardConstants._soundSpecifier + delimiter))
                     {
                         if (isWithType)
-                            _sounds.Add(SoundInfo.FromStringVcardFourWithType(_value, finalArgs, altId, CardContentReader));
+                            _sounds.Add(SoundInfo.FromStringVcardFiveWithType(_value, finalArgs, altId, CardContentReader));
                         else
                             throw new InvalidDataException("Photo field must not have empty type.");
                     }
@@ -305,9 +321,9 @@ namespace VisualCard.Parsers.Four
                     if (_value.StartsWith(VcardConstants._nicknameSpecifier + delimiter))
                     {
                         if (isWithType)
-                            _nicks.Add(NicknameInfo.FromStringVcardFourWithType(_value, finalArgs, altId));
+                            _nicks.Add(NicknameInfo.FromStringVcardFiveWithType(_value, finalArgs, altId));
                         else
-                            _nicks.Add(NicknameInfo.FromStringVcardFour(_value, altId));
+                            _nicks.Add(NicknameInfo.FromStringVcardFive(_value, altId));
                     }
 
                     // Birthdate (BDAY:19950415 or BDAY:1953-10-15T23:10:00Z)
@@ -340,9 +356,9 @@ namespace VisualCard.Parsers.Four
                     if (_value.StartsWith(VcardConstants._roleSpecifier + delimiter))
                     {
                         if (isWithType)
-                            _roles.Add(RoleInfo.FromStringVcardFourWithType(_value, finalArgs, altId));
+                            _roles.Add(RoleInfo.FromStringVcardFiveWithType(_value, finalArgs, altId));
                         else
-                            _roles.Add(RoleInfo.FromStringVcardFour(_value, altId));
+                            _roles.Add(RoleInfo.FromStringVcardFive(_value, altId));
                     }
 
                     // Categories (CATEGORIES:INTERNET or CATEGORIES:INTERNET,IETF,INDUSTRY,INFORMATION TECHNOLOGY)
@@ -367,14 +383,25 @@ namespace VisualCard.Parsers.Four
                         _prodId = Regex.Unescape(prodIdValue);
                     }
 
+                    // Sort string (SORT-STRING:Harten)
+                    // Here, we don't support ALTID.
+                    if (_value.StartsWith(VcardConstants._sortStringSpecifier + delimiter))
+                    {
+                        // Get the value
+                        string sortStringValue = _value.Substring(VcardConstants._sortStringSpecifier.Length + 1);
+
+                        // Populate field
+                        _sortString = Regex.Unescape(sortStringValue);
+                    }
+
                     // Time Zone (TZ;VALUE=text:-05:00; EST; Raleigh/North America)
                     // ALTID is supported.
                     if (_value.StartsWith(VcardConstants._timeZoneSpecifier + delimiter))
                     {
                         if (isWithType)
-                            _timezones.Add(TimeZoneInfo.FromStringVcardFourWithType(_value, finalArgs, altId));
+                            _timezones.Add(TimeZoneInfo.FromStringVcardFiveWithType(_value, finalArgs, altId));
                         else
-                            _timezones.Add(TimeZoneInfo.FromStringVcardFour(_value, altId));
+                            _timezones.Add(TimeZoneInfo.FromStringVcardFive(_value, altId));
                     }
 
                     // Geo (GEO;VALUE=uri:https://...)
@@ -382,9 +409,9 @@ namespace VisualCard.Parsers.Four
                     if (_value.StartsWith(VcardConstants._geoSpecifier + delimiter))
                     {
                         if (isWithType)
-                            _geos.Add(GeoInfo.FromStringVcardFourWithType(_value, finalArgs, altId));
+                            _geos.Add(GeoInfo.FromStringVcardFiveWithType(_value, finalArgs, altId));
                         else
-                            _geos.Add(GeoInfo.FromStringVcardFour(_value, altId));
+                            _geos.Add(GeoInfo.FromStringVcardFive(_value, altId));
                     }
 
                     // IMPP information (IMPP;TYPE=home:sip:test)
@@ -392,9 +419,9 @@ namespace VisualCard.Parsers.Four
                     if (_value.StartsWith(VcardConstants._imppSpecifier + delimiter))
                     {
                         if (isWithType)
-                            _impps.Add(ImppInfo.FromStringVcardFourWithType(_value, finalArgs, altId));
+                            _impps.Add(ImppInfo.FromStringVcardFiveWithType(_value, finalArgs, altId));
                         else
-                            _impps.Add(ImppInfo.FromStringVcardFour(_value, altId));
+                            _impps.Add(ImppInfo.FromStringVcardFive(_value, altId));
                     }
 
                     // Source (SOURCE:http://johndoe.com/vcard.vcf)
@@ -412,15 +439,14 @@ namespace VisualCard.Parsers.Four
                         _source = uri.ToString();
                     }
 
-                    // XML code (XML:<b>Not an xCard XML element</b>)
-                    // Here, we don't support ALTID.
-                    if (_value.StartsWith(VcardConstants._xmlSpecifier + delimiter))
+                    // Mailer (MAILER:ccMail 2.2 or MAILER:PigeonMail 2.1)
+                    if (_value.StartsWith(VcardConstants._mailerSpecifier + delimiter))
                     {
                         // Get the value
-                        string xmlStringValue = _value.Substring(VcardConstants._xmlSpecifier.Length + 1);
+                        string mailerValue = _value.Substring(VcardConstants._mailerSpecifier.Length + 1);
 
                         // Populate field
-                        _xml = Regex.Unescape(xmlStringValue);
+                        _mailer = Regex.Unescape(mailerValue);
                     }
 
                     // Free/busy URL (FBURL:http://example.com/fb/jdoe)
@@ -468,10 +494,20 @@ namespace VisualCard.Parsers.Four
                         _caladrUri = uri.ToString();
                     }
 
+                    // Class (CLASS:PUBLIC, CLASS:PRIVATE, or CLASS:CONFIDENTIAL)
+                    if (_value.StartsWith(VcardConstants._classSpecifier + delimiter))
+                    {
+                        // Get the value
+                        string classValue = _value.Substring(VcardConstants._classSpecifier.Length + 1);
+
+                        // Populate field
+                        _class = Regex.Unescape(classValue);
+                    }
+
                     // X-nonstandard (X-AIM:john.s or X-DL;Design Work Group:List Item 1;List Item 2;List Item 3)
                     // ALTID is supported.
                     if (_value.StartsWith(VcardConstants._xSpecifier))
-                        _xes.Add(XNameInfo.FromStringVcardFour(_value, finalArgs, altId));
+                        _xes.Add(XNameInfo.FromStringVcardFive(_value, finalArgs, altId));
                 }
                 catch (Exception ex)
                 {
@@ -480,6 +516,8 @@ namespace VisualCard.Parsers.Four
             }
 
             // Requirement checks
+            if (!nameSpecifierSpotted)
+                throw new InvalidDataException("The name specifier, \"N:\", is required.");
             if (!fullNameSpecifierSpotted)
                 throw new InvalidDataException("The full name specifier, \"FN:\", is required.");
 
@@ -491,6 +529,7 @@ namespace VisualCard.Parsers.Four
                 ContactFullName = _fullName,
                 ContactTelephones = [.. _telephones],
                 ContactAddresses = [.. _addresses],
+                ContactLabels = [.. _labels],
                 ContactOrganizations = [.. _orgs],
                 ContactTitles = [.. _titles],
                 ContactURL = _url,
@@ -500,29 +539,29 @@ namespace VisualCard.Parsers.Four
                 ContactPhotos = [.. _photos],
                 ContactNicknames = [.. _nicks],
                 ContactBirthdate = _bday,
-                ContactMailer = "",
+                ContactMailer = _mailer,
                 ContactRoles = [.. _roles],
                 ContactCategories = [.. _categories],
                 ContactLogos = [.. _logos],
                 ContactProdId = _prodId,
+                ContactSortString = _sortString,
                 ContactTimeZone = [.. _timezones],
                 ContactGeo = [.. _geos],
                 ContactSounds = [.. _sounds],
                 ContactImpps = [.. _impps],
                 ContactSource = _source,
-                ContactXml = _xml,
                 ContactFreeBusyUrl = _fbUrl,
                 ContactCalendarUrl = _calUri,
                 ContactCalendarSchedulingRequestUrl = _caladrUri,
-                ContactAccessClassification = ""
+                ContactAccessClassification = _class
             };
         }
 
         internal override string SaveToString(Card card)
         {
-            // Check the version to ensure that we're really dealing with VCard 4.0 contact
-            if (CardVersion != "4.0")
-                throw new InvalidDataException($"Card version {CardVersion} doesn't match expected \"4.0\".");
+            // Check the version to ensure that we're really dealing with VCard 5.0 contact
+            if (CardVersion != "5.0")
+                throw new InvalidDataException($"Card version {CardVersion} doesn't match expected \"5.0\".");
 
             // Check the content to ensure that we really have data
             if (string.IsNullOrEmpty(CardContent))
@@ -540,37 +579,41 @@ namespace VisualCard.Parsers.Four
             if (!string.IsNullOrWhiteSpace(card.ContactFullName))
                 cardBuilder.AppendLine($"{VcardConstants._fullNameSpecifier}:{card.ContactFullName}");
             foreach (NameInfo name in card.ContactNames)
-                cardBuilder.AppendLine(name.ToStringVcardFour());
+                cardBuilder.AppendLine(name.ToStringVcardFive());
 
             // Now, start filling in the rest...
             foreach (TelephoneInfo telephone in card.ContactTelephones)
-                cardBuilder.AppendLine(telephone.ToStringVcardFour());
+                cardBuilder.AppendLine(telephone.ToStringVcardFive());
             foreach (AddressInfo address in card.ContactAddresses)
-                cardBuilder.AppendLine(address.ToStringVcardFour());
+                cardBuilder.AppendLine(address.ToStringVcardFive());
+            foreach (LabelAddressInfo label in card.ContactLabels)
+                cardBuilder.AppendLine(label.ToStringVcardFive());
             foreach (EmailInfo email in card.ContactMails)
-                cardBuilder.AppendLine(email.ToStringVcardFour());
+                cardBuilder.AppendLine(email.ToStringVcardFive());
             foreach (OrganizationInfo organization in card.ContactOrganizations)
-                cardBuilder.AppendLine(organization.ToStringVcardFour());
+                cardBuilder.AppendLine(organization.ToStringVcardFive());
             foreach (TitleInfo title in card.ContactTitles)
-                cardBuilder.AppendLine(title.ToStringVcardFour());
+                cardBuilder.AppendLine(title.ToStringVcardFive());
             if (!string.IsNullOrWhiteSpace(card.ContactURL))
                 cardBuilder.AppendLine($"{VcardConstants._urlSpecifier}:{card.ContactURL}");
             if (!string.IsNullOrWhiteSpace(card.ContactNotes))
                 cardBuilder.AppendLine($"{VcardConstants._noteSpecifier}:{card.ContactNotes}");
             foreach (PhotoInfo photo in card.ContactPhotos)
-                cardBuilder.AppendLine(photo.ToStringVcardFour());
+                cardBuilder.AppendLine(photo.ToStringVcardFive());
             foreach (LogoInfo logo in card.ContactLogos)
-                cardBuilder.AppendLine(logo.ToStringVcardFour());
+                cardBuilder.AppendLine(logo.ToStringVcardFive());
             foreach (SoundInfo sound in card.ContactSounds)
-                cardBuilder.AppendLine(sound.ToStringVcardFour());
+                cardBuilder.AppendLine(sound.ToStringVcardFive());
             if (card.CardRevision is not null && card.CardRevision != DateTime.MinValue)
                 cardBuilder.AppendLine($"{VcardConstants._revSpecifier}:{card.CardRevision:yyyy-MM-dd HH:mm:ss}");
             foreach (NicknameInfo nickname in card.ContactNicknames)
-                cardBuilder.AppendLine(nickname.ToStringVcardFour());
+                cardBuilder.AppendLine(nickname.ToStringVcardFive());
             if (card.ContactBirthdate is not null && card.ContactBirthdate != DateTime.MinValue)
                 cardBuilder.AppendLine($"{VcardConstants._birthSpecifier}:{card.ContactBirthdate:yyyy-MM-dd}");
+            if (!string.IsNullOrWhiteSpace(card.ContactMailer))
+                cardBuilder.AppendLine($"{VcardConstants._mailerSpecifier}:{card.ContactMailer}");
             foreach (RoleInfo role in card.ContactRoles)
-                cardBuilder.AppendLine(role.ToStringVcardFour());
+                cardBuilder.AppendLine(role.ToStringVcardFive());
             if (card.ContactCategories is not null && card.ContactCategories.Length > 0)
                 cardBuilder.AppendLine($"{VcardConstants._categoriesSpecifier}:{string.Join(",", card.ContactCategories)}");
             if (!string.IsNullOrWhiteSpace(card.ContactProdId))
@@ -578,13 +621,15 @@ namespace VisualCard.Parsers.Four
             if (!string.IsNullOrWhiteSpace(card.ContactSortString))
                 cardBuilder.AppendLine($"{VcardConstants._sortStringSpecifier}:{card.ContactSortString}");
             foreach (TimeZoneInfo timeZone in card.ContactTimeZone)
-                cardBuilder.AppendLine(timeZone.ToStringVcardFour());
+                cardBuilder.AppendLine(timeZone.ToStringVcardFive());
             foreach (GeoInfo geo in card.ContactGeo)
-                cardBuilder.AppendLine(geo.ToStringVcardFour());
+                cardBuilder.AppendLine(geo.ToStringVcardFive());
             foreach (ImppInfo impp in card.ContactImpps)
-                cardBuilder.AppendLine(impp.ToStringVcardFour());
+                cardBuilder.AppendLine(impp.ToStringVcardFive());
+            if (!string.IsNullOrWhiteSpace(card.ContactAccessClassification))
+                cardBuilder.AppendLine($"{VcardConstants._classSpecifier}:{card.ContactAccessClassification}");
             foreach (XNameInfo xname in card.ContactXNames)
-                cardBuilder.AppendLine(xname.ToStringVcardFour());
+                cardBuilder.AppendLine(xname.ToStringVcardFive());
 
             // Finally, end the card and return it
             cardBuilder.AppendLine("END:VCARD");
@@ -593,9 +638,9 @@ namespace VisualCard.Parsers.Four
 
         internal override void SaveTo(string path, Card card)
         {
-            // Check the version to ensure that we're really dealing with VCard 4.0 contact
-            if (CardVersion != "4.0")
-                throw new InvalidDataException($"Card version {CardVersion} doesn't match expected \"4.0\".");
+            // Check the version to ensure that we're really dealing with VCard 5.0 contact
+            if (CardVersion != "5.0")
+                throw new InvalidDataException($"Card version {CardVersion} doesn't match expected \"5.0\".");
 
             // Check the content to ensure that we really have data
             if (string.IsNullOrEmpty(CardContent))
@@ -606,7 +651,7 @@ namespace VisualCard.Parsers.Four
             File.WriteAllText(path, cardString);
         }
 
-        internal VcardFour(string cardContent, string cardVersion)
+        internal VcardFive(string cardContent, string cardVersion)
         {
             CardContent = cardContent;
             CardVersion = cardVersion;

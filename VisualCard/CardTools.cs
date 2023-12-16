@@ -111,7 +111,7 @@ namespace VisualCard
                 if (!CardSawNull)
                     CardLine = stream.ReadLine();
                 CardSawNull = false;
-                if (CardLine != "VERSION:2.1" && CardLine != "VERSION:3.0" && CardLine != "VERSION:4.0" && !VersionSpotted)
+                if (CardLine != "VERSION:2.1" && CardLine != "VERSION:3.0" && CardLine != "VERSION:4.0" && CardLine != "VERSION:5.0" && !VersionSpotted)
                     throw new InvalidDataException($"This has an invalid VCard version {CardLine}.");
                 else if (!VersionSpotted)
                 {

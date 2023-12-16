@@ -26,7 +26,7 @@ namespace VisualCard.Parsers
 {
     internal static class VcardConstants
     {
-        // Available in vCard 2.1, vCard 3.0, and vCard 4.0
+        // Available in vCard 2.1, 3.0, 4.0, and 5.0
         internal const char _fieldDelimiter = ';';
         internal const char _valueDelimiter = ',';
         internal const char _argumentDelimiter = ':';
@@ -54,24 +54,24 @@ namespace VisualCard.Parsers
         internal const string _fbUrlSpecifier = "FBURL";
         internal const string _calUriSpecifier = "CALURI";
         internal const string _caladrUriSpecifier = "CALADRURI";
+        internal const string _categoriesSpecifier = "CATEGORIES";
         internal const string _xSpecifier = "X-";
         internal const string _typeArgumentSpecifier = "TYPE=";
         internal const string _valueArgumentSpecifier = "VALUE=";
         internal const string _encodingArgumentSpecifier = "ENCODING=";
 
-        // Available in vCard 2.1 and 3.0
+        // Available in vCard 2.1, 3.0, and 5.0
         internal const string _labelSpecifier = "LABEL";
-
-        // Available in vCard 3.0
-        internal const string _classSpecifier = "CLASS";
-
-        // Available in vCard 3.0 and vCard 4.0
-        internal const string _nicknameSpecifier = "NICKNAME";
-        internal const string _categoriesSpecifier = "CATEGORIES";
-        internal const string _productIdSpecifier = "PRODID";
         internal const string _sortStringSpecifier = "SORT-STRING";
 
-        // Available in vCard 4.0
+        // Available in vCard 3.0, 4.0, and 5.0
+        internal const string _nicknameSpecifier = "NICKNAME";
+        internal const string _productIdSpecifier = "PRODID";
+
+        // Available in vCard 3.0 and 5.0
+        internal const string _classSpecifier = "CLASS";
+
+        // Available in vCard 4.0 and 5.0
         internal const string _kindSpecifier = "KIND";
         internal const string _altIdArgumentSpecifier = "ALTID=";
     }

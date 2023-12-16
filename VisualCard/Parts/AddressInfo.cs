@@ -179,6 +179,9 @@ namespace VisualCard.Parts
                 $"{Country}";
         }
 
+        internal string ToStringVcardFive() =>
+            ToStringVcardFour();
+
         internal static AddressInfo FromStringVcardTwo(string value)
         {
             // Get the value
@@ -328,6 +331,12 @@ namespace VisualCard.Parts
             AddressInfo _address = new(altId, [.. finalArgs], _addressTypes, _addressPOBox, _addressExtended, _addressStreet, _addressLocality, _addressRegion, _addressPostalCode, _addressCountry);
             return _address;
         }
+
+        internal static AddressInfo FromStringVcardFive(string value, int altId) =>
+            FromStringVcardFour(value, altId);
+
+        internal static AddressInfo FromStringVcardFiveWithType(string value, List<string> finalArgs, int altId) =>
+            FromStringVcardFourWithType(value, finalArgs, altId);
 
         internal AddressInfo() { }
 

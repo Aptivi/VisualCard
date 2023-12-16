@@ -115,6 +115,9 @@ namespace VisualCard.Parts
                 $"{ContactRole}";
         }
 
+        internal string ToStringVcardFive() =>
+            ToStringVcardFour();
+
         internal static RoleInfo FromStringVcardTwo(string value)
         {
             // Get the value
@@ -154,6 +157,12 @@ namespace VisualCard.Parts
             RoleInfo _role = new(altId, [.. finalArgs], roleValue);
             return _role;
         }
+
+        internal static RoleInfo FromStringVcardFive(string value, int altId) =>
+            FromStringVcardFour(value, altId);
+
+        internal static RoleInfo FromStringVcardFiveWithType(string value, List<string> finalArgs, int altId) =>
+            FromStringVcardFourWithType(value, finalArgs, altId);
 
         internal RoleInfo() { }
 

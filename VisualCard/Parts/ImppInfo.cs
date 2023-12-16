@@ -128,6 +128,9 @@ namespace VisualCard.Parts
                 $"{ContactIMPP}";
         }
 
+        internal string ToStringVcardFive() =>
+            ToStringVcardFour();
+
         internal static ImppInfo FromStringVcardTwo(string value)
         {
             string imppValue = value.Substring(VcardConstants._imppSpecifier.Length + 1);
@@ -204,6 +207,12 @@ namespace VisualCard.Parts
             ImppInfo _imppInstance = new(altId, [.. finalArgs], _impp, _imppTypes);
             return _imppInstance;
         }
+
+        internal static ImppInfo FromStringVcardFive(string value, int altId) =>
+            FromStringVcardFour(value, altId);
+
+        internal static ImppInfo FromStringVcardFiveWithType(string value, List<string> finalArgs, int altId) =>
+            FromStringVcardFourWithType(value, finalArgs, altId);
 
         internal ImppInfo() { }
 

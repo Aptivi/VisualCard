@@ -162,6 +162,9 @@ namespace VisualCard.Parts
                 $"{suffixesStr}";
         }
 
+        internal string ToStringVcardFive() =>
+            ToStringVcardFour();
+
         internal static NameInfo FromStringVcardTwo(string value)
         {
             // Check the line
@@ -244,6 +247,12 @@ namespace VisualCard.Parts
             NameInfo _name = new(altId, [.. finalArgs], _firstName, _lastName, _altNames, _prefixes, _suffixes);
             return _name;
         }
+
+        internal static NameInfo FromStringVcardFive(string[] splitValues, bool idReservedForName) =>
+            FromStringVcardFour(splitValues, idReservedForName);
+
+        internal static NameInfo FromStringVcardFiveWithType(string value, string[] splitArgs, List<string> finalArgs, int altId, List<NameInfo> _names, bool idReservedForName) =>
+            FromStringVcardFourWithType(value, splitArgs, finalArgs, altId, _names, idReservedForName);
 
         internal NameInfo() { }
 
