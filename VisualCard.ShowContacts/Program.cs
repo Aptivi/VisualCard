@@ -24,6 +24,7 @@
 
 using System.Diagnostics;
 using Terminaux.Colors;
+using Terminaux.Colors.Data;
 using Terminaux.Writer.ConsoleWriters;
 using VisualCard.Converters;
 using VisualCard.Parsers;
