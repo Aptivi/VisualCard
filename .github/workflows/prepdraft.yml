@@ -24,10 +24,10 @@ jobs:
         args: install docfx
     - name: Release Asset Preparation
       run: |
-        cd tools && build.cmd && cd ..
-        cd tools && pack.cmd && cd ..
-        cd tools && docgen.cmd && cd ..
-        cd tools && docgen-pack.cmd && cd ..
+        cd tools ; ./build.cmd ; cd ..
+        cd tools ; ./pack.cmd ; cd ..
+        cd tools ; ./docgen.cmd ; cd ..
+        cd tools ; ./docgen-pack.cmd ; cd ..
     - name: Release Draft Making
       uses: softprops/action-gh-release@v1
       with:
