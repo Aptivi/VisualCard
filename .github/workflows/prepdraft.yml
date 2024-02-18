@@ -33,5 +33,6 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         body: "This is a draft release. Fill this with a release snippet from the release sheet made internally."
+        draft: true
         files: |
           tools/*.zip
