@@ -2,7 +2,7 @@
   "sitemap": {
     "baseUrl": "https://aptivi.github.io/VisualCard/"
   },
-  "source_base_path": "/github/workspace/DocGen",
+  "source_base_path": "/home/runner/work/VisualCard/VisualCard/DocGen",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
