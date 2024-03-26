@@ -17,7 +17,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-global using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shouldly;
 using System.Collections.Generic;
 using System.IO;
@@ -27,22 +27,50 @@ using VisualCard.Parts;
 
 namespace VisualCard.Tests
 {
+    [TestClass]
     public class ContactParseTests
     {
-        [Test]
-        [TestCaseSource(typeof(ContactData), nameof(ContactData.singleVcardContactShorts))]
-        [TestCaseSource(typeof(ContactData), nameof(ContactData.singleVcardContacts))]
-        [TestCaseSource(typeof(ContactData), nameof(ContactData.multipleVcardContacts))]
-        [TestCaseSource(typeof(ContactData), nameof(ContactData.remainingContacts))]
+        [TestMethod]
+        [DynamicData(nameof(ContactData.singleVcardContactShorts), typeof(ContactData))]
+        public void GetCardParsersFromDifferentContactsShorts(string cardText)
+            => Should.NotThrow(() => CardTools.GetCardParsersFromString(cardText));
+
+        [TestMethod]
+        [DynamicData(nameof(ContactData.singleVcardContacts), typeof(ContactData))]
         public void GetCardParsersFromDifferentContacts(string cardText)
             => Should.NotThrow(() => CardTools.GetCardParsersFromString(cardText));
 
-        [Test]
-        [TestCaseSource(typeof(ContactData), nameof(ContactData.singleVcardContactShorts))]
-        [TestCaseSource(typeof(ContactData), nameof(ContactData.singleVcardContacts))]
-        [TestCaseSource(typeof(ContactData), nameof(ContactData.multipleVcardContacts))]
-        [TestCaseSource(typeof(ContactData), nameof(ContactData.remainingContacts))]
-        public void ParseDifferentContacts(string cardText)
+        [TestMethod]
+        [DynamicData(nameof(ContactData.multipleVcardContacts), typeof(ContactData))]
+        public void GetCardParsersFromDifferentContactsMultiple(string cardText)
+            => Should.NotThrow(() => CardTools.GetCardParsersFromString(cardText));
+
+        [TestMethod]
+        [DynamicData(nameof(ContactData.remainingContacts), typeof(ContactData))]
+        public void GetCardParsersFromDifferentContactsRemaining(string cardText)
+            => Should.NotThrow(() => CardTools.GetCardParsersFromString(cardText));
+
+        [TestMethod]
+        [DynamicData(nameof(ContactData.singleVcardContactShorts), typeof(ContactData))]
+        public void ParseDifferentContactsShorts(string cardText) =>
+            ParseDifferentContactsInternal(cardText);
+
+        [TestMethod]
+        [DynamicData(nameof(ContactData.singleVcardContacts), typeof(ContactData))]
+        public void ParseDifferentContacts(string cardText) =>
+            ParseDifferentContactsInternal(cardText);
+
+        [TestMethod]
+        [DynamicData(nameof(ContactData.multipleVcardContacts), typeof(ContactData))]
+        public void ParseDifferentContactsMultiple(string cardText) =>
+            ParseDifferentContactsInternal(cardText);
+
+        [TestMethod]
+        [DynamicData(nameof(ContactData.remainingContacts), typeof(ContactData))]
+        public void ParseDifferentContactsRemaining(string cardText) =>
+            ParseDifferentContactsInternal(cardText);
+
+        internal void ParseDifferentContactsInternal(string cardText)
         {
             List<BaseVcardParser> parsers = [];
             Should.NotThrow(() => parsers = CardTools.GetCardParsersFromString(cardText));
@@ -50,12 +78,27 @@ namespace VisualCard.Tests
                 Should.NotThrow(parser.Parse);
         }
 
-        [Test]
-        [TestCaseSource(typeof(ContactData), nameof(ContactData.singleVcardContactShorts))]
-        [TestCaseSource(typeof(ContactData), nameof(ContactData.singleVcardContacts))]
-        [TestCaseSource(typeof(ContactData), nameof(ContactData.multipleVcardContacts))]
-        [TestCaseSource(typeof(ContactData), nameof(ContactData.remainingContacts))]
-        public void ParseDifferentContactsAndTestEquality(string cardText)
+        [TestMethod]
+        [DynamicData(nameof(ContactData.singleVcardContactShorts), typeof(ContactData))]
+        public void ParseDifferentContactsAndTestEqualityShorts(string cardText) =>
+            ParseDifferentContactsAndTestEqualityInternal(cardText);
+
+        [TestMethod]
+        [DynamicData(nameof(ContactData.singleVcardContacts), typeof(ContactData))]
+        public void ParseDifferentContactsAndTestEquality(string cardText) =>
+            ParseDifferentContactsAndTestEqualityInternal(cardText);
+
+        [TestMethod]
+        [DynamicData(nameof(ContactData.multipleVcardContacts), typeof(ContactData))]
+        public void ParseDifferentContactsAndTestEqualityMultiple(string cardText) =>
+            ParseDifferentContactsAndTestEqualityInternal(cardText);
+
+        [TestMethod]
+        [DynamicData(nameof(ContactData.remainingContacts), typeof(ContactData))]
+        public void ParseDifferentContactsAndTestEqualityRemaining(string cardText) =>
+            ParseDifferentContactsAndTestEqualityInternal(cardText);
+
+        internal void ParseDifferentContactsAndTestEqualityInternal(string cardText)
         {
             List<BaseVcardParser> parsers = [];
             List<Card> cards = [];
@@ -81,12 +124,27 @@ namespace VisualCard.Tests
             foundCards.ShouldAllBe((b) => b);
         }
 
-        [Test]
-        [TestCaseSource(typeof(ContactData), nameof(ContactData.singleVcardContactShorts))]
-        [TestCaseSource(typeof(ContactData), nameof(ContactData.singleVcardContacts))]
-        [TestCaseSource(typeof(ContactData), nameof(ContactData.multipleVcardContacts))]
-        [TestCaseSource(typeof(ContactData), nameof(ContactData.remainingContacts))]
-        public void ParseDifferentContactsSaveToStringAndTestEquality(string cardText)
+        [TestMethod]
+        [DynamicData(nameof(ContactData.singleVcardContactShorts), typeof(ContactData))]
+        public void ParseDifferentContactsSaveToStringAndTestEqualityShorts(string cardText) =>
+            ParseDifferentContactsSaveToStringAndTestEqualityInternal(cardText);
+
+        [TestMethod]
+        [DynamicData(nameof(ContactData.singleVcardContacts), typeof(ContactData))]
+        public void ParseDifferentContactsSaveToStringAndTestEquality(string cardText) =>
+            ParseDifferentContactsSaveToStringAndTestEqualityInternal(cardText);
+
+        [TestMethod]
+        [DynamicData(nameof(ContactData.multipleVcardContacts), typeof(ContactData))]
+        public void ParseDifferentContactsSaveToStringAndTestEqualityMultiple(string cardText) =>
+            ParseDifferentContactsSaveToStringAndTestEqualityInternal(cardText);
+
+        [TestMethod]
+        [DynamicData(nameof(ContactData.remainingContacts), typeof(ContactData))]
+        public void ParseDifferentContactsSaveToStringAndTestEqualityRemaining(string cardText) =>
+            ParseDifferentContactsSaveToStringAndTestEqualityInternal(cardText);
+
+        public void ParseDifferentContactsSaveToStringAndTestEqualityInternal(string cardText)
         {
             List<BaseVcardParser> parsers = [];
             List<Card> cards = [];
@@ -122,8 +180,8 @@ namespace VisualCard.Tests
             foundCards.ShouldAllBe((b) => b);
         }
 
-        [Test]
-        [TestCaseSource(typeof(ContactData), nameof(ContactData.vCardFromMeCardContacts))]
+        [TestMethod]
+        [DynamicData(nameof(ContactData.vCardFromMeCardContacts), typeof(ContactData))]
         public void ParseAndCheckDifferentMeCardContacts((string, string) cardText)
         {
             List<BaseVcardParser> parsers = [];
@@ -134,8 +192,8 @@ namespace VisualCard.Tests
             card.SaveToString().ShouldBe(cardText.Item2);
         }
 
-        [Test]
-        [TestCaseSource(typeof(ContactData), nameof(ContactData.meCardContacts))]
+        [TestMethod]
+        [DynamicData(nameof(ContactData.meCardContacts), typeof(ContactData))]
         public void ParseDifferentMeCardContacts(string cardText)
         {
             List<BaseVcardParser> parsers = [];
@@ -144,8 +202,8 @@ namespace VisualCard.Tests
                 Should.NotThrow(parser.Parse);
         }
 
-        [Test]
-        [TestCaseSource(typeof(ContactData), nameof(ContactData.meCardContacts))]
+        [TestMethod]
+        [DynamicData(nameof(ContactData.meCardContacts), typeof(ContactData))]
         public void ParseDifferentMeCardContactsAndTestEquality(string cardText)
         {
             List<BaseVcardParser> parsers = [];
@@ -172,8 +230,8 @@ namespace VisualCard.Tests
             foundCards.ShouldAllBe((b) => b);
         }
 
-        [Test]
-        [TestCaseSource(typeof(ContactData), nameof(ContactData.meCardContacts))]
+        [TestMethod]
+        [DynamicData(nameof(ContactData.meCardContacts), typeof(ContactData))]
         public void ParseDifferentMeCardContactsSaveToStringAndTestEquality(string cardText)
         {
             List<BaseVcardParser> parsers = [];
@@ -210,13 +268,13 @@ namespace VisualCard.Tests
             foundCards.ShouldAllBe((b) => b);
         }
 
-        [Test]
-        [TestCaseSource(typeof(ContactDataBogus), nameof(ContactDataBogus.invalidContacts))]
+        [TestMethod]
+        [DynamicData(nameof(ContactDataBogus.invalidContacts), typeof(ContactDataBogus))]
         public void InvalidContactShouldThrowWhenGettingCardParsers(string cardText)
             => Should.Throw<InvalidDataException>(() => CardTools.GetCardParsersFromString(cardText));
 
-        [Test]
-        [TestCaseSource(typeof(ContactDataBogus), nameof(ContactDataBogus.invalidContactsParser))]
+        [TestMethod]
+        [DynamicData(nameof(ContactDataBogus.invalidContactsParser), typeof(ContactDataBogus))]
         public void InvalidContactShouldThrowWhenParsing(string cardText)
         {
             List<BaseVcardParser> parsers = [];
@@ -225,13 +283,13 @@ namespace VisualCard.Tests
                 Should.Throw<InvalidDataException>(parser.Parse);
         }
 
-        [Test]
-        [TestCaseSource(typeof(ContactDataBogus), nameof(ContactDataBogus.seemsValidContacts))]
+        [TestMethod]
+        [DynamicData(nameof(ContactDataBogus.seemsValidContacts), typeof(ContactDataBogus))]
         public void BogusButSeemsValidShouldNotThrowWhenGettingCardParsers(string cardText)
             => Should.NotThrow(() => CardTools.GetCardParsersFromString(cardText));
 
-        [Test]
-        [TestCaseSource(typeof(ContactDataBogus), nameof(ContactDataBogus.seemsValidContacts))]
+        [TestMethod]
+        [DynamicData(nameof(ContactDataBogus.seemsValidContacts), typeof(ContactDataBogus))]
         public void BogusButSeemsValidShouldNotThrowWhenParsing(string cardText)
         {
             List<BaseVcardParser> parsers = [];

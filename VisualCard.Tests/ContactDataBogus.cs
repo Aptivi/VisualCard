@@ -17,6 +17,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+using System.Collections.Generic;
 using VisualCard.Parsers;
 
 namespace VisualCard.Tests
@@ -85,31 +86,45 @@ namespace VisualCard.Tests
         /// All of the contacts in this field should fail immediately upon processing the test contacts in the
         /// <see cref="CardTools.GetCardParsers(System.IO.StreamReader)"/> function.
         /// </summary>
-        public static readonly string[] invalidContacts =
+        public static IEnumerable<object[]> invalidContacts =>
         [
-            vcardZeroByte,
-            vcardNonexistentVersion,
+            [
+                vcardZeroByte,
+            ],
+            [
+                vcardNonexistentVersion,
+            ],
         ];
 
         /// <summary>
         /// All of the contacts in this field with invalid syntax or omitted requirements may be accepted by the
         /// <see cref="CardTools.GetCardParsers(System.IO.StreamReader)"/> function.
         /// </summary>
-        public static readonly string[] seemsValidContacts =
+        public static IEnumerable<object[]> seemsValidContacts =>
         [
-            vcardTwoNoFullName,
+            [
+                vcardTwoNoFullName,
+            ]
         ];
 
         /// <summary>
         /// All of the contacts in this field should fail immediately upon calling <see cref="BaseVcardParser.Parse()"/>.
         /// These usually resemble contacts with invalid syntax.
         /// </summary>
-        public static readonly string[] invalidContactsParser =
+        public static IEnumerable<object[]> invalidContactsParser =>
         [
-            vcardThreeNoFullName,
-            vcardTwoBarren,
-            vcardThreeBarren,
-            vcardFourBarren,
+            [
+                vcardThreeNoFullName,
+            ],
+            [
+                vcardTwoBarren,
+            ],
+            [
+                vcardThreeBarren,
+            ],
+            [
+                vcardFourBarren,
+            ],
         ];
     }
 }

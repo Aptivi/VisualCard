@@ -18,6 +18,7 @@
 //
 
 using System;
+using System.Collections.Generic;
 using VisualCard.Parts;
 
 namespace VisualCard.Tests
@@ -1191,60 +1192,94 @@ namespace VisualCard.Tests
         /// <summary>
         /// Test VCard single contact contents (shorts)
         /// </summary>
-        public static readonly string[] singleVcardContactShorts =
+        public static IEnumerable<object[]> singleVcardContactShorts =>
         [
-            singleVcardTwoContactShort,
-            singleVcardThreeContactShort,
-            singleVcardFourContactShort,
-            singleVcardFiveContactShort,
+            [
+                singleVcardTwoContactShort,
+            ],
+            [
+                singleVcardThreeContactShort,
+            ],
+            [
+                singleVcardFourContactShort,
+            ],
+            [
+                singleVcardFiveContactShort,
+            ],
         ];
 
         /// <summary>
         /// Test VCard single contact contents
         /// </summary>
-        public static readonly string[] singleVcardContacts =
+        public static IEnumerable<object[]> singleVcardContacts =>
         [
-            singleVcardTwoContact,
-            singleVcardThreeContact,
-            singleVcardFourContact,
-            singleVcardFiveContact,
+            [
+                singleVcardTwoContact,
+            ],
+            [
+                singleVcardThreeContact,
+            ],
+            [
+                singleVcardFourContact,
+            ],
+            [
+                singleVcardFiveContact,
+            ],
         ];
 
         /// <summary>
         /// Test VCard multiple contact contents
         /// </summary>
-        public static readonly string[] multipleVcardContacts =
+        public static IEnumerable<object[]> multipleVcardContacts =>
         [
-            multipleVcardTwoContacts,
-            multipleVcardThreeContacts,
-            multipleVcardFourContacts,
-            multipleVcardFiveContacts,
+            [
+                multipleVcardTwoContacts,
+            ],
+            [
+                multipleVcardThreeContacts,
+            ],
+            [
+                multipleVcardFourContacts,
+            ],
+            [
+                multipleVcardFiveContacts,
+            ],
         ];
 
         /// <summary>
         /// Test MeCard contacts
         /// </summary>
-        public static readonly string[] meCardContacts =
+        public static IEnumerable<object[]> meCardContacts =>
         [
-            singleMeCardContactShort,
-            singleMeCardContact,
+            [
+                singleMeCardContactShort,
+            ],
+            [
+                singleMeCardContact,
+            ],
         ];
 
         /// <summary>
         /// Test MeCard contacts
         /// </summary>
-        public static readonly (string, string)[] vCardFromMeCardContacts =
+        public static IEnumerable<object[]> vCardFromMeCardContacts =>
         [
-            (singleMeCardContactShort, singleVcardContactShortFromMeCard),
-            (singleMeCardContact, singleVcardContactFromMeCard),
+            [
+                (singleMeCardContactShort, singleVcardContactShortFromMeCard),
+            ],
+            [
+                (singleMeCardContact, singleVcardContactFromMeCard),
+            ],
         ];
 
         /// <summary>
         /// All the remaining valid contacts
         /// </summary>
-        public static readonly string[] remainingContacts =
+        public static IEnumerable<object[]> remainingContacts =>
         [
-            vcardThreeOldSample,
+            [
+                vcardThreeOldSample,
+            ]
         ];
 
         /// <summary>
