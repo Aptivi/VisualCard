@@ -3,22 +3,27 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <AssemblyTitle>Aptivi</AssemblyTitle>
+    <AssemblyDescription>vCard Parsing Library</AssemblyDescription>
+    <Description>A C# library that allows you to parse vCard files in different formats, such as vCard 2.1, 3.0, 4.0, and 5.0.</Description>
     <Version>0.10.0</Version>
-    <Company>Aptivi</Company>
     <Authors>Aptivi</Authors>
-    <Description>A managed VCard contact file parser</Description>
-    <Copyright>Copyright (c) 2021 - 2022 Aptivi.</Copyright>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <DebugType>portable</DebugType>
     <PackageIcon>OfficialAppIcon-VisualCard-512.png</PackageIcon>
     <PackageProjectUrl>https://github.com/Aptivi/VisualCard</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/Aptivi/VisualCard</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>vcf;contacts;parsers</PackageTags>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <IncludeSymbols>True</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <Company>Aptivi</Company>
+    <Copyright>Copyright (c) 2021-2024 Aptivi</Copyright>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <LangVersion>latest</LangVersion>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>..\aptivi_snk.snk</AssemblyOriginatorKeyFile>

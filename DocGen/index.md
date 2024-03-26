@@ -18,4 +18,4 @@ If you wish to contribute to the documentation of the API, go to the project sou
 
 Any meaningful contributions are welcome.
 
-Copyright (c) 2022 Aptivi. All rights reserved.
+Copyright (c) 2021-2024 Aptivi. All rights reserved.
