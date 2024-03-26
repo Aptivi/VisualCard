@@ -1,0 +1,53 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Sanders;John;;;
+FN:John Sanders
+X-PHONETIC-FIRST-NAME:Saunders
+X-PHONETIC-LAST-NAME:John
+NICKNAME:JS
+TEL;TYPE=cell:495-522-3560
+EMAIL;TYPE=home:john.s@acme.co
+ADR;TYPE=home:;;Los Angeles, USA;;;;
+ORG:Acme Co.
+TITLE:Product Manager
+NOTE:Note test for VisualCard
+X-AIM:john.s
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+N:Santos;Sarah;;;
+FN:Sarah Santos
+TEL;TYPE=cell:589-210-1059
+EMAIL;TYPE=home:sarah.s@gmail.com
+EMAIL;TYPE=work:sarah.s@sso.org
+ADR;TYPE=home:;;New York, USA;;;;
+ORG:Support Scammer Outcry Organization
+TITLE:Chief Executive Officer
+URL:https://sso.org/
+X-SIP:sip test
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+N:Navasquillo;Neville;Neville,Nevile;Mr.;Jr.
+FN:Neville Navasquillo
+NICKNAME:NVL.N
+TEL;TYPE=cell:1-234-567-890
+TEL;TYPE=work:098-765-4321
+TEL;TYPE=voice:078-494-6434
+TEL;TYPE=home:348-404-8404
+EMAIL;TYPE=home:neville.nvs@gmail.com
+EMAIL;TYPE=work:neville.nvs@nvsc.com
+ADR;TYPE=work:POBOX;;Street Address ExtAddress;Reg;Loc;Postal;Country
+ADR;TYPE=home:;;Street Address;;;;
+ORG:Organization
+TITLE:Title
+NOTE:Notes
+X-AIM;HOME:IM
+X-MSN;HOME:Windows LIVE
+X-YAHOO;HOME:Yahoo
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+N:Hood;Rick;;;
+FN:Rick Hood
+END:VCARD

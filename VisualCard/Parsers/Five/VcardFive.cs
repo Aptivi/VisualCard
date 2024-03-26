@@ -116,7 +116,7 @@ namespace VisualCard.Parsers.Five
                     // Variables
                     string[] splitValueParts = _value.Split(VcardConstants._argumentDelimiter);
                     string[] splitArgs = splitValueParts[0].Split(VcardConstants._fieldDelimiter);
-                    splitArgs = splitArgs.Except(new string[] { splitArgs[0] }).ToArray();
+                    splitArgs = splitArgs.Except([splitArgs[0]]).ToArray();
                     string[] splitValues = splitValueParts[1].Split(VcardConstants._fieldDelimiter);
                     List<string> finalArgs = [];
                     int altId = 0;

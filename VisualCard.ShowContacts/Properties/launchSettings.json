@@ -1,0 +1,28 @@
+{
+  "profiles": {
+    "WSL": {
+      "commandName": "WSL2",
+      "distributionName": ""
+    },
+    "vCard 2.1 test": {
+      "commandName": "Project",
+      "commandLineArgs": "TestFiles/four.vcf"
+    },
+    "vCard 3.0 test": {
+      "commandName": "Project",
+      "commandLineArgs": "TestFiles/fourVCard3.vcf"
+    },
+    "vCard 4.0 test": {
+      "commandName": "Project",
+      "commandLineArgs": "TestFiles/fourVCard4.vcf"
+    },
+    "vCard 5.0 test": {
+      "commandName": "Project",
+      "commandLineArgs": "TestFiles/fourVCard5.vcf"
+    },
+    "vCard 5.0 test (with agents)": {
+      "commandName": "Project",
+      "commandLineArgs": "TestFiles/fourVCard5Agents.vcf"
+    }
+  }
+}
