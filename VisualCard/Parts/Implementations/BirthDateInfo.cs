@@ -43,25 +43,8 @@ namespace VisualCard.Parts.Implementations
         internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion, StreamReader cardContentReader) =>
             new BirthDateInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion, cardContentReader);
 
-        internal override string ToStringVcardInternal(Version cardVersion)
-        {
-            bool altIdSupported = cardVersion.Major >= 4;
-            if (altIdSupported)
-            {
-                bool installAltId = AltId >= 0 && AltArguments.Length > 0;
-                return
-                    $"{VcardConstants._birthSpecifier}{(installAltId ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter)}" +
-                    $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
-                    $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._argumentDelimiter : "")}" +
-                    $"{BirthDate}";
-            }
-            else
-            {
-                return
-                    $"{VcardConstants._birthSpecifier}:" +
-                    $"{BirthDate}";
-            }
-        }
+        internal override string ToStringVcardInternal(Version cardVersion) =>
+            $"{VcardConstants._birthSpecifier}:{BirthDate:yyyyMMdd}";
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion, StreamReader cardContentReader)
         {

@@ -91,7 +91,7 @@ namespace VisualCard.Parts
         public BaseCardPartInfo GetPart(PartsEnum key)
         {
             // Check for version support
-            if (!BaseVcardParser.EnumTypeSupported(key))
+            if (!BaseVcardParser.EnumTypeSupported(key, CardVersion))
                 return null;
 
             // Get the fallback value

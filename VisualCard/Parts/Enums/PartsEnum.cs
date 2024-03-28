@@ -32,5 +32,9 @@ namespace VisualCard.Parts.Enums
         /// The contact's birthdate
         /// </summary>
         Birthdate,
+        /// <summary>
+        /// The contact's wedding anniversary date (that is, the day that this contact is married)
+        /// </summary>
+        Anniversary,
     }
 }

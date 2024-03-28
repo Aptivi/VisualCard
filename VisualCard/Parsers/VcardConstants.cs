@@ -69,6 +69,7 @@ namespace VisualCard.Parsers
 
         // Available in vCard 4.0 and 5.0
         internal const string _kindSpecifier = "KIND";
+        internal const string _anniversarySpecifier = "ANNIVERSARY";
         internal const string _altIdArgumentSpecifier = "ALTID=";
     }
 }

@@ -581,6 +581,15 @@ namespace VisualCard.Parsers
                         caladrUriStringValue = uri.ToString();
                         card.SetString(StringsEnum.CalendarSchedulingRequestUrl, caladrUriStringValue);
                     }
+
+                    // Wedding anniversary (ANNIVERSARY:19960415)
+                    // Here, we don't support ALTID.
+                    if (StartsWithPrefix(VcardConstants._anniversarySpecifier) &&
+                        EnumTypeSupported(PartsEnum.Anniversary, CardVersion))
+                    {
+                        var partInfo = AnniversaryInfo.FromStringVcardStatic(_value, altId, CardVersion, CardContentReader);
+                        card.SetPart(PartsEnum.Anniversary, partInfo);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -776,11 +785,12 @@ namespace VisualCard.Parsers
                     throw new InvalidOperationException("Invalid parts array enumeration type to get supported value"),
             };
 
-        internal static bool EnumTypeSupported(PartsEnum partsEnum) =>
+        internal static bool EnumTypeSupported(PartsEnum partsEnum, Version cardVersion) =>
             partsEnum switch
             {
                 PartsEnum.Revision => true,
                 PartsEnum.Birthdate => true,
+                PartsEnum.Anniversary => cardVersion.Major >= 4,
                 _ =>
                     throw new InvalidOperationException("Invalid parts enumeration type to get supported value"),
             };
@@ -815,6 +825,7 @@ namespace VisualCard.Parsers
             {
                 PartsEnum.Revision => typeof(RevisionInfo),
                 PartsEnum.Birthdate => typeof(BirthDateInfo),
+                PartsEnum.Anniversary => typeof(AnniversaryInfo),
                 _ =>
                     throw new InvalidOperationException("Invalid parts enumeration type"),
             };

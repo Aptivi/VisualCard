@@ -17,7 +17,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using Terminaux.Colors.Data;
 using Terminaux.Writer.ConsoleWriters;
 using VisualCard.Converters;
@@ -165,7 +168,12 @@ namespace VisualCard.ShowContacts
                     }
 
                     // List remaining
-                    TextWriterColor.Write("Contact birthdate:       {0}", Contact.GetPart(PartsEnum.Birthdate));
+                    var birth = Contact.GetPart(PartsEnum.Birthdate);
+                    var wed = Contact.GetPart(PartsEnum.Anniversary);
+                    if (birth is BirthDateInfo bday)
+                        TextWriterColor.Write("Contact birthdate:       {0}", bday.BirthDate);
+                    if (wed is AnniversaryInfo adate)
+                        TextWriterColor.Write("Contact wedding date:    {0}", adate.Anniversary);
                     TextWriterColor.Write("Contact mailer:          {0}", Contact.GetString(StringsEnum.Mailer));
                     TextWriterColor.Write("Contact URL:             {0}", Contact.GetString(StringsEnum.Url));
                     TextWriterColor.Write("Contact Note:            {0}", Contact.GetString(StringsEnum.Notes));
