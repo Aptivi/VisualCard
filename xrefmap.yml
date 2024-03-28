@@ -714,6 +714,12 @@ references:
   commentId: T:VisualCard.Parts.Enums.PartsEnum
   fullName: VisualCard.Parts.Enums.PartsEnum
   nameWithType: PartsEnum
+- uid: VisualCard.Parts.Enums.PartsEnum.Anniversary
+  name: Anniversary
+  href: api/VisualCard.Parts.Enums.PartsEnum.html#VisualCard_Parts_Enums_PartsEnum_Anniversary
+  commentId: F:VisualCard.Parts.Enums.PartsEnum.Anniversary
+  fullName: VisualCard.Parts.Enums.PartsEnum.Anniversary
+  nameWithType: PartsEnum.Anniversary
 - uid: VisualCard.Parts.Enums.PartsEnum.Birthdate
   name: Birthdate
   href: api/VisualCard.Parts.Enums.PartsEnum.html#VisualCard_Parts_Enums_PartsEnum_Birthdate
@@ -1103,6 +1109,104 @@ references:
   fullName.vb: VisualCard.Parts.Implementations.AgentInfo.<>
   nameWithType: AgentInfo.operator !=
   nameWithType.vb: AgentInfo.<>
+- uid: VisualCard.Parts.Implementations.AnniversaryInfo
+  name: AnniversaryInfo
+  href: api/VisualCard.Parts.Implementations.AnniversaryInfo.html
+  commentId: T:VisualCard.Parts.Implementations.AnniversaryInfo
+  fullName: VisualCard.Parts.Implementations.AnniversaryInfo
+  nameWithType: AnniversaryInfo
+- uid: VisualCard.Parts.Implementations.AnniversaryInfo.Anniversary
+  name: Anniversary
+  href: api/VisualCard.Parts.Implementations.AnniversaryInfo.html#VisualCard_Parts_Implementations_AnniversaryInfo_Anniversary
+  commentId: P:VisualCard.Parts.Implementations.AnniversaryInfo.Anniversary
+  fullName: VisualCard.Parts.Implementations.AnniversaryInfo.Anniversary
+  nameWithType: AnniversaryInfo.Anniversary
+- uid: VisualCard.Parts.Implementations.AnniversaryInfo.Anniversary*
+  name: Anniversary
+  href: api/VisualCard.Parts.Implementations.AnniversaryInfo.html#VisualCard_Parts_Implementations_AnniversaryInfo_Anniversary_
+  commentId: Overload:VisualCard.Parts.Implementations.AnniversaryInfo.Anniversary
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.AnniversaryInfo.Anniversary
+  nameWithType: AnniversaryInfo.Anniversary
+- uid: VisualCard.Parts.Implementations.AnniversaryInfo.Equals(System.Object)
+  name: Equals(object)
+  href: api/VisualCard.Parts.Implementations.AnniversaryInfo.html#VisualCard_Parts_Implementations_AnniversaryInfo_Equals_System_Object_
+  commentId: M:VisualCard.Parts.Implementations.AnniversaryInfo.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Parts.Implementations.AnniversaryInfo.Equals(object)
+  fullName.vb: VisualCard.Parts.Implementations.AnniversaryInfo.Equals(Object)
+  nameWithType: AnniversaryInfo.Equals(object)
+  nameWithType.vb: AnniversaryInfo.Equals(Object)
+- uid: VisualCard.Parts.Implementations.AnniversaryInfo.Equals(VisualCard.Parts.Implementations.AnniversaryInfo)
+  name: Equals(AnniversaryInfo)
+  href: api/VisualCard.Parts.Implementations.AnniversaryInfo.html#VisualCard_Parts_Implementations_AnniversaryInfo_Equals_VisualCard_Parts_Implementations_AnniversaryInfo_
+  commentId: M:VisualCard.Parts.Implementations.AnniversaryInfo.Equals(VisualCard.Parts.Implementations.AnniversaryInfo)
+  fullName: VisualCard.Parts.Implementations.AnniversaryInfo.Equals(VisualCard.Parts.Implementations.AnniversaryInfo)
+  nameWithType: AnniversaryInfo.Equals(AnniversaryInfo)
+- uid: VisualCard.Parts.Implementations.AnniversaryInfo.Equals(VisualCard.Parts.Implementations.AnniversaryInfo,VisualCard.Parts.Implementations.AnniversaryInfo)
+  name: Equals(AnniversaryInfo, AnniversaryInfo)
+  href: api/VisualCard.Parts.Implementations.AnniversaryInfo.html#VisualCard_Parts_Implementations_AnniversaryInfo_Equals_VisualCard_Parts_Implementations_AnniversaryInfo_VisualCard_Parts_Implementations_AnniversaryInfo_
+  commentId: M:VisualCard.Parts.Implementations.AnniversaryInfo.Equals(VisualCard.Parts.Implementations.AnniversaryInfo,VisualCard.Parts.Implementations.AnniversaryInfo)
+  fullName: VisualCard.Parts.Implementations.AnniversaryInfo.Equals(VisualCard.Parts.Implementations.AnniversaryInfo, VisualCard.Parts.Implementations.AnniversaryInfo)
+  nameWithType: AnniversaryInfo.Equals(AnniversaryInfo, AnniversaryInfo)
+- uid: VisualCard.Parts.Implementations.AnniversaryInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Parts.Implementations.AnniversaryInfo.html#VisualCard_Parts_Implementations_AnniversaryInfo_Equals_
+  commentId: Overload:VisualCard.Parts.Implementations.AnniversaryInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.AnniversaryInfo.Equals
+  nameWithType: AnniversaryInfo.Equals
+- uid: VisualCard.Parts.Implementations.AnniversaryInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Parts.Implementations.AnniversaryInfo.html#VisualCard_Parts_Implementations_AnniversaryInfo_GetHashCode
+  commentId: M:VisualCard.Parts.Implementations.AnniversaryInfo.GetHashCode
+  fullName: VisualCard.Parts.Implementations.AnniversaryInfo.GetHashCode()
+  nameWithType: AnniversaryInfo.GetHashCode()
+- uid: VisualCard.Parts.Implementations.AnniversaryInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Parts.Implementations.AnniversaryInfo.html#VisualCard_Parts_Implementations_AnniversaryInfo_GetHashCode_
+  commentId: Overload:VisualCard.Parts.Implementations.AnniversaryInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.AnniversaryInfo.GetHashCode
+  nameWithType: AnniversaryInfo.GetHashCode
+- uid: VisualCard.Parts.Implementations.AnniversaryInfo.op_Equality(VisualCard.Parts.Implementations.AnniversaryInfo,VisualCard.Parts.Implementations.AnniversaryInfo)
+  name: operator ==(AnniversaryInfo, AnniversaryInfo)
+  href: api/VisualCard.Parts.Implementations.AnniversaryInfo.html#VisualCard_Parts_Implementations_AnniversaryInfo_op_Equality_VisualCard_Parts_Implementations_AnniversaryInfo_VisualCard_Parts_Implementations_AnniversaryInfo_
+  commentId: M:VisualCard.Parts.Implementations.AnniversaryInfo.op_Equality(VisualCard.Parts.Implementations.AnniversaryInfo,VisualCard.Parts.Implementations.AnniversaryInfo)
+  name.vb: =(AnniversaryInfo, AnniversaryInfo)
+  fullName: VisualCard.Parts.Implementations.AnniversaryInfo.operator ==(VisualCard.Parts.Implementations.AnniversaryInfo, VisualCard.Parts.Implementations.AnniversaryInfo)
+  fullName.vb: VisualCard.Parts.Implementations.AnniversaryInfo.=(VisualCard.Parts.Implementations.AnniversaryInfo, VisualCard.Parts.Implementations.AnniversaryInfo)
+  nameWithType: AnniversaryInfo.operator ==(AnniversaryInfo, AnniversaryInfo)
+  nameWithType.vb: AnniversaryInfo.=(AnniversaryInfo, AnniversaryInfo)
+- uid: VisualCard.Parts.Implementations.AnniversaryInfo.op_Equality*
+  name: operator ==
+  href: api/VisualCard.Parts.Implementations.AnniversaryInfo.html#VisualCard_Parts_Implementations_AnniversaryInfo_op_Equality_
+  commentId: Overload:VisualCard.Parts.Implementations.AnniversaryInfo.op_Equality
+  isSpec: "True"
+  name.vb: =
+  fullName: VisualCard.Parts.Implementations.AnniversaryInfo.operator ==
+  fullName.vb: VisualCard.Parts.Implementations.AnniversaryInfo.=
+  nameWithType: AnniversaryInfo.operator ==
+  nameWithType.vb: AnniversaryInfo.=
+- uid: VisualCard.Parts.Implementations.AnniversaryInfo.op_Inequality(VisualCard.Parts.Implementations.AnniversaryInfo,VisualCard.Parts.Implementations.AnniversaryInfo)
+  name: operator !=(AnniversaryInfo, AnniversaryInfo)
+  href: api/VisualCard.Parts.Implementations.AnniversaryInfo.html#VisualCard_Parts_Implementations_AnniversaryInfo_op_Inequality_VisualCard_Parts_Implementations_AnniversaryInfo_VisualCard_Parts_Implementations_AnniversaryInfo_
+  commentId: M:VisualCard.Parts.Implementations.AnniversaryInfo.op_Inequality(VisualCard.Parts.Implementations.AnniversaryInfo,VisualCard.Parts.Implementations.AnniversaryInfo)
+  name.vb: <>(AnniversaryInfo, AnniversaryInfo)
+  fullName: VisualCard.Parts.Implementations.AnniversaryInfo.operator !=(VisualCard.Parts.Implementations.AnniversaryInfo, VisualCard.Parts.Implementations.AnniversaryInfo)
+  fullName.vb: VisualCard.Parts.Implementations.AnniversaryInfo.<>(VisualCard.Parts.Implementations.AnniversaryInfo, VisualCard.Parts.Implementations.AnniversaryInfo)
+  nameWithType: AnniversaryInfo.operator !=(AnniversaryInfo, AnniversaryInfo)
+  nameWithType.vb: AnniversaryInfo.<>(AnniversaryInfo, AnniversaryInfo)
+- uid: VisualCard.Parts.Implementations.AnniversaryInfo.op_Inequality*
+  name: operator !=
+  href: api/VisualCard.Parts.Implementations.AnniversaryInfo.html#VisualCard_Parts_Implementations_AnniversaryInfo_op_Inequality_
+  commentId: Overload:VisualCard.Parts.Implementations.AnniversaryInfo.op_Inequality
+  isSpec: "True"
+  name.vb: <>
+  fullName: VisualCard.Parts.Implementations.AnniversaryInfo.operator !=
+  fullName.vb: VisualCard.Parts.Implementations.AnniversaryInfo.<>
+  nameWithType: AnniversaryInfo.operator !=
+  nameWithType.vb: AnniversaryInfo.<>
 - uid: VisualCard.Parts.Implementations.BirthDateInfo
   name: BirthDateInfo
   href: api/VisualCard.Parts.Implementations.BirthDateInfo.html

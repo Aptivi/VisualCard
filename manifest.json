@@ -185,6 +185,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.AnniversaryInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.Implementations.AnniversaryInfo.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/VisualCard.Parts.Implementations.BirthDateInfo.yml",
       "output": {
         ".html": {
