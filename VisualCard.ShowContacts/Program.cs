@@ -180,7 +180,7 @@ namespace VisualCard.ShowContacts
                     TextWriterColor.Write(raw);
                 }
                 if (showVcard5Disclaimer)
-                    TextWriterColor.WriteColor("This application uses vCard 5.0, a revised version of vCard 4.0, made by Aptivi.", ConsoleColors.Gray);
+                    TextWriterColor.WriteColor("This application uses vCard 5.0, a revised version of vCard 4.0, made by Aptivi.", ConsoleColors.Silver);
             }
         }
     }
