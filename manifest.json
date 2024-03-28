@@ -85,90 +85,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parsers.Five.VcardFive.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Parsers.Five.VcardFive.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parsers.Five.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Parsers.Five.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parsers.Four.VcardFour.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Parsers.Four.VcardFour.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parsers.Four.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Parsers.Four.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/VisualCard.Parsers.IVcardParser.yml",
       "output": {
         ".html": {
           "relative_path": "api/VisualCard.Parsers.IVcardParser.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parsers.Three.VcardThree.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Parsers.Three.VcardThree.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parsers.Three.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Parsers.Three.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parsers.Two.VcardTwo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Parsers.Two.VcardTwo.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parsers.Two.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Parsers.Two.html"
         }
       },
       "version": ""
@@ -185,20 +105,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parts.AddressInfo.yml",
+      "source_relative_path": "api/VisualCard.Parts.BaseCardPartInfo.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parts.AddressInfo.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parts.AgentInfo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Parts.AgentInfo.html"
+          "relative_path": "api/VisualCard.Parts.BaseCardPartInfo.html"
         }
       },
       "version": ""
@@ -215,150 +125,250 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parts.EmailInfo.yml",
+      "source_relative_path": "api/VisualCard.Parts.Enums.PartsArrayEnum.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parts.EmailInfo.html"
+          "relative_path": "api/VisualCard.Parts.Enums.PartsArrayEnum.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parts.GeoInfo.yml",
+      "source_relative_path": "api/VisualCard.Parts.Enums.PartsEnum.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parts.GeoInfo.html"
+          "relative_path": "api/VisualCard.Parts.Enums.PartsEnum.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parts.ImppInfo.yml",
+      "source_relative_path": "api/VisualCard.Parts.Enums.StringsEnum.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parts.ImppInfo.html"
+          "relative_path": "api/VisualCard.Parts.Enums.StringsEnum.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parts.LabelAddressInfo.yml",
+      "source_relative_path": "api/VisualCard.Parts.Enums.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parts.LabelAddressInfo.html"
+          "relative_path": "api/VisualCard.Parts.Enums.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parts.LogoInfo.yml",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.AddressInfo.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parts.LogoInfo.html"
+          "relative_path": "api/VisualCard.Parts.Implementations.AddressInfo.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parts.NameInfo.yml",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.AgentInfo.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parts.NameInfo.html"
+          "relative_path": "api/VisualCard.Parts.Implementations.AgentInfo.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parts.NicknameInfo.yml",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.BirthDateInfo.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parts.NicknameInfo.html"
+          "relative_path": "api/VisualCard.Parts.Implementations.BirthDateInfo.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parts.OrganizationInfo.yml",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.CategoryInfo.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parts.OrganizationInfo.html"
+          "relative_path": "api/VisualCard.Parts.Implementations.CategoryInfo.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parts.PhotoInfo.yml",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.EmailInfo.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parts.PhotoInfo.html"
+          "relative_path": "api/VisualCard.Parts.Implementations.EmailInfo.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parts.RoleInfo.yml",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.GeoInfo.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parts.RoleInfo.html"
+          "relative_path": "api/VisualCard.Parts.Implementations.GeoInfo.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parts.SoundInfo.yml",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.ImppInfo.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parts.SoundInfo.html"
+          "relative_path": "api/VisualCard.Parts.Implementations.ImppInfo.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parts.TelephoneInfo.yml",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.LabelAddressInfo.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parts.TelephoneInfo.html"
+          "relative_path": "api/VisualCard.Parts.Implementations.LabelAddressInfo.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parts.TimeZoneInfo.yml",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.LogoInfo.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parts.TimeZoneInfo.html"
+          "relative_path": "api/VisualCard.Parts.Implementations.LogoInfo.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parts.TitleInfo.yml",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.NameInfo.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parts.TitleInfo.html"
+          "relative_path": "api/VisualCard.Parts.Implementations.NameInfo.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parts.XNameInfo.yml",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.NicknameInfo.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Parts.XNameInfo.html"
+          "relative_path": "api/VisualCard.Parts.Implementations.NicknameInfo.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.OrganizationInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.Implementations.OrganizationInfo.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.PhotoInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.Implementations.PhotoInfo.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.RevisionInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.Implementations.RevisionInfo.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.RoleInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.Implementations.RoleInfo.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.SoundInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.Implementations.SoundInfo.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.TelephoneInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.Implementations.TelephoneInfo.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.TimeDateZoneInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.Implementations.TimeDateZoneInfo.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.TitleInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.Implementations.TitleInfo.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.XNameInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.Implementations.XNameInfo.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.Implementations.html"
         }
       },
       "version": ""
