@@ -56,13 +56,8 @@ namespace VisualCard.Parsers
         /// <returns>A strongly-typed <see cref="Card"/> instance holding information about the card</returns>
         public virtual Card Parse()
         {
-            // Check the version to ensure that we're really dealing with the correct vCard version
-            if (CardVersion != ExpectedCardVersion)
-                throw new InvalidDataException($"Card version {CardVersion} doesn't match expected \"2.1\".");
-
-            // Check the content to ensure that we really have data
-            if (string.IsNullOrEmpty(CardContent))
-                throw new InvalidDataException($"Card content is empty.");
+            // Verify the card data
+            VerifyCardData();
 
             // Now, make a stream out of card content
             byte[] CardContentData = Encoding.Default.GetBytes(CardContent);
@@ -71,24 +66,6 @@ namespace VisualCard.Parsers
 
             // Make a new vCard
             var card = new Card(this);
-
-            // Track the required fields
-            List<string> expectedFields = [];
-            List<string> actualFields = [];
-            switch (CardVersion.ToString(2))
-            {
-                case "2.1":
-                    expectedFields.Add(VcardConstants._nameSpecifier);
-                    break;
-                case "4.0":
-                    expectedFields.Add(VcardConstants._fullNameSpecifier);
-                    break;
-                case "3.0":
-                case "5.0":
-                    expectedFields.Add(VcardConstants._nameSpecifier);
-                    expectedFields.Add(VcardConstants._fullNameSpecifier);
-                    break;
-            }
 
             // Iterate through all the lines
             int lineNumber = 0;
@@ -144,7 +121,7 @@ namespace VisualCard.Parsers
 
                     // The name (N:Sanders;John;;;)
                     // ALTID is supported.
-                    if (StartsWithPrefix(VcardConstants._nameSpecifier) && !actualFields.Contains(VcardConstants._nameSpecifier))
+                    if (StartsWithPrefix(VcardConstants._nameSpecifier))
                     {
                         // Get the name
                         var partInfo =
@@ -152,15 +129,11 @@ namespace VisualCard.Parsers
                             NameInfo.FromStringVcardWithTypeStatic(_value, [.. finalArgs], altId, CardVersion, CardContentReader) :
                             NameInfo.FromStringVcardStatic(_value, altId, CardVersion, CardContentReader);
                         card.AddPartToArray(PartsArrayEnum.Names, partInfo);
-
-                        // Set flag to indicate that the required field is spotted
-                        if (expectedFields.Contains(VcardConstants._nameSpecifier))
-                            actualFields.Add(VcardConstants._nameSpecifier);
                     }
 
                     // Full name (FN:John Sanders)
                     // Here, we don't support ALTID.
-                    if (StartsWithPrefix(VcardConstants._fullNameSpecifier) && !actualFields.Contains(VcardConstants._fullNameSpecifier))
+                    if (StartsWithPrefix(VcardConstants._fullNameSpecifier))
                     {
                         // Get the value
                         string fullNameValue = _value.Substring(VcardConstants._fullNameSpecifier.Length + 1);
@@ -168,10 +141,6 @@ namespace VisualCard.Parsers
 
                         // Populate field
                         card.SetString(StringsEnum.FullName, fullNameValue);
-
-                        // Set flag to indicate that the required field is spotted
-                        if (expectedFields.Contains(VcardConstants._fullNameSpecifier))
-                            actualFields.Add(VcardConstants._fullNameSpecifier);
                     }
 
                     // Telephone (TEL;CELL;HOME:495-522-3560 or TEL;TYPE=cell,home:495-522-3560 or TEL:495-522-3560)
@@ -597,13 +566,8 @@ namespace VisualCard.Parsers
                 }
             }
 
-            // Requirement checks
-            actualFields.Sort();
-            expectedFields.Sort();
-            if (!actualFields.SequenceEqual(expectedFields))
-                throw new InvalidDataException($"The following keys [{string.Join(", ", expectedFields)}] are required. Got [{string.Join(", ", actualFields)}].");
-
-            // Return this card
+            // Validate this card before returning it.
+            ValidateCard(card);
             return card;
         }
 
@@ -829,5 +793,46 @@ namespace VisualCard.Parsers
                 _ =>
                     throw new InvalidOperationException("Invalid parts enumeration type"),
             };
+
+        internal void ValidateCard(Card card)
+        {
+            // Track the required fields
+            List<string> expectedFields = [];
+            List<string> actualFields = [];
+            switch (CardVersion.ToString(2))
+            {
+                case "2.1":
+                    expectedFields.Add(VcardConstants._nameSpecifier);
+                    break;
+                case "4.0":
+                    expectedFields.Add(VcardConstants._fullNameSpecifier);
+                    break;
+                case "3.0":
+                case "5.0":
+                    expectedFields.Add(VcardConstants._nameSpecifier);
+                    expectedFields.Add(VcardConstants._fullNameSpecifier);
+                    break;
+            }
+
+            // Requirement checks
+            if (expectedFields.Contains(VcardConstants._nameSpecifier))
+            {
+                var names = card.GetPartsArray(PartsArrayEnum.Names);
+                bool exists = names is not null && names.Length > 0;
+                if (exists)
+                    actualFields.Add(VcardConstants._nameSpecifier);
+            }
+            if (expectedFields.Contains(VcardConstants._fullNameSpecifier))
+            {
+                string fullName = card.GetString(StringsEnum.FullName);
+                bool exists = !string.IsNullOrEmpty(fullName);
+                if (exists)
+                    actualFields.Add(VcardConstants._fullNameSpecifier);
+            }
+            expectedFields.Sort();
+            actualFields.Sort();
+            if (!actualFields.SequenceEqual(expectedFields))
+                throw new InvalidDataException($"The following keys [{string.Join(", ", expectedFields)}] are required. Got [{string.Join(", ", actualFields)}].");
+        }
     }
 }
