@@ -18,39 +18,22 @@
 //
 
 using System;
-using VisualCard.Parts;
 
-namespace VisualCard.Parsers
+namespace VisualCard.Parsers.Versioned
 {
     /// <summary>
-    /// VCard parser interface
+    /// Parser for VCard version 2.1. Consult the vcard-21.txt file in source for the specification.
     /// </summary>
-    public interface IVcardParser
+    internal class VcardTwo : BaseVcardParser, IVcardParser
     {
-        /// <summary>
-        /// Contents of the VCard
-        /// </summary>
-        public string CardContent { get; }
+        /// <inheritdoc/>
+        public override Version ExpectedCardVersion =>
+            new(2, 1);
 
-        /// <summary>
-        /// The version of the card
-        /// </summary>
-        public Version CardVersion { get; }
-
-        /// <summary>
-        /// VCard expected card version
-        /// </summary>
-        internal Version ExpectedCardVersion { get; }
-
-        /// <summary>
-        /// Parses the VCard file
-        /// </summary>
-        Card Parse();
-
-        /// <summary>
-        /// Saves a parsed card to the string
-        /// </summary>
-        /// <param name="card">Parsed card</param>
-        string SaveToString(Card card);
+        internal VcardTwo(string cardContent, Version cardVersion)
+        {
+            CardContent = cardContent;
+            CardVersion = cardVersion;
+        }
     }
 }

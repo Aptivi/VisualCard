@@ -102,19 +102,23 @@ namespace VisualCard.Tests
         {
             List<BaseVcardParser> parsers = [];
             List<Card> cards = [];
+            List<Card> secondCards = [];
 
             // Parse the cards
             Should.NotThrow(() => parsers = CardTools.GetCardParsersFromString(cardText));
             foreach (BaseVcardParser parser in parsers)
+            {
                 cards.Add(Should.NotThrow(parser.Parse));
+                secondCards.Add(Should.NotThrow(parser.Parse));
+            }
 
             // Test equality with available data
             List<bool> foundCards = [];
             foreach (Card card in cards)
             {
                 bool found = false;
-                foreach (Card expectedCard in ContactData.vCardContactsInstances)
-                    if (expectedCard == card)
+                foreach (Card second in secondCards)
+                    if (second == card)
                     {
                         found = true;
                         break;
@@ -148,12 +152,16 @@ namespace VisualCard.Tests
         {
             List<BaseVcardParser> parsers = [];
             List<Card> cards = [];
+            List<Card> secondCards = [];
             List<Card> savedCards = [];
 
             // Parse the cards
             Should.NotThrow(() => parsers = CardTools.GetCardParsersFromString(cardText));
             foreach (BaseVcardParser parser in parsers)
+            {
                 cards.Add(Should.NotThrow(parser.Parse));
+                secondCards.Add(Should.NotThrow(parser.Parse));
+            }
 
             // Save all the cards to strings and re-parse
             foreach (Card card in cards)
@@ -169,8 +177,8 @@ namespace VisualCard.Tests
             foreach (Card card in savedCards)
             {
                 bool found = false;
-                foreach (Card expectedCard in ContactData.vCardContactsInstances)
-                    if (expectedCard == card)
+                foreach (Card second in secondCards)
+                    if (second == card)
                     {
                         found = true;
                         break;
@@ -208,19 +216,23 @@ namespace VisualCard.Tests
         {
             List<BaseVcardParser> parsers = [];
             List<Card> cards = [];
+            List<Card> secondCards = [];
 
             // Parse the cards
             Should.NotThrow(() => parsers = MeCard.GetContactsFromMeCardString(cardText));
             foreach (BaseVcardParser parser in parsers)
+            {
                 cards.Add(Should.NotThrow(parser.Parse));
+                secondCards.Add(Should.NotThrow(parser.Parse));
+            }
 
             // Test equality with available data
             List<bool> foundCards = [];
             foreach (Card card in cards)
             {
                 bool found = false;
-                foreach (Card expectedCard in ContactData.vCardContactsInstances)
-                    if (expectedCard == card)
+                foreach (Card second in secondCards)
+                    if (second == card)
                     {
                         found = true;
                         break;
@@ -236,12 +248,16 @@ namespace VisualCard.Tests
         {
             List<BaseVcardParser> parsers = [];
             List<Card> cards = [];
+            List<Card> secondCards = [];
             List<Card> savedCards = [];
 
             // Parse the cards
             Should.NotThrow(() => parsers = MeCard.GetContactsFromMeCardString(cardText));
             foreach (BaseVcardParser parser in parsers)
+            {
                 cards.Add(Should.NotThrow(parser.Parse));
+                secondCards.Add(Should.NotThrow(parser.Parse));
+            }
 
             // Save all the cards to strings and re-parse
             foreach (Card card in cards)
@@ -257,8 +273,8 @@ namespace VisualCard.Tests
             foreach (Card card in savedCards)
             {
                 bool found = false;
-                foreach (Card expectedCard in ContactData.vCardContactsInstances)
-                    if (expectedCard == card)
+                foreach (Card second in secondCards)
+                    if (second == card)
                     {
                         found = true;
                         break;
@@ -295,7 +311,10 @@ namespace VisualCard.Tests
             List<BaseVcardParser> parsers = [];
             Should.NotThrow(() => parsers = CardTools.GetCardParsersFromString(cardText));
             foreach (BaseVcardParser parser in parsers)
-                Should.NotThrow(parser.Parse);
+            {
+                var resultingCard = Should.NotThrow(parser.Parse);
+                resultingCard.ShouldNotBeNull();
+            }
         }
     }
 }

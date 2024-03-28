@@ -17,40 +17,20 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-using System;
-using VisualCard.Parts;
-
-namespace VisualCard.Parsers
+namespace VisualCard.Parts.Enums
 {
     /// <summary>
-    /// VCard parser interface
+    /// Enumeration for available parts that are not strings and can only hold one value
     /// </summary>
-    public interface IVcardParser
+    public enum PartsEnum
     {
         /// <summary>
-        /// Contents of the VCard
+        /// The card revision
         /// </summary>
-        public string CardContent { get; }
-
+        Revision,
         /// <summary>
-        /// The version of the card
+        /// The contact's birthdate
         /// </summary>
-        public Version CardVersion { get; }
-
-        /// <summary>
-        /// VCard expected card version
-        /// </summary>
-        internal Version ExpectedCardVersion { get; }
-
-        /// <summary>
-        /// Parses the VCard file
-        /// </summary>
-        Card Parse();
-
-        /// <summary>
-        /// Saves a parsed card to the string
-        /// </summary>
-        /// <param name="card">Parsed card</param>
-        string SaveToString(Card card);
+        Birthdate,
     }
 }

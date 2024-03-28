@@ -20,157 +20,32 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using VisualCard.Parsers;
+using VisualCard.Parts.Comparers;
+using VisualCard.Parts.Enums;
 
 namespace VisualCard.Parts
 {
     /// <summary>
-    /// A VCard card
+    /// A vCard card instance
     /// </summary>
-    [DebuggerDisplay("VCard version {CardVersion}, kind: {CardKind}, name: {ContactFullName}")]
+    [DebuggerDisplay("vCard version {CardVersion.ToString()}, parts: (P [{parts.Count}] | A [{partsArray.Count}] | S [{strings.Count}]), explicit kind: {kindExplicitlySpecified}")]
     public class Card : IEquatable<Card>
     {
+        internal bool kindExplicitlySpecified = false;
         private readonly BaseVcardParser _parser;
+        private readonly Dictionary<PartsEnum, BaseCardPartInfo> parts = [];
+        private readonly Dictionary<PartsArrayEnum, List<BaseCardPartInfo>> partsArray = [];
+        private readonly Dictionary<StringsEnum, string> strings = [];
 
         /// <summary>
         /// The VCard version
         /// </summary>
-        public string CardVersion { get; } = "";
-        /// <summary>
-        /// The VCard kind (individual is the default)
-        /// </summary>
-        public string CardKind { get; } = "individual";
-        /// <summary>
-        /// The contact's names
-        /// </summary>
-        public NameInfo[] ContactNames { get; set; } = [];
-        /// <summary>
-        /// The contact's full name
-        /// </summary>
-        public string ContactFullName { get; set; } = "";
-        /// <summary>
-        /// The contact's telephones
-        /// </summary>
-        public TelephoneInfo[] ContactTelephones { get; set; } = [];
-        /// <summary>
-        /// The contact's addresses
-        /// </summary>
-        public AddressInfo[] ContactAddresses { get; set; } = [];
-        /// <summary>
-        /// The contact's delivery address labels
-        /// </summary>
-        public LabelAddressInfo[] ContactLabels { get; set; } = [];
-        /// <summary>
-        /// The contact's agents
-        /// </summary>
-        public AgentInfo[] ContactAgents { get; set; } = [];
-        /// <summary>
-        /// The contact's e-mails
-        /// </summary>
-        public EmailInfo[] ContactMails { get; set; } = [];
-        /// <summary>
-        /// The contact's organizations
-        /// </summary>
-        public OrganizationInfo[] ContactOrganizations { get; set; } = [];
-        /// <summary>
-        /// The contact's titles
-        /// </summary>
-        public TitleInfo[] ContactTitles { get; set; } = [];
-        /// <summary>
-        /// The contact's URL
-        /// </summary>
-        public string ContactURL { get; set; } = "";
-        /// <summary>
-        /// The contact's photos
-        /// </summary>
-        public PhotoInfo[] ContactPhotos { get; set; } = [];
-        /// <summary>
-        /// The contact's notes
-        /// </summary>
-        public string ContactNotes { get; set; } = "";
-        /// <summary>
-        /// The contact's extended options (usually starts with X-SOMETHING:Value1;Value2...)
-        /// </summary>
-        public XNameInfo[] ContactXNames { get; set; } = [];
-        /// <summary>
-        /// The card revision
-        /// </summary>
-        public DateTime? CardRevision { get; set; } = default(DateTime);
-        /// <summary>
-        /// The contact's nicknames
-        /// </summary>
-        public NicknameInfo[] ContactNicknames { get; set; } = [];
-        /// <summary>
-        /// The contact's birthdate
-        /// </summary>
-        public DateTime? ContactBirthdate { get; set; } = default(DateTime);
-        /// <summary>
-        /// The contact's mailing software
-        /// </summary>
-        public string ContactMailer { get; set; } = "";
-        /// <summary>
-        /// The contact's roles
-        /// </summary>
-        public RoleInfo[] ContactRoles { get; set; } = [];
-        /// <summary>
-        /// The contact's categories
-        /// </summary>
-        public string[] ContactCategories { get; set; } = [];
-        /// <summary>
-        /// The contact's logos
-        /// </summary>
-        public LogoInfo[] ContactLogos { get; set; } = [];
-        /// <summary>
-        /// The contact's product ID
-        /// </summary>
-        public string ContactProdId { get; set; } = "";
-        /// <summary>
-        /// The contact's sort string
-        /// </summary>
-        public string ContactSortString { get; set; } = "";
-        /// <summary>
-        /// The contact's time zones
-        /// </summary>
-        public TimeZoneInfo[] ContactTimeZone { get; set; } = [];
-        /// <summary>
-        /// The contact's geographical coordinates in (lat;long)
-        /// </summary>
-        public GeoInfo[] ContactGeo { get; set; } = [];
-        /// <summary>
-        /// The contact's sounds
-        /// </summary>
-        public SoundInfo[] ContactSounds { get; set; } = [];
-        /// <summary>
-        /// The contact's IMPP information
-        /// </summary>
-        public ImppInfo[] ContactImpps { get; set; } = [];
-        /// <summary>
-        /// The contact's card source
-        /// </summary>
-        public string ContactSource { get; set; } = "";
-        /// <summary>
-        /// The contact's XML code
-        /// </summary>
-        public string ContactXml { get; set; } = "";
-        /// <summary>
-        /// The contact's free/busy indicator URL
-        /// </summary>
-        public string ContactFreeBusyUrl { get; set; } = "";
-        /// <summary>
-        /// The contact's calendar URL
-        /// </summary>
-        public string ContactCalendarUrl { get; set; } = "";
-        /// <summary>
-        /// The contact's calendar scheduling request URL
-        /// </summary>
-        public string ContactCalendarSchedulingRequestUrl { get; set; } = "";
-        /// <summary>
-        /// The contact's access classification
-        /// </summary>
-        public string ContactAccessClassification { get; set; } = "";
+        public Version CardVersion =>
+            Parser.CardVersion;
 
-        internal BaseVcardParser Parser => _parser;
+        internal BaseVcardParser Parser =>
+            _parser;
 
         /// <summary>
         /// Saves the contact file to the path
@@ -184,6 +59,76 @@ namespace VisualCard.Parts
         /// </summary>
         public string SaveToString() =>
             Parser.SaveToString(this);
+
+        /// <summary>
+        /// Gets a part array from a specified key
+        /// </summary>
+        /// <param name="key">A key to use</param>
+        /// <returns>An array of values or an empty part array []</returns>
+        public BaseCardPartInfo[] GetPartsArray(PartsArrayEnum key)
+        {
+            // Check for version support
+            if (!BaseVcardParser.EnumArrayTypeSupported(key, CardVersion))
+                return null;
+
+            // Get the fallback value
+            BaseCardPartInfo[] fallback = [];
+
+            // Check to see if the partarray has a value or not
+            bool hasValue = partsArray.TryGetValue(key, out List<BaseCardPartInfo> value);
+            if (!hasValue)
+                return fallback;
+
+            // Now, return the value
+            return [.. value];
+        }
+
+        /// <summary>
+        /// Gets a part from a specified key
+        /// </summary>
+        /// <param name="key">A key to use</param>
+        /// <returns>A value or an empty part if any other type doesn't exist</returns>
+        public BaseCardPartInfo GetPart(PartsEnum key)
+        {
+            // Check for version support
+            if (!BaseVcardParser.EnumTypeSupported(key))
+                return null;
+
+            // Get the fallback value
+            BaseCardPartInfo fallback = default;
+
+            // Check to see if the part has a value or not
+            bool hasValue = parts.TryGetValue(key, out BaseCardPartInfo value);
+            if (!hasValue)
+                return fallback;
+
+            // Now, return the value
+            return value;
+        }
+
+        /// <summary>
+        /// Gets a string from a specified key
+        /// </summary>
+        /// <param name="key">A key to use</param>
+        /// <returns>A value, or "individual" if the kind doesn't exist, or an empty string ("") if any other type either doesn't exist or the type is not supported by the card version</returns>
+        public string GetString(StringsEnum key)
+        {
+            // Check for version support
+            if (!BaseVcardParser.StringSupported(key, CardVersion))
+                return "";
+
+            // Get the fallback value
+            string fallback = key == StringsEnum.Kind ? "individual" : "";
+
+            // Check to see if the string has a value or not
+            bool hasValue = strings.TryGetValue(key, out string value);
+            if (!hasValue)
+                return fallback;
+
+            // Now, verify that the string is not empty
+            hasValue = !string.IsNullOrEmpty(value);
+            return hasValue ? value : fallback;
+        }
 
         /// <summary>
         /// Saves the contact to the returned string
@@ -217,77 +162,19 @@ namespace VisualCard.Parts
 
             // Check all the properties
             return
-                source.ContactNames.SequenceEqual(target.ContactNames) &&
-                source.ContactTelephones.SequenceEqual(target.ContactTelephones) &&
-                source.ContactAddresses.SequenceEqual(target.ContactAddresses) &&
-                source.ContactLabels.SequenceEqual(target.ContactLabels) &&
-                source.ContactAgents.SequenceEqual(target.ContactAgents) &&
-                source.ContactMails.SequenceEqual(target.ContactMails) &&
-                source.ContactOrganizations.SequenceEqual(target.ContactOrganizations) &&
-                source.ContactTitles.SequenceEqual(target.ContactTitles) &&
-                source.ContactPhotos.SequenceEqual(target.ContactPhotos) &&
-                source.ContactXNames.SequenceEqual(target.ContactXNames) &&
-                source.ContactNicknames.SequenceEqual(target.ContactNicknames) &&
-                source.ContactRoles.SequenceEqual(target.ContactRoles) &&
-                source.ContactCategories.SequenceEqual(target.ContactCategories) &&
-                source.ContactLogos.SequenceEqual(target.ContactLogos) &&
-                source.ContactTimeZone.SequenceEqual(target.ContactTimeZone) &&
-                source.ContactGeo.SequenceEqual(target.ContactGeo) &&
-                source.ContactSounds.SequenceEqual(target.ContactSounds) &&
-                source.ContactImpps.SequenceEqual(target.ContactImpps) &&
-                source.ContactFullName == target.ContactFullName &&
-                source.ContactURL == target.ContactURL &&
-                source.ContactNotes == target.ContactNotes &&
-                source.CardRevision == target.CardRevision &&
-                source.ContactBirthdate == target.ContactBirthdate &&
-                source.ContactMailer == target.ContactMailer &&
-                source.ContactProdId == target.ContactProdId &&
-                source.ContactSortString == target.ContactSortString &&
-                source.ContactSource == target.ContactSource &&
-                source.ContactXml == target.ContactXml &&
-                source.ContactFreeBusyUrl == target.ContactFreeBusyUrl &&
-                source.ContactCalendarUrl == target.ContactCalendarUrl &&
-                source.ContactCalendarSchedulingRequestUrl == target.ContactCalendarSchedulingRequestUrl &&
-                source.ContactAccessClassification == target.ContactAccessClassification
+                PartComparison.PartsEnumEqual(source.parts, target.parts) &&
+                PartComparison.PartsArrayEnumEqual(source.partsArray, target.partsArray) &&
+                PartComparison.StringsEqual(source.strings, target.strings)
             ;
         }
 
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = -1467509753;
-            hashCode = hashCode * -1521134295 + EqualityComparer<NameInfo[]>.Default.GetHashCode(ContactNames);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactFullName);
-            hashCode = hashCode * -1521134295 + EqualityComparer<TelephoneInfo[]>.Default.GetHashCode(ContactTelephones);
-            hashCode = hashCode * -1521134295 + EqualityComparer<AddressInfo[]>.Default.GetHashCode(ContactAddresses);
-            hashCode = hashCode * -1521134295 + EqualityComparer<LabelAddressInfo[]>.Default.GetHashCode(ContactLabels);
-            hashCode = hashCode * -1521134295 + EqualityComparer<AgentInfo[]>.Default.GetHashCode(ContactAgents);
-            hashCode = hashCode * -1521134295 + EqualityComparer<EmailInfo[]>.Default.GetHashCode(ContactMails);
-            hashCode = hashCode * -1521134295 + EqualityComparer<OrganizationInfo[]>.Default.GetHashCode(ContactOrganizations);
-            hashCode = hashCode * -1521134295 + EqualityComparer<TitleInfo[]>.Default.GetHashCode(ContactTitles);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactURL);
-            hashCode = hashCode * -1521134295 + EqualityComparer<PhotoInfo[]>.Default.GetHashCode(ContactPhotos);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactNotes);
-            hashCode = hashCode * -1521134295 + EqualityComparer<XNameInfo[]>.Default.GetHashCode(ContactXNames);
-            hashCode = hashCode * -1521134295 + CardRevision.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<NicknameInfo[]>.Default.GetHashCode(ContactNicknames);
-            hashCode = hashCode * -1521134295 + ContactBirthdate.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactMailer);
-            hashCode = hashCode * -1521134295 + EqualityComparer<RoleInfo[]>.Default.GetHashCode(ContactRoles);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(ContactCategories);
-            hashCode = hashCode * -1521134295 + EqualityComparer<LogoInfo[]>.Default.GetHashCode(ContactLogos);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactProdId);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactSortString);
-            hashCode = hashCode * -1521134295 + EqualityComparer<TimeZoneInfo[]>.Default.GetHashCode(ContactTimeZone);
-            hashCode = hashCode * -1521134295 + EqualityComparer<GeoInfo[]>.Default.GetHashCode(ContactGeo);
-            hashCode = hashCode * -1521134295 + EqualityComparer<SoundInfo[]>.Default.GetHashCode(ContactSounds);
-            hashCode = hashCode * -1521134295 + EqualityComparer<ImppInfo[]>.Default.GetHashCode(ContactImpps);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactSource);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactXml);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactFreeBusyUrl);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactCalendarUrl);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactCalendarSchedulingRequestUrl);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactAccessClassification);
+            int hashCode = -1645291684;
+            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<PartsEnum, BaseCardPartInfo>>.Default.GetHashCode(parts);
+            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<PartsArrayEnum, List<BaseCardPartInfo>>>.Default.GetHashCode(partsArray);
+            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<StringsEnum, string>>.Default.GetHashCode(strings);
             return hashCode;
         }
 
@@ -299,11 +186,53 @@ namespace VisualCard.Parts
         public static bool operator !=(Card a, Card b)
             => !a.Equals(b);
 
-        internal Card(BaseVcardParser parser, string cardVersion, string cardKind = "individual")
+        internal void AddPartToArray(PartsArrayEnum key, BaseCardPartInfo value)
         {
-            _parser = parser;
-            CardVersion = cardVersion;
-            CardKind = cardKind;
+            if (value is null)
+                return;
+
+            // Get the appropriate type and check it
+            var enumType = BaseVcardParser.GetEnumArrayType(key);
+            if (value.GetType() != enumType)
+                return;
+
+            // If we don't have this key yet, add it.
+            if (!partsArray.ContainsKey(key))
+                partsArray.Add(key, [value]);
+            else
+                partsArray[key].Add(value);
         }
+
+        internal void SetPart(PartsEnum key, BaseCardPartInfo value)
+        {
+            if (value is null)
+                return;
+
+            // Get the appropriate type and check it
+            var enumType = BaseVcardParser.GetEnumType(key);
+            if (value.GetType() != enumType)
+                return;
+
+            // If we don't have this key yet, add it.
+            if (!parts.ContainsKey(key))
+                parts.Add(key, value);
+            else
+                parts[key] = value;
+        }
+
+        internal void SetString(StringsEnum key, string value)
+        {
+            if (string.IsNullOrEmpty(value))
+                return;
+
+            // If we don't have this key yet, add it.
+            if (!strings.ContainsKey(key))
+                strings.Add(key, value);
+            else
+                strings[key] = value;
+        }
+
+        internal Card(BaseVcardParser parser) =>
+            _parser = parser;
     }
 }

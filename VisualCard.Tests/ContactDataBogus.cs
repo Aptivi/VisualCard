@@ -33,6 +33,17 @@ namespace VisualCard.Tests
             """
         ;
 
+        private static readonly string vcardTwoWithUnsupportedParts =
+            """
+            BEGIN:VCARD
+            VERSION:2.1
+            N:Hood;Rick;;;
+            CALURI:https://www.rickhood.com/events/calendar?type=MusicHoodFestival2024
+            NICKNAME:R.H.
+            END:VCARD
+            """
+        ;
+
         private static readonly string vcardThreeNoFullName =
             """
             BEGIN:VCARD
@@ -104,7 +115,10 @@ namespace VisualCard.Tests
         [
             [
                 vcardTwoNoFullName,
-            ]
+            ],
+            [
+                vcardTwoWithUnsupportedParts,
+            ],
         ];
 
         /// <summary>

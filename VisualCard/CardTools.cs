@@ -21,10 +21,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using VisualCard.Parsers;
-using VisualCard.Parsers.Two;
-using VisualCard.Parsers.Three;
-using VisualCard.Parsers.Four;
-using VisualCard.Parsers.Five;
+using System;
+using VisualCard.Parsers.Versioned;
 
 namespace VisualCard
 {
@@ -75,7 +73,7 @@ namespace VisualCard
             // Parse the lines of the card file
             string CardLine;
             StringBuilder CardContent = new();
-            string CardVersion = "";
+            Version CardVersion = new();
             bool CardSawNull = false;
             CardLine = stream.ReadLine();
             while (!stream.EndOfStream)
@@ -107,12 +105,16 @@ namespace VisualCard
                 if (!CardSawNull)
                     CardLine = stream.ReadLine();
                 CardSawNull = false;
-                if (CardLine != "VERSION:2.1" && CardLine != "VERSION:3.0" && CardLine != "VERSION:4.0" && CardLine != "VERSION:5.0" && !VersionSpotted)
+                if (CardLine != "VERSION:2.1" &&
+                    CardLine != "VERSION:3.0" &&
+                    CardLine != "VERSION:4.0" &&
+                    CardLine != "VERSION:5.0" &&
+                    !VersionSpotted)
                     throw new InvalidDataException($"This has an invalid VCard version {CardLine}.");
                 else if (!VersionSpotted)
                 {
                     VersionSpotted = true;
-                    CardVersion = CardLine.Substring(8);
+                    CardVersion = new(CardLine.Substring(8));
                 }
 
                 // If the ending tag is spotted, reset everything.
@@ -123,7 +125,7 @@ namespace VisualCard
 
                     // Select parser
                     BaseVcardParser CardParser;
-                    switch (CardVersion)
+                    switch (CardVersion.ToString(2))
                     {
                         case "2.1":
                             CardParser = new VcardTwo(CardContent.ToString(), CardVersion);
