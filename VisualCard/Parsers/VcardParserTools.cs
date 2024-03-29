@@ -83,15 +83,6 @@ namespace VisualCard.Parsers
         internal static string[] GetValues(string[] args, string @default, string argSpecifier) =>
             GetValuesString(args, @default, argSpecifier).Split(VcardConstants._valueDelimiter);
 
-        internal static string[] SplitToKeyAndValueFromString(string line)
-        {
-            if (line.IndexOf(':') < 0)
-                return [line, ""];
-            string key = line.Substring(0, line.IndexOf(':'));
-            string value = line.Substring(line.IndexOf(':'));
-            return [key, value];
-        }
-
         internal static IEnumerable<int> GetDigits(int num)
         {
             int individualFactor = 0;

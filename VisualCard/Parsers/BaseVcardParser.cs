@@ -75,38 +75,36 @@ namespace VisualCard.Parsers
                 string _value = CardContentReader.ReadLine();
                 lineNumber += 1;
 
-                // Check for type
-                bool isWithType = false;
-                var valueSplit = VcardParserTools.SplitToKeyAndValueFromString(_value);
-                if (valueSplit[0].Contains(";"))
-                    isWithType = true;
-                var delimiter = isWithType ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter;
+                // Variables
+                string value = _value.Substring(_value.IndexOf(VcardConstants._argumentDelimiter) + 1);
+                string prefixWithArgs = _value.Substring(0, _value.IndexOf(VcardConstants._argumentDelimiter));
+                string prefix = prefixWithArgs.Contains(';') ? prefixWithArgs.Substring(0, prefixWithArgs.IndexOf(';')) : prefixWithArgs;
+                string args = prefixWithArgs.Contains(';') ? prefixWithArgs.Substring(prefix.Length + 1) : "";
+                string[] splitArgs = args.Split([VcardConstants._fieldDelimiter], StringSplitOptions.RemoveEmptyEntries);
+                string[] splitValues = value.Split([VcardConstants._fieldDelimiter], StringSplitOptions.RemoveEmptyEntries);
+                bool isWithType = splitArgs.Length > 0;
+                List<string> finalArgs = [];
+                int altId = 0;
 
-                // Helper function to wrap things around
-                bool StartsWithPrefix(string prefix) =>
-                    _value.StartsWith(prefix + delimiter);
-
+                // Now, parse a line
                 try
                 {
-                    // Variables
-                    string[] splitValueParts = _value.Split(VcardConstants._argumentDelimiter);
-                    string[] splitArgs = splitValueParts[0].Split(VcardConstants._fieldDelimiter);
-                    splitArgs = splitArgs.Except([splitArgs[0]]).ToArray();
-                    string[] splitValues = splitValueParts[1].Split(VcardConstants._fieldDelimiter);
-                    List<string> finalArgs = [];
-                    int altId = 0;
-
-                    if (splitArgs.Length > 0)
+                    if (isWithType)
                     {
                         // If we have more than one argument, check for ALTID
-                        if (splitArgs[0].StartsWith(VcardConstants._altIdArgumentSpecifier) && CardVersion.Major >= 4)
+                        if (CardVersion.Major >= 4)
                         {
-                            if (!int.TryParse(splitArgs[0].Substring(VcardConstants._altIdArgumentSpecifier.Length), out altId))
-                                throw new InvalidDataException("ALTID must be numeric");
+                            if (splitArgs[0].StartsWith(VcardConstants._altIdArgumentSpecifier))
+                            {
+                                if (!int.TryParse(splitArgs[0].Substring(VcardConstants._altIdArgumentSpecifier.Length), out altId))
+                                    throw new InvalidDataException("ALTID must be numeric");
 
-                            // Here, we require arguments for ALTID
-                            if (splitArgs.Length <= 1)
-                                throw new InvalidDataException("ALTID must have one or more arguments to specify why is this instance an alternative");
+                                // Here, we require arguments for ALTID
+                                if (splitArgs.Length <= 1)
+                                    throw new InvalidDataException("ALTID must have one or more arguments to specify why this instance is an alternative");
+                            }
+                            else if (splitArgs.Any((arg) => arg.StartsWith(VcardConstants._altIdArgumentSpecifier)))
+                                throw new InvalidDataException("ALTID must be exactly in the first position of the argument, because arguments that follow it are required to be specified");
                         }
 
                         // Finalize the arguments
@@ -121,7 +119,7 @@ namespace VisualCard.Parsers
 
                     // The name (N:Sanders;John;;;)
                     // ALTID is supported.
-                    if (StartsWithPrefix(VcardConstants._nameSpecifier))
+                    if (prefix == VcardConstants._nameSpecifier)
                     {
                         // Get the name
                         var partInfo =
@@ -133,7 +131,7 @@ namespace VisualCard.Parsers
 
                     // Full name (FN:John Sanders)
                     // Here, we don't support ALTID.
-                    if (StartsWithPrefix(VcardConstants._fullNameSpecifier))
+                    if (prefix == VcardConstants._fullNameSpecifier)
                     {
                         // Get the value
                         string fullNameValue = _value.Substring(VcardConstants._fullNameSpecifier.Length + 1);
@@ -145,7 +143,7 @@ namespace VisualCard.Parsers
 
                     // Telephone (TEL;CELL;HOME:495-522-3560 or TEL;TYPE=cell,home:495-522-3560 or TEL:495-522-3560)
                     // ALTID is supported.
-                    if (StartsWithPrefix(VcardConstants._telephoneSpecifier))
+                    if (prefix == VcardConstants._telephoneSpecifier)
                     {
                         // Get the name
                         var partInfo =
@@ -157,7 +155,7 @@ namespace VisualCard.Parsers
 
                     // Address (ADR;HOME:;;Los Angeles, USA;;;; or ADR:;;Los Angeles, USA;;;;)
                     // ALTID is supported.
-                    if (StartsWithPrefix(VcardConstants._addressSpecifier))
+                    if (prefix == VcardConstants._addressSpecifier)
                     {
                         // Get the name
                         var partInfo =
@@ -169,7 +167,7 @@ namespace VisualCard.Parsers
 
                     // Email (EMAIL;HOME;INTERNET:john.s@acme.co or EMAIL;TYPE=HOME,INTERNET:john.s@acme.co)
                     // ALTID is supported.
-                    if (StartsWithPrefix(VcardConstants._emailSpecifier))
+                    if (prefix == VcardConstants._emailSpecifier)
                     {
                         // Get the name
                         var partInfo =
@@ -181,7 +179,7 @@ namespace VisualCard.Parsers
 
                     // Organization (ORG:Acme Co. or ORG:ABC, Inc.;North American Division;Marketing)
                     // ALTID is supported.
-                    if (StartsWithPrefix(VcardConstants._orgSpecifier))
+                    if (prefix == VcardConstants._orgSpecifier)
                     {
                         // Get the name
                         var partInfo =
@@ -193,7 +191,7 @@ namespace VisualCard.Parsers
 
                     // Title (TITLE:Product Manager)
                     // ALTID is supported.
-                    if (StartsWithPrefix(VcardConstants._titleSpecifier))
+                    if (prefix == VcardConstants._titleSpecifier)
                     {
                         // Get the name
                         var partInfo =
@@ -205,7 +203,7 @@ namespace VisualCard.Parsers
 
                     // Website link (URL:https://sso.org/)
                     // Here, we don't support ALTID.
-                    if (StartsWithPrefix(VcardConstants._urlSpecifier))
+                    if (prefix == VcardConstants._urlSpecifier)
                     {
                         // Get the value
                         string urlValue = _value.Substring(VcardConstants._urlSpecifier.Length + 1);
@@ -220,7 +218,7 @@ namespace VisualCard.Parsers
 
                     // Note (NOTE:Product Manager)
                     // Here, we don't support ALTID.
-                    if (StartsWithPrefix(VcardConstants._noteSpecifier))
+                    if (prefix == VcardConstants._noteSpecifier)
                     {
                         // Get the value
                         string noteValue = _value.Substring(VcardConstants._noteSpecifier.Length + 1);
@@ -232,7 +230,7 @@ namespace VisualCard.Parsers
 
                     // Photo (PHOTO;ENCODING=BASE64;JPEG:... or PHOTO;VALUE=URL:file:///jqpublic.gif or PHOTO;ENCODING=BASE64;TYPE=GIF:...)
                     // ALTID is supported.
-                    if (StartsWithPrefix(VcardConstants._photoSpecifier))
+                    if (prefix == VcardConstants._photoSpecifier)
                     {
                         if (isWithType)
                         {
@@ -245,7 +243,7 @@ namespace VisualCard.Parsers
 
                     // Logo (LOGO;ENCODING=BASE64;JPEG:... or LOGO;VALUE=URL:file:///jqpublic.gif or LOGO;ENCODING=BASE64;TYPE=GIF:...)
                     // ALTID is supported.
-                    if (StartsWithPrefix(VcardConstants._logoSpecifier))
+                    if (prefix == VcardConstants._logoSpecifier)
                     {
                         if (isWithType)
                         {
@@ -258,7 +256,7 @@ namespace VisualCard.Parsers
 
                     // Sound (SOUND;VALUE=URL:file///multimed/audio/jqpublic.wav or SOUND;WAVE;BASE64:... or SOUND;TYPE=WAVE;ENCODING=BASE64:...)
                     // ALTID is supported.
-                    if (StartsWithPrefix(VcardConstants._soundSpecifier))
+                    if (prefix == VcardConstants._soundSpecifier)
                     {
                         if (isWithType)
                         {
@@ -271,7 +269,7 @@ namespace VisualCard.Parsers
 
                     // Revision (REV:1995-10-31T22:27:10Z or REV:19951031T222710)
                     // Here, we don't support ALTID.
-                    if (StartsWithPrefix(VcardConstants._revSpecifier))
+                    if (prefix == VcardConstants._revSpecifier)
                     {
                         var partInfo = RevisionInfo.FromStringVcardStatic(_value, altId, CardVersion, CardContentReader);
                         card.SetPart(PartsEnum.Revision, partInfo);
@@ -279,7 +277,7 @@ namespace VisualCard.Parsers
 
                     // Birthdate (BDAY:19950415 or BDAY:1953-10-15T23:10:00Z)
                     // Here, we don't support ALTID.
-                    if (StartsWithPrefix(VcardConstants._birthSpecifier))
+                    if (prefix == VcardConstants._birthSpecifier)
                     {
                         var partInfo =
                             isWithType ?
@@ -290,7 +288,7 @@ namespace VisualCard.Parsers
 
                     // Role (ROLE:Programmer)
                     // ALTID is supported.
-                    if (StartsWithPrefix(VcardConstants._roleSpecifier))
+                    if (prefix == VcardConstants._roleSpecifier)
                     {
                         // Get the name
                         var partInfo =
@@ -302,7 +300,7 @@ namespace VisualCard.Parsers
 
                     // Categories (CATEGORIES:INTERNET or CATEGORIES:INTERNET,IETF,INDUSTRY,INFORMATION TECHNOLOGY)
                     // Here, we don't support ALTID.
-                    if (StartsWithPrefix(VcardConstants._categoriesSpecifier))
+                    if (prefix == VcardConstants._categoriesSpecifier)
                     {
                         // Get the value
                         string categoriesValue = _value.Substring(VcardConstants._categoriesSpecifier.Length + 1);
@@ -314,7 +312,7 @@ namespace VisualCard.Parsers
 
                     // Time Zone (TZ;VALUE=text:-05:00; EST; Raleigh/North America)
                     // ALTID is supported.
-                    if (StartsWithPrefix(VcardConstants._timeZoneSpecifier))
+                    if (prefix == VcardConstants._timeZoneSpecifier)
                     {
                         // Get the name
                         var partInfo =
@@ -326,7 +324,7 @@ namespace VisualCard.Parsers
 
                     // Geo (GEO;VALUE=uri:https://...)
                     // ALTID is supported.
-                    if (StartsWithPrefix(VcardConstants._geoSpecifier))
+                    if (prefix == VcardConstants._geoSpecifier)
                     {
                         // Get the name
                         var partInfo =
@@ -338,7 +336,7 @@ namespace VisualCard.Parsers
 
                     // Source (SOURCE:http://johndoe.com/vcard.vcf)
                     // Here, we don't support ALTID.
-                    if (StartsWithPrefix(VcardConstants._sourceSpecifier))
+                    if (prefix == VcardConstants._sourceSpecifier)
                     {
                         // Get the value
                         string sourceStringValue = _value.Substring(VcardConstants._sourceSpecifier.Length + 1);
@@ -354,7 +352,7 @@ namespace VisualCard.Parsers
 
                     // Non-standard names (X-AIM:john.s or X-DL;Design Work Group:List Item 1;List Item 2;List Item 3)
                     // ALTID is supported.
-                    if (StartsWithPrefix(VcardConstants._xSpecifier))
+                    if (prefix == VcardConstants._xSpecifier)
                     {
                         // Get the name
                         var partInfo =
@@ -368,7 +366,7 @@ namespace VisualCard.Parsers
 
                     // Card type (KIND:individual, KIND:group, KIND:org, KIND:location, ...)
                     // Here, we don't support ALTID.
-                    if (StartsWithPrefix(VcardConstants._kindSpecifier) &&
+                    if (prefix == VcardConstants._kindSpecifier &&
                         StringSupported(StringsEnum.Kind, CardVersion))
                     {
                         // Get the value
@@ -385,7 +383,7 @@ namespace VisualCard.Parsers
 
                     // Label (LABEL;TYPE=dom,home,postal,parcel:Mr.John Q. Public\, Esq.\nMail Drop: TNE QB\n123 Main Street\nAny Town\, CA  91921 - 1234\nU.S.A.)
                     // ALTID is supported.
-                    if (StartsWithPrefix(VcardConstants._labelSpecifier) &&
+                    if (prefix == VcardConstants._labelSpecifier &&
                         EnumArrayTypeSupported(PartsArrayEnum.Labels, CardVersion))
                     {
                         // Get the name
@@ -398,7 +396,7 @@ namespace VisualCard.Parsers
 
                     // Agent (AGENT:BEGIN:VCARD\nFN:Joe Friday\nTEL:+1...)
                     // ALTID is supported.
-                    if (StartsWithPrefix(VcardConstants._agentSpecifier) &&
+                    if (prefix == VcardConstants._agentSpecifier &&
                         EnumArrayTypeSupported(PartsArrayEnum.Agents, CardVersion))
                     {
                         // Get the name
@@ -411,7 +409,7 @@ namespace VisualCard.Parsers
 
                     // Nickname (NICKNAME;TYPE=cell,home:495-522-3560)
                     // ALTID is supported.
-                    if (StartsWithPrefix(VcardConstants._nicknameSpecifier) &&
+                    if (prefix == VcardConstants._nicknameSpecifier &&
                         EnumArrayTypeSupported(PartsArrayEnum.Nicknames, CardVersion))
                     {
                         // Get the name
@@ -424,7 +422,7 @@ namespace VisualCard.Parsers
 
                     // Mailer (MAILER:ccMail 2.2 or MAILER:PigeonMail 2.1)
                     // Here, we don't support ALTID.
-                    if (StartsWithPrefix(VcardConstants._mailerSpecifier) &&
+                    if (prefix == VcardConstants._mailerSpecifier &&
                         StringSupported(StringsEnum.Mailer, CardVersion))
                     {
                         // Get the value
@@ -437,7 +435,7 @@ namespace VisualCard.Parsers
 
                     // Product ID (PRODID:-//ONLINE DIRECTORY//NONSGML Version 1//EN)
                     // Here, we don't support ALTID.
-                    if (StartsWithPrefix(VcardConstants._productIdSpecifier) &&
+                    if (prefix == VcardConstants._productIdSpecifier &&
                         StringSupported(StringsEnum.ProductId, CardVersion))
                     {
                         // Get the value
@@ -450,7 +448,7 @@ namespace VisualCard.Parsers
 
                     // Sort string (SORT-STRING:Harten)
                     // Here, we don't support ALTID.
-                    if (StartsWithPrefix(VcardConstants._sortStringSpecifier) &&
+                    if (prefix == VcardConstants._sortStringSpecifier &&
                         StringSupported(StringsEnum.SortString, CardVersion))
                     {
                         // Get the value
@@ -463,7 +461,7 @@ namespace VisualCard.Parsers
 
                     // IMPP information (IMPP;TYPE=home:sip:test)
                     // ALTID is supported.
-                    if (StartsWithPrefix(VcardConstants._imppSpecifier) &&
+                    if (prefix == VcardConstants._imppSpecifier &&
                         EnumArrayTypeSupported(PartsArrayEnum.Impps, CardVersion))
                     {
                         // Get the name
@@ -476,7 +474,7 @@ namespace VisualCard.Parsers
 
                     // Access classification (CLASS:PUBLIC, CLASS:PRIVATE, or CLASS:CONFIDENTIAL)
                     // Here, we don't support ALTID.
-                    if (StartsWithPrefix(VcardConstants._classSpecifier) &&
+                    if (prefix == VcardConstants._classSpecifier &&
                         StringSupported(StringsEnum.AccessClassification, CardVersion))
                     {
                         // Get the value
@@ -489,7 +487,7 @@ namespace VisualCard.Parsers
 
                     // XML code (XML:<b>Not an xCard XML element</b>)
                     // Here, we don't support ALTID.
-                    if (StartsWithPrefix(VcardConstants._xmlSpecifier) &&
+                    if (prefix == VcardConstants._xmlSpecifier &&
                         StringSupported(StringsEnum.Xml, CardVersion))
                     {
                         // Get the value
@@ -502,7 +500,7 @@ namespace VisualCard.Parsers
 
                     // Free/busy URL (FBURL:http://example.com/fb/jdoe)
                     // Here, we don't support ALTID.
-                    if (StartsWithPrefix(VcardConstants._fbUrlSpecifier) &&
+                    if (prefix == VcardConstants._fbUrlSpecifier &&
                         StringSupported(StringsEnum.FreeBusyUrl, CardVersion))
                     {
                         // Get the value
@@ -519,7 +517,7 @@ namespace VisualCard.Parsers
 
                     // Calendar URL (CALURI:http://example.com/calendar/jdoe)
                     // Here, we don't support ALTID.
-                    if (StartsWithPrefix(VcardConstants._calUriSpecifier) &&
+                    if (prefix == VcardConstants._calUriSpecifier &&
                         StringSupported(StringsEnum.CalendarUrl, CardVersion))
                     {
                         // Get the value
@@ -536,7 +534,7 @@ namespace VisualCard.Parsers
 
                     // Calendar Request URL (CALADRURI:http://example.com/calendar/jdoe/request)
                     // Here, we don't support ALTID.
-                    if (StartsWithPrefix(VcardConstants._caladrUriSpecifier) &&
+                    if (prefix == VcardConstants._caladrUriSpecifier &&
                         StringSupported(StringsEnum.CalendarSchedulingRequestUrl, CardVersion))
                     {
                         // Get the value
@@ -553,7 +551,7 @@ namespace VisualCard.Parsers
 
                     // Wedding anniversary (ANNIVERSARY:19960415)
                     // Here, we don't support ALTID.
-                    if (StartsWithPrefix(VcardConstants._anniversarySpecifier) &&
+                    if (prefix == VcardConstants._anniversarySpecifier &&
                         EnumTypeSupported(PartsEnum.Anniversary, CardVersion))
                     {
                         var partInfo = AnniversaryInfo.FromStringVcardStatic(_value, altId, CardVersion, CardContentReader);
@@ -562,7 +560,7 @@ namespace VisualCard.Parsers
 
                     // IMPP information (IMPP;TYPE=home:sip:test)
                     // ALTID is supported.
-                    if (StartsWithPrefix(VcardConstants._genderSpecifier) &&
+                    if (prefix == VcardConstants._genderSpecifier &&
                         EnumTypeSupported(PartsEnum.Gender, CardVersion))
                     {
                         // Get the name
