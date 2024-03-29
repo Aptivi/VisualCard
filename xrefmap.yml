@@ -726,6 +726,12 @@ references:
   commentId: F:VisualCard.Parts.Enums.PartsEnum.Birthdate
   fullName: VisualCard.Parts.Enums.PartsEnum.Birthdate
   nameWithType: PartsEnum.Birthdate
+- uid: VisualCard.Parts.Enums.PartsEnum.Gender
+  name: Gender
+  href: api/VisualCard.Parts.Enums.PartsEnum.html#VisualCard_Parts_Enums_PartsEnum_Gender
+  commentId: F:VisualCard.Parts.Enums.PartsEnum.Gender
+  fullName: VisualCard.Parts.Enums.PartsEnum.Gender
+  nameWithType: PartsEnum.Gender
 - uid: VisualCard.Parts.Enums.PartsEnum.Revision
   name: Revision
   href: api/VisualCard.Parts.Enums.PartsEnum.html#VisualCard_Parts_Enums_PartsEnum_Revision
@@ -1514,6 +1520,117 @@ references:
   fullName.vb: VisualCard.Parts.Implementations.EmailInfo.<>
   nameWithType: EmailInfo.operator !=
   nameWithType.vb: EmailInfo.<>
+- uid: VisualCard.Parts.Implementations.GenderInfo
+  name: GenderInfo
+  href: api/VisualCard.Parts.Implementations.GenderInfo.html
+  commentId: T:VisualCard.Parts.Implementations.GenderInfo
+  fullName: VisualCard.Parts.Implementations.GenderInfo
+  nameWithType: GenderInfo
+- uid: VisualCard.Parts.Implementations.GenderInfo.Equals(System.Object)
+  name: Equals(object)
+  href: api/VisualCard.Parts.Implementations.GenderInfo.html#VisualCard_Parts_Implementations_GenderInfo_Equals_System_Object_
+  commentId: M:VisualCard.Parts.Implementations.GenderInfo.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Parts.Implementations.GenderInfo.Equals(object)
+  fullName.vb: VisualCard.Parts.Implementations.GenderInfo.Equals(Object)
+  nameWithType: GenderInfo.Equals(object)
+  nameWithType.vb: GenderInfo.Equals(Object)
+- uid: VisualCard.Parts.Implementations.GenderInfo.Equals(VisualCard.Parts.Implementations.GenderInfo)
+  name: Equals(GenderInfo)
+  href: api/VisualCard.Parts.Implementations.GenderInfo.html#VisualCard_Parts_Implementations_GenderInfo_Equals_VisualCard_Parts_Implementations_GenderInfo_
+  commentId: M:VisualCard.Parts.Implementations.GenderInfo.Equals(VisualCard.Parts.Implementations.GenderInfo)
+  fullName: VisualCard.Parts.Implementations.GenderInfo.Equals(VisualCard.Parts.Implementations.GenderInfo)
+  nameWithType: GenderInfo.Equals(GenderInfo)
+- uid: VisualCard.Parts.Implementations.GenderInfo.Equals(VisualCard.Parts.Implementations.GenderInfo,VisualCard.Parts.Implementations.GenderInfo)
+  name: Equals(GenderInfo, GenderInfo)
+  href: api/VisualCard.Parts.Implementations.GenderInfo.html#VisualCard_Parts_Implementations_GenderInfo_Equals_VisualCard_Parts_Implementations_GenderInfo_VisualCard_Parts_Implementations_GenderInfo_
+  commentId: M:VisualCard.Parts.Implementations.GenderInfo.Equals(VisualCard.Parts.Implementations.GenderInfo,VisualCard.Parts.Implementations.GenderInfo)
+  fullName: VisualCard.Parts.Implementations.GenderInfo.Equals(VisualCard.Parts.Implementations.GenderInfo, VisualCard.Parts.Implementations.GenderInfo)
+  nameWithType: GenderInfo.Equals(GenderInfo, GenderInfo)
+- uid: VisualCard.Parts.Implementations.GenderInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Parts.Implementations.GenderInfo.html#VisualCard_Parts_Implementations_GenderInfo_Equals_
+  commentId: Overload:VisualCard.Parts.Implementations.GenderInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.GenderInfo.Equals
+  nameWithType: GenderInfo.Equals
+- uid: VisualCard.Parts.Implementations.GenderInfo.Gender
+  name: Gender
+  href: api/VisualCard.Parts.Implementations.GenderInfo.html#VisualCard_Parts_Implementations_GenderInfo_Gender
+  commentId: P:VisualCard.Parts.Implementations.GenderInfo.Gender
+  fullName: VisualCard.Parts.Implementations.GenderInfo.Gender
+  nameWithType: GenderInfo.Gender
+- uid: VisualCard.Parts.Implementations.GenderInfo.Gender*
+  name: Gender
+  href: api/VisualCard.Parts.Implementations.GenderInfo.html#VisualCard_Parts_Implementations_GenderInfo_Gender_
+  commentId: Overload:VisualCard.Parts.Implementations.GenderInfo.Gender
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.GenderInfo.Gender
+  nameWithType: GenderInfo.Gender
+- uid: VisualCard.Parts.Implementations.GenderInfo.GenderDescription
+  name: GenderDescription
+  href: api/VisualCard.Parts.Implementations.GenderInfo.html#VisualCard_Parts_Implementations_GenderInfo_GenderDescription
+  commentId: P:VisualCard.Parts.Implementations.GenderInfo.GenderDescription
+  fullName: VisualCard.Parts.Implementations.GenderInfo.GenderDescription
+  nameWithType: GenderInfo.GenderDescription
+- uid: VisualCard.Parts.Implementations.GenderInfo.GenderDescription*
+  name: GenderDescription
+  href: api/VisualCard.Parts.Implementations.GenderInfo.html#VisualCard_Parts_Implementations_GenderInfo_GenderDescription_
+  commentId: Overload:VisualCard.Parts.Implementations.GenderInfo.GenderDescription
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.GenderInfo.GenderDescription
+  nameWithType: GenderInfo.GenderDescription
+- uid: VisualCard.Parts.Implementations.GenderInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Parts.Implementations.GenderInfo.html#VisualCard_Parts_Implementations_GenderInfo_GetHashCode
+  commentId: M:VisualCard.Parts.Implementations.GenderInfo.GetHashCode
+  fullName: VisualCard.Parts.Implementations.GenderInfo.GetHashCode()
+  nameWithType: GenderInfo.GetHashCode()
+- uid: VisualCard.Parts.Implementations.GenderInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Parts.Implementations.GenderInfo.html#VisualCard_Parts_Implementations_GenderInfo_GetHashCode_
+  commentId: Overload:VisualCard.Parts.Implementations.GenderInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.GenderInfo.GetHashCode
+  nameWithType: GenderInfo.GetHashCode
+- uid: VisualCard.Parts.Implementations.GenderInfo.op_Equality(VisualCard.Parts.Implementations.GenderInfo,VisualCard.Parts.Implementations.GenderInfo)
+  name: operator ==(GenderInfo, GenderInfo)
+  href: api/VisualCard.Parts.Implementations.GenderInfo.html#VisualCard_Parts_Implementations_GenderInfo_op_Equality_VisualCard_Parts_Implementations_GenderInfo_VisualCard_Parts_Implementations_GenderInfo_
+  commentId: M:VisualCard.Parts.Implementations.GenderInfo.op_Equality(VisualCard.Parts.Implementations.GenderInfo,VisualCard.Parts.Implementations.GenderInfo)
+  name.vb: =(GenderInfo, GenderInfo)
+  fullName: VisualCard.Parts.Implementations.GenderInfo.operator ==(VisualCard.Parts.Implementations.GenderInfo, VisualCard.Parts.Implementations.GenderInfo)
+  fullName.vb: VisualCard.Parts.Implementations.GenderInfo.=(VisualCard.Parts.Implementations.GenderInfo, VisualCard.Parts.Implementations.GenderInfo)
+  nameWithType: GenderInfo.operator ==(GenderInfo, GenderInfo)
+  nameWithType.vb: GenderInfo.=(GenderInfo, GenderInfo)
+- uid: VisualCard.Parts.Implementations.GenderInfo.op_Equality*
+  name: operator ==
+  href: api/VisualCard.Parts.Implementations.GenderInfo.html#VisualCard_Parts_Implementations_GenderInfo_op_Equality_
+  commentId: Overload:VisualCard.Parts.Implementations.GenderInfo.op_Equality
+  isSpec: "True"
+  name.vb: =
+  fullName: VisualCard.Parts.Implementations.GenderInfo.operator ==
+  fullName.vb: VisualCard.Parts.Implementations.GenderInfo.=
+  nameWithType: GenderInfo.operator ==
+  nameWithType.vb: GenderInfo.=
+- uid: VisualCard.Parts.Implementations.GenderInfo.op_Inequality(VisualCard.Parts.Implementations.GenderInfo,VisualCard.Parts.Implementations.GenderInfo)
+  name: operator !=(GenderInfo, GenderInfo)
+  href: api/VisualCard.Parts.Implementations.GenderInfo.html#VisualCard_Parts_Implementations_GenderInfo_op_Inequality_VisualCard_Parts_Implementations_GenderInfo_VisualCard_Parts_Implementations_GenderInfo_
+  commentId: M:VisualCard.Parts.Implementations.GenderInfo.op_Inequality(VisualCard.Parts.Implementations.GenderInfo,VisualCard.Parts.Implementations.GenderInfo)
+  name.vb: <>(GenderInfo, GenderInfo)
+  fullName: VisualCard.Parts.Implementations.GenderInfo.operator !=(VisualCard.Parts.Implementations.GenderInfo, VisualCard.Parts.Implementations.GenderInfo)
+  fullName.vb: VisualCard.Parts.Implementations.GenderInfo.<>(VisualCard.Parts.Implementations.GenderInfo, VisualCard.Parts.Implementations.GenderInfo)
+  nameWithType: GenderInfo.operator !=(GenderInfo, GenderInfo)
+  nameWithType.vb: GenderInfo.<>(GenderInfo, GenderInfo)
+- uid: VisualCard.Parts.Implementations.GenderInfo.op_Inequality*
+  name: operator !=
+  href: api/VisualCard.Parts.Implementations.GenderInfo.html#VisualCard_Parts_Implementations_GenderInfo_op_Inequality_
+  commentId: Overload:VisualCard.Parts.Implementations.GenderInfo.op_Inequality
+  isSpec: "True"
+  name.vb: <>
+  fullName: VisualCard.Parts.Implementations.GenderInfo.operator !=
+  fullName.vb: VisualCard.Parts.Implementations.GenderInfo.<>
+  nameWithType: GenderInfo.operator !=
+  nameWithType.vb: GenderInfo.<>
 - uid: VisualCard.Parts.Implementations.GeoInfo
   name: GeoInfo
   href: api/VisualCard.Parts.Implementations.GeoInfo.html
@@ -3172,6 +3289,54 @@ references:
   fullName.vb: VisualCard.Parts.Implementations.TitleInfo.<>
   nameWithType: TitleInfo.operator !=
   nameWithType.vb: TitleInfo.<>
+- uid: VisualCard.Parts.Implementations.Tools
+  name: VisualCard.Parts.Implementations.Tools
+  href: api/VisualCard.Parts.Implementations.Tools.html
+  commentId: N:VisualCard.Parts.Implementations.Tools
+  fullName: VisualCard.Parts.Implementations.Tools
+  nameWithType: VisualCard.Parts.Implementations.Tools
+- uid: VisualCard.Parts.Implementations.Tools.Gender
+  name: Gender
+  href: api/VisualCard.Parts.Implementations.Tools.Gender.html
+  commentId: T:VisualCard.Parts.Implementations.Tools.Gender
+  fullName: VisualCard.Parts.Implementations.Tools.Gender
+  nameWithType: Gender
+- uid: VisualCard.Parts.Implementations.Tools.Gender.Female
+  name: Female
+  href: api/VisualCard.Parts.Implementations.Tools.Gender.html#VisualCard_Parts_Implementations_Tools_Gender_Female
+  commentId: F:VisualCard.Parts.Implementations.Tools.Gender.Female
+  fullName: VisualCard.Parts.Implementations.Tools.Gender.Female
+  nameWithType: Gender.Female
+- uid: VisualCard.Parts.Implementations.Tools.Gender.Male
+  name: Male
+  href: api/VisualCard.Parts.Implementations.Tools.Gender.html#VisualCard_Parts_Implementations_Tools_Gender_Male
+  commentId: F:VisualCard.Parts.Implementations.Tools.Gender.Male
+  fullName: VisualCard.Parts.Implementations.Tools.Gender.Male
+  nameWithType: Gender.Male
+- uid: VisualCard.Parts.Implementations.Tools.Gender.NotApplicable
+  name: NotApplicable
+  href: api/VisualCard.Parts.Implementations.Tools.Gender.html#VisualCard_Parts_Implementations_Tools_Gender_NotApplicable
+  commentId: F:VisualCard.Parts.Implementations.Tools.Gender.NotApplicable
+  fullName: VisualCard.Parts.Implementations.Tools.Gender.NotApplicable
+  nameWithType: Gender.NotApplicable
+- uid: VisualCard.Parts.Implementations.Tools.Gender.Other
+  name: Other
+  href: api/VisualCard.Parts.Implementations.Tools.Gender.html#VisualCard_Parts_Implementations_Tools_Gender_Other
+  commentId: F:VisualCard.Parts.Implementations.Tools.Gender.Other
+  fullName: VisualCard.Parts.Implementations.Tools.Gender.Other
+  nameWithType: Gender.Other
+- uid: VisualCard.Parts.Implementations.Tools.Gender.Unknown
+  name: Unknown
+  href: api/VisualCard.Parts.Implementations.Tools.Gender.html#VisualCard_Parts_Implementations_Tools_Gender_Unknown
+  commentId: F:VisualCard.Parts.Implementations.Tools.Gender.Unknown
+  fullName: VisualCard.Parts.Implementations.Tools.Gender.Unknown
+  nameWithType: Gender.Unknown
+- uid: VisualCard.Parts.Implementations.Tools.Gender.Unspecified
+  name: Unspecified
+  href: api/VisualCard.Parts.Implementations.Tools.Gender.html#VisualCard_Parts_Implementations_Tools_Gender_Unspecified
+  commentId: F:VisualCard.Parts.Implementations.Tools.Gender.Unspecified
+  fullName: VisualCard.Parts.Implementations.Tools.Gender.Unspecified
+  nameWithType: Gender.Unspecified
 - uid: VisualCard.Parts.Implementations.XNameInfo
   name: XNameInfo
   href: api/VisualCard.Parts.Implementations.XNameInfo.html
