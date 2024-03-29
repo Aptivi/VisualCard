@@ -68,7 +68,7 @@ namespace VisualCard.Parts
         public BaseCardPartInfo[] GetPartsArray(PartsArrayEnum key)
         {
             // Check for version support
-            if (!BaseVcardParser.EnumArrayTypeSupported(key, CardVersion))
+            if (!VcardParserTools.EnumArrayTypeSupported(key, CardVersion))
                 return null;
 
             // Get the fallback value
@@ -91,7 +91,7 @@ namespace VisualCard.Parts
         public BaseCardPartInfo GetPart(PartsEnum key)
         {
             // Check for version support
-            if (!BaseVcardParser.EnumTypeSupported(key, CardVersion))
+            if (!VcardParserTools.EnumTypeSupported(key, CardVersion))
                 return null;
 
             // Get the fallback value
@@ -114,7 +114,7 @@ namespace VisualCard.Parts
         public string GetString(StringsEnum key)
         {
             // Check for version support
-            if (!BaseVcardParser.StringSupported(key, CardVersion))
+            if (!VcardParserTools.StringSupported(key, CardVersion))
                 return "";
 
             // Get the fallback value
@@ -192,7 +192,8 @@ namespace VisualCard.Parts
                 return;
 
             // Get the appropriate type and check it
-            var enumType = BaseVcardParser.GetEnumArrayType(key);
+            string prefix = VcardParserTools.GetPrefixFromPartsArrayEnum(key);
+            var enumType = VcardParserTools.GetPartType(prefix).enumType;
             if (value.GetType() != enumType)
                 return;
 
@@ -209,7 +210,8 @@ namespace VisualCard.Parts
                 return;
 
             // Get the appropriate type and check it
-            var enumType = BaseVcardParser.GetEnumType(key);
+            string prefix = VcardParserTools.GetPrefixFromPartsEnum(key);
+            var enumType = VcardParserTools.GetPartType(prefix).enumType;
             if (value.GetType() != enumType)
                 return;
 

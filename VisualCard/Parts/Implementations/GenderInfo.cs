@@ -62,14 +62,8 @@ namespace VisualCard.Parts.Implementations
             return InstallInfo(genderValue);
         }
 
-        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion, StreamReader cardContentReader)
-        {
-            // Get the value
-            string genderValue = value.Substring(value.IndexOf(VcardConstants._argumentDelimiter) + 1);
-
-            // Populate the fields
-            return InstallInfo(genderValue);
-        }
+        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion, StreamReader cardContentReader) =>
+            FromStringVcardInternal(value, altId, cardVersion, cardContentReader);
 
         private GenderInfo InstallInfo(string value)
         {

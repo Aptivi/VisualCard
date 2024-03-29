@@ -105,7 +105,7 @@ namespace VisualCard.Parts.Implementations
         }
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion, StreamReader cardContentReader) =>
-            FromStringVcardWithTypeInternal(value, [], altId, cardVersion, cardContentReader);
+            throw new InvalidDataException("Logo field must not have empty type.");
 
         internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion, StreamReader cardContentReader)
         {

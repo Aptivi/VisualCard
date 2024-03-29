@@ -21,6 +21,8 @@ using System.Collections.Generic;
 using System;
 using System.IO;
 using System.Linq;
+using VisualCard.Parts.Enums;
+using VisualCard.Parts.Implementations;
 
 namespace VisualCard.Parsers
 {
@@ -82,6 +84,159 @@ namespace VisualCard.Parsers
 
         internal static string[] GetValues(string[] args, string @default, string argSpecifier) =>
             GetValuesString(args, @default, argSpecifier).Split(VcardConstants._valueDelimiter);
+
+        internal static bool StringSupported(StringsEnum stringsEnum, Version cardVersion) =>
+            stringsEnum switch
+            {
+                StringsEnum.FullName => true,
+                StringsEnum.Url => true,
+                StringsEnum.Notes => true,
+                StringsEnum.Source => true,
+                StringsEnum.Kind => cardVersion.Major >= 4,
+                StringsEnum.Mailer => cardVersion.Major != 4,
+                StringsEnum.ProductId => cardVersion.Major >= 3,
+                StringsEnum.SortString => cardVersion.Major == 3 || cardVersion.Major == 5,
+                StringsEnum.AccessClassification => cardVersion.Major != 2 || cardVersion.Major != 4,
+                StringsEnum.Xml => cardVersion.Major == 4,
+                StringsEnum.FreeBusyUrl => cardVersion.Major >= 4,
+                StringsEnum.CalendarUrl => cardVersion.Major >= 4,
+                StringsEnum.CalendarSchedulingRequestUrl => cardVersion.Major >= 4,
+                _ =>
+                    throw new InvalidOperationException("Invalid string enumeration type to get supported value"),
+            };
+
+        internal static bool EnumArrayTypeSupported(PartsArrayEnum partsArrayEnum, Version cardVersion) =>
+            partsArrayEnum switch
+            {
+                PartsArrayEnum.Names => true,
+                PartsArrayEnum.Telephones => true,
+                PartsArrayEnum.Addresses => true,
+                PartsArrayEnum.Mails => true,
+                PartsArrayEnum.Organizations => true,
+                PartsArrayEnum.Titles => true,
+                PartsArrayEnum.Photos => true,
+                PartsArrayEnum.Roles => true,
+                PartsArrayEnum.Logos => true,
+                PartsArrayEnum.TimeZone => true,
+                PartsArrayEnum.Geo => true,
+                PartsArrayEnum.Sounds => true,
+                PartsArrayEnum.Categories => true,
+                PartsArrayEnum.NonstandardNames => true,
+                PartsArrayEnum.Impps => cardVersion.Major >= 3,
+                PartsArrayEnum.Nicknames => cardVersion.Major >= 3,
+                PartsArrayEnum.Labels => cardVersion.Major != 4,
+                PartsArrayEnum.Agents => cardVersion.Major != 4,
+                _ =>
+                    throw new InvalidOperationException("Invalid parts array enumeration type to get supported value"),
+            };
+
+        internal static bool EnumTypeSupported(PartsEnum partsEnum, Version cardVersion) =>
+            partsEnum switch
+            {
+                PartsEnum.Revision => true,
+                PartsEnum.Birthdate => true,
+                PartsEnum.Anniversary => cardVersion.Major >= 4,
+                PartsEnum.Gender => cardVersion.Major >= 4,
+                _ =>
+                    throw new InvalidOperationException("Invalid parts enumeration type to get supported value"),
+            };
+
+        internal static string GetPrefixFromStringsEnum(StringsEnum stringsEnum) =>
+            stringsEnum switch
+            {
+                StringsEnum.AccessClassification => VcardConstants._classSpecifier,
+                StringsEnum.CalendarSchedulingRequestUrl => VcardConstants._caladrUriSpecifier,
+                StringsEnum.CalendarUrl => VcardConstants._calUriSpecifier,
+                StringsEnum.FreeBusyUrl => VcardConstants._fbUrlSpecifier,
+                StringsEnum.FullName => VcardConstants._fullNameSpecifier,
+                StringsEnum.Kind => VcardConstants._kindSpecifier,
+                StringsEnum.Mailer => VcardConstants._mailerSpecifier,
+                StringsEnum.Notes => VcardConstants._noteSpecifier,
+                StringsEnum.ProductId => VcardConstants._productIdSpecifier,
+                StringsEnum.SortString => VcardConstants._sortStringSpecifier,
+                StringsEnum.Source => VcardConstants._sourceSpecifier,
+                StringsEnum.Url => VcardConstants._urlSpecifier,
+                StringsEnum.Xml => VcardConstants._xmlSpecifier,
+                _ =>
+                    throw new NotImplementedException($"String enumeration {stringsEnum} is not implemented.")
+            };
+
+        internal static string GetPrefixFromPartsEnum(PartsEnum partsEnum) =>
+            partsEnum switch
+            {
+                PartsEnum.Birthdate => VcardConstants._birthSpecifier,
+                PartsEnum.Revision => VcardConstants._revSpecifier,
+                PartsEnum.Anniversary => VcardConstants._anniversarySpecifier,
+                PartsEnum.Gender => VcardConstants._genderSpecifier,
+                _ =>
+                    throw new NotImplementedException($"String enumeration {partsEnum} is not implemented.")
+            };
+
+        internal static string GetPrefixFromPartsArrayEnum(PartsArrayEnum partsArrayEnum) =>
+            partsArrayEnum switch
+            {
+                PartsArrayEnum.Names => VcardConstants._nameSpecifier,
+                PartsArrayEnum.Telephones => VcardConstants._telephoneSpecifier,
+                PartsArrayEnum.Addresses => VcardConstants._addressSpecifier,
+                PartsArrayEnum.Labels => VcardConstants._labelSpecifier,
+                PartsArrayEnum.Mails => VcardConstants._emailSpecifier,
+                PartsArrayEnum.Organizations => VcardConstants._orgSpecifier,
+                PartsArrayEnum.Titles => VcardConstants._titleSpecifier,
+                PartsArrayEnum.Photos => VcardConstants._photoSpecifier,
+                PartsArrayEnum.Nicknames => VcardConstants._nicknameSpecifier,
+                PartsArrayEnum.Roles => VcardConstants._roleSpecifier,
+                PartsArrayEnum.Logos => VcardConstants._logoSpecifier,
+                PartsArrayEnum.TimeZone => VcardConstants._timeZoneSpecifier,
+                PartsArrayEnum.Geo => VcardConstants._geoSpecifier,
+                PartsArrayEnum.Sounds => VcardConstants._soundSpecifier,
+                PartsArrayEnum.Impps => VcardConstants._imppSpecifier,
+                PartsArrayEnum.Categories => VcardConstants._categoriesSpecifier,
+                PartsArrayEnum.NonstandardNames => VcardConstants._xSpecifier,
+                _ =>
+                    throw new NotImplementedException($"String enumeration {partsArrayEnum} is not implemented.")
+            };
+
+        internal static (PartType type, object enumeration, Type enumType) GetPartType(string prefix) =>
+            prefix switch
+            {
+                VcardConstants._nameSpecifier => (PartType.PartsArray, PartsArrayEnum.Names, typeof(NameInfo)),
+                VcardConstants._telephoneSpecifier => (PartType.PartsArray, PartsArrayEnum.Telephones, typeof(TelephoneInfo)),
+                VcardConstants._addressSpecifier => (PartType.PartsArray, PartsArrayEnum.Addresses, typeof(AddressInfo)),
+                VcardConstants._labelSpecifier => (PartType.PartsArray, PartsArrayEnum.Labels, typeof(LabelAddressInfo)),
+                VcardConstants._agentSpecifier => (PartType.PartsArray, PartsArrayEnum.Agents, typeof(AgentInfo)),
+                VcardConstants._emailSpecifier => (PartType.PartsArray, PartsArrayEnum.Mails, typeof(EmailInfo)),
+                VcardConstants._orgSpecifier => (PartType.PartsArray, PartsArrayEnum.Organizations, typeof(OrganizationInfo)),
+                VcardConstants._titleSpecifier => (PartType.PartsArray, PartsArrayEnum.Titles, typeof(TitleInfo)),
+                VcardConstants._photoSpecifier => (PartType.PartsArray, PartsArrayEnum.Photos, typeof(PhotoInfo)),
+                VcardConstants._nicknameSpecifier => (PartType.PartsArray, PartsArrayEnum.Nicknames, typeof(NicknameInfo)),
+                VcardConstants._roleSpecifier => (PartType.PartsArray, PartsArrayEnum.Roles, typeof(RoleInfo)),
+                VcardConstants._logoSpecifier => (PartType.PartsArray, PartsArrayEnum.Logos, typeof(LogoInfo)),
+                VcardConstants._timeZoneSpecifier => (PartType.PartsArray, PartsArrayEnum.TimeZone, typeof(TimeDateZoneInfo)),
+                VcardConstants._geoSpecifier => (PartType.PartsArray, PartsArrayEnum.Geo, typeof(GeoInfo)),
+                VcardConstants._soundSpecifier => (PartType.PartsArray, PartsArrayEnum.Sounds, typeof(SoundInfo)),
+                VcardConstants._imppSpecifier => (PartType.PartsArray, PartsArrayEnum.Impps, typeof(ImppInfo)),
+                VcardConstants._categoriesSpecifier => (PartType.PartsArray, PartsArrayEnum.Categories, typeof(CategoryInfo)),
+                VcardConstants._xSpecifier => (PartType.PartsArray, PartsArrayEnum.NonstandardNames, typeof(XNameInfo)),
+                VcardConstants._revSpecifier => (PartType.Parts, PartsEnum.Revision, typeof(RevisionInfo)),
+                VcardConstants._birthSpecifier => (PartType.Parts, PartsEnum.Birthdate, typeof(BirthDateInfo)),
+                VcardConstants._anniversarySpecifier => (PartType.Parts, PartsEnum.Anniversary, typeof(AnniversaryInfo)),
+                VcardConstants._genderSpecifier => (PartType.Parts, PartsEnum.Gender, typeof(GenderInfo)),
+                VcardConstants._fullNameSpecifier => (PartType.Strings, StringsEnum.FullName, null),
+                VcardConstants._urlSpecifier => (PartType.Strings, StringsEnum.Url, null),
+                VcardConstants._noteSpecifier => (PartType.Strings, StringsEnum.Notes, null),
+                VcardConstants._sourceSpecifier => (PartType.Strings, StringsEnum.Source, null),
+                VcardConstants._kindSpecifier => (PartType.Strings, StringsEnum.Kind, null),
+                VcardConstants._mailerSpecifier => (PartType.Strings, StringsEnum.Mailer, null),
+                VcardConstants._productIdSpecifier => (PartType.Strings, StringsEnum.ProductId, null),
+                VcardConstants._sortStringSpecifier => (PartType.Strings, StringsEnum.SortString, null),
+                VcardConstants._classSpecifier => (PartType.Strings, StringsEnum.AccessClassification, null),
+                VcardConstants._xmlSpecifier => (PartType.Strings, StringsEnum.Xml, null),
+                VcardConstants._fbUrlSpecifier => (PartType.Strings, StringsEnum.FreeBusyUrl, null),
+                VcardConstants._calUriSpecifier => (PartType.Strings, StringsEnum.CalendarUrl, null),
+                VcardConstants._caladrUriSpecifier => (PartType.Strings, StringsEnum.CalendarSchedulingRequestUrl, null),
+                _ =>
+                    throw new InvalidOperationException($"Unknown prefix {prefix}"),
+            };
 
         internal static IEnumerable<int> GetDigits(int num)
         {

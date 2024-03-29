@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using VisualCard.Exceptions;
@@ -117,455 +118,102 @@ namespace VisualCard.Parsers
                         ));
                     }
 
-                    // The name (N:Sanders;John;;;)
-                    // ALTID is supported.
-                    if (prefix == VcardConstants._nameSpecifier)
+                    // TEMPORARY: Filter out BEGIN, VERSION, and END
+                    if (prefix == "BEGIN" || prefix == "VERSION" || prefix == "END")
+                        continue;
+
+                    // Get the part type and handle it
+                    bool xNonstandard = prefix.StartsWith(VcardConstants._xSpecifier);
+                    var (type, enumeration, classType) = VcardParserTools.GetPartType(xNonstandard ? VcardConstants._xSpecifier : prefix);
+                    string fromStringMethodName = isWithType ? nameof(NameInfo.FromStringVcardWithTypeStatic) : nameof(NameInfo.FromStringVcardStatic);
+                    switch (type)
                     {
-                        // Get the name
-                        var partInfo =
-                            isWithType ?
-                            NameInfo.FromStringVcardWithTypeStatic(_value, [.. finalArgs], altId, CardVersion, CardContentReader) :
-                            NameInfo.FromStringVcardStatic(_value, altId, CardVersion, CardContentReader);
-                        card.AddPartToArray(PartsArrayEnum.Names, partInfo);
-                    }
+                        case PartType.Strings:
+                            {
+                                StringsEnum stringType = (StringsEnum)enumeration;
+                                string finalValue = value;
 
-                    // Full name (FN:John Sanders)
-                    // Here, we don't support ALTID.
-                    if (prefix == VcardConstants._fullNameSpecifier)
-                    {
-                        // Get the value
-                        string fullNameValue = _value.Substring(VcardConstants._fullNameSpecifier.Length + 1);
-                        fullNameValue = Regex.Unescape(fullNameValue);
+                                // Now, handle each type individually
+                                switch (stringType)
+                                {
+                                    case StringsEnum.FullName:
+                                    case StringsEnum.Notes:
+                                    case StringsEnum.Mailer:
+                                    case StringsEnum.ProductId:
+                                    case StringsEnum.SortString:
+                                    case StringsEnum.AccessClassification:
+                                    case StringsEnum.Xml:
+                                        // Unescape the value
+                                        finalValue = Regex.Unescape(value);
+                                        break;
+                                    case StringsEnum.Url:
+                                    case StringsEnum.Source:
+                                    case StringsEnum.FreeBusyUrl:
+                                    case StringsEnum.CalendarUrl:
+                                    case StringsEnum.CalendarSchedulingRequestUrl:
+                                        // Try to parse the URL to ensure that it conforms to IETF RFC 1738: Uniform Resource Locators
+                                        if (!Uri.TryCreate(value, UriKind.Absolute, out Uri uri))
+                                            throw new InvalidDataException($"URL {value} is invalid");
+                                        finalValue = uri.ToString();
+                                        break;
+                                    case StringsEnum.Kind:
+                                        // Get the kind
+                                        if (!string.IsNullOrEmpty(value))
+                                            finalValue = Regex.Unescape(value);
+                                        else
+                                            finalValue = "individual";
 
-                        // Populate field
-                        card.SetString(StringsEnum.FullName, fullNameValue);
-                    }
+                                        // Let VisualCard know that we've explicitly specified a kind.
+                                        card.kindExplicitlySpecified = true;
+                                        break;
+                                    default:
+                                        throw new InvalidDataException($"The string enum type {stringType} is invalid. Are you sure that you've specified the correct type in your vCard representation?");
+                                }
 
-                    // Telephone (TEL;CELL;HOME:495-522-3560 or TEL;TYPE=cell,home:495-522-3560 or TEL:495-522-3560)
-                    // ALTID is supported.
-                    if (prefix == VcardConstants._telephoneSpecifier)
-                    {
-                        // Get the name
-                        var partInfo =
-                            isWithType ?
-                            TelephoneInfo.FromStringVcardWithTypeStatic(_value, [.. finalArgs], altId, CardVersion, CardContentReader) :
-                            TelephoneInfo.FromStringVcardStatic(_value, altId, CardVersion, CardContentReader);
-                        card.AddPartToArray(PartsArrayEnum.Telephones, partInfo);
-                    }
+                                // Set the string for real
+                                card.SetString(stringType, finalValue);
+                            }
+                            break;
+                        case PartType.Parts:
+                            {
+                                PartsEnum partsType = (PartsEnum)enumeration;
+                                Type partsClass = classType;
+                                bool supported = VcardParserTools.EnumTypeSupported(partsType, CardVersion);
+                                if (!supported)
+                                    continue;
 
-                    // Address (ADR;HOME:;;Los Angeles, USA;;;; or ADR:;;Los Angeles, USA;;;;)
-                    // ALTID is supported.
-                    if (prefix == VcardConstants._addressSpecifier)
-                    {
-                        // Get the name
-                        var partInfo =
-                            isWithType ?
-                            AddressInfo.FromStringVcardWithTypeStatic(_value, [.. finalArgs], altId, CardVersion, CardContentReader) :
-                            AddressInfo.FromStringVcardStatic(_value, altId, CardVersion, CardContentReader);
-                        card.AddPartToArray(PartsArrayEnum.Addresses, partInfo);
-                    }
+                                // Handle parsing parts
+                                var fromStringMethod = partsClass.GetMethod(fromStringMethodName, BindingFlags.Static | BindingFlags.NonPublic);
 
-                    // Email (EMAIL;HOME;INTERNET:john.s@acme.co or EMAIL;TYPE=HOME,INTERNET:john.s@acme.co)
-                    // ALTID is supported.
-                    if (prefix == VcardConstants._emailSpecifier)
-                    {
-                        // Get the name
-                        var partInfo =
-                            isWithType ?
-                            EmailInfo.FromStringVcardWithTypeStatic(_value, [.. finalArgs], altId, CardVersion, CardContentReader) :
-                            EmailInfo.FromStringVcardStatic(_value, altId, CardVersion, CardContentReader);
-                        card.AddPartToArray(PartsArrayEnum.Mails, partInfo);
-                    }
+                                // Now, get the part info
+                                var partInfo =
+                                    isWithType ?
+                                    fromStringMethod.Invoke(null, [_value, finalArgs.ToArray(), altId, CardVersion, CardContentReader]) :
+                                    fromStringMethod.Invoke(null, [_value, altId, CardVersion, CardContentReader]);
+                                card.SetPart(partsType, (BaseCardPartInfo)partInfo);
+                            }
+                            break;
+                        case PartType.PartsArray:
+                            {
+                                PartsArrayEnum partsArrayType = (PartsArrayEnum)enumeration;
+                                Type partsArrayClass = classType;
+                                bool supported = VcardParserTools.EnumArrayTypeSupported(partsArrayType, CardVersion);
+                                if (!supported)
+                                    continue;
 
-                    // Organization (ORG:Acme Co. or ORG:ABC, Inc.;North American Division;Marketing)
-                    // ALTID is supported.
-                    if (prefix == VcardConstants._orgSpecifier)
-                    {
-                        // Get the name
-                        var partInfo =
-                            isWithType ?
-                            OrganizationInfo.FromStringVcardWithTypeStatic(_value, [.. finalArgs], altId, CardVersion, CardContentReader) :
-                            OrganizationInfo.FromStringVcardStatic(_value, altId, CardVersion, CardContentReader);
-                        card.AddPartToArray(PartsArrayEnum.Organizations, partInfo);
-                    }
+                                // Handle parsing part arrays
+                                var fromStringMethod = partsArrayClass.GetMethod(fromStringMethodName, BindingFlags.Static | BindingFlags.NonPublic);
 
-                    // Title (TITLE:Product Manager)
-                    // ALTID is supported.
-                    if (prefix == VcardConstants._titleSpecifier)
-                    {
-                        // Get the name
-                        var partInfo =
-                            isWithType ?
-                            TitleInfo.FromStringVcardWithTypeStatic(_value, [.. finalArgs], altId, CardVersion, CardContentReader) :
-                            TitleInfo.FromStringVcardStatic(_value, altId, CardVersion, CardContentReader);
-                        card.AddPartToArray(PartsArrayEnum.Titles, partInfo);
-                    }
-
-                    // Website link (URL:https://sso.org/)
-                    // Here, we don't support ALTID.
-                    if (prefix == VcardConstants._urlSpecifier)
-                    {
-                        // Get the value
-                        string urlValue = _value.Substring(VcardConstants._urlSpecifier.Length + 1);
-
-                        // Try to parse the URL to ensure that it conforms to IETF RFC 1738: Uniform Resource Locators
-                        if (!Uri.TryCreate(urlValue, UriKind.Absolute, out Uri uri))
-                            throw new InvalidDataException($"URL {urlValue} is invalid");
-
-                        // Populate field
-                        card.SetString(StringsEnum.Url, uri.ToString());
-                    }
-
-                    // Note (NOTE:Product Manager)
-                    // Here, we don't support ALTID.
-                    if (prefix == VcardConstants._noteSpecifier)
-                    {
-                        // Get the value
-                        string noteValue = _value.Substring(VcardConstants._noteSpecifier.Length + 1);
-                        noteValue = Regex.Unescape(noteValue);
-
-                        // Populate field
-                        card.SetString(StringsEnum.Notes, noteValue);
-                    }
-
-                    // Photo (PHOTO;ENCODING=BASE64;JPEG:... or PHOTO;VALUE=URL:file:///jqpublic.gif or PHOTO;ENCODING=BASE64;TYPE=GIF:...)
-                    // ALTID is supported.
-                    if (prefix == VcardConstants._photoSpecifier)
-                    {
-                        if (isWithType)
-                        {
-                            var partInfo = PhotoInfo.FromStringVcardWithTypeStatic(_value, [.. finalArgs], altId, CardVersion, CardContentReader);
-                            card.AddPartToArray(PartsArrayEnum.Photos, partInfo);
-                        }
-                        else
-                            throw new InvalidDataException("Photo field must not have empty type.");
-                    }
-
-                    // Logo (LOGO;ENCODING=BASE64;JPEG:... or LOGO;VALUE=URL:file:///jqpublic.gif or LOGO;ENCODING=BASE64;TYPE=GIF:...)
-                    // ALTID is supported.
-                    if (prefix == VcardConstants._logoSpecifier)
-                    {
-                        if (isWithType)
-                        {
-                            var partInfo = LogoInfo.FromStringVcardWithTypeStatic(_value, [.. finalArgs], altId, CardVersion, CardContentReader);
-                            card.AddPartToArray(PartsArrayEnum.Logos, partInfo);
-                        }
-                        else
-                            throw new InvalidDataException("Logo field must not have empty type.");
-                    }
-
-                    // Sound (SOUND;VALUE=URL:file///multimed/audio/jqpublic.wav or SOUND;WAVE;BASE64:... or SOUND;TYPE=WAVE;ENCODING=BASE64:...)
-                    // ALTID is supported.
-                    if (prefix == VcardConstants._soundSpecifier)
-                    {
-                        if (isWithType)
-                        {
-                            var partInfo = SoundInfo.FromStringVcardWithTypeStatic(_value, [.. finalArgs], altId, CardVersion, CardContentReader);
-                            card.AddPartToArray(PartsArrayEnum.Sounds, partInfo);
-                        }
-                        else
-                            throw new InvalidDataException("Sound field must not have empty type.");
-                    }
-
-                    // Revision (REV:1995-10-31T22:27:10Z or REV:19951031T222710)
-                    // Here, we don't support ALTID.
-                    if (prefix == VcardConstants._revSpecifier)
-                    {
-                        var partInfo = RevisionInfo.FromStringVcardStatic(_value, altId, CardVersion, CardContentReader);
-                        card.SetPart(PartsEnum.Revision, partInfo);
-                    }
-
-                    // Birthdate (BDAY:19950415 or BDAY:1953-10-15T23:10:00Z)
-                    // Here, we don't support ALTID.
-                    if (prefix == VcardConstants._birthSpecifier)
-                    {
-                        var partInfo =
-                            isWithType ?
-                            BirthDateInfo.FromStringVcardWithTypeStatic(_value, [.. finalArgs], altId, CardVersion, CardContentReader) :
-                            BirthDateInfo.FromStringVcardStatic(_value, altId, CardVersion, CardContentReader);
-                        card.SetPart(PartsEnum.Birthdate, partInfo);
-                    }
-
-                    // Role (ROLE:Programmer)
-                    // ALTID is supported.
-                    if (prefix == VcardConstants._roleSpecifier)
-                    {
-                        // Get the name
-                        var partInfo =
-                            isWithType ?
-                            RoleInfo.FromStringVcardWithTypeStatic(_value, [.. finalArgs], altId, CardVersion, CardContentReader) :
-                            RoleInfo.FromStringVcardStatic(_value, altId, CardVersion, CardContentReader);
-                        card.AddPartToArray(PartsArrayEnum.Roles, partInfo);
-                    }
-
-                    // Categories (CATEGORIES:INTERNET or CATEGORIES:INTERNET,IETF,INDUSTRY,INFORMATION TECHNOLOGY)
-                    // Here, we don't support ALTID.
-                    if (prefix == VcardConstants._categoriesSpecifier)
-                    {
-                        // Get the value
-                        string categoriesValue = _value.Substring(VcardConstants._categoriesSpecifier.Length + 1);
-
-                        // Populate field
-                        var categories = CategoryInfo.FromStringVcardStatic(_value, altId, CardVersion, CardContentReader);
-                        card.AddPartToArray(PartsArrayEnum.Categories, categories);
-                    }
-
-                    // Time Zone (TZ;VALUE=text:-05:00; EST; Raleigh/North America)
-                    // ALTID is supported.
-                    if (prefix == VcardConstants._timeZoneSpecifier)
-                    {
-                        // Get the name
-                        var partInfo =
-                            isWithType ?
-                            TimeDateZoneInfo.FromStringVcardWithTypeStatic(_value, [.. finalArgs], altId, CardVersion, CardContentReader) :
-                            TimeDateZoneInfo.FromStringVcardStatic(_value, altId, CardVersion, CardContentReader);
-                        card.AddPartToArray(PartsArrayEnum.TimeZone, partInfo);
-                    }
-
-                    // Geo (GEO;VALUE=uri:https://...)
-                    // ALTID is supported.
-                    if (prefix == VcardConstants._geoSpecifier)
-                    {
-                        // Get the name
-                        var partInfo =
-                            isWithType ?
-                            GeoInfo.FromStringVcardWithTypeStatic(_value, [.. finalArgs], altId, CardVersion, CardContentReader) :
-                            GeoInfo.FromStringVcardStatic(_value, altId, CardVersion, CardContentReader);
-                        card.AddPartToArray(PartsArrayEnum.Geo, partInfo);
-                    }
-
-                    // Source (SOURCE:http://johndoe.com/vcard.vcf)
-                    // Here, we don't support ALTID.
-                    if (prefix == VcardConstants._sourceSpecifier)
-                    {
-                        // Get the value
-                        string sourceStringValue = _value.Substring(VcardConstants._sourceSpecifier.Length + 1);
-
-                        // Try to parse the URL to ensure that it conforms to IETF RFC 1738: Uniform Resource Locators
-                        if (!Uri.TryCreate(sourceStringValue, UriKind.Absolute, out Uri uri))
-                            throw new InvalidDataException($"URL {sourceStringValue} is invalid");
-
-                        // Populate field
-                        string sourceString = uri.ToString();
-                        card.SetString(StringsEnum.Source, sourceString);
-                    }
-
-                    // Non-standard names (X-AIM:john.s or X-DL;Design Work Group:List Item 1;List Item 2;List Item 3)
-                    // ALTID is supported.
-                    if (prefix == VcardConstants._xSpecifier)
-                    {
-                        // Get the name
-                        var partInfo =
-                            isWithType ?
-                            XNameInfo.FromStringVcardWithTypeStatic(_value, [.. finalArgs], altId, CardVersion, CardContentReader) :
-                            XNameInfo.FromStringVcardStatic(_value, altId, CardVersion, CardContentReader);
-                        card.AddPartToArray(PartsArrayEnum.NonstandardNames, partInfo);
-                    }
-
-                    // Now, the keys that are only available in specific versions of vCard
-
-                    // Card type (KIND:individual, KIND:group, KIND:org, KIND:location, ...)
-                    // Here, we don't support ALTID.
-                    if (prefix == VcardConstants._kindSpecifier &&
-                        StringSupported(StringsEnum.Kind, CardVersion))
-                    {
-                        // Get the value
-                        string kindValue = _value.Substring(VcardConstants._kindSpecifier.Length + 1);
-
-                        // Populate field
-                        if (!string.IsNullOrEmpty(kindValue))
-                            kindValue = Regex.Unescape(kindValue);
-                        card.SetString(StringsEnum.Kind, kindValue);
-
-                        // Let VisualCard know that we've explicitly specified a kind.
-                        card.kindExplicitlySpecified = true;
-                    }
-
-                    // Label (LABEL;TYPE=dom,home,postal,parcel:Mr.John Q. Public\, Esq.\nMail Drop: TNE QB\n123 Main Street\nAny Town\, CA  91921 - 1234\nU.S.A.)
-                    // ALTID is supported.
-                    if (prefix == VcardConstants._labelSpecifier &&
-                        EnumArrayTypeSupported(PartsArrayEnum.Labels, CardVersion))
-                    {
-                        // Get the name
-                        var partInfo =
-                            isWithType ?
-                            LabelAddressInfo.FromStringVcardWithTypeStatic(_value, [.. finalArgs], altId, CardVersion, CardContentReader) :
-                            LabelAddressInfo.FromStringVcardStatic(_value, altId, CardVersion, CardContentReader);
-                        card.AddPartToArray(PartsArrayEnum.Labels, partInfo);
-                    }
-
-                    // Agent (AGENT:BEGIN:VCARD\nFN:Joe Friday\nTEL:+1...)
-                    // ALTID is supported.
-                    if (prefix == VcardConstants._agentSpecifier &&
-                        EnumArrayTypeSupported(PartsArrayEnum.Agents, CardVersion))
-                    {
-                        // Get the name
-                        var partInfo =
-                            isWithType ?
-                            AgentInfo.FromStringVcardWithTypeStatic(_value, [.. finalArgs], altId, CardVersion, CardContentReader) :
-                            AgentInfo.FromStringVcardStatic(_value, altId, CardVersion, CardContentReader);
-                        card.AddPartToArray(PartsArrayEnum.Agents, partInfo);
-                    }
-
-                    // Nickname (NICKNAME;TYPE=cell,home:495-522-3560)
-                    // ALTID is supported.
-                    if (prefix == VcardConstants._nicknameSpecifier &&
-                        EnumArrayTypeSupported(PartsArrayEnum.Nicknames, CardVersion))
-                    {
-                        // Get the name
-                        var partInfo =
-                            isWithType ?
-                            NicknameInfo.FromStringVcardWithTypeStatic(_value, [.. finalArgs], altId, CardVersion, CardContentReader) :
-                            NicknameInfo.FromStringVcardStatic(_value, altId, CardVersion, CardContentReader);
-                        card.AddPartToArray(PartsArrayEnum.Nicknames, partInfo);
-                    }
-
-                    // Mailer (MAILER:ccMail 2.2 or MAILER:PigeonMail 2.1)
-                    // Here, we don't support ALTID.
-                    if (prefix == VcardConstants._mailerSpecifier &&
-                        StringSupported(StringsEnum.Mailer, CardVersion))
-                    {
-                        // Get the value
-                        string mailerValue = _value.Substring(VcardConstants._mailerSpecifier.Length + 1);
-
-                        // Populate field
-                        mailerValue = Regex.Unescape(mailerValue);
-                        card.SetString(StringsEnum.Mailer, mailerValue);
-                    }
-
-                    // Product ID (PRODID:-//ONLINE DIRECTORY//NONSGML Version 1//EN)
-                    // Here, we don't support ALTID.
-                    if (prefix == VcardConstants._productIdSpecifier &&
-                        StringSupported(StringsEnum.ProductId, CardVersion))
-                    {
-                        // Get the value
-                        string prodIdValue = _value.Substring(VcardConstants._productIdSpecifier.Length + 1);
-
-                        // Populate field
-                        prodIdValue = Regex.Unescape(prodIdValue);
-                        card.SetString(StringsEnum.ProductId, prodIdValue);
-                    }
-
-                    // Sort string (SORT-STRING:Harten)
-                    // Here, we don't support ALTID.
-                    if (prefix == VcardConstants._sortStringSpecifier &&
-                        StringSupported(StringsEnum.SortString, CardVersion))
-                    {
-                        // Get the value
-                        string sortStringValue = _value.Substring(VcardConstants._sortStringSpecifier.Length + 1);
-
-                        // Populate field
-                        sortStringValue = Regex.Unescape(sortStringValue);
-                        card.SetString(StringsEnum.SortString, sortStringValue);
-                    }
-
-                    // IMPP information (IMPP;TYPE=home:sip:test)
-                    // ALTID is supported.
-                    if (prefix == VcardConstants._imppSpecifier &&
-                        EnumArrayTypeSupported(PartsArrayEnum.Impps, CardVersion))
-                    {
-                        // Get the name
-                        var partInfo =
-                            isWithType ?
-                            ImppInfo.FromStringVcardWithTypeStatic(_value, [.. finalArgs], altId, CardVersion, CardContentReader) :
-                            ImppInfo.FromStringVcardStatic(_value, altId, CardVersion, CardContentReader);
-                        card.AddPartToArray(PartsArrayEnum.Impps, partInfo);
-                    }
-
-                    // Access classification (CLASS:PUBLIC, CLASS:PRIVATE, or CLASS:CONFIDENTIAL)
-                    // Here, we don't support ALTID.
-                    if (prefix == VcardConstants._classSpecifier &&
-                        StringSupported(StringsEnum.AccessClassification, CardVersion))
-                    {
-                        // Get the value
-                        string classValue = _value.Substring(VcardConstants._classSpecifier.Length + 1);
-
-                        // Populate field
-                        classValue = Regex.Unescape(classValue);
-                        card.SetString(StringsEnum.AccessClassification, classValue);
-                    }
-
-                    // XML code (XML:<b>Not an xCard XML element</b>)
-                    // Here, we don't support ALTID.
-                    if (prefix == VcardConstants._xmlSpecifier &&
-                        StringSupported(StringsEnum.Xml, CardVersion))
-                    {
-                        // Get the value
-                        string xmlStringValue = _value.Substring(VcardConstants._xmlSpecifier.Length + 1);
-
-                        // Populate field
-                        xmlStringValue = Regex.Unescape(xmlStringValue);
-                        card.SetString(StringsEnum.Xml, xmlStringValue);
-                    }
-
-                    // Free/busy URL (FBURL:http://example.com/fb/jdoe)
-                    // Here, we don't support ALTID.
-                    if (prefix == VcardConstants._fbUrlSpecifier &&
-                        StringSupported(StringsEnum.FreeBusyUrl, CardVersion))
-                    {
-                        // Get the value
-                        string fbUrlStringValue = _value.Substring(VcardConstants._fbUrlSpecifier.Length + 1);
-
-                        // Try to parse the URL to ensure that it conforms to IETF RFC 1738: Uniform Resource Locators
-                        if (!Uri.TryCreate(fbUrlStringValue, UriKind.Absolute, out Uri uri))
-                            throw new InvalidDataException($"URL {fbUrlStringValue} is invalid");
-
-                        // Populate field
-                        fbUrlStringValue = uri.ToString();
-                        card.SetString(StringsEnum.FreeBusyUrl, fbUrlStringValue);
-                    }
-
-                    // Calendar URL (CALURI:http://example.com/calendar/jdoe)
-                    // Here, we don't support ALTID.
-                    if (prefix == VcardConstants._calUriSpecifier &&
-                        StringSupported(StringsEnum.CalendarUrl, CardVersion))
-                    {
-                        // Get the value
-                        string calUriStringValue = _value.Substring(VcardConstants._calUriSpecifier.Length + 1);
-
-                        // Try to parse the URL to ensure that it conforms to IETF RFC 1738: Uniform Resource Locators
-                        if (!Uri.TryCreate(calUriStringValue, UriKind.Absolute, out Uri uri))
-                            throw new InvalidDataException($"URL {calUriStringValue} is invalid");
-
-                        // Populate field
-                        calUriStringValue = uri.ToString();
-                        card.SetString(StringsEnum.CalendarUrl, calUriStringValue);
-                    }
-
-                    // Calendar Request URL (CALADRURI:http://example.com/calendar/jdoe/request)
-                    // Here, we don't support ALTID.
-                    if (prefix == VcardConstants._caladrUriSpecifier &&
-                        StringSupported(StringsEnum.CalendarSchedulingRequestUrl, CardVersion))
-                    {
-                        // Get the value
-                        string caladrUriStringValue = _value.Substring(VcardConstants._caladrUriSpecifier.Length + 1);
-
-                        // Try to parse the URL to ensure that it conforms to IETF RFC 1738: Uniform Resource Locators
-                        if (!Uri.TryCreate(caladrUriStringValue, UriKind.Absolute, out Uri uri))
-                            throw new InvalidDataException($"URL {caladrUriStringValue} is invalid");
-
-                        // Populate field
-                        caladrUriStringValue = uri.ToString();
-                        card.SetString(StringsEnum.CalendarSchedulingRequestUrl, caladrUriStringValue);
-                    }
-
-                    // Wedding anniversary (ANNIVERSARY:19960415)
-                    // Here, we don't support ALTID.
-                    if (prefix == VcardConstants._anniversarySpecifier &&
-                        EnumTypeSupported(PartsEnum.Anniversary, CardVersion))
-                    {
-                        var partInfo = AnniversaryInfo.FromStringVcardStatic(_value, altId, CardVersion, CardContentReader);
-                        card.SetPart(PartsEnum.Anniversary, partInfo);
-                    }
-
-                    // IMPP information (IMPP;TYPE=home:sip:test)
-                    // ALTID is supported.
-                    if (prefix == VcardConstants._genderSpecifier &&
-                        EnumTypeSupported(PartsEnum.Gender, CardVersion))
-                    {
-                        // Get the name
-                        var partInfo = GenderInfo.FromStringVcardStatic(_value, altId, CardVersion, CardContentReader);
-                        card.SetPart(PartsEnum.Gender, partInfo);
+                                // Now, get the part info
+                                var partInfo =
+                                    isWithType ?
+                                    fromStringMethod.Invoke(null, [_value, finalArgs.ToArray(), altId, CardVersion, CardContentReader]) :
+                                    fromStringMethod.Invoke(null, [_value, altId, CardVersion, CardContentReader]);
+                                card.AddPartToArray(partsArrayType, (BaseCardPartInfo)partInfo);
+                            }
+                            break;
+                        default:
+                            throw new InvalidDataException($"The type {type} is invalid. Are you sure that you've specified the correct type in your vCard representation?");
                     }
                 }
                 catch (Exception ex)
@@ -610,23 +258,7 @@ namespace VisualCard.Parsers
                     continue;
 
                 // Now, locate the prefix and assemble the line
-                string prefix = stringEnum switch
-                {
-                    StringsEnum.AccessClassification => VcardConstants._classSpecifier,
-                    StringsEnum.CalendarSchedulingRequestUrl => VcardConstants._caladrUriSpecifier,
-                    StringsEnum.CalendarUrl => VcardConstants._calUriSpecifier,
-                    StringsEnum.FreeBusyUrl => VcardConstants._fbUrlSpecifier,
-                    StringsEnum.FullName => VcardConstants._fullNameSpecifier,
-                    StringsEnum.Kind => VcardConstants._kindSpecifier,
-                    StringsEnum.Mailer => VcardConstants._mailerSpecifier,
-                    StringsEnum.Notes => VcardConstants._noteSpecifier,
-                    StringsEnum.ProductId => VcardConstants._productIdSpecifier,
-                    StringsEnum.SortString => VcardConstants._sortStringSpecifier,
-                    StringsEnum.Source => VcardConstants._sourceSpecifier,
-                    StringsEnum.Url => VcardConstants._urlSpecifier,
-                    StringsEnum.Xml => VcardConstants._xmlSpecifier,
-                    _ => throw new NotImplementedException($"String enumeration {stringEnum} is not implemented.")
-                };
+                string prefix = VcardParserTools.GetPrefixFromStringsEnum(stringEnum);
                 cardBuilder.AppendLine($"{prefix}:{stringValue}");
             }
 
@@ -711,98 +343,6 @@ namespace VisualCard.Parsers
             }
             return block.ToString();
         }
-
-        internal static bool StringSupported(StringsEnum stringsEnum, Version cardVersion) =>
-            stringsEnum switch
-            {
-                StringsEnum.FullName => true,
-                StringsEnum.Url => true,
-                StringsEnum.Notes => true,
-                StringsEnum.Source => true,
-                StringsEnum.Kind => cardVersion.Major >= 4,
-                StringsEnum.Mailer => cardVersion.Major != 4,
-                StringsEnum.ProductId => cardVersion.Major >= 3,
-                StringsEnum.SortString => cardVersion.Major == 3 || cardVersion.Major == 5,
-                StringsEnum.AccessClassification => cardVersion.Major != 2 || cardVersion.Major != 4,
-                StringsEnum.Xml => cardVersion.Major == 4,
-                StringsEnum.FreeBusyUrl => cardVersion.Major >= 4,
-                StringsEnum.CalendarUrl => cardVersion.Major >= 4,
-                StringsEnum.CalendarSchedulingRequestUrl => cardVersion.Major >= 4,
-                _ =>
-                    throw new InvalidOperationException("Invalid string enumeration type to get supported value"),
-            };
-
-        internal static bool EnumArrayTypeSupported(PartsArrayEnum partsArrayEnum, Version cardVersion) =>
-            partsArrayEnum switch
-            {
-                PartsArrayEnum.Names => true,
-                PartsArrayEnum.Telephones => true,
-                PartsArrayEnum.Addresses => true,
-                PartsArrayEnum.Mails => true,
-                PartsArrayEnum.Organizations => true,
-                PartsArrayEnum.Titles => true,
-                PartsArrayEnum.Photos => true,
-                PartsArrayEnum.Roles => true,
-                PartsArrayEnum.Logos => true,
-                PartsArrayEnum.TimeZone => true,
-                PartsArrayEnum.Geo => true,
-                PartsArrayEnum.Sounds => true,
-                PartsArrayEnum.Categories => true,
-                PartsArrayEnum.NonstandardNames => true,
-                PartsArrayEnum.Impps => cardVersion.Major >= 3,
-                PartsArrayEnum.Nicknames => cardVersion.Major >= 3,
-                PartsArrayEnum.Labels => cardVersion.Major != 4,
-                PartsArrayEnum.Agents => cardVersion.Major != 4,
-                _ =>
-                    throw new InvalidOperationException("Invalid parts array enumeration type to get supported value"),
-            };
-
-        internal static bool EnumTypeSupported(PartsEnum partsEnum, Version cardVersion) =>
-            partsEnum switch
-            {
-                PartsEnum.Revision => true,
-                PartsEnum.Birthdate => true,
-                PartsEnum.Anniversary => cardVersion.Major >= 4,
-                PartsEnum.Gender => cardVersion.Major >= 4,
-                _ =>
-                    throw new InvalidOperationException("Invalid parts enumeration type to get supported value"),
-            };
-
-        internal static Type GetEnumArrayType(PartsArrayEnum partsArrayEnum) =>
-            partsArrayEnum switch
-            {
-                PartsArrayEnum.Names => typeof(NameInfo),
-                PartsArrayEnum.Telephones => typeof(TelephoneInfo),
-                PartsArrayEnum.Addresses => typeof(AddressInfo),
-                PartsArrayEnum.Labels => typeof(LabelAddressInfo),
-                PartsArrayEnum.Agents => typeof(AgentInfo),
-                PartsArrayEnum.Mails => typeof(EmailInfo),
-                PartsArrayEnum.Organizations => typeof(OrganizationInfo),
-                PartsArrayEnum.Titles => typeof(TitleInfo),
-                PartsArrayEnum.Photos => typeof(PhotoInfo),
-                PartsArrayEnum.Nicknames => typeof(NicknameInfo),
-                PartsArrayEnum.Roles => typeof(RoleInfo),
-                PartsArrayEnum.Logos => typeof(LogoInfo),
-                PartsArrayEnum.TimeZone => typeof(TimeDateZoneInfo),
-                PartsArrayEnum.Geo => typeof(GeoInfo),
-                PartsArrayEnum.Sounds => typeof(SoundInfo),
-                PartsArrayEnum.Impps => typeof(ImppInfo),
-                PartsArrayEnum.Categories => typeof(CategoryInfo),
-                PartsArrayEnum.NonstandardNames => typeof(XNameInfo),
-                _ =>
-                    throw new InvalidOperationException("Invalid parts array enumeration type"),
-            };
-
-        internal static Type GetEnumType(PartsEnum partsEnum) =>
-            partsEnum switch
-            {
-                PartsEnum.Revision => typeof(RevisionInfo),
-                PartsEnum.Birthdate => typeof(BirthDateInfo),
-                PartsEnum.Anniversary => typeof(AnniversaryInfo),
-                PartsEnum.Gender => typeof(GenderInfo),
-                _ =>
-                    throw new InvalidOperationException("Invalid parts enumeration type"),
-            };
 
         internal void ValidateCard(Card card)
         {

@@ -55,14 +55,8 @@ namespace VisualCard.Parts.Implementations
             return InstallInfo(revValue, altId, cardVersion);
         }
 
-        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion, StreamReader cardContentReader)
-        {
-            // Get the value
-            string revValue = value.Substring(VcardConstants._revSpecifier.Length + 1);
-
-            // Populate the fields
-            return InstallInfo(revValue, finalArgs, altId, cardVersion);
-        }
+        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion, StreamReader cardContentReader) =>
+            FromStringVcardInternal(value, altId, cardVersion, cardContentReader);
 
         private RevisionInfo InstallInfo(string value, int altId, Version cardVersion) =>
             InstallInfo(value, [], altId, cardVersion);
