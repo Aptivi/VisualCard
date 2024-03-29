@@ -180,8 +180,8 @@ namespace VisualCard.Tests
             Card[] secondCards = [];
 
             // Parse the cards
-            Should.NotThrow(() => cards = CardTools.GetCardsFromString(cardText));
-            Should.NotThrow(() => secondCards = CardTools.GetCardsFromString(cardText));
+            Should.NotThrow(() => cards = MeCard.GetContactsFromMeCardString(cardText));
+            Should.NotThrow(() => secondCards = MeCard.GetContactsFromMeCardString(cardText));
 
             // Test equality with available data
             List<bool> foundCards = [];
@@ -208,8 +208,8 @@ namespace VisualCard.Tests
             Card[] secondCards = [];
 
             // Parse the cards
-            Should.NotThrow(() => cards = CardTools.GetCardsFromString(cardText));
-            Should.NotThrow(() => secondCards = CardTools.GetCardsFromString(cardText));
+            Should.NotThrow(() => cards = MeCard.GetContactsFromMeCardString(cardText));
+            Should.NotThrow(() => secondCards = MeCard.GetContactsFromMeCardString(cardText));
 
             // Save all the cards to strings and re-parse
             foreach (Card card in cards)

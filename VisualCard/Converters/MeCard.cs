@@ -70,7 +70,7 @@ namespace VisualCard.Converters
                         values[i] = value.Replace(",", ";");
 
                     // Build a full name
-                    if (value.StartsWith($"{VcardConstants._nameSpecifier}N:"))
+                    if (value.StartsWith($"{VcardConstants._nameSpecifier}:"))
                     {
                         var nameSplits = value.Substring(2).Split(',');
                         fullName = $"{nameSplits[1]} {nameSplits[0]}";
