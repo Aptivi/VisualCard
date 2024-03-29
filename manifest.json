@@ -75,36 +75,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parsers.BaseVcardParser.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Parsers.BaseVcardParser.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parsers.IVcardParser.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Parsers.IVcardParser.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parsers.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Parsers.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/VisualCard.Parts.BaseCardPartInfo.yml",
       "output": {
         ".html": {
