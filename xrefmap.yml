@@ -594,6 +594,30 @@ references:
   commentId: N:VisualCard.Parts.Enums
   fullName: VisualCard.Parts.Enums
   nameWithType: VisualCard.Parts.Enums
+- uid: VisualCard.Parts.Enums.PartType
+  name: PartType
+  href: api/VisualCard.Parts.Enums.PartType.html
+  commentId: T:VisualCard.Parts.Enums.PartType
+  fullName: VisualCard.Parts.Enums.PartType
+  nameWithType: PartType
+- uid: VisualCard.Parts.Enums.PartType.Parts
+  name: Parts
+  href: api/VisualCard.Parts.Enums.PartType.html#VisualCard_Parts_Enums_PartType_Parts
+  commentId: F:VisualCard.Parts.Enums.PartType.Parts
+  fullName: VisualCard.Parts.Enums.PartType.Parts
+  nameWithType: PartType.Parts
+- uid: VisualCard.Parts.Enums.PartType.PartsArray
+  name: PartsArray
+  href: api/VisualCard.Parts.Enums.PartType.html#VisualCard_Parts_Enums_PartType_PartsArray
+  commentId: F:VisualCard.Parts.Enums.PartType.PartsArray
+  fullName: VisualCard.Parts.Enums.PartType.PartsArray
+  nameWithType: PartType.PartsArray
+- uid: VisualCard.Parts.Enums.PartType.Strings
+  name: Strings
+  href: api/VisualCard.Parts.Enums.PartType.html#VisualCard_Parts_Enums_PartType_Strings
+  commentId: F:VisualCard.Parts.Enums.PartType.Strings
+  fullName: VisualCard.Parts.Enums.PartType.Strings
+  nameWithType: PartType.Strings
 - uid: VisualCard.Parts.Enums.PartsArrayEnum
   name: PartsArrayEnum
   href: api/VisualCard.Parts.Enums.PartsArrayEnum.html

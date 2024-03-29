@@ -125,6 +125,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.Enums.PartType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.Enums.PartType.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/VisualCard.Parts.Enums.PartsArrayEnum.yml",
       "output": {
         ".html": {
