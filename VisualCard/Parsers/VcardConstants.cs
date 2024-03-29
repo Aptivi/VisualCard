@@ -21,6 +21,11 @@ namespace VisualCard.Parsers
 {
     internal static class VcardConstants
     {
+        // Mandatory for each vCard
+        internal const string _beginText = "BEGIN:VCARD";
+        internal const string _endText = "END:VCARD";
+        internal const string _versionSpecifier = "VERSION";
+
         // Available in vCard 2.1, 3.0, 4.0, and 5.0
         internal const char _fieldDelimiter = ';';
         internal const char _valueDelimiter = ',';

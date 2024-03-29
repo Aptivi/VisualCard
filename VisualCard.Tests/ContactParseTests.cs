@@ -32,26 +32,6 @@ namespace VisualCard.Tests
     {
         [TestMethod]
         [DynamicData(nameof(ContactData.singleVcardContactShorts), typeof(ContactData))]
-        public void GetCardParsersFromDifferentContactsShorts(string cardText)
-            => Should.NotThrow(() => CardTools.GetCardParsersFromString(cardText));
-
-        [TestMethod]
-        [DynamicData(nameof(ContactData.singleVcardContacts), typeof(ContactData))]
-        public void GetCardParsersFromDifferentContacts(string cardText)
-            => Should.NotThrow(() => CardTools.GetCardParsersFromString(cardText));
-
-        [TestMethod]
-        [DynamicData(nameof(ContactData.multipleVcardContacts), typeof(ContactData))]
-        public void GetCardParsersFromDifferentContactsMultiple(string cardText)
-            => Should.NotThrow(() => CardTools.GetCardParsersFromString(cardText));
-
-        [TestMethod]
-        [DynamicData(nameof(ContactData.remainingContacts), typeof(ContactData))]
-        public void GetCardParsersFromDifferentContactsRemaining(string cardText)
-            => Should.NotThrow(() => CardTools.GetCardParsersFromString(cardText));
-
-        [TestMethod]
-        [DynamicData(nameof(ContactData.singleVcardContactShorts), typeof(ContactData))]
         public void ParseDifferentContactsShorts(string cardText) =>
             ParseDifferentContactsInternal(cardText);
 
@@ -72,10 +52,8 @@ namespace VisualCard.Tests
 
         internal void ParseDifferentContactsInternal(string cardText)
         {
-            List<BaseVcardParser> parsers = [];
-            Should.NotThrow(() => parsers = CardTools.GetCardParsersFromString(cardText));
-            foreach (BaseVcardParser parser in parsers)
-                Should.NotThrow(parser.Parse);
+            Card[] cards;
+            Should.NotThrow(() => cards = CardTools.GetCardsFromString(cardText));
         }
 
         [TestMethod]
@@ -100,17 +78,12 @@ namespace VisualCard.Tests
 
         internal void ParseDifferentContactsAndTestEqualityInternal(string cardText)
         {
-            List<BaseVcardParser> parsers = [];
-            List<Card> cards = [];
-            List<Card> secondCards = [];
+            Card[] cards = [];
+            Card[] secondCards = [];
 
             // Parse the cards
-            Should.NotThrow(() => parsers = CardTools.GetCardParsersFromString(cardText));
-            foreach (BaseVcardParser parser in parsers)
-            {
-                cards.Add(Should.NotThrow(parser.Parse));
-                secondCards.Add(Should.NotThrow(parser.Parse));
-            }
+            Should.NotThrow(() => cards = CardTools.GetCardsFromString(cardText));
+            Should.NotThrow(() => secondCards = CardTools.GetCardsFromString(cardText));
 
             // Test equality with available data
             List<bool> foundCards = [];
@@ -150,26 +123,19 @@ namespace VisualCard.Tests
 
         public void ParseDifferentContactsSaveToStringAndTestEqualityInternal(string cardText)
         {
-            List<BaseVcardParser> parsers = [];
-            List<Card> cards = [];
-            List<Card> secondCards = [];
             List<Card> savedCards = [];
+            Card[] cards = [];
+            Card[] secondCards = [];
 
             // Parse the cards
-            Should.NotThrow(() => parsers = CardTools.GetCardParsersFromString(cardText));
-            foreach (BaseVcardParser parser in parsers)
-            {
-                cards.Add(Should.NotThrow(parser.Parse));
-                secondCards.Add(Should.NotThrow(parser.Parse));
-            }
+            Should.NotThrow(() => cards = CardTools.GetCardsFromString(cardText));
+            Should.NotThrow(() => secondCards = CardTools.GetCardsFromString(cardText));
 
             // Save all the cards to strings and re-parse
             foreach (Card card in cards)
             {
                 string saved = Should.NotThrow(card.SaveToString);
-                Should.NotThrow(() => parsers = CardTools.GetCardParsersFromString(saved));
-                foreach (BaseVcardParser parser in parsers)
-                    savedCards.Add(Should.NotThrow(parser.Parse));
+                Should.NotThrow(() => secondCards = CardTools.GetCardsFromString(saved));
             }
 
             // Test equality with available data
@@ -192,11 +158,9 @@ namespace VisualCard.Tests
         [DynamicData(nameof(ContactData.vCardFromMeCardContacts), typeof(ContactData))]
         public void ParseAndCheckDifferentMeCardContacts((string, string) cardText)
         {
-            List<BaseVcardParser> parsers = [];
-            Should.NotThrow(() => parsers = MeCard.GetContactsFromMeCardString(cardText.Item1));
-            Card card = default;
-            foreach (BaseVcardParser parser in parsers)
-                Should.NotThrow(() => card = parser.Parse());
+            Card[] cards = [];
+            Should.NotThrow(() => cards = MeCard.GetContactsFromMeCardString(cardText.Item1));
+            Card card = cards[0];
             card.SaveToString().ShouldBe(cardText.Item2);
         }
 
@@ -204,27 +168,20 @@ namespace VisualCard.Tests
         [DynamicData(nameof(ContactData.meCardContacts), typeof(ContactData))]
         public void ParseDifferentMeCardContacts(string cardText)
         {
-            List<BaseVcardParser> parsers = [];
-            Should.NotThrow(() => parsers = MeCard.GetContactsFromMeCardString(cardText));
-            foreach (BaseVcardParser parser in parsers)
-                Should.NotThrow(parser.Parse);
+            Card[] cards;
+            Should.NotThrow(() => cards = MeCard.GetContactsFromMeCardString(cardText));
         }
 
         [TestMethod]
         [DynamicData(nameof(ContactData.meCardContacts), typeof(ContactData))]
         public void ParseDifferentMeCardContactsAndTestEquality(string cardText)
         {
-            List<BaseVcardParser> parsers = [];
-            List<Card> cards = [];
-            List<Card> secondCards = [];
+            Card[] cards = [];
+            Card[] secondCards = [];
 
             // Parse the cards
-            Should.NotThrow(() => parsers = MeCard.GetContactsFromMeCardString(cardText));
-            foreach (BaseVcardParser parser in parsers)
-            {
-                cards.Add(Should.NotThrow(parser.Parse));
-                secondCards.Add(Should.NotThrow(parser.Parse));
-            }
+            Should.NotThrow(() => cards = CardTools.GetCardsFromString(cardText));
+            Should.NotThrow(() => secondCards = CardTools.GetCardsFromString(cardText));
 
             // Test equality with available data
             List<bool> foundCards = [];
@@ -246,26 +203,19 @@ namespace VisualCard.Tests
         [DynamicData(nameof(ContactData.meCardContacts), typeof(ContactData))]
         public void ParseDifferentMeCardContactsSaveToStringAndTestEquality(string cardText)
         {
-            List<BaseVcardParser> parsers = [];
-            List<Card> cards = [];
-            List<Card> secondCards = [];
             List<Card> savedCards = [];
+            Card[] cards = [];
+            Card[] secondCards = [];
 
             // Parse the cards
-            Should.NotThrow(() => parsers = MeCard.GetContactsFromMeCardString(cardText));
-            foreach (BaseVcardParser parser in parsers)
-            {
-                cards.Add(Should.NotThrow(parser.Parse));
-                secondCards.Add(Should.NotThrow(parser.Parse));
-            }
+            Should.NotThrow(() => cards = CardTools.GetCardsFromString(cardText));
+            Should.NotThrow(() => secondCards = CardTools.GetCardsFromString(cardText));
 
             // Save all the cards to strings and re-parse
             foreach (Card card in cards)
             {
                 string saved = Should.NotThrow(card.SaveToString);
-                Should.NotThrow(() => parsers = CardTools.GetCardParsersFromString(saved));
-                foreach (BaseVcardParser parser in parsers)
-                    savedCards.Add(Should.NotThrow(parser.Parse));
+                Should.NotThrow(() => secondCards = CardTools.GetCardsFromString(saved));
             }
 
             // Test equality with available data
@@ -285,36 +235,18 @@ namespace VisualCard.Tests
         }
 
         [TestMethod]
-        [DynamicData(nameof(ContactDataBogus.invalidContacts), typeof(ContactDataBogus))]
-        public void InvalidContactShouldThrowWhenGettingCardParsers(string cardText)
-            => Should.Throw<InvalidDataException>(() => CardTools.GetCardParsersFromString(cardText));
-
-        [TestMethod]
         [DynamicData(nameof(ContactDataBogus.invalidContactsParser), typeof(ContactDataBogus))]
-        public void InvalidContactShouldThrowWhenParsing(string cardText)
-        {
-            List<BaseVcardParser> parsers = [];
-            Should.NotThrow(() => parsers = CardTools.GetCardParsersFromString(cardText));
-            foreach (BaseVcardParser parser in parsers)
-                Should.Throw<InvalidDataException>(parser.Parse);
-        }
-
-        [TestMethod]
-        [DynamicData(nameof(ContactDataBogus.seemsValidContacts), typeof(ContactDataBogus))]
-        public void BogusButSeemsValidShouldNotThrowWhenGettingCardParsers(string cardText)
-            => Should.NotThrow(() => CardTools.GetCardParsersFromString(cardText));
+        public void InvalidContactShouldThrowWhenParsing(string cardText) =>
+            Should.Throw<InvalidDataException>(() => CardTools.GetCardsFromString(cardText));
 
         [TestMethod]
         [DynamicData(nameof(ContactDataBogus.seemsValidContacts), typeof(ContactDataBogus))]
         public void BogusButSeemsValidShouldNotThrowWhenParsing(string cardText)
         {
-            List<BaseVcardParser> parsers = [];
-            Should.NotThrow(() => parsers = CardTools.GetCardParsersFromString(cardText));
-            foreach (BaseVcardParser parser in parsers)
-            {
-                var resultingCard = Should.NotThrow(parser.Parse);
-                resultingCard.ShouldNotBeNull();
-            }
+            Card[] cards = [];
+            Should.NotThrow(() => cards = CardTools.GetCardsFromString(cardText));
+            foreach (Card card in cards)
+                card.ShouldNotBeNull();
         }
     }
 }

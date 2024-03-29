@@ -61,20 +61,17 @@ namespace VisualCard.ShowContacts
                 Stopwatch elapsed = new();
                 elapsed.Start();
 
-                // Get parsers
-                List<BaseVcardParser> ContactParsers = 
-                    android ? AndroidContactsDb.GetContactsFromDb(args[0]) : 
-                    mecard ? MeCard.GetContactsFromMeCardString(meCardString) :
-                    CardTools.GetCardParsers(args[0]);
-                List<Card> Contacts = [];
-
                 // Parse all contacts
-                foreach (BaseVcardParser ContactParser in ContactParsers)
+                Card[] contacts =
+                    android ? AndroidContactsDb.GetContactsFromDb(args[0]) :
+                    mecard ? MeCard.GetContactsFromMeCardString(meCardString) :
+                    CardTools.GetCards(args[0]);
+
+                // If told to save them, do it
+                foreach (var contact in contacts)
                 {
-                    Card Contact = ContactParser.Parse();
-                    Contacts.Add(Contact);
                     if (save)
-                        Contact.SaveTo($"contact_{DateTime.Now:dd-MM-yyyy_HH-mm-ss_ffffff}.vcf");
+                        contact.SaveTo($"contact_{DateTime.Now:dd-MM-yyyy_HH-mm-ss_ffffff}.vcf");
                 }
 
                 // If not printing, exit
@@ -86,8 +83,8 @@ namespace VisualCard.ShowContacts
                 }
 
                 // Show contact information
-                bool showVcard5Disclaimer = Contacts.Any((card) => card.CardVersion.ToString(2) == "5.0");
-                foreach (Card Contact in Contacts)
+                bool showVcard5Disclaimer = contacts.Any((card) => card.CardVersion.ToString(2) == "5.0");
+                foreach (Card Contact in contacts)
                 {
                     TextWriterColor.WriteColor("----------------------------", ConsoleColors.Green);
                     TextWriterColor.WriteColor("Name:                    {0}", ConsoleColors.Green, Contact.GetString(StringsEnum.FullName));
@@ -192,6 +189,7 @@ namespace VisualCard.ShowContacts
                 }
                 if (showVcard5Disclaimer)
                     TextWriterColor.WriteColor("This application uses vCard 5.0, a revised version of vCard 4.0, made by Aptivi.", ConsoleColors.Silver);
+                TextWriterColor.Write("Elapsed time: {0}", elapsed.Elapsed.ToString());
             }
         }
     }

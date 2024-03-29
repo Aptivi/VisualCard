@@ -25,32 +25,26 @@ namespace VisualCard.Parsers
     /// <summary>
     /// VCard parser interface
     /// </summary>
-    public interface IVcardParser
+    internal interface IVcardParser
     {
         /// <summary>
         /// Contents of the VCard
         /// </summary>
-        public string CardContent { get; }
+        string CardContent { get; }
 
         /// <summary>
         /// The version of the card
         /// </summary>
-        public Version CardVersion { get; }
+        Version CardVersion { get; }
 
         /// <summary>
         /// VCard expected card version
         /// </summary>
-        internal Version ExpectedCardVersion { get; }
+        Version ExpectedCardVersion { get; }
 
         /// <summary>
         /// Parses the VCard file
         /// </summary>
         Card Parse();
-
-        /// <summary>
-        /// Saves a parsed card to the string
-        /// </summary>
-        /// <param name="card">Parsed card</param>
-        string SaveToString(Card card);
     }
 }

@@ -36,7 +36,7 @@ namespace VisualCard.Parsers
     /// The base vCard parser
     /// </summary>
     [DebuggerDisplay("vCard contact, version {CardVersion.ToString()}, expected {ExpectedCardVersion.ToString()}, {CardContent.Length} bytes")]
-    public abstract class BaseVcardParser : IVcardParser
+    internal abstract class BaseVcardParser : IVcardParser
     {
         /// <summary>
         /// VCard card content
@@ -66,7 +66,7 @@ namespace VisualCard.Parsers
             StreamReader CardContentReader = new(CardContentStream);
 
             // Make a new vCard
-            var card = new Card(this);
+            var card = new Card(CardVersion);
 
             // Iterate through all the lines
             int lineNumber = 0;
@@ -225,88 +225,6 @@ namespace VisualCard.Parsers
             // Validate this card before returning it.
             ValidateCard(card);
             return card;
-        }
-
-        /// <summary>
-        /// Saves a parsed card to the string
-        /// </summary>
-        /// <param name="card">Parsed card</param>
-        public virtual string SaveToString(Card card)
-        {
-            // Verify the card data
-            VerifyCardData();
-
-            // Initialize the card builder
-            var cardBuilder = new StringBuilder();
-            var version = card.CardVersion;
-
-            // First, write the header
-            cardBuilder.AppendLine("BEGIN:VCARD");
-            cardBuilder.AppendLine($"VERSION:{version}");
-
-            // Then, enumerate all the strings
-            StringsEnum[] stringEnums = (StringsEnum[])Enum.GetValues(typeof(StringsEnum));
-            foreach (StringsEnum stringEnum in stringEnums)
-            {
-                // Get the string value
-                string stringValue = card.GetString(stringEnum);
-                if (string.IsNullOrEmpty(stringValue))
-                    continue;
-
-                // Check to see if kind is specified
-                if (!card.kindExplicitlySpecified && stringEnum == StringsEnum.Kind)
-                    continue;
-
-                // Now, locate the prefix and assemble the line
-                string prefix = VcardParserTools.GetPrefixFromStringsEnum(stringEnum);
-                cardBuilder.AppendLine($"{prefix}:{stringValue}");
-            }
-
-            // Next, enumerate all the arrays
-            PartsArrayEnum[] partsArrayEnums = (PartsArrayEnum[])Enum.GetValues(typeof(PartsArrayEnum));
-            foreach (PartsArrayEnum partsArrayEnum in partsArrayEnums)
-            {
-                // Get the array value
-                var array = card.GetPartsArray(partsArrayEnum);
-                if (array is null || array.Length == 0)
-                    continue;
-
-                // Now, assemble the line
-                foreach (var part in array)
-                    cardBuilder.AppendLine($"{part.ToStringVcardInternal(version)}");
-            }
-
-            // Finally, enumerate all the parts
-            PartsEnum[] partsEnums = (PartsEnum[])Enum.GetValues(typeof(PartsEnum));
-            foreach (PartsEnum partsEnum in partsEnums)
-            {
-                // Get the part value
-                var part = card.GetPart(partsEnum);
-                if (part is null)
-                    continue;
-
-                // Now, assemble the line
-                cardBuilder.AppendLine($"{part.ToStringVcardInternal(version)}");
-            }
-
-            // End the card and return it
-            cardBuilder.AppendLine("END:VCARD");
-            return cardBuilder.ToString();
-        }
-
-        /// <summary>
-        /// Saves a parsed card to a file path
-        /// </summary>
-        /// <param name="path">File path to save the card to</param>
-        /// <param name="card">Parsed card</param>
-        public void SaveTo(string path, Card card)
-        {
-            // Verify the card data
-            VerifyCardData();
-
-            // Save all the changes to the file
-            var cardString = SaveToString(card);
-            File.WriteAllText(path, cardString);
         }
 
         internal void VerifyCardData()

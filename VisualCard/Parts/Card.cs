@@ -20,6 +20,8 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
+using System.Text;
 using VisualCard.Parsers;
 using VisualCard.Parts.Comparers;
 using VisualCard.Parts.Enums;
@@ -33,7 +35,7 @@ namespace VisualCard.Parts
     public class Card : IEquatable<Card>
     {
         internal bool kindExplicitlySpecified = false;
-        private readonly BaseVcardParser _parser;
+        private readonly Version version;
         private readonly Dictionary<PartsEnum, BaseCardPartInfo> parts = [];
         private readonly Dictionary<PartsArrayEnum, List<BaseCardPartInfo>> partsArray = [];
         private readonly Dictionary<StringsEnum, string> strings = [];
@@ -42,23 +44,7 @@ namespace VisualCard.Parts
         /// The VCard version
         /// </summary>
         public Version CardVersion =>
-            Parser.CardVersion;
-
-        internal BaseVcardParser Parser =>
-            _parser;
-
-        /// <summary>
-        /// Saves the contact file to the path
-        /// </summary>
-        /// <param name="path">Path to the VCard file that is going to be created</param>
-        public void SaveTo(string path) =>
-            Parser.SaveTo(path, this);
-
-        /// <summary>
-        /// Saves the contact to the returned string
-        /// </summary>
-        public string SaveToString() =>
-            Parser.SaveToString(this);
+            version;
 
         /// <summary>
         /// Gets a part array from a specified key
@@ -128,6 +114,80 @@ namespace VisualCard.Parts
             // Now, verify that the string is not empty
             hasValue = !string.IsNullOrEmpty(value);
             return hasValue ? value : fallback;
+        }
+
+        /// <summary>
+        /// Saves this parsed card to the string
+        /// </summary>
+        public string SaveToString()
+        {
+            // Initialize the card builder
+            var cardBuilder = new StringBuilder();
+            var version = CardVersion;
+
+            // First, write the header
+            cardBuilder.AppendLine(VcardConstants._beginText);
+            cardBuilder.AppendLine($"{VcardConstants._versionSpecifier}:{version}");
+
+            // Then, enumerate all the strings
+            StringsEnum[] stringEnums = (StringsEnum[])Enum.GetValues(typeof(StringsEnum));
+            foreach (StringsEnum stringEnum in stringEnums)
+            {
+                // Get the string value
+                string stringValue = GetString(stringEnum);
+                if (string.IsNullOrEmpty(stringValue))
+                    continue;
+
+                // Check to see if kind is specified
+                if (!kindExplicitlySpecified && stringEnum == StringsEnum.Kind)
+                    continue;
+
+                // Now, locate the prefix and assemble the line
+                string prefix = VcardParserTools.GetPrefixFromStringsEnum(stringEnum);
+                cardBuilder.AppendLine($"{prefix}:{stringValue}");
+            }
+
+            // Next, enumerate all the arrays
+            PartsArrayEnum[] partsArrayEnums = (PartsArrayEnum[])Enum.GetValues(typeof(PartsArrayEnum));
+            foreach (PartsArrayEnum partsArrayEnum in partsArrayEnums)
+            {
+                // Get the array value
+                var array = GetPartsArray(partsArrayEnum);
+                if (array is null || array.Length == 0)
+                    continue;
+
+                // Now, assemble the line
+                foreach (var part in array)
+                    cardBuilder.AppendLine($"{part.ToStringVcardInternal(version)}");
+            }
+
+            // Finally, enumerate all the parts
+            PartsEnum[] partsEnums = (PartsEnum[])Enum.GetValues(typeof(PartsEnum));
+            foreach (PartsEnum partsEnum in partsEnums)
+            {
+                // Get the part value
+                var part = GetPart(partsEnum);
+                if (part is null)
+                    continue;
+
+                // Now, assemble the line
+                cardBuilder.AppendLine($"{part.ToStringVcardInternal(version)}");
+            }
+
+            // End the card and return it
+            cardBuilder.AppendLine(VcardConstants._endText);
+            return cardBuilder.ToString();
+        }
+
+        /// <summary>
+        /// Saves this parsed card to a file path
+        /// </summary>
+        /// <param name="path">File path to save this card to</param>
+        public void SaveTo(string path)
+        {
+            // Save all the changes to the file
+            var cardString = SaveToString();
+            File.WriteAllText(path, cardString);
         }
 
         /// <summary>
@@ -234,7 +294,7 @@ namespace VisualCard.Parts
                 strings[key] = value;
         }
 
-        internal Card(BaseVcardParser parser) =>
-            _parser = parser;
+        internal Card(Version version) =>
+            this.version = version;
     }
 }

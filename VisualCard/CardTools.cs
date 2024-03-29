@@ -23,6 +23,7 @@ using System.Text;
 using VisualCard.Parsers;
 using System;
 using VisualCard.Parsers.Versioned;
+using VisualCard.Parts;
 
 namespace VisualCard
 {
@@ -36,12 +37,12 @@ namespace VisualCard
         /// </summary>
         /// <param name="cardText">Contacts text</param>
         /// <returns>List of contact parsers for single or multiple contacts</returns>
-        public static List<BaseVcardParser> GetCardParsersFromString(string cardText)
+        public static Card[] GetCardsFromString(string cardText)
         {
             // Open the stream to parse multiple contact versions (required to parse more than one contact)
             MemoryStream CardFs = new(Encoding.Default.GetBytes(cardText));
             StreamReader CardReader = new(CardFs);
-            return GetCardParsers(CardReader);
+            return GetCards(CardReader);
         }
 
         /// <summary>
@@ -49,12 +50,12 @@ namespace VisualCard
         /// </summary>
         /// <param name="Path">Path to the contacts file</param>
         /// <returns>List of contact parsers for single or multiple contacts</returns>
-        public static List<BaseVcardParser> GetCardParsers(string Path)
+        public static Card[] GetCards(string Path)
         {
             // Open the stream to parse multiple contact versions (required to parse more than one contact)
             FileStream CardFs = new(Path, FileMode.Open, FileAccess.Read);
             StreamReader CardReader = new(CardFs);
-            return GetCardParsers(CardReader);
+            return GetCards(CardReader);
         }
 
         /// <summary>
@@ -62,10 +63,11 @@ namespace VisualCard
         /// </summary>
         /// <param name="stream">Stream containing the contacts</param>
         /// <returns>List of contact parsers for single or multiple contacts</returns>
-        public static List<BaseVcardParser> GetCardParsers(StreamReader stream)
+        public static Card[] GetCards(StreamReader stream)
         {
             // Variables and flags
             List<BaseVcardParser> FinalParsers = [];
+            List<Card> FinalCards = [];
             bool BeginSpotted = false;
             bool VersionSpotted = false;
             bool EndSpotted = false;
@@ -86,11 +88,13 @@ namespace VisualCard
                     if (!stream.EndOfStream)
                         continue;
                 }
-                else
+                else if (CardLine != VcardConstants._beginText &&
+                         !CardLine.StartsWith(VcardConstants._versionSpecifier) &&
+                         CardLine != VcardConstants._endText)
                     CardContent.AppendLine(CardLine);
 
                 // All VCards must begin with BEGIN:VCARD
-                if (CardLine != "BEGIN:VCARD" && !BeginSpotted)
+                if (CardLine != VcardConstants._beginText && !BeginSpotted)
                     throw new InvalidDataException($"This is not a valid VCard contact file.");
                 else if (!BeginSpotted)
                 {
@@ -105,10 +109,10 @@ namespace VisualCard
                 if (!CardSawNull)
                     CardLine = stream.ReadLine();
                 CardSawNull = false;
-                if (CardLine != "VERSION:2.1" &&
-                    CardLine != "VERSION:3.0" &&
-                    CardLine != "VERSION:4.0" &&
-                    CardLine != "VERSION:5.0" &&
+                if (CardLine != $"{VcardConstants._versionSpecifier}:2.1" &&
+                    CardLine != $"{VcardConstants._versionSpecifier}:3.0" &&
+                    CardLine != $"{VcardConstants._versionSpecifier}:4.0" &&
+                    CardLine != $"{VcardConstants._versionSpecifier}:5.0" &&
                     !VersionSpotted)
                     throw new InvalidDataException($"This has an invalid VCard version {CardLine}.");
                 else if (!VersionSpotted)
@@ -118,7 +122,7 @@ namespace VisualCard
                 }
 
                 // If the ending tag is spotted, reset everything.
-                if (CardLine == "END:VCARD" && !EndSpotted)
+                if (CardLine == VcardConstants._endText && !EndSpotted)
                 {
                     EndSpotted = true;
                     CardContent.AppendLine(CardLine);
@@ -158,7 +162,14 @@ namespace VisualCard
             // Throw if the card ended prematurely
             if (!EndSpotted)
                 throw new InvalidDataException("Card ended prematurely without the ending tag");
-            return FinalParsers;
+
+            // Now, assuming that all cards and their parsers are valid, parse all of them
+            foreach (var parser in FinalParsers)
+            {
+                var card = parser.Parse();
+                FinalCards.Add(card);
+            }
+            return [.. FinalCards];
         }
     }
 }

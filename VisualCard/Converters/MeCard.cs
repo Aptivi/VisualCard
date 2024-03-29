@@ -22,6 +22,7 @@ using System.IO;
 using System.Text;
 using System;
 using VisualCard.Parsers;
+using VisualCard.Parts;
 
 namespace VisualCard.Converters
 {
@@ -37,7 +38,7 @@ namespace VisualCard.Converters
         /// <returns></returns>
         /// <exception cref="FileNotFoundException"></exception>
         /// <exception cref="InvalidDataException"></exception>
-        public static List<BaseVcardParser> GetContactsFromMeCardString(string meCardString)
+        public static Card[] GetContactsFromMeCardString(string meCardString)
         {
             // Check to see if the MeCard string is valid
             if (string.IsNullOrWhiteSpace(meCardString))
@@ -46,7 +47,6 @@ namespace VisualCard.Converters
                 throw new InvalidDataException("This string doesn't represent a valid MeCard contact.");
 
             // Now, parse it.
-            List<BaseVcardParser> cardParsers;
             try
             {
                 // Split the meCard string from the beginning and the ending
@@ -62,15 +62,15 @@ namespace VisualCard.Converters
                     string value = values[i];
 
                     // "SOUND:" here is actually just a Kana name, so blacklist it.
-                    if (value.StartsWith("SOUND:"))
+                    if (value.StartsWith($"{VcardConstants._soundSpecifier}:"))
                         continue;
 
                     // Now, replace all the commas in Name and Address with the semicolons.
-                    if (value.StartsWith("N:") || value.StartsWith("ADR:"))
+                    if (value.StartsWith($"{VcardConstants._nameSpecifier}:") || value.StartsWith($"{VcardConstants._addressSpecifier}:"))
                         values[i] = value.Replace(",", ";");
 
                     // Build a full name
-                    if (value.StartsWith("N:"))
+                    if (value.StartsWith($"{VcardConstants._nameSpecifier}N:"))
                     {
                         var nameSplits = value.Substring(2).Split(',');
                         fullName = $"{nameSplits[1]} {nameSplits[0]}";
@@ -80,8 +80,8 @@ namespace VisualCard.Converters
                 // Install the values!
                 var masterContactBuilder = new StringBuilder(
                    $"""
-                    BEGIN:VCARD
-                    VERSION:3.0
+                    {VcardConstants._beginText}
+                    {VcardConstants._versionSpecifier}:3.0
 
                     """
                 );
@@ -89,20 +89,18 @@ namespace VisualCard.Converters
                     masterContactBuilder.AppendLine(value);
                 masterContactBuilder.AppendLine(
                    $"""
-                    FN:{fullName}
-                    END:VCARD
+                    {VcardConstants._fullNameSpecifier}:{fullName}
+                    {VcardConstants._endText}
                     """
                 );
 
                 // Now, invoke VisualCard to give us the card parsers
-                cardParsers = CardTools.GetCardParsersFromString(masterContactBuilder.ToString());
+                return CardTools.GetCardsFromString(masterContactBuilder.ToString());
             }
             catch (Exception ex)
             {
                 throw new InvalidDataException("The MeCard contact string is not valid.", ex);
             }
-
-            return cardParsers;
         }
 
     }

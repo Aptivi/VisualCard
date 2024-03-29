@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using VisualCard.Parsers;
+using VisualCard.Parts;
 
 namespace VisualCard.Converters
 {
@@ -38,7 +39,7 @@ namespace VisualCard.Converters
         /// <returns></returns>
         /// <exception cref="FileNotFoundException"></exception>
         /// <exception cref="InvalidDataException"></exception>
-        public static List<BaseVcardParser> GetContactsFromDb(string pathToDb)
+        public static Card[] GetContactsFromDb(string pathToDb)
         {
             // Check to see if the database exists
             string dbObtainTip = 
@@ -49,7 +50,6 @@ namespace VisualCard.Converters
                 "folder, for example, /data/user/0/com.motorola.blur.providers.contacts/databases/.";
             if (!File.Exists(pathToDb))
                 throw new FileNotFoundException("The Android contact database file obtained from the contact provider is not found." + dbObtainTip);
-            List<BaseVcardParser> cardParsers = [];
 
             try
             {
@@ -109,9 +109,9 @@ namespace VisualCard.Converters
                 // Install the values!
                 using var reader = command.ExecuteReader();
                 var masterContactBuilder = new StringBuilder(
-                    """
-                    BEGIN:VCARD
-                    VERSION:3.0
+                    $"""
+                    {VcardConstants._beginText}
+                    {VcardConstants._versionSpecifier}:3.0
 
                     """
                 );
@@ -134,11 +134,11 @@ namespace VisualCard.Converters
                     {
                         idChanged = false;
                         masterContactBuilder.AppendLine(
-                            """
-                            END:VCARD
+                            $"""
+                            {VcardConstants._endText}
 
-                            BEGIN:VCARD
-                            VERSION:3.0
+                            {VcardConstants._beginText}
+                            {VcardConstants._versionSpecifier}:3.0
                             """
                         );
                     }
@@ -658,17 +658,15 @@ namespace VisualCard.Converters
                     // Update lastId
                     lastId = id;
                 }
-                masterContactBuilder.AppendLine("END:VCARD");
+                masterContactBuilder.AppendLine(VcardConstants._endText);
 
                 // Now, invoke VisualCard to give us the card parsers
-                cardParsers = CardTools.GetCardParsersFromString(masterContactBuilder.ToString());
+                return CardTools.GetCardsFromString(masterContactBuilder.ToString());
             }
             catch (Exception ex)
             {
                 throw new InvalidDataException("The Android contact database file is not valid." + dbObtainTip, ex);
             }
-
-            return cardParsers;
         }
     }
 }

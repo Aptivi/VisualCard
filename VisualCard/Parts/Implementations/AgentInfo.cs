@@ -115,9 +115,8 @@ namespace VisualCard.Parts.Implementations
 
             // Populate the fields
             string _agentVcard = Regex.Unescape(value).Replace("\\n", "\n");
-            var _agentVcardParsers = CardTools.GetCardParsersFromString(_agentVcard);
-            var _agentVcardFinal = _agentVcardParsers.Select((parser) => parser.Parse()).ToArray();
-            AgentInfo _agent = new(altIdSupported ? altId : 0, altIdSupported ? finalArgs : [], _agentVcardFinal);
+            var _agentVcardParsers = CardTools.GetCardsFromString(_agentVcard);
+            AgentInfo _agent = new(altIdSupported ? altId : 0, altIdSupported ? finalArgs : [], _agentVcardParsers);
             return _agent;
         }
 
