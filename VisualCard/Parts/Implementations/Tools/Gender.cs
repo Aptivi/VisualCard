@@ -17,28 +17,36 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-namespace VisualCard.Parts.Enums
+namespace VisualCard.Parts.Implementations.Tools
 {
     /// <summary>
-    /// Enumeration for available parts that are not strings and can only hold one value
+    /// Enumeration of gender
     /// </summary>
-    public enum PartsEnum
+    public enum Gender
     {
         /// <summary>
-        /// The card revision
+        /// Unspecified gender
         /// </summary>
-        Revision,
+        Unspecified,
         /// <summary>
-        /// The contact's birthdate
+        /// Male gender
         /// </summary>
-        Birthdate,
+        Male,
         /// <summary>
-        /// The contact's wedding anniversary date (that is, the day that this contact is married)
+        /// Female gender
         /// </summary>
-        Anniversary,
+        Female,
         /// <summary>
-        /// The contact's gender
+        /// Other gender
         /// </summary>
-        Gender,
+        Other,
+        /// <summary>
+        /// Gender is not applicable
+        /// </summary>
+        NotApplicable,
+        /// <summary>
+        /// Unknown gender
+        /// </summary>
+        Unknown,
     }
 }

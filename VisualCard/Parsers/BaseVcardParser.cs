@@ -559,6 +559,16 @@ namespace VisualCard.Parsers
                         var partInfo = AnniversaryInfo.FromStringVcardStatic(_value, altId, CardVersion, CardContentReader);
                         card.SetPart(PartsEnum.Anniversary, partInfo);
                     }
+
+                    // IMPP information (IMPP;TYPE=home:sip:test)
+                    // ALTID is supported.
+                    if (StartsWithPrefix(VcardConstants._genderSpecifier) &&
+                        EnumTypeSupported(PartsEnum.Gender, CardVersion))
+                    {
+                        // Get the name
+                        var partInfo = GenderInfo.FromStringVcardStatic(_value, altId, CardVersion, CardContentReader);
+                        card.SetPart(PartsEnum.Gender, partInfo);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -755,6 +765,7 @@ namespace VisualCard.Parsers
                 PartsEnum.Revision => true,
                 PartsEnum.Birthdate => true,
                 PartsEnum.Anniversary => cardVersion.Major >= 4,
+                PartsEnum.Gender => cardVersion.Major >= 4,
                 _ =>
                     throw new InvalidOperationException("Invalid parts enumeration type to get supported value"),
             };
@@ -790,6 +801,7 @@ namespace VisualCard.Parsers
                 PartsEnum.Revision => typeof(RevisionInfo),
                 PartsEnum.Birthdate => typeof(BirthDateInfo),
                 PartsEnum.Anniversary => typeof(AnniversaryInfo),
+                PartsEnum.Gender => typeof(GenderInfo),
                 _ =>
                     throw new InvalidOperationException("Invalid parts enumeration type"),
             };

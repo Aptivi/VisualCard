@@ -170,10 +170,13 @@ namespace VisualCard.ShowContacts
                     // List remaining
                     var birth = Contact.GetPart(PartsEnum.Birthdate);
                     var wed = Contact.GetPart(PartsEnum.Anniversary);
+                    var gnd = Contact.GetPart(PartsEnum.Gender);
                     if (birth is BirthDateInfo bday)
                         TextWriterColor.Write("Contact birthdate:       {0}", bday.BirthDate);
                     if (wed is AnniversaryInfo adate)
                         TextWriterColor.Write("Contact wedding date:    {0}", adate.Anniversary);
+                    if (gnd is GenderInfo gender)
+                        TextWriterColor.Write("Contact gender           {0} [{1}]", gender.Gender.ToString(), gender.GenderDescription);
                     TextWriterColor.Write("Contact mailer:          {0}", Contact.GetString(StringsEnum.Mailer));
                     TextWriterColor.Write("Contact URL:             {0}", Contact.GetString(StringsEnum.Url));
                     TextWriterColor.Write("Contact Note:            {0}", Contact.GetString(StringsEnum.Notes));
