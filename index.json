@@ -22,7 +22,7 @@
   "api/VisualCard.Exceptions.VCardParseException.html": {
     "href": "api/VisualCard.Exceptions.VCardParseException.html",
     "title": "Class VCardParseException | VisualCard API - Aptivi",
-    "keywords": "Class VCardParseException Exception of VCard parsing Inheritance object Exception VCardParseException Namespace: VisualCard.Exceptions Assembly: VisualCard.dll Syntax public class VCardParseException : Exception Constructors | Edit this page View Source VCardParseException() Declaration public VCardParseException() | Edit this page View Source VCardParseException(string, string, int, Exception) Indicates that there was something wrong with parsing Declaration public VCardParseException(string message, string line, int linenumber, Exception innerException) Parameters Type Name Description string message The message to clarify the reasoning for the error string line Line in which it caused the error int linenumber Line number in which it caused the error Exception innerException Inner exception (if any)"
+    "keywords": "Class VCardParseException Exception of VCard parsing Inheritance object Exception VCardParseException Namespace: VisualCard.Exceptions Assembly: VisualCard.dll Syntax public class VCardParseException : Exception"
   },
   "api/VisualCard.Exceptions.html": {
     "href": "api/VisualCard.Exceptions.html",

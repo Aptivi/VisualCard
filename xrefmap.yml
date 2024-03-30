@@ -113,34 +113,6 @@ references:
   commentId: T:VisualCard.Exceptions.VCardParseException
   fullName: VisualCard.Exceptions.VCardParseException
   nameWithType: VCardParseException
-- uid: VisualCard.Exceptions.VCardParseException.#ctor
-  name: VCardParseException()
-  href: api/VisualCard.Exceptions.VCardParseException.html#VisualCard_Exceptions_VCardParseException__ctor
-  commentId: M:VisualCard.Exceptions.VCardParseException.#ctor
-  name.vb: New()
-  fullName: VisualCard.Exceptions.VCardParseException.VCardParseException()
-  fullName.vb: VisualCard.Exceptions.VCardParseException.New()
-  nameWithType: VCardParseException.VCardParseException()
-  nameWithType.vb: VCardParseException.New()
-- uid: VisualCard.Exceptions.VCardParseException.#ctor(System.String,System.String,System.Int32,System.Exception)
-  name: VCardParseException(string, string, int, Exception)
-  href: api/VisualCard.Exceptions.VCardParseException.html#VisualCard_Exceptions_VCardParseException__ctor_System_String_System_String_System_Int32_System_Exception_
-  commentId: M:VisualCard.Exceptions.VCardParseException.#ctor(System.String,System.String,System.Int32,System.Exception)
-  name.vb: New(String, String, Integer, Exception)
-  fullName: VisualCard.Exceptions.VCardParseException.VCardParseException(string, string, int, System.Exception)
-  fullName.vb: VisualCard.Exceptions.VCardParseException.New(String, String, Integer, System.Exception)
-  nameWithType: VCardParseException.VCardParseException(string, string, int, Exception)
-  nameWithType.vb: VCardParseException.New(String, String, Integer, Exception)
-- uid: VisualCard.Exceptions.VCardParseException.#ctor*
-  name: VCardParseException
-  href: api/VisualCard.Exceptions.VCardParseException.html#VisualCard_Exceptions_VCardParseException__ctor_
-  commentId: Overload:VisualCard.Exceptions.VCardParseException.#ctor
-  isSpec: "True"
-  name.vb: New
-  fullName: VisualCard.Exceptions.VCardParseException.VCardParseException
-  fullName.vb: VisualCard.Exceptions.VCardParseException.New
-  nameWithType: VCardParseException.VCardParseException
-  nameWithType.vb: VCardParseException.New
 - uid: VisualCard.Parts
   name: VisualCard.Parts
   href: api/VisualCard.Parts.html
