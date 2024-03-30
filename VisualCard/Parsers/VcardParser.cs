@@ -120,10 +120,6 @@ namespace VisualCard.Parsers
                         ));
                     }
 
-                    // TEMPORARY: Filter out BEGIN, VERSION, and END
-                    if (prefix == "BEGIN" || prefix == "VERSION" || prefix == "END")
-                        continue;
-
                     // Get the part type and handle it
                     bool xNonstandard = prefix.StartsWith(VcardConstants._xSpecifier);
                     var (type, enumeration, classType) = VcardParserTools.GetPartType(xNonstandard ? VcardConstants._xSpecifier : prefix);
