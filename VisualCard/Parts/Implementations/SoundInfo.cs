@@ -50,11 +50,11 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string SoundEncoded { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, int altId, Version cardVersion, StreamReader cardContentReader) =>
-            new SoundInfo().FromStringVcardInternal(value, altId, cardVersion, cardContentReader);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, int altId, Version cardVersion) =>
+            new SoundInfo().FromStringVcardInternal(value, altId, cardVersion);
 
-        internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion, StreamReader cardContentReader) =>
-            new SoundInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion, cardContentReader);
+        internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion) =>
+            new SoundInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion)
         {
@@ -104,10 +104,10 @@ namespace VisualCard.Parts.Implementations
             }
         }
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion, StreamReader cardContentReader) =>
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion) =>
             throw new InvalidDataException("Sound field must not have empty type.");
 
-        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion, StreamReader cardContentReader)
+        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion)
         {
             // Get the value
             string soundValue = value.Substring(VcardConstants._soundSpecifier.Length + 1);
@@ -116,16 +116,15 @@ namespace VisualCard.Parts.Implementations
                 throw new InvalidDataException("Sound field must specify exactly two values (Type and arguments, and sound information)");
 
             // Populate the fields
-            return InstallInfo(splitSound, finalArgs, altId, cardVersion, cardContentReader);
+            return InstallInfo(splitSound, finalArgs, altId, cardVersion);
         }
 
-        private SoundInfo InstallInfo(string[] splitSound, string[] finalArgs, int altId, Version cardVersion, StreamReader cardContentReader)
+        private SoundInfo InstallInfo(string[] splitSound, string[] finalArgs, int altId, Version cardVersion)
         {
             bool altIdSupported = cardVersion.Major >= 4;
 
             // Check to see if the value is prepended by the VALUE= argument
             string valueType = VcardParserTools.GetValuesString(splitSound, "", VcardConstants._valueArgumentSpecifier).ToLower();
-            bool isUrl = valueType == "url" || valueType == "uri";
 
             // Check to see if the value is prepended by the ENCODING= argument
             string soundEncoding = VcardParserTools.GetValuesString(splitSound, "BASE64", VcardConstants._encodingArgumentSpecifier);
@@ -133,24 +132,8 @@ namespace VisualCard.Parts.Implementations
             // Check to see if the value is prepended with the TYPE= argument
             string soundType = VcardParserTools.GetTypesString(splitSound, "WAVE", false);
 
-            // Now, get the encoded sound
-            StringBuilder encodedSound = new();
-            if (splitSound.Length == 2)
-                encodedSound.Append(splitSound[1]);
-
-            // Make sure to get all the blocks until we reach an empty line
-            if (!isUrl)
-            {
-                string lineToBeAppended = cardContentReader.ReadLine();
-                while (!string.IsNullOrWhiteSpace(lineToBeAppended))
-                {
-                    encodedSound.Append(lineToBeAppended);
-                    lineToBeAppended = cardContentReader.ReadLine()?.Trim();
-                }
-            }
-
             // Populate the fields
-            SoundInfo _sound = new(altIdSupported ? altId : 0, altIdSupported ? finalArgs : [], valueType, soundEncoding, soundType, encodedSound.ToString());
+            SoundInfo _sound = new(altIdSupported ? altId : 0, altIdSupported ? finalArgs : [], valueType, soundEncoding, soundType, splitSound[1]);
             return _sound;
         }
 

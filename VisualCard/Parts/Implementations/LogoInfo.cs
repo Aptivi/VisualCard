@@ -50,11 +50,11 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string LogoEncoded { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, int altId, Version cardVersion, StreamReader cardContentReader) =>
-            new LogoInfo().FromStringVcardInternal(value, altId, cardVersion, cardContentReader);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, int altId, Version cardVersion) =>
+            new LogoInfo().FromStringVcardInternal(value, altId, cardVersion);
 
-        internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion, StreamReader cardContentReader) =>
-            new LogoInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion, cardContentReader);
+        internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion) =>
+            new LogoInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion)
         {
@@ -104,10 +104,10 @@ namespace VisualCard.Parts.Implementations
             }
         }
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion, StreamReader cardContentReader) =>
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion) =>
             throw new InvalidDataException("Logo field must not have empty type.");
 
-        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion, StreamReader cardContentReader)
+        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion)
         {
             // Get the value
             string logoValue = value.Substring(VcardConstants._logoSpecifier.Length + 1);
@@ -116,16 +116,15 @@ namespace VisualCard.Parts.Implementations
                 throw new InvalidDataException("Logo field must specify exactly two values (Type and arguments, and logo information)");
 
             // Populate the fields
-            return InstallInfo(splitLogo, finalArgs, altId, cardVersion, cardContentReader);
+            return InstallInfo(splitLogo, finalArgs, altId, cardVersion);
         }
 
-        private LogoInfo InstallInfo(string[] splitLogo, string[] finalArgs, int altId, Version cardVersion, StreamReader cardContentReader)
+        private LogoInfo InstallInfo(string[] splitLogo, string[] finalArgs, int altId, Version cardVersion)
         {
             bool altIdSupported = cardVersion.Major >= 4;
 
             // Check to see if the value is prepended by the VALUE= argument
             string valueType = VcardParserTools.GetValuesString(splitLogo, "", VcardConstants._valueArgumentSpecifier).ToLower();
-            bool isUrl = valueType == "url" || valueType == "uri";
 
             // Check to see if the value is prepended by the ENCODING= argument
             string logoEncoding = VcardParserTools.GetValuesString(splitLogo, "BASE64", VcardConstants._encodingArgumentSpecifier);
@@ -133,24 +132,8 @@ namespace VisualCard.Parts.Implementations
             // Check to see if the value is prepended with the TYPE= argument
             string logoType = VcardParserTools.GetTypesString(splitLogo, "JPEG", false);
 
-            // Now, get the encoded logo
-            StringBuilder encodedLogo = new();
-            if (splitLogo.Length == 2)
-                encodedLogo.Append(splitLogo[1]);
-
-            // Make sure to get all the blocks until we reach an empty line
-            if (!isUrl)
-            {
-                string lineToBeAppended = cardContentReader.ReadLine();
-                while (!string.IsNullOrWhiteSpace(lineToBeAppended) && lineToBeAppended.StartsWith(" "))
-                {
-                    encodedLogo.Append(lineToBeAppended.Trim());
-                    lineToBeAppended = cardContentReader.ReadLine();
-                }
-            }
-
             // Populate the fields
-            LogoInfo _logo = new(altIdSupported ? altId : 0, altIdSupported ? finalArgs : [], valueType, logoEncoding, logoType, encodedLogo.ToString());
+            LogoInfo _logo = new(altIdSupported ? altId : 0, altIdSupported ? finalArgs : [], valueType, logoEncoding, logoType, splitLogo[1]);
             return _logo;
         }
 

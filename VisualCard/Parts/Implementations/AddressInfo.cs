@@ -66,11 +66,11 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string Country { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, int altId, Version cardVersion, StreamReader cardContentReader) =>
-            new AddressInfo().FromStringVcardInternal(value, altId, cardVersion, cardContentReader);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, int altId, Version cardVersion) =>
+            new AddressInfo().FromStringVcardInternal(value, altId, cardVersion);
 
-        internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion, StreamReader cardContentReader) =>
-            new AddressInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion, cardContentReader);
+        internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion) =>
+            new AddressInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion)
         {
@@ -105,7 +105,7 @@ namespace VisualCard.Parts.Implementations
             }
         }
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion, StreamReader cardContentReader)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion)
         {
             // Get the value
             string adrValue = value.Substring(VcardConstants._addressSpecifier.Length + 1);
@@ -120,7 +120,7 @@ namespace VisualCard.Parts.Implementations
             return InstallInfo([], splitAddressValues, altId, cardVersion);
         }
 
-        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion, StreamReader cardContentReader)
+        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion)
         {
             // Get the value
             string adrValue = value.Substring(VcardConstants._addressSpecifier.Length + 1);

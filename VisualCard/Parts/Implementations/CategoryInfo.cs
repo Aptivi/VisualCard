@@ -38,11 +38,11 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string[] Category { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, int altId, Version cardVersion, StreamReader cardContentReader) =>
-            new CategoryInfo().FromStringVcardInternal(value, altId, cardVersion, cardContentReader);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, int altId, Version cardVersion) =>
+            new CategoryInfo().FromStringVcardInternal(value, altId, cardVersion);
 
-        internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion, StreamReader cardContentReader) =>
-            new CategoryInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion, cardContentReader);
+        internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion) =>
+            new CategoryInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion)
         {
@@ -51,7 +51,7 @@ namespace VisualCard.Parts.Implementations
                 $"{Category}";
         }
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion, StreamReader cardContentReader)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion)
         {
             // Get the value
             string categoryValue = value.Substring(VcardConstants._categoriesSpecifier.Length + 1);
@@ -60,8 +60,8 @@ namespace VisualCard.Parts.Implementations
             return InstallInfo(categoryValue);
         }
 
-        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion, StreamReader cardContentReader) =>
-            FromStringVcardInternal(value, altId, cardVersion, cardContentReader);
+        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion) =>
+            FromStringVcardInternal(value, altId, cardVersion);
 
         private CategoryInfo InstallInfo(string value)
         {

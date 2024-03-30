@@ -42,11 +42,11 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string DeliveryLabel { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, int altId, Version cardVersion, StreamReader cardContentReader) =>
-            new LabelAddressInfo().FromStringVcardInternal(value, altId, cardVersion, cardContentReader);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, int altId, Version cardVersion) =>
+            new LabelAddressInfo().FromStringVcardInternal(value, altId, cardVersion);
 
-        internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion, StreamReader cardContentReader) =>
-            new LabelAddressInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion, cardContentReader);
+        internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion) =>
+            new LabelAddressInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion)
         {
@@ -69,7 +69,7 @@ namespace VisualCard.Parts.Implementations
             }
         }
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion, StreamReader cardContentReader)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion)
         {
             // Get the value
             string adrValue = value.Substring(VcardConstants._labelSpecifier.Length + 1);
@@ -84,7 +84,7 @@ namespace VisualCard.Parts.Implementations
             return InstallInfo(splitAdr, splitAddressValues, altId, cardVersion);
         }
 
-        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion, StreamReader cardContentReader)
+        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion)
         {
             // Get the value
             string adrValue = value.Substring(VcardConstants._labelSpecifier.Length + 1);

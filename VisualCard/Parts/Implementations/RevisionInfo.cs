@@ -37,16 +37,16 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public DateTime? Revision { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, int altId, Version cardVersion, StreamReader cardContentReader) =>
-            new RevisionInfo().FromStringVcardInternal(value, altId, cardVersion, cardContentReader);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, int altId, Version cardVersion) =>
+            new RevisionInfo().FromStringVcardInternal(value, altId, cardVersion);
 
-        internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion, StreamReader cardContentReader) =>
-            new RevisionInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion, cardContentReader);
+        internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion) =>
+            new RevisionInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             $"{VcardConstants._revSpecifier}:{Revision:yyyy-MM-dd HH:mm:ss}";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion, StreamReader cardContentReader)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion)
         {
             // Get the value
             string revValue = value.Substring(VcardConstants._revSpecifier.Length + 1);
@@ -55,8 +55,8 @@ namespace VisualCard.Parts.Implementations
             return InstallInfo(revValue, altId, cardVersion);
         }
 
-        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion, StreamReader cardContentReader) =>
-            FromStringVcardInternal(value, altId, cardVersion, cardContentReader);
+        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion) =>
+            FromStringVcardInternal(value, altId, cardVersion);
 
         private RevisionInfo InstallInfo(string value, int altId, Version cardVersion) =>
             InstallInfo(value, [], altId, cardVersion);

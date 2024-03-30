@@ -37,16 +37,16 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public DateTime? BirthDate { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, int altId, Version cardVersion, StreamReader cardContentReader) =>
-            new BirthDateInfo().FromStringVcardInternal(value, altId, cardVersion, cardContentReader);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, int altId, Version cardVersion) =>
+            new BirthDateInfo().FromStringVcardInternal(value, altId, cardVersion);
 
-        internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion, StreamReader cardContentReader) =>
-            new BirthDateInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion, cardContentReader);
+        internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion) =>
+            new BirthDateInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             $"{VcardConstants._birthSpecifier}:{BirthDate:yyyyMMdd}";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion, StreamReader cardContentReader)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion)
         {
             // Get the value
             string bdayValue = value.Substring(VcardConstants._birthSpecifier.Length + 1);
@@ -55,7 +55,7 @@ namespace VisualCard.Parts.Implementations
             return InstallInfo(bdayValue, altId, cardVersion);
         }
 
-        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion, StreamReader cardContentReader)
+        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion)
         {
             // Get the value
             string bdayValue = value.Substring(value.IndexOf(VcardConstants._argumentDelimiter) + 1);

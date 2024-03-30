@@ -53,7 +53,15 @@ IMPP:aim:john.s
 N:Sanders;John;;;
 NOTE:Note test for VisualCard
 ORG:Acme Co.
-AGENT:BEGIN:VCARD\nVERSION:5.0\nFN:Joe Friday\nN:Friday;Joe;;;\nTEL:+1-919-555-7878\nTITLE:Area Administrator\, Assistant\nEMAIL\;TYPE=INTERNET:jfriday@host.com\nEND:VCARD\n
+AGENT:
+ BEGIN:VCARD\n
+ VERSION:5.0\n
+ FN:Joe Friday\n
+ N:Friday;Joe;;;\n
+ TEL:+1-919-555-7878\n
+ TITLE:Area Administrator\, Assistant\n
+ EMAIL\;TYPE=INTERNET:jfriday@host.com\n
+ END:VCARD\n
 TEL;TYPE=cell:495-522-3560
 TITLE:Product Manager
 X-ANDROID-CUSTOM:vnd.android.cursor.item/nickname;JS;1;;;;;;;;;;;;;

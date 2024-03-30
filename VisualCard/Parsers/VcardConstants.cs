@@ -26,6 +26,10 @@ namespace VisualCard.Parsers
         internal const string _endText = "END:VCARD";
         internal const string _versionSpecifier = "VERSION";
 
+        // Misc vCard constants
+        internal const string _spaceBreak = " ";
+        internal const string _tabBreak = "\x0009";
+
         // Available in vCard 2.1, 3.0, 4.0, and 5.0
         internal const char _fieldDelimiter = ';';
         internal const char _valueDelimiter = ',';

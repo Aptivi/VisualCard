@@ -23,6 +23,7 @@ using System.Text;
 using VisualCard.Parsers;
 using System;
 using VisualCard.Parts;
+using Textify.General;
 
 namespace VisualCard
 {
@@ -79,6 +80,8 @@ namespace VisualCard
             CardLine = stream.ReadLine();
             while (!stream.EndOfStream)
             {
+                bool append = false;
+
                 // Skip empty lines
                 if (string.IsNullOrEmpty(CardLine))
                 {
@@ -90,7 +93,9 @@ namespace VisualCard
                 else if (CardLine != VcardConstants._beginText &&
                          !CardLine.StartsWith(VcardConstants._versionSpecifier) &&
                          CardLine != VcardConstants._endText)
-                    CardContent.AppendLine(CardLine);
+                    append = true;
+                if (append)
+                    CardContent.Append(CardLine);
 
                 // All VCards must begin with BEGIN:VCARD
                 if (CardLine != VcardConstants._beginText && !BeginSpotted)
@@ -126,7 +131,9 @@ namespace VisualCard
                     EndSpotted = true;
 
                     // Make a new parser instance
-                    VcardParser CardParser = new(CardContent.ToString(), CardVersion);
+                    string content = CardContent.ToString();
+                    string[] contentLines = content.SplitNewLines();
+                    VcardParser CardParser = new(contentLines, CardVersion);
                     FinalParsers.Add(CardParser);
 
                     // Clear the content in case we want to make a second contact
@@ -134,6 +141,8 @@ namespace VisualCard
                     BeginSpotted = false;
                     CardLine = stream.ReadLine();
                 }
+                else if (append)
+                    CardContent.AppendLine();
             }
 
             // Close the stream to avoid stuck file handle

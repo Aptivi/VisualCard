@@ -50,11 +50,11 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string PhotoEncoded { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, int altId, Version cardVersion, StreamReader cardContentReader) =>
-            new PhotoInfo().FromStringVcardInternal(value, altId, cardVersion, cardContentReader);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, int altId, Version cardVersion) =>
+            new PhotoInfo().FromStringVcardInternal(value, altId, cardVersion);
 
-        internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion, StreamReader cardContentReader) =>
-            new PhotoInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion, cardContentReader);
+        internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion) =>
+            new PhotoInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion)
         {
@@ -104,10 +104,10 @@ namespace VisualCard.Parts.Implementations
             }
         }
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion, StreamReader cardContentReader) =>
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion) =>
             throw new InvalidDataException("Photo field must not have empty type.");
 
-        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion, StreamReader cardContentReader)
+        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion)
         {
             // Get the value
             string photoValue = value.Substring(VcardConstants._photoSpecifier.Length + 1);
@@ -116,16 +116,15 @@ namespace VisualCard.Parts.Implementations
                 throw new InvalidDataException("Photo field must specify exactly two values (Type and arguments, and photo information)");
 
             // Populate the fields
-            return InstallInfo(splitPhoto, finalArgs, altId, cardVersion, cardContentReader);
+            return InstallInfo(splitPhoto, finalArgs, altId, cardVersion);
         }
 
-        private PhotoInfo InstallInfo(string[] splitPhoto, string[] finalArgs, int altId, Version cardVersion, StreamReader cardContentReader)
+        private PhotoInfo InstallInfo(string[] splitPhoto, string[] finalArgs, int altId, Version cardVersion)
         {
             bool altIdSupported = cardVersion.Major >= 4;
 
             // Check to see if the value is prepended by the VALUE= argument
             string valueType = VcardParserTools.GetValuesString(splitPhoto, "", VcardConstants._valueArgumentSpecifier).ToLower();
-            bool isUrl = valueType == "url" || valueType == "uri";
 
             // Check to see if the value is prepended by the ENCODING= argument
             string photoEncoding = VcardParserTools.GetValuesString(splitPhoto, "BASE64", VcardConstants._encodingArgumentSpecifier);
@@ -133,24 +132,8 @@ namespace VisualCard.Parts.Implementations
             // Check to see if the value is prepended with the TYPE= argument
             string photoType = VcardParserTools.GetTypesString(splitPhoto, "JPEG", false);
 
-            // Now, get the encoded photo
-            StringBuilder encodedPhoto = new();
-            if (splitPhoto.Length == 2)
-                encodedPhoto.Append(splitPhoto[1]);
-
-            // Make sure to get all the blocks until we reach an empty line
-            if (!isUrl)
-            {
-                string lineToBeAppended = cardContentReader.ReadLine();
-                while (!string.IsNullOrWhiteSpace(lineToBeAppended) && lineToBeAppended.StartsWith(" "))
-                {
-                    encodedPhoto.Append(lineToBeAppended.Trim());
-                    lineToBeAppended = cardContentReader.ReadLine();
-                }
-            }
-
             // Populate the fields
-            PhotoInfo _photo = new(altIdSupported ? altId : 0, altIdSupported ? finalArgs : [], valueType, photoEncoding, photoType, encodedPhoto.ToString());
+            PhotoInfo _photo = new(altIdSupported ? altId : 0, altIdSupported ? finalArgs : [], valueType, photoEncoding, photoType, splitPhoto[1]);
             return _photo;
         }
 

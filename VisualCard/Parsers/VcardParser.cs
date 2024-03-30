@@ -25,6 +25,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
+using Textify.General;
 using VisualCard.Exceptions;
 using VisualCard.Parts;
 using VisualCard.Parts.Enums;
@@ -39,44 +40,60 @@ namespace VisualCard.Parsers
     internal class VcardParser
     {
         private readonly Version cardVersion = new();
-        private readonly string cardContent = "";
+        private readonly string[] cardContent = [];
 
         /// <summary>
         /// VCard card content
         /// </summary>
-        public virtual string CardContent =>
+        public string[] CardContent =>
             cardContent;
         /// <summary>
         /// VCard card version
         /// </summary>
-        public virtual Version CardVersion =>
+        public Version CardVersion =>
             cardVersion;
 
         /// <summary>
         /// Parses a VCard contact
         /// </summary>
         /// <returns>A strongly-typed <see cref="Card"/> instance holding information about the card</returns>
-        public virtual Card Parse()
+        public Card Parse()
         {
             // Check the content to ensure that we really have data
-            if (string.IsNullOrEmpty(CardContent))
+            if (CardContent.Length == 0)
                 throw new InvalidDataException($"Card content is empty.");
-
-            // Now, make a stream out of card content
-            byte[] CardContentData = Encoding.Default.GetBytes(CardContent);
-            MemoryStream CardContentStream = new(CardContentData, false);
-            StreamReader CardContentReader = new(CardContentStream);
 
             // Make a new vCard
             var card = new Card(CardVersion);
 
             // Iterate through all the lines
-            int lineNumber = 0;
-            while (!CardContentReader.EndOfStream)
+            bool constructing = false;
+            StringBuilder valueBuilder = new();
+            for (int i = 0; i < CardContent.Length; i++)
             {
                 // Get line
-                string _value = CardContentReader.ReadLine();
-                lineNumber += 1;
+                string _value = CardContent[i];
+                int lineNumber = i + 1;
+                if (string.IsNullOrEmpty(_value))
+                    continue;
+
+                // First, check to see if we need to construct blocks
+                string secondLine = i + 1 < CardContent.Length ? CardContent[i + 1] : "";
+                bool firstConstructedLine = !_value.StartsWith(VcardConstants._spaceBreak) && !_value.StartsWith(VcardConstants._tabBreak);
+                constructing = secondLine.StartsWithAnyOf([VcardConstants._spaceBreak, VcardConstants._tabBreak]);
+                secondLine = secondLine.Length > 1 ? secondLine.Substring(1) : "";
+                if (constructing)
+                {
+                    if (firstConstructedLine)
+                        valueBuilder.Append(_value);
+                    valueBuilder.Append(secondLine);
+                    continue;
+                }
+                else if (!firstConstructedLine)
+                {
+                    _value = valueBuilder.ToString();
+                    valueBuilder.Clear();
+                }
 
                 // Variables
                 string value = _value.Substring(_value.IndexOf(VcardConstants._argumentDelimiter) + 1);
@@ -186,8 +203,8 @@ namespace VisualCard.Parsers
                                 // Now, get the part info
                                 var partInfo =
                                     isWithType ?
-                                    fromStringMethod.Invoke(null, [_value, finalArgs.ToArray(), altId, CardVersion, CardContentReader]) :
-                                    fromStringMethod.Invoke(null, [_value, altId, CardVersion, CardContentReader]);
+                                    fromStringMethod.Invoke(null, [_value, finalArgs.ToArray(), altId, CardVersion]) :
+                                    fromStringMethod.Invoke(null, [_value, altId, CardVersion]);
                                 card.SetPart(partsType, (BaseCardPartInfo)partInfo);
                             }
                             break;
@@ -205,8 +222,8 @@ namespace VisualCard.Parsers
                                 // Now, get the part info
                                 var partInfo =
                                     isWithType ?
-                                    fromStringMethod.Invoke(null, [_value, finalArgs.ToArray(), altId, CardVersion, CardContentReader]) :
-                                    fromStringMethod.Invoke(null, [_value, altId, CardVersion, CardContentReader]);
+                                    fromStringMethod.Invoke(null, [_value, finalArgs.ToArray(), altId, CardVersion]) :
+                                    fromStringMethod.Invoke(null, [_value, altId, CardVersion]);
                                 card.AddPartToArray(partsArrayType, (BaseCardPartInfo)partInfo);
                             }
                             break;
@@ -266,7 +283,7 @@ namespace VisualCard.Parsers
                 throw new InvalidDataException($"The following keys [{string.Join(", ", expectedFields)}] are required. Got [{string.Join(", ", actualFields)}].");
         }
 
-        internal VcardParser(string cardContent, Version cardVersion)
+        internal VcardParser(string[] cardContent, Version cardVersion)
         {
             this.cardContent = cardContent;
             this.cardVersion = cardVersion;

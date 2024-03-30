@@ -89,9 +89,9 @@ namespace VisualCard.Parts
         public static bool operator !=(BaseCardPartInfo left, BaseCardPartInfo right) =>
             !(left == right);
 
-        internal abstract BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion, StreamReader cardContentReader);
+        internal abstract BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion);
 
-        internal abstract BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion, StreamReader cardContentReader);
+        internal abstract BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion);
 
         internal abstract string ToStringVcardInternal(Version cardVersion);
     }

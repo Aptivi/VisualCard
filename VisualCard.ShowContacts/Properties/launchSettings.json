@@ -23,6 +23,10 @@
     "vCard 5.0 test (with agents)": {
       "commandName": "Project",
       "commandLineArgs": "TestFiles/fourVCard5Agents.vcf"
+    },
+    "vCard - Picture test": {
+      "commandName": "Project",
+      "commandLineArgs": "TestFiles/picture.vcf"
     }
   }
 }
