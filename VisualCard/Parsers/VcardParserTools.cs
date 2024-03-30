@@ -180,6 +180,7 @@ namespace VisualCard.Parsers
                 PartsArrayEnum.Telephones => VcardConstants._telephoneSpecifier,
                 PartsArrayEnum.Addresses => VcardConstants._addressSpecifier,
                 PartsArrayEnum.Labels => VcardConstants._labelSpecifier,
+                PartsArrayEnum.Agents => VcardConstants._agentSpecifier,
                 PartsArrayEnum.Mails => VcardConstants._emailSpecifier,
                 PartsArrayEnum.Organizations => VcardConstants._orgSpecifier,
                 PartsArrayEnum.Titles => VcardConstants._titleSpecifier,
