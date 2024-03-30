@@ -57,10 +57,6 @@ namespace VisualCard.Parts.Enums
         /// </summary>
         Source,
         /// <summary>
-        /// The contact's XML code
-        /// </summary>
-        Xml,
-        /// <summary>
         /// The contact's free/busy indicator URL
         /// </summary>
         FreeBusyUrl,

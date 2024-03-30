@@ -97,6 +97,10 @@ namespace VisualCard.Parts.Enums
         /// </summary>
         Langs,
         /// <summary>
+        /// The contact's XML code
+        /// </summary>
+        Xml,
+        /// <summary>
         /// The contact's extended options (usually starts with X-SOMETHING:Value1;Value2...)
         /// </summary>
         NonstandardNames,

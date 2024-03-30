@@ -99,7 +99,6 @@ namespace VisualCard.Parsers
                 StringsEnum.ProductId => cardVersion.Major >= 3,
                 StringsEnum.SortString => cardVersion.Major == 3 || cardVersion.Major == 5,
                 StringsEnum.AccessClassification => cardVersion.Major != 2 || cardVersion.Major != 4,
-                StringsEnum.Xml => cardVersion.Major == 4,
                 StringsEnum.FreeBusyUrl => cardVersion.Major >= 4,
                 StringsEnum.CalendarUrl => cardVersion.Major >= 4,
                 StringsEnum.CalendarSchedulingRequestUrl => cardVersion.Major >= 4,
@@ -129,6 +128,7 @@ namespace VisualCard.Parsers
                 PartsArrayEnum.Labels => cardVersion.Major != 4,
                 PartsArrayEnum.Agents => cardVersion.Major != 4,
                 PartsArrayEnum.Langs => cardVersion.Major >= 4,
+                PartsArrayEnum.Xml => cardVersion.Major == 4,
                 _ =>
                     throw new InvalidOperationException("Invalid parts array enumeration type to get supported value"),
             };
@@ -159,7 +159,6 @@ namespace VisualCard.Parsers
                 StringsEnum.SortString => VcardConstants._sortStringSpecifier,
                 StringsEnum.Source => VcardConstants._sourceSpecifier,
                 StringsEnum.Url => VcardConstants._urlSpecifier,
-                StringsEnum.Xml => VcardConstants._xmlSpecifier,
                 _ =>
                     throw new NotImplementedException($"String enumeration {stringsEnum} is not implemented.")
             };
@@ -196,6 +195,7 @@ namespace VisualCard.Parsers
                 PartsArrayEnum.Impps => VcardConstants._imppSpecifier,
                 PartsArrayEnum.Categories => VcardConstants._categoriesSpecifier,
                 PartsArrayEnum.Langs => VcardConstants._langSpecifier,
+                PartsArrayEnum.Xml => VcardConstants._xmlSpecifier,
                 PartsArrayEnum.NonstandardNames => VcardConstants._xSpecifier,
                 _ =>
                     throw new NotImplementedException($"String enumeration {partsArrayEnum} is not implemented.")
@@ -222,6 +222,7 @@ namespace VisualCard.Parsers
                 VcardConstants._imppSpecifier => (PartType.PartsArray, PartsArrayEnum.Impps, typeof(ImppInfo), ImppInfo.FromStringVcardStatic, ImppInfo.FromStringVcardWithTypeStatic),
                 VcardConstants._categoriesSpecifier => (PartType.PartsArray, PartsArrayEnum.Categories, typeof(CategoryInfo), CategoryInfo.FromStringVcardStatic, CategoryInfo.FromStringVcardWithTypeStatic),
                 VcardConstants._langSpecifier => (PartType.PartsArray, PartsArrayEnum.Langs, typeof(LangInfo), LangInfo.FromStringVcardStatic, LangInfo.FromStringVcardWithTypeStatic),
+                VcardConstants._xmlSpecifier => (PartType.PartsArray, PartsArrayEnum.Xml, typeof(XmlInfo), XmlInfo.FromStringVcardStatic, XmlInfo.FromStringVcardWithTypeStatic),
                 VcardConstants._xSpecifier => (PartType.PartsArray, PartsArrayEnum.NonstandardNames, typeof(XNameInfo), XNameInfo.FromStringVcardStatic, XNameInfo.FromStringVcardWithTypeStatic),
                 VcardConstants._revSpecifier => (PartType.Parts, PartsEnum.Revision, typeof(RevisionInfo), RevisionInfo.FromStringVcardStatic, RevisionInfo.FromStringVcardWithTypeStatic),
                 VcardConstants._birthSpecifier => (PartType.Parts, PartsEnum.Birthdate, typeof(BirthDateInfo), BirthDateInfo.FromStringVcardStatic, BirthDateInfo.FromStringVcardWithTypeStatic),
@@ -236,7 +237,6 @@ namespace VisualCard.Parsers
                 VcardConstants._productIdSpecifier => (PartType.Strings, StringsEnum.ProductId, null, null, null),
                 VcardConstants._sortStringSpecifier => (PartType.Strings, StringsEnum.SortString, null, null, null),
                 VcardConstants._classSpecifier => (PartType.Strings, StringsEnum.AccessClassification, null, null, null),
-                VcardConstants._xmlSpecifier => (PartType.Strings, StringsEnum.Xml, null, null, null),
                 VcardConstants._fbUrlSpecifier => (PartType.Strings, StringsEnum.FreeBusyUrl, null, null, null),
                 VcardConstants._calUriSpecifier => (PartType.Strings, StringsEnum.CalendarUrl, null, null, null),
                 VcardConstants._caladrUriSpecifier => (PartType.Strings, StringsEnum.CalendarSchedulingRequestUrl, null, null, null),

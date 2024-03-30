@@ -24,6 +24,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Xml;
 using Textify.General;
 using VisualCard.Exceptions;
 using VisualCard.Parts;
@@ -154,7 +155,6 @@ namespace VisualCard.Parsers
                                     case StringsEnum.ProductId:
                                     case StringsEnum.SortString:
                                     case StringsEnum.AccessClassification:
-                                    case StringsEnum.Xml:
                                         // Unescape the value
                                         finalValue = Regex.Unescape(value);
                                         break;
