@@ -509,6 +509,12 @@ references:
   commentId: F:VisualCard.Parts.Enums.PartsArrayEnum.Labels
   fullName: VisualCard.Parts.Enums.PartsArrayEnum.Labels
   nameWithType: PartsArrayEnum.Labels
+- uid: VisualCard.Parts.Enums.PartsArrayEnum.Langs
+  name: Langs
+  href: api/VisualCard.Parts.Enums.PartsArrayEnum.html#VisualCard_Parts_Enums_PartsArrayEnum_Langs
+  commentId: F:VisualCard.Parts.Enums.PartsArrayEnum.Langs
+  fullName: VisualCard.Parts.Enums.PartsArrayEnum.Langs
+  nameWithType: PartsArrayEnum.Langs
 - uid: VisualCard.Parts.Enums.PartsArrayEnum.Logos
   name: Logos
   href: api/VisualCard.Parts.Enums.PartsArrayEnum.html#VisualCard_Parts_Enums_PartsArrayEnum_Logos
@@ -1837,6 +1843,130 @@ references:
   fullName.vb: VisualCard.Parts.Implementations.LabelAddressInfo.<>
   nameWithType: LabelAddressInfo.operator !=
   nameWithType.vb: LabelAddressInfo.<>
+- uid: VisualCard.Parts.Implementations.LangInfo
+  name: LangInfo
+  href: api/VisualCard.Parts.Implementations.LangInfo.html
+  commentId: T:VisualCard.Parts.Implementations.LangInfo
+  fullName: VisualCard.Parts.Implementations.LangInfo
+  nameWithType: LangInfo
+- uid: VisualCard.Parts.Implementations.LangInfo.ContactLang
+  name: ContactLang
+  href: api/VisualCard.Parts.Implementations.LangInfo.html#VisualCard_Parts_Implementations_LangInfo_ContactLang
+  commentId: P:VisualCard.Parts.Implementations.LangInfo.ContactLang
+  fullName: VisualCard.Parts.Implementations.LangInfo.ContactLang
+  nameWithType: LangInfo.ContactLang
+- uid: VisualCard.Parts.Implementations.LangInfo.ContactLang*
+  name: ContactLang
+  href: api/VisualCard.Parts.Implementations.LangInfo.html#VisualCard_Parts_Implementations_LangInfo_ContactLang_
+  commentId: Overload:VisualCard.Parts.Implementations.LangInfo.ContactLang
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.LangInfo.ContactLang
+  nameWithType: LangInfo.ContactLang
+- uid: VisualCard.Parts.Implementations.LangInfo.ContactLangPreference
+  name: ContactLangPreference
+  href: api/VisualCard.Parts.Implementations.LangInfo.html#VisualCard_Parts_Implementations_LangInfo_ContactLangPreference
+  commentId: P:VisualCard.Parts.Implementations.LangInfo.ContactLangPreference
+  fullName: VisualCard.Parts.Implementations.LangInfo.ContactLangPreference
+  nameWithType: LangInfo.ContactLangPreference
+- uid: VisualCard.Parts.Implementations.LangInfo.ContactLangPreference*
+  name: ContactLangPreference
+  href: api/VisualCard.Parts.Implementations.LangInfo.html#VisualCard_Parts_Implementations_LangInfo_ContactLangPreference_
+  commentId: Overload:VisualCard.Parts.Implementations.LangInfo.ContactLangPreference
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.LangInfo.ContactLangPreference
+  nameWithType: LangInfo.ContactLangPreference
+- uid: VisualCard.Parts.Implementations.LangInfo.ContactLangTypes
+  name: ContactLangTypes
+  href: api/VisualCard.Parts.Implementations.LangInfo.html#VisualCard_Parts_Implementations_LangInfo_ContactLangTypes
+  commentId: P:VisualCard.Parts.Implementations.LangInfo.ContactLangTypes
+  fullName: VisualCard.Parts.Implementations.LangInfo.ContactLangTypes
+  nameWithType: LangInfo.ContactLangTypes
+- uid: VisualCard.Parts.Implementations.LangInfo.ContactLangTypes*
+  name: ContactLangTypes
+  href: api/VisualCard.Parts.Implementations.LangInfo.html#VisualCard_Parts_Implementations_LangInfo_ContactLangTypes_
+  commentId: Overload:VisualCard.Parts.Implementations.LangInfo.ContactLangTypes
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.LangInfo.ContactLangTypes
+  nameWithType: LangInfo.ContactLangTypes
+- uid: VisualCard.Parts.Implementations.LangInfo.Equals(System.Object)
+  name: Equals(object)
+  href: api/VisualCard.Parts.Implementations.LangInfo.html#VisualCard_Parts_Implementations_LangInfo_Equals_System_Object_
+  commentId: M:VisualCard.Parts.Implementations.LangInfo.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Parts.Implementations.LangInfo.Equals(object)
+  fullName.vb: VisualCard.Parts.Implementations.LangInfo.Equals(Object)
+  nameWithType: LangInfo.Equals(object)
+  nameWithType.vb: LangInfo.Equals(Object)
+- uid: VisualCard.Parts.Implementations.LangInfo.Equals(VisualCard.Parts.Implementations.LangInfo)
+  name: Equals(LangInfo)
+  href: api/VisualCard.Parts.Implementations.LangInfo.html#VisualCard_Parts_Implementations_LangInfo_Equals_VisualCard_Parts_Implementations_LangInfo_
+  commentId: M:VisualCard.Parts.Implementations.LangInfo.Equals(VisualCard.Parts.Implementations.LangInfo)
+  fullName: VisualCard.Parts.Implementations.LangInfo.Equals(VisualCard.Parts.Implementations.LangInfo)
+  nameWithType: LangInfo.Equals(LangInfo)
+- uid: VisualCard.Parts.Implementations.LangInfo.Equals(VisualCard.Parts.Implementations.LangInfo,VisualCard.Parts.Implementations.LangInfo)
+  name: Equals(LangInfo, LangInfo)
+  href: api/VisualCard.Parts.Implementations.LangInfo.html#VisualCard_Parts_Implementations_LangInfo_Equals_VisualCard_Parts_Implementations_LangInfo_VisualCard_Parts_Implementations_LangInfo_
+  commentId: M:VisualCard.Parts.Implementations.LangInfo.Equals(VisualCard.Parts.Implementations.LangInfo,VisualCard.Parts.Implementations.LangInfo)
+  fullName: VisualCard.Parts.Implementations.LangInfo.Equals(VisualCard.Parts.Implementations.LangInfo, VisualCard.Parts.Implementations.LangInfo)
+  nameWithType: LangInfo.Equals(LangInfo, LangInfo)
+- uid: VisualCard.Parts.Implementations.LangInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Parts.Implementations.LangInfo.html#VisualCard_Parts_Implementations_LangInfo_Equals_
+  commentId: Overload:VisualCard.Parts.Implementations.LangInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.LangInfo.Equals
+  nameWithType: LangInfo.Equals
+- uid: VisualCard.Parts.Implementations.LangInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Parts.Implementations.LangInfo.html#VisualCard_Parts_Implementations_LangInfo_GetHashCode
+  commentId: M:VisualCard.Parts.Implementations.LangInfo.GetHashCode
+  fullName: VisualCard.Parts.Implementations.LangInfo.GetHashCode()
+  nameWithType: LangInfo.GetHashCode()
+- uid: VisualCard.Parts.Implementations.LangInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Parts.Implementations.LangInfo.html#VisualCard_Parts_Implementations_LangInfo_GetHashCode_
+  commentId: Overload:VisualCard.Parts.Implementations.LangInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.LangInfo.GetHashCode
+  nameWithType: LangInfo.GetHashCode
+- uid: VisualCard.Parts.Implementations.LangInfo.op_Equality(VisualCard.Parts.Implementations.LangInfo,VisualCard.Parts.Implementations.LangInfo)
+  name: operator ==(LangInfo, LangInfo)
+  href: api/VisualCard.Parts.Implementations.LangInfo.html#VisualCard_Parts_Implementations_LangInfo_op_Equality_VisualCard_Parts_Implementations_LangInfo_VisualCard_Parts_Implementations_LangInfo_
+  commentId: M:VisualCard.Parts.Implementations.LangInfo.op_Equality(VisualCard.Parts.Implementations.LangInfo,VisualCard.Parts.Implementations.LangInfo)
+  name.vb: =(LangInfo, LangInfo)
+  fullName: VisualCard.Parts.Implementations.LangInfo.operator ==(VisualCard.Parts.Implementations.LangInfo, VisualCard.Parts.Implementations.LangInfo)
+  fullName.vb: VisualCard.Parts.Implementations.LangInfo.=(VisualCard.Parts.Implementations.LangInfo, VisualCard.Parts.Implementations.LangInfo)
+  nameWithType: LangInfo.operator ==(LangInfo, LangInfo)
+  nameWithType.vb: LangInfo.=(LangInfo, LangInfo)
+- uid: VisualCard.Parts.Implementations.LangInfo.op_Equality*
+  name: operator ==
+  href: api/VisualCard.Parts.Implementations.LangInfo.html#VisualCard_Parts_Implementations_LangInfo_op_Equality_
+  commentId: Overload:VisualCard.Parts.Implementations.LangInfo.op_Equality
+  isSpec: "True"
+  name.vb: =
+  fullName: VisualCard.Parts.Implementations.LangInfo.operator ==
+  fullName.vb: VisualCard.Parts.Implementations.LangInfo.=
+  nameWithType: LangInfo.operator ==
+  nameWithType.vb: LangInfo.=
+- uid: VisualCard.Parts.Implementations.LangInfo.op_Inequality(VisualCard.Parts.Implementations.LangInfo,VisualCard.Parts.Implementations.LangInfo)
+  name: operator !=(LangInfo, LangInfo)
+  href: api/VisualCard.Parts.Implementations.LangInfo.html#VisualCard_Parts_Implementations_LangInfo_op_Inequality_VisualCard_Parts_Implementations_LangInfo_VisualCard_Parts_Implementations_LangInfo_
+  commentId: M:VisualCard.Parts.Implementations.LangInfo.op_Inequality(VisualCard.Parts.Implementations.LangInfo,VisualCard.Parts.Implementations.LangInfo)
+  name.vb: <>(LangInfo, LangInfo)
+  fullName: VisualCard.Parts.Implementations.LangInfo.operator !=(VisualCard.Parts.Implementations.LangInfo, VisualCard.Parts.Implementations.LangInfo)
+  fullName.vb: VisualCard.Parts.Implementations.LangInfo.<>(VisualCard.Parts.Implementations.LangInfo, VisualCard.Parts.Implementations.LangInfo)
+  nameWithType: LangInfo.operator !=(LangInfo, LangInfo)
+  nameWithType.vb: LangInfo.<>(LangInfo, LangInfo)
+- uid: VisualCard.Parts.Implementations.LangInfo.op_Inequality*
+  name: operator !=
+  href: api/VisualCard.Parts.Implementations.LangInfo.html#VisualCard_Parts_Implementations_LangInfo_op_Inequality_
+  commentId: Overload:VisualCard.Parts.Implementations.LangInfo.op_Inequality
+  isSpec: "True"
+  name.vb: <>
+  fullName: VisualCard.Parts.Implementations.LangInfo.operator !=
+  fullName.vb: VisualCard.Parts.Implementations.LangInfo.<>
+  nameWithType: LangInfo.operator !=
+  nameWithType.vb: LangInfo.<>
 - uid: VisualCard.Parts.Implementations.LogoInfo
   name: LogoInfo
   href: api/VisualCard.Parts.Implementations.LogoInfo.html
