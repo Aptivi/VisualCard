@@ -395,6 +395,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.XmlInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.Implementations.XmlInfo.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/VisualCard.Parts.Implementations.yml",
       "output": {
         ".html": {
