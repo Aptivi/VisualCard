@@ -80,6 +80,8 @@ namespace VisualCard.Parsers
         internal const string _kindSpecifier = "KIND";
         internal const string _anniversarySpecifier = "ANNIVERSARY";
         internal const string _genderSpecifier = "GENDER";
+        internal const string _langSpecifier = "LANG";
         internal const string _altIdArgumentSpecifier = "ALTID=";
+        internal const string _prefArgumentSpecifier = "PREF=";
     }
 }

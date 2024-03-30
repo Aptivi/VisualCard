@@ -93,6 +93,10 @@ namespace VisualCard.Parts.Enums
         /// </summary>
         Impps,
         /// <summary>
+        /// The contact's language list
+        /// </summary>
+        Langs,
+        /// <summary>
         /// The contact's extended options (usually starts with X-SOMETHING:Value1;Value2...)
         /// </summary>
         NonstandardNames,

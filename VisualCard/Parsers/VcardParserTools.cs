@@ -128,6 +128,7 @@ namespace VisualCard.Parsers
                 PartsArrayEnum.Nicknames => cardVersion.Major >= 3,
                 PartsArrayEnum.Labels => cardVersion.Major != 4,
                 PartsArrayEnum.Agents => cardVersion.Major != 4,
+                PartsArrayEnum.Langs => cardVersion.Major >= 4,
                 _ =>
                     throw new InvalidOperationException("Invalid parts array enumeration type to get supported value"),
             };
@@ -194,6 +195,7 @@ namespace VisualCard.Parsers
                 PartsArrayEnum.Sounds => VcardConstants._soundSpecifier,
                 PartsArrayEnum.Impps => VcardConstants._imppSpecifier,
                 PartsArrayEnum.Categories => VcardConstants._categoriesSpecifier,
+                PartsArrayEnum.Langs => VcardConstants._langSpecifier,
                 PartsArrayEnum.NonstandardNames => VcardConstants._xSpecifier,
                 _ =>
                     throw new NotImplementedException($"String enumeration {partsArrayEnum} is not implemented.")
@@ -219,6 +221,7 @@ namespace VisualCard.Parsers
                 VcardConstants._soundSpecifier => (PartType.PartsArray, PartsArrayEnum.Sounds, typeof(SoundInfo), SoundInfo.FromStringVcardStatic, SoundInfo.FromStringVcardWithTypeStatic),
                 VcardConstants._imppSpecifier => (PartType.PartsArray, PartsArrayEnum.Impps, typeof(ImppInfo), ImppInfo.FromStringVcardStatic, ImppInfo.FromStringVcardWithTypeStatic),
                 VcardConstants._categoriesSpecifier => (PartType.PartsArray, PartsArrayEnum.Categories, typeof(CategoryInfo), CategoryInfo.FromStringVcardStatic, CategoryInfo.FromStringVcardWithTypeStatic),
+                VcardConstants._langSpecifier => (PartType.PartsArray, PartsArrayEnum.Langs, typeof(LangInfo), LangInfo.FromStringVcardStatic, LangInfo.FromStringVcardWithTypeStatic),
                 VcardConstants._xSpecifier => (PartType.PartsArray, PartsArrayEnum.NonstandardNames, typeof(XNameInfo), XNameInfo.FromStringVcardStatic, XNameInfo.FromStringVcardWithTypeStatic),
                 VcardConstants._revSpecifier => (PartType.Parts, PartsEnum.Revision, typeof(RevisionInfo), RevisionInfo.FromStringVcardStatic, RevisionInfo.FromStringVcardWithTypeStatic),
                 VcardConstants._birthSpecifier => (PartType.Parts, PartsEnum.Birthdate, typeof(BirthDateInfo), BirthDateInfo.FromStringVcardStatic, BirthDateInfo.FromStringVcardWithTypeStatic),

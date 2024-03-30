@@ -29,6 +29,8 @@ TEL;TYPE=voice:078-494-6434
 TEL;TYPE=home:348-404-8404
 TITLE:Title
 GENDER:M
+LANG;TYPE=home:en
+LANG;TYPE=work:de
 X-ANDROID-CUSTOM:vnd.android.cursor.item/nickname;NVL.N;1
 	;;;;;;;;;;;;;
 END:VCARD
