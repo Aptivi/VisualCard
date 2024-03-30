@@ -27,7 +27,7 @@ namespace VisualCard.Exceptions
     public class VCardParseException : Exception
     {
         /// <inheritdoc/>
-        public VCardParseException()
+        internal VCardParseException()
             : base("General contact parsing error.")
         {
         }
@@ -39,7 +39,7 @@ namespace VisualCard.Exceptions
         /// <param name="line">Line in which it caused the error</param>
         /// <param name="linenumber">Line number in which it caused the error</param>
         /// <param name="innerException">Inner exception (if any)</param>
-        public VCardParseException(string message, string line, int linenumber, Exception innerException)
+        internal VCardParseException(string message, string line, int linenumber, Exception innerException)
             : base($"An error occurred while parsing the VCard contact\n" +
                    $"Error: {message}\n" +
                    $"Line: {line}\n" + 
