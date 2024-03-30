@@ -80,7 +80,7 @@ namespace VisualCard.Parts.Implementations
                         $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._fieldDelimiter}" +
                         $"{VcardConstants._encodingArgumentSpecifier}{Encoding}{VcardConstants._fieldDelimiter}" +
                         $"{VcardConstants._typeArgumentSpecifier}{SoundType}{VcardConstants._argumentDelimiter}";
-                    return soundArgsLine + BaseVcardParser.MakeStringBlock(SoundEncoded, soundArgsLine.Length);
+                    return soundArgsLine + VcardParserTools.MakeStringBlock(SoundEncoded, soundArgsLine.Length);
                 }
             }
             else
@@ -99,7 +99,7 @@ namespace VisualCard.Parts.Implementations
                         $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._fieldDelimiter}" +
                         $"{VcardConstants._encodingArgumentSpecifier}{Encoding}{VcardConstants._fieldDelimiter}" +
                         $"{VcardConstants._typeArgumentSpecifier}{SoundType}{VcardConstants._argumentDelimiter}";
-                    return soundArgsLine + BaseVcardParser.MakeStringBlock(SoundEncoded, soundArgsLine.Length);
+                    return soundArgsLine + VcardParserTools.MakeStringBlock(SoundEncoded, soundArgsLine.Length);
                 }
             }
         }

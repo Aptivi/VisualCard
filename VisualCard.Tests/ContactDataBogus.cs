@@ -122,7 +122,7 @@ namespace VisualCard.Tests
         ];
 
         /// <summary>
-        /// All of the contacts in this field should fail immediately upon calling <see cref="BaseVcardParser.Parse()"/>.
+        /// All of the contacts in this field should fail immediately upon calling <see cref="VcardParser.Parse()"/>.
         /// These usually resemble contacts with invalid syntax.
         /// </summary>
         public static IEnumerable<object[]> invalidContactsParser =>

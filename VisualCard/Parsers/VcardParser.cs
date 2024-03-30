@@ -35,21 +35,22 @@ namespace VisualCard.Parsers
     /// <summary>
     /// The base vCard parser
     /// </summary>
-    [DebuggerDisplay("vCard contact, version {CardVersion.ToString()}, expected {ExpectedCardVersion.ToString()}, {CardContent.Length} bytes")]
-    internal abstract class BaseVcardParser : IVcardParser
+    [DebuggerDisplay("vCard contact, version {CardVersion.ToString()}, {CardContent.Length} bytes")]
+    internal class VcardParser
     {
+        private readonly Version cardVersion = new();
+        private readonly string cardContent = "";
+
         /// <summary>
         /// VCard card content
         /// </summary>
-        public virtual string CardContent { get; internal set; } = "";
+        public virtual string CardContent =>
+            cardContent;
         /// <summary>
         /// VCard card version
         /// </summary>
-        public virtual Version CardVersion { get; internal set; } = new();
-        /// <summary>
-        /// VCard expected card version
-        /// </summary>
-        public virtual Version ExpectedCardVersion => new();
+        public virtual Version CardVersion =>
+            cardVersion;
 
         /// <summary>
         /// Parses a VCard contact
@@ -57,8 +58,9 @@ namespace VisualCard.Parsers
         /// <returns>A strongly-typed <see cref="Card"/> instance holding information about the card</returns>
         public virtual Card Parse()
         {
-            // Verify the card data
-            VerifyCardData();
+            // Check the content to ensure that we really have data
+            if (string.IsNullOrEmpty(CardContent))
+                throw new InvalidDataException($"Card content is empty.");
 
             // Now, make a stream out of card content
             byte[] CardContentData = Encoding.Default.GetBytes(CardContent);
@@ -227,41 +229,6 @@ namespace VisualCard.Parsers
             return card;
         }
 
-        internal void VerifyCardData()
-        {
-            // Check the version to ensure that we're really dealing with VCard 2.1 contact
-            if (CardVersion != ExpectedCardVersion)
-                throw new InvalidDataException($"Card version {CardVersion} doesn't match expected {ExpectedCardVersion}.");
-
-            // Check the content to ensure that we really have data
-            if (string.IsNullOrEmpty(CardContent))
-                throw new InvalidDataException($"Card content is empty.");
-        }
-
-        internal static string MakeStringBlock(string target, int firstLength)
-        {
-            const int maxChars = 74;
-            int maxCharsFirst = maxChars - firstLength + 1;
-
-            // Construct the block
-            StringBuilder block = new();
-            int selectedMax = maxCharsFirst;
-            int processed = 0;
-            for (int currCharNum = 0; currCharNum < target.Length; currCharNum++)
-            {
-                block.Append(target[currCharNum]);
-                processed++;
-                if (processed >= selectedMax)
-                {
-                    // Append a new line because we reached the maximum limit
-                    selectedMax = maxChars;
-                    processed = 0;
-                    block.Append("\n ");
-                }
-            }
-            return block.ToString();
-        }
-
         internal void ValidateCard(Card card)
         {
             // Track the required fields
@@ -301,6 +268,12 @@ namespace VisualCard.Parsers
             actualFields.Sort();
             if (!actualFields.SequenceEqual(expectedFields))
                 throw new InvalidDataException($"The following keys [{string.Join(", ", expectedFields)}] are required. Got [{string.Join(", ", actualFields)}].");
+        }
+
+        internal VcardParser(string cardContent, Version cardVersion)
+        {
+            this.cardContent = cardContent;
+            this.cardVersion = cardVersion;
         }
     }
 }

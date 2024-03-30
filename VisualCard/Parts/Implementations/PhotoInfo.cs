@@ -80,7 +80,7 @@ namespace VisualCard.Parts.Implementations
                         $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._fieldDelimiter}" +
                         $"{VcardConstants._encodingArgumentSpecifier}{Encoding}{VcardConstants._fieldDelimiter}" +
                         $"{VcardConstants._typeArgumentSpecifier}{PhotoType}{VcardConstants._argumentDelimiter}";
-                    return photoArgsLine + BaseVcardParser.MakeStringBlock(PhotoEncoded, photoArgsLine.Length);
+                    return photoArgsLine + VcardParserTools.MakeStringBlock(PhotoEncoded, photoArgsLine.Length);
                 }
             }
             else
@@ -99,7 +99,7 @@ namespace VisualCard.Parts.Implementations
                         $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._fieldDelimiter}" +
                         $"{VcardConstants._encodingArgumentSpecifier}{Encoding}{VcardConstants._fieldDelimiter}" +
                         $"{VcardConstants._typeArgumentSpecifier}{PhotoType}{VcardConstants._argumentDelimiter}";
-                    return photoArgsLine + BaseVcardParser.MakeStringBlock(PhotoEncoded, photoArgsLine.Length);
+                    return photoArgsLine + VcardParserTools.MakeStringBlock(PhotoEncoded, photoArgsLine.Length);
                 }
             }
         }

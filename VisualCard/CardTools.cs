@@ -22,7 +22,6 @@ using System.IO;
 using System.Text;
 using VisualCard.Parsers;
 using System;
-using VisualCard.Parsers.Versioned;
 using VisualCard.Parts;
 
 namespace VisualCard
@@ -66,7 +65,7 @@ namespace VisualCard
         public static Card[] GetCards(StreamReader stream)
         {
             // Variables and flags
-            List<BaseVcardParser> FinalParsers = [];
+            List<VcardParser> FinalParsers = [];
             List<Card> FinalCards = [];
             bool BeginSpotted = false;
             bool VersionSpotted = false;
@@ -125,29 +124,10 @@ namespace VisualCard
                 if (CardLine == VcardConstants._endText && !EndSpotted)
                 {
                     EndSpotted = true;
-                    CardContent.AppendLine(CardLine);
 
-                    // Select parser
-                    BaseVcardParser CardParser;
-                    switch (CardVersion.ToString(2))
-                    {
-                        case "2.1":
-                            CardParser = new VcardTwo(CardContent.ToString(), CardVersion);
-                            FinalParsers.Add(CardParser);
-                            break;
-                        case "3.0":
-                            CardParser = new VcardThree(CardContent.ToString(), CardVersion);
-                            FinalParsers.Add(CardParser);
-                            break;
-                        case "4.0":
-                            CardParser = new VcardFour(CardContent.ToString(), CardVersion);
-                            FinalParsers.Add(CardParser);
-                            break;
-                        case "5.0":
-                            CardParser = new VcardFive(CardContent.ToString(), CardVersion);
-                            FinalParsers.Add(CardParser);
-                            break;
-                    }
+                    // Make a new parser instance
+                    VcardParser CardParser = new(CardContent.ToString(), CardVersion);
+                    FinalParsers.Add(CardParser);
 
                     // Clear the content in case we want to make a second contact
                     CardContent.Clear();
