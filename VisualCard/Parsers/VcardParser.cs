@@ -22,14 +22,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using Textify.General;
 using VisualCard.Exceptions;
 using VisualCard.Parts;
 using VisualCard.Parts.Enums;
-using VisualCard.Parts.Implementations;
 
 namespace VisualCard.Parsers
 {
@@ -139,8 +137,7 @@ namespace VisualCard.Parsers
 
                     // Get the part type and handle it
                     bool xNonstandard = prefix.StartsWith(VcardConstants._xSpecifier);
-                    var (type, enumeration, classType) = VcardParserTools.GetPartType(xNonstandard ? VcardConstants._xSpecifier : prefix);
-                    string fromStringMethodName = isWithType ? nameof(NameInfo.FromStringVcardWithTypeStatic) : nameof(NameInfo.FromStringVcardStatic);
+                    var (type, enumeration, classType, fromString, fromStringWithType) = VcardParserTools.GetPartType(xNonstandard ? VcardConstants._xSpecifier : prefix);
                     switch (type)
                     {
                         case PartType.Strings:
@@ -197,15 +194,12 @@ namespace VisualCard.Parsers
                                 if (!supported)
                                     continue;
 
-                                // Handle parsing parts
-                                var fromStringMethod = partsClass.GetMethod(fromStringMethodName, BindingFlags.Static | BindingFlags.NonPublic);
-
                                 // Now, get the part info
                                 var partInfo =
                                     isWithType ?
-                                    fromStringMethod.Invoke(null, [_value, finalArgs.ToArray(), altId, CardVersion]) :
-                                    fromStringMethod.Invoke(null, [_value, altId, CardVersion]);
-                                card.SetPart(partsType, (BaseCardPartInfo)partInfo);
+                                    fromStringWithType(_value, [.. finalArgs], altId, CardVersion) :
+                                    fromString(_value, altId, CardVersion);
+                                card.SetPart(partsType, partInfo);
                             }
                             break;
                         case PartType.PartsArray:
@@ -216,15 +210,12 @@ namespace VisualCard.Parsers
                                 if (!supported)
                                     continue;
 
-                                // Handle parsing part arrays
-                                var fromStringMethod = partsArrayClass.GetMethod(fromStringMethodName, BindingFlags.Static | BindingFlags.NonPublic);
-
                                 // Now, get the part info
                                 var partInfo =
                                     isWithType ?
-                                    fromStringMethod.Invoke(null, [_value, finalArgs.ToArray(), altId, CardVersion]) :
-                                    fromStringMethod.Invoke(null, [_value, altId, CardVersion]);
-                                card.AddPartToArray(partsArrayType, (BaseCardPartInfo)partInfo);
+                                    fromStringWithType(_value, [.. finalArgs], altId, CardVersion) :
+                                    fromString(_value, altId, CardVersion);
+                                card.AddPartToArray(partsArrayType, partInfo);
                             }
                             break;
                         default:

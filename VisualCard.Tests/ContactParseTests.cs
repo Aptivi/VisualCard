@@ -22,7 +22,6 @@ using Shouldly;
 using System.Collections.Generic;
 using System.IO;
 using VisualCard.Converters;
-using VisualCard.Parsers;
 using VisualCard.Parts;
 
 namespace VisualCard.Tests
