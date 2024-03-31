@@ -57,6 +57,40 @@ namespace VisualCard.Tests
 
         [TestMethod]
         [DynamicData(nameof(ContactData.singleVcardContactShorts), typeof(ContactData))]
+        public void ReparseDifferentContactsShorts(string cardText) =>
+            ReparseDifferentContactsInternal(cardText);
+
+        [TestMethod]
+        [DynamicData(nameof(ContactData.singleVcardContacts), typeof(ContactData))]
+        public void ReparseDifferentContacts(string cardText) =>
+            ReparseDifferentContactsInternal(cardText);
+
+        [TestMethod]
+        [DynamicData(nameof(ContactData.multipleVcardContacts), typeof(ContactData))]
+        public void ReparseDifferentContactsMultiple(string cardText) =>
+            ReparseDifferentContactsInternal(cardText);
+
+        [TestMethod]
+        [DynamicData(nameof(ContactData.remainingContacts), typeof(ContactData))]
+        public void ReparseDifferentContactsRemaining(string cardText) =>
+            ReparseDifferentContactsInternal(cardText);
+
+        internal void ReparseDifferentContactsInternal(string cardText)
+        {
+            Card[] cards = [];
+            Card[] secondCards;
+            Should.NotThrow(() => cards = CardTools.GetCardsFromString(cardText));
+
+            // Save all the cards to strings and re-parse
+            foreach (Card card in cards)
+            {
+                string saved = Should.NotThrow(card.SaveToString);
+                Should.NotThrow(() => secondCards = CardTools.GetCardsFromString(saved));
+            }
+        }
+
+        [TestMethod]
+        [DynamicData(nameof(ContactData.singleVcardContactShorts), typeof(ContactData))]
         public void ParseDifferentContactsAndTestEqualityShorts(string cardText) =>
             ParseDifferentContactsAndTestEqualityInternal(cardText);
 
@@ -245,6 +279,26 @@ namespace VisualCard.Tests
             Card[] cards = [];
             Should.NotThrow(() => cards = CardTools.GetCardsFromString(cardText));
             foreach (Card card in cards)
+                card.ShouldNotBeNull();
+        }
+
+        [TestMethod]
+        [DynamicData(nameof(ContactDataBogus.seemsValidContacts), typeof(ContactDataBogus))]
+        public void BogusButSeemsValidShouldNotThrowWhenParsingAndReparsing(string cardText)
+        {
+            Card[] cards = [];
+            Card[] secondCards = [];
+            Should.NotThrow(() => cards = CardTools.GetCardsFromString(cardText));
+            foreach (Card card in cards)
+                card.ShouldNotBeNull();
+
+            // Save all the cards to strings and re-parse
+            foreach (Card card in cards)
+            {
+                string saved = Should.NotThrow(card.SaveToString);
+                Should.NotThrow(() => secondCards = CardTools.GetCardsFromString(saved));
+            }
+            foreach (Card card in secondCards)
                 card.ShouldNotBeNull();
         }
     }
