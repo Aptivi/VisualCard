@@ -42,53 +42,8 @@ namespace VisualCard.Parts.Implementations
         internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new PhotoInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
-        internal override string ToStringVcardInternal(Version cardVersion)
-        {
-            bool altIdSupported = cardVersion.Major >= 4;
-            if (altIdSupported)
-            {
-                bool installAltId = AltId >= 0 && Arguments.Length > 0;
-                if (ValueType == "uri" || ValueType == "url")
-                {
-                    return
-                        $"{VcardConstants._photoSpecifier};" +
-                        $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
-                        $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), Arguments) + VcardConstants._fieldDelimiter : "")}" +
-                        $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._argumentDelimiter}" +
-                        $"{PhotoEncoded}";
-                }
-                else
-                {
-                    string photoArgsLine =
-                        $"{VcardConstants._photoSpecifier};" +
-                        $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
-                        $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), Arguments) + VcardConstants._fieldDelimiter : "")}" +
-                        $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._fieldDelimiter}" +
-                        $"{VcardConstants._encodingArgumentSpecifier}{Encoding}{VcardConstants._fieldDelimiter}" +
-                        $"{VcardConstants._typeArgumentSpecifier}{string.Join(VcardConstants._valueDelimiter.ToString(), ElementTypes)}{VcardConstants._argumentDelimiter}";
-                    return photoArgsLine + VcardParserTools.MakeStringBlock(PhotoEncoded, photoArgsLine.Length);
-                }
-            }
-            else
-            {
-                if (ValueType == "uri" || ValueType == "url")
-                {
-                    return
-                        $"{VcardConstants._photoSpecifier};" +
-                        $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._argumentDelimiter}" +
-                        $"{PhotoEncoded}";
-                }
-                else
-                {
-                    string photoArgsLine =
-                        $"{VcardConstants._photoSpecifier};" +
-                        $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._fieldDelimiter}" +
-                        $"{VcardConstants._encodingArgumentSpecifier}{Encoding}{VcardConstants._fieldDelimiter}" +
-                        $"{VcardConstants._typeArgumentSpecifier}{string.Join(VcardConstants._valueDelimiter.ToString(), ElementTypes)}{VcardConstants._argumentDelimiter}";
-                    return photoArgsLine + VcardParserTools.MakeStringBlock(PhotoEncoded, photoArgsLine.Length);
-                }
-            }
-        }
+        internal override string ToStringVcardInternal(Version cardVersion) =>
+            PhotoEncoded;
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {

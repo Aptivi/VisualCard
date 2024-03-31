@@ -27,7 +27,7 @@ namespace VisualCard.Parts
     /// <summary>
     /// Base card part class
     /// </summary>
-    [DebuggerDisplay("Base card part | ALTID: {AltId}, TYPE: {ElementType}, VALUE: {ValueType}")]
+    [DebuggerDisplay("Base card part | ALTID: {AltId}, TYPE: {ElementTypes}, VALUE: {ValueType}")]
     public abstract class BaseCardPartInfo : IEquatable<BaseCardPartInfo>
     {
         /// <summary>

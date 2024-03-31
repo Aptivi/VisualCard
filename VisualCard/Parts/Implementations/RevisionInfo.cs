@@ -38,7 +38,7 @@ namespace VisualCard.Parts.Implementations
             new RevisionInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
-            $"{VcardConstants._revSpecifier}:{Revision:yyyy-MM-dd HH:mm:ss}";
+            $"{Revision:yyyy-MM-dd HH:mm:ss}";
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {

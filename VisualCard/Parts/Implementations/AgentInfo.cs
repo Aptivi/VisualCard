@@ -45,27 +45,12 @@ namespace VisualCard.Parts.Implementations
         internal override string ToStringVcardInternal(Version cardVersion)
         {
             var agents = new StringBuilder();
-            bool altIdSupported = cardVersion.Major >= 4;
 
             foreach (var a in AgentCards)
             {
-                if (altIdSupported)
-                {
-                    bool installAltId = AltId >= 0 && Arguments.Length > 0;
-                    agents.Append(
-                        $"{VcardConstants._agentSpecifier}" +
-                        $"{(installAltId ? $"{VcardConstants._fieldDelimiter}{VcardConstants._altIdArgumentSpecifier}" + AltId : "")}" +
-                        $"{VcardConstants._argumentDelimiter}" +
-                        $"{string.Join("\\n", a.SaveToString().SplitNewLines())}"
-                    );
-                }
-                else
-                {
-                    agents.Append(
-                        $"{VcardConstants._agentSpecifier}{VcardConstants._argumentDelimiter}" +
-                        $"{string.Join("\\n", a.SaveToString().SplitNewLines())}"
-                    );
-                }
+                agents.Append(
+                    $"{string.Join("\\n", a.SaveToString().SplitNewLines())}"
+                );
             }
             return agents.ToString();
         }

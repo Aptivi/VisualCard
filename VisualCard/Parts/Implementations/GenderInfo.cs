@@ -46,7 +46,6 @@ namespace VisualCard.Parts.Implementations
             new GenderInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
-            $"{VcardConstants._genderSpecifier}{VcardConstants._argumentDelimiter}" +
             (Gender != Gender.Unspecified ? Gender.ToString()[0] : "") +
             (!string.IsNullOrEmpty(GenderDescription) ? $"{VcardConstants._fieldDelimiter}{GenderDescription}" : "");
 

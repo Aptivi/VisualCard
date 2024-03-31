@@ -39,25 +39,8 @@ namespace VisualCard.Parts.Implementations
         internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new TitleInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
-        internal override string ToStringVcardInternal(Version cardVersion)
-        {
-            bool altIdSupported = cardVersion.Major >= 4;
-            if (altIdSupported)
-            {
-                bool installAltId = AltId >= 0 && Arguments.Length > 0;
-                return
-                    $"{(installAltId ? $"{VcardConstants._titleSpecifier};" : $"{VcardConstants._titleSpecifier}:")}" +
-                    $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
-                    $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), Arguments) + VcardConstants._argumentDelimiter : "")}" +
-                    $"{ContactTitle}";
-            }
-            else
-            {
-                return
-                    $"{VcardConstants._titleSpecifier}:" +
-                    $"{ContactTitle}";
-            }
-        }
+        internal override string ToStringVcardInternal(Version cardVersion) =>
+            ContactTitle;
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {

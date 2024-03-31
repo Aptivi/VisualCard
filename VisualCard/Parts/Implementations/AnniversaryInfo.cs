@@ -39,7 +39,7 @@ namespace VisualCard.Parts.Implementations
             new AnniversaryInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
-            $"{VcardConstants._anniversarySpecifier}:{Anniversary:yyyyMMdd}";
+            $"{Anniversary:yyyyMMdd}";
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {

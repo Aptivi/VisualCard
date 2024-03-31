@@ -44,14 +44,8 @@ namespace VisualCard.Parts.Implementations
         internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new XmlInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
-        internal override string ToStringVcardInternal(Version cardVersion)
-        {
-            bool installAltId = AltId >= 0 && Arguments.Length > 0;
-            return
-                $"{VcardConstants._xmlSpecifier}" +
-                $"{(installAltId ? VcardConstants._fieldDelimiter + VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._argumentDelimiter : VcardConstants._argumentDelimiter)}" +
-                $"{XmlString}";
-        }
+        internal override string ToStringVcardInternal(Version cardVersion) =>
+            XmlString;
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {

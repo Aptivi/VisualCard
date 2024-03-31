@@ -1,0 +1,100 @@
+﻿//
+// VisualCard  Copyright (C) 2021-2024  Aptivi
+//
+// This file is part of VisualCard
+//
+// VisualCard is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// VisualCard is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY, without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using VisualCard.Parsers;
+using VisualCard.Parts.Implementations;
+
+namespace VisualCard.Parts
+{
+    internal static class CardBuilderTools
+    {
+        internal static string BuildArguments(BaseCardPartInfo partInfo, Version cardVersion)
+        {
+            // Check to see if we've been provided arguments
+            bool installAltId = partInfo.AltId >= 0 && partInfo.Arguments.Length > 0 && cardVersion.Major >= 4;
+            bool noSemicolon = partInfo.AltId == 0 && partInfo.Arguments.Length == 0 && partInfo.ElementTypes.Length == 0 && string.IsNullOrEmpty(partInfo.ValueType);
+            string xNonstandardName = partInfo is XNameInfo xName ? xName.XKeyName : "";
+            if (noSemicolon)
+                return xNonstandardName + VcardConstants._argumentDelimiter.ToString();
+
+            // Now, initialize the argument builder
+            StringBuilder argumentsBuilder = new(xNonstandardName + VcardConstants._fieldDelimiter.ToString());
+            bool installArguments = partInfo.Arguments.Length > 0;
+            bool installElementTypes = partInfo.ElementTypes.Length > 0;
+            bool installValueType = !string.IsNullOrEmpty(partInfo.ValueType);
+
+            // First, install the AltId parameter if it exists
+            if (installAltId)
+            {
+                argumentsBuilder.Append(VcardConstants._altIdArgumentSpecifier + partInfo.AltId);
+                noSemicolon = !installArguments && !installElementTypes && !installValueType;
+                if (noSemicolon)
+                {
+                    argumentsBuilder.Append(VcardConstants._argumentDelimiter.ToString());
+                    return argumentsBuilder.ToString();
+                }
+                else
+                    argumentsBuilder.Append(VcardConstants._fieldDelimiter.ToString());
+            }
+
+            // Then, install the element types parameter if it exists
+            if (installElementTypes)
+            {
+                argumentsBuilder.Append(VcardConstants._typeArgumentSpecifier + string.Join(",", partInfo.ElementTypes));
+                noSemicolon = !installArguments && !installValueType;
+                if (noSemicolon)
+                {
+                    argumentsBuilder.Append(VcardConstants._argumentDelimiter.ToString());
+                    return argumentsBuilder.ToString();
+                }
+                else
+                    argumentsBuilder.Append(VcardConstants._fieldDelimiter.ToString());
+            }
+
+            // Then, install the value type parameter if it exists
+            if (installValueType)
+            {
+                argumentsBuilder.Append(VcardConstants._valueArgumentSpecifier + string.Join(",", partInfo.ValueType));
+                noSemicolon = !installArguments;
+                if (noSemicolon)
+                {
+                    argumentsBuilder.Append(VcardConstants._argumentDelimiter.ToString());
+                    return argumentsBuilder.ToString();
+                }
+                else
+                    argumentsBuilder.Append(VcardConstants._fieldDelimiter.ToString());
+            }
+
+            // Finally, install the remaining arguments if they exist and contain keys and values
+            if (installArguments)
+            {
+                string[] finalArguments = partInfo.Arguments.Where((arg) => arg.Contains(VcardConstants._argumentValueDelimiter)).ToArray();
+                argumentsBuilder.Append(string.Join(VcardConstants._fieldDelimiter.ToString(), finalArguments));
+            }
+
+            // We've reached the end.
+            argumentsBuilder.Append(VcardConstants._argumentDelimiter.ToString());
+            return argumentsBuilder.ToString();
+        }
+    }
+}

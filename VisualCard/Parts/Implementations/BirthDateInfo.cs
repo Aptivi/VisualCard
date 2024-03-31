@@ -39,7 +39,7 @@ namespace VisualCard.Parts.Implementations
             new BirthDateInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
-            $"{VcardConstants._birthSpecifier}:{BirthDate:yyyyMMdd}";
+            $"{BirthDate:yyyyMMdd}";
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {

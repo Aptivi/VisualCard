@@ -64,38 +64,14 @@ namespace VisualCard.Parts.Implementations
         internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new AddressInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
-        internal override string ToStringVcardInternal(Version cardVersion)
-        {
-            bool altIdSupported = cardVersion.Major >= 4;
-            if (altIdSupported)
-            {
-                bool installAltId = AltId >= 0 && Arguments.Length > 0;
-                return
-                    $"{VcardConstants._addressSpecifier};" +
-                    $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
-                    $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", ElementTypes)}{VcardConstants._argumentDelimiter}" +
-                    $"{PostOfficeBox}{VcardConstants._fieldDelimiter}" +
-                    $"{ExtendedAddress}{VcardConstants._fieldDelimiter}" +
-                    $"{StreetAddress}{VcardConstants._fieldDelimiter}" +
-                    $"{Locality}{VcardConstants._fieldDelimiter}" +
-                    $"{Region}{VcardConstants._fieldDelimiter}" +
-                    $"{PostalCode}{VcardConstants._fieldDelimiter}" +
-                    $"{Country}";
-            }
-            else
-            {
-                return
-                    $"{VcardConstants._addressSpecifier};" +
-                    $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", ElementTypes)}{VcardConstants._argumentDelimiter}" +
-                    $"{PostOfficeBox}{VcardConstants._fieldDelimiter}" +
-                    $"{ExtendedAddress}{VcardConstants._fieldDelimiter}" +
-                    $"{StreetAddress}{VcardConstants._fieldDelimiter}" +
-                    $"{Locality}{VcardConstants._fieldDelimiter}" +
-                    $"{Region}{VcardConstants._fieldDelimiter}" +
-                    $"{PostalCode}{VcardConstants._fieldDelimiter}" +
-                    $"{Country}";
-            }
-        }
+        internal override string ToStringVcardInternal(Version cardVersion) =>
+            $"{PostOfficeBox}{VcardConstants._fieldDelimiter}" +
+            $"{ExtendedAddress}{VcardConstants._fieldDelimiter}" +
+            $"{StreetAddress}{VcardConstants._fieldDelimiter}" +
+            $"{Locality}{VcardConstants._fieldDelimiter}" +
+            $"{Region}{VcardConstants._fieldDelimiter}" +
+            $"{PostalCode}{VcardConstants._fieldDelimiter}" +
+            $"{Country}";
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {

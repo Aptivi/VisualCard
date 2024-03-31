@@ -40,26 +40,8 @@ namespace VisualCard.Parts.Implementations
         internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new EmailInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
-        internal override string ToStringVcardInternal(Version cardVersion)
-        {
-            bool altIdSupported = cardVersion.Major >= 4;
-            if (altIdSupported)
-            {
-                bool installAltId = AltId >= 0 && Arguments.Length > 0;
-                return
-                    $"{VcardConstants._emailSpecifier};" +
-                    $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
-                    $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", ElementTypes)}{VcardConstants._argumentDelimiter}" +
-                    $"{ContactEmailAddress}";
-            }
-            else
-            {
-                return
-                    $"{VcardConstants._emailSpecifier};" +
-                    $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", ElementTypes)}{VcardConstants._argumentDelimiter}" +
-                    $"{ContactEmailAddress}";
-            }
-        }
+        internal override string ToStringVcardInternal(Version cardVersion) =>
+            ContactEmailAddress;
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {

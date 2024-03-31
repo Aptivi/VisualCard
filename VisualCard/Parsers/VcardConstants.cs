@@ -34,6 +34,7 @@ namespace VisualCard.Parsers
         internal const char _fieldDelimiter = ';';
         internal const char _valueDelimiter = ',';
         internal const char _argumentDelimiter = ':';
+        internal const char _argumentValueDelimiter = '=';
         internal const string _nameSpecifier = "N";
         internal const string _fullNameSpecifier = "FN";
         internal const string _telephoneSpecifier = "TEL";

@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using Textify.General;
 using VisualCard.Parsers;
 using VisualCard.Parts.Comparers;
 using VisualCard.Parts.Enums;
@@ -144,7 +145,7 @@ namespace VisualCard.Parts
 
                 // Now, locate the prefix and assemble the line
                 string prefix = VcardParserTools.GetPrefixFromStringsEnum(stringEnum);
-                cardBuilder.AppendLine($"{prefix}:{stringValue}");
+                cardBuilder.AppendLine($"{prefix}{VcardConstants._argumentDelimiter}{stringValue}");
             }
 
             // Next, enumerate all the arrays
@@ -156,9 +157,21 @@ namespace VisualCard.Parts
                 if (array is null || array.Length == 0)
                     continue;
 
+                // Get the prefix
+                string prefix = VcardParserTools.GetPrefixFromPartsArrayEnum(partsArrayEnum);
+
                 // Now, assemble the line
                 foreach (var part in array)
-                    cardBuilder.AppendLine($"{part.ToStringVcardInternal(version)}");
+                {
+                    var partBuilder = new StringBuilder();
+                    string partRepresentation = part.ToStringVcardInternal(version);
+                    string partArguments = CardBuilderTools.BuildArguments(part, version);
+                    string[] partArgumentsLines = partArguments.SplitNewLines();
+                    partBuilder.Append($"{prefix}");
+                    partBuilder.Append($"{partArguments}");
+                    partBuilder.Append($"{VcardParserTools.MakeStringBlock(partRepresentation, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length)}");
+                    cardBuilder.AppendLine($"{partBuilder}");
+                }
             }
 
             // Finally, enumerate all the parts
@@ -170,8 +183,18 @@ namespace VisualCard.Parts
                 if (part is null)
                     continue;
 
+                // Get the prefix
+                string prefix = VcardParserTools.GetPrefixFromPartsEnum(partsEnum);
+
                 // Now, assemble the line
-                cardBuilder.AppendLine($"{part.ToStringVcardInternal(version)}");
+                var partBuilder = new StringBuilder();
+                string partRepresentation = part.ToStringVcardInternal(version);
+                string partArguments = CardBuilderTools.BuildArguments(part, version);
+                string[] partArgumentsLines = partArguments.SplitNewLines();
+                partBuilder.Append($"{prefix}");
+                partBuilder.Append($"{partArguments}");
+                partBuilder.Append($"{VcardParserTools.MakeStringBlock(partRepresentation, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length)}");
+                cardBuilder.AppendLine($"{partBuilder}");
             }
 
             // End the card and return it

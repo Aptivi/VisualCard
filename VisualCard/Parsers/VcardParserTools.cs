@@ -53,11 +53,8 @@ namespace VisualCard.Parsers
                 // Attempt to get the value from the key
                 Type =
                     ArgType.Count() > 0 ?
-                        ArgType[0].StartsWith(VcardConstants._typeArgumentSpecifier) ?
-                        string.Join(VcardConstants._valueDelimiter.ToString(), ArgType.Select((arg) => arg.Substring(VcardConstants._typeArgumentSpecifier.Length))) :
-                        ArgType[0]
-                    :
-                        @default;
+                    string.Join(VcardConstants._valueDelimiter.ToString(), ArgType.Select((arg) => arg.StartsWith(VcardConstants._typeArgumentSpecifier) ? arg.Substring(VcardConstants._typeArgumentSpecifier.Length) : arg)) :
+                    @default;
 
             // Return the type
             return Type;

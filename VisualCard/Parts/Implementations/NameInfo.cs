@@ -59,36 +59,15 @@ namespace VisualCard.Parts.Implementations
 
         internal override string ToStringVcardInternal(Version cardVersion)
         {
-            bool altIdSupported = cardVersion.Major >= 4;
-            if (altIdSupported)
-            {
-                bool installAltId = AltId >= 0 && Arguments.Length > 0;
-                string altNamesStr = string.Join(VcardConstants._valueDelimiter.ToString(), AltNames);
-                string prefixesStr = string.Join(VcardConstants._valueDelimiter.ToString(), Prefixes);
-                string suffixesStr = string.Join(VcardConstants._valueDelimiter.ToString(), Suffixes);
-                return
-                    $"{VcardConstants._nameSpecifier}{(installAltId ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter)}" +
-                    $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
-                    $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), Arguments) + VcardConstants._argumentDelimiter : "")}" +
-                    $"{ContactLastName}{VcardConstants._fieldDelimiter}" +
-                    $"{ContactFirstName}{VcardConstants._fieldDelimiter}" +
-                    $"{altNamesStr}{VcardConstants._fieldDelimiter}" +
-                    $"{prefixesStr}{VcardConstants._fieldDelimiter}" +
-                    $"{suffixesStr}";
-            }
-            else
-            {
-                string altNamesStr = string.Join(VcardConstants._valueDelimiter.ToString(), AltNames);
-                string prefixesStr = string.Join(VcardConstants._valueDelimiter.ToString(), Prefixes);
-                string suffixesStr = string.Join(VcardConstants._valueDelimiter.ToString(), Suffixes);
-                return
-                    $"{VcardConstants._nameSpecifier}:" +
-                    $"{ContactLastName}{VcardConstants._fieldDelimiter}" +
-                    $"{ContactFirstName}{VcardConstants._fieldDelimiter}" +
-                    $"{altNamesStr}{VcardConstants._fieldDelimiter}" +
-                    $"{prefixesStr}{VcardConstants._fieldDelimiter}" +
-                    $"{suffixesStr}";
-            }
+            string altNamesStr = string.Join(VcardConstants._valueDelimiter.ToString(), AltNames);
+            string prefixesStr = string.Join(VcardConstants._valueDelimiter.ToString(), Prefixes);
+            string suffixesStr = string.Join(VcardConstants._valueDelimiter.ToString(), Suffixes);
+            return
+                $"{ContactLastName}{VcardConstants._fieldDelimiter}" +
+                $"{ContactFirstName}{VcardConstants._fieldDelimiter}" +
+                $"{altNamesStr}{VcardConstants._fieldDelimiter}" +
+                $"{prefixesStr}{VcardConstants._fieldDelimiter}" +
+                $"{suffixesStr}";
         }
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)

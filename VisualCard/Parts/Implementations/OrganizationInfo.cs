@@ -47,32 +47,10 @@ namespace VisualCard.Parts.Implementations
         internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new OrganizationInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
-        internal override string ToStringVcardInternal(Version cardVersion)
-        {
-            bool altIdSupported = cardVersion.Major >= 4;
-            if (altIdSupported)
-            {
-                bool installAltId = AltId >= 0 && Arguments.Length > 0;
-                bool installType = (installAltId || ElementTypes.Length > 0) && ElementTypes[0].ToUpper() != "WORK";
-                return
-                    $"{VcardConstants._orgSpecifier}{(installType || installAltId ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter)}" +
-                    $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + (installType ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter) : "")}" +
-                    $"{(installType ? $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", ElementTypes)}{VcardConstants._argumentDelimiter}" : "")}" +
-                    $"{Name}{VcardConstants._fieldDelimiter}" +
-                    $"{Unit}{VcardConstants._fieldDelimiter}" +
-                    $"{Role}";
-            }
-            else
-            {
-                bool installType = ElementTypes.Length > 0 && ElementTypes[0].ToUpper() != "WORK";
-                return
-                    $"{VcardConstants._orgSpecifier}{(installType ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter)}" +
-                    $"{(installType ? $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", ElementTypes)}{VcardConstants._argumentDelimiter}" : "")}" +
-                    $"{Name}{VcardConstants._fieldDelimiter}" +
-                    $"{Unit}{VcardConstants._fieldDelimiter}" +
-                    $"{Role}";
-            }
-        }
+        internal override string ToStringVcardInternal(Version cardVersion) =>
+            $"{Name}{VcardConstants._fieldDelimiter}" +
+            $"{Unit}{VcardConstants._fieldDelimiter}" +
+            $"{Role}";
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {

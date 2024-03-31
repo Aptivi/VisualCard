@@ -39,12 +39,8 @@ namespace VisualCard.Parts.Implementations
         internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new CategoryInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
-        internal override string ToStringVcardInternal(Version cardVersion)
-        {
-            return
-                $"{VcardConstants._categoriesSpecifier}:" +
-                $"{Category}";
-        }
+        internal override string ToStringVcardInternal(Version cardVersion) =>
+            $"{string.Join(VcardConstants._valueDelimiter.ToString(), Category)}";
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
