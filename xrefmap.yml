@@ -125,19 +125,6 @@ references:
   commentId: T:VisualCard.Parts.BaseCardPartInfo
   fullName: VisualCard.Parts.BaseCardPartInfo
   nameWithType: BaseCardPartInfo
-- uid: VisualCard.Parts.BaseCardPartInfo.AltArguments
-  name: AltArguments
-  href: api/VisualCard.Parts.BaseCardPartInfo.html#VisualCard_Parts_BaseCardPartInfo_AltArguments
-  commentId: P:VisualCard.Parts.BaseCardPartInfo.AltArguments
-  fullName: VisualCard.Parts.BaseCardPartInfo.AltArguments
-  nameWithType: BaseCardPartInfo.AltArguments
-- uid: VisualCard.Parts.BaseCardPartInfo.AltArguments*
-  name: AltArguments
-  href: api/VisualCard.Parts.BaseCardPartInfo.html#VisualCard_Parts_BaseCardPartInfo_AltArguments_
-  commentId: Overload:VisualCard.Parts.BaseCardPartInfo.AltArguments
-  isSpec: "True"
-  fullName: VisualCard.Parts.BaseCardPartInfo.AltArguments
-  nameWithType: BaseCardPartInfo.AltArguments
 - uid: VisualCard.Parts.BaseCardPartInfo.AltId
   name: AltId
   href: api/VisualCard.Parts.BaseCardPartInfo.html#VisualCard_Parts_BaseCardPartInfo_AltId
@@ -151,6 +138,32 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.BaseCardPartInfo.AltId
   nameWithType: BaseCardPartInfo.AltId
+- uid: VisualCard.Parts.BaseCardPartInfo.Arguments
+  name: Arguments
+  href: api/VisualCard.Parts.BaseCardPartInfo.html#VisualCard_Parts_BaseCardPartInfo_Arguments
+  commentId: P:VisualCard.Parts.BaseCardPartInfo.Arguments
+  fullName: VisualCard.Parts.BaseCardPartInfo.Arguments
+  nameWithType: BaseCardPartInfo.Arguments
+- uid: VisualCard.Parts.BaseCardPartInfo.Arguments*
+  name: Arguments
+  href: api/VisualCard.Parts.BaseCardPartInfo.html#VisualCard_Parts_BaseCardPartInfo_Arguments_
+  commentId: Overload:VisualCard.Parts.BaseCardPartInfo.Arguments
+  isSpec: "True"
+  fullName: VisualCard.Parts.BaseCardPartInfo.Arguments
+  nameWithType: BaseCardPartInfo.Arguments
+- uid: VisualCard.Parts.BaseCardPartInfo.ElementTypes
+  name: ElementTypes
+  href: api/VisualCard.Parts.BaseCardPartInfo.html#VisualCard_Parts_BaseCardPartInfo_ElementTypes
+  commentId: P:VisualCard.Parts.BaseCardPartInfo.ElementTypes
+  fullName: VisualCard.Parts.BaseCardPartInfo.ElementTypes
+  nameWithType: BaseCardPartInfo.ElementTypes
+- uid: VisualCard.Parts.BaseCardPartInfo.ElementTypes*
+  name: ElementTypes
+  href: api/VisualCard.Parts.BaseCardPartInfo.html#VisualCard_Parts_BaseCardPartInfo_ElementTypes_
+  commentId: Overload:VisualCard.Parts.BaseCardPartInfo.ElementTypes
+  isSpec: "True"
+  fullName: VisualCard.Parts.BaseCardPartInfo.ElementTypes
+  nameWithType: BaseCardPartInfo.ElementTypes
 - uid: VisualCard.Parts.BaseCardPartInfo.Equals(System.Object)
   name: Equals(object)
   href: api/VisualCard.Parts.BaseCardPartInfo.html#VisualCard_Parts_BaseCardPartInfo_Equals_System_Object_
@@ -192,6 +205,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.BaseCardPartInfo.GetHashCode
   nameWithType: BaseCardPartInfo.GetHashCode
+- uid: VisualCard.Parts.BaseCardPartInfo.ValueType
+  name: ValueType
+  href: api/VisualCard.Parts.BaseCardPartInfo.html#VisualCard_Parts_BaseCardPartInfo_ValueType
+  commentId: P:VisualCard.Parts.BaseCardPartInfo.ValueType
+  fullName: VisualCard.Parts.BaseCardPartInfo.ValueType
+  nameWithType: BaseCardPartInfo.ValueType
+- uid: VisualCard.Parts.BaseCardPartInfo.ValueType*
+  name: ValueType
+  href: api/VisualCard.Parts.BaseCardPartInfo.html#VisualCard_Parts_BaseCardPartInfo_ValueType_
+  commentId: Overload:VisualCard.Parts.BaseCardPartInfo.ValueType
+  isSpec: "True"
+  fullName: VisualCard.Parts.BaseCardPartInfo.ValueType
+  nameWithType: BaseCardPartInfo.ValueType
 - uid: VisualCard.Parts.BaseCardPartInfo.op_Equality(VisualCard.Parts.BaseCardPartInfo,VisualCard.Parts.BaseCardPartInfo)
   name: operator ==(BaseCardPartInfo, BaseCardPartInfo)
   href: api/VisualCard.Parts.BaseCardPartInfo.html#VisualCard_Parts_BaseCardPartInfo_op_Equality_VisualCard_Parts_BaseCardPartInfo_VisualCard_Parts_BaseCardPartInfo_
@@ -685,19 +711,6 @@ references:
   commentId: T:VisualCard.Parts.Implementations.AddressInfo
   fullName: VisualCard.Parts.Implementations.AddressInfo
   nameWithType: AddressInfo
-- uid: VisualCard.Parts.Implementations.AddressInfo.AddressTypes
-  name: AddressTypes
-  href: api/VisualCard.Parts.Implementations.AddressInfo.html#VisualCard_Parts_Implementations_AddressInfo_AddressTypes
-  commentId: P:VisualCard.Parts.Implementations.AddressInfo.AddressTypes
-  fullName: VisualCard.Parts.Implementations.AddressInfo.AddressTypes
-  nameWithType: AddressInfo.AddressTypes
-- uid: VisualCard.Parts.Implementations.AddressInfo.AddressTypes*
-  name: AddressTypes
-  href: api/VisualCard.Parts.Implementations.AddressInfo.html#VisualCard_Parts_Implementations_AddressInfo_AddressTypes_
-  commentId: Overload:VisualCard.Parts.Implementations.AddressInfo.AddressTypes
-  isSpec: "True"
-  fullName: VisualCard.Parts.Implementations.AddressInfo.AddressTypes
-  nameWithType: AddressInfo.AddressTypes
 - uid: VisualCard.Parts.Implementations.AddressInfo.Country
   name: Country
   href: api/VisualCard.Parts.Implementations.AddressInfo.html#VisualCard_Parts_Implementations_AddressInfo_Country
@@ -1279,19 +1292,6 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Implementations.EmailInfo.ContactEmailAddress
   nameWithType: EmailInfo.ContactEmailAddress
-- uid: VisualCard.Parts.Implementations.EmailInfo.ContactEmailTypes
-  name: ContactEmailTypes
-  href: api/VisualCard.Parts.Implementations.EmailInfo.html#VisualCard_Parts_Implementations_EmailInfo_ContactEmailTypes
-  commentId: P:VisualCard.Parts.Implementations.EmailInfo.ContactEmailTypes
-  fullName: VisualCard.Parts.Implementations.EmailInfo.ContactEmailTypes
-  nameWithType: EmailInfo.ContactEmailTypes
-- uid: VisualCard.Parts.Implementations.EmailInfo.ContactEmailTypes*
-  name: ContactEmailTypes
-  href: api/VisualCard.Parts.Implementations.EmailInfo.html#VisualCard_Parts_Implementations_EmailInfo_ContactEmailTypes_
-  commentId: Overload:VisualCard.Parts.Implementations.EmailInfo.ContactEmailTypes
-  isSpec: "True"
-  fullName: VisualCard.Parts.Implementations.EmailInfo.ContactEmailTypes
-  nameWithType: EmailInfo.ContactEmailTypes
 - uid: VisualCard.Parts.Implementations.EmailInfo.Equals(System.Object)
   name: Equals(object)
   href: api/VisualCard.Parts.Implementations.EmailInfo.html#VisualCard_Parts_Implementations_EmailInfo_Equals_System_Object_
@@ -1529,19 +1529,6 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Implementations.GeoInfo.Geo
   nameWithType: GeoInfo.Geo
-- uid: VisualCard.Parts.Implementations.GeoInfo.GeoTypes
-  name: GeoTypes
-  href: api/VisualCard.Parts.Implementations.GeoInfo.html#VisualCard_Parts_Implementations_GeoInfo_GeoTypes
-  commentId: P:VisualCard.Parts.Implementations.GeoInfo.GeoTypes
-  fullName: VisualCard.Parts.Implementations.GeoInfo.GeoTypes
-  nameWithType: GeoInfo.GeoTypes
-- uid: VisualCard.Parts.Implementations.GeoInfo.GeoTypes*
-  name: GeoTypes
-  href: api/VisualCard.Parts.Implementations.GeoInfo.html#VisualCard_Parts_Implementations_GeoInfo_GeoTypes_
-  commentId: Overload:VisualCard.Parts.Implementations.GeoInfo.GeoTypes
-  isSpec: "True"
-  fullName: VisualCard.Parts.Implementations.GeoInfo.GeoTypes
-  nameWithType: GeoInfo.GeoTypes
 - uid: VisualCard.Parts.Implementations.GeoInfo.GetHashCode
   name: GetHashCode()
   href: api/VisualCard.Parts.Implementations.GeoInfo.html#VisualCard_Parts_Implementations_GeoInfo_GetHashCode
@@ -1653,19 +1640,6 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Implementations.ImppInfo.GetHashCode
   nameWithType: ImppInfo.GetHashCode
-- uid: VisualCard.Parts.Implementations.ImppInfo.ImppTypes
-  name: ImppTypes
-  href: api/VisualCard.Parts.Implementations.ImppInfo.html#VisualCard_Parts_Implementations_ImppInfo_ImppTypes
-  commentId: P:VisualCard.Parts.Implementations.ImppInfo.ImppTypes
-  fullName: VisualCard.Parts.Implementations.ImppInfo.ImppTypes
-  nameWithType: ImppInfo.ImppTypes
-- uid: VisualCard.Parts.Implementations.ImppInfo.ImppTypes*
-  name: ImppTypes
-  href: api/VisualCard.Parts.Implementations.ImppInfo.html#VisualCard_Parts_Implementations_ImppInfo_ImppTypes_
-  commentId: Overload:VisualCard.Parts.Implementations.ImppInfo.ImppTypes
-  isSpec: "True"
-  fullName: VisualCard.Parts.Implementations.ImppInfo.ImppTypes
-  nameWithType: ImppInfo.ImppTypes
 - uid: VisualCard.Parts.Implementations.ImppInfo.op_Equality(VisualCard.Parts.Implementations.ImppInfo,VisualCard.Parts.Implementations.ImppInfo)
   name: operator ==(ImppInfo, ImppInfo)
   href: api/VisualCard.Parts.Implementations.ImppInfo.html#VisualCard_Parts_Implementations_ImppInfo_op_Equality_VisualCard_Parts_Implementations_ImppInfo_VisualCard_Parts_Implementations_ImppInfo_
@@ -1710,19 +1684,6 @@ references:
   commentId: T:VisualCard.Parts.Implementations.LabelAddressInfo
   fullName: VisualCard.Parts.Implementations.LabelAddressInfo
   nameWithType: LabelAddressInfo
-- uid: VisualCard.Parts.Implementations.LabelAddressInfo.AddressTypes
-  name: AddressTypes
-  href: api/VisualCard.Parts.Implementations.LabelAddressInfo.html#VisualCard_Parts_Implementations_LabelAddressInfo_AddressTypes
-  commentId: P:VisualCard.Parts.Implementations.LabelAddressInfo.AddressTypes
-  fullName: VisualCard.Parts.Implementations.LabelAddressInfo.AddressTypes
-  nameWithType: LabelAddressInfo.AddressTypes
-- uid: VisualCard.Parts.Implementations.LabelAddressInfo.AddressTypes*
-  name: AddressTypes
-  href: api/VisualCard.Parts.Implementations.LabelAddressInfo.html#VisualCard_Parts_Implementations_LabelAddressInfo_AddressTypes_
-  commentId: Overload:VisualCard.Parts.Implementations.LabelAddressInfo.AddressTypes
-  isSpec: "True"
-  fullName: VisualCard.Parts.Implementations.LabelAddressInfo.AddressTypes
-  nameWithType: LabelAddressInfo.AddressTypes
 - uid: VisualCard.Parts.Implementations.LabelAddressInfo.DeliveryLabel
   name: DeliveryLabel
   href: api/VisualCard.Parts.Implementations.LabelAddressInfo.html#VisualCard_Parts_Implementations_LabelAddressInfo_DeliveryLabel
@@ -1847,19 +1808,6 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Implementations.LangInfo.ContactLangPreference
   nameWithType: LangInfo.ContactLangPreference
-- uid: VisualCard.Parts.Implementations.LangInfo.ContactLangTypes
-  name: ContactLangTypes
-  href: api/VisualCard.Parts.Implementations.LangInfo.html#VisualCard_Parts_Implementations_LangInfo_ContactLangTypes
-  commentId: P:VisualCard.Parts.Implementations.LangInfo.ContactLangTypes
-  fullName: VisualCard.Parts.Implementations.LangInfo.ContactLangTypes
-  nameWithType: LangInfo.ContactLangTypes
-- uid: VisualCard.Parts.Implementations.LangInfo.ContactLangTypes*
-  name: ContactLangTypes
-  href: api/VisualCard.Parts.Implementations.LangInfo.html#VisualCard_Parts_Implementations_LangInfo_ContactLangTypes_
-  commentId: Overload:VisualCard.Parts.Implementations.LangInfo.ContactLangTypes
-  isSpec: "True"
-  fullName: VisualCard.Parts.Implementations.LangInfo.ContactLangTypes
-  nameWithType: LangInfo.ContactLangTypes
 - uid: VisualCard.Parts.Implementations.LangInfo.Equals(System.Object)
   name: Equals(object)
   href: api/VisualCard.Parts.Implementations.LangInfo.html#VisualCard_Parts_Implementations_LangInfo_Equals_System_Object_
@@ -2012,32 +1960,6 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Implementations.LogoInfo.LogoEncoded
   nameWithType: LogoInfo.LogoEncoded
-- uid: VisualCard.Parts.Implementations.LogoInfo.LogoType
-  name: LogoType
-  href: api/VisualCard.Parts.Implementations.LogoInfo.html#VisualCard_Parts_Implementations_LogoInfo_LogoType
-  commentId: P:VisualCard.Parts.Implementations.LogoInfo.LogoType
-  fullName: VisualCard.Parts.Implementations.LogoInfo.LogoType
-  nameWithType: LogoInfo.LogoType
-- uid: VisualCard.Parts.Implementations.LogoInfo.LogoType*
-  name: LogoType
-  href: api/VisualCard.Parts.Implementations.LogoInfo.html#VisualCard_Parts_Implementations_LogoInfo_LogoType_
-  commentId: Overload:VisualCard.Parts.Implementations.LogoInfo.LogoType
-  isSpec: "True"
-  fullName: VisualCard.Parts.Implementations.LogoInfo.LogoType
-  nameWithType: LogoInfo.LogoType
-- uid: VisualCard.Parts.Implementations.LogoInfo.ValueType
-  name: ValueType
-  href: api/VisualCard.Parts.Implementations.LogoInfo.html#VisualCard_Parts_Implementations_LogoInfo_ValueType
-  commentId: P:VisualCard.Parts.Implementations.LogoInfo.ValueType
-  fullName: VisualCard.Parts.Implementations.LogoInfo.ValueType
-  nameWithType: LogoInfo.ValueType
-- uid: VisualCard.Parts.Implementations.LogoInfo.ValueType*
-  name: ValueType
-  href: api/VisualCard.Parts.Implementations.LogoInfo.html#VisualCard_Parts_Implementations_LogoInfo_ValueType_
-  commentId: Overload:VisualCard.Parts.Implementations.LogoInfo.ValueType
-  isSpec: "True"
-  fullName: VisualCard.Parts.Implementations.LogoInfo.ValueType
-  nameWithType: LogoInfo.ValueType
 - uid: VisualCard.Parts.Implementations.LogoInfo.op_Equality(VisualCard.Parts.Implementations.LogoInfo,VisualCard.Parts.Implementations.LogoInfo)
   name: operator ==(LogoInfo, LogoInfo)
   href: api/VisualCard.Parts.Implementations.LogoInfo.html#VisualCard_Parts_Implementations_LogoInfo_op_Equality_VisualCard_Parts_Implementations_LogoInfo_VisualCard_Parts_Implementations_LogoInfo_
@@ -2286,19 +2208,6 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Implementations.NicknameInfo.GetHashCode
   nameWithType: NicknameInfo.GetHashCode
-- uid: VisualCard.Parts.Implementations.NicknameInfo.NicknameTypes
-  name: NicknameTypes
-  href: api/VisualCard.Parts.Implementations.NicknameInfo.html#VisualCard_Parts_Implementations_NicknameInfo_NicknameTypes
-  commentId: P:VisualCard.Parts.Implementations.NicknameInfo.NicknameTypes
-  fullName: VisualCard.Parts.Implementations.NicknameInfo.NicknameTypes
-  nameWithType: NicknameInfo.NicknameTypes
-- uid: VisualCard.Parts.Implementations.NicknameInfo.NicknameTypes*
-  name: NicknameTypes
-  href: api/VisualCard.Parts.Implementations.NicknameInfo.html#VisualCard_Parts_Implementations_NicknameInfo_NicknameTypes_
-  commentId: Overload:VisualCard.Parts.Implementations.NicknameInfo.NicknameTypes
-  isSpec: "True"
-  fullName: VisualCard.Parts.Implementations.NicknameInfo.NicknameTypes
-  nameWithType: NicknameInfo.NicknameTypes
 - uid: VisualCard.Parts.Implementations.NicknameInfo.op_Equality(VisualCard.Parts.Implementations.NicknameInfo,VisualCard.Parts.Implementations.NicknameInfo)
   name: operator ==(NicknameInfo, NicknameInfo)
   href: api/VisualCard.Parts.Implementations.NicknameInfo.html#VisualCard_Parts_Implementations_NicknameInfo_op_Equality_VisualCard_Parts_Implementations_NicknameInfo_VisualCard_Parts_Implementations_NicknameInfo_
@@ -2397,19 +2306,6 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Implementations.OrganizationInfo.Name
   nameWithType: OrganizationInfo.Name
-- uid: VisualCard.Parts.Implementations.OrganizationInfo.OrgTypes
-  name: OrgTypes
-  href: api/VisualCard.Parts.Implementations.OrganizationInfo.html#VisualCard_Parts_Implementations_OrganizationInfo_OrgTypes
-  commentId: P:VisualCard.Parts.Implementations.OrganizationInfo.OrgTypes
-  fullName: VisualCard.Parts.Implementations.OrganizationInfo.OrgTypes
-  nameWithType: OrganizationInfo.OrgTypes
-- uid: VisualCard.Parts.Implementations.OrganizationInfo.OrgTypes*
-  name: OrgTypes
-  href: api/VisualCard.Parts.Implementations.OrganizationInfo.html#VisualCard_Parts_Implementations_OrganizationInfo_OrgTypes_
-  commentId: Overload:VisualCard.Parts.Implementations.OrganizationInfo.OrgTypes
-  isSpec: "True"
-  fullName: VisualCard.Parts.Implementations.OrganizationInfo.OrgTypes
-  nameWithType: OrganizationInfo.OrgTypes
 - uid: VisualCard.Parts.Implementations.OrganizationInfo.Role
   name: Role
   href: api/VisualCard.Parts.Implementations.OrganizationInfo.html#VisualCard_Parts_Implementations_OrganizationInfo_Role
@@ -2547,32 +2443,6 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Implementations.PhotoInfo.PhotoEncoded
   nameWithType: PhotoInfo.PhotoEncoded
-- uid: VisualCard.Parts.Implementations.PhotoInfo.PhotoType
-  name: PhotoType
-  href: api/VisualCard.Parts.Implementations.PhotoInfo.html#VisualCard_Parts_Implementations_PhotoInfo_PhotoType
-  commentId: P:VisualCard.Parts.Implementations.PhotoInfo.PhotoType
-  fullName: VisualCard.Parts.Implementations.PhotoInfo.PhotoType
-  nameWithType: PhotoInfo.PhotoType
-- uid: VisualCard.Parts.Implementations.PhotoInfo.PhotoType*
-  name: PhotoType
-  href: api/VisualCard.Parts.Implementations.PhotoInfo.html#VisualCard_Parts_Implementations_PhotoInfo_PhotoType_
-  commentId: Overload:VisualCard.Parts.Implementations.PhotoInfo.PhotoType
-  isSpec: "True"
-  fullName: VisualCard.Parts.Implementations.PhotoInfo.PhotoType
-  nameWithType: PhotoInfo.PhotoType
-- uid: VisualCard.Parts.Implementations.PhotoInfo.ValueType
-  name: ValueType
-  href: api/VisualCard.Parts.Implementations.PhotoInfo.html#VisualCard_Parts_Implementations_PhotoInfo_ValueType
-  commentId: P:VisualCard.Parts.Implementations.PhotoInfo.ValueType
-  fullName: VisualCard.Parts.Implementations.PhotoInfo.ValueType
-  nameWithType: PhotoInfo.ValueType
-- uid: VisualCard.Parts.Implementations.PhotoInfo.ValueType*
-  name: ValueType
-  href: api/VisualCard.Parts.Implementations.PhotoInfo.html#VisualCard_Parts_Implementations_PhotoInfo_ValueType_
-  commentId: Overload:VisualCard.Parts.Implementations.PhotoInfo.ValueType
-  isSpec: "True"
-  fullName: VisualCard.Parts.Implementations.PhotoInfo.ValueType
-  nameWithType: PhotoInfo.ValueType
 - uid: VisualCard.Parts.Implementations.PhotoInfo.op_Equality(VisualCard.Parts.Implementations.PhotoInfo,VisualCard.Parts.Implementations.PhotoInfo)
   name: operator ==(PhotoInfo, PhotoInfo)
   href: api/VisualCard.Parts.Implementations.PhotoInfo.html#VisualCard_Parts_Implementations_PhotoInfo_op_Equality_VisualCard_Parts_Implementations_PhotoInfo_VisualCard_Parts_Implementations_PhotoInfo_
@@ -2880,32 +2750,6 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Implementations.SoundInfo.SoundEncoded
   nameWithType: SoundInfo.SoundEncoded
-- uid: VisualCard.Parts.Implementations.SoundInfo.SoundType
-  name: SoundType
-  href: api/VisualCard.Parts.Implementations.SoundInfo.html#VisualCard_Parts_Implementations_SoundInfo_SoundType
-  commentId: P:VisualCard.Parts.Implementations.SoundInfo.SoundType
-  fullName: VisualCard.Parts.Implementations.SoundInfo.SoundType
-  nameWithType: SoundInfo.SoundType
-- uid: VisualCard.Parts.Implementations.SoundInfo.SoundType*
-  name: SoundType
-  href: api/VisualCard.Parts.Implementations.SoundInfo.html#VisualCard_Parts_Implementations_SoundInfo_SoundType_
-  commentId: Overload:VisualCard.Parts.Implementations.SoundInfo.SoundType
-  isSpec: "True"
-  fullName: VisualCard.Parts.Implementations.SoundInfo.SoundType
-  nameWithType: SoundInfo.SoundType
-- uid: VisualCard.Parts.Implementations.SoundInfo.ValueType
-  name: ValueType
-  href: api/VisualCard.Parts.Implementations.SoundInfo.html#VisualCard_Parts_Implementations_SoundInfo_ValueType
-  commentId: P:VisualCard.Parts.Implementations.SoundInfo.ValueType
-  fullName: VisualCard.Parts.Implementations.SoundInfo.ValueType
-  nameWithType: SoundInfo.ValueType
-- uid: VisualCard.Parts.Implementations.SoundInfo.ValueType*
-  name: ValueType
-  href: api/VisualCard.Parts.Implementations.SoundInfo.html#VisualCard_Parts_Implementations_SoundInfo_ValueType_
-  commentId: Overload:VisualCard.Parts.Implementations.SoundInfo.ValueType
-  isSpec: "True"
-  fullName: VisualCard.Parts.Implementations.SoundInfo.ValueType
-  nameWithType: SoundInfo.ValueType
 - uid: VisualCard.Parts.Implementations.SoundInfo.op_Equality(VisualCard.Parts.Implementations.SoundInfo,VisualCard.Parts.Implementations.SoundInfo)
   name: operator ==(SoundInfo, SoundInfo)
   href: api/VisualCard.Parts.Implementations.SoundInfo.html#VisualCard_Parts_Implementations_SoundInfo_op_Equality_VisualCard_Parts_Implementations_SoundInfo_VisualCard_Parts_Implementations_SoundInfo_
@@ -2963,19 +2807,6 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Implementations.TelephoneInfo.ContactPhoneNumber
   nameWithType: TelephoneInfo.ContactPhoneNumber
-- uid: VisualCard.Parts.Implementations.TelephoneInfo.ContactPhoneTypes
-  name: ContactPhoneTypes
-  href: api/VisualCard.Parts.Implementations.TelephoneInfo.html#VisualCard_Parts_Implementations_TelephoneInfo_ContactPhoneTypes
-  commentId: P:VisualCard.Parts.Implementations.TelephoneInfo.ContactPhoneTypes
-  fullName: VisualCard.Parts.Implementations.TelephoneInfo.ContactPhoneTypes
-  nameWithType: TelephoneInfo.ContactPhoneTypes
-- uid: VisualCard.Parts.Implementations.TelephoneInfo.ContactPhoneTypes*
-  name: ContactPhoneTypes
-  href: api/VisualCard.Parts.Implementations.TelephoneInfo.html#VisualCard_Parts_Implementations_TelephoneInfo_ContactPhoneTypes_
-  commentId: Overload:VisualCard.Parts.Implementations.TelephoneInfo.ContactPhoneTypes
-  isSpec: "True"
-  fullName: VisualCard.Parts.Implementations.TelephoneInfo.ContactPhoneTypes
-  nameWithType: TelephoneInfo.ContactPhoneTypes
 - uid: VisualCard.Parts.Implementations.TelephoneInfo.Equals(System.Object)
   name: Equals(object)
   href: api/VisualCard.Parts.Implementations.TelephoneInfo.html#VisualCard_Parts_Implementations_TelephoneInfo_Equals_System_Object_
@@ -3115,19 +2946,6 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Implementations.TimeDateZoneInfo.TimeZone
   nameWithType: TimeDateZoneInfo.TimeZone
-- uid: VisualCard.Parts.Implementations.TimeDateZoneInfo.TimeZoneTypes
-  name: TimeZoneTypes
-  href: api/VisualCard.Parts.Implementations.TimeDateZoneInfo.html#VisualCard_Parts_Implementations_TimeDateZoneInfo_TimeZoneTypes
-  commentId: P:VisualCard.Parts.Implementations.TimeDateZoneInfo.TimeZoneTypes
-  fullName: VisualCard.Parts.Implementations.TimeDateZoneInfo.TimeZoneTypes
-  nameWithType: TimeDateZoneInfo.TimeZoneTypes
-- uid: VisualCard.Parts.Implementations.TimeDateZoneInfo.TimeZoneTypes*
-  name: TimeZoneTypes
-  href: api/VisualCard.Parts.Implementations.TimeDateZoneInfo.html#VisualCard_Parts_Implementations_TimeDateZoneInfo_TimeZoneTypes_
-  commentId: Overload:VisualCard.Parts.Implementations.TimeDateZoneInfo.TimeZoneTypes
-  isSpec: "True"
-  fullName: VisualCard.Parts.Implementations.TimeDateZoneInfo.TimeZoneTypes
-  nameWithType: TimeDateZoneInfo.TimeZoneTypes
 - uid: VisualCard.Parts.Implementations.TimeDateZoneInfo.op_Equality(VisualCard.Parts.Implementations.TimeDateZoneInfo,VisualCard.Parts.Implementations.TimeDateZoneInfo)
   name: operator ==(TimeDateZoneInfo, TimeDateZoneInfo)
   href: api/VisualCard.Parts.Implementations.TimeDateZoneInfo.html#VisualCard_Parts_Implementations_TimeDateZoneInfo_op_Equality_VisualCard_Parts_Implementations_TimeDateZoneInfo_VisualCard_Parts_Implementations_TimeDateZoneInfo_
@@ -3372,19 +3190,6 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Implementations.XNameInfo.XKeyName
   nameWithType: XNameInfo.XKeyName
-- uid: VisualCard.Parts.Implementations.XNameInfo.XKeyTypes
-  name: XKeyTypes
-  href: api/VisualCard.Parts.Implementations.XNameInfo.html#VisualCard_Parts_Implementations_XNameInfo_XKeyTypes
-  commentId: P:VisualCard.Parts.Implementations.XNameInfo.XKeyTypes
-  fullName: VisualCard.Parts.Implementations.XNameInfo.XKeyTypes
-  nameWithType: XNameInfo.XKeyTypes
-- uid: VisualCard.Parts.Implementations.XNameInfo.XKeyTypes*
-  name: XKeyTypes
-  href: api/VisualCard.Parts.Implementations.XNameInfo.html#VisualCard_Parts_Implementations_XNameInfo_XKeyTypes_
-  commentId: Overload:VisualCard.Parts.Implementations.XNameInfo.XKeyTypes
-  isSpec: "True"
-  fullName: VisualCard.Parts.Implementations.XNameInfo.XKeyTypes
-  nameWithType: XNameInfo.XKeyTypes
 - uid: VisualCard.Parts.Implementations.XNameInfo.XValues
   name: XValues
   href: api/VisualCard.Parts.Implementations.XNameInfo.html#VisualCard_Parts_Implementations_XNameInfo_XValues
