@@ -42,18 +42,15 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string GenderDescription { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, int altId, Version cardVersion) =>
-            new GenderInfo().FromStringVcardInternal(value, altId, cardVersion);
-
-        internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion) =>
-            new GenderInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
+            new GenderInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             $"{VcardConstants._genderSpecifier}{VcardConstants._argumentDelimiter}" +
             (Gender != Gender.Unspecified ? Gender.ToString()[0] : "") +
             (!string.IsNullOrEmpty(GenderDescription) ? $"{VcardConstants._fieldDelimiter}{GenderDescription}" : "");
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Get the value
             string genderValue = value.Substring(VcardConstants._genderSpecifier.Length + 1);
@@ -125,7 +122,7 @@ namespace VisualCard.Parts.Implementations
             // Check all the properties
             return
                 source.AltArguments.SequenceEqual(target.AltArguments) &&
-                source.AltId == target.AltId &&
+                base.Equals(source, target) &&
                 source.Gender == target.Gender &&
                 source.GenderDescription == target.GenderDescription
             ;
@@ -153,10 +150,10 @@ namespace VisualCard.Parts.Implementations
 
         internal GenderInfo() { }
 
-        internal GenderInfo(int altId, string[] altArguments, Gender gender, string genderDescription)
+        internal GenderInfo(int altId, string[] arguments, string[] elementTypes, string valueType, Gender gender, string genderDescription)
         {
             AltId = altId;
-            AltArguments = altArguments;
+            Arguments = arguments;
             Gender = gender;
             GenderDescription = genderDescription;
         }

@@ -42,18 +42,15 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string[] NicknameTypes { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, int altId, Version cardVersion) =>
-            new NicknameInfo().FromStringVcardInternal(value, altId, cardVersion);
-
-        internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion) =>
-            new NicknameInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
+            new NicknameInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion)
         {
             bool altIdSupported = cardVersion.Major >= 4;
             if (altIdSupported)
             {
-                bool installAltId = AltId >= 0 && AltArguments.Length > 0;
+                bool installAltId = AltId >= 0 && Arguments.Length > 0;
                 return
                     $"{VcardConstants._nicknameSpecifier};" +
                     $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
@@ -70,7 +67,7 @@ namespace VisualCard.Parts.Implementations
             }
         }
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Get the value
             string nickValue = value.Substring(VcardConstants._nicknameSpecifier.Length + 1);
@@ -103,7 +100,7 @@ namespace VisualCard.Parts.Implementations
             // Populate the fields
             string[] _nicknameTypes = installType ? VcardParserTools.GetTypes(splitNick, "WORK", specifierRequired) : ["HOME"];
             string _nick = Regex.Unescape(installType ? splitNick[1] : splitNick[0]);
-            NicknameInfo _nickInstance = new(altIdSupported ? altId : 0, altIdSupported ? finalArgs : [], _nick, _nicknameTypes);
+            NicknameInfo _nickInstance = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, _nick, _nicknameTypes);
             return _nickInstance;
         }
 
@@ -135,7 +132,7 @@ namespace VisualCard.Parts.Implementations
             return
                 source.AltArguments.SequenceEqual(target.AltArguments) &&
                 source.NicknameTypes.SequenceEqual(target.NicknameTypes) &&
-                source.AltId == target.AltId &&
+                base.Equals(source, target) &&
                 source.ContactNickname == target.ContactNickname
             ;
         }
@@ -161,10 +158,10 @@ namespace VisualCard.Parts.Implementations
 
         internal NicknameInfo() { }
 
-        internal NicknameInfo(int altId, string[] altArguments, string contactNickname, string[] nicknameTypes)
+        internal NicknameInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string contactNickname, string[] nicknameTypes)
         {
             AltId = altId;
-            AltArguments = altArguments;
+            Arguments = arguments;
             ContactNickname = contactNickname;
             NicknameTypes = nicknameTypes;
         }

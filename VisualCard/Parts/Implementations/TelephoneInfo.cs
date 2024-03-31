@@ -42,18 +42,15 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string ContactPhoneNumber { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, int altId, Version cardVersion) =>
-            new TelephoneInfo().FromStringVcardInternal(value, altId, cardVersion);
-
-        internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion) =>
-            new TelephoneInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
+            new TelephoneInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion)
         {
             bool altIdSupported = cardVersion.Major >= 4;
             if (altIdSupported)
             {
-                bool installAltId = AltId >= 0 && AltArguments.Length > 0;
+                bool installAltId = AltId >= 0 && Arguments.Length > 0;
                 return
                     $"{VcardConstants._telephoneSpecifier};" +
                     $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
@@ -69,7 +66,7 @@ namespace VisualCard.Parts.Implementations
             }
         }
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Get the value
             string telValue = value.Substring(VcardConstants._telephoneSpecifier.Length + 1);
@@ -102,7 +99,7 @@ namespace VisualCard.Parts.Implementations
             // Populate the fields
             string[] _telephoneTypes = installType ? VcardParserTools.GetTypes(splitTel, "CELL", specifierRequired) : ["CELL"];
             string _telephoneNumber = Regex.Unescape(installType ? splitTel[1] : splitTel[0]);
-            TelephoneInfo _telephone = new(altIdSupported ? altId : 0, altIdSupported ? finalArgs : [], _telephoneTypes, _telephoneNumber);
+            TelephoneInfo _telephone = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, _telephoneTypes, _telephoneNumber);
             return _telephone;
         }
 
@@ -134,7 +131,7 @@ namespace VisualCard.Parts.Implementations
             return
                 source.ContactPhoneTypes.SequenceEqual(target.ContactPhoneTypes) &&
                 source.AltArguments.SequenceEqual(target.AltArguments) &&
-                source.AltId == target.AltId &&
+                base.Equals(source, target) &&
                 source.ContactPhoneNumber == target.ContactPhoneNumber
             ;
         }
@@ -160,10 +157,10 @@ namespace VisualCard.Parts.Implementations
 
         internal TelephoneInfo() { }
 
-        internal TelephoneInfo(int altId, string[] altArguments, string[] contactPhoneTypes, string contactPhoneNumber)
+        internal TelephoneInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string[] contactPhoneTypes, string contactPhoneNumber)
         {
             AltId = altId;
-            AltArguments = altArguments;
+            Arguments = arguments;
             ContactPhoneTypes = contactPhoneTypes;
             ContactPhoneNumber = contactPhoneNumber;
         }

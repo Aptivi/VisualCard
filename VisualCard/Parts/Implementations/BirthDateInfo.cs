@@ -36,16 +36,13 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public DateTime? BirthDate { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, int altId, Version cardVersion) =>
-            new BirthDateInfo().FromStringVcardInternal(value, altId, cardVersion);
-
-        internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion) =>
-            new BirthDateInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
+            new BirthDateInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             $"{VcardConstants._birthSpecifier}:{BirthDate:yyyyMMdd}";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Get the value
             string bdayValue = value.Substring(VcardConstants._birthSpecifier.Length + 1);
@@ -84,7 +81,7 @@ namespace VisualCard.Parts.Implementations
 
             // Add the fetched information
             bool altIdSupported = cardVersion.Major >= 4;
-            BirthDateInfo _time = new(altIdSupported ? altId : 0, altIdSupported ? finalArgs : [], bday);
+            BirthDateInfo _time = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, bday);
             return _time;
         }
 
@@ -115,7 +112,7 @@ namespace VisualCard.Parts.Implementations
             // Check all the properties
             return
                 source.AltArguments.SequenceEqual(target.AltArguments) &&
-                source.AltId == target.AltId &&
+                base.Equals(source, target) &&
                 source.BirthDate == target.BirthDate
             ;
         }
@@ -140,10 +137,10 @@ namespace VisualCard.Parts.Implementations
 
         internal BirthDateInfo() { }
 
-        internal BirthDateInfo(int altId, string[] altArguments, DateTime? birth)
+        internal BirthDateInfo(int altId, string[] arguments, string[] elementTypes, string valueType, DateTime? birth)
         {
             AltId = altId;
-            AltArguments = altArguments;
+            Arguments = arguments;
             BirthDate = birth;
         }
     }

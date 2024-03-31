@@ -49,18 +49,15 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string PhotoEncoded { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, int altId, Version cardVersion) =>
-            new PhotoInfo().FromStringVcardInternal(value, altId, cardVersion);
-
-        internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion) =>
-            new PhotoInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
+            new PhotoInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion)
         {
             bool altIdSupported = cardVersion.Major >= 4;
             if (altIdSupported)
             {
-                bool installAltId = AltId >= 0 && AltArguments.Length > 0;
+                bool installAltId = AltId >= 0 && Arguments.Length > 0;
                 if (ValueType == "uri" || ValueType == "url")
                 {
                     return
@@ -103,7 +100,7 @@ namespace VisualCard.Parts.Implementations
             }
         }
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion) =>
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             throw new InvalidDataException("Photo field must not have empty type.");
 
         internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion)
@@ -132,7 +129,7 @@ namespace VisualCard.Parts.Implementations
             string photoType = VcardParserTools.GetTypesString(splitPhoto, "JPEG", false);
 
             // Populate the fields
-            PhotoInfo _photo = new(altIdSupported ? altId : 0, altIdSupported ? finalArgs : [], valueType, photoEncoding, photoType, splitPhoto[1]);
+            PhotoInfo _photo = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, valueType, photoEncoding, photoType, splitPhoto[1]);
             return _photo;
         }
 
@@ -163,7 +160,7 @@ namespace VisualCard.Parts.Implementations
             // Check all the properties
             return
                 source.AltArguments.SequenceEqual(target.AltArguments) &&
-                source.AltId == target.AltId &&
+                base.Equals(source, target) &&
                 source.ValueType == target.ValueType &&
                 source.Encoding == target.Encoding &&
                 source.PhotoType == target.PhotoType &&
@@ -194,10 +191,10 @@ namespace VisualCard.Parts.Implementations
 
         internal PhotoInfo() { }
 
-        internal PhotoInfo(int altId, string[] altArguments, string valueType, string encoding, string photoType, string photoEncoded)
+        internal PhotoInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string valueType, string encoding, string photoType, string photoEncoded)
         {
             AltId = altId;
-            AltArguments = altArguments;
+            Arguments = arguments;
             ValueType = valueType;
             Encoding = encoding;
             PhotoType = photoType;

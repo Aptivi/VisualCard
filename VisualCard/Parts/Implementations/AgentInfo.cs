@@ -40,11 +40,8 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public Card[] AgentCards { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, int altId, Version cardVersion) =>
-            new AgentInfo().FromStringVcardInternal(value, altId, cardVersion);
-
-        internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion) =>
-            new AgentInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
+            new AgentInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion)
         {
@@ -55,7 +52,7 @@ namespace VisualCard.Parts.Implementations
             {
                 if (altIdSupported)
                 {
-                    bool installAltId = AltId >= 0 && AltArguments.Length > 0;
+                    bool installAltId = AltId >= 0 && Arguments.Length > 0;
                     agents.Append(
                         $"{VcardConstants._agentSpecifier}" +
                         $"{(installAltId ? $"{VcardConstants._fieldDelimiter}{VcardConstants._altIdArgumentSpecifier}" + AltId : "")}" +
@@ -74,49 +71,18 @@ namespace VisualCard.Parts.Implementations
             return agents.ToString();
         }
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion)
-        {
-            // Get the value
-            string agentValue = value.Substring(VcardConstants._agentSpecifier.Length + 1);
-            string[] splitAgent = agentValue.Split(VcardConstants._argumentDelimiter);
-
-            // Check the provided agent
-            string[] splitAgentValues = splitAgent[0].Split(VcardConstants._fieldDelimiter);
-            if (splitAgentValues.Length < 1)
-                throw new InvalidDataException("Agent information must specify exactly one value (agent vCard contents that have their lines delimited by \\n)");
-
-            // Populate the fields
-            return InstallInfo(agentValue, altId, cardVersion);
-        }
-
-        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion)
-        {
-            // Get the value
-            string agentValue = value.Substring(VcardConstants._agentSpecifier.Length + 1);
-            string[] splitAgent = agentValue.Split(VcardConstants._argumentDelimiter);
-            if (splitAgent.Length < 2)
-                throw new InvalidDataException("Agent field must specify exactly two values (Type (optionally prepended with TYPE=), and agent information)");
-
-            // Check the provided agent
-            string[] splitAgentValues = splitAgent[1].Split(VcardConstants._fieldDelimiter);
-            if (splitAgentValues.Length < 1)
-                throw new InvalidDataException("Agent information must specify exactly one value (agent vCard contents that have their lines delimited by \\n)");
-
-            // Populate the fields
-            return InstallInfo(agentValue, finalArgs, altId, cardVersion);
-        }
-
-        private AgentInfo InstallInfo(string value, int altId, Version cardVersion) =>
-            InstallInfo(value, [], altId, cardVersion);
-
-        private AgentInfo InstallInfo(string value, string[] finalArgs, int altId, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
             bool altIdSupported = cardVersion.Major >= 4;
+
+            // Check the provided agent
+            if (string.IsNullOrEmpty(value))
+                throw new InvalidDataException("Agent information must specify exactly one value (agent vCard contents that have their lines delimited by \\n)");
 
             // Populate the fields
             string _agentVcard = Regex.Unescape(value).Replace("\\n", "\n");
             var _agentVcardParsers = CardTools.GetCardsFromString(_agentVcard);
-            AgentInfo _agent = new(altIdSupported ? altId : 0, altIdSupported ? finalArgs : [], _agentVcardParsers);
+            AgentInfo _agent = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, _agentVcardParsers);
             return _agent;
         }
 
@@ -146,8 +112,7 @@ namespace VisualCard.Parts.Implementations
 
             // Check all the properties
             return
-                source.AltArguments.SequenceEqual(target.AltArguments) &&
-                source.AltId == target.AltId &&
+                base.Equals(source, target) &&
                 source.AgentCards == target.AgentCards
             ;
         }
@@ -155,9 +120,8 @@ namespace VisualCard.Parts.Implementations
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = -1716393954;
-            hashCode = hashCode * -1521134295 + AltId.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(AltArguments);
+            int hashCode = -582546693;
+            hashCode = hashCode * -1521134295 + base.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<Card[]>.Default.GetHashCode(AgentCards);
             return hashCode;
         }
@@ -172,10 +136,12 @@ namespace VisualCard.Parts.Implementations
 
         internal AgentInfo() { }
 
-        internal AgentInfo(int altId, string[] altArguments, Card[] agentCard)
+        internal AgentInfo(int altId, string[] arguments, string[] elementTypes, string valueType, Card[] agentCard)
         {
             AltId = altId;
-            AltArguments = altArguments;
+            Arguments = arguments;
+            ElementTypes = elementTypes;
+            ValueType = valueType;
             AgentCards = agentCard;
         }
     }

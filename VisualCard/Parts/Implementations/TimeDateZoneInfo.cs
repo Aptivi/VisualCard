@@ -42,18 +42,15 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string TimeZone { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, int altId, Version cardVersion) =>
-            new TimeDateZoneInfo().FromStringVcardInternal(value, altId, cardVersion);
-
-        internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion) =>
-            new TimeDateZoneInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
+            new TimeDateZoneInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion)
         {
             bool altIdSupported = cardVersion.Major >= 4;
             if (altIdSupported)
             {
-                bool installAltId = AltId >= 0 && AltArguments.Length > 0;
+                bool installAltId = AltId >= 0 && Arguments.Length > 0;
                 return
                     $"{VcardConstants._timeZoneSpecifier}{(installAltId ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter)}" +
                     $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
@@ -68,7 +65,7 @@ namespace VisualCard.Parts.Implementations
             }
         }
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Get the value
             string tzValue = value.Substring(VcardConstants._timeZoneSpecifier.Length + 1);
@@ -102,7 +99,7 @@ namespace VisualCard.Parts.Implementations
             string _geoStr = Regex.Unescape(typesSupported ? installType ? splitTz[1] : splitTz[0] : splitTz[0]);
 
             // Add the fetched information
-            TimeDateZoneInfo _timeZone = new(altIdSupported ? altId : 0, altIdSupported ? finalArgs : [], _geoTypes, _geoStr);
+            TimeDateZoneInfo _timeZone = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, _geoTypes, _geoStr);
             return _timeZone;
         }
 
@@ -134,7 +131,7 @@ namespace VisualCard.Parts.Implementations
             return
                 source.AltArguments.SequenceEqual(target.AltArguments) &&
                 source.TimeZoneTypes.SequenceEqual(target.TimeZoneTypes) &&
-                source.AltId == target.AltId &&
+                base.Equals(source, target) &&
                 source.TimeZone == target.TimeZone
             ;
         }
@@ -160,10 +157,10 @@ namespace VisualCard.Parts.Implementations
 
         internal TimeDateZoneInfo() { }
 
-        internal TimeDateZoneInfo(int altId, string[] altArguments, string[] timeZoneTypes, string timeZone)
+        internal TimeDateZoneInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string[] timeZoneTypes, string timeZone)
         {
             AltId = altId;
-            AltArguments = altArguments;
+            Arguments = arguments;
             TimeZoneTypes = timeZoneTypes;
             TimeZone = timeZone;
         }

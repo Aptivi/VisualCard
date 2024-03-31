@@ -36,18 +36,15 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string ContactRole { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, int altId, Version cardVersion) =>
-            new RoleInfo().FromStringVcardInternal(value, altId, cardVersion);
-
-        internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion) =>
-            new RoleInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
+            new RoleInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion)
         {
             bool altIdSupported = cardVersion.Major >= 4;
             if (altIdSupported)
             {
-                bool installAltId = AltId >= 0 && AltArguments.Length > 0;
+                bool installAltId = AltId >= 0 && Arguments.Length > 0;
                 return
                     $"{VcardConstants._roleSpecifier}{(installAltId ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter)}" +
                     $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
@@ -62,7 +59,7 @@ namespace VisualCard.Parts.Implementations
             }
         }
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Get the value
             string roleValue = value.Substring(VcardConstants._roleSpecifier.Length + 1);
@@ -88,7 +85,7 @@ namespace VisualCard.Parts.Implementations
             bool altIdSupported = cardVersion.Major >= 4;
 
             // Populate the fields
-            RoleInfo _telephone = new(altIdSupported ? altId : 0, altIdSupported ? finalArgs : [], roleValue);
+            RoleInfo _telephone = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, roleValue);
             return _telephone;
         }
 
@@ -119,7 +116,7 @@ namespace VisualCard.Parts.Implementations
             // Check all the properties
             return
                 source.AltArguments.SequenceEqual(target.AltArguments) &&
-                source.AltId == target.AltId &&
+                base.Equals(source, target) &&
                 source.ContactRole == target.ContactRole
             ;
         }
@@ -144,10 +141,10 @@ namespace VisualCard.Parts.Implementations
 
         internal RoleInfo() { }
 
-        internal RoleInfo(int altId, string[] altArguments, string contactRole)
+        internal RoleInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string contactRole)
         {
             AltId = altId;
-            AltArguments = altArguments;
+            Arguments = arguments;
             ContactRole = contactRole;
         }
     }

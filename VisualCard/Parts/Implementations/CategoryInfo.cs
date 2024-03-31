@@ -37,11 +37,8 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string[] Category { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, int altId, Version cardVersion) =>
-            new CategoryInfo().FromStringVcardInternal(value, altId, cardVersion);
-
-        internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion) =>
-            new CategoryInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
+            new CategoryInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion)
         {
@@ -50,7 +47,7 @@ namespace VisualCard.Parts.Implementations
                 $"{Category}";
         }
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Get the value
             string categoryValue = value.Substring(VcardConstants._categoriesSpecifier.Length + 1);
@@ -99,7 +96,7 @@ namespace VisualCard.Parts.Implementations
             // Check all the properties
             return
                 source.AltArguments.SequenceEqual(target.AltArguments) &&
-                source.AltId == target.AltId &&
+                base.Equals(source, target) &&
                 source.Category == target.Category
             ;
         }
@@ -125,10 +122,10 @@ namespace VisualCard.Parts.Implementations
 
         internal CategoryInfo() { }
 
-        internal CategoryInfo(int altId, string[] altArguments, string[] category)
+        internal CategoryInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string[] category)
         {
             AltId = altId;
-            AltArguments = altArguments;
+            Arguments = arguments;
             Category = category;
         }
     }

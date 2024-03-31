@@ -50,18 +50,15 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string Role { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, int altId, Version cardVersion) =>
-            new OrganizationInfo().FromStringVcardInternal(value, altId, cardVersion);
-
-        internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion) =>
-            new OrganizationInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
+            new OrganizationInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion)
         {
             bool altIdSupported = cardVersion.Major >= 4;
             if (altIdSupported)
             {
-                bool installAltId = AltId >= 0 && AltArguments.Length > 0;
+                bool installAltId = AltId >= 0 && Arguments.Length > 0;
                 bool installType = (installAltId || OrgTypes.Length > 0) && OrgTypes[0].ToUpper() != "WORK";
                 return
                     $"{VcardConstants._orgSpecifier}{(installType || installAltId ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter)}" +
@@ -83,7 +80,7 @@ namespace VisualCard.Parts.Implementations
             }
         }
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Get the value
             string orgValue = value.Substring(VcardConstants._orgSpecifier.Length + 1);
@@ -124,7 +121,7 @@ namespace VisualCard.Parts.Implementations
             string _orgName = Regex.Unescape(splitOrg[0]);
             string _orgUnit = Regex.Unescape(splitOrg.Length >= 2 ? splitOrg[1] : "");
             string _orgUnitRole = Regex.Unescape(splitOrg.Length >= 3 ? splitOrg[2] : "");
-            OrganizationInfo _org = new(altIdSupported ? altId : 0, altIdSupported ? finalArgs : [], _orgName, _orgUnit, _orgUnitRole, _orgTypes);
+            OrganizationInfo _org = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, _orgName, _orgUnit, _orgUnitRole, _orgTypes);
             return _org;
         }
 
@@ -156,7 +153,7 @@ namespace VisualCard.Parts.Implementations
             return
                 source.OrgTypes.SequenceEqual(target.OrgTypes) &&
                 source.AltArguments.SequenceEqual(target.AltArguments) &&
-                source.AltId == target.AltId &&
+                base.Equals(source, target) &&
                 source.Name == target.Name &&
                 source.Unit == target.Unit &&
                 source.Role == target.Role
@@ -186,10 +183,10 @@ namespace VisualCard.Parts.Implementations
 
         internal OrganizationInfo() { }
 
-        internal OrganizationInfo(int altId, string[] altArguments, string name, string unit, string role, string[] orgTypes)
+        internal OrganizationInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string name, string unit, string role, string[] orgTypes)
         {
             AltId = altId;
-            AltArguments = altArguments;
+            Arguments = arguments;
             Name = name;
             Unit = unit;
             Role = role;

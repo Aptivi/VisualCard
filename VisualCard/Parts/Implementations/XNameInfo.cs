@@ -44,18 +44,15 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string[] XValues { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, int altId, Version cardVersion) =>
-            new XNameInfo().FromStringVcardInternal(value, altId, cardVersion);
-
-        internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion) =>
-            new XNameInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
+            new XNameInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion)
         {
             bool altIdSupported = cardVersion.Major >= 4;
             if (altIdSupported)
             {
-                bool installAltId = AltId >= 0 && AltArguments.Length > 0;
+                bool installAltId = AltId >= 0 && Arguments.Length > 0;
                 bool installType = installAltId && XKeyTypes.Length > 0;
                 return
                     $"{VcardConstants._xSpecifier}" +
@@ -74,7 +71,7 @@ namespace VisualCard.Parts.Implementations
             }
         }
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Get the value
             string xValue = value.Substring(VcardConstants._xSpecifier.Length);
@@ -112,7 +109,7 @@ namespace VisualCard.Parts.Implementations
                                         .Split(VcardConstants._fieldDelimiter) :
                                [];
             string[] _xValues = splitX[1].Split(VcardConstants._fieldDelimiter);
-            XNameInfo _x = new(altIdSupported ? altId : 0, altIdSupported ? finalArgs : [], _xName, _xValues, _xTypes);
+            XNameInfo _x = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, _xName, _xValues, _xTypes);
             return _x;
         }
 
@@ -145,7 +142,7 @@ namespace VisualCard.Parts.Implementations
                 source.AltArguments.SequenceEqual(target.AltArguments) &&
                 source.XKeyTypes.SequenceEqual(target.XKeyTypes) &&
                 source.XValues.SequenceEqual(target.XValues) &&
-                source.AltId == target.AltId &&
+                base.Equals(source, target) &&
                 source.XKeyName == target.XKeyName
             ;
         }
@@ -172,10 +169,10 @@ namespace VisualCard.Parts.Implementations
 
         internal XNameInfo() { }
 
-        internal XNameInfo(int altId, string[] altArguments, string xKeyName, string[] xValues, string[] xKeyTypes)
+        internal XNameInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string xKeyName, string[] xValues, string[] xKeyTypes)
         {
             AltId = altId;
-            AltArguments = altArguments;
+            Arguments = arguments;
             XKeyName = xKeyName;
             XValues = xValues;
             XKeyTypes = xKeyTypes;

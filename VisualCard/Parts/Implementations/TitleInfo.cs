@@ -37,18 +37,15 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string ContactTitle { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, int altId, Version cardVersion) =>
-            new TitleInfo().FromStringVcardInternal(value, altId, cardVersion);
-
-        internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion) =>
-            new TitleInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
+            new TitleInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion)
         {
             bool altIdSupported = cardVersion.Major >= 4;
             if (altIdSupported)
             {
-                bool installAltId = AltId >= 0 && AltArguments.Length > 0;
+                bool installAltId = AltId >= 0 && Arguments.Length > 0;
                 return
                     $"{(installAltId ? $"{VcardConstants._titleSpecifier};" : $"{VcardConstants._titleSpecifier}:")}" +
                     $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
@@ -63,7 +60,7 @@ namespace VisualCard.Parts.Implementations
             }
         }
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Get the value
             string titleValue = value.Substring(VcardConstants._titleSpecifier.Length + 1);
@@ -89,7 +86,7 @@ namespace VisualCard.Parts.Implementations
         {
             bool altIdSupported = cardVersion.Major >= 4;
             string _title = Regex.Unescape(splitTitleParts.Length > 1 ? splitTitleParts[1] : splitTitleParts[0]);
-            TitleInfo _titleInfo = new(altIdSupported ? altId : 0, altIdSupported ? finalArgs : [], _title);
+            TitleInfo _titleInfo = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, _title);
             return _titleInfo;
         }
 
@@ -120,7 +117,7 @@ namespace VisualCard.Parts.Implementations
             // Check all the properties
             return
                 source.AltArguments.SequenceEqual(target.AltArguments) &&
-                source.AltId == target.AltId &&
+                base.Equals(source, target) &&
                 source.ContactTitle == target.ContactTitle
             ;
         }
@@ -145,10 +142,10 @@ namespace VisualCard.Parts.Implementations
 
         internal TitleInfo() { }
 
-        internal TitleInfo(int altId, string[] altArguments, string contactTitle)
+        internal TitleInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string contactTitle)
         {
             AltId = altId;
-            AltArguments = altArguments;
+            Arguments = arguments;
             ContactTitle = contactTitle;
         }
     }

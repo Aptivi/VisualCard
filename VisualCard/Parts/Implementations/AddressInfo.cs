@@ -21,7 +21,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Text.RegularExpressions;
 using VisualCard.Parsers;
 
@@ -33,10 +32,6 @@ namespace VisualCard.Parts.Implementations
     [DebuggerDisplay("Address = {PostOfficeBox}, {ExtendedAddress}, {StreetAddress}, {Locality}, {Region}, {PostalCode}, {Country}")]
     public class AddressInfo : BaseCardPartInfo, IEquatable<AddressInfo>
     {
-        /// <summary>
-        /// The contact's address types
-        /// </summary>
-        public string[] AddressTypes { get; }
         /// <summary>
         /// The contact's post office box
         /// </summary>
@@ -66,22 +61,19 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string Country { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, int altId, Version cardVersion) =>
-            new AddressInfo().FromStringVcardInternal(value, altId, cardVersion);
-
-        internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion) =>
-            new AddressInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
+            new AddressInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion)
         {
             bool altIdSupported = cardVersion.Major >= 4;
             if (altIdSupported)
             {
-                bool installAltId = AltId >= 0 && AltArguments.Length > 0;
+                bool installAltId = AltId >= 0 && Arguments.Length > 0;
                 return
                     $"{VcardConstants._addressSpecifier};" +
                     $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
-                    $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", AddressTypes)}{VcardConstants._argumentDelimiter}" +
+                    $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", ElementTypes)}{VcardConstants._argumentDelimiter}" +
                     $"{PostOfficeBox}{VcardConstants._fieldDelimiter}" +
                     $"{ExtendedAddress}{VcardConstants._fieldDelimiter}" +
                     $"{StreetAddress}{VcardConstants._fieldDelimiter}" +
@@ -94,7 +86,7 @@ namespace VisualCard.Parts.Implementations
             {
                 return
                     $"{VcardConstants._addressSpecifier};" +
-                    $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", AddressTypes)}{VcardConstants._argumentDelimiter}" +
+                    $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", ElementTypes)}{VcardConstants._argumentDelimiter}" +
                     $"{PostOfficeBox}{VcardConstants._fieldDelimiter}" +
                     $"{ExtendedAddress}{VcardConstants._fieldDelimiter}" +
                     $"{StreetAddress}{VcardConstants._fieldDelimiter}" +
@@ -105,56 +97,27 @@ namespace VisualCard.Parts.Implementations
             }
         }
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion)
-        {
-            // Get the value
-            string adrValue = value.Substring(VcardConstants._addressSpecifier.Length + 1);
-            string[] splitAdr = adrValue.Split(VcardConstants._argumentDelimiter);
-
-            // Check the provided address
-            string[] splitAddressValues = splitAdr[0].Split(VcardConstants._fieldDelimiter);
-            if (splitAddressValues.Length < 7)
-                throw new InvalidDataException("Address information must specify exactly seven values (P.O. Box, extended address, street address, locality, region, postal code, and country)");
-
-            // Populate the fields
-            return InstallInfo([], splitAddressValues, altId, cardVersion);
-        }
-
-        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion)
-        {
-            // Get the value
-            string adrValue = value.Substring(VcardConstants._addressSpecifier.Length + 1);
-            string[] splitAdr = adrValue.Split(VcardConstants._argumentDelimiter);
-            if (splitAdr.Length < 2)
-                throw new InvalidDataException("Address field must specify exactly two values (Type (optionally prepended with TYPE=), and address information)");
-
-            // Check the provided address
-            string[] splitAddressValues = splitAdr[1].Split(VcardConstants._fieldDelimiter);
-            if (splitAddressValues.Length < 7)
-                throw new InvalidDataException("Address information must specify exactly seven values (P.O. Box, extended address, street address, locality, region, postal code, and country)");
-
-            // Populate the fields
-            return InstallInfo(splitAdr, splitAddressValues, finalArgs, altId, cardVersion);
-        }
-
-        private AddressInfo InstallInfo(string[] splitAdr, string[] splitAddressValues, int altId, Version cardVersion) =>
-            InstallInfo(splitAdr, splitAddressValues, [], altId, cardVersion);
-
-        private AddressInfo InstallInfo(string[] splitAdr, string[] splitAddressValues, string[] finalArgs, int altId, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
             bool altIdSupported = cardVersion.Major >= 4;
-            bool specifierRequired = cardVersion.Major >= 3;
+
+            // Get the value
+            string[] splitAdr = value.Split(VcardConstants._argumentDelimiter);
+
+            // Check the provided address
+            if (splitAdr.Length < 7)
+                throw new InvalidDataException("Address information must specify exactly seven values (P.O. Box, extended address, street address, locality, region, postal code, and country)");
 
             // Populate the fields
-            string[] _addressTypes = splitAdr.Length == 0 ? ["HOME"] : VcardParserTools.GetTypes(splitAdr, "HOME", specifierRequired);
-            string _addressPOBox = Regex.Unescape(splitAddressValues[0]);
-            string _addressExtended = Regex.Unescape(splitAddressValues[1]);
-            string _addressStreet = Regex.Unescape(splitAddressValues[2]);
-            string _addressLocality = Regex.Unescape(splitAddressValues[3]);
-            string _addressRegion = Regex.Unescape(splitAddressValues[4]);
-            string _addressPostalCode = Regex.Unescape(splitAddressValues[5]);
-            string _addressCountry = Regex.Unescape(splitAddressValues[6]);
-            AddressInfo _address = new(altIdSupported ? altId : 0, altIdSupported ? finalArgs : [], _addressTypes, _addressPOBox, _addressExtended, _addressStreet, _addressLocality, _addressRegion, _addressPostalCode, _addressCountry);
+            string[] _addressTypes = elementTypes.Length >= 0 ? elementTypes : ["HOME"];
+            string _addressPOBox = Regex.Unescape(splitAdr[0]);
+            string _addressExtended = Regex.Unescape(splitAdr[1]);
+            string _addressStreet = Regex.Unescape(splitAdr[2]);
+            string _addressLocality = Regex.Unescape(splitAdr[3]);
+            string _addressRegion = Regex.Unescape(splitAdr[4]);
+            string _addressPostalCode = Regex.Unescape(splitAdr[5]);
+            string _addressCountry = Regex.Unescape(splitAdr[6]);
+            AddressInfo _address = new(altIdSupported ? altId : 0, finalArgs, _addressTypes, valueType, _addressPOBox, _addressExtended, _addressStreet, _addressLocality, _addressRegion, _addressPostalCode, _addressCountry);
             return _address;
         }
 
@@ -184,9 +147,7 @@ namespace VisualCard.Parts.Implementations
 
             // Check all the properties
             return
-                source.AddressTypes.SequenceEqual(target.AddressTypes) &&
-                source.AltArguments.SequenceEqual(target.AltArguments) &&
-                source.AltId == target.AltId &&
+                base.Equals(source, target) &&
                 source.PostOfficeBox == target.PostOfficeBox &&
                 source.ExtendedAddress == target.ExtendedAddress &&
                 source.StreetAddress == target.StreetAddress &&
@@ -200,10 +161,8 @@ namespace VisualCard.Parts.Implementations
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = -1858114484;
-            hashCode = hashCode * -1521134295 + AltId.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(AltArguments);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(AddressTypes);
+            int hashCode = -427937047;
+            hashCode = hashCode * -1521134295 + base.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(PostOfficeBox);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ExtendedAddress);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(StreetAddress);
@@ -224,11 +183,12 @@ namespace VisualCard.Parts.Implementations
 
         internal AddressInfo() { }
 
-        internal AddressInfo(int altId, string[] altArguments, string[] addressTypes, string postOfficeBox, string extendedAddress, string streetAddress, string locality, string region, string postalCode, string country)
+        internal AddressInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string postOfficeBox, string extendedAddress, string streetAddress, string locality, string region, string postalCode, string country)
         {
             AltId = altId;
-            AltArguments = altArguments;
-            AddressTypes = addressTypes;
+            Arguments = arguments;
+            ElementTypes = elementTypes;
+            ValueType = valueType;
             PostOfficeBox = postOfficeBox;
             ExtendedAddress = extendedAddress;
             StreetAddress = streetAddress;

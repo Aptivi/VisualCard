@@ -42,22 +42,19 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string XmlString { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, int altId, Version cardVersion) =>
-            new XmlInfo().FromStringVcardInternal(value, altId, cardVersion);
-
-        internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion) =>
-            new XmlInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
+            new XmlInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion)
         {
-            bool installAltId = AltId >= 0 && AltArguments.Length > 0;
+            bool installAltId = AltId >= 0 && Arguments.Length > 0;
             return
                 $"{VcardConstants._xmlSpecifier}" +
                 $"{(installAltId ? VcardConstants._fieldDelimiter + VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._argumentDelimiter : VcardConstants._argumentDelimiter)}" +
                 $"{XmlString}";
         }
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Get the value
             string xmlValue = value.Substring(VcardConstants._xmlSpecifier.Length + 1);
@@ -93,7 +90,7 @@ namespace VisualCard.Parts.Implementations
 
             // Add the fetched information
             bool altIdSupported = cardVersion.Major >= 4;
-            XmlInfo _xml = new(altIdSupported ? altId : 0, altIdSupported ? finalArgs : [], doc, value);
+            XmlInfo _xml = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, doc, value);
             return _xml;
         }
 
@@ -124,7 +121,7 @@ namespace VisualCard.Parts.Implementations
             // Check all the properties
             return
                 source.AltArguments.SequenceEqual(target.AltArguments) &&
-                source.AltId == target.AltId &&
+                base.Equals(source, target) &&
                 source.Xml == target.Xml
             ;
         }
@@ -150,10 +147,10 @@ namespace VisualCard.Parts.Implementations
 
         internal XmlInfo() { }
 
-        internal XmlInfo(int altId, string[] altArguments, XmlDocument xml, string xmlString)
+        internal XmlInfo(int altId, string[] arguments, string[] elementTypes, string valueType, XmlDocument xml, string xmlString)
         {
             AltId = altId;
-            AltArguments = altArguments;
+            Arguments = arguments;
             Xml = xml;
             XmlString = xmlString;
         }

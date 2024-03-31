@@ -45,18 +45,15 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string ContactLang { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, int altId, Version cardVersion) =>
-            new LangInfo().FromStringVcardInternal(value, altId, cardVersion);
-
-        internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion) =>
-            new LangInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
+            new LangInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion)
         {
             bool altIdSupported = cardVersion.Major >= 4;
             if (altIdSupported)
             {
-                bool installAltId = AltId >= 0 && AltArguments.Length > 0;
+                bool installAltId = AltId >= 0 && Arguments.Length > 0;
                 return
                     $"{VcardConstants._langSpecifier};" +
                     $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
@@ -74,7 +71,7 @@ namespace VisualCard.Parts.Implementations
             }
         }
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Get the value
             string langValue = value.Substring(VcardConstants._langSpecifier.Length + 1);
@@ -137,7 +134,7 @@ namespace VisualCard.Parts.Implementations
             // Check all the properties
             return
                 source.ContactLangTypes.SequenceEqual(target.ContactLangTypes) &&
-                source.AltId == target.AltId &&
+                base.Equals(source, target) &&
                 source.ContactLang == target.ContactLang
             ;
         }
@@ -163,10 +160,10 @@ namespace VisualCard.Parts.Implementations
 
         internal LangInfo() { }
 
-        internal LangInfo(int altId, string[] altArguments, string[] contactLangTypes, string contactLangCode)
+        internal LangInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string[] contactLangTypes, string contactLangCode)
         {
             AltId = altId;
-            AltArguments = altArguments;
+            Arguments = arguments;
             ContactLangTypes = contactLangTypes;
             ContactLang = contactLangCode;
         }

@@ -49,18 +49,15 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string SoundEncoded { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, int altId, Version cardVersion) =>
-            new SoundInfo().FromStringVcardInternal(value, altId, cardVersion);
-
-        internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion) =>
-            new SoundInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
+            new SoundInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion)
         {
             bool altIdSupported = cardVersion.Major >= 4;
             if (altIdSupported)
             {
-                bool installAltId = AltId >= 0 && AltArguments.Length > 0;
+                bool installAltId = AltId >= 0 && Arguments.Length > 0;
                 if (ValueType == "uri" || ValueType == "url")
                 {
                     return
@@ -103,7 +100,7 @@ namespace VisualCard.Parts.Implementations
             }
         }
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion) =>
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             throw new InvalidDataException("Sound field must not have empty type.");
 
         internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion)
@@ -132,7 +129,7 @@ namespace VisualCard.Parts.Implementations
             string soundType = VcardParserTools.GetTypesString(splitSound, "WAVE", false);
 
             // Populate the fields
-            SoundInfo _sound = new(altIdSupported ? altId : 0, altIdSupported ? finalArgs : [], valueType, soundEncoding, soundType, splitSound[1]);
+            SoundInfo _sound = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, valueType, soundEncoding, soundType, splitSound[1]);
             return _sound;
         }
 
@@ -163,7 +160,7 @@ namespace VisualCard.Parts.Implementations
             // Check all the properties
             return
                 source.AltArguments.SequenceEqual(target.AltArguments) &&
-                source.AltId == target.AltId &&
+                base.Equals(source, target) &&
                 source.ValueType == target.ValueType &&
                 source.Encoding == target.Encoding &&
                 source.SoundType == target.SoundType &&
@@ -194,10 +191,10 @@ namespace VisualCard.Parts.Implementations
 
         internal SoundInfo() { }
 
-        internal SoundInfo(int altId, string[] altArguments, string valueType, string encoding, string soundType, string soundEncoded)
+        internal SoundInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string valueType, string encoding, string soundType, string soundEncoded)
         {
             AltId = altId;
-            AltArguments = altArguments;
+            Arguments = arguments;
             ValueType = valueType;
             Encoding = encoding;
             SoundType = soundType;

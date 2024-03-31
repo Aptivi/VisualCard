@@ -42,18 +42,15 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string ContactEmailAddress { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, int altId, Version cardVersion) =>
-            new EmailInfo().FromStringVcardInternal(value, altId, cardVersion);
-
-        internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion) =>
-            new EmailInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
+            new EmailInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion)
         {
             bool altIdSupported = cardVersion.Major >= 4;
             if (altIdSupported)
             {
-                bool installAltId = AltId >= 0 && AltArguments.Length > 0;
+                bool installAltId = AltId >= 0 && Arguments.Length > 0;
                 return
                     $"{VcardConstants._emailSpecifier};" +
                     $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
@@ -69,7 +66,7 @@ namespace VisualCard.Parts.Implementations
             }
         }
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Get the value
             string mailValue = value.Substring(VcardConstants._emailSpecifier.Length + 1);
@@ -114,7 +111,7 @@ namespace VisualCard.Parts.Implementations
             // Populate the fields
             string[] _emailTypes = installType ? VcardParserTools.GetTypes(splitMail, "HOME", specifierRequired) : ["HOME"];
             string _emailAddress = mail.Address;
-            EmailInfo _address = new(altIdSupported ? altId : 0, altIdSupported ? finalArgs : [], _emailTypes, _emailAddress);
+            EmailInfo _address = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, _emailTypes, _emailAddress);
             return _address;
         }
 
@@ -144,8 +141,7 @@ namespace VisualCard.Parts.Implementations
 
             // Check all the properties
             return
-                source.ContactEmailTypes.SequenceEqual(target.ContactEmailTypes) &&
-                source.AltId == target.AltId &&
+                base.Equals(source, target) &&
                 source.ContactEmailAddress == target.ContactEmailAddress
             ;
         }
@@ -171,10 +167,12 @@ namespace VisualCard.Parts.Implementations
 
         internal EmailInfo() { }
 
-        internal EmailInfo(int altId, string[] altArguments, string[] contactEmailTypes, string contactEmailAddress)
+        internal EmailInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string[] contactEmailTypes, string contactEmailAddress)
         {
             AltId = altId;
-            AltArguments = altArguments;
+            Arguments = arguments;
+            ElementTypes = elementTypes;
+            ValueType = valueType;
             ContactEmailTypes = contactEmailTypes;
             ContactEmailAddress = contactEmailAddress;
         }

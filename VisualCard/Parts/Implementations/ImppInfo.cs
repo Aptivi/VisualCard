@@ -42,18 +42,15 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string[] ImppTypes { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, int altId, Version cardVersion) =>
-            new ImppInfo().FromStringVcardInternal(value, altId, cardVersion);
-
-        internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion) =>
-            new ImppInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
+            new ImppInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion)
         {
             bool altIdSupported = cardVersion.Major >= 4;
             if (altIdSupported)
             {
-                bool installAltId = AltId >= 0 && AltArguments.Length > 0;
+                bool installAltId = AltId >= 0 && Arguments.Length > 0;
                 bool installType = ImppTypes.Length > 0 && ImppTypes[0].ToUpper() != "HOME";
                 return
                     $"{VcardConstants._imppSpecifier}{(installType || installAltId ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter)}" +
@@ -71,7 +68,7 @@ namespace VisualCard.Parts.Implementations
             }
         }
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Get the value
             string imppValue = value.Substring(VcardConstants._imppSpecifier.Length + 1);
@@ -109,7 +106,7 @@ namespace VisualCard.Parts.Implementations
                 Regex.Unescape(imppValue.Substring(imppValue.IndexOf(":") + 1)) :
                 Regex.Unescape(imppValue);
 
-            ImppInfo _imppInstance = new(altIdSupported ? altId : 0, altIdSupported ? finalArgs : [], _impp, types);
+            ImppInfo _imppInstance = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, _impp, types);
             return _imppInstance;
         }
 
@@ -141,7 +138,7 @@ namespace VisualCard.Parts.Implementations
             return
                 source.AltArguments.SequenceEqual(target.AltArguments) &&
                 source.ImppTypes.SequenceEqual(target.ImppTypes) &&
-                source.AltId == target.AltId &&
+                base.Equals(source, target) &&
                 source.ContactIMPP == target.ContactIMPP
             ;
         }
@@ -167,10 +164,10 @@ namespace VisualCard.Parts.Implementations
 
         internal ImppInfo() { }
 
-        internal ImppInfo(int altId, string[] altArguments, string contactImpp, string[] imppTypes)
+        internal ImppInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string contactImpp, string[] imppTypes)
         {
             AltId = altId;
-            AltArguments = altArguments;
+            Arguments = arguments;
             ContactIMPP = contactImpp;
             ImppTypes = imppTypes;
         }

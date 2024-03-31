@@ -27,18 +27,28 @@ namespace VisualCard.Parts
     /// <summary>
     /// Base card part class
     /// </summary>
-    [DebuggerDisplay("Base card part = ALTID: {AltId}")]
+    [DebuggerDisplay("Base card part | ALTID: {AltId}, TYPE: {ElementType}, VALUE: {ValueType}")]
     public abstract class BaseCardPartInfo : IEquatable<BaseCardPartInfo>
     {
         /// <summary>
-        /// Arguments that follow the AltId
+        /// Final arguments
         /// </summary>
-        public virtual string[] AltArguments { get; internal set; }
+        public virtual string[] Arguments { get; internal set; }
 
         /// <summary>
         /// Alternative ID. Zero if unspecified.
         /// </summary>
         public virtual int AltId { get; internal set; }
+
+        /// <summary>
+        /// Card element type (home, work, ...)
+        /// </summary>
+        public virtual string[] ElementTypes { get; internal set; }
+
+        /// <summary>
+        /// Value type (usually set by VALUE=)
+        /// </summary>
+        public virtual string ValueType { get; internal set; }
 
         /// <summary>
         /// Checks to see if both the parts are equal
@@ -62,8 +72,10 @@ namespace VisualCard.Parts
 
             // Check all the properties
             return
-                source.AltArguments.SequenceEqual(target.AltArguments) &&
-                source.AltId == target.AltId
+                source.Arguments.SequenceEqual(target.Arguments) &&
+                source.AltId == target.AltId &&
+                source.ElementTypes == target.ElementTypes &&
+                source.ValueType == target.ValueType
             ;
         }
 
@@ -74,9 +86,11 @@ namespace VisualCard.Parts
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = -2100286935;
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(AltArguments);
+            int hashCode = 936749766;
+            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(Arguments);
             hashCode = hashCode * -1521134295 + AltId.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(ElementTypes);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ValueType);
             return hashCode;
         }
 
@@ -88,9 +102,7 @@ namespace VisualCard.Parts
         public static bool operator !=(BaseCardPartInfo left, BaseCardPartInfo right) =>
             !(left == right);
 
-        internal abstract BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion);
-
-        internal abstract BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion);
+        internal abstract BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion);
 
         internal abstract string ToStringVcardInternal(Version cardVersion);
     }

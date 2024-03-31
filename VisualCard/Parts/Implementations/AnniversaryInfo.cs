@@ -36,30 +36,15 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public DateTime? Anniversary { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, int altId, Version cardVersion) =>
-            new AnniversaryInfo().FromStringVcardInternal(value, altId, cardVersion);
-
-        internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion) =>
-            new AnniversaryInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
+            new AnniversaryInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             $"{VcardConstants._anniversarySpecifier}:{Anniversary:yyyyMMdd}";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
-            // Get the value
-            string anniversaryValue = value.Substring(VcardConstants._anniversarySpecifier.Length + 1);
-
             // Populate the fields
-            return InstallInfo(anniversaryValue);
-        }
-
-        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion) =>
-            FromStringVcardInternal(value, altId, cardVersion);
-
-        private AnniversaryInfo InstallInfo(string value)
-        {
-            // Populate field
             DateTime anniversary;
             if (int.TryParse(value, out _) && value.Length == 8)
             {
@@ -74,7 +59,7 @@ namespace VisualCard.Parts.Implementations
                 anniversary = DateTime.Parse(value);
 
             // Add the fetched information
-            AnniversaryInfo _time = new(0, [], anniversary);
+            AnniversaryInfo _time = new(0, [], [], valueType, anniversary);
             return _time;
         }
 
@@ -104,8 +89,7 @@ namespace VisualCard.Parts.Implementations
 
             // Check all the properties
             return
-                source.AltArguments.SequenceEqual(target.AltArguments) &&
-                source.AltId == target.AltId &&
+                base.Equals(source, target) &&
                 source.Anniversary == target.Anniversary
             ;
         }
@@ -113,10 +97,8 @@ namespace VisualCard.Parts.Implementations
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = -2035919920;
+            int hashCode = 382927327;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(AltArguments);
-            hashCode = hashCode * -1521134295 + AltId.GetHashCode();
             hashCode = hashCode * -1521134295 + Anniversary.GetHashCode();
             return hashCode;
         }
@@ -131,10 +113,12 @@ namespace VisualCard.Parts.Implementations
 
         internal AnniversaryInfo() { }
 
-        internal AnniversaryInfo(int altId, string[] altArguments, DateTime? anniversary)
+        internal AnniversaryInfo(int altId, string[] arguments, string[] elementTypes, string valueType, DateTime? anniversary)
         {
             AltId = altId;
-            AltArguments = altArguments;
+            Arguments = arguments;
+            ElementTypes = elementTypes;
+            ValueType = valueType;
             Anniversary = anniversary;
         }
     }

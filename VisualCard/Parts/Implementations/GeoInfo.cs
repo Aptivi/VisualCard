@@ -42,18 +42,15 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string Geo { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, int altId, Version cardVersion) =>
-            new GeoInfo().FromStringVcardInternal(value, altId, cardVersion);
-
-        internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion) =>
-            new GeoInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
+            new GeoInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion)
         {
             bool altIdSupported = cardVersion.Major >= 4;
             if (altIdSupported)
             {
-                bool installAltId = AltId >= 0 && AltArguments.Length > 0;
+                bool installAltId = AltId >= 0 && Arguments.Length > 0;
                 return
                     $"{VcardConstants._geoSpecifier}{(installAltId ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter)}" +
                     $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
@@ -68,7 +65,7 @@ namespace VisualCard.Parts.Implementations
             }
         }
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Get the value
             string geoValue = value.Substring(VcardConstants._geoSpecifier.Length + 1);
@@ -102,7 +99,7 @@ namespace VisualCard.Parts.Implementations
             string _geoStr = Regex.Unescape(typesSupported ? installType ? splitGeo[1] : splitGeo[0] : splitGeo[0]);
 
             // Populate the fields
-            GeoInfo _geo = new(altIdSupported ? altId : 0, altIdSupported ? finalArgs : [], _geoTypes, _geoStr);
+            GeoInfo _geo = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, _geoTypes, _geoStr);
             return _geo;
         }
 
@@ -134,7 +131,7 @@ namespace VisualCard.Parts.Implementations
             return
                 source.AltArguments.SequenceEqual(target.AltArguments) &&
                 source.GeoTypes.SequenceEqual(target.GeoTypes) &&
-                source.AltId == target.AltId &&
+                base.Equals(source, target) &&
                 source.Geo == target.Geo
             ;
         }
@@ -160,10 +157,10 @@ namespace VisualCard.Parts.Implementations
 
         internal GeoInfo() { }
 
-        internal GeoInfo(int altId, string[] altArguments, string[] geoTypes, string geo)
+        internal GeoInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string[] geoTypes, string geo)
         {
             AltId = altId;
-            AltArguments = altArguments;
+            Arguments = arguments;
             GeoTypes = geoTypes;
             Geo = geo;
         }

@@ -36,16 +36,13 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public DateTime? Revision { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, int altId, Version cardVersion) =>
-            new RevisionInfo().FromStringVcardInternal(value, altId, cardVersion);
-
-        internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion) =>
-            new RevisionInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
+            new RevisionInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             $"{VcardConstants._revSpecifier}:{Revision:yyyy-MM-dd HH:mm:ss}";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Get the value
             string revValue = value.Substring(VcardConstants._revSpecifier.Length + 1);
@@ -67,7 +64,7 @@ namespace VisualCard.Parts.Implementations
 
             // Add the fetched information
             bool altIdSupported = cardVersion.Major >= 4;
-            RevisionInfo _time = new(altIdSupported ? altId : 0, altIdSupported ? finalArgs : [], rev);
+            RevisionInfo _time = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, rev);
             return _time;
         }
 
@@ -98,7 +95,7 @@ namespace VisualCard.Parts.Implementations
             // Check all the properties
             return
                 source.AltArguments.SequenceEqual(target.AltArguments) &&
-                source.AltId == target.AltId &&
+                base.Equals(source, target) &&
                 source.Revision == target.Revision
             ;
         }
@@ -123,10 +120,10 @@ namespace VisualCard.Parts.Implementations
 
         internal RevisionInfo() { }
 
-        internal RevisionInfo(int altId, string[] altArguments, DateTime? birth)
+        internal RevisionInfo(int altId, string[] arguments, string[] elementTypes, string valueType, DateTime? birth)
         {
             AltId = altId;
-            AltArguments = altArguments;
+            Arguments = arguments;
             Revision = birth;
         }
     }

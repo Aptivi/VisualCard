@@ -42,18 +42,15 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string DeliveryLabel { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, int altId, Version cardVersion) =>
-            new LabelAddressInfo().FromStringVcardInternal(value, altId, cardVersion);
-
-        internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion) =>
-            new LabelAddressInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
+            new LabelAddressInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion)
         {
             bool altIdSupported = cardVersion.Major >= 4;
             if (altIdSupported)
             {
-                bool installAltId = AltId >= 0 && AltArguments.Length > 0;
+                bool installAltId = AltId >= 0 && Arguments.Length > 0;
                 return
                     $"{VcardConstants._labelSpecifier};" +
                     $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
@@ -69,7 +66,7 @@ namespace VisualCard.Parts.Implementations
             }
         }
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Get the value
             string adrValue = value.Substring(VcardConstants._labelSpecifier.Length + 1);
@@ -113,7 +110,7 @@ namespace VisualCard.Parts.Implementations
             // Populate the fields
             string[] _addressTypes = defaultType ? ["HOME"] : VcardParserTools.GetTypes(splitAdr, "HOME", specifierRequired);
             string _addressLabel = Regex.Unescape(splitAddressValues[0]);
-            LabelAddressInfo _address = new(altIdSupported ? altId : 0, altIdSupported ? finalArgs : [], _addressTypes, _addressLabel);
+            LabelAddressInfo _address = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, _addressTypes, _addressLabel);
             return _address;
         }
 
@@ -145,7 +142,7 @@ namespace VisualCard.Parts.Implementations
             return
                 source.AddressTypes.SequenceEqual(target.AddressTypes) &&
                 source.AltArguments.SequenceEqual(target.AltArguments) &&
-                source.AltId == target.AltId &&
+                base.Equals(source, target) &&
                 source.DeliveryLabel == target.DeliveryLabel
             ;
         }
@@ -171,10 +168,10 @@ namespace VisualCard.Parts.Implementations
 
         internal LabelAddressInfo() { }
 
-        internal LabelAddressInfo(int altId, string[] altArguments, string[] addressTypes, string label)
+        internal LabelAddressInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string[] addressTypes, string label)
         {
             AltId = altId;
-            AltArguments = altArguments;
+            Arguments = arguments;
             AddressTypes = addressTypes;
             DeliveryLabel = label;
         }

@@ -54,18 +54,15 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string[] Suffixes { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, int altId, Version cardVersion) =>
-            new NameInfo().FromStringVcardInternal(value, altId, cardVersion);
-
-        internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion) =>
-            new NameInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
+            new NameInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion)
         {
             bool altIdSupported = cardVersion.Major >= 4;
             if (altIdSupported)
             {
-                bool installAltId = AltId >= 0 && AltArguments.Length > 0;
+                bool installAltId = AltId >= 0 && Arguments.Length > 0;
                 string altNamesStr = string.Join(VcardConstants._valueDelimiter.ToString(), AltNames);
                 string prefixesStr = string.Join(VcardConstants._valueDelimiter.ToString(), Prefixes);
                 string suffixesStr = string.Join(VcardConstants._valueDelimiter.ToString(), Suffixes);
@@ -94,7 +91,7 @@ namespace VisualCard.Parts.Implementations
             }
         }
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Check the line
             string nameValue = value.Substring(VcardConstants._nameSpecifier.Length + 1);
@@ -132,7 +129,7 @@ namespace VisualCard.Parts.Implementations
             string[] _altNames = splitName.Length >= 3 ? Regex.Unescape(splitName[2]).Split(new char[] { VcardConstants._valueDelimiter }, StringSplitOptions.RemoveEmptyEntries) : [];
             string[] _prefixes = splitName.Length >= 4 ? Regex.Unescape(splitName[3]).Split(new char[] { VcardConstants._valueDelimiter }, StringSplitOptions.RemoveEmptyEntries) : [];
             string[] _suffixes = splitName.Length >= 5 ? Regex.Unescape(splitName[4]).Split(new char[] { VcardConstants._valueDelimiter }, StringSplitOptions.RemoveEmptyEntries) : [];
-            NameInfo _name = new(altIdSupported ? altId : 0, altIdSupported ? finalArgs : [], _firstName, _lastName, _altNames, _prefixes, _suffixes);
+            NameInfo _name = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, _firstName, _lastName, _altNames, _prefixes, _suffixes);
             return _name;
         }
 
@@ -166,7 +163,7 @@ namespace VisualCard.Parts.Implementations
                 source.AltNames.SequenceEqual(target.AltNames) &&
                 source.Prefixes.SequenceEqual(target.Prefixes) &&
                 source.Suffixes.SequenceEqual(target.Suffixes) &&
-                source.AltId == target.AltId &&
+                base.Equals(source, target) &&
                 source.ContactFirstName == target.ContactFirstName &&
                 source.ContactLastName == target.ContactLastName
             ;
@@ -196,10 +193,10 @@ namespace VisualCard.Parts.Implementations
 
         internal NameInfo() { }
 
-        internal NameInfo(int altId, string[] altArguments, string contactFirstName, string contactLastName, string[] altNames, string[] prefixes, string[] suffixes)
+        internal NameInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string contactFirstName, string contactLastName, string[] altNames, string[] prefixes, string[] suffixes)
         {
             AltId = altId;
-            AltArguments = altArguments;
+            Arguments = arguments;
             ContactFirstName = contactFirstName;
             ContactLastName = contactLastName;
             AltNames = altNames;

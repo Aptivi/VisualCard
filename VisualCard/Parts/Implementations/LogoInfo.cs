@@ -49,18 +49,15 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string LogoEncoded { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, int altId, Version cardVersion) =>
-            new LogoInfo().FromStringVcardInternal(value, altId, cardVersion);
-
-        internal static BaseCardPartInfo FromStringVcardWithTypeStatic(string value, string[] finalArgs, int altId, Version cardVersion) =>
-            new LogoInfo().FromStringVcardWithTypeInternal(value, finalArgs, altId, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
+            new LogoInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion)
         {
             bool altIdSupported = cardVersion.Major >= 4;
             if (altIdSupported)
             {
-                bool installAltId = AltId >= 0 && AltArguments.Length > 0;
+                bool installAltId = AltId >= 0 && Arguments.Length > 0;
                 if (ValueType == "uri" || ValueType == "url")
                 {
                     return
@@ -103,7 +100,7 @@ namespace VisualCard.Parts.Implementations
             }
         }
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, int altId, Version cardVersion) =>
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             throw new InvalidDataException("Logo field must not have empty type.");
 
         internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion)
@@ -132,7 +129,7 @@ namespace VisualCard.Parts.Implementations
             string logoType = VcardParserTools.GetTypesString(splitLogo, "JPEG", false);
 
             // Populate the fields
-            LogoInfo _logo = new(altIdSupported ? altId : 0, altIdSupported ? finalArgs : [], valueType, logoEncoding, logoType, splitLogo[1]);
+            LogoInfo _logo = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, valueType, logoEncoding, logoType, splitLogo[1]);
             return _logo;
         }
 
@@ -163,7 +160,7 @@ namespace VisualCard.Parts.Implementations
             // Check all the properties
             return
                 source.AltArguments.SequenceEqual(target.AltArguments) &&
-                source.AltId == target.AltId &&
+                base.Equals(source, target) &&
                 source.ValueType == target.ValueType &&
                 source.Encoding == target.Encoding &&
                 source.LogoType == target.LogoType &&
@@ -194,10 +191,10 @@ namespace VisualCard.Parts.Implementations
 
         internal LogoInfo() { }
 
-        internal LogoInfo(int altId, string[] altArguments, string valueType, string encoding, string logoType, string logoEncoded)
+        internal LogoInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string valueType, string encoding, string logoType, string logoEncoded)
         {
             AltId = altId;
-            AltArguments = altArguments;
+            Arguments = arguments;
             ValueType = valueType;
             Encoding = encoding;
             LogoType = logoType;
