@@ -75,7 +75,7 @@ namespace VisualCard.Parts.Implementations
 
         /// <inheritdoc/>
         public override bool Equals(object obj) =>
-            base.Equals(obj);
+            Equals((TimeDateZoneInfo)obj);
 
         /// <summary>
         /// Checks to see if both the parts are equal
@@ -94,12 +94,11 @@ namespace VisualCard.Parts.Implementations
         public bool Equals(TimeDateZoneInfo source, TimeDateZoneInfo target)
         {
             // We can't perform this operation on null.
-            if (source is null)
+            if (source is null || target is null)
                 return false;
 
             // Check all the properties
             return
-                base.Equals(source, target) &&
                 source.TimeZone == target.TimeZone
             ;
         }
@@ -120,6 +119,9 @@ namespace VisualCard.Parts.Implementations
         /// <inheritdoc/>
         public static bool operator !=(TimeDateZoneInfo left, TimeDateZoneInfo right) =>
             !(left == right);
+
+        internal override bool EqualsInternal(BaseCardPartInfo source, BaseCardPartInfo target) =>
+            ((TimeDateZoneInfo)source) == ((TimeDateZoneInfo)target);
 
         internal TimeDateZoneInfo() { }
 

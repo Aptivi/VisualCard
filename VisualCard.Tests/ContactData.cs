@@ -310,9 +310,9 @@ namespace VisualCard.Tests
             ORG:Organization
             TITLE:Title
             NOTE:Notes
-            X-AIM;HOME:IM
-            X-MSN;HOME:Windows LIVE
-            X-YAHOO;HOME:Yahoo
+            X-AIM;TYPE=HOME:IM
+            X-MSN;TYPE=HOME:Windows LIVE
+            X-YAHOO;TYPE=HOME:Yahoo
             END:VCARD
 
             BEGIN:VCARD

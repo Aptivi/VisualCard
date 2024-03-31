@@ -64,8 +64,23 @@ namespace VisualCard.Parts.Comparers
             bool equal = source.All(kvp =>
             {
                 bool exists = target.TryGetValue(kvp.Key, out List<BaseCardPartInfo> parts);
-                bool partsEqual = kvp.Value.SequenceEqual(parts);
-                return exists && partsEqual;
+                if (!exists)
+                    return false;
+
+                // Verify the lists
+                if (!VerifyLists(kvp.Value, parts))
+                    return false;
+
+                // Now, compare between two parts
+                List<bool> results = [];
+                for (int i = 0; i < parts.Count; i++)
+                {
+                    BaseCardPartInfo sourcePart = kvp.Value[i];
+                    BaseCardPartInfo targetPart = parts[i];
+                    bool equals = sourcePart == targetPart;
+                    results.Add(equals);
+                }
+                return !results.Contains(false);
             });
             return equal;
         }
@@ -90,6 +105,18 @@ namespace VisualCard.Parts.Comparers
                 return exists && partsEqual;
             });
             return equal;
+        }
+
+        private static bool VerifyLists<TValue>(
+            IList<TValue> source,
+            IList<TValue> target)
+        {
+            if (source == null || target == null)
+                return false;
+
+            if (source.Count != target.Count)
+                return false;
+            return true;
         }
 
         private static bool VerifyDicts<TKey, TValue>(

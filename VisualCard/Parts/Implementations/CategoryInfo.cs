@@ -59,7 +59,7 @@ namespace VisualCard.Parts.Implementations
 
         /// <inheritdoc/>
         public override bool Equals(object obj) =>
-            base.Equals(obj);
+            Equals((CategoryInfo)obj);
 
         /// <summary>
         /// Checks to see if both the parts are equal
@@ -78,12 +78,11 @@ namespace VisualCard.Parts.Implementations
         public bool Equals(CategoryInfo source, CategoryInfo target)
         {
             // We can't perform this operation on null.
-            if (source is null)
+            if (source is null || target is null)
                 return false;
 
             // Check all the properties
             return
-                base.Equals(source, target) &&
                 source.Category == target.Category
             ;
         }
@@ -104,6 +103,9 @@ namespace VisualCard.Parts.Implementations
         /// <inheritdoc/>
         public static bool operator !=(CategoryInfo left, CategoryInfo right) =>
             !(left == right);
+
+        internal override bool EqualsInternal(BaseCardPartInfo source, BaseCardPartInfo target) =>
+            ((CategoryInfo)source) == ((CategoryInfo)target);
 
         internal CategoryInfo() { }
 

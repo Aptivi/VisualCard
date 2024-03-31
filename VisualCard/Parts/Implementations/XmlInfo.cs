@@ -75,7 +75,7 @@ namespace VisualCard.Parts.Implementations
 
         /// <inheritdoc/>
         public override bool Equals(object obj) =>
-            base.Equals(obj);
+            Equals((XmlInfo)obj);
 
         /// <summary>
         /// Checks to see if both the parts are equal
@@ -94,12 +94,11 @@ namespace VisualCard.Parts.Implementations
         public bool Equals(XmlInfo source, XmlInfo target)
         {
             // We can't perform this operation on null.
-            if (source is null)
+            if (source is null || target is null)
                 return false;
 
             // Check all the properties
             return
-                base.Equals(source, target) &&
                 source.Xml == target.Xml
             ;
         }
@@ -121,6 +120,9 @@ namespace VisualCard.Parts.Implementations
         /// <inheritdoc/>
         public static bool operator !=(XmlInfo left, XmlInfo right) =>
             !(left == right);
+
+        internal override bool EqualsInternal(BaseCardPartInfo source, BaseCardPartInfo target) =>
+            ((XmlInfo)source) == ((XmlInfo)target);
 
         internal XmlInfo() { }
 

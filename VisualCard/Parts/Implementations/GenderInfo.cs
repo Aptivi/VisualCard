@@ -85,7 +85,7 @@ namespace VisualCard.Parts.Implementations
 
         /// <inheritdoc/>
         public override bool Equals(object obj) =>
-            base.Equals(obj);
+            Equals((GenderInfo)obj);
 
         /// <summary>
         /// Checks to see if both the parts are equal
@@ -104,12 +104,11 @@ namespace VisualCard.Parts.Implementations
         public bool Equals(GenderInfo source, GenderInfo target)
         {
             // We can't perform this operation on null.
-            if (source is null)
+            if (source is null || target is null)
                 return false;
 
             // Check all the properties
             return
-                base.Equals(source, target) &&
                 source.Gender == target.Gender &&
                 source.GenderDescription == target.GenderDescription
             ;
@@ -132,6 +131,9 @@ namespace VisualCard.Parts.Implementations
         /// <inheritdoc/>
         public static bool operator !=(GenderInfo left, GenderInfo right) =>
             !(left == right);
+
+        internal override bool EqualsInternal(BaseCardPartInfo source, BaseCardPartInfo target) =>
+            ((GenderInfo)source) == ((GenderInfo)target);
 
         internal GenderInfo() { }
 

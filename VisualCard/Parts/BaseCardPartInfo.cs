@@ -67,7 +67,7 @@ namespace VisualCard.Parts
         public bool Equals(BaseCardPartInfo source, BaseCardPartInfo target)
         {
             // We can't perform this operation on null.
-            if (source is null)
+            if (source is null || target is null)
                 return false;
 
             // Check all the properties
@@ -75,13 +75,14 @@ namespace VisualCard.Parts
                 source.Arguments.SequenceEqual(target.Arguments) &&
                 source.ElementTypes.SequenceEqual(target.ElementTypes) &&
                 source.AltId == target.AltId &&
-                source.ValueType == target.ValueType
+                source.ValueType == target.ValueType &&
+                EqualsInternal(source, target);
             ;
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj) =>
-            base.Equals(obj);
+            Equals((BaseCardPartInfo)obj);
 
         /// <inheritdoc/>
         public override int GetHashCode()
@@ -101,6 +102,9 @@ namespace VisualCard.Parts
         /// <inheritdoc/>
         public static bool operator !=(BaseCardPartInfo left, BaseCardPartInfo right) =>
             !(left == right);
+
+        internal virtual bool EqualsInternal(BaseCardPartInfo source, BaseCardPartInfo target) =>
+            true;
 
         internal abstract BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion);
 

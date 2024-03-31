@@ -54,7 +54,7 @@ namespace VisualCard.Parts.Implementations
                     $"{VcardConstants._xSpecifier}" +
                     $"{XKeyName}{(installType ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter)}" +
                     $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
-                    $"{(ElementTypes.Length > 0 ? string.Join(VcardConstants._fieldDelimiter.ToString(), ElementTypes) + VcardConstants._argumentDelimiter : "")}" +
+                    $"{(ElementTypes.Length > 0 ? VcardConstants._typeArgumentSpecifier + string.Join(VcardConstants._valueDelimiter.ToString(), ElementTypes) + VcardConstants._argumentDelimiter : "")}" +
                     $"{string.Join(VcardConstants._fieldDelimiter.ToString(), XValues)}";
             }
             else
@@ -62,7 +62,7 @@ namespace VisualCard.Parts.Implementations
                 return
                     $"{VcardConstants._xSpecifier}" +
                     $"{XKeyName}{(ElementTypes.Length > 0 ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter)}" +
-                    $"{(ElementTypes.Length > 0 ? string.Join(VcardConstants._fieldDelimiter.ToString(), ElementTypes) + VcardConstants._argumentDelimiter : "")}" +
+                    $"{(ElementTypes.Length > 0 ? VcardConstants._typeArgumentSpecifier + string.Join(VcardConstants._valueDelimiter.ToString(), ElementTypes) + VcardConstants._argumentDelimiter : "")}" +
                     $"{string.Join(VcardConstants._fieldDelimiter.ToString(), XValues)}";
             }
         }
@@ -86,7 +86,7 @@ namespace VisualCard.Parts.Implementations
 
         /// <inheritdoc/>
         public override bool Equals(object obj) =>
-            base.Equals(obj);
+            Equals((XNameInfo)obj);
 
         /// <summary>
         /// Checks to see if both the parts are equal
@@ -105,12 +105,11 @@ namespace VisualCard.Parts.Implementations
         public bool Equals(XNameInfo source, XNameInfo target)
         {
             // We can't perform this operation on null.
-            if (source is null)
+            if (source is null || target is null)
                 return false;
 
             // Check all the properties
             return
-                base.Equals(source, target) &&
                 source.XValues.SequenceEqual(target.XValues) &&
                 source.XKeyName == target.XKeyName
             ;
@@ -133,6 +132,9 @@ namespace VisualCard.Parts.Implementations
         /// <inheritdoc/>
         public static bool operator !=(XNameInfo left, XNameInfo right) =>
             !(left == right);
+
+        internal override bool EqualsInternal(BaseCardPartInfo source, BaseCardPartInfo target) =>
+            ((XNameInfo)source) == ((XNameInfo)target);
 
         internal XNameInfo() { }
 

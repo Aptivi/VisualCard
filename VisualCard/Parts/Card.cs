@@ -198,7 +198,7 @@ namespace VisualCard.Parts
 
         /// <inheritdoc/>
         public override bool Equals(object obj) =>
-            base.Equals(obj);
+            Equals((Card)obj);
 
         /// <summary>
         /// Checks to see if both the cards are equal
@@ -217,7 +217,7 @@ namespace VisualCard.Parts
         public bool Equals(Card source, Card target)
         {
             // We can't perform this operation on null.
-            if (source is null)
+            if (source is null || target is null)
                 return false;
 
             // Check all the properties
