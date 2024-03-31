@@ -49,23 +49,11 @@ namespace VisualCard.Parts.Implementations
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
-            // Get the value
-            string categoryValue = value.Substring(VcardConstants._categoriesSpecifier.Length + 1);
-
             // Populate the fields
-            return InstallInfo(categoryValue);
-        }
-
-        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion) =>
-            FromStringVcardInternal(value, altId, cardVersion);
-
-        private CategoryInfo InstallInfo(string value)
-        {
-            // Populate field
             var categories = Regex.Unescape(value).Split(',');
 
             // Add the fetched information
-            CategoryInfo _time = new(0, [], categories);
+            CategoryInfo _time = new(0, [], elementTypes, valueType, categories);
             return _time;
         }
 
@@ -95,7 +83,6 @@ namespace VisualCard.Parts.Implementations
 
             // Check all the properties
             return
-                source.AltArguments.SequenceEqual(target.AltArguments) &&
                 base.Equals(source, target) &&
                 source.Category == target.Category
             ;
@@ -104,17 +91,15 @@ namespace VisualCard.Parts.Implementations
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = 1152977432;
+            int hashCode = -723142617;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(AltArguments);
-            hashCode = hashCode * -1521134295 + AltId.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(Category);
             return hashCode;
         }
 
         /// <inheritdoc/>
         public static bool operator ==(CategoryInfo left, CategoryInfo right) =>
-            EqualityComparer<CategoryInfo>.Default.Equals(left, right);
+            left.Equals(right);
 
         /// <inheritdoc/>
         public static bool operator !=(CategoryInfo left, CategoryInfo right) =>
@@ -122,10 +107,9 @@ namespace VisualCard.Parts.Implementations
 
         internal CategoryInfo() { }
 
-        internal CategoryInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string[] category)
+        internal CategoryInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string[] category) :
+            base(arguments, altId, elementTypes, valueType)
         {
-            AltId = altId;
-            Arguments = arguments;
             Category = category;
         }
     }

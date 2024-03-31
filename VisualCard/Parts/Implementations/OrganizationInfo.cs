@@ -34,10 +34,6 @@ namespace VisualCard.Parts.Implementations
     public class OrganizationInfo : BaseCardPartInfo, IEquatable<OrganizationInfo>
     {
         /// <summary>
-        /// The contact's organization types
-        /// </summary>
-        public string[] OrgTypes { get; }
-        /// <summary>
         /// The contact's organization name
         /// </summary>
         public string Name { get; }
@@ -59,21 +55,21 @@ namespace VisualCard.Parts.Implementations
             if (altIdSupported)
             {
                 bool installAltId = AltId >= 0 && Arguments.Length > 0;
-                bool installType = (installAltId || OrgTypes.Length > 0) && OrgTypes[0].ToUpper() != "WORK";
+                bool installType = (installAltId || ElementTypes.Length > 0) && ElementTypes[0].ToUpper() != "WORK";
                 return
                     $"{VcardConstants._orgSpecifier}{(installType || installAltId ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter)}" +
                     $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + (installType ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter) : "")}" +
-                    $"{(installType ? $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", OrgTypes)}{VcardConstants._argumentDelimiter}" : "")}" +
+                    $"{(installType ? $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", ElementTypes)}{VcardConstants._argumentDelimiter}" : "")}" +
                     $"{Name}{VcardConstants._fieldDelimiter}" +
                     $"{Unit}{VcardConstants._fieldDelimiter}" +
                     $"{Role}";
             }
             else
             {
-                bool installType = OrgTypes.Length > 0 && OrgTypes[0].ToUpper() != "WORK";
+                bool installType = ElementTypes.Length > 0 && ElementTypes[0].ToUpper() != "WORK";
                 return
                     $"{VcardConstants._orgSpecifier}{(installType ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter)}" +
-                    $"{(installType ? $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", OrgTypes)}{VcardConstants._argumentDelimiter}" : "")}" +
+                    $"{(installType ? $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", ElementTypes)}{VcardConstants._argumentDelimiter}" : "")}" +
                     $"{Name}{VcardConstants._fieldDelimiter}" +
                     $"{Unit}{VcardConstants._fieldDelimiter}" +
                     $"{Role}";
@@ -82,46 +78,14 @@ namespace VisualCard.Parts.Implementations
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
-            // Get the value
-            string orgValue = value.Substring(VcardConstants._orgSpecifier.Length + 1);
-            string[] splitOrg = orgValue.Split(VcardConstants._fieldDelimiter);
-
-            // Populate the fields
-            return InstallInfo(splitOrg, ["WORK"], altId, cardVersion);
-        }
-
-        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion)
-        {
-            bool specifierRequired = cardVersion.Major >= 3;
-
-            // Get the value
-            string orgValue = value.Substring(VcardConstants._orgSpecifier.Length + 1);
-            string[] splitOrg = orgValue.Split(VcardConstants._argumentDelimiter);
-            if (splitOrg.Length < 2)
-                throw new InvalidDataException("Organization field must specify exactly two values (Type, and address information)");
-
-            // Check the provided organization
-            string[] splitOrganizationValues = splitOrg[1].Split(VcardConstants._fieldDelimiter);
-            if (splitOrganizationValues.Length < 3)
-                throw new InvalidDataException("Organization information must specify exactly three values (name, unit, and role)");
-
-            // Populate the fields
-            string[] _orgTypes = VcardParserTools.GetTypes(splitOrg, "WORK", specifierRequired);
-            return InstallInfo(splitOrganizationValues, _orgTypes, finalArgs, altId, cardVersion);
-        }
-
-        private OrganizationInfo InstallInfo(string[] splitOrg, string[] _orgTypes, int altId, Version cardVersion) =>
-            InstallInfo(splitOrg, _orgTypes, [], altId, cardVersion);
-
-        private OrganizationInfo InstallInfo(string[] splitOrg, string[] _orgTypes, string[] finalArgs, int altId, Version cardVersion)
-        {
             bool altIdSupported = cardVersion.Major >= 4;
+            string[] splitOrg = value.Split(VcardConstants._fieldDelimiter);
 
             // Populate the fields
             string _orgName = Regex.Unescape(splitOrg[0]);
             string _orgUnit = Regex.Unescape(splitOrg.Length >= 2 ? splitOrg[1] : "");
             string _orgUnitRole = Regex.Unescape(splitOrg.Length >= 3 ? splitOrg[2] : "");
-            OrganizationInfo _org = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, _orgName, _orgUnit, _orgUnitRole, _orgTypes);
+            OrganizationInfo _org = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, _orgName, _orgUnit, _orgUnitRole);
             return _org;
         }
 
@@ -151,8 +115,6 @@ namespace VisualCard.Parts.Implementations
 
             // Check all the properties
             return
-                source.OrgTypes.SequenceEqual(target.OrgTypes) &&
-                source.AltArguments.SequenceEqual(target.AltArguments) &&
                 base.Equals(source, target) &&
                 source.Name == target.Name &&
                 source.Unit == target.Unit &&
@@ -163,10 +125,8 @@ namespace VisualCard.Parts.Implementations
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = 374840165;
-            hashCode = hashCode * -1521134295 + AltId.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(AltArguments);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(OrgTypes);
+            int hashCode = 1382759124;
+            hashCode = hashCode * -1521134295 + base.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Name);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Unit);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Role);
@@ -175,7 +135,7 @@ namespace VisualCard.Parts.Implementations
 
         /// <inheritdoc/>
         public static bool operator ==(OrganizationInfo left, OrganizationInfo right) =>
-            EqualityComparer<OrganizationInfo>.Default.Equals(left, right);
+            left.Equals(right);
 
         /// <inheritdoc/>
         public static bool operator !=(OrganizationInfo left, OrganizationInfo right) =>
@@ -183,14 +143,12 @@ namespace VisualCard.Parts.Implementations
 
         internal OrganizationInfo() { }
 
-        internal OrganizationInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string name, string unit, string role, string[] orgTypes)
+        internal OrganizationInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string name, string unit, string role) :
+            base(arguments, altId, elementTypes, valueType)
         {
-            AltId = altId;
-            Arguments = arguments;
             Name = name;
             Unit = unit;
             Role = role;
-            OrgTypes = orgTypes;
         }
     }
 }

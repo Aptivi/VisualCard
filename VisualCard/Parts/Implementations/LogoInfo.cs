@@ -33,17 +33,9 @@ namespace VisualCard.Parts.Implementations
     public class LogoInfo : BaseCardPartInfo, IEquatable<LogoInfo>
     {
         /// <summary>
-        /// Value type
-        /// </summary>
-        public string ValueType { get; }
-        /// <summary>
         /// Logo encoding type
         /// </summary>
         public string Encoding { get; }
-        /// <summary>
-        /// Logo type (JPEG, ...)
-        /// </summary>
-        public string LogoType { get; }
         /// <summary>
         /// Encoded logo
         /// </summary>
@@ -63,7 +55,7 @@ namespace VisualCard.Parts.Implementations
                     return
                         $"{VcardConstants._logoSpecifier};" +
                         $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
-                        $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._fieldDelimiter : "")}" +
+                        $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), Arguments) + VcardConstants._fieldDelimiter : "")}" +
                         $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._argumentDelimiter}" +
                         $"{LogoEncoded}";
                 }
@@ -72,10 +64,10 @@ namespace VisualCard.Parts.Implementations
                     string logoArgsLine =
                         $"{VcardConstants._logoSpecifier};" +
                         $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
-                        $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._fieldDelimiter : "")}" +
+                        $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), Arguments) + VcardConstants._fieldDelimiter : "")}" +
                         $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._fieldDelimiter}" +
                         $"{VcardConstants._encodingArgumentSpecifier}{Encoding}{VcardConstants._fieldDelimiter}" +
-                        $"{VcardConstants._typeArgumentSpecifier}{LogoType}{VcardConstants._argumentDelimiter}";
+                        $"{VcardConstants._typeArgumentSpecifier}{string.Join(VcardConstants._valueDelimiter.ToString(), ElementTypes)}{VcardConstants._argumentDelimiter}";
                     return logoArgsLine + VcardParserTools.MakeStringBlock(LogoEncoded, logoArgsLine.Length);
                 }
             }
@@ -94,42 +86,21 @@ namespace VisualCard.Parts.Implementations
                         $"{VcardConstants._logoSpecifier};" +
                         $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._fieldDelimiter}" +
                         $"{VcardConstants._encodingArgumentSpecifier}{Encoding}{VcardConstants._fieldDelimiter}" +
-                        $"{VcardConstants._typeArgumentSpecifier}{LogoType}{VcardConstants._argumentDelimiter}";
+                        $"{VcardConstants._typeArgumentSpecifier}{string.Join(VcardConstants._valueDelimiter.ToString(), ElementTypes)}{VcardConstants._argumentDelimiter}";
                     return logoArgsLine + VcardParserTools.MakeStringBlock(LogoEncoded, logoArgsLine.Length);
                 }
             }
         }
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
-            throw new InvalidDataException("Logo field must not have empty type.");
-
-        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion)
-        {
-            // Get the value
-            string logoValue = value.Substring(VcardConstants._logoSpecifier.Length + 1);
-            string[] splitLogo = logoValue.Split(VcardConstants._argumentDelimiter);
-            if (splitLogo.Length < 2)
-                throw new InvalidDataException("Logo field must specify exactly two values (Type and arguments, and logo information)");
-
-            // Populate the fields
-            return InstallInfo(splitLogo, finalArgs, altId, cardVersion);
-        }
-
-        private LogoInfo InstallInfo(string[] splitLogo, string[] finalArgs, int altId, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
             bool altIdSupported = cardVersion.Major >= 4;
 
-            // Check to see if the value is prepended by the VALUE= argument
-            string valueType = VcardParserTools.GetValuesString(splitLogo, "", VcardConstants._valueArgumentSpecifier).ToLower();
-
             // Check to see if the value is prepended by the ENCODING= argument
-            string logoEncoding = VcardParserTools.GetValuesString(splitLogo, "BASE64", VcardConstants._encodingArgumentSpecifier);
-
-            // Check to see if the value is prepended with the TYPE= argument
-            string logoType = VcardParserTools.GetTypesString(splitLogo, "JPEG", false);
+            string logoEncoding = VcardParserTools.GetValuesString(finalArgs, "BASE64", VcardConstants._encodingArgumentSpecifier);
 
             // Populate the fields
-            LogoInfo _logo = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, valueType, logoEncoding, logoType, splitLogo[1]);
+            LogoInfo _logo = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, logoEncoding, value);
             return _logo;
         }
 
@@ -159,11 +130,8 @@ namespace VisualCard.Parts.Implementations
 
             // Check all the properties
             return
-                source.AltArguments.SequenceEqual(target.AltArguments) &&
                 base.Equals(source, target) &&
-                source.ValueType == target.ValueType &&
                 source.Encoding == target.Encoding &&
-                source.LogoType == target.LogoType &&
                 source.LogoEncoded == target.LogoEncoded
             ;
         }
@@ -171,19 +139,16 @@ namespace VisualCard.Parts.Implementations
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = -1881924127;
-            hashCode = hashCode * -1521134295 + AltId.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(AltArguments);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ValueType);
+            int hashCode = 2051368178;
+            hashCode = hashCode * -1521134295 + base.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Encoding);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(LogoType);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(LogoEncoded);
             return hashCode;
         }
 
         /// <inheritdoc/>
         public static bool operator ==(LogoInfo left, LogoInfo right) =>
-            EqualityComparer<LogoInfo>.Default.Equals(left, right);
+            left.Equals(right);
 
         /// <inheritdoc/>
         public static bool operator !=(LogoInfo left, LogoInfo right) =>
@@ -191,13 +156,10 @@ namespace VisualCard.Parts.Implementations
 
         internal LogoInfo() { }
 
-        internal LogoInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string valueType, string encoding, string logoType, string logoEncoded)
+        internal LogoInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string encoding, string logoEncoded) :
+            base(arguments, altId, elementTypes, valueType)
         {
-            AltId = altId;
-            Arguments = arguments;
-            ValueType = valueType;
             Encoding = encoding;
-            LogoType = logoType;
             LogoEncoded = logoEncoded;
         }
     }

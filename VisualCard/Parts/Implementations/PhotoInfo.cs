@@ -33,17 +33,9 @@ namespace VisualCard.Parts.Implementations
     public class PhotoInfo : BaseCardPartInfo, IEquatable<PhotoInfo>
     {
         /// <summary>
-        /// Value type
-        /// </summary>
-        public string ValueType { get; }
-        /// <summary>
         /// Photo encoding type
         /// </summary>
         public string Encoding { get; }
-        /// <summary>
-        /// Photo type (JPEG, ...)
-        /// </summary>
-        public string PhotoType { get; }
         /// <summary>
         /// Encoded photo
         /// </summary>
@@ -63,7 +55,7 @@ namespace VisualCard.Parts.Implementations
                     return
                         $"{VcardConstants._photoSpecifier};" +
                         $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
-                        $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._fieldDelimiter : "")}" +
+                        $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), Arguments) + VcardConstants._fieldDelimiter : "")}" +
                         $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._argumentDelimiter}" +
                         $"{PhotoEncoded}";
                 }
@@ -72,10 +64,10 @@ namespace VisualCard.Parts.Implementations
                     string photoArgsLine =
                         $"{VcardConstants._photoSpecifier};" +
                         $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
-                        $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._fieldDelimiter : "")}" +
+                        $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), Arguments) + VcardConstants._fieldDelimiter : "")}" +
                         $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._fieldDelimiter}" +
                         $"{VcardConstants._encodingArgumentSpecifier}{Encoding}{VcardConstants._fieldDelimiter}" +
-                        $"{VcardConstants._typeArgumentSpecifier}{PhotoType}{VcardConstants._argumentDelimiter}";
+                        $"{VcardConstants._typeArgumentSpecifier}{string.Join(VcardConstants._valueDelimiter.ToString(), ElementTypes)}{VcardConstants._argumentDelimiter}";
                     return photoArgsLine + VcardParserTools.MakeStringBlock(PhotoEncoded, photoArgsLine.Length);
                 }
             }
@@ -94,42 +86,21 @@ namespace VisualCard.Parts.Implementations
                         $"{VcardConstants._photoSpecifier};" +
                         $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._fieldDelimiter}" +
                         $"{VcardConstants._encodingArgumentSpecifier}{Encoding}{VcardConstants._fieldDelimiter}" +
-                        $"{VcardConstants._typeArgumentSpecifier}{PhotoType}{VcardConstants._argumentDelimiter}";
+                        $"{VcardConstants._typeArgumentSpecifier}{string.Join(VcardConstants._valueDelimiter.ToString(), ElementTypes)}{VcardConstants._argumentDelimiter}";
                     return photoArgsLine + VcardParserTools.MakeStringBlock(PhotoEncoded, photoArgsLine.Length);
                 }
             }
         }
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
-            throw new InvalidDataException("Photo field must not have empty type.");
-
-        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion)
-        {
-            // Get the value
-            string photoValue = value.Substring(VcardConstants._photoSpecifier.Length + 1);
-            string[] splitPhoto = photoValue.Split(VcardConstants._argumentDelimiter);
-            if (splitPhoto.Length < 2)
-                throw new InvalidDataException("Photo field must specify exactly two values (Type and arguments, and photo information)");
-
-            // Populate the fields
-            return InstallInfo(splitPhoto, finalArgs, altId, cardVersion);
-        }
-
-        private PhotoInfo InstallInfo(string[] splitPhoto, string[] finalArgs, int altId, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
             bool altIdSupported = cardVersion.Major >= 4;
 
-            // Check to see if the value is prepended by the VALUE= argument
-            string valueType = VcardParserTools.GetValuesString(splitPhoto, "", VcardConstants._valueArgumentSpecifier).ToLower();
-
             // Check to see if the value is prepended by the ENCODING= argument
-            string photoEncoding = VcardParserTools.GetValuesString(splitPhoto, "BASE64", VcardConstants._encodingArgumentSpecifier);
-
-            // Check to see if the value is prepended with the TYPE= argument
-            string photoType = VcardParserTools.GetTypesString(splitPhoto, "JPEG", false);
+            string photoEncoding = VcardParserTools.GetValuesString(finalArgs, "BASE64", VcardConstants._encodingArgumentSpecifier);
 
             // Populate the fields
-            PhotoInfo _photo = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, valueType, photoEncoding, photoType, splitPhoto[1]);
+            PhotoInfo _photo = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, photoEncoding, value);
             return _photo;
         }
 
@@ -159,11 +130,8 @@ namespace VisualCard.Parts.Implementations
 
             // Check all the properties
             return
-                source.AltArguments.SequenceEqual(target.AltArguments) &&
                 base.Equals(source, target) &&
-                source.ValueType == target.ValueType &&
                 source.Encoding == target.Encoding &&
-                source.PhotoType == target.PhotoType &&
                 source.PhotoEncoded == target.PhotoEncoded
             ;
         }
@@ -171,19 +139,16 @@ namespace VisualCard.Parts.Implementations
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = -1042689907;
-            hashCode = hashCode * -1521134295 + AltId.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(AltArguments);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ValueType);
+            int hashCode = -365738507;
+            hashCode = hashCode * -1521134295 + base.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Encoding);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(PhotoType);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(PhotoEncoded);
             return hashCode;
         }
 
         /// <inheritdoc/>
         public static bool operator ==(PhotoInfo left, PhotoInfo right) =>
-            EqualityComparer<PhotoInfo>.Default.Equals(left, right);
+            left.Equals(right);
 
         /// <inheritdoc/>
         public static bool operator !=(PhotoInfo left, PhotoInfo right) =>
@@ -191,13 +156,10 @@ namespace VisualCard.Parts.Implementations
 
         internal PhotoInfo() { }
 
-        internal PhotoInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string valueType, string encoding, string photoType, string photoEncoded)
+        internal PhotoInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string encoding, string photoEncoded) :
+            base(arguments, altId, elementTypes, valueType)
         {
-            AltId = altId;
-            Arguments = arguments;
-            ValueType = valueType;
             Encoding = encoding;
-            PhotoType = photoType;
             PhotoEncoded = photoEncoded;
         }
     }

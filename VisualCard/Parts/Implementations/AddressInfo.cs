@@ -102,14 +102,14 @@ namespace VisualCard.Parts.Implementations
             bool altIdSupported = cardVersion.Major >= 4;
 
             // Get the value
-            string[] splitAdr = value.Split(VcardConstants._argumentDelimiter);
+            string[] splitAdr = value.Split(VcardConstants._fieldDelimiter);
 
             // Check the provided address
             if (splitAdr.Length < 7)
                 throw new InvalidDataException("Address information must specify exactly seven values (P.O. Box, extended address, street address, locality, region, postal code, and country)");
 
             // Populate the fields
-            string[] _addressTypes = elementTypes.Length >= 0 ? elementTypes : ["HOME"];
+            string[] _addressTypes = elementTypes.Length >= 1 ? elementTypes : ["HOME"];
             string _addressPOBox = Regex.Unescape(splitAdr[0]);
             string _addressExtended = Regex.Unescape(splitAdr[1]);
             string _addressStreet = Regex.Unescape(splitAdr[2]);
@@ -175,20 +175,19 @@ namespace VisualCard.Parts.Implementations
 
         /// <inheritdoc/>
         public static bool operator ==(AddressInfo left, AddressInfo right) =>
-            EqualityComparer<AddressInfo>.Default.Equals(left, right);
+            left.Equals(right);
 
         /// <inheritdoc/>
         public static bool operator !=(AddressInfo left, AddressInfo right) =>
             !(left == right);
 
-        internal AddressInfo() { }
+        internal AddressInfo() :
+            base()
+        { }
 
-        internal AddressInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string postOfficeBox, string extendedAddress, string streetAddress, string locality, string region, string postalCode, string country)
+        internal AddressInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string postOfficeBox, string extendedAddress, string streetAddress, string locality, string region, string postalCode, string country) :
+            base(arguments, altId, elementTypes, valueType)
         {
-            AltId = altId;
-            Arguments = arguments;
-            ElementTypes = elementTypes;
-            ValueType = valueType;
             PostOfficeBox = postOfficeBox;
             ExtendedAddress = extendedAddress;
             StreetAddress = streetAddress;

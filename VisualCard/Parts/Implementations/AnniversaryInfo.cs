@@ -105,7 +105,7 @@ namespace VisualCard.Parts.Implementations
 
         /// <inheritdoc/>
         public static bool operator ==(AnniversaryInfo left, AnniversaryInfo right) =>
-            EqualityComparer<AnniversaryInfo>.Default.Equals(left, right);
+            left.Equals(right);
 
         /// <inheritdoc/>
         public static bool operator !=(AnniversaryInfo left, AnniversaryInfo right) =>
@@ -113,12 +113,9 @@ namespace VisualCard.Parts.Implementations
 
         internal AnniversaryInfo() { }
 
-        internal AnniversaryInfo(int altId, string[] arguments, string[] elementTypes, string valueType, DateTime? anniversary)
+        internal AnniversaryInfo(int altId, string[] arguments, string[] elementTypes, string valueType, DateTime? anniversary) :
+            base(arguments, altId, elementTypes, valueType)
         {
-            AltId = altId;
-            Arguments = arguments;
-            ElementTypes = elementTypes;
-            ValueType = valueType;
             Anniversary = anniversary;
         }
     }

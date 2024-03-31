@@ -34,10 +34,6 @@ namespace VisualCard.Parts.Implementations
     public class GeoInfo : BaseCardPartInfo, IEquatable<GeoInfo>
     {
         /// <summary>
-        /// The contact's geographical information types
-        /// </summary>
-        public string[] GeoTypes { get; }
-        /// <summary>
         /// The contact's geographical information
         /// </summary>
         public string Geo { get; }
@@ -54,7 +50,7 @@ namespace VisualCard.Parts.Implementations
                 return
                     $"{VcardConstants._geoSpecifier}{(installAltId ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter)}" +
                     $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
-                    $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._argumentDelimiter : "")}" +
+                    $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), Arguments) + VcardConstants._argumentDelimiter : "")}" +
                     $"{Geo}";
             }
             else
@@ -71,35 +67,10 @@ namespace VisualCard.Parts.Implementations
             string geoValue = value.Substring(VcardConstants._geoSpecifier.Length + 1);
             string _geoStr = Regex.Unescape(geoValue);
 
-            // Populate the fields
-            return InstallInfo([_geoStr], false, altId, cardVersion);
-        }
-
-        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion)
-        {
-            // Get the value
-            string geoValue = value.Substring(VcardConstants._geoSpecifier.Length + 1);
-            string[] splitGeo = geoValue.Split(VcardConstants._argumentDelimiter);
-            if (splitGeo.Length < 2)
-                throw new InvalidDataException("Geo field must specify exactly two values (VALUE=\"uri\", and geo info)");
-
-            // Populate the fields
-            return InstallInfo(splitGeo, true, finalArgs, altId, cardVersion);
-        }
-
-        private GeoInfo InstallInfo(string[] splitGeo, bool installType, int altId, Version cardVersion) =>
-            InstallInfo(splitGeo, installType, [], altId, cardVersion);
-
-        private GeoInfo InstallInfo(string[] splitGeo, bool installType, string[] finalArgs, int altId, Version cardVersion)
-        {
             bool altIdSupported = cardVersion.Major >= 4;
-            bool typesSupported = cardVersion.Major >= 3;
-
-            string[] _geoTypes = typesSupported ? installType ? VcardParserTools.GetValues(splitGeo, "", VcardConstants._valueArgumentSpecifier) : ["uri"] : [];
-            string _geoStr = Regex.Unescape(typesSupported ? installType ? splitGeo[1] : splitGeo[0] : splitGeo[0]);
 
             // Populate the fields
-            GeoInfo _geo = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, _geoTypes, _geoStr);
+            GeoInfo _geo = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, _geoStr);
             return _geo;
         }
 
@@ -129,8 +100,6 @@ namespace VisualCard.Parts.Implementations
 
             // Check all the properties
             return
-                source.AltArguments.SequenceEqual(target.AltArguments) &&
-                source.GeoTypes.SequenceEqual(target.GeoTypes) &&
                 base.Equals(source, target) &&
                 source.Geo == target.Geo
             ;
@@ -139,17 +108,15 @@ namespace VisualCard.Parts.Implementations
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = -772623698;
-            hashCode = hashCode * -1521134295 + AltId.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(AltArguments);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(GeoTypes);
+            int hashCode = -456581192;
+            hashCode = hashCode * -1521134295 + base.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Geo);
             return hashCode;
         }
 
         /// <inheritdoc/>
         public static bool operator ==(GeoInfo left, GeoInfo right) =>
-            EqualityComparer<GeoInfo>.Default.Equals(left, right);
+            left.Equals(right);
 
         /// <inheritdoc/>
         public static bool operator !=(GeoInfo left, GeoInfo right) =>
@@ -157,11 +124,9 @@ namespace VisualCard.Parts.Implementations
 
         internal GeoInfo() { }
 
-        internal GeoInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string[] geoTypes, string geo)
+        internal GeoInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string geo) :
+            base(arguments, altId, elementTypes, valueType)
         {
-            AltId = altId;
-            Arguments = arguments;
-            GeoTypes = geoTypes;
             Geo = geo;
         }
     }

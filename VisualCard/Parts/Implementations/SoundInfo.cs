@@ -33,17 +33,9 @@ namespace VisualCard.Parts.Implementations
     public class SoundInfo : BaseCardPartInfo, IEquatable<SoundInfo>
     {
         /// <summary>
-        /// Value type
-        /// </summary>
-        public string ValueType { get; }
-        /// <summary>
         /// Sound encoding type
         /// </summary>
         public string Encoding { get; }
-        /// <summary>
-        /// Sound type (MP3, ...)
-        /// </summary>
-        public string SoundType { get; }
         /// <summary>
         /// Encoded sound
         /// </summary>
@@ -63,7 +55,7 @@ namespace VisualCard.Parts.Implementations
                     return
                         $"{VcardConstants._soundSpecifier};" +
                         $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
-                        $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._fieldDelimiter : "")}" +
+                        $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), Arguments) + VcardConstants._fieldDelimiter : "")}" +
                         $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._argumentDelimiter}" +
                         $"{SoundEncoded}";
                 }
@@ -72,10 +64,10 @@ namespace VisualCard.Parts.Implementations
                     string soundArgsLine =
                         $"{VcardConstants._soundSpecifier};" +
                         $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
-                        $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._fieldDelimiter : "")}" +
+                        $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), Arguments) + VcardConstants._fieldDelimiter : "")}" +
                         $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._fieldDelimiter}" +
                         $"{VcardConstants._encodingArgumentSpecifier}{Encoding}{VcardConstants._fieldDelimiter}" +
-                        $"{VcardConstants._typeArgumentSpecifier}{SoundType}{VcardConstants._argumentDelimiter}";
+                        $"{VcardConstants._typeArgumentSpecifier}{string.Join(VcardConstants._valueDelimiter.ToString(), ElementTypes)}{VcardConstants._argumentDelimiter}";
                     return soundArgsLine + VcardParserTools.MakeStringBlock(SoundEncoded, soundArgsLine.Length);
                 }
             }
@@ -94,42 +86,21 @@ namespace VisualCard.Parts.Implementations
                         $"{VcardConstants._soundSpecifier};" +
                         $"{VcardConstants._valueArgumentSpecifier}{ValueType}{VcardConstants._fieldDelimiter}" +
                         $"{VcardConstants._encodingArgumentSpecifier}{Encoding}{VcardConstants._fieldDelimiter}" +
-                        $"{VcardConstants._typeArgumentSpecifier}{SoundType}{VcardConstants._argumentDelimiter}";
+                        $"{VcardConstants._typeArgumentSpecifier}{string.Join(VcardConstants._valueDelimiter.ToString(), ElementTypes)}{VcardConstants._argumentDelimiter}";
                     return soundArgsLine + VcardParserTools.MakeStringBlock(SoundEncoded, soundArgsLine.Length);
                 }
             }
         }
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
-            throw new InvalidDataException("Sound field must not have empty type.");
-
-        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion)
-        {
-            // Get the value
-            string soundValue = value.Substring(VcardConstants._soundSpecifier.Length + 1);
-            string[] splitSound = soundValue.Split(VcardConstants._argumentDelimiter);
-            if (splitSound.Length < 2)
-                throw new InvalidDataException("Sound field must specify exactly two values (Type and arguments, and sound information)");
-
-            // Populate the fields
-            return InstallInfo(splitSound, finalArgs, altId, cardVersion);
-        }
-
-        private SoundInfo InstallInfo(string[] splitSound, string[] finalArgs, int altId, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
             bool altIdSupported = cardVersion.Major >= 4;
 
-            // Check to see if the value is prepended by the VALUE= argument
-            string valueType = VcardParserTools.GetValuesString(splitSound, "", VcardConstants._valueArgumentSpecifier).ToLower();
-
             // Check to see if the value is prepended by the ENCODING= argument
-            string soundEncoding = VcardParserTools.GetValuesString(splitSound, "BASE64", VcardConstants._encodingArgumentSpecifier);
-
-            // Check to see if the value is prepended with the TYPE= argument
-            string soundType = VcardParserTools.GetTypesString(splitSound, "WAVE", false);
+            string soundEncoding = VcardParserTools.GetValuesString(finalArgs, "BASE64", VcardConstants._encodingArgumentSpecifier);
 
             // Populate the fields
-            SoundInfo _sound = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, valueType, soundEncoding, soundType, splitSound[1]);
+            SoundInfo _sound = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, soundEncoding, value);
             return _sound;
         }
 
@@ -159,11 +130,8 @@ namespace VisualCard.Parts.Implementations
 
             // Check all the properties
             return
-                source.AltArguments.SequenceEqual(target.AltArguments) &&
                 base.Equals(source, target) &&
-                source.ValueType == target.ValueType &&
                 source.Encoding == target.Encoding &&
-                source.SoundType == target.SoundType &&
                 source.SoundEncoded == target.SoundEncoded
             ;
         }
@@ -171,19 +139,16 @@ namespace VisualCard.Parts.Implementations
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = 21154477;
-            hashCode = hashCode * -1521134295 + AltId.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(AltArguments);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ValueType);
+            int hashCode = -1776094900;
+            hashCode = hashCode * -1521134295 + base.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Encoding);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(SoundType);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(SoundEncoded);
             return hashCode;
         }
 
         /// <inheritdoc/>
         public static bool operator ==(SoundInfo left, SoundInfo right) =>
-            EqualityComparer<SoundInfo>.Default.Equals(left, right);
+            left.Equals(right);
 
         /// <inheritdoc/>
         public static bool operator !=(SoundInfo left, SoundInfo right) =>
@@ -191,13 +156,10 @@ namespace VisualCard.Parts.Implementations
 
         internal SoundInfo() { }
 
-        internal SoundInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string valueType, string encoding, string soundType, string soundEncoded)
+        internal SoundInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string encoding, string soundEncoded) :
+            base(arguments, altId, elementTypes, valueType)
         {
-            AltId = altId;
-            Arguments = arguments;
-            ValueType = valueType;
             Encoding = encoding;
-            SoundType = soundType;
             SoundEncoded = soundEncoded;
         }
     }

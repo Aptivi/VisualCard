@@ -34,10 +34,6 @@ namespace VisualCard.Parts.Implementations
     public class LabelAddressInfo : BaseCardPartInfo, IEquatable<LabelAddressInfo>
     {
         /// <summary>
-        /// The contact's address types
-        /// </summary>
-        public string[] AddressTypes { get; }
-        /// <summary>
         /// The contact's delivery address label
         /// </summary>
         public string DeliveryLabel { get; }
@@ -54,63 +50,25 @@ namespace VisualCard.Parts.Implementations
                 return
                     $"{VcardConstants._labelSpecifier};" +
                     $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
-                    $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", AddressTypes)}{VcardConstants._argumentDelimiter}" +
+                    $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", ElementTypes)}{VcardConstants._argumentDelimiter}" +
                     $"{DeliveryLabel}";
             }
             else
             {
                 return
                     $"{VcardConstants._labelSpecifier};" +
-                    $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", AddressTypes)}{VcardConstants._argumentDelimiter}" +
+                    $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", ElementTypes)}{VcardConstants._argumentDelimiter}" +
                     $"{DeliveryLabel}";
             }
         }
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
-            // Get the value
-            string adrValue = value.Substring(VcardConstants._labelSpecifier.Length + 1);
-            string[] splitAdr = adrValue.Split(VcardConstants._argumentDelimiter);
-
-            // Check the provided address
-            string[] splitAddressValues = splitAdr[0].Split(VcardConstants._fieldDelimiter);
-            if (splitAddressValues.Length < 1)
-                throw new InvalidDataException("Label address information must specify exactly one value (address label)");
-
-            // Populate the fields
-            return InstallInfo(splitAdr, splitAddressValues, altId, cardVersion);
-        }
-
-        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion)
-        {
-            // Get the value
-            string adrValue = value.Substring(VcardConstants._labelSpecifier.Length + 1);
-            string[] splitAdr = adrValue.Split(VcardConstants._argumentDelimiter);
-            if (splitAdr.Length < 2)
-                throw new InvalidDataException("Label address field must specify exactly two values (Type (optionally prepended with TYPE=), and address information)");
-
-            // Check the provided address
-            string[] splitAddressValues = splitAdr[1].Split(VcardConstants._fieldDelimiter);
-            if (splitAddressValues.Length < 1)
-                throw new InvalidDataException("Label address information must specify exactly one value (address label)");
-
-            // Populate the fields
-            return InstallInfo(splitAdr, splitAddressValues, finalArgs, altId, cardVersion);
-        }
-
-        private LabelAddressInfo InstallInfo(string[] splitAdr, string[] splitAddressValues, int altId, Version cardVersion) =>
-            InstallInfo(splitAdr, splitAddressValues, [], altId, cardVersion);
-
-        private LabelAddressInfo InstallInfo(string[] splitAdr, string[] splitAddressValues, string[] finalArgs, int altId, Version cardVersion)
-        {
             bool altIdSupported = cardVersion.Major >= 4;
-            bool defaultType = splitAdr.Length < 2;
-            bool specifierRequired = cardVersion.Major >= 3;
 
             // Populate the fields
-            string[] _addressTypes = defaultType ? ["HOME"] : VcardParserTools.GetTypes(splitAdr, "HOME", specifierRequired);
-            string _addressLabel = Regex.Unescape(splitAddressValues[0]);
-            LabelAddressInfo _address = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, _addressTypes, _addressLabel);
+            string _addressLabel = Regex.Unescape(value);
+            LabelAddressInfo _address = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, _addressLabel);
             return _address;
         }
 
@@ -140,8 +98,6 @@ namespace VisualCard.Parts.Implementations
 
             // Check all the properties
             return
-                source.AddressTypes.SequenceEqual(target.AddressTypes) &&
-                source.AltArguments.SequenceEqual(target.AltArguments) &&
                 base.Equals(source, target) &&
                 source.DeliveryLabel == target.DeliveryLabel
             ;
@@ -150,17 +106,15 @@ namespace VisualCard.Parts.Implementations
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = 1313918102;
-            hashCode = hashCode * -1521134295 + AltId.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(AltArguments);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(AddressTypes);
+            int hashCode = 1203542083;
+            hashCode = hashCode * -1521134295 + base.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(DeliveryLabel);
             return hashCode;
         }
 
         /// <inheritdoc/>
         public static bool operator ==(LabelAddressInfo left, LabelAddressInfo right) =>
-            EqualityComparer<LabelAddressInfo>.Default.Equals(left, right);
+            left.Equals(right);
 
         /// <inheritdoc/>
         public static bool operator !=(LabelAddressInfo left, LabelAddressInfo right) =>
@@ -168,11 +122,9 @@ namespace VisualCard.Parts.Implementations
 
         internal LabelAddressInfo() { }
 
-        internal LabelAddressInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string[] addressTypes, string label)
+        internal LabelAddressInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string label) :
+            base(arguments, altId, elementTypes, valueType)
         {
-            AltId = altId;
-            Arguments = arguments;
-            AddressTypes = addressTypes;
             DeliveryLabel = label;
         }
     }

@@ -34,10 +34,6 @@ namespace VisualCard.Parts.Implementations
     public class TimeDateZoneInfo : BaseCardPartInfo, IEquatable<TimeDateZoneInfo>
     {
         /// <summary>
-        /// The contact's time zone types
-        /// </summary>
-        public string[] TimeZoneTypes { get; }
-        /// <summary>
         /// The contact's time zone
         /// </summary>
         public string TimeZone { get; }
@@ -54,7 +50,7 @@ namespace VisualCard.Parts.Implementations
                 return
                     $"{VcardConstants._timeZoneSpecifier}{(installAltId ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter)}" +
                     $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
-                    $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._argumentDelimiter : "")}" +
+                    $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), Arguments) + VcardConstants._argumentDelimiter : "")}" +
                     $"{TimeZone}";
             }
             else
@@ -67,39 +63,13 @@ namespace VisualCard.Parts.Implementations
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
-            // Get the value
-            string tzValue = value.Substring(VcardConstants._timeZoneSpecifier.Length + 1);
-
-            // Populate the fields
-            return InstallInfo([tzValue], false, altId, cardVersion);
-        }
-
-        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion)
-        {
-            // Check the line
-            string tzValue = value.Substring(VcardConstants._timeZoneSpecifier.Length + 1);
-            string[] splitTz = tzValue.Split(VcardConstants._argumentDelimiter);
-            if (splitTz.Length < 2)
-                throw new InvalidDataException("Time Zone field must specify exactly two values (VALUE=\"text\" / \"uri\" / \"utc-offset\", and time zone info)");
-
-            // Populate the fields
-            return InstallInfo(splitTz, true, finalArgs, altId, cardVersion);
-        }
-
-        private TimeDateZoneInfo InstallInfo(string[] splitTz, bool installType, int altId, Version cardVersion) =>
-            InstallInfo(splitTz, installType, [], altId, cardVersion);
-
-        private TimeDateZoneInfo InstallInfo(string[] splitTz, bool installType, string[] finalArgs, int altId, Version cardVersion)
-        {
             bool altIdSupported = cardVersion.Major >= 4;
-            bool typesSupported = cardVersion.Major >= 3;
 
             // Get the types and the number
-            string[] _geoTypes = typesSupported ? installType ? VcardParserTools.GetValues(splitTz, "", VcardConstants._valueArgumentSpecifier) : ["uri-offset"] : [];
-            string _geoStr = Regex.Unescape(typesSupported ? installType ? splitTz[1] : splitTz[0] : splitTz[0]);
+            string _tzStr = Regex.Unescape(value);
 
             // Add the fetched information
-            TimeDateZoneInfo _timeZone = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, _geoTypes, _geoStr);
+            TimeDateZoneInfo _timeZone = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, _tzStr);
             return _timeZone;
         }
 
@@ -129,8 +99,6 @@ namespace VisualCard.Parts.Implementations
 
             // Check all the properties
             return
-                source.AltArguments.SequenceEqual(target.AltArguments) &&
-                source.TimeZoneTypes.SequenceEqual(target.TimeZoneTypes) &&
                 base.Equals(source, target) &&
                 source.TimeZone == target.TimeZone
             ;
@@ -139,17 +107,15 @@ namespace VisualCard.Parts.Implementations
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = 1304261678;
-            hashCode = hashCode * -1521134295 + AltId.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(AltArguments);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(TimeZoneTypes);
+            int hashCode = 1988546296;
+            hashCode = hashCode * -1521134295 + base.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(TimeZone);
             return hashCode;
         }
 
         /// <inheritdoc/>
         public static bool operator ==(TimeDateZoneInfo left, TimeDateZoneInfo right) =>
-            EqualityComparer<TimeDateZoneInfo>.Default.Equals(left, right);
+            left.Equals(right);
 
         /// <inheritdoc/>
         public static bool operator !=(TimeDateZoneInfo left, TimeDateZoneInfo right) =>
@@ -157,11 +123,9 @@ namespace VisualCard.Parts.Implementations
 
         internal TimeDateZoneInfo() { }
 
-        internal TimeDateZoneInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string[] timeZoneTypes, string timeZone)
+        internal TimeDateZoneInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string timeZone) :
+            base(arguments, altId, elementTypes, valueType)
         {
-            AltId = altId;
-            Arguments = arguments;
-            TimeZoneTypes = timeZoneTypes;
             TimeZone = timeZone;
         }
     }

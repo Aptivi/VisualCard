@@ -33,10 +33,6 @@ namespace VisualCard.Parts.Implementations
     public class LangInfo : BaseCardPartInfo, IEquatable<LangInfo>
     {
         /// <summary>
-        /// The contact's language types
-        /// </summary>
-        public string[] ContactLangTypes { get; }
-        /// <summary>
         /// The contact's preference order
         /// </summary>
         public int ContactLangPreference { get; }
@@ -57,7 +53,7 @@ namespace VisualCard.Parts.Implementations
                 return
                     $"{VcardConstants._langSpecifier};" +
                     $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
-                    $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", ContactLangTypes)}{VcardConstants._fieldDelimiter}" +
+                    $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", ElementTypes)}{VcardConstants._fieldDelimiter}" +
                     $"{VcardConstants._prefArgumentSpecifier}{ContactLangPreference}{VcardConstants._argumentDelimiter}" +
                     $"{ContactLang}";
             }
@@ -65,7 +61,7 @@ namespace VisualCard.Parts.Implementations
             {
                 return
                     $"{VcardConstants._langSpecifier};" +
-                    $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", ContactLangTypes)}{VcardConstants._fieldDelimiter}" +
+                    $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", ElementTypes)}{VcardConstants._fieldDelimiter}" +
                     $"{VcardConstants._prefArgumentSpecifier}{ContactLangPreference}{VcardConstants._argumentDelimiter}" +
                     $"{ContactLang}";
             }
@@ -73,37 +69,8 @@ namespace VisualCard.Parts.Implementations
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
-            // Get the value
-            string langValue = value.Substring(VcardConstants._langSpecifier.Length + 1);
-            string[] splitLang = langValue.Split(VcardConstants._argumentDelimiter);
-
             // Populate the fields
-            return InstallInfo(splitLang, altId);
-        }
-
-        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion)
-        {
-            // Get the value
-            string langValue = value.Substring(VcardConstants._langSpecifier.Length + 1);
-            string[] splitLang = langValue.Split(VcardConstants._argumentDelimiter);
-            if (splitLang.Length < 2)
-                throw new InvalidDataException("Language field must specify exactly two values (Type (must be prepended with TYPE=), and a valid language code)");
-
-            // Populate the fields
-            return InstallInfo(splitLang, finalArgs, altId);
-        }
-
-        private LangInfo InstallInfo(string[] splitLang, int altId) =>
-            InstallInfo(splitLang, [], altId);
-
-        private LangInfo InstallInfo(string[] splitLang, string[] finalArgs, int altId)
-        {
-            bool installType = splitLang.Length > 1;
-
-            // Populate the fields
-            string[] _langTypes = installType ? VcardParserTools.GetTypes(splitLang, "HOME", true) : ["HOME"];
-            string _langCode = installType ? splitLang[1] : splitLang[0];
-            LangInfo _lang = new(altId, finalArgs, _langTypes, _langCode);
+            LangInfo _lang = new(altId, finalArgs, elementTypes, valueType, value);
             return _lang;
         }
 
@@ -133,7 +100,6 @@ namespace VisualCard.Parts.Implementations
 
             // Check all the properties
             return
-                source.ContactLangTypes.SequenceEqual(target.ContactLangTypes) &&
                 base.Equals(source, target) &&
                 source.ContactLang == target.ContactLang
             ;
@@ -142,17 +108,16 @@ namespace VisualCard.Parts.Implementations
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = 2091849342;
-            hashCode = hashCode * -1521134295 + AltId.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(AltArguments);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(ContactLangTypes);
+            int hashCode = -2101786561;
+            hashCode = hashCode * -1521134295 + base.GetHashCode();
+            hashCode = hashCode * -1521134295 + ContactLangPreference.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactLang);
             return hashCode;
         }
 
         /// <inheritdoc/>
         public static bool operator ==(LangInfo left, LangInfo right) =>
-            EqualityComparer<LangInfo>.Default.Equals(left, right);
+            left.Equals(right);
 
         /// <inheritdoc/>
         public static bool operator !=(LangInfo left, LangInfo right) =>
@@ -160,11 +125,9 @@ namespace VisualCard.Parts.Implementations
 
         internal LangInfo() { }
 
-        internal LangInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string[] contactLangTypes, string contactLangCode)
+        internal LangInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string contactLangCode) :
+            base(arguments, altId, elementTypes, valueType)
         {
-            AltId = altId;
-            Arguments = arguments;
-            ContactLangTypes = contactLangTypes;
             ContactLang = contactLangCode;
         }
     }

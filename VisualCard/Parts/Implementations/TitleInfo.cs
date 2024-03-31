@@ -49,7 +49,7 @@ namespace VisualCard.Parts.Implementations
                 return
                     $"{(installAltId ? $"{VcardConstants._titleSpecifier};" : $"{VcardConstants._titleSpecifier}:")}" +
                     $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
-                    $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._argumentDelimiter : "")}" +
+                    $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), Arguments) + VcardConstants._argumentDelimiter : "")}" +
                     $"{ContactTitle}";
             }
             else
@@ -62,30 +62,8 @@ namespace VisualCard.Parts.Implementations
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
-            // Get the value
-            string titleValue = value.Substring(VcardConstants._titleSpecifier.Length + 1);
-
-            // Populate the fields
-            return InstallInfo([titleValue], altId, cardVersion);
-        }
-
-        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion)
-        {
-            // Get the value
-            string titleValue = value.Substring(VcardConstants._titleSpecifier.Length + 1);
-            string[] splitTitleParts = titleValue.Split(VcardConstants._argumentDelimiter);
-
-            // Populate the fields
-            return InstallInfo(splitTitleParts, finalArgs, altId, cardVersion);
-        }
-
-        private TitleInfo InstallInfo(string[] splitTitleParts, int altId, Version cardVersion) =>
-            InstallInfo(splitTitleParts, [], altId, cardVersion);
-
-        private TitleInfo InstallInfo(string[] splitTitleParts, string[] finalArgs, int altId, Version cardVersion)
-        {
             bool altIdSupported = cardVersion.Major >= 4;
-            string _title = Regex.Unescape(splitTitleParts.Length > 1 ? splitTitleParts[1] : splitTitleParts[0]);
+            string _title = Regex.Unescape(value);
             TitleInfo _titleInfo = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, _title);
             return _titleInfo;
         }
@@ -116,7 +94,6 @@ namespace VisualCard.Parts.Implementations
 
             // Check all the properties
             return
-                source.AltArguments.SequenceEqual(target.AltArguments) &&
                 base.Equals(source, target) &&
                 source.ContactTitle == target.ContactTitle
             ;
@@ -125,16 +102,15 @@ namespace VisualCard.Parts.Implementations
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = -1478940212;
-            hashCode = hashCode * -1521134295 + AltId.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(AltArguments);
+            int hashCode = -345092951;
+            hashCode = hashCode * -1521134295 + base.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactTitle);
             return hashCode;
         }
 
         /// <inheritdoc/>
         public static bool operator ==(TitleInfo left, TitleInfo right) =>
-            EqualityComparer<TitleInfo>.Default.Equals(left, right);
+            left.Equals(right);
 
         /// <inheritdoc/>
         public static bool operator !=(TitleInfo left, TitleInfo right) =>
@@ -142,10 +118,9 @@ namespace VisualCard.Parts.Implementations
 
         internal TitleInfo() { }
 
-        internal TitleInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string contactTitle)
+        internal TitleInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string contactTitle) :
+            base(arguments, altId, elementTypes, valueType)
         {
-            AltId = altId;
-            Arguments = arguments;
             ContactTitle = contactTitle;
         }
     }

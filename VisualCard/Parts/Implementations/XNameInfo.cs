@@ -38,10 +38,6 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// X- values
         /// </summary>
-        public string[] XKeyTypes { get; }
-        /// <summary>
-        /// X- values
-        /// </summary>
         public string[] XValues { get; }
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
@@ -53,49 +49,28 @@ namespace VisualCard.Parts.Implementations
             if (altIdSupported)
             {
                 bool installAltId = AltId >= 0 && Arguments.Length > 0;
-                bool installType = installAltId && XKeyTypes.Length > 0;
+                bool installType = installAltId && ElementTypes.Length > 0;
                 return
                     $"{VcardConstants._xSpecifier}" +
                     $"{XKeyName}{(installType ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter)}" +
                     $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
-                    $"{(XKeyTypes.Length > 0 ? string.Join(VcardConstants._fieldDelimiter.ToString(), XKeyTypes) + VcardConstants._argumentDelimiter : "")}" +
+                    $"{(ElementTypes.Length > 0 ? string.Join(VcardConstants._fieldDelimiter.ToString(), ElementTypes) + VcardConstants._argumentDelimiter : "")}" +
                     $"{string.Join(VcardConstants._fieldDelimiter.ToString(), XValues)}";
             }
             else
             {
                 return
                     $"{VcardConstants._xSpecifier}" +
-                    $"{XKeyName}{(XKeyTypes.Length > 0 ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter)}" +
-                    $"{(XKeyTypes.Length > 0 ? string.Join(VcardConstants._fieldDelimiter.ToString(), XKeyTypes) + VcardConstants._argumentDelimiter : "")}" +
+                    $"{XKeyName}{(ElementTypes.Length > 0 ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter)}" +
+                    $"{(ElementTypes.Length > 0 ? string.Join(VcardConstants._fieldDelimiter.ToString(), ElementTypes) + VcardConstants._argumentDelimiter : "")}" +
                     $"{string.Join(VcardConstants._fieldDelimiter.ToString(), XValues)}";
             }
         }
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
-            // Get the value
             string xValue = value.Substring(VcardConstants._xSpecifier.Length);
             string[] splitX = xValue.Split(VcardConstants._argumentDelimiter);
-
-            // Populate the fields
-            return InstallInfo(splitX, altId, cardVersion);
-        }
-
-        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion)
-        {
-            // Get the value
-            string xValue = value.Substring(VcardConstants._xSpecifier.Length);
-            string[] splitX = xValue.Split(VcardConstants._argumentDelimiter);
-
-            // Populate the fields
-            return InstallInfo(splitX, finalArgs, altId, cardVersion);
-        }
-
-        private XNameInfo InstallInfo(string[] splitX, int altId, Version cardVersion) =>
-            InstallInfo(splitX, [], altId, cardVersion);
-
-        private XNameInfo InstallInfo(string[] splitX, string[] finalArgs, int altId, Version cardVersion)
-        {
             bool altIdSupported = cardVersion.Major >= 4;
 
             // Populate the name
@@ -104,12 +79,8 @@ namespace VisualCard.Parts.Implementations
                             splitX[0];
 
             // Populate the fields
-            string[] _xTypes = splitX[0].Contains(VcardConstants._fieldDelimiter.ToString()) ?
-                               splitX[0].Substring(splitX[0].IndexOf(VcardConstants._fieldDelimiter) + 1)
-                                        .Split(VcardConstants._fieldDelimiter) :
-                               [];
             string[] _xValues = splitX[1].Split(VcardConstants._fieldDelimiter);
-            XNameInfo _x = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, _xName, _xValues, _xTypes);
+            XNameInfo _x = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, _xName, _xValues);
             return _x;
         }
 
@@ -139,10 +110,8 @@ namespace VisualCard.Parts.Implementations
 
             // Check all the properties
             return
-                source.AltArguments.SequenceEqual(target.AltArguments) &&
-                source.XKeyTypes.SequenceEqual(target.XKeyTypes) &&
-                source.XValues.SequenceEqual(target.XValues) &&
                 base.Equals(source, target) &&
+                source.XValues.SequenceEqual(target.XValues) &&
                 source.XKeyName == target.XKeyName
             ;
         }
@@ -150,18 +119,16 @@ namespace VisualCard.Parts.Implementations
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = 1235403650;
-            hashCode = hashCode * -1521134295 + AltId.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(AltArguments);
+            int hashCode = 390070728;
+            hashCode = hashCode * -1521134295 + base.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(XKeyName);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(XKeyTypes);
             hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(XValues);
             return hashCode;
         }
 
         /// <inheritdoc/>
         public static bool operator ==(XNameInfo left, XNameInfo right) =>
-            EqualityComparer<XNameInfo>.Default.Equals(left, right);
+            left.Equals(right);
 
         /// <inheritdoc/>
         public static bool operator !=(XNameInfo left, XNameInfo right) =>
@@ -169,13 +136,11 @@ namespace VisualCard.Parts.Implementations
 
         internal XNameInfo() { }
 
-        internal XNameInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string xKeyName, string[] xValues, string[] xKeyTypes)
+        internal XNameInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string xKeyName, string[] xValues) :
+            base(arguments, altId, elementTypes, valueType)
         {
-            AltId = altId;
-            Arguments = arguments;
             XKeyName = xKeyName;
             XValues = xValues;
-            XKeyTypes = xKeyTypes;
         }
     }
 }

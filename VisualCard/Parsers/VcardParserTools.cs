@@ -32,12 +32,10 @@ namespace VisualCard.Parsers
     {
         internal static string GetTypesString(string[] args, string @default, bool isSpecifierRequired = true)
         {
-            // We're given a split of this: "IMPP;TYPE=home:sip:test" delimited by the colon. Split by semicolon to get list of args.
-            string[] splitArgs = args[0].Split(VcardConstants._fieldDelimiter);
-
+            // We're given an array of split arguments of an element delimited by the colon, such as: "...TYPE=home..."
             // Filter list of arguments with the arguments that start with the type argument specifier, or, if specifier is not required,
             // that doesn't have an equals sign
-            var ArgType = splitArgs.Where((arg) => arg.StartsWith(VcardConstants._typeArgumentSpecifier) || !arg.Contains("=")).ToArray();
+            var ArgType = args.Where((arg) => arg.StartsWith(VcardConstants._typeArgumentSpecifier) || !arg.Contains("=")).ToArray();
 
             // Trying to specify type without TYPE= is illegal according to RFC2426 in vCard 3.0 and 4.0
             if (ArgType.Count() > 0 && !ArgType[0].StartsWith(VcardConstants._typeArgumentSpecifier) && isSpecifierRequired)
@@ -66,15 +64,13 @@ namespace VisualCard.Parsers
         }
 
         internal static string[] GetTypes(string[] args, string @default, bool isSpecifierRequired = true) =>
-            GetTypesString(args, @default, isSpecifierRequired).Split(VcardConstants._valueDelimiter);
+            GetTypesString(args, @default, isSpecifierRequired).Split([VcardConstants._valueDelimiter], StringSplitOptions.RemoveEmptyEntries);
 
         internal static string GetValuesString(string[] args, string @default, string argSpecifier)
         {
-            // We're given a split of this: "IMPP;ARGSPECIFIER=etc;TYPE=home:sip:test" delimited by the colon. Split by semicolon to get list of args.
-            string[] splitArgs = args[0].Split(VcardConstants._fieldDelimiter);
-
+            // We're given an array of split arguments of an element delimited by the colon, such as: "...TYPE=home..."
             // Filter list of arguments with the arguments that start with the specified specifier (key)
-            var argFromSpecifier = splitArgs.Where((arg) => arg.StartsWith(argSpecifier));
+            var argFromSpecifier = args.Where((arg) => arg.StartsWith(argSpecifier));
 
             // Attempt to get the value from the key
             string argString =
@@ -85,7 +81,7 @@ namespace VisualCard.Parsers
         }
 
         internal static string[] GetValues(string[] args, string @default, string argSpecifier) =>
-            GetValuesString(args, @default, argSpecifier).Split(VcardConstants._valueDelimiter);
+            GetValuesString(args, @default, argSpecifier).Split([VcardConstants._valueDelimiter], StringSplitOptions.RemoveEmptyEntries);
 
         internal static bool StringSupported(StringsEnum stringsEnum, Version cardVersion) =>
             stringsEnum switch
@@ -201,45 +197,45 @@ namespace VisualCard.Parsers
                     throw new NotImplementedException($"String enumeration {partsArrayEnum} is not implemented.")
             };
 
-        internal static (PartType type, object enumeration, Type enumType, Func<string, int, Version, BaseCardPartInfo> fromStringFunc, Func<string, string[], int, Version, BaseCardPartInfo> fromStringWithTypeFunc) GetPartType(string prefix) =>
+        internal static (PartType type, object enumeration, Type enumType, Func<string, string[], int, string[], string, Version, BaseCardPartInfo> fromStringFunc, string defaultType, string defaultValue) GetPartType(string prefix) =>
             prefix switch
             {
-                VcardConstants._nameSpecifier => (PartType.PartsArray, PartsArrayEnum.Names, typeof(NameInfo), NameInfo.FromStringVcardStatic, NameInfo.FromStringVcardWithTypeStatic),
-                VcardConstants._telephoneSpecifier => (PartType.PartsArray, PartsArrayEnum.Telephones, typeof(TelephoneInfo), TelephoneInfo.FromStringVcardStatic, TelephoneInfo.FromStringVcardWithTypeStatic),
-                VcardConstants._addressSpecifier => (PartType.PartsArray, PartsArrayEnum.Addresses, typeof(AddressInfo), AddressInfo.FromStringVcardStatic, AddressInfo.FromStringVcardWithTypeStatic),
-                VcardConstants._labelSpecifier => (PartType.PartsArray, PartsArrayEnum.Labels, typeof(LabelAddressInfo), LabelAddressInfo.FromStringVcardStatic, LabelAddressInfo.FromStringVcardWithTypeStatic),
-                VcardConstants._agentSpecifier => (PartType.PartsArray, PartsArrayEnum.Agents, typeof(AgentInfo), AgentInfo.FromStringVcardStatic, AgentInfo.FromStringVcardWithTypeStatic),
-                VcardConstants._emailSpecifier => (PartType.PartsArray, PartsArrayEnum.Mails, typeof(EmailInfo), EmailInfo.FromStringVcardStatic, EmailInfo.FromStringVcardWithTypeStatic),
-                VcardConstants._orgSpecifier => (PartType.PartsArray, PartsArrayEnum.Organizations, typeof(OrganizationInfo), OrganizationInfo.FromStringVcardStatic, OrganizationInfo.FromStringVcardWithTypeStatic),
-                VcardConstants._titleSpecifier => (PartType.PartsArray, PartsArrayEnum.Titles, typeof(TitleInfo), TitleInfo.FromStringVcardStatic, TitleInfo.FromStringVcardWithTypeStatic),
-                VcardConstants._photoSpecifier => (PartType.PartsArray, PartsArrayEnum.Photos, typeof(PhotoInfo), PhotoInfo.FromStringVcardStatic, PhotoInfo.FromStringVcardWithTypeStatic),
-                VcardConstants._nicknameSpecifier => (PartType.PartsArray, PartsArrayEnum.Nicknames, typeof(NicknameInfo), NicknameInfo.FromStringVcardStatic, NicknameInfo.FromStringVcardWithTypeStatic),
-                VcardConstants._roleSpecifier => (PartType.PartsArray, PartsArrayEnum.Roles, typeof(RoleInfo), RoleInfo.FromStringVcardStatic, RoleInfo.FromStringVcardWithTypeStatic),
-                VcardConstants._logoSpecifier => (PartType.PartsArray, PartsArrayEnum.Logos, typeof(LogoInfo), LogoInfo.FromStringVcardStatic, LogoInfo.FromStringVcardWithTypeStatic),
-                VcardConstants._timeZoneSpecifier => (PartType.PartsArray, PartsArrayEnum.TimeZone, typeof(TimeDateZoneInfo), TimeDateZoneInfo.FromStringVcardStatic, TimeDateZoneInfo.FromStringVcardWithTypeStatic),
-                VcardConstants._geoSpecifier => (PartType.PartsArray, PartsArrayEnum.Geo, typeof(GeoInfo), GeoInfo.FromStringVcardStatic, GeoInfo.FromStringVcardWithTypeStatic),
-                VcardConstants._soundSpecifier => (PartType.PartsArray, PartsArrayEnum.Sounds, typeof(SoundInfo), SoundInfo.FromStringVcardStatic, SoundInfo.FromStringVcardWithTypeStatic),
-                VcardConstants._imppSpecifier => (PartType.PartsArray, PartsArrayEnum.Impps, typeof(ImppInfo), ImppInfo.FromStringVcardStatic, ImppInfo.FromStringVcardWithTypeStatic),
-                VcardConstants._categoriesSpecifier => (PartType.PartsArray, PartsArrayEnum.Categories, typeof(CategoryInfo), CategoryInfo.FromStringVcardStatic, CategoryInfo.FromStringVcardWithTypeStatic),
-                VcardConstants._langSpecifier => (PartType.PartsArray, PartsArrayEnum.Langs, typeof(LangInfo), LangInfo.FromStringVcardStatic, LangInfo.FromStringVcardWithTypeStatic),
-                VcardConstants._xmlSpecifier => (PartType.PartsArray, PartsArrayEnum.Xml, typeof(XmlInfo), XmlInfo.FromStringVcardStatic, XmlInfo.FromStringVcardWithTypeStatic),
-                VcardConstants._xSpecifier => (PartType.PartsArray, PartsArrayEnum.NonstandardNames, typeof(XNameInfo), XNameInfo.FromStringVcardStatic, XNameInfo.FromStringVcardWithTypeStatic),
-                VcardConstants._revSpecifier => (PartType.Parts, PartsEnum.Revision, typeof(RevisionInfo), RevisionInfo.FromStringVcardStatic, RevisionInfo.FromStringVcardWithTypeStatic),
-                VcardConstants._birthSpecifier => (PartType.Parts, PartsEnum.Birthdate, typeof(BirthDateInfo), BirthDateInfo.FromStringVcardStatic, BirthDateInfo.FromStringVcardWithTypeStatic),
-                VcardConstants._anniversarySpecifier => (PartType.Parts, PartsEnum.Anniversary, typeof(AnniversaryInfo), AnniversaryInfo.FromStringVcardStatic, AnniversaryInfo.FromStringVcardWithTypeStatic),
-                VcardConstants._genderSpecifier => (PartType.Parts, PartsEnum.Gender, typeof(GenderInfo), GenderInfo.FromStringVcardStatic, GenderInfo.FromStringVcardWithTypeStatic),
-                VcardConstants._fullNameSpecifier => (PartType.Strings, StringsEnum.FullName, null, null, null),
-                VcardConstants._urlSpecifier => (PartType.Strings, StringsEnum.Url, null, null, null),
-                VcardConstants._noteSpecifier => (PartType.Strings, StringsEnum.Notes, null, null, null),
-                VcardConstants._sourceSpecifier => (PartType.Strings, StringsEnum.Source, null, null, null),
-                VcardConstants._kindSpecifier => (PartType.Strings, StringsEnum.Kind, null, null, null),
-                VcardConstants._mailerSpecifier => (PartType.Strings, StringsEnum.Mailer, null, null, null),
-                VcardConstants._productIdSpecifier => (PartType.Strings, StringsEnum.ProductId, null, null, null),
-                VcardConstants._sortStringSpecifier => (PartType.Strings, StringsEnum.SortString, null, null, null),
-                VcardConstants._classSpecifier => (PartType.Strings, StringsEnum.AccessClassification, null, null, null),
-                VcardConstants._fbUrlSpecifier => (PartType.Strings, StringsEnum.FreeBusyUrl, null, null, null),
-                VcardConstants._calUriSpecifier => (PartType.Strings, StringsEnum.CalendarUrl, null, null, null),
-                VcardConstants._caladrUriSpecifier => (PartType.Strings, StringsEnum.CalendarSchedulingRequestUrl, null, null, null),
+                VcardConstants._nameSpecifier => (PartType.PartsArray, PartsArrayEnum.Names, typeof(NameInfo), NameInfo.FromStringVcardStatic, "", ""),
+                VcardConstants._telephoneSpecifier => (PartType.PartsArray, PartsArrayEnum.Telephones, typeof(TelephoneInfo), TelephoneInfo.FromStringVcardStatic, "CELL", ""),
+                VcardConstants._addressSpecifier => (PartType.PartsArray, PartsArrayEnum.Addresses, typeof(AddressInfo), AddressInfo.FromStringVcardStatic, "HOME", ""),
+                VcardConstants._labelSpecifier => (PartType.PartsArray, PartsArrayEnum.Labels, typeof(LabelAddressInfo), LabelAddressInfo.FromStringVcardStatic, "", ""),
+                VcardConstants._agentSpecifier => (PartType.PartsArray, PartsArrayEnum.Agents, typeof(AgentInfo), AgentInfo.FromStringVcardStatic, "", ""),
+                VcardConstants._emailSpecifier => (PartType.PartsArray, PartsArrayEnum.Mails, typeof(EmailInfo), EmailInfo.FromStringVcardStatic, "HOME", ""),
+                VcardConstants._orgSpecifier => (PartType.PartsArray, PartsArrayEnum.Organizations, typeof(OrganizationInfo), OrganizationInfo.FromStringVcardStatic, "", ""),
+                VcardConstants._titleSpecifier => (PartType.PartsArray, PartsArrayEnum.Titles, typeof(TitleInfo), TitleInfo.FromStringVcardStatic, "", ""),
+                VcardConstants._photoSpecifier => (PartType.PartsArray, PartsArrayEnum.Photos, typeof(PhotoInfo), PhotoInfo.FromStringVcardStatic, "", ""),
+                VcardConstants._nicknameSpecifier => (PartType.PartsArray, PartsArrayEnum.Nicknames, typeof(NicknameInfo), NicknameInfo.FromStringVcardStatic, "", ""),
+                VcardConstants._roleSpecifier => (PartType.PartsArray, PartsArrayEnum.Roles, typeof(RoleInfo), RoleInfo.FromStringVcardStatic, "", ""),
+                VcardConstants._logoSpecifier => (PartType.PartsArray, PartsArrayEnum.Logos, typeof(LogoInfo), LogoInfo.FromStringVcardStatic, "", ""),
+                VcardConstants._timeZoneSpecifier => (PartType.PartsArray, PartsArrayEnum.TimeZone, typeof(TimeDateZoneInfo), TimeDateZoneInfo.FromStringVcardStatic, "", ""),
+                VcardConstants._geoSpecifier => (PartType.PartsArray, PartsArrayEnum.Geo, typeof(GeoInfo), GeoInfo.FromStringVcardStatic, "", ""),
+                VcardConstants._soundSpecifier => (PartType.PartsArray, PartsArrayEnum.Sounds, typeof(SoundInfo), SoundInfo.FromStringVcardStatic, "", ""),
+                VcardConstants._imppSpecifier => (PartType.PartsArray, PartsArrayEnum.Impps, typeof(ImppInfo), ImppInfo.FromStringVcardStatic, "", ""),
+                VcardConstants._categoriesSpecifier => (PartType.PartsArray, PartsArrayEnum.Categories, typeof(CategoryInfo), CategoryInfo.FromStringVcardStatic, "", ""),
+                VcardConstants._langSpecifier => (PartType.PartsArray, PartsArrayEnum.Langs, typeof(LangInfo), LangInfo.FromStringVcardStatic, "", ""),
+                VcardConstants._xmlSpecifier => (PartType.PartsArray, PartsArrayEnum.Xml, typeof(XmlInfo), XmlInfo.FromStringVcardStatic, "", ""),
+                VcardConstants._xSpecifier => (PartType.PartsArray, PartsArrayEnum.NonstandardNames, typeof(XNameInfo), XNameInfo.FromStringVcardStatic, "", ""),
+                VcardConstants._revSpecifier => (PartType.Parts, PartsEnum.Revision, typeof(RevisionInfo), RevisionInfo.FromStringVcardStatic, "", ""),
+                VcardConstants._birthSpecifier => (PartType.Parts, PartsEnum.Birthdate, typeof(BirthDateInfo), BirthDateInfo.FromStringVcardStatic, "", ""),
+                VcardConstants._anniversarySpecifier => (PartType.Parts, PartsEnum.Anniversary, typeof(AnniversaryInfo), AnniversaryInfo.FromStringVcardStatic, "", ""),
+                VcardConstants._genderSpecifier => (PartType.Parts, PartsEnum.Gender, typeof(GenderInfo), GenderInfo.FromStringVcardStatic, "", ""),
+                VcardConstants._fullNameSpecifier => (PartType.Strings, StringsEnum.FullName, null, null, "", ""),
+                VcardConstants._urlSpecifier => (PartType.Strings, StringsEnum.Url, null, null, "", ""),
+                VcardConstants._noteSpecifier => (PartType.Strings, StringsEnum.Notes, null, null, "", ""),
+                VcardConstants._sourceSpecifier => (PartType.Strings, StringsEnum.Source, null, null, "", ""),
+                VcardConstants._kindSpecifier => (PartType.Strings, StringsEnum.Kind, null, null, "", ""),
+                VcardConstants._mailerSpecifier => (PartType.Strings, StringsEnum.Mailer, null, null, "", ""),
+                VcardConstants._productIdSpecifier => (PartType.Strings, StringsEnum.ProductId, null, null, "", ""),
+                VcardConstants._sortStringSpecifier => (PartType.Strings, StringsEnum.SortString, null, null, "", ""),
+                VcardConstants._classSpecifier => (PartType.Strings, StringsEnum.AccessClassification, null, null, "", ""),
+                VcardConstants._fbUrlSpecifier => (PartType.Strings, StringsEnum.FreeBusyUrl, null, null, "", ""),
+                VcardConstants._calUriSpecifier => (PartType.Strings, StringsEnum.CalendarUrl, null, null, "", ""),
+                VcardConstants._caladrUriSpecifier => (PartType.Strings, StringsEnum.CalendarSchedulingRequestUrl, null, null, "", ""),
                 _ =>
                     throw new InvalidOperationException($"Unknown prefix {prefix}"),
             };

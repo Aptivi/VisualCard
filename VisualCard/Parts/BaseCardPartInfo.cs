@@ -73,8 +73,8 @@ namespace VisualCard.Parts
             // Check all the properties
             return
                 source.Arguments.SequenceEqual(target.Arguments) &&
+                source.ElementTypes.SequenceEqual(target.ElementTypes) &&
                 source.AltId == target.AltId &&
-                source.ElementTypes == target.ElementTypes &&
                 source.ValueType == target.ValueType
             ;
         }
@@ -96,7 +96,7 @@ namespace VisualCard.Parts
 
         /// <inheritdoc/>
         public static bool operator ==(BaseCardPartInfo left, BaseCardPartInfo right) =>
-            EqualityComparer<BaseCardPartInfo>.Default.Equals(left, right);
+            left.Equals(right);
 
         /// <inheritdoc/>
         public static bool operator !=(BaseCardPartInfo left, BaseCardPartInfo right) =>
@@ -105,5 +105,16 @@ namespace VisualCard.Parts
         internal abstract BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion);
 
         internal abstract string ToStringVcardInternal(Version cardVersion);
+
+        internal BaseCardPartInfo()
+        { }
+
+        internal BaseCardPartInfo(string[] arguments, int altId, string[] elementTypes, string valueType)
+        {
+            Arguments = arguments;
+            AltId = altId;
+            ElementTypes = elementTypes;
+            ValueType = valueType;
+        }
     }
 }

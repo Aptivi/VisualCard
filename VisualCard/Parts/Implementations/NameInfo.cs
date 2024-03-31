@@ -69,7 +69,7 @@ namespace VisualCard.Parts.Implementations
                 return
                     $"{VcardConstants._nameSpecifier}{(installAltId ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter)}" +
                     $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
-                    $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._argumentDelimiter : "")}" +
+                    $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), Arguments) + VcardConstants._argumentDelimiter : "")}" +
                     $"{ContactLastName}{VcardConstants._fieldDelimiter}" +
                     $"{ContactFirstName}{VcardConstants._fieldDelimiter}" +
                     $"{altNamesStr}{VcardConstants._fieldDelimiter}" +
@@ -93,35 +93,10 @@ namespace VisualCard.Parts.Implementations
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
-            // Check the line
-            string nameValue = value.Substring(VcardConstants._nameSpecifier.Length + 1);
-            string[] splitName = nameValue.Split(VcardConstants._fieldDelimiter);
-            if (splitName.Length < 2)
-                throw new InvalidDataException("Name field must specify the first two or more of the five values (Last name, first name, alt names, prefixes, and suffixes)");
-
-            // Populate the fields
-            return InstallInfo(splitName, altId, cardVersion);
-        }
-
-        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion)
-        {
-            // Check the line
-            string nameValue = value.Substring(VcardConstants._nameSpecifier.Length + 1);
-            string[] splitNameParts = nameValue.Split(VcardConstants._argumentDelimiter);
-            string[] splitName = splitNameParts[1].Split(VcardConstants._fieldDelimiter);
-            if (splitName.Length < 2)
-                throw new InvalidDataException("Name field must specify the first two or more of the five values (Last name, first name, alt names, prefixes, and suffixes)");
-
-            // Populate the fields
-            return InstallInfo(splitName, finalArgs, altId, cardVersion);
-        }
-
-        private NameInfo InstallInfo(string[] splitName, int altId, Version cardVersion) =>
-            InstallInfo(splitName, [], altId, cardVersion);
-
-        private NameInfo InstallInfo(string[] splitName, string[] finalArgs, int altId, Version cardVersion)
-        {
             bool altIdSupported = cardVersion.Major >= 4;
+            string[] splitName = value.Split(VcardConstants._fieldDelimiter);
+            if (splitName.Length < 2)
+                throw new InvalidDataException("Name field must specify the first two or more of the five values (Last name, first name, alt names, prefixes, and suffixes)");
 
             // Populate fields
             string _lastName = Regex.Unescape(splitName[0]);
@@ -159,11 +134,10 @@ namespace VisualCard.Parts.Implementations
 
             // Check all the properties
             return
-                source.AltArguments.SequenceEqual(target.AltArguments) &&
+                base.Equals(source, target) &&
                 source.AltNames.SequenceEqual(target.AltNames) &&
                 source.Prefixes.SequenceEqual(target.Prefixes) &&
                 source.Suffixes.SequenceEqual(target.Suffixes) &&
-                base.Equals(source, target) &&
                 source.ContactFirstName == target.ContactFirstName &&
                 source.ContactLastName == target.ContactLastName
             ;
@@ -172,9 +146,8 @@ namespace VisualCard.Parts.Implementations
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = 357851718;
-            hashCode = hashCode * -1521134295 + AltId.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(AltArguments);
+            int hashCode = -465884477;
+            hashCode = hashCode * -1521134295 + base.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactFirstName);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactLastName);
             hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(AltNames);
@@ -185,7 +158,7 @@ namespace VisualCard.Parts.Implementations
 
         /// <inheritdoc/>
         public static bool operator ==(NameInfo left, NameInfo right) =>
-            EqualityComparer<NameInfo>.Default.Equals(left, right);
+            left.Equals(right);
 
         /// <inheritdoc/>
         public static bool operator !=(NameInfo left, NameInfo right) =>
@@ -193,10 +166,9 @@ namespace VisualCard.Parts.Implementations
 
         internal NameInfo() { }
 
-        internal NameInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string contactFirstName, string contactLastName, string[] altNames, string[] prefixes, string[] suffixes)
+        internal NameInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string contactFirstName, string contactLastName, string[] altNames, string[] prefixes, string[] suffixes) :
+            base(arguments, altId, elementTypes, valueType)
         {
-            AltId = altId;
-            Arguments = arguments;
             ContactFirstName = contactFirstName;
             ContactLastName = contactLastName;
             AltNames = altNames;

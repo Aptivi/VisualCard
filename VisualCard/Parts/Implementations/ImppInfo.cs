@@ -37,10 +37,6 @@ namespace VisualCard.Parts.Implementations
         /// The contact's IMPP information, such as SIP and XMPP
         /// </summary>
         public string ContactIMPP { get; }
-        /// <summary>
-        /// The contact's IMPP info types
-        /// </summary>
-        public string[] ImppTypes { get; }
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new ImppInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
@@ -51,62 +47,30 @@ namespace VisualCard.Parts.Implementations
             if (altIdSupported)
             {
                 bool installAltId = AltId >= 0 && Arguments.Length > 0;
-                bool installType = ImppTypes.Length > 0 && ImppTypes[0].ToUpper() != "HOME";
+                bool installType = ElementTypes.Length > 0 && ElementTypes[0].ToUpper() != "HOME";
                 return
                     $"{VcardConstants._imppSpecifier}{(installType || installAltId ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter)}" +
                     $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + (installType ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter) : "")}" +
-                    $"{(installType ? $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", ImppTypes)}{VcardConstants._argumentDelimiter}" : "")}" +
+                    $"{(installType ? $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", ElementTypes)}{VcardConstants._argumentDelimiter}" : "")}" +
                     $"{ContactIMPP}";
             }
             else
             {
-                bool installType = ImppTypes.Length > 0 && ImppTypes[0].ToUpper() != "HOME";
+                bool installType = ElementTypes.Length > 0 && ElementTypes[0].ToUpper() != "HOME";
                 return
                     $"{VcardConstants._imppSpecifier}{(installType ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter)}" +
-                    $"{(installType ? $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", ImppTypes)}{VcardConstants._argumentDelimiter}" : "")}" +
+                    $"{(installType ? $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", ElementTypes)}{VcardConstants._argumentDelimiter}" : "")}" +
                     $"{ContactIMPP}";
             }
         }
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
-            // Get the value
-            string imppValue = value.Substring(VcardConstants._imppSpecifier.Length + 1);
-            string[] _imppTypes = ["HOME"];
-
-            // Populate the fields
-            return InstallInfo(_imppTypes, imppValue, altId, cardVersion);
-        }
-
-        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion)
-        {
-            bool specifierRequired = cardVersion.Major >= 3;
-
-            // Get the value
-            string imppValue = value.Substring(VcardConstants._imppSpecifier.Length + 1);
-            string[] splitImpp = imppValue.Split(VcardConstants._argumentDelimiter);
-            if (splitImpp.Length < 2)
-                throw new InvalidDataException("IMPP information field must specify exactly two values (Type (must be prepended with TYPE=), and impp)");
-
-            // Install the values
-            string[] _imppTypes = VcardParserTools.GetTypes(splitImpp, "SIP", specifierRequired);
-
-            // Populate the fields
-            return InstallInfo(_imppTypes, imppValue, finalArgs, altId, cardVersion);
-        }
-
-        private ImppInfo InstallInfo(string[] types, string imppValue, int altId, Version cardVersion) =>
-            InstallInfo(types, imppValue, [], altId, cardVersion);
-
-        private ImppInfo InstallInfo(string[] types, string imppValue, string[] finalArgs, int altId, Version cardVersion)
-        {
             bool altIdSupported = cardVersion.Major >= 4;
-            string _impp =
-                imppValue.Contains(':') ?
-                Regex.Unescape(imppValue.Substring(imppValue.IndexOf(":") + 1)) :
-                Regex.Unescape(imppValue);
 
-            ImppInfo _imppInstance = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, _impp, types);
+            // Populate the fields
+            string _impp = Regex.Unescape(value);
+            ImppInfo _imppInstance = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, _impp);
             return _imppInstance;
         }
 
@@ -136,8 +100,6 @@ namespace VisualCard.Parts.Implementations
 
             // Check all the properties
             return
-                source.AltArguments.SequenceEqual(target.AltArguments) &&
-                source.ImppTypes.SequenceEqual(target.ImppTypes) &&
                 base.Equals(source, target) &&
                 source.ContactIMPP == target.ContactIMPP
             ;
@@ -146,17 +108,15 @@ namespace VisualCard.Parts.Implementations
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = -700274766;
-            hashCode = hashCode * -1521134295 + AltId.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(AltArguments);
+            int hashCode = 175591591;
+            hashCode = hashCode * -1521134295 + base.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactIMPP);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(ImppTypes);
             return hashCode;
         }
 
         /// <inheritdoc/>
         public static bool operator ==(ImppInfo left, ImppInfo right) =>
-            EqualityComparer<ImppInfo>.Default.Equals(left, right);
+            left.Equals(right);
 
         /// <inheritdoc/>
         public static bool operator !=(ImppInfo left, ImppInfo right) =>
@@ -164,12 +124,10 @@ namespace VisualCard.Parts.Implementations
 
         internal ImppInfo() { }
 
-        internal ImppInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string contactImpp, string[] imppTypes)
+        internal ImppInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string contactImpp) :
+            base(arguments, altId, elementTypes, valueType)
         {
-            AltId = altId;
-            Arguments = arguments;
             ContactIMPP = contactImpp;
-            ImppTypes = imppTypes;
         }
     }
 }

@@ -94,8 +94,6 @@ namespace VisualCard.ShowContacts
                         TextWriterColor.Write("First name:              {0}", name.ContactFirstName);
                         TextWriterColor.Write("Last name:               {0}", name.ContactLastName);
                         TextWriterColor.Write("ALTID:                   {0}", name.AltId);
-                        if (name.AltArguments?.Length > 0)
-                            TextWriterColor.Write("Reason for ALTID:        {0}", name.AltArguments);
                     }
 
                     // List titles
@@ -103,8 +101,6 @@ namespace VisualCard.ShowContacts
                     { 
                         TextWriterColor.Write("Title or Job:            {0}", title.ContactTitle);
                         TextWriterColor.Write("ALTID:                   {0}", title.AltId);
-                        if (title.AltArguments?.Length > 0)
-                            TextWriterColor.Write("Reason for ALTID:        {0}", title.AltArguments);
                     }
 
                     // List addresses
@@ -122,7 +118,6 @@ namespace VisualCard.ShowContacts
                     // List e-mails
                     foreach (EmailInfo Email in Contact.GetPartsArray(PartsArrayEnum.Mails))
                     {
-                        TextWriterColor.Write("Email types:             {0}", Email.ContactEmailTypes);
                         TextWriterColor.Write("Email address:           {0}", Email.ContactEmailAddress);
                     }
 
@@ -137,7 +132,6 @@ namespace VisualCard.ShowContacts
                     // List telephones
                     foreach (TelephoneInfo Telephone in Contact.GetPartsArray(PartsArrayEnum.Telephones))
                     {
-                        TextWriterColor.Write("Phone types:             {0}", Telephone.ContactPhoneTypes);
                         TextWriterColor.Write("Phone number:            {0}", Telephone.ContactPhoneNumber);
                     }
 
@@ -145,11 +139,8 @@ namespace VisualCard.ShowContacts
                     foreach (PhotoInfo Photo in Contact.GetPartsArray(PartsArrayEnum.Photos))
                     {
                         TextWriterColor.Write("Photo encoding:          {0}", Photo.Encoding);
-                        TextWriterColor.Write("Photo type:              {0}", Photo.PhotoType);
                         TextWriterColor.Write("Photo value type:        {0}", Photo.ValueType);
                         TextWriterColor.Write("ALTID:                   {0}", Photo.AltId);
-                        if (Photo.AltArguments?.Length > 0)
-                            TextWriterColor.Write("Reason for ALTID:        {0}", Photo.AltArguments);
                         TextWriterColor.Write("Photo data: \n{0}", Photo.PhotoEncoded);
                     }
 
@@ -158,8 +149,6 @@ namespace VisualCard.ShowContacts
                     {
                         TextWriterColor.Write("Role:                    {0}", Role.ContactRole);
                         TextWriterColor.Write("ALTID:                   {0}", Role.AltId);
-                        if (Role.AltArguments?.Length > 0)
-                            TextWriterColor.Write("Reason for ALTID:        {0}", Role.AltArguments);
                     }
 
                     // List remaining

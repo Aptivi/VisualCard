@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text.RegularExpressions;
 using VisualCard.Parsers;
 
 namespace VisualCard.Parts.Implementations
@@ -48,7 +49,7 @@ namespace VisualCard.Parts.Implementations
                 return
                     $"{VcardConstants._roleSpecifier}{(installAltId ? VcardConstants._fieldDelimiter : VcardConstants._argumentDelimiter)}" +
                     $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
-                    $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._argumentDelimiter : "")}" +
+                    $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), Arguments) + VcardConstants._argumentDelimiter : "")}" +
                     $"{ContactRole}";
             }
             else
@@ -61,32 +62,12 @@ namespace VisualCard.Parts.Implementations
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
-            // Get the value
-            string roleValue = value.Substring(VcardConstants._roleSpecifier.Length + 1);
-
-            // Populate the fields
-            return InstallInfo(roleValue, altId, cardVersion);
-        }
-
-        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion)
-        {
-            // Get the value
-            string roleValue = value.Substring(VcardConstants._roleSpecifier.Length + 1);
-
-            // Populate the fields
-            return InstallInfo(roleValue, finalArgs, altId, cardVersion);
-        }
-
-        private RoleInfo InstallInfo(string roleValue, int altId, Version cardVersion) =>
-            InstallInfo(roleValue, [], altId, cardVersion);
-
-        private RoleInfo InstallInfo(string roleValue, string[] finalArgs, int altId, Version cardVersion)
-        {
             bool altIdSupported = cardVersion.Major >= 4;
+            string roleValue = Regex.Unescape(value);
 
             // Populate the fields
-            RoleInfo _telephone = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, roleValue);
-            return _telephone;
+            RoleInfo _role = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, roleValue);
+            return _role;
         }
 
         /// <inheritdoc/>
@@ -115,7 +96,6 @@ namespace VisualCard.Parts.Implementations
 
             // Check all the properties
             return
-                source.AltArguments.SequenceEqual(target.AltArguments) &&
                 base.Equals(source, target) &&
                 source.ContactRole == target.ContactRole
             ;
@@ -124,16 +104,15 @@ namespace VisualCard.Parts.Implementations
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = -1215418912;
-            hashCode = hashCode * -1521134295 + AltId.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(AltArguments);
+            int hashCode = -81571651;
+            hashCode = hashCode * -1521134295 + base.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactRole);
             return hashCode;
         }
 
         /// <inheritdoc/>
         public static bool operator ==(RoleInfo left, RoleInfo right) =>
-            EqualityComparer<RoleInfo>.Default.Equals(left, right);
+            left.Equals(right);
 
         /// <inheritdoc/>
         public static bool operator !=(RoleInfo left, RoleInfo right) =>
@@ -141,10 +120,9 @@ namespace VisualCard.Parts.Implementations
 
         internal RoleInfo() { }
 
-        internal RoleInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string contactRole)
+        internal RoleInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string contactRole) :
+            base(arguments, altId, elementTypes, valueType)
         {
-            AltId = altId;
-            Arguments = arguments;
             ContactRole = contactRole;
         }
     }

@@ -128,20 +128,19 @@ namespace VisualCard.Parts.Implementations
 
         /// <inheritdoc/>
         public static bool operator ==(AgentInfo left, AgentInfo right) =>
-            EqualityComparer<AgentInfo>.Default.Equals(left, right);
+            left.Equals(right);
 
         /// <inheritdoc/>
         public static bool operator !=(AgentInfo left, AgentInfo right) =>
             !(left == right);
 
-        internal AgentInfo() { }
+        internal AgentInfo() :
+            base()
+        { }
 
-        internal AgentInfo(int altId, string[] arguments, string[] elementTypes, string valueType, Card[] agentCard)
+        internal AgentInfo(int altId, string[] arguments, string[] elementTypes, string valueType, Card[] agentCard) :
+            base(arguments, altId, elementTypes, valueType)
         {
-            AltId = altId;
-            Arguments = arguments;
-            ElementTypes = elementTypes;
-            ValueType = valueType;
             AgentCards = agentCard;
         }
     }

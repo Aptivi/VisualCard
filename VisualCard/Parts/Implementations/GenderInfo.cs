@@ -52,18 +52,6 @@ namespace VisualCard.Parts.Implementations
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
-            // Get the value
-            string genderValue = value.Substring(VcardConstants._genderSpecifier.Length + 1);
-
-            // Populate the fields
-            return InstallInfo(genderValue);
-        }
-
-        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion) =>
-            FromStringVcardInternal(value, altId, cardVersion);
-
-        private GenderInfo InstallInfo(string value)
-        {
             // Populate field
             string genderString = value;
             string genderDescription = "";
@@ -85,13 +73,13 @@ namespace VisualCard.Parts.Implementations
                 "O" => Gender.Other,
                 "N" => Gender.NotApplicable,
                 "U" => Gender.Unknown,
-                ""  => Gender.Unspecified,
+                "" => Gender.Unspecified,
                 _ =>
                     throw new InvalidDataException($"Invalid gender string {genderString}")
             };
 
             // Add the fetched information
-            GenderInfo _gender = new(0, [], gender, genderDescription);
+            GenderInfo _gender = new(0, [], elementTypes, valueType, gender, genderDescription);
             return _gender;
         }
 
@@ -121,7 +109,6 @@ namespace VisualCard.Parts.Implementations
 
             // Check all the properties
             return
-                source.AltArguments.SequenceEqual(target.AltArguments) &&
                 base.Equals(source, target) &&
                 source.Gender == target.Gender &&
                 source.GenderDescription == target.GenderDescription
@@ -131,10 +118,8 @@ namespace VisualCard.Parts.Implementations
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = -446160983;
+            int hashCode = 1213594384;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(AltArguments);
-            hashCode = hashCode * -1521134295 + AltId.GetHashCode();
             hashCode = hashCode * -1521134295 + Gender.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(GenderDescription);
             return hashCode;
@@ -142,7 +127,7 @@ namespace VisualCard.Parts.Implementations
 
         /// <inheritdoc/>
         public static bool operator ==(GenderInfo left, GenderInfo right) =>
-            EqualityComparer<GenderInfo>.Default.Equals(left, right);
+            left.Equals(right);
 
         /// <inheritdoc/>
         public static bool operator !=(GenderInfo left, GenderInfo right) =>
@@ -150,10 +135,9 @@ namespace VisualCard.Parts.Implementations
 
         internal GenderInfo() { }
 
-        internal GenderInfo(int altId, string[] arguments, string[] elementTypes, string valueType, Gender gender, string genderDescription)
+        internal GenderInfo(int altId, string[] arguments, string[] elementTypes, string valueType, Gender gender, string genderDescription) :
+            base(arguments, altId, elementTypes, valueType)
         {
-            AltId = altId;
-            Arguments = arguments;
             Gender = gender;
             GenderDescription = genderDescription;
         }

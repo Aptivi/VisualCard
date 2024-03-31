@@ -138,7 +138,10 @@ namespace VisualCard.Parsers
 
                     // Get the part type and handle it
                     bool xNonstandard = prefix.StartsWith(VcardConstants._xSpecifier);
-                    var (type, enumeration, classType, fromString, fromStringWithType) = VcardParserTools.GetPartType(xNonstandard ? VcardConstants._xSpecifier : prefix);
+                    bool specifierRequired = CardVersion.Major >= 3;
+                    var (type, enumeration, classType, fromString, defaultType, defaultValue) = VcardParserTools.GetPartType(xNonstandard ? VcardConstants._xSpecifier : prefix);
+                    string[] elementTypes = VcardParserTools.GetTypes(splitArgs, defaultType, specifierRequired);
+                    string values = VcardParserTools.GetValuesString(splitArgs, defaultValue, VcardConstants._valueArgumentSpecifier);
                     switch (type)
                     {
                         case PartType.Strings:
@@ -195,10 +198,7 @@ namespace VisualCard.Parsers
                                     continue;
 
                                 // Now, get the part info
-                                var partInfo =
-                                    isWithType ?
-                                    fromStringWithType(_value, [.. finalArgs], altId, CardVersion) :
-                                    fromString(_value, altId, CardVersion);
+                                var partInfo = fromString(value, [.. finalArgs], altId, elementTypes, values, CardVersion);
                                 card.SetPart(partsType, partInfo);
                             }
                             break;
@@ -211,10 +211,8 @@ namespace VisualCard.Parsers
                                     continue;
 
                                 // Now, get the part info
-                                var partInfo =
-                                    isWithType ?
-                                    fromStringWithType(_value, [.. finalArgs], altId, CardVersion) :
-                                    fromString(_value, altId, CardVersion);
+                                string finalValue = partsArrayType == PartsArrayEnum.NonstandardNames ? _value : value;
+                                var partInfo = fromString(finalValue, [.. finalArgs], altId, elementTypes, values, CardVersion);
                                 card.AddPartToArray(partsArrayType, partInfo);
                             }
                             break;

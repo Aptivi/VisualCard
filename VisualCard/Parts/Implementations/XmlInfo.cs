@@ -56,27 +56,6 @@ namespace VisualCard.Parts.Implementations
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
-            // Get the value
-            string xmlValue = value.Substring(VcardConstants._xmlSpecifier.Length + 1);
-
-            // Populate the fields
-            return InstallInfo(xmlValue, altId, cardVersion);
-        }
-
-        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion)
-        {
-            // Get the value
-            string xmlValue = value.Substring(value.IndexOf(VcardConstants._argumentDelimiter) + 1);
-
-            // Populate the fields
-            return InstallInfo(xmlValue, finalArgs, altId, cardVersion);
-        }
-
-        private XmlInfo InstallInfo(string value, int altId, Version cardVersion) =>
-            InstallInfo(value, [], altId, cardVersion);
-
-        private XmlInfo InstallInfo(string value, string[] finalArgs, int altId, Version cardVersion)
-        {
             // Check to see if the XML document is valid or not
             string finalXml =
                 $"""
@@ -120,7 +99,6 @@ namespace VisualCard.Parts.Implementations
 
             // Check all the properties
             return
-                source.AltArguments.SequenceEqual(target.AltArguments) &&
                 base.Equals(source, target) &&
                 source.Xml == target.Xml
             ;
@@ -129,17 +107,16 @@ namespace VisualCard.Parts.Implementations
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = -771740963;
+            int hashCode = 572884467;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(AltArguments);
-            hashCode = hashCode * -1521134295 + AltId.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<XmlDocument>.Default.GetHashCode(Xml);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(XmlString);
             return hashCode;
         }
 
         /// <inheritdoc/>
         public static bool operator ==(XmlInfo left, XmlInfo right) =>
-            EqualityComparer<XmlInfo>.Default.Equals(left, right);
+            left.Equals(right);
 
         /// <inheritdoc/>
         public static bool operator !=(XmlInfo left, XmlInfo right) =>
@@ -147,10 +124,9 @@ namespace VisualCard.Parts.Implementations
 
         internal XmlInfo() { }
 
-        internal XmlInfo(int altId, string[] arguments, string[] elementTypes, string valueType, XmlDocument xml, string xmlString)
+        internal XmlInfo(int altId, string[] arguments, string[] elementTypes, string valueType, XmlDocument xml, string xmlString) :
+            base(arguments, altId, elementTypes, valueType)
         {
-            AltId = altId;
-            Arguments = arguments;
             Xml = xml;
             XmlString = xmlString;
         }

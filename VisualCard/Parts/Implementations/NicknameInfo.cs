@@ -37,10 +37,6 @@ namespace VisualCard.Parts.Implementations
         /// The contact's nickname
         /// </summary>
         public string ContactNickname { get; }
-        /// <summary>
-        /// The contact's nickname types
-        /// </summary>
-        public string[] NicknameTypes { get; }
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new NicknameInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
@@ -54,53 +50,26 @@ namespace VisualCard.Parts.Implementations
                 return
                     $"{VcardConstants._nicknameSpecifier};" +
                     $"{(installAltId ? VcardConstants._altIdArgumentSpecifier + AltId + VcardConstants._fieldDelimiter : "")}" +
-                    $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), AltArguments) + VcardConstants._fieldDelimiter : "")}" +
-                    $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", NicknameTypes)}{VcardConstants._argumentDelimiter}" +
+                    $"{(installAltId ? string.Join(VcardConstants._fieldDelimiter.ToString(), Arguments) + VcardConstants._fieldDelimiter : "")}" +
+                    $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", ElementTypes)}{VcardConstants._argumentDelimiter}" +
                     $"{ContactNickname}";
             }
             else
             {
                 return
                     $"{VcardConstants._nicknameSpecifier};" +
-                    $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", NicknameTypes)}{VcardConstants._argumentDelimiter}" +
+                    $"{VcardConstants._typeArgumentSpecifier}{string.Join(",", ElementTypes)}{VcardConstants._argumentDelimiter}" +
                     $"{ContactNickname}";
             }
         }
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
-            // Get the value
-            string nickValue = value.Substring(VcardConstants._nicknameSpecifier.Length + 1);
-
-            // Populate the fields
-            return InstallInfo([nickValue], altId, cardVersion);
-        }
-
-        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion)
-        {
-            // Get the value
-            string nickValue = value.Substring(VcardConstants._nicknameSpecifier.Length + 1);
-            string[] splitNick = nickValue.Split(VcardConstants._argumentDelimiter);
-            if (splitNick.Length < 2)
-                throw new InvalidDataException("Nickname field must specify exactly two values (Type (must be prepended with TYPE=), and nickname)");
-
-            // Populate the fields
-            return InstallInfo(splitNick, finalArgs, altId, cardVersion);
-        }
-
-        private NicknameInfo InstallInfo(string[] splitNick, int altId, Version cardVersion) =>
-            InstallInfo(splitNick, [], altId, cardVersion);
-
-        private NicknameInfo InstallInfo(string[] splitNick, string[] finalArgs, int altId, Version cardVersion)
-        {
             bool altIdSupported = cardVersion.Major >= 4;
-            bool installType = splitNick.Length > 1;
-            bool specifierRequired = cardVersion.Major >= 3;
 
             // Populate the fields
-            string[] _nicknameTypes = installType ? VcardParserTools.GetTypes(splitNick, "WORK", specifierRequired) : ["HOME"];
-            string _nick = Regex.Unescape(installType ? splitNick[1] : splitNick[0]);
-            NicknameInfo _nickInstance = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, _nick, _nicknameTypes);
+            string _nick = Regex.Unescape(value);
+            NicknameInfo _nickInstance = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, _nick);
             return _nickInstance;
         }
 
@@ -130,8 +99,6 @@ namespace VisualCard.Parts.Implementations
 
             // Check all the properties
             return
-                source.AltArguments.SequenceEqual(target.AltArguments) &&
-                source.NicknameTypes.SequenceEqual(target.NicknameTypes) &&
                 base.Equals(source, target) &&
                 source.ContactNickname == target.ContactNickname
             ;
@@ -140,17 +107,15 @@ namespace VisualCard.Parts.Implementations
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = -1183179154;
-            hashCode = hashCode * -1521134295 + AltId.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(AltArguments);
+            int hashCode = 536678633;
+            hashCode = hashCode * -1521134295 + base.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactNickname);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(NicknameTypes);
             return hashCode;
         }
 
         /// <inheritdoc/>
         public static bool operator ==(NicknameInfo left, NicknameInfo right) =>
-            EqualityComparer<NicknameInfo>.Default.Equals(left, right);
+            left.Equals(right);
 
         /// <inheritdoc/>
         public static bool operator !=(NicknameInfo left, NicknameInfo right) =>
@@ -158,12 +123,10 @@ namespace VisualCard.Parts.Implementations
 
         internal NicknameInfo() { }
 
-        internal NicknameInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string contactNickname, string[] nicknameTypes)
+        internal NicknameInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string contactNickname) :
+            base(arguments, altId, elementTypes, valueType)
         {
-            AltId = altId;
-            Arguments = arguments;
             ContactNickname = contactNickname;
-            NicknameTypes = nicknameTypes;
         }
     }
 }

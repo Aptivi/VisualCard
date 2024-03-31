@@ -44,27 +44,6 @@ namespace VisualCard.Parts.Implementations
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
-            // Get the value
-            string bdayValue = value.Substring(VcardConstants._birthSpecifier.Length + 1);
-
-            // Populate the fields
-            return InstallInfo(bdayValue, altId, cardVersion);
-        }
-
-        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion)
-        {
-            // Get the value
-            string bdayValue = value.Substring(value.IndexOf(VcardConstants._argumentDelimiter) + 1);
-
-            // Populate the fields
-            return InstallInfo(bdayValue, finalArgs, altId, cardVersion);
-        }
-
-        private BirthDateInfo InstallInfo(string value, int altId, Version cardVersion) =>
-            InstallInfo(value, [], altId, cardVersion);
-
-        private BirthDateInfo InstallInfo(string value, string[] finalArgs, int altId, Version cardVersion)
-        {
             // Populate field
             DateTime bday;
             if (int.TryParse(value, out _) && value.Length == 8)
@@ -111,7 +90,6 @@ namespace VisualCard.Parts.Implementations
 
             // Check all the properties
             return
-                source.AltArguments.SequenceEqual(target.AltArguments) &&
                 base.Equals(source, target) &&
                 source.BirthDate == target.BirthDate
             ;
@@ -120,16 +98,15 @@ namespace VisualCard.Parts.Implementations
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = -480211805;
-            hashCode = hashCode * -1521134295 + AltId.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(AltArguments);
+            int hashCode = 653635456;
+            hashCode = hashCode * -1521134295 + base.GetHashCode();
             hashCode = hashCode * -1521134295 + BirthDate.GetHashCode();
             return hashCode;
         }
 
         /// <inheritdoc/>
         public static bool operator ==(BirthDateInfo left, BirthDateInfo right) =>
-            EqualityComparer<BirthDateInfo>.Default.Equals(left, right);
+            left.Equals(right);
 
         /// <inheritdoc/>
         public static bool operator !=(BirthDateInfo left, BirthDateInfo right) =>
@@ -137,10 +114,9 @@ namespace VisualCard.Parts.Implementations
 
         internal BirthDateInfo() { }
 
-        internal BirthDateInfo(int altId, string[] arguments, string[] elementTypes, string valueType, DateTime? birth)
+        internal BirthDateInfo(int altId, string[] arguments, string[] elementTypes, string valueType, DateTime? birth) :
+            base(arguments, altId, elementTypes, valueType)
         {
-            AltId = altId;
-            Arguments = arguments;
             BirthDate = birth;
         }
     }

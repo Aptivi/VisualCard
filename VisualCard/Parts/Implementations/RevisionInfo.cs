@@ -48,19 +48,7 @@ namespace VisualCard.Parts.Implementations
             string revValue = value.Substring(VcardConstants._revSpecifier.Length + 1);
 
             // Populate the fields
-            return InstallInfo(revValue, altId, cardVersion);
-        }
-
-        internal override BaseCardPartInfo FromStringVcardWithTypeInternal(string value, string[] finalArgs, int altId, Version cardVersion) =>
-            FromStringVcardInternal(value, altId, cardVersion);
-
-        private RevisionInfo InstallInfo(string value, int altId, Version cardVersion) =>
-            InstallInfo(value, [], altId, cardVersion);
-
-        private RevisionInfo InstallInfo(string value, string[] finalArgs, int altId, Version cardVersion)
-        {
-            // Populate field
-            DateTime rev = DateTime.Parse(value);
+            DateTime rev = DateTime.Parse(revValue);
 
             // Add the fetched information
             bool altIdSupported = cardVersion.Major >= 4;
@@ -94,7 +82,6 @@ namespace VisualCard.Parts.Implementations
 
             // Check all the properties
             return
-                source.AltArguments.SequenceEqual(target.AltArguments) &&
                 base.Equals(source, target) &&
                 source.Revision == target.Revision
             ;
@@ -103,16 +90,15 @@ namespace VisualCard.Parts.Implementations
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = -480211805;
-            hashCode = hashCode * -1521134295 + AltId.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(AltArguments);
+            int hashCode = 47832270;
+            hashCode = hashCode * -1521134295 + base.GetHashCode();
             hashCode = hashCode * -1521134295 + Revision.GetHashCode();
             return hashCode;
         }
 
         /// <inheritdoc/>
         public static bool operator ==(RevisionInfo left, RevisionInfo right) =>
-            EqualityComparer<RevisionInfo>.Default.Equals(left, right);
+            left.Equals(right);
 
         /// <inheritdoc/>
         public static bool operator !=(RevisionInfo left, RevisionInfo right) =>
@@ -124,6 +110,8 @@ namespace VisualCard.Parts.Implementations
         {
             AltId = altId;
             Arguments = arguments;
+            ElementTypes = elementTypes;
+            ValueType = valueType;
             Revision = birth;
         }
     }
