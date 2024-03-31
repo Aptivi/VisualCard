@@ -76,7 +76,7 @@ namespace VisualCard.Parts
                 source.ElementTypes.SequenceEqual(target.ElementTypes) &&
                 source.AltId == target.AltId &&
                 source.ValueType == target.ValueType &&
-                EqualsInternal(source, target);
+                EqualsInternal(source, target)
             ;
         }
 
