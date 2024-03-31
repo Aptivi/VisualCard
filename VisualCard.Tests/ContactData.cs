@@ -102,9 +102,9 @@ namespace VisualCard.Tests
             FN:John Sanders
             NOTE:Note test for VisualCard
             N:Sanders;John;;;
-            TEL;TYPE=CELL:495-522-3560
-            ADR;TYPE=HOME:;;Los Angeles;;;;USA
-            EMAIL;TYPE=HOME:john.s@acme.co
+            TEL:495-522-3560
+            ADR:;;Los Angeles;;;;USA
+            EMAIL:john.s@acme.co
             END:VCARD
 
             """

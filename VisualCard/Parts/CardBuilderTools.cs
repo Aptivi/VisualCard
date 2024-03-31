@@ -18,7 +18,6 @@
 //
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using VisualCard.Parsers;
@@ -28,11 +27,15 @@ namespace VisualCard.Parts
 {
     internal static class CardBuilderTools
     {
-        internal static string BuildArguments(BaseCardPartInfo partInfo, Version cardVersion)
+        internal static string BuildArguments(BaseCardPartInfo partInfo, Version cardVersion, string defaultType, string defaultValue)
         {
+            // Filter the list of types and values first
+            string[] finalElementTypes = partInfo.ElementTypes.Where((type) => !type.Equals(defaultType, StringComparison.OrdinalIgnoreCase)).ToArray();
+            string finalValue = partInfo.ValueType.Equals(defaultValue, StringComparison.OrdinalIgnoreCase) ? "" : partInfo.ValueType;
+
             // Check to see if we've been provided arguments
             bool installAltId = partInfo.AltId >= 0 && partInfo.Arguments.Length > 0 && cardVersion.Major >= 4;
-            bool noSemicolon = partInfo.AltId == 0 && partInfo.Arguments.Length == 0 && partInfo.ElementTypes.Length == 0 && string.IsNullOrEmpty(partInfo.ValueType);
+            bool noSemicolon = partInfo.AltId == 0 && partInfo.Arguments.Length == 0 && finalElementTypes.Length == 0 && string.IsNullOrEmpty(finalValue);
             string xNonstandardName = partInfo is XNameInfo xName ? xName.XKeyName : "";
             if (noSemicolon)
                 return xNonstandardName + VcardConstants._argumentDelimiter.ToString();
@@ -40,8 +43,8 @@ namespace VisualCard.Parts
             // Now, initialize the argument builder
             StringBuilder argumentsBuilder = new(xNonstandardName + VcardConstants._fieldDelimiter.ToString());
             bool installArguments = partInfo.Arguments.Length > 0;
-            bool installElementTypes = partInfo.ElementTypes.Length > 0;
-            bool installValueType = !string.IsNullOrEmpty(partInfo.ValueType);
+            bool installElementTypes = finalElementTypes.Length > 0;
+            bool installValueType = !string.IsNullOrEmpty(finalValue);
 
             // First, install the AltId parameter if it exists
             if (installAltId)
@@ -60,7 +63,7 @@ namespace VisualCard.Parts
             // Then, install the element types parameter if it exists
             if (installElementTypes)
             {
-                argumentsBuilder.Append(VcardConstants._typeArgumentSpecifier + string.Join(",", partInfo.ElementTypes));
+                argumentsBuilder.Append(VcardConstants._typeArgumentSpecifier + string.Join(",", finalElementTypes));
                 noSemicolon = !installArguments && !installValueType;
                 if (noSemicolon)
                 {
@@ -74,7 +77,7 @@ namespace VisualCard.Parts
             // Then, install the value type parameter if it exists
             if (installValueType)
             {
-                argumentsBuilder.Append(VcardConstants._valueArgumentSpecifier + string.Join(",", partInfo.ValueType));
+                argumentsBuilder.Append(VcardConstants._valueArgumentSpecifier + string.Join(",", finalValue));
                 noSemicolon = !installArguments;
                 if (noSemicolon)
                 {
