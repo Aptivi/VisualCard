@@ -544,6 +544,12 @@ references:
   commentId: F:VisualCard.Parts.Enums.PartsArrayEnum.Impps
   fullName: VisualCard.Parts.Enums.PartsArrayEnum.Impps
   nameWithType: PartsArrayEnum.Impps
+- uid: VisualCard.Parts.Enums.PartsArrayEnum.Key
+  name: Key
+  href: api/VisualCard.Parts.Enums.PartsArrayEnum.html#VisualCard_Parts_Enums_PartsArrayEnum_Key
+  commentId: F:VisualCard.Parts.Enums.PartsArrayEnum.Key
+  fullName: VisualCard.Parts.Enums.PartsArrayEnum.Key
+  nameWithType: PartsArrayEnum.Key
 - uid: VisualCard.Parts.Enums.PartsArrayEnum.Labels
   name: Labels
   href: api/VisualCard.Parts.Enums.PartsArrayEnum.html#VisualCard_Parts_Enums_PartsArrayEnum_Labels
@@ -1721,6 +1727,117 @@ references:
   fullName.vb: VisualCard.Parts.Implementations.ImppInfo.<>
   nameWithType: ImppInfo.operator !=
   nameWithType.vb: ImppInfo.<>
+- uid: VisualCard.Parts.Implementations.KeyInfo
+  name: KeyInfo
+  href: api/VisualCard.Parts.Implementations.KeyInfo.html
+  commentId: T:VisualCard.Parts.Implementations.KeyInfo
+  fullName: VisualCard.Parts.Implementations.KeyInfo
+  nameWithType: KeyInfo
+- uid: VisualCard.Parts.Implementations.KeyInfo.Encoding
+  name: Encoding
+  href: api/VisualCard.Parts.Implementations.KeyInfo.html#VisualCard_Parts_Implementations_KeyInfo_Encoding
+  commentId: P:VisualCard.Parts.Implementations.KeyInfo.Encoding
+  fullName: VisualCard.Parts.Implementations.KeyInfo.Encoding
+  nameWithType: KeyInfo.Encoding
+- uid: VisualCard.Parts.Implementations.KeyInfo.Encoding*
+  name: Encoding
+  href: api/VisualCard.Parts.Implementations.KeyInfo.html#VisualCard_Parts_Implementations_KeyInfo_Encoding_
+  commentId: Overload:VisualCard.Parts.Implementations.KeyInfo.Encoding
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.KeyInfo.Encoding
+  nameWithType: KeyInfo.Encoding
+- uid: VisualCard.Parts.Implementations.KeyInfo.Equals(System.Object)
+  name: Equals(object)
+  href: api/VisualCard.Parts.Implementations.KeyInfo.html#VisualCard_Parts_Implementations_KeyInfo_Equals_System_Object_
+  commentId: M:VisualCard.Parts.Implementations.KeyInfo.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Parts.Implementations.KeyInfo.Equals(object)
+  fullName.vb: VisualCard.Parts.Implementations.KeyInfo.Equals(Object)
+  nameWithType: KeyInfo.Equals(object)
+  nameWithType.vb: KeyInfo.Equals(Object)
+- uid: VisualCard.Parts.Implementations.KeyInfo.Equals(VisualCard.Parts.Implementations.KeyInfo)
+  name: Equals(KeyInfo)
+  href: api/VisualCard.Parts.Implementations.KeyInfo.html#VisualCard_Parts_Implementations_KeyInfo_Equals_VisualCard_Parts_Implementations_KeyInfo_
+  commentId: M:VisualCard.Parts.Implementations.KeyInfo.Equals(VisualCard.Parts.Implementations.KeyInfo)
+  fullName: VisualCard.Parts.Implementations.KeyInfo.Equals(VisualCard.Parts.Implementations.KeyInfo)
+  nameWithType: KeyInfo.Equals(KeyInfo)
+- uid: VisualCard.Parts.Implementations.KeyInfo.Equals(VisualCard.Parts.Implementations.KeyInfo,VisualCard.Parts.Implementations.KeyInfo)
+  name: Equals(KeyInfo, KeyInfo)
+  href: api/VisualCard.Parts.Implementations.KeyInfo.html#VisualCard_Parts_Implementations_KeyInfo_Equals_VisualCard_Parts_Implementations_KeyInfo_VisualCard_Parts_Implementations_KeyInfo_
+  commentId: M:VisualCard.Parts.Implementations.KeyInfo.Equals(VisualCard.Parts.Implementations.KeyInfo,VisualCard.Parts.Implementations.KeyInfo)
+  fullName: VisualCard.Parts.Implementations.KeyInfo.Equals(VisualCard.Parts.Implementations.KeyInfo, VisualCard.Parts.Implementations.KeyInfo)
+  nameWithType: KeyInfo.Equals(KeyInfo, KeyInfo)
+- uid: VisualCard.Parts.Implementations.KeyInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Parts.Implementations.KeyInfo.html#VisualCard_Parts_Implementations_KeyInfo_Equals_
+  commentId: Overload:VisualCard.Parts.Implementations.KeyInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.KeyInfo.Equals
+  nameWithType: KeyInfo.Equals
+- uid: VisualCard.Parts.Implementations.KeyInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Parts.Implementations.KeyInfo.html#VisualCard_Parts_Implementations_KeyInfo_GetHashCode
+  commentId: M:VisualCard.Parts.Implementations.KeyInfo.GetHashCode
+  fullName: VisualCard.Parts.Implementations.KeyInfo.GetHashCode()
+  nameWithType: KeyInfo.GetHashCode()
+- uid: VisualCard.Parts.Implementations.KeyInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Parts.Implementations.KeyInfo.html#VisualCard_Parts_Implementations_KeyInfo_GetHashCode_
+  commentId: Overload:VisualCard.Parts.Implementations.KeyInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.KeyInfo.GetHashCode
+  nameWithType: KeyInfo.GetHashCode
+- uid: VisualCard.Parts.Implementations.KeyInfo.KeyEncoded
+  name: KeyEncoded
+  href: api/VisualCard.Parts.Implementations.KeyInfo.html#VisualCard_Parts_Implementations_KeyInfo_KeyEncoded
+  commentId: P:VisualCard.Parts.Implementations.KeyInfo.KeyEncoded
+  fullName: VisualCard.Parts.Implementations.KeyInfo.KeyEncoded
+  nameWithType: KeyInfo.KeyEncoded
+- uid: VisualCard.Parts.Implementations.KeyInfo.KeyEncoded*
+  name: KeyEncoded
+  href: api/VisualCard.Parts.Implementations.KeyInfo.html#VisualCard_Parts_Implementations_KeyInfo_KeyEncoded_
+  commentId: Overload:VisualCard.Parts.Implementations.KeyInfo.KeyEncoded
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.KeyInfo.KeyEncoded
+  nameWithType: KeyInfo.KeyEncoded
+- uid: VisualCard.Parts.Implementations.KeyInfo.op_Equality(VisualCard.Parts.Implementations.KeyInfo,VisualCard.Parts.Implementations.KeyInfo)
+  name: operator ==(KeyInfo, KeyInfo)
+  href: api/VisualCard.Parts.Implementations.KeyInfo.html#VisualCard_Parts_Implementations_KeyInfo_op_Equality_VisualCard_Parts_Implementations_KeyInfo_VisualCard_Parts_Implementations_KeyInfo_
+  commentId: M:VisualCard.Parts.Implementations.KeyInfo.op_Equality(VisualCard.Parts.Implementations.KeyInfo,VisualCard.Parts.Implementations.KeyInfo)
+  name.vb: =(KeyInfo, KeyInfo)
+  fullName: VisualCard.Parts.Implementations.KeyInfo.operator ==(VisualCard.Parts.Implementations.KeyInfo, VisualCard.Parts.Implementations.KeyInfo)
+  fullName.vb: VisualCard.Parts.Implementations.KeyInfo.=(VisualCard.Parts.Implementations.KeyInfo, VisualCard.Parts.Implementations.KeyInfo)
+  nameWithType: KeyInfo.operator ==(KeyInfo, KeyInfo)
+  nameWithType.vb: KeyInfo.=(KeyInfo, KeyInfo)
+- uid: VisualCard.Parts.Implementations.KeyInfo.op_Equality*
+  name: operator ==
+  href: api/VisualCard.Parts.Implementations.KeyInfo.html#VisualCard_Parts_Implementations_KeyInfo_op_Equality_
+  commentId: Overload:VisualCard.Parts.Implementations.KeyInfo.op_Equality
+  isSpec: "True"
+  name.vb: =
+  fullName: VisualCard.Parts.Implementations.KeyInfo.operator ==
+  fullName.vb: VisualCard.Parts.Implementations.KeyInfo.=
+  nameWithType: KeyInfo.operator ==
+  nameWithType.vb: KeyInfo.=
+- uid: VisualCard.Parts.Implementations.KeyInfo.op_Inequality(VisualCard.Parts.Implementations.KeyInfo,VisualCard.Parts.Implementations.KeyInfo)
+  name: operator !=(KeyInfo, KeyInfo)
+  href: api/VisualCard.Parts.Implementations.KeyInfo.html#VisualCard_Parts_Implementations_KeyInfo_op_Inequality_VisualCard_Parts_Implementations_KeyInfo_VisualCard_Parts_Implementations_KeyInfo_
+  commentId: M:VisualCard.Parts.Implementations.KeyInfo.op_Inequality(VisualCard.Parts.Implementations.KeyInfo,VisualCard.Parts.Implementations.KeyInfo)
+  name.vb: <>(KeyInfo, KeyInfo)
+  fullName: VisualCard.Parts.Implementations.KeyInfo.operator !=(VisualCard.Parts.Implementations.KeyInfo, VisualCard.Parts.Implementations.KeyInfo)
+  fullName.vb: VisualCard.Parts.Implementations.KeyInfo.<>(VisualCard.Parts.Implementations.KeyInfo, VisualCard.Parts.Implementations.KeyInfo)
+  nameWithType: KeyInfo.operator !=(KeyInfo, KeyInfo)
+  nameWithType.vb: KeyInfo.<>(KeyInfo, KeyInfo)
+- uid: VisualCard.Parts.Implementations.KeyInfo.op_Inequality*
+  name: operator !=
+  href: api/VisualCard.Parts.Implementations.KeyInfo.html#VisualCard_Parts_Implementations_KeyInfo_op_Inequality_
+  commentId: Overload:VisualCard.Parts.Implementations.KeyInfo.op_Inequality
+  isSpec: "True"
+  name.vb: <>
+  fullName: VisualCard.Parts.Implementations.KeyInfo.operator !=
+  fullName.vb: VisualCard.Parts.Implementations.KeyInfo.<>
+  nameWithType: KeyInfo.operator !=
+  nameWithType.vb: KeyInfo.<>
 - uid: VisualCard.Parts.Implementations.LabelAddressInfo
   name: LabelAddressInfo
   href: api/VisualCard.Parts.Implementations.LabelAddressInfo.html
