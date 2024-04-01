@@ -115,6 +115,7 @@ namespace VisualCard.Parsers
                 PartsArrayEnum.Geo => true,
                 PartsArrayEnum.Sounds => true,
                 PartsArrayEnum.Categories => true,
+                PartsArrayEnum.Key => true,
                 PartsArrayEnum.NonstandardNames => true,
                 PartsArrayEnum.Impps => cardVersion.Major >= 3,
                 PartsArrayEnum.Nicknames => cardVersion.Major >= 3,
@@ -189,6 +190,7 @@ namespace VisualCard.Parsers
                 PartsArrayEnum.Categories => VcardConstants._categoriesSpecifier,
                 PartsArrayEnum.Langs => VcardConstants._langSpecifier,
                 PartsArrayEnum.Xml => VcardConstants._xmlSpecifier,
+                PartsArrayEnum.Key => VcardConstants._keySpecifier,
                 PartsArrayEnum.NonstandardNames => VcardConstants._xSpecifier,
                 _ =>
                     throw new NotImplementedException($"String enumeration {partsArrayEnum} is not implemented.")
@@ -255,6 +257,8 @@ namespace VisualCard.Parsers
                 return PartsArrayEnum.Langs;
             else if (partsArrayType == typeof(XmlInfo))
                 return PartsArrayEnum.Xml;
+            else if (partsArrayType == typeof(KeyInfo))
+                return PartsArrayEnum.Key;
             else if (partsArrayType == typeof(XNameInfo))
                 return PartsArrayEnum.NonstandardNames;
             throw new NotImplementedException($"Type {partsArrayType.Name} doesn't represent any part array.");
@@ -282,6 +286,7 @@ namespace VisualCard.Parsers
                 VcardConstants._categoriesSpecifier => (PartType.PartsArray, PartsArrayEnum.Categories, typeof(CategoryInfo), CategoryInfo.FromStringVcardStatic, "", ""),
                 VcardConstants._langSpecifier => (PartType.PartsArray, PartsArrayEnum.Langs, typeof(LangInfo), LangInfo.FromStringVcardStatic, "HOME", ""),
                 VcardConstants._xmlSpecifier => (PartType.PartsArray, PartsArrayEnum.Xml, typeof(XmlInfo), XmlInfo.FromStringVcardStatic, "", ""),
+                VcardConstants._keySpecifier => (PartType.PartsArray, PartsArrayEnum.Key, typeof(KeyInfo), KeyInfo.FromStringVcardStatic, "", ""),
                 VcardConstants._xSpecifier => (PartType.PartsArray, PartsArrayEnum.NonstandardNames, typeof(XNameInfo), XNameInfo.FromStringVcardStatic, "", ""),
                 VcardConstants._revSpecifier => (PartType.Parts, PartsEnum.Revision, typeof(RevisionInfo), RevisionInfo.FromStringVcardStatic, "", ""),
                 VcardConstants._birthSpecifier => (PartType.Parts, PartsEnum.Birthdate, typeof(BirthDateInfo), BirthDateInfo.FromStringVcardStatic, "", ""),

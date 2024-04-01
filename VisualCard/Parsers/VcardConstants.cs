@@ -60,6 +60,7 @@ namespace VisualCard.Parsers
         internal const string _calUriSpecifier = "CALURI";
         internal const string _caladrUriSpecifier = "CALADRURI";
         internal const string _categoriesSpecifier = "CATEGORIES";
+        internal const string _keySpecifier = "KEY";
         internal const string _xSpecifier = "X-";
         internal const string _typeArgumentSpecifier = "TYPE=";
         internal const string _valueArgumentSpecifier = "VALUE=";

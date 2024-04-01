@@ -74,4 +74,8 @@ FN:VCardTest
 N:VCardTest;;;;
 TEL;TYPE=work:1091090902
 TEL;TYPE=home:1092222222
+KEY:http://www.example.com/keys/jdoe.cer
+KEY;MEDIATYPE=application/pgp-keys:ftp://example.com/keys/jdoe
+KEY:data:application/pgp-keys;base64,MIICajCCAdOgAwIBAgICBE
+ UwDQYJKoZIhvcNAQEEBQAwdzELMAkGA1UEBhMCVVMxLDAqBgNVBAoTI05l
 END:VCARD
