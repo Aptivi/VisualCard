@@ -138,6 +138,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.BaseCardPartInfo.AltId
   nameWithType: BaseCardPartInfo.AltId
+- uid: VisualCard.Parts.BaseCardPartInfo.ArgumentValues
+  name: ArgumentValues
+  href: api/VisualCard.Parts.BaseCardPartInfo.html#VisualCard_Parts_BaseCardPartInfo_ArgumentValues
+  commentId: P:VisualCard.Parts.BaseCardPartInfo.ArgumentValues
+  fullName: VisualCard.Parts.BaseCardPartInfo.ArgumentValues
+  nameWithType: BaseCardPartInfo.ArgumentValues
+- uid: VisualCard.Parts.BaseCardPartInfo.ArgumentValues*
+  name: ArgumentValues
+  href: api/VisualCard.Parts.BaseCardPartInfo.html#VisualCard_Parts_BaseCardPartInfo_ArgumentValues_
+  commentId: Overload:VisualCard.Parts.BaseCardPartInfo.ArgumentValues
+  isSpec: "True"
+  fullName: VisualCard.Parts.BaseCardPartInfo.ArgumentValues
+  nameWithType: BaseCardPartInfo.ArgumentValues
 - uid: VisualCard.Parts.BaseCardPartInfo.Arguments
   name: Arguments
   href: api/VisualCard.Parts.BaseCardPartInfo.html#VisualCard_Parts_BaseCardPartInfo_Arguments
