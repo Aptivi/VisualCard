@@ -275,6 +275,14 @@ namespace VisualCard.Parsers
             actualFields.Sort();
             if (!actualFields.SequenceEqual(expectedFields))
                 throw new InvalidDataException($"The following keys [{string.Join(", ", expectedFields)}] are required. Got [{string.Join(", ", actualFields)}].");
+
+            // Check the cardinality of properties
+            CheckCardinality(card);
+        }
+
+        internal void CheckCardinality(Card card)
+        {
+            // TODO: Scaffolding. Actually check the cardinality.
         }
 
         internal VcardParser(string[] cardContent, Version cardVersion)
