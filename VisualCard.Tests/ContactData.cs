@@ -95,6 +95,12 @@ namespace VisualCard.Tests
             """
         ;
 
+        private static readonly string singleMeCardContactFull =
+            """
+            MECARD:N:Sanders,John,,,;SOUND:Saunders,John;TEL:495-522-3560;TEL-AV:495-522-3550;EMAIL:john.s@acme.co;ADR:,,Los Angeles,,,,USA;NOTE:Note test for VisualCard;;
+            """
+        ;
+
         private static readonly string singleVcardContactFromMeCard =
             """
             BEGIN:VCARD
@@ -105,6 +111,23 @@ namespace VisualCard.Tests
             TEL:495-522-3560
             ADR:;;Los Angeles;;;;USA
             EMAIL:john.s@acme.co
+            END:VCARD
+
+            """
+        ;
+
+        private static readonly string singleVcardContactFullFromMeCard =
+            """
+            BEGIN:VCARD
+            VERSION:3.0
+            FN:John Sanders
+            NOTE:Note test for VisualCard
+            N:Sanders;John;;;
+            TEL:495-522-3560
+            TEL;TYPE=VIDEO:495-522-3550
+            ADR:;;Los Angeles;;;;USA
+            EMAIL:john.s@acme.co
+            X-VISUALCARD-KANA:Saunders;John
             END:VCARD
 
             """
@@ -557,6 +580,9 @@ namespace VisualCard.Tests
             [
                 singleMeCardContact,
             ],
+            [
+                singleMeCardContactFull,
+            ],
         ];
 
         /// <summary>
@@ -569,6 +595,9 @@ namespace VisualCard.Tests
             ],
             [
                 (singleMeCardContact, singleVcardContactFromMeCard),
+            ],
+            [
+                (singleMeCardContactFull, singleVcardContactFullFromMeCard),
             ],
         ];
 

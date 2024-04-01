@@ -60,9 +60,13 @@ namespace VisualCard.Converters
                 {
                     string value = values[i];
 
-                    // "SOUND:" here is actually just a Kana name, so blacklist it.
+                    // "SOUND:" here is actually just a Kana name, so demote it to X-nonstandard
                     if (value.StartsWith($"{VcardConstants._soundSpecifier}:"))
-                        continue;
+                    {
+                        string xNonstandard = $"{VcardConstants._xSpecifier}VISUALCARD-KANA:";
+                        values[i] = value.Replace(",", ";");
+                        values[i] = xNonstandard + values[i].Substring(6);
+                    }
 
                     // Now, replace all the commas in Name and Address with the semicolons.
                     if (value.StartsWith($"{VcardConstants._nameSpecifier}:") || value.StartsWith($"{VcardConstants._addressSpecifier}:"))
@@ -73,6 +77,16 @@ namespace VisualCard.Converters
                     {
                         var nameSplits = value.Substring(2).Split(',');
                         fullName = $"{nameSplits[1]} {nameSplits[0]}";
+                    }
+
+                    // "TEL-AV:" here is actually just "TEL;TYPE=VIDEO:[...]"
+                    if (value.StartsWith($"{VcardConstants._telephoneSpecifier}-AV:"))
+                    {
+                        string prefix =
+                            $"{VcardConstants._telephoneSpecifier}" +
+                            $"{VcardConstants._fieldDelimiter}" +
+                            $"{VcardConstants._typeArgumentSpecifier}VIDEO:";
+                        values[i] = prefix + values[i].Substring(7);
                     }
                 }
 
