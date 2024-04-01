@@ -19,6 +19,7 @@
 
 using Microsoft.Data.Sqlite;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using VisualCard.Parsers;
@@ -31,39 +32,79 @@ namespace VisualCard.Converters
     /// </summary>
     public static class AndroidContactsDb
     {
+        private static readonly string[] knownPaths =
+        [
+            // Since Android stores contacts using the SQLite databases found under this path:
+            //     /data/data/android.providers.contacts/databases/contacts2.db
+            //
+            // the user will have to either use ADB root to pull this file to the computer or root the
+            // phone and copy this file so that VisualCard knows how to parse Android contacts.
+            // However, this is unintuitive since apparently root is required to do this.
+            "/data/data/android.providers.contacts/databases/contacts2.db",
+
+            // Android may also store contacts in this path:
+            //     /data/user/0/com.android.providers.contacts/databases/contacts2.db
+            "/data/user/0/com.android.providers.contacts/databases/contacts2.db",
+
+            // Of course, that depends on the device. For example, Motorola ROMs may store contacts
+            // in this path:
+            //     /data/data/com.motorola.blur.providers.contacts/databases/contacts2.db
+            "/data/data/com.motorola.blur.providers.contacts/databases/contacts2.db",
+        ];
+
+        /// <summary>
+        /// Gets all contacts from the list of known Android database paths. This needs to be run strictly on a <b>rooted</b> Android device.
+        /// </summary>
+        /// <returns>List of parsed cards from several known Android database paths</returns>
+        /// <exception cref="InvalidDataException"></exception>
+        /// <remarks>
+        /// Rooting your Android device <b>will</b> void your device's warranty and may cause your device to no longer work properly. It will have
+        /// issues ranging from several applications (Samsung's Secure Folder, banking and e-payment (Google Pay) applications, and so on.) not
+        /// being allowed to be run on such devices to Android failing to start. Your application that needs to extract contacts from such database
+        /// needs to implement root checks.
+        /// </remarks>
+        public static Card[] GetContactsFromDb()
+        {
+            List<Card> contacts = [];
+            for (int i = 0; i < knownPaths.Length; i++)
+            {
+                string path = knownPaths[i];
+                if (!File.Exists(path))
+                    continue;
+                contacts.AddRange(GetContactsFromDb(path));
+            }
+            return [.. contacts];
+        }
+
         /// <summary>
         /// Gets all contacts from the Android database
         /// </summary>
         /// <param name="pathToDb">Path to the valid contacts2.db file, usually fetched from /data/data/android.providers.contacts/databases/ found in the rooted Android devices</param>
-        /// <returns></returns>
+        /// <returns>List of parsed cards from several known Android database paths</returns>
         /// <exception cref="FileNotFoundException"></exception>
         /// <exception cref="InvalidDataException"></exception>
+        /// <remarks>
+        /// Rooting your Android device <b>will</b> void your device's warranty and may cause your device to no longer work properly. It will have
+        /// issues ranging from several applications (Samsung's Secure Folder, banking and e-payment (Google Pay) applications, and so on) not
+        /// being allowed to be run on such devices to Android failing to start. Your application that needs to extract contacts from such database
+        /// needs to implement root checks.
+        /// </remarks>
         public static Card[] GetContactsFromDb(string pathToDb)
         {
             // Check to see if the database exists
-            string dbObtainTip = 
-                "\n\nMake sure that your phone is rooted before being able to obtain the contacts2.db file " +
-                "usually found in the /data/data/android.providers.contacts/databases/ folder. If the " +
-                "file is not there, you may need to look for this file under the /data/user/0/com.android.providers.contacts/databases/ " +
-                "folder. Some ROMs, such as Motorola, may store contacts in their own contact provider " +
-                "folder, for example, /data/user/0/com.motorola.blur.providers.contacts/databases/.";
+            string dbObtainTip =
+                "\n\nMake sure that your phone is rooted before being able to obtain the contacts2.db file. " +
+                "Try out these paths:\n" +
+               $"  - {knownPaths[0]} (systemwide contacts)" +
+               $"  - {knownPaths[1]} (userspace (user 0) contacts)" +
+               $"  - {knownPaths[2]} (Motorola Blur)" +
+                "\n\nIf they don't work, consult your device's /data directory in the root file manager.";
             if (!File.Exists(pathToDb))
                 throw new FileNotFoundException("The Android contact database file obtained from the contact provider is not found." + dbObtainTip);
 
             try
             {
-                // Since Android stores contacts using the SQLite databases found under this path:
-                //     /data/data/android.providers.contacts/databases/contacts2.db
-                //
-                // the user will have to either use ADB root to pull this file to the computer or root the
-                // phone and copy this file so that VisualCard knows how to parse Android contacts.
-                // However, this is unintuitive since apparently root is required to do this. Android may
-                // also store contacts in this path:
-                //     /data/user/0/com.android.providers.contacts/databases/contacts2.db
-                //
-                // Of course, that depends on the device. For example, Motorola ROMs may store contacts
-                // in this path:
-                //     /data/data/com.motorola.blur.providers.contacts/databases/contacts2.db
+                // Open the connection to the database path
                 using var connection = new SqliteConnection($"Data Source={pathToDb}");
                 connection.Open();
 

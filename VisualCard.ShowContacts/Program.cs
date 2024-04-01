@@ -45,6 +45,7 @@ namespace VisualCard.ShowContacts
                 bool dbg = args.Contains("-debug");
                 bool android = args.Contains("-android");
                 bool mecard = args.Contains("-mecard");
+                args = args.Except(["-noprint", "-save", "-debug", "-android", "-mecard"]).ToArray();
 
                 // If debug, wait for debugger
                 if (dbg)
@@ -53,7 +54,7 @@ namespace VisualCard.ShowContacts
                 // If mecard, get a MeCard string
                 string meCardString = "";
                 if (mecard)
-                    meCardString = args[^1];
+                    meCardString = args[0];
 
                 // Initialize stopwatch
                 Stopwatch elapsed = new();
@@ -61,7 +62,7 @@ namespace VisualCard.ShowContacts
 
                 // Parse all contacts
                 Card[] contacts =
-                    android ? AndroidContactsDb.GetContactsFromDb(args[0]) :
+                    android ? (args.Length > 0 ? AndroidContactsDb.GetContactsFromDb(args[0]) : AndroidContactsDb.GetContactsFromDb()) :
                     mecard ? MeCard.GetContactsFromMeCardString(meCardString) :
                     CardTools.GetCards(args[0]);
 
