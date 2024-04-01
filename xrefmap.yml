@@ -63,6 +63,12 @@ references:
   commentId: T:VisualCard.Converters.AndroidContactsDb
   fullName: VisualCard.Converters.AndroidContactsDb
   nameWithType: AndroidContactsDb
+- uid: VisualCard.Converters.AndroidContactsDb.GetContactsFromDb
+  name: GetContactsFromDb()
+  href: api/VisualCard.Converters.AndroidContactsDb.html#VisualCard_Converters_AndroidContactsDb_GetContactsFromDb
+  commentId: M:VisualCard.Converters.AndroidContactsDb.GetContactsFromDb
+  fullName: VisualCard.Converters.AndroidContactsDb.GetContactsFromDb()
+  nameWithType: AndroidContactsDb.GetContactsFromDb()
 - uid: VisualCard.Converters.AndroidContactsDb.GetContactsFromDb(System.String)
   name: GetContactsFromDb(string)
   href: api/VisualCard.Converters.AndroidContactsDb.html#VisualCard_Converters_AndroidContactsDb_GetContactsFromDb_System_String_
