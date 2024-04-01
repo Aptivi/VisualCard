@@ -70,7 +70,7 @@ namespace VisualCard.Parts
         {
             // Check for version support
             if (!VcardParserTools.EnumArrayTypeSupported(key, CardVersion))
-                return null;
+                return [];
 
             // Get the parts enumeration according to the type
             var type = typeof(TPart);
