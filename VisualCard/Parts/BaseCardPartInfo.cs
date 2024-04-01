@@ -19,8 +19,10 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using VisualCard.Parsers;
 
 namespace VisualCard.Parts
 {
@@ -49,6 +51,31 @@ namespace VisualCard.Parts
         /// Value type (usually set by VALUE=)
         /// </summary>
         public virtual string ValueType { get; internal set; }
+
+        /// <summary>
+        /// Arguments in key/value pair format
+        /// </summary>
+        public ReadOnlyDictionary<string, string> ArgumentValues
+        {
+            get
+            {
+                // Check to see if we have an empty list of arguments
+                Dictionary<string, string> values = [];
+                if (Arguments is null || Arguments.Length == 0)
+                    return new(values);
+
+                // Now, separate a key from a value
+                foreach (var arg in Arguments)
+                {
+                    string key = arg.Substring(0, arg.IndexOf(VcardConstants._argumentValueDelimiter));
+                    string value = arg.Substring(arg.IndexOf(VcardConstants._argumentValueDelimiter) + 1);
+                    values.Add(key, value);
+                }
+
+                // Now, return a read-only dictionary
+                return new(values);
+            }
+        }
 
         /// <summary>
         /// Checks to see if both the parts are equal
