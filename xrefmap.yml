@@ -335,12 +335,6 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Card.GetHashCode
   nameWithType: Card.GetHashCode
-- uid: VisualCard.Parts.Card.GetPart(VisualCard.Parts.Enums.PartsEnum)
-  name: GetPart(PartsEnum)
-  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_GetPart_VisualCard_Parts_Enums_PartsEnum_
-  commentId: M:VisualCard.Parts.Card.GetPart(VisualCard.Parts.Enums.PartsEnum)
-  fullName: VisualCard.Parts.Card.GetPart(VisualCard.Parts.Enums.PartsEnum)
-  nameWithType: Card.GetPart(PartsEnum)
 - uid: VisualCard.Parts.Card.GetPart*
   name: GetPart
   href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_GetPart_
@@ -348,12 +342,24 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Card.GetPart
   nameWithType: Card.GetPart
-- uid: VisualCard.Parts.Card.GetPartsArray(VisualCard.Parts.Enums.PartsArrayEnum)
-  name: GetPartsArray(PartsArrayEnum)
-  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_GetPartsArray_VisualCard_Parts_Enums_PartsArrayEnum_
-  commentId: M:VisualCard.Parts.Card.GetPartsArray(VisualCard.Parts.Enums.PartsArrayEnum)
-  fullName: VisualCard.Parts.Card.GetPartsArray(VisualCard.Parts.Enums.PartsArrayEnum)
-  nameWithType: Card.GetPartsArray(PartsArrayEnum)
+- uid: VisualCard.Parts.Card.GetPart``1
+  name: GetPart<TPart>()
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_GetPart__1
+  commentId: M:VisualCard.Parts.Card.GetPart``1
+  name.vb: GetPart(Of TPart)()
+  fullName: VisualCard.Parts.Card.GetPart<TPart>()
+  fullName.vb: VisualCard.Parts.Card.GetPart(Of TPart)()
+  nameWithType: Card.GetPart<TPart>()
+  nameWithType.vb: Card.GetPart(Of TPart)()
+- uid: VisualCard.Parts.Card.GetPart``1(VisualCard.Parts.Enums.PartsEnum)
+  name: GetPart<TPart>(PartsEnum)
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_GetPart__1_VisualCard_Parts_Enums_PartsEnum_
+  commentId: M:VisualCard.Parts.Card.GetPart``1(VisualCard.Parts.Enums.PartsEnum)
+  name.vb: GetPart(Of TPart)(PartsEnum)
+  fullName: VisualCard.Parts.Card.GetPart<TPart>(VisualCard.Parts.Enums.PartsEnum)
+  fullName.vb: VisualCard.Parts.Card.GetPart(Of TPart)(VisualCard.Parts.Enums.PartsEnum)
+  nameWithType: Card.GetPart<TPart>(PartsEnum)
+  nameWithType.vb: Card.GetPart(Of TPart)(PartsEnum)
 - uid: VisualCard.Parts.Card.GetPartsArray*
   name: GetPartsArray
   href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_GetPartsArray_
@@ -361,6 +367,24 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Card.GetPartsArray
   nameWithType: Card.GetPartsArray
+- uid: VisualCard.Parts.Card.GetPartsArray``1
+  name: GetPartsArray<TPart>()
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_GetPartsArray__1
+  commentId: M:VisualCard.Parts.Card.GetPartsArray``1
+  name.vb: GetPartsArray(Of TPart)()
+  fullName: VisualCard.Parts.Card.GetPartsArray<TPart>()
+  fullName.vb: VisualCard.Parts.Card.GetPartsArray(Of TPart)()
+  nameWithType: Card.GetPartsArray<TPart>()
+  nameWithType.vb: Card.GetPartsArray(Of TPart)()
+- uid: VisualCard.Parts.Card.GetPartsArray``1(VisualCard.Parts.Enums.PartsArrayEnum)
+  name: GetPartsArray<TPart>(PartsArrayEnum)
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_GetPartsArray__1_VisualCard_Parts_Enums_PartsArrayEnum_
+  commentId: M:VisualCard.Parts.Card.GetPartsArray``1(VisualCard.Parts.Enums.PartsArrayEnum)
+  name.vb: GetPartsArray(Of TPart)(PartsArrayEnum)
+  fullName: VisualCard.Parts.Card.GetPartsArray<TPart>(VisualCard.Parts.Enums.PartsArrayEnum)
+  fullName.vb: VisualCard.Parts.Card.GetPartsArray(Of TPart)(VisualCard.Parts.Enums.PartsArrayEnum)
+  nameWithType: Card.GetPartsArray<TPart>(PartsArrayEnum)
+  nameWithType.vb: Card.GetPartsArray(Of TPart)(PartsArrayEnum)
 - uid: VisualCard.Parts.Card.GetString(VisualCard.Parts.Enums.StringsEnum)
   name: GetString(StringsEnum)
   href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_GetString_VisualCard_Parts_Enums_StringsEnum_
