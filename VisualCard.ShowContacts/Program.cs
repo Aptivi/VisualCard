@@ -87,10 +87,10 @@ namespace VisualCard.ShowContacts
                 {
                     TextWriterColor.WriteColor("----------------------------", ConsoleColors.Green);
                     TextWriterColor.WriteColor("Name:                    {0}", ConsoleColors.Green, Contact.GetString(StringsEnum.FullName));
-                    TextWriterColor.WriteColor("Revision:                {0}", ConsoleColors.Green, Contact.GetPart(PartsEnum.Revision));
+                    TextWriterColor.WriteColor("Revision:                {0}", ConsoleColors.Green, Contact.GetPart<RevisionInfo>());
 
                     // List names
-                    foreach (NameInfo name in Contact.GetPartsArray(PartsArrayEnum.Names))
+                    foreach (var name in Contact.GetPartsArray<NameInfo>())
                     {
                         TextWriterColor.Write("First name:              {0}", name.ContactFirstName);
                         TextWriterColor.Write("Last name:               {0}", name.ContactLastName);
@@ -98,14 +98,14 @@ namespace VisualCard.ShowContacts
                     }
 
                     // List titles
-                    foreach (TitleInfo title in Contact.GetPartsArray(PartsArrayEnum.Titles))
+                    foreach (var title in Contact.GetPartsArray<TitleInfo>())
                     { 
                         TextWriterColor.Write("Title or Job:            {0}", title.ContactTitle);
                         TextWriterColor.Write("ALTID:                   {0}", title.AltId);
                     }
 
                     // List addresses
-                    foreach (AddressInfo Address in Contact.GetPartsArray(PartsArrayEnum.Addresses))
+                    foreach (var Address in Contact.GetPartsArray<AddressInfo>())
                     {
                         TextWriterColor.Write("P.O. Box:                {0}", Address.PostOfficeBox);
                         TextWriterColor.Write("Extended Address:        {0}", Address.ExtendedAddress);
@@ -117,13 +117,13 @@ namespace VisualCard.ShowContacts
                     }
 
                     // List e-mails
-                    foreach (EmailInfo Email in Contact.GetPartsArray(PartsArrayEnum.Mails))
+                    foreach (var Email in Contact.GetPartsArray<EmailInfo>())
                     {
                         TextWriterColor.Write("Email address:           {0}", Email.ContactEmailAddress);
                     }
 
                     // List organizations
-                    foreach (OrganizationInfo Organization in Contact.GetPartsArray(PartsArrayEnum.Organizations))
+                    foreach (var Organization in Contact.GetPartsArray<OrganizationInfo>())
                     {
                         TextWriterColor.Write("Organization Name:       {0}", Organization.Name);
                         TextWriterColor.Write("Organization Unit:       {0}", Organization.Unit);
@@ -131,13 +131,13 @@ namespace VisualCard.ShowContacts
                     }
 
                     // List telephones
-                    foreach (TelephoneInfo Telephone in Contact.GetPartsArray(PartsArrayEnum.Telephones))
+                    foreach (var Telephone in Contact.GetPartsArray<TelephoneInfo>())
                     {
                         TextWriterColor.Write("Phone number:            {0}", Telephone.ContactPhoneNumber);
                     }
 
                     // List photos
-                    foreach (PhotoInfo Photo in Contact.GetPartsArray(PartsArrayEnum.Photos))
+                    foreach (var Photo in Contact.GetPartsArray<PhotoInfo>())
                     {
                         TextWriterColor.Write("Photo encoding:          {0}", Photo.Encoding);
                         TextWriterColor.Write("Photo value type:        {0}", Photo.ValueType);
@@ -146,21 +146,21 @@ namespace VisualCard.ShowContacts
                     }
 
                     // List roles
-                    foreach (RoleInfo Role in Contact.GetPartsArray(PartsArrayEnum.Roles))
+                    foreach (var Role in Contact.GetPartsArray<RoleInfo>())
                     {
                         TextWriterColor.Write("Role:                    {0}", Role.ContactRole);
                         TextWriterColor.Write("ALTID:                   {0}", Role.AltId);
                     }
 
                     // List remaining
-                    var birth = Contact.GetPart(PartsEnum.Birthdate);
-                    var wed = Contact.GetPart(PartsEnum.Anniversary);
-                    var gnd = Contact.GetPart(PartsEnum.Gender);
-                    if (birth is BirthDateInfo bday)
-                        TextWriterColor.Write("Contact birthdate:       {0}", bday.BirthDate);
-                    if (wed is AnniversaryInfo adate)
-                        TextWriterColor.Write("Contact wedding date:    {0}", adate.Anniversary);
-                    if (gnd is GenderInfo gender)
+                    var birth = Contact.GetPart<BirthDateInfo>();
+                    var wedding = Contact.GetPart<AnniversaryInfo>();
+                    var gender = Contact.GetPart<GenderInfo>();
+                    if (birth is not null)
+                        TextWriterColor.Write("Contact birthdate:       {0}", birth.BirthDate);
+                    if (wedding is not null)
+                        TextWriterColor.Write("Contact wedding date:    {0}", wedding.Anniversary);
+                    if (gender is not null)
                         TextWriterColor.Write("Contact gender           {0} [{1}]", gender.Gender.ToString(), gender.GenderDescription);
                     TextWriterColor.Write("Contact mailer:          {0}", Contact.GetString(StringsEnum.Mailer));
                     TextWriterColor.Write("Contact URL:             {0}", Contact.GetString(StringsEnum.Url));

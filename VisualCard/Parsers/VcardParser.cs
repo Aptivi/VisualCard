@@ -253,7 +253,7 @@ namespace VisualCard.Parsers
             // Requirement checks
             if (expectedFields.Contains(VcardConstants._nameSpecifier))
             {
-                var names = card.GetPartsArray(PartsArrayEnum.Names);
+                var names = card.GetPartsArray<BaseCardPartInfo>(PartsArrayEnum.Names);
                 bool exists = names is not null && names.Length > 0;
                 if (exists)
                     actualFields.Add(VcardConstants._nameSpecifier);

@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Text;
 using Textify.General;
 using VisualCard.Parsers;
@@ -50,24 +51,64 @@ namespace VisualCard.Parts
         /// <summary>
         /// Gets a part array from a specified key
         /// </summary>
+        /// <returns>An array of values or an empty part array []</returns>
+        public TPart[] GetPartsArray<TPart>() where TPart : BaseCardPartInfo
+        {
+            // Get the parts enumeration according to the type
+            var key = VcardParserTools.GetPartsArrayEnumFromType(typeof(TPart));
+
+            // Now, return the value
+            return GetPartsArray<TPart>(key);
+        }
+
+        /// <summary>
+        /// Gets a part array from a specified key
+        /// </summary>
         /// <param name="key">A key to use</param>
         /// <returns>An array of values or an empty part array []</returns>
-        public BaseCardPartInfo[] GetPartsArray(PartsArrayEnum key)
+        public TPart[] GetPartsArray<TPart>(PartsArrayEnum key) where TPart : BaseCardPartInfo
         {
             // Check for version support
             if (!VcardParserTools.EnumArrayTypeSupported(key, CardVersion))
                 return null;
 
+            // Get the parts enumeration according to the type
+            var type = typeof(TPart);
+            if (type != typeof(BaseCardPartInfo))
+            {
+                // We don't need the base, but a derivative of it. Check it.
+                var partsArrayEnum = VcardParserTools.GetPartsArrayEnumFromType(typeof(TPart));
+                if (key != partsArrayEnum)
+                    throw new InvalidOperationException($"Parts array enumeration [{key}] is different from the expected one [{partsArrayEnum}] according to type {typeof(TPart).Name}.");
+            }
+
             // Get the fallback value
-            BaseCardPartInfo[] fallback = [];
+            TPart[] fallback = [];
 
             // Check to see if the partarray has a value or not
-            bool hasValue = partsArray.TryGetValue(key, out List<BaseCardPartInfo> value);
+            bool hasValue = partsArray.ContainsKey(key);
             if (!hasValue)
                 return fallback;
 
+            // Cast the values
+            var value = partsArray[key];
+            TPart[] parts = value.Cast<TPart>().ToArray();
+
             // Now, return the value
-            return [.. value];
+            return parts;
+        }
+
+        /// <summary>
+        /// Gets a part from a specified key
+        /// </summary>
+        /// <returns>A value or an empty part if any other type doesn't exist</returns>
+        public TPart GetPart<TPart>() where TPart : BaseCardPartInfo
+        {
+            // Get the parts enumeration according to the type
+            var key = VcardParserTools.GetPartsEnumFromType(typeof(TPart));
+
+            // Now, return the value
+            return GetPart<TPart>(key);
         }
 
         /// <summary>
@@ -75,22 +116,35 @@ namespace VisualCard.Parts
         /// </summary>
         /// <param name="key">A key to use</param>
         /// <returns>A value or an empty part if any other type doesn't exist</returns>
-        public BaseCardPartInfo GetPart(PartsEnum key)
+        public TPart GetPart<TPart>(PartsEnum key) where TPart : BaseCardPartInfo
         {
             // Check for version support
             if (!VcardParserTools.EnumTypeSupported(key, CardVersion))
                 return null;
 
+            // Get the parts enumeration according to the type
+            var type = typeof(TPart);
+            if (type != typeof(BaseCardPartInfo))
+            {
+                // We don't need the base, but a derivative of it. Check it.
+                var partsEnum = VcardParserTools.GetPartsEnumFromType(typeof(TPart));
+                if (key != partsEnum)
+                    throw new InvalidOperationException($"Part enumeration [{key}] is different from the expected one [{partsEnum}] according to type {typeof(TPart).Name}.");
+            }
+
             // Get the fallback value
-            BaseCardPartInfo fallback = default;
+            TPart fallback = default;
 
             // Check to see if the part has a value or not
-            bool hasValue = parts.TryGetValue(key, out BaseCardPartInfo value);
+            bool hasValue = parts.ContainsKey(key);
             if (!hasValue)
                 return fallback;
 
+            // Cast the values
+            TPart part = (TPart)parts[key];
+
             // Now, return the value
-            return value;
+            return part;
         }
 
         /// <summary>
@@ -153,7 +207,7 @@ namespace VisualCard.Parts
             foreach (PartsArrayEnum partsArrayEnum in partsArrayEnums)
             {
                 // Get the array value
-                var array = GetPartsArray(partsArrayEnum);
+                var array = GetPartsArray<BaseCardPartInfo>(partsArrayEnum);
                 if (array is null || array.Length == 0)
                     continue;
 
@@ -182,7 +236,7 @@ namespace VisualCard.Parts
             foreach (PartsEnum partsEnum in partsEnums)
             {
                 // Get the part value
-                var part = GetPart(partsEnum);
+                var part = GetPart<BaseCardPartInfo>(partsEnum);
                 if (part is null)
                     continue;
 

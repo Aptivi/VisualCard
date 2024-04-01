@@ -194,6 +194,72 @@ namespace VisualCard.Parsers
                     throw new NotImplementedException($"String enumeration {partsArrayEnum} is not implemented.")
             };
 
+        internal static PartsEnum GetPartsEnumFromType(Type partsType)
+        {
+            if (partsType == null)
+                throw new NotImplementedException("Type is not provided.");
+
+            // Now, iterate through every type
+            if (partsType == typeof(RevisionInfo))
+                return PartsEnum.Revision;
+            else if (partsType == typeof(BirthDateInfo))
+                return PartsEnum.Birthdate;
+            else if (partsType == typeof(AnniversaryInfo))
+                return PartsEnum.Anniversary;
+            else if (partsType == typeof(GenderInfo))
+                return PartsEnum.Gender;
+            throw new NotImplementedException($"Type {partsType.Name} doesn't represent any part.");
+        }
+
+        internal static PartsArrayEnum GetPartsArrayEnumFromType(Type partsArrayType)
+        {
+            if (partsArrayType == null)
+                throw new NotImplementedException("Type is not provided.");
+
+            // Now, iterate through every type
+            if (partsArrayType == typeof(NameInfo))
+                return PartsArrayEnum.Names;
+            else if (partsArrayType == typeof(TelephoneInfo))
+                return PartsArrayEnum.Telephones;
+            else if (partsArrayType == typeof(AddressInfo))
+                return PartsArrayEnum.Addresses;
+            else if (partsArrayType == typeof(LabelAddressInfo))
+                return PartsArrayEnum.Labels;
+            else if (partsArrayType == typeof(AgentInfo))
+                return PartsArrayEnum.Agents;
+            else if (partsArrayType == typeof(EmailInfo))
+                return PartsArrayEnum.Mails;
+            else if (partsArrayType == typeof(OrganizationInfo))
+                return PartsArrayEnum.Organizations;
+            else if (partsArrayType == typeof(TitleInfo))
+                return PartsArrayEnum.Titles;
+            else if (partsArrayType == typeof(PhotoInfo))
+                return PartsArrayEnum.Photos;
+            else if (partsArrayType == typeof(NicknameInfo))
+                return PartsArrayEnum.Nicknames;
+            else if (partsArrayType == typeof(RoleInfo))
+                return PartsArrayEnum.Roles;
+            else if (partsArrayType == typeof(LogoInfo))
+                return PartsArrayEnum.Logos;
+            else if (partsArrayType == typeof(TimeDateZoneInfo))
+                return PartsArrayEnum.TimeZone;
+            else if (partsArrayType == typeof(GeoInfo))
+                return PartsArrayEnum.Geo;
+            else if (partsArrayType == typeof(SoundInfo))
+                return PartsArrayEnum.Sounds;
+            else if (partsArrayType == typeof(ImppInfo))
+                return PartsArrayEnum.Impps;
+            else if (partsArrayType == typeof(CategoryInfo))
+                return PartsArrayEnum.Categories;
+            else if (partsArrayType == typeof(LangInfo))
+                return PartsArrayEnum.Langs;
+            else if (partsArrayType == typeof(XmlInfo))
+                return PartsArrayEnum.Xml;
+            else if (partsArrayType == typeof(XNameInfo))
+                return PartsArrayEnum.NonstandardNames;
+            throw new NotImplementedException($"Type {partsArrayType.Name} doesn't represent any part array.");
+        }
+
         internal static (PartType type, object enumeration, Type enumType, Func<string, string[], int, string[], string, Version, BaseCardPartInfo> fromStringFunc, string defaultType, string defaultValue) GetPartType(string prefix) =>
             prefix switch
             {
