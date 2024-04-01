@@ -28,13 +28,14 @@ using Textify.General;
 using VisualCard.Exceptions;
 using VisualCard.Parts;
 using VisualCard.Parts.Enums;
+using VisualCard.Parts.Implementations;
 
 namespace VisualCard.Parsers
 {
     /// <summary>
     /// The base vCard parser
     /// </summary>
-    [DebuggerDisplay("vCard contact, version {CardVersion.ToString()}, {CardContent.Length} bytes")]
+    [DebuggerDisplay("vCard contact, version {CardVersion.ToString()}, {CardContent.Length} lines")]
     internal class VcardParser
     {
         private readonly Version cardVersion = new();
@@ -253,7 +254,7 @@ namespace VisualCard.Parsers
             // Requirement checks
             if (expectedFields.Contains(VcardConstants._nameSpecifier))
             {
-                var names = card.GetPartsArray<BaseCardPartInfo>(PartsArrayEnum.Names);
+                var names = card.GetPartsArray<NameInfo>(PartsArrayEnum.Names);
                 bool exists = names is not null && names.Length > 0;
                 if (exists)
                     actualFields.Add(VcardConstants._nameSpecifier);

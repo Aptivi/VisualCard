@@ -20,7 +20,6 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using VisualCard.Parsers;
 
 namespace VisualCard.Parts.Implementations
 {

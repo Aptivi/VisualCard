@@ -24,7 +24,6 @@ using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using Textify.General;
-using VisualCard.Parsers;
 
 namespace VisualCard.Parts.Implementations
 {

@@ -22,7 +22,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Net.Mail;
-using VisualCard.Parsers;
 
 namespace VisualCard.Parts.Implementations
 {

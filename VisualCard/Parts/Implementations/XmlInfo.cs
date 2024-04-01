@@ -21,7 +21,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Xml;
-using VisualCard.Parsers;
 
 namespace VisualCard.Parts.Implementations
 {
