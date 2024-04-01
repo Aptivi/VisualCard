@@ -75,8 +75,6 @@ namespace VisualCard.Parts.Implementations
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
-            bool altIdSupported = cardVersion.Major >= 4;
-
             // Get the value
             string[] splitAdr = value.Split(VcardConstants._fieldDelimiter);
 
@@ -93,7 +91,7 @@ namespace VisualCard.Parts.Implementations
             string _addressRegion = Regex.Unescape(splitAdr[4]);
             string _addressPostalCode = Regex.Unescape(splitAdr[5]);
             string _addressCountry = Regex.Unescape(splitAdr[6]);
-            AddressInfo _address = new(altIdSupported ? altId : 0, finalArgs, _addressTypes, valueType, _addressPOBox, _addressExtended, _addressStreet, _addressLocality, _addressRegion, _addressPostalCode, _addressCountry);
+            AddressInfo _address = new(altId, finalArgs, _addressTypes, valueType, _addressPOBox, _addressExtended, _addressStreet, _addressLocality, _addressRegion, _addressPostalCode, _addressCountry);
             return _address;
         }
 

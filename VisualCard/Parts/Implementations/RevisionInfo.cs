@@ -49,8 +49,7 @@ namespace VisualCard.Parts.Implementations
             DateTime rev = DateTime.Parse(revValue);
 
             // Add the fetched information
-            bool altIdSupported = cardVersion.Major >= 4;
-            RevisionInfo _time = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, rev);
+            RevisionInfo _time = new(altId, finalArgs, elementTypes, valueType, rev);
             return _time;
         }
 
@@ -106,13 +105,10 @@ namespace VisualCard.Parts.Implementations
 
         internal RevisionInfo() { }
 
-        internal RevisionInfo(int altId, string[] arguments, string[] elementTypes, string valueType, DateTime? birth)
+        internal RevisionInfo(int altId, string[] arguments, string[] elementTypes, string valueType, DateTime? rev) :
+            base(arguments, altId, elementTypes, valueType)
         {
-            AltId = altId;
-            Arguments = arguments;
-            ElementTypes = elementTypes;
-            ValueType = valueType;
-            Revision = birth;
+            Revision = rev;
         }
     }
 }

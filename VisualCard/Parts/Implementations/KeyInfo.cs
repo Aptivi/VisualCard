@@ -73,7 +73,7 @@ namespace VisualCard.Parts.Implementations
             }
 
             // Populate the fields
-            KeyInfo _key = new(vCard4 ? altId : 0, finalArgs, elementTypes, valueType, keyEncoding, value);
+            KeyInfo _key = new(altId, finalArgs, elementTypes, valueType, keyEncoding, value);
             return _key;
         }
 

@@ -54,14 +54,13 @@ namespace VisualCard.Parts.Implementations
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
-            bool altIdSupported = cardVersion.Major >= 4;
             string[] splitOrg = value.Split(VcardConstants._fieldDelimiter);
 
             // Populate the fields
             string _orgName = Regex.Unescape(splitOrg[0]);
             string _orgUnit = Regex.Unescape(splitOrg.Length >= 2 ? splitOrg[1] : "");
             string _orgUnitRole = Regex.Unescape(splitOrg.Length >= 3 ? splitOrg[2] : "");
-            OrganizationInfo _org = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, _orgName, _orgUnit, _orgUnitRole);
+            OrganizationInfo _org = new(altId, finalArgs, elementTypes, valueType, _orgName, _orgUnit, _orgUnitRole);
             return _org;
         }
 

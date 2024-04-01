@@ -50,7 +50,6 @@ namespace VisualCard.Parts.Implementations
         {
             string xValue = value.Substring(VcardConstants._xSpecifier.Length);
             string[] splitX = xValue.Split(VcardConstants._argumentDelimiter);
-            bool altIdSupported = cardVersion.Major >= 4;
 
             // Populate the name
             string _xName = splitX[0].Contains(VcardConstants._fieldDelimiter.ToString()) ?
@@ -59,7 +58,7 @@ namespace VisualCard.Parts.Implementations
 
             // Populate the fields
             string[] _xValues = splitX[1].Split(VcardConstants._fieldDelimiter);
-            XNameInfo _x = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, _xName, _xValues);
+            XNameInfo _x = new(altId, finalArgs, elementTypes, valueType, _xName, _xValues);
             return _x;
         }
 

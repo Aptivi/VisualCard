@@ -60,8 +60,7 @@ namespace VisualCard.Parts.Implementations
             doc.LoadXml(finalXml);
 
             // Add the fetched information
-            bool altIdSupported = cardVersion.Major >= 4;
-            XmlInfo _xml = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, doc, value);
+            XmlInfo _xml = new(altId, finalArgs, elementTypes, valueType, doc, value);
             return _xml;
         }
 

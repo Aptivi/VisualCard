@@ -35,7 +35,7 @@ namespace VisualCard.Parts
 
             // Check to see if we've been provided arguments
             bool installAltId = partInfo.AltId >= 0 && partInfo.Arguments.Length > 0 && cardVersion.Major >= 4;
-            bool noSemicolon = partInfo.AltId == 0 && partInfo.Arguments.Length == 0 && finalElementTypes.Length == 0 && string.IsNullOrEmpty(finalValue);
+            bool noSemicolon = partInfo.AltId < 0 && partInfo.Arguments.Length == 0 && finalElementTypes.Length == 0 && string.IsNullOrEmpty(finalValue);
             string xNonstandardName = partInfo is XNameInfo xName ? xName.XKeyName : "";
             if (noSemicolon)
                 return xNonstandardName + VcardConstants._argumentDelimiter.ToString();

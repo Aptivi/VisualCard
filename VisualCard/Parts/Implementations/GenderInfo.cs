@@ -78,7 +78,7 @@ namespace VisualCard.Parts.Implementations
             };
 
             // Add the fetched information
-            GenderInfo _gender = new(0, [], elementTypes, valueType, gender, genderDescription);
+            GenderInfo _gender = new(-1, [], elementTypes, valueType, gender, genderDescription);
             return _gender;
         }
 

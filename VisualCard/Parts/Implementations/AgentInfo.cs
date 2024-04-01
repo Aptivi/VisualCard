@@ -56,8 +56,6 @@ namespace VisualCard.Parts.Implementations
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
-            bool altIdSupported = cardVersion.Major >= 4;
-
             // Check the provided agent
             if (string.IsNullOrEmpty(value))
                 throw new InvalidDataException("Agent information must specify exactly one value (agent vCard contents that have their lines delimited by \\n)");
@@ -65,7 +63,7 @@ namespace VisualCard.Parts.Implementations
             // Populate the fields
             string _agentVcard = Regex.Unescape(value).Replace("\\n", "\n");
             var _agentVcardParsers = CardTools.GetCardsFromString(_agentVcard);
-            AgentInfo _agent = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, _agentVcardParsers);
+            AgentInfo _agent = new(altId, finalArgs, elementTypes, valueType, _agentVcardParsers);
             return _agent;
         }
 

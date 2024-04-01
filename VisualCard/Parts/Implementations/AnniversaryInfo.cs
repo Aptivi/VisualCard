@@ -58,7 +58,7 @@ namespace VisualCard.Parts.Implementations
                 anniversary = DateTime.Parse(value);
 
             // Add the fetched information
-            AnniversaryInfo _time = new(0, [], [], valueType, anniversary);
+            AnniversaryInfo _time = new(-1, [], [], valueType, anniversary);
             return _time;
         }
 

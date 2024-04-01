@@ -47,13 +47,11 @@ namespace VisualCard.Parts.Implementations
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
-            bool altIdSupported = cardVersion.Major >= 4;
-
             // Check to see if the value is prepended by the ENCODING= argument
             string logoEncoding = VcardParserTools.GetValuesString(finalArgs, "BASE64", VcardConstants._encodingArgumentSpecifier);
 
             // Populate the fields
-            LogoInfo _logo = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, logoEncoding, value);
+            LogoInfo _logo = new(altId, finalArgs, elementTypes, valueType, logoEncoding, value);
             return _logo;
         }
 

@@ -58,8 +58,7 @@ namespace VisualCard.Parts.Implementations
                 bday = DateTime.Parse(value);
 
             // Add the fetched information
-            bool altIdSupported = cardVersion.Major >= 4;
-            BirthDateInfo _time = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, bday);
+            BirthDateInfo _time = new(altId, finalArgs, elementTypes, valueType, bday);
             return _time;
         }
 

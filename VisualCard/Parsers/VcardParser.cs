@@ -103,7 +103,7 @@ namespace VisualCard.Parsers
                 string[] splitValues = value.Split([VcardConstants._fieldDelimiter], StringSplitOptions.RemoveEmptyEntries);
                 bool isWithType = splitArgs.Length > 0;
                 List<string> finalArgs = [];
-                int altId = 0;
+                int altId = -1;
 
                 // Now, parse a line
                 try
@@ -115,8 +115,13 @@ namespace VisualCard.Parsers
                         {
                             if (splitArgs[0].StartsWith(VcardConstants._altIdArgumentSpecifier))
                             {
+                                // We need ALTID to be numeric
                                 if (!int.TryParse(splitArgs[0].Substring(VcardConstants._altIdArgumentSpecifier.Length), out altId))
                                     throw new InvalidDataException("ALTID must be numeric");
+
+                                // We need ALTID to be positive
+                                if (altId < 0)
+                                    throw new InvalidDataException("ALTID must be positive");
 
                                 // Here, we require arguments for ALTID
                                 if (splitArgs.Length <= 1)

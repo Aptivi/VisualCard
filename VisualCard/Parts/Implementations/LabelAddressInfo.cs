@@ -43,11 +43,9 @@ namespace VisualCard.Parts.Implementations
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
-            bool altIdSupported = cardVersion.Major >= 4;
-
             // Populate the fields
             string _addressLabel = Regex.Unescape(value);
-            LabelAddressInfo _address = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, _addressLabel);
+            LabelAddressInfo _address = new(altId, finalArgs, elementTypes, valueType, _addressLabel);
             return _address;
         }
 

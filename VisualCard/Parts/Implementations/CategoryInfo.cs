@@ -48,7 +48,7 @@ namespace VisualCard.Parts.Implementations
             var categories = Regex.Unescape(value).Split(',');
 
             // Add the fetched information
-            CategoryInfo _time = new(0, [], elementTypes, valueType, categories);
+            CategoryInfo _time = new(-1, [], elementTypes, valueType, categories);
             return _time;
         }
 

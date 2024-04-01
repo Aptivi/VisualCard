@@ -48,10 +48,8 @@ namespace VisualCard.Parts.Implementations
             string geoValue = value.Substring(VcardConstants._geoSpecifier.Length + 1);
             string _geoStr = Regex.Unescape(geoValue);
 
-            bool altIdSupported = cardVersion.Major >= 4;
-
             // Populate the fields
-            GeoInfo _geo = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, _geoStr);
+            GeoInfo _geo = new(altId, finalArgs, elementTypes, valueType, _geoStr);
             return _geo;
         }
 

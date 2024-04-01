@@ -43,13 +43,11 @@ namespace VisualCard.Parts.Implementations
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
-            bool altIdSupported = cardVersion.Major >= 4;
-
             // Get the types and the number
             string _tzStr = Regex.Unescape(value);
 
             // Add the fetched information
-            TimeDateZoneInfo _timeZone = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, _tzStr);
+            TimeDateZoneInfo _timeZone = new(altId, finalArgs, elementTypes, valueType, _tzStr);
             return _timeZone;
         }
 

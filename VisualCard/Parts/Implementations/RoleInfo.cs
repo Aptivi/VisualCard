@@ -43,11 +43,10 @@ namespace VisualCard.Parts.Implementations
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
-            bool altIdSupported = cardVersion.Major >= 4;
             string roleValue = Regex.Unescape(value);
 
             // Populate the fields
-            RoleInfo _role = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, roleValue);
+            RoleInfo _role = new(altId, finalArgs, elementTypes, valueType, roleValue);
             return _role;
         }
 

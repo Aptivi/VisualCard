@@ -43,11 +43,9 @@ namespace VisualCard.Parts.Implementations
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
-            bool altIdSupported = cardVersion.Major >= 4;
-
             // Populate the fields
             string _impp = Regex.Unescape(value);
-            ImppInfo _imppInstance = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, _impp);
+            ImppInfo _imppInstance = new(altId, finalArgs, elementTypes, valueType, _impp);
             return _imppInstance;
         }
 

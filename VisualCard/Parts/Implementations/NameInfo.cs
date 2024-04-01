@@ -72,7 +72,6 @@ namespace VisualCard.Parts.Implementations
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
-            bool altIdSupported = cardVersion.Major >= 4;
             string[] splitName = value.Split(VcardConstants._fieldDelimiter);
             if (splitName.Length < 2)
                 throw new InvalidDataException("Name field must specify the first two or more of the five values (Last name, first name, alt names, prefixes, and suffixes)");
@@ -83,7 +82,7 @@ namespace VisualCard.Parts.Implementations
             string[] _altNames = splitName.Length >= 3 ? Regex.Unescape(splitName[2]).Split(new char[] { VcardConstants._valueDelimiter }, StringSplitOptions.RemoveEmptyEntries) : [];
             string[] _prefixes = splitName.Length >= 4 ? Regex.Unescape(splitName[3]).Split(new char[] { VcardConstants._valueDelimiter }, StringSplitOptions.RemoveEmptyEntries) : [];
             string[] _suffixes = splitName.Length >= 5 ? Regex.Unescape(splitName[4]).Split(new char[] { VcardConstants._valueDelimiter }, StringSplitOptions.RemoveEmptyEntries) : [];
-            NameInfo _name = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, _firstName, _lastName, _altNames, _prefixes, _suffixes);
+            NameInfo _name = new(altId, finalArgs, elementTypes, valueType, _firstName, _lastName, _altNames, _prefixes, _suffixes);
             return _name;
         }
 

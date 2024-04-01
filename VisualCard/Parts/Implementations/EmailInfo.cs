@@ -45,7 +45,6 @@ namespace VisualCard.Parts.Implementations
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
             MailAddress mail;
-            bool altIdSupported = cardVersion.Major >= 4;
 
             // Try to create mail address
             try
@@ -59,7 +58,7 @@ namespace VisualCard.Parts.Implementations
 
             // Populate the fields
             string _emailAddress = mail.Address;
-            EmailInfo _address = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, _emailAddress);
+            EmailInfo _address = new(altId, finalArgs, elementTypes, valueType, _emailAddress);
             return _address;
         }
 

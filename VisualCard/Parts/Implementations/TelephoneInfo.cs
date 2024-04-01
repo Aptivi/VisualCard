@@ -43,11 +43,9 @@ namespace VisualCard.Parts.Implementations
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
-            bool altIdSupported = cardVersion.Major >= 4;
-
             // Populate the fields
             string _telephoneNumber = Regex.Unescape(value);
-            TelephoneInfo _telephone = new(altIdSupported ? altId : 0, finalArgs, elementTypes, valueType, _telephoneNumber);
+            TelephoneInfo _telephone = new(altId, finalArgs, elementTypes, valueType, _telephoneNumber);
             return _telephone;
         }
 
