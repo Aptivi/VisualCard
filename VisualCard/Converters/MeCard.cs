@@ -115,6 +115,16 @@ namespace VisualCard.Converters
                 throw new InvalidDataException("The MeCard contact string is not valid.", ex);
             }
         }
-
+        
+        /// <summary>
+        /// Saves the vCard <see cref="Card"/> instance to a MeCard string for QR code generation
+        /// </summary>
+        /// <param name="card">Card instance</param>
+        /// <returns>a MeCard string</returns>
+        public static string SaveCardToMeCardString(Card card)
+        {
+            // TODO: Scaffolding. Please implment by version 1.0.0.
+            return "";
+        }
     }
 }
