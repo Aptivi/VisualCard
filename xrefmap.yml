@@ -107,6 +107,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Converters.MeCard.GetContactsFromMeCardString
   nameWithType: MeCard.GetContactsFromMeCardString
+- uid: VisualCard.Converters.MeCard.SaveCardToMeCardString(VisualCard.Parts.Card)
+  name: SaveCardToMeCardString(Card)
+  href: api/VisualCard.Converters.MeCard.html#VisualCard_Converters_MeCard_SaveCardToMeCardString_VisualCard_Parts_Card_
+  commentId: M:VisualCard.Converters.MeCard.SaveCardToMeCardString(VisualCard.Parts.Card)
+  fullName: VisualCard.Converters.MeCard.SaveCardToMeCardString(VisualCard.Parts.Card)
+  nameWithType: MeCard.SaveCardToMeCardString(Card)
+- uid: VisualCard.Converters.MeCard.SaveCardToMeCardString*
+  name: SaveCardToMeCardString
+  href: api/VisualCard.Converters.MeCard.html#VisualCard_Converters_MeCard_SaveCardToMeCardString_
+  commentId: Overload:VisualCard.Converters.MeCard.SaveCardToMeCardString
+  isSpec: "True"
+  fullName: VisualCard.Converters.MeCard.SaveCardToMeCardString
+  nameWithType: MeCard.SaveCardToMeCardString
 - uid: VisualCard.Exceptions
   name: VisualCard.Exceptions
   href: api/VisualCard.Exceptions.html

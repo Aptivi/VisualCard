@@ -12,7 +12,7 @@
   "api/VisualCard.Converters.MeCard.html": {
     "href": "api/VisualCard.Converters.MeCard.html",
     "title": "Class MeCard | VisualCard API - Aptivi",
-    "keywords": "Class MeCard MeCard string generator and converter Inheritance object MeCard Namespace: VisualCard.Converters Assembly: VisualCard.dll Syntax public static class MeCard Methods | Edit this page View Source GetContactsFromMeCardString(string) Gets all contacts from a MeCard string Declaration public static Card[] GetContactsFromMeCardString(string meCardString) Parameters Type Name Description string meCardString MeCard string Returns Type Description Card[] Exceptions Type Condition FileNotFoundException InvalidDataException"
+    "keywords": "Class MeCard MeCard string generator and converter Inheritance object MeCard Namespace: VisualCard.Converters Assembly: VisualCard.dll Syntax public static class MeCard Methods | Edit this page View Source GetContactsFromMeCardString(string) Gets all contacts from a MeCard string Declaration public static Card[] GetContactsFromMeCardString(string meCardString) Parameters Type Name Description string meCardString MeCard string Returns Type Description Card[] Exceptions Type Condition FileNotFoundException InvalidDataException | Edit this page View Source SaveCardToMeCardString(Card) Saves the vCard Card instance to a MeCard string for QR code generation Declaration public static string SaveCardToMeCardString(Card card) Parameters Type Name Description Card card Card instance Returns Type Description string a MeCard string"
   },
   "api/VisualCard.Converters.html": {
     "href": "api/VisualCard.Converters.html",
