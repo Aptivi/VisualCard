@@ -68,6 +68,7 @@ namespace VisualCard.Parsers
             // Iterate through all the lines
             bool constructing = false;
             StringBuilder valueBuilder = new();
+            string[] allowedTypes = ["HOME", "WORK"];
             for (int i = 0; i < CardContent.Length; i++)
             {
                 // Get line
@@ -111,7 +112,7 @@ namespace VisualCard.Parsers
                     // Get the part type
                     bool xNonstandard = prefix.StartsWith(VcardConstants._xSpecifier);
                     bool specifierRequired = CardVersion.Major >= 3;
-                    var (type, enumeration, classType, fromString, defaultType, defaultValue) = VcardParserTools.GetPartType(xNonstandard ? VcardConstants._xSpecifier : prefix);
+                    var (type, enumeration, classType, fromString, defaultType, defaultValue, extraAllowedTypes) = VcardParserTools.GetPartType(xNonstandard ? VcardConstants._xSpecifier : prefix);
                     
                     // Handle arguments
                     if (isWithType)
@@ -160,8 +161,17 @@ namespace VisualCard.Parsers
                         ));
                     }
 
-                    // Handle the part type
+                    // Check the type for allowed types
                     string[] elementTypes = VcardParserTools.GetTypes(splitArgs, defaultType, specifierRequired);
+                    string[] finalTypes = allowedTypes.Union(extraAllowedTypes).Select((type) => type.ToUpper()).ToArray();
+                    foreach (string elementType in elementTypes)
+                    {
+                        string elementTypeUpper = elementType.ToUpper();
+                        if (!finalTypes.Contains(elementTypeUpper))
+                            throw new InvalidDataException($"Part info type {classType.Name} doesn't support property type {elementTypeUpper} because the following types are supported: [{string.Join(", ", finalTypes)}]");
+                    }
+
+                    // Handle the part type
                     string values = VcardParserTools.GetValuesString(splitArgs, defaultValue, VcardConstants._valueArgumentSpecifier);
                     switch (type)
                     {

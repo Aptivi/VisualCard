@@ -113,14 +113,28 @@ namespace VisualCard.Tests
             """
         ;
 
+        private static readonly string vcardInvalidType =
+            """
+            BEGIN:VCARD
+            VERSION:5.0
+            N:Hood;Rick;;;
+            FN:Rick Hood
+            ADR;TYPE=warehouse:;;Los Angeles, USA;;;;
+            END:VCARD
+            """
+        ;
+
         /// <summary>
         /// All of the contacts in this field should fail immediately upon processing the test contacts in the
-        /// <see cref="VcardParser.Parse()"/> function.
+        /// <see cref="VcardParser.Parse()"/> function. This throws VCardParseException.
         /// </summary>
         public static IEnumerable<object[]> invalidContacts =>
         [
             [
                 vcardInvalidAltIdUsage,
+            ],
+            [
+                vcardInvalidType,
             ],
         ];
 
@@ -140,7 +154,7 @@ namespace VisualCard.Tests
 
         /// <summary>
         /// All of the contacts in this field should fail immediately upon calling <see cref="VcardParser.Parse()"/>.
-        /// These usually resemble contacts with invalid syntax.
+        /// These usually resemble contacts with invalid syntax. This throws InvalidDataException.
         /// </summary>
         public static IEnumerable<object[]> invalidContactsParser =>
         [
