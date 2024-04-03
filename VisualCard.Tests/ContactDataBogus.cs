@@ -93,23 +93,40 @@ namespace VisualCard.Tests
             """
         ;
 
+        private static readonly string vcardFiveBarren =
+            """
+            BEGIN:VCARD
+            VERSION:5.0
+            END:VCARD
+            """
+        ;
+
+        private static readonly string vcardInvalidAltIdUsage =
+            """
+            BEGIN:VCARD
+            VERSION:5.0
+            N:Hood;Rick;;;
+            FN:Rick Hood
+            REV;ALTID=0;LANGUAGE=en:20240403
+            REV;ALTID=0;LANGUAGE=de:20240404
+            END:VCARD
+            """
+        ;
+
         /// <summary>
         /// All of the contacts in this field should fail immediately upon processing the test contacts in the
-        /// <see cref="CardTools.GetCardParsers(System.IO.StreamReader)"/> function.
+        /// <see cref="VcardParser.Parse()"/> function.
         /// </summary>
         public static IEnumerable<object[]> invalidContacts =>
         [
             [
-                vcardZeroByte,
-            ],
-            [
-                vcardNonexistentVersion,
+                vcardInvalidAltIdUsage,
             ],
         ];
 
         /// <summary>
         /// All of the contacts in this field with invalid syntax or omitted requirements may be accepted by the
-        /// <see cref="CardTools.GetCardParsers(System.IO.StreamReader)"/> function.
+        /// <see cref="VcardParser.Parse()"/> function.
         /// </summary>
         public static IEnumerable<object[]> seemsValidContacts =>
         [
@@ -138,6 +155,15 @@ namespace VisualCard.Tests
             ],
             [
                 vcardFourBarren,
+            ],
+            [
+                vcardFiveBarren,
+            ],
+            [
+                vcardNonexistentVersion,
+            ],
+            [
+                vcardZeroByte,
             ],
         ];
     }

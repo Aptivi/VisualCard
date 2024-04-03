@@ -22,6 +22,7 @@ using Shouldly;
 using System.Collections.Generic;
 using System.IO;
 using VisualCard.Converters;
+using VisualCard.Exceptions;
 using VisualCard.Parts;
 
 namespace VisualCard.Tests
@@ -300,8 +301,13 @@ namespace VisualCard.Tests
 
         [TestMethod]
         [DynamicData(nameof(ContactDataBogus.invalidContactsParser), typeof(ContactDataBogus))]
-        public void InvalidContactShouldThrowWhenParsing(string cardText) =>
+        public void InvalidContactShouldThrowWhenParsingData(string cardText) =>
             Should.Throw<InvalidDataException>(() => CardTools.GetCardsFromString(cardText));
+
+        [TestMethod]
+        [DynamicData(nameof(ContactDataBogus.invalidContacts), typeof(ContactDataBogus))]
+        public void InvalidContactShouldThrowWhenParsingVcard(string cardText) =>
+            Should.Throw<VCardParseException>(() => CardTools.GetCardsFromString(cardText));
 
         [TestMethod]
         [DynamicData(nameof(ContactDataBogus.seemsValidContacts), typeof(ContactDataBogus))]

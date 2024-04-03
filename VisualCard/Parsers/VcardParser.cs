@@ -119,9 +119,13 @@ namespace VisualCard.Parsers
                         // If we have more than one argument, check for ALTID
                         if (CardVersion.Major >= 4 && type == PartType.PartsArray)
                         {
-                            var cardinality = VcardParserTools.GetPartsArrayEnumFromType(classType, CardVersion).Item2;
-                            if (cardinality != PartCardinality.MayBeOneNoAltId && cardinality != PartCardinality.ShouldBeOneNoAltId &&
-                                cardinality != PartCardinality.AtLeastOneNoAltId && cardinality != PartCardinality.AnyNoAltId)
+                            var tuple = VcardParserTools.GetPartsArrayEnumFromType(classType, CardVersion);
+                            var cardinality = tuple.Item2;
+                            bool supportsAltId =
+                                cardinality != PartCardinality.MayBeOneNoAltId && cardinality != PartCardinality.ShouldBeOneNoAltId &&
+                                cardinality != PartCardinality.AtLeastOneNoAltId && cardinality != PartCardinality.AnyNoAltId;
+                            bool altIdSpotted = splitArgs.Any((arg) => arg.StartsWith(VcardConstants._altIdArgumentSpecifier));
+                            if (supportsAltId)
                             {
                                 // The type supports ALTID.
                                 if (splitArgs[0].StartsWith(VcardConstants._altIdArgumentSpecifier))
@@ -138,9 +142,11 @@ namespace VisualCard.Parsers
                                     if (splitArgs.Length <= 1)
                                         throw new InvalidDataException("ALTID must have one or more arguments to specify why this instance is an alternative");
                                 }
-                                else if (splitArgs.Any((arg) => arg.StartsWith(VcardConstants._altIdArgumentSpecifier)))
+                                else if (altIdSpotted)
                                     throw new InvalidDataException("ALTID must be exactly in the first position of the argument, because arguments that follow it are required to be specified");
                             }
+                            else if (altIdSpotted)
+                                throw new InvalidDataException($"ALTID must not be specified in the {tuple.Item1} type that expects a cardinality of {cardinality}.");
                         }
 
                         // Finalize the arguments
