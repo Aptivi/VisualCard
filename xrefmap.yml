@@ -539,12 +539,36 @@ references:
   commentId: F:VisualCard.Parts.Enums.PartsArrayEnum.Birthdate
   fullName: VisualCard.Parts.Enums.PartsArrayEnum.Birthdate
   nameWithType: PartsArrayEnum.Birthdate
+- uid: VisualCard.Parts.Enums.PartsArrayEnum.CalendarSchedulingRequestUrl
+  name: CalendarSchedulingRequestUrl
+  href: api/VisualCard.Parts.Enums.PartsArrayEnum.html#VisualCard_Parts_Enums_PartsArrayEnum_CalendarSchedulingRequestUrl
+  commentId: F:VisualCard.Parts.Enums.PartsArrayEnum.CalendarSchedulingRequestUrl
+  fullName: VisualCard.Parts.Enums.PartsArrayEnum.CalendarSchedulingRequestUrl
+  nameWithType: PartsArrayEnum.CalendarSchedulingRequestUrl
+- uid: VisualCard.Parts.Enums.PartsArrayEnum.CalendarUrl
+  name: CalendarUrl
+  href: api/VisualCard.Parts.Enums.PartsArrayEnum.html#VisualCard_Parts_Enums_PartsArrayEnum_CalendarUrl
+  commentId: F:VisualCard.Parts.Enums.PartsArrayEnum.CalendarUrl
+  fullName: VisualCard.Parts.Enums.PartsArrayEnum.CalendarUrl
+  nameWithType: PartsArrayEnum.CalendarUrl
 - uid: VisualCard.Parts.Enums.PartsArrayEnum.Categories
   name: Categories
   href: api/VisualCard.Parts.Enums.PartsArrayEnum.html#VisualCard_Parts_Enums_PartsArrayEnum_Categories
   commentId: F:VisualCard.Parts.Enums.PartsArrayEnum.Categories
   fullName: VisualCard.Parts.Enums.PartsArrayEnum.Categories
   nameWithType: PartsArrayEnum.Categories
+- uid: VisualCard.Parts.Enums.PartsArrayEnum.FreeBusyUrl
+  name: FreeBusyUrl
+  href: api/VisualCard.Parts.Enums.PartsArrayEnum.html#VisualCard_Parts_Enums_PartsArrayEnum_FreeBusyUrl
+  commentId: F:VisualCard.Parts.Enums.PartsArrayEnum.FreeBusyUrl
+  fullName: VisualCard.Parts.Enums.PartsArrayEnum.FreeBusyUrl
+  nameWithType: PartsArrayEnum.FreeBusyUrl
+- uid: VisualCard.Parts.Enums.PartsArrayEnum.FullName
+  name: FullName
+  href: api/VisualCard.Parts.Enums.PartsArrayEnum.html#VisualCard_Parts_Enums_PartsArrayEnum_FullName
+  commentId: F:VisualCard.Parts.Enums.PartsArrayEnum.FullName
+  fullName: VisualCard.Parts.Enums.PartsArrayEnum.FullName
+  nameWithType: PartsArrayEnum.FullName
 - uid: VisualCard.Parts.Enums.PartsArrayEnum.Gender
   name: Gender
   href: api/VisualCard.Parts.Enums.PartsArrayEnum.html#VisualCard_Parts_Enums_PartsArrayEnum_Gender
@@ -611,6 +635,12 @@ references:
   commentId: F:VisualCard.Parts.Enums.PartsArrayEnum.NonstandardNames
   fullName: VisualCard.Parts.Enums.PartsArrayEnum.NonstandardNames
   nameWithType: PartsArrayEnum.NonstandardNames
+- uid: VisualCard.Parts.Enums.PartsArrayEnum.Notes
+  name: Notes
+  href: api/VisualCard.Parts.Enums.PartsArrayEnum.html#VisualCard_Parts_Enums_PartsArrayEnum_Notes
+  commentId: F:VisualCard.Parts.Enums.PartsArrayEnum.Notes
+  fullName: VisualCard.Parts.Enums.PartsArrayEnum.Notes
+  nameWithType: PartsArrayEnum.Notes
 - uid: VisualCard.Parts.Enums.PartsArrayEnum.Organizations
   name: Organizations
   href: api/VisualCard.Parts.Enums.PartsArrayEnum.html#VisualCard_Parts_Enums_PartsArrayEnum_Organizations
@@ -641,6 +671,12 @@ references:
   commentId: F:VisualCard.Parts.Enums.PartsArrayEnum.Sounds
   fullName: VisualCard.Parts.Enums.PartsArrayEnum.Sounds
   nameWithType: PartsArrayEnum.Sounds
+- uid: VisualCard.Parts.Enums.PartsArrayEnum.Source
+  name: Source
+  href: api/VisualCard.Parts.Enums.PartsArrayEnum.html#VisualCard_Parts_Enums_PartsArrayEnum_Source
+  commentId: F:VisualCard.Parts.Enums.PartsArrayEnum.Source
+  fullName: VisualCard.Parts.Enums.PartsArrayEnum.Source
+  nameWithType: PartsArrayEnum.Source
 - uid: VisualCard.Parts.Enums.PartsArrayEnum.Telephones
   name: Telephones
   href: api/VisualCard.Parts.Enums.PartsArrayEnum.html#VisualCard_Parts_Enums_PartsArrayEnum_Telephones
@@ -659,6 +695,12 @@ references:
   commentId: F:VisualCard.Parts.Enums.PartsArrayEnum.Titles
   fullName: VisualCard.Parts.Enums.PartsArrayEnum.Titles
   nameWithType: PartsArrayEnum.Titles
+- uid: VisualCard.Parts.Enums.PartsArrayEnum.Url
+  name: Url
+  href: api/VisualCard.Parts.Enums.PartsArrayEnum.html#VisualCard_Parts_Enums_PartsArrayEnum_Url
+  commentId: F:VisualCard.Parts.Enums.PartsArrayEnum.Url
+  fullName: VisualCard.Parts.Enums.PartsArrayEnum.Url
+  nameWithType: PartsArrayEnum.Url
 - uid: VisualCard.Parts.Enums.PartsArrayEnum.Xml
   name: Xml
   href: api/VisualCard.Parts.Enums.PartsArrayEnum.html#VisualCard_Parts_Enums_PartsArrayEnum_Xml
@@ -677,30 +719,6 @@ references:
   commentId: F:VisualCard.Parts.Enums.StringsEnum.AccessClassification
   fullName: VisualCard.Parts.Enums.StringsEnum.AccessClassification
   nameWithType: StringsEnum.AccessClassification
-- uid: VisualCard.Parts.Enums.StringsEnum.CalendarSchedulingRequestUrl
-  name: CalendarSchedulingRequestUrl
-  href: api/VisualCard.Parts.Enums.StringsEnum.html#VisualCard_Parts_Enums_StringsEnum_CalendarSchedulingRequestUrl
-  commentId: F:VisualCard.Parts.Enums.StringsEnum.CalendarSchedulingRequestUrl
-  fullName: VisualCard.Parts.Enums.StringsEnum.CalendarSchedulingRequestUrl
-  nameWithType: StringsEnum.CalendarSchedulingRequestUrl
-- uid: VisualCard.Parts.Enums.StringsEnum.CalendarUrl
-  name: CalendarUrl
-  href: api/VisualCard.Parts.Enums.StringsEnum.html#VisualCard_Parts_Enums_StringsEnum_CalendarUrl
-  commentId: F:VisualCard.Parts.Enums.StringsEnum.CalendarUrl
-  fullName: VisualCard.Parts.Enums.StringsEnum.CalendarUrl
-  nameWithType: StringsEnum.CalendarUrl
-- uid: VisualCard.Parts.Enums.StringsEnum.FreeBusyUrl
-  name: FreeBusyUrl
-  href: api/VisualCard.Parts.Enums.StringsEnum.html#VisualCard_Parts_Enums_StringsEnum_FreeBusyUrl
-  commentId: F:VisualCard.Parts.Enums.StringsEnum.FreeBusyUrl
-  fullName: VisualCard.Parts.Enums.StringsEnum.FreeBusyUrl
-  nameWithType: StringsEnum.FreeBusyUrl
-- uid: VisualCard.Parts.Enums.StringsEnum.FullName
-  name: FullName
-  href: api/VisualCard.Parts.Enums.StringsEnum.html#VisualCard_Parts_Enums_StringsEnum_FullName
-  commentId: F:VisualCard.Parts.Enums.StringsEnum.FullName
-  fullName: VisualCard.Parts.Enums.StringsEnum.FullName
-  nameWithType: StringsEnum.FullName
 - uid: VisualCard.Parts.Enums.StringsEnum.Kind
   name: Kind
   href: api/VisualCard.Parts.Enums.StringsEnum.html#VisualCard_Parts_Enums_StringsEnum_Kind
@@ -713,12 +731,6 @@ references:
   commentId: F:VisualCard.Parts.Enums.StringsEnum.Mailer
   fullName: VisualCard.Parts.Enums.StringsEnum.Mailer
   nameWithType: StringsEnum.Mailer
-- uid: VisualCard.Parts.Enums.StringsEnum.Notes
-  name: Notes
-  href: api/VisualCard.Parts.Enums.StringsEnum.html#VisualCard_Parts_Enums_StringsEnum_Notes
-  commentId: F:VisualCard.Parts.Enums.StringsEnum.Notes
-  fullName: VisualCard.Parts.Enums.StringsEnum.Notes
-  nameWithType: StringsEnum.Notes
 - uid: VisualCard.Parts.Enums.StringsEnum.ProductId
   name: ProductId
   href: api/VisualCard.Parts.Enums.StringsEnum.html#VisualCard_Parts_Enums_StringsEnum_ProductId
@@ -731,18 +743,6 @@ references:
   commentId: F:VisualCard.Parts.Enums.StringsEnum.SortString
   fullName: VisualCard.Parts.Enums.StringsEnum.SortString
   nameWithType: StringsEnum.SortString
-- uid: VisualCard.Parts.Enums.StringsEnum.Source
-  name: Source
-  href: api/VisualCard.Parts.Enums.StringsEnum.html#VisualCard_Parts_Enums_StringsEnum_Source
-  commentId: F:VisualCard.Parts.Enums.StringsEnum.Source
-  fullName: VisualCard.Parts.Enums.StringsEnum.Source
-  nameWithType: StringsEnum.Source
-- uid: VisualCard.Parts.Enums.StringsEnum.Url
-  name: Url
-  href: api/VisualCard.Parts.Enums.StringsEnum.html#VisualCard_Parts_Enums_StringsEnum_Url
-  commentId: F:VisualCard.Parts.Enums.StringsEnum.Url
-  fullName: VisualCard.Parts.Enums.StringsEnum.Url
-  nameWithType: StringsEnum.Url
 - uid: VisualCard.Parts.Implementations
   name: VisualCard.Parts.Implementations
   href: api/VisualCard.Parts.Implementations.html
@@ -1219,6 +1219,202 @@ references:
   fullName.vb: VisualCard.Parts.Implementations.BirthDateInfo.<>
   nameWithType: BirthDateInfo.operator !=
   nameWithType.vb: BirthDateInfo.<>
+- uid: VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo
+  name: CalendarSchedulingRequestUrlInfo
+  href: api/VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.html
+  commentId: T:VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo
+  fullName: VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo
+  nameWithType: CalendarSchedulingRequestUrlInfo
+- uid: VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.CalendarSchedulingRequestUrl
+  name: CalendarSchedulingRequestUrl
+  href: api/VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.html#VisualCard_Parts_Implementations_CalendarSchedulingRequestUrlInfo_CalendarSchedulingRequestUrl
+  commentId: P:VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.CalendarSchedulingRequestUrl
+  fullName: VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.CalendarSchedulingRequestUrl
+  nameWithType: CalendarSchedulingRequestUrlInfo.CalendarSchedulingRequestUrl
+- uid: VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.CalendarSchedulingRequestUrl*
+  name: CalendarSchedulingRequestUrl
+  href: api/VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.html#VisualCard_Parts_Implementations_CalendarSchedulingRequestUrlInfo_CalendarSchedulingRequestUrl_
+  commentId: Overload:VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.CalendarSchedulingRequestUrl
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.CalendarSchedulingRequestUrl
+  nameWithType: CalendarSchedulingRequestUrlInfo.CalendarSchedulingRequestUrl
+- uid: VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.Equals(System.Object)
+  name: Equals(object)
+  href: api/VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.html#VisualCard_Parts_Implementations_CalendarSchedulingRequestUrlInfo_Equals_System_Object_
+  commentId: M:VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.Equals(object)
+  fullName.vb: VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.Equals(Object)
+  nameWithType: CalendarSchedulingRequestUrlInfo.Equals(object)
+  nameWithType.vb: CalendarSchedulingRequestUrlInfo.Equals(Object)
+- uid: VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.Equals(VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo)
+  name: Equals(CalendarSchedulingRequestUrlInfo)
+  href: api/VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.html#VisualCard_Parts_Implementations_CalendarSchedulingRequestUrlInfo_Equals_VisualCard_Parts_Implementations_CalendarSchedulingRequestUrlInfo_
+  commentId: M:VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.Equals(VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo)
+  fullName: VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.Equals(VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo)
+  nameWithType: CalendarSchedulingRequestUrlInfo.Equals(CalendarSchedulingRequestUrlInfo)
+- uid: VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.Equals(VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo,VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo)
+  name: Equals(CalendarSchedulingRequestUrlInfo, CalendarSchedulingRequestUrlInfo)
+  href: api/VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.html#VisualCard_Parts_Implementations_CalendarSchedulingRequestUrlInfo_Equals_VisualCard_Parts_Implementations_CalendarSchedulingRequestUrlInfo_VisualCard_Parts_Implementations_CalendarSchedulingRequestUrlInfo_
+  commentId: M:VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.Equals(VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo,VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo)
+  fullName: VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.Equals(VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo, VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo)
+  nameWithType: CalendarSchedulingRequestUrlInfo.Equals(CalendarSchedulingRequestUrlInfo, CalendarSchedulingRequestUrlInfo)
+- uid: VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.html#VisualCard_Parts_Implementations_CalendarSchedulingRequestUrlInfo_Equals_
+  commentId: Overload:VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.Equals
+  nameWithType: CalendarSchedulingRequestUrlInfo.Equals
+- uid: VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.html#VisualCard_Parts_Implementations_CalendarSchedulingRequestUrlInfo_GetHashCode
+  commentId: M:VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.GetHashCode
+  fullName: VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.GetHashCode()
+  nameWithType: CalendarSchedulingRequestUrlInfo.GetHashCode()
+- uid: VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.html#VisualCard_Parts_Implementations_CalendarSchedulingRequestUrlInfo_GetHashCode_
+  commentId: Overload:VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.GetHashCode
+  nameWithType: CalendarSchedulingRequestUrlInfo.GetHashCode
+- uid: VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.op_Equality(VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo,VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo)
+  name: operator ==(CalendarSchedulingRequestUrlInfo, CalendarSchedulingRequestUrlInfo)
+  href: api/VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.html#VisualCard_Parts_Implementations_CalendarSchedulingRequestUrlInfo_op_Equality_VisualCard_Parts_Implementations_CalendarSchedulingRequestUrlInfo_VisualCard_Parts_Implementations_CalendarSchedulingRequestUrlInfo_
+  commentId: M:VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.op_Equality(VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo,VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo)
+  name.vb: =(CalendarSchedulingRequestUrlInfo, CalendarSchedulingRequestUrlInfo)
+  fullName: VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.operator ==(VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo, VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo)
+  fullName.vb: VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.=(VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo, VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo)
+  nameWithType: CalendarSchedulingRequestUrlInfo.operator ==(CalendarSchedulingRequestUrlInfo, CalendarSchedulingRequestUrlInfo)
+  nameWithType.vb: CalendarSchedulingRequestUrlInfo.=(CalendarSchedulingRequestUrlInfo, CalendarSchedulingRequestUrlInfo)
+- uid: VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.op_Equality*
+  name: operator ==
+  href: api/VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.html#VisualCard_Parts_Implementations_CalendarSchedulingRequestUrlInfo_op_Equality_
+  commentId: Overload:VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.op_Equality
+  isSpec: "True"
+  name.vb: =
+  fullName: VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.operator ==
+  fullName.vb: VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.=
+  nameWithType: CalendarSchedulingRequestUrlInfo.operator ==
+  nameWithType.vb: CalendarSchedulingRequestUrlInfo.=
+- uid: VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.op_Inequality(VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo,VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo)
+  name: operator !=(CalendarSchedulingRequestUrlInfo, CalendarSchedulingRequestUrlInfo)
+  href: api/VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.html#VisualCard_Parts_Implementations_CalendarSchedulingRequestUrlInfo_op_Inequality_VisualCard_Parts_Implementations_CalendarSchedulingRequestUrlInfo_VisualCard_Parts_Implementations_CalendarSchedulingRequestUrlInfo_
+  commentId: M:VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.op_Inequality(VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo,VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo)
+  name.vb: <>(CalendarSchedulingRequestUrlInfo, CalendarSchedulingRequestUrlInfo)
+  fullName: VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.operator !=(VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo, VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo)
+  fullName.vb: VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.<>(VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo, VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo)
+  nameWithType: CalendarSchedulingRequestUrlInfo.operator !=(CalendarSchedulingRequestUrlInfo, CalendarSchedulingRequestUrlInfo)
+  nameWithType.vb: CalendarSchedulingRequestUrlInfo.<>(CalendarSchedulingRequestUrlInfo, CalendarSchedulingRequestUrlInfo)
+- uid: VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.op_Inequality*
+  name: operator !=
+  href: api/VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.html#VisualCard_Parts_Implementations_CalendarSchedulingRequestUrlInfo_op_Inequality_
+  commentId: Overload:VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.op_Inequality
+  isSpec: "True"
+  name.vb: <>
+  fullName: VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.operator !=
+  fullName.vb: VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.<>
+  nameWithType: CalendarSchedulingRequestUrlInfo.operator !=
+  nameWithType.vb: CalendarSchedulingRequestUrlInfo.<>
+- uid: VisualCard.Parts.Implementations.CalendarUrlInfo
+  name: CalendarUrlInfo
+  href: api/VisualCard.Parts.Implementations.CalendarUrlInfo.html
+  commentId: T:VisualCard.Parts.Implementations.CalendarUrlInfo
+  fullName: VisualCard.Parts.Implementations.CalendarUrlInfo
+  nameWithType: CalendarUrlInfo
+- uid: VisualCard.Parts.Implementations.CalendarUrlInfo.CalendarUrl
+  name: CalendarUrl
+  href: api/VisualCard.Parts.Implementations.CalendarUrlInfo.html#VisualCard_Parts_Implementations_CalendarUrlInfo_CalendarUrl
+  commentId: P:VisualCard.Parts.Implementations.CalendarUrlInfo.CalendarUrl
+  fullName: VisualCard.Parts.Implementations.CalendarUrlInfo.CalendarUrl
+  nameWithType: CalendarUrlInfo.CalendarUrl
+- uid: VisualCard.Parts.Implementations.CalendarUrlInfo.CalendarUrl*
+  name: CalendarUrl
+  href: api/VisualCard.Parts.Implementations.CalendarUrlInfo.html#VisualCard_Parts_Implementations_CalendarUrlInfo_CalendarUrl_
+  commentId: Overload:VisualCard.Parts.Implementations.CalendarUrlInfo.CalendarUrl
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.CalendarUrlInfo.CalendarUrl
+  nameWithType: CalendarUrlInfo.CalendarUrl
+- uid: VisualCard.Parts.Implementations.CalendarUrlInfo.Equals(System.Object)
+  name: Equals(object)
+  href: api/VisualCard.Parts.Implementations.CalendarUrlInfo.html#VisualCard_Parts_Implementations_CalendarUrlInfo_Equals_System_Object_
+  commentId: M:VisualCard.Parts.Implementations.CalendarUrlInfo.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Parts.Implementations.CalendarUrlInfo.Equals(object)
+  fullName.vb: VisualCard.Parts.Implementations.CalendarUrlInfo.Equals(Object)
+  nameWithType: CalendarUrlInfo.Equals(object)
+  nameWithType.vb: CalendarUrlInfo.Equals(Object)
+- uid: VisualCard.Parts.Implementations.CalendarUrlInfo.Equals(VisualCard.Parts.Implementations.CalendarUrlInfo)
+  name: Equals(CalendarUrlInfo)
+  href: api/VisualCard.Parts.Implementations.CalendarUrlInfo.html#VisualCard_Parts_Implementations_CalendarUrlInfo_Equals_VisualCard_Parts_Implementations_CalendarUrlInfo_
+  commentId: M:VisualCard.Parts.Implementations.CalendarUrlInfo.Equals(VisualCard.Parts.Implementations.CalendarUrlInfo)
+  fullName: VisualCard.Parts.Implementations.CalendarUrlInfo.Equals(VisualCard.Parts.Implementations.CalendarUrlInfo)
+  nameWithType: CalendarUrlInfo.Equals(CalendarUrlInfo)
+- uid: VisualCard.Parts.Implementations.CalendarUrlInfo.Equals(VisualCard.Parts.Implementations.CalendarUrlInfo,VisualCard.Parts.Implementations.CalendarUrlInfo)
+  name: Equals(CalendarUrlInfo, CalendarUrlInfo)
+  href: api/VisualCard.Parts.Implementations.CalendarUrlInfo.html#VisualCard_Parts_Implementations_CalendarUrlInfo_Equals_VisualCard_Parts_Implementations_CalendarUrlInfo_VisualCard_Parts_Implementations_CalendarUrlInfo_
+  commentId: M:VisualCard.Parts.Implementations.CalendarUrlInfo.Equals(VisualCard.Parts.Implementations.CalendarUrlInfo,VisualCard.Parts.Implementations.CalendarUrlInfo)
+  fullName: VisualCard.Parts.Implementations.CalendarUrlInfo.Equals(VisualCard.Parts.Implementations.CalendarUrlInfo, VisualCard.Parts.Implementations.CalendarUrlInfo)
+  nameWithType: CalendarUrlInfo.Equals(CalendarUrlInfo, CalendarUrlInfo)
+- uid: VisualCard.Parts.Implementations.CalendarUrlInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Parts.Implementations.CalendarUrlInfo.html#VisualCard_Parts_Implementations_CalendarUrlInfo_Equals_
+  commentId: Overload:VisualCard.Parts.Implementations.CalendarUrlInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.CalendarUrlInfo.Equals
+  nameWithType: CalendarUrlInfo.Equals
+- uid: VisualCard.Parts.Implementations.CalendarUrlInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Parts.Implementations.CalendarUrlInfo.html#VisualCard_Parts_Implementations_CalendarUrlInfo_GetHashCode
+  commentId: M:VisualCard.Parts.Implementations.CalendarUrlInfo.GetHashCode
+  fullName: VisualCard.Parts.Implementations.CalendarUrlInfo.GetHashCode()
+  nameWithType: CalendarUrlInfo.GetHashCode()
+- uid: VisualCard.Parts.Implementations.CalendarUrlInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Parts.Implementations.CalendarUrlInfo.html#VisualCard_Parts_Implementations_CalendarUrlInfo_GetHashCode_
+  commentId: Overload:VisualCard.Parts.Implementations.CalendarUrlInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.CalendarUrlInfo.GetHashCode
+  nameWithType: CalendarUrlInfo.GetHashCode
+- uid: VisualCard.Parts.Implementations.CalendarUrlInfo.op_Equality(VisualCard.Parts.Implementations.CalendarUrlInfo,VisualCard.Parts.Implementations.CalendarUrlInfo)
+  name: operator ==(CalendarUrlInfo, CalendarUrlInfo)
+  href: api/VisualCard.Parts.Implementations.CalendarUrlInfo.html#VisualCard_Parts_Implementations_CalendarUrlInfo_op_Equality_VisualCard_Parts_Implementations_CalendarUrlInfo_VisualCard_Parts_Implementations_CalendarUrlInfo_
+  commentId: M:VisualCard.Parts.Implementations.CalendarUrlInfo.op_Equality(VisualCard.Parts.Implementations.CalendarUrlInfo,VisualCard.Parts.Implementations.CalendarUrlInfo)
+  name.vb: =(CalendarUrlInfo, CalendarUrlInfo)
+  fullName: VisualCard.Parts.Implementations.CalendarUrlInfo.operator ==(VisualCard.Parts.Implementations.CalendarUrlInfo, VisualCard.Parts.Implementations.CalendarUrlInfo)
+  fullName.vb: VisualCard.Parts.Implementations.CalendarUrlInfo.=(VisualCard.Parts.Implementations.CalendarUrlInfo, VisualCard.Parts.Implementations.CalendarUrlInfo)
+  nameWithType: CalendarUrlInfo.operator ==(CalendarUrlInfo, CalendarUrlInfo)
+  nameWithType.vb: CalendarUrlInfo.=(CalendarUrlInfo, CalendarUrlInfo)
+- uid: VisualCard.Parts.Implementations.CalendarUrlInfo.op_Equality*
+  name: operator ==
+  href: api/VisualCard.Parts.Implementations.CalendarUrlInfo.html#VisualCard_Parts_Implementations_CalendarUrlInfo_op_Equality_
+  commentId: Overload:VisualCard.Parts.Implementations.CalendarUrlInfo.op_Equality
+  isSpec: "True"
+  name.vb: =
+  fullName: VisualCard.Parts.Implementations.CalendarUrlInfo.operator ==
+  fullName.vb: VisualCard.Parts.Implementations.CalendarUrlInfo.=
+  nameWithType: CalendarUrlInfo.operator ==
+  nameWithType.vb: CalendarUrlInfo.=
+- uid: VisualCard.Parts.Implementations.CalendarUrlInfo.op_Inequality(VisualCard.Parts.Implementations.CalendarUrlInfo,VisualCard.Parts.Implementations.CalendarUrlInfo)
+  name: operator !=(CalendarUrlInfo, CalendarUrlInfo)
+  href: api/VisualCard.Parts.Implementations.CalendarUrlInfo.html#VisualCard_Parts_Implementations_CalendarUrlInfo_op_Inequality_VisualCard_Parts_Implementations_CalendarUrlInfo_VisualCard_Parts_Implementations_CalendarUrlInfo_
+  commentId: M:VisualCard.Parts.Implementations.CalendarUrlInfo.op_Inequality(VisualCard.Parts.Implementations.CalendarUrlInfo,VisualCard.Parts.Implementations.CalendarUrlInfo)
+  name.vb: <>(CalendarUrlInfo, CalendarUrlInfo)
+  fullName: VisualCard.Parts.Implementations.CalendarUrlInfo.operator !=(VisualCard.Parts.Implementations.CalendarUrlInfo, VisualCard.Parts.Implementations.CalendarUrlInfo)
+  fullName.vb: VisualCard.Parts.Implementations.CalendarUrlInfo.<>(VisualCard.Parts.Implementations.CalendarUrlInfo, VisualCard.Parts.Implementations.CalendarUrlInfo)
+  nameWithType: CalendarUrlInfo.operator !=(CalendarUrlInfo, CalendarUrlInfo)
+  nameWithType.vb: CalendarUrlInfo.<>(CalendarUrlInfo, CalendarUrlInfo)
+- uid: VisualCard.Parts.Implementations.CalendarUrlInfo.op_Inequality*
+  name: operator !=
+  href: api/VisualCard.Parts.Implementations.CalendarUrlInfo.html#VisualCard_Parts_Implementations_CalendarUrlInfo_op_Inequality_
+  commentId: Overload:VisualCard.Parts.Implementations.CalendarUrlInfo.op_Inequality
+  isSpec: "True"
+  name.vb: <>
+  fullName: VisualCard.Parts.Implementations.CalendarUrlInfo.operator !=
+  fullName.vb: VisualCard.Parts.Implementations.CalendarUrlInfo.<>
+  nameWithType: CalendarUrlInfo.operator !=
+  nameWithType.vb: CalendarUrlInfo.<>
 - uid: VisualCard.Parts.Implementations.CategoryInfo
   name: CategoryInfo
   href: api/VisualCard.Parts.Implementations.CategoryInfo.html
@@ -1415,6 +1611,202 @@ references:
   fullName.vb: VisualCard.Parts.Implementations.EmailInfo.<>
   nameWithType: EmailInfo.operator !=
   nameWithType.vb: EmailInfo.<>
+- uid: VisualCard.Parts.Implementations.FreeBusyInfo
+  name: FreeBusyInfo
+  href: api/VisualCard.Parts.Implementations.FreeBusyInfo.html
+  commentId: T:VisualCard.Parts.Implementations.FreeBusyInfo
+  fullName: VisualCard.Parts.Implementations.FreeBusyInfo
+  nameWithType: FreeBusyInfo
+- uid: VisualCard.Parts.Implementations.FreeBusyInfo.Equals(System.Object)
+  name: Equals(object)
+  href: api/VisualCard.Parts.Implementations.FreeBusyInfo.html#VisualCard_Parts_Implementations_FreeBusyInfo_Equals_System_Object_
+  commentId: M:VisualCard.Parts.Implementations.FreeBusyInfo.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Parts.Implementations.FreeBusyInfo.Equals(object)
+  fullName.vb: VisualCard.Parts.Implementations.FreeBusyInfo.Equals(Object)
+  nameWithType: FreeBusyInfo.Equals(object)
+  nameWithType.vb: FreeBusyInfo.Equals(Object)
+- uid: VisualCard.Parts.Implementations.FreeBusyInfo.Equals(VisualCard.Parts.Implementations.FreeBusyInfo)
+  name: Equals(FreeBusyInfo)
+  href: api/VisualCard.Parts.Implementations.FreeBusyInfo.html#VisualCard_Parts_Implementations_FreeBusyInfo_Equals_VisualCard_Parts_Implementations_FreeBusyInfo_
+  commentId: M:VisualCard.Parts.Implementations.FreeBusyInfo.Equals(VisualCard.Parts.Implementations.FreeBusyInfo)
+  fullName: VisualCard.Parts.Implementations.FreeBusyInfo.Equals(VisualCard.Parts.Implementations.FreeBusyInfo)
+  nameWithType: FreeBusyInfo.Equals(FreeBusyInfo)
+- uid: VisualCard.Parts.Implementations.FreeBusyInfo.Equals(VisualCard.Parts.Implementations.FreeBusyInfo,VisualCard.Parts.Implementations.FreeBusyInfo)
+  name: Equals(FreeBusyInfo, FreeBusyInfo)
+  href: api/VisualCard.Parts.Implementations.FreeBusyInfo.html#VisualCard_Parts_Implementations_FreeBusyInfo_Equals_VisualCard_Parts_Implementations_FreeBusyInfo_VisualCard_Parts_Implementations_FreeBusyInfo_
+  commentId: M:VisualCard.Parts.Implementations.FreeBusyInfo.Equals(VisualCard.Parts.Implementations.FreeBusyInfo,VisualCard.Parts.Implementations.FreeBusyInfo)
+  fullName: VisualCard.Parts.Implementations.FreeBusyInfo.Equals(VisualCard.Parts.Implementations.FreeBusyInfo, VisualCard.Parts.Implementations.FreeBusyInfo)
+  nameWithType: FreeBusyInfo.Equals(FreeBusyInfo, FreeBusyInfo)
+- uid: VisualCard.Parts.Implementations.FreeBusyInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Parts.Implementations.FreeBusyInfo.html#VisualCard_Parts_Implementations_FreeBusyInfo_Equals_
+  commentId: Overload:VisualCard.Parts.Implementations.FreeBusyInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.FreeBusyInfo.Equals
+  nameWithType: FreeBusyInfo.Equals
+- uid: VisualCard.Parts.Implementations.FreeBusyInfo.FreeBusy
+  name: FreeBusy
+  href: api/VisualCard.Parts.Implementations.FreeBusyInfo.html#VisualCard_Parts_Implementations_FreeBusyInfo_FreeBusy
+  commentId: P:VisualCard.Parts.Implementations.FreeBusyInfo.FreeBusy
+  fullName: VisualCard.Parts.Implementations.FreeBusyInfo.FreeBusy
+  nameWithType: FreeBusyInfo.FreeBusy
+- uid: VisualCard.Parts.Implementations.FreeBusyInfo.FreeBusy*
+  name: FreeBusy
+  href: api/VisualCard.Parts.Implementations.FreeBusyInfo.html#VisualCard_Parts_Implementations_FreeBusyInfo_FreeBusy_
+  commentId: Overload:VisualCard.Parts.Implementations.FreeBusyInfo.FreeBusy
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.FreeBusyInfo.FreeBusy
+  nameWithType: FreeBusyInfo.FreeBusy
+- uid: VisualCard.Parts.Implementations.FreeBusyInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Parts.Implementations.FreeBusyInfo.html#VisualCard_Parts_Implementations_FreeBusyInfo_GetHashCode
+  commentId: M:VisualCard.Parts.Implementations.FreeBusyInfo.GetHashCode
+  fullName: VisualCard.Parts.Implementations.FreeBusyInfo.GetHashCode()
+  nameWithType: FreeBusyInfo.GetHashCode()
+- uid: VisualCard.Parts.Implementations.FreeBusyInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Parts.Implementations.FreeBusyInfo.html#VisualCard_Parts_Implementations_FreeBusyInfo_GetHashCode_
+  commentId: Overload:VisualCard.Parts.Implementations.FreeBusyInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.FreeBusyInfo.GetHashCode
+  nameWithType: FreeBusyInfo.GetHashCode
+- uid: VisualCard.Parts.Implementations.FreeBusyInfo.op_Equality(VisualCard.Parts.Implementations.FreeBusyInfo,VisualCard.Parts.Implementations.FreeBusyInfo)
+  name: operator ==(FreeBusyInfo, FreeBusyInfo)
+  href: api/VisualCard.Parts.Implementations.FreeBusyInfo.html#VisualCard_Parts_Implementations_FreeBusyInfo_op_Equality_VisualCard_Parts_Implementations_FreeBusyInfo_VisualCard_Parts_Implementations_FreeBusyInfo_
+  commentId: M:VisualCard.Parts.Implementations.FreeBusyInfo.op_Equality(VisualCard.Parts.Implementations.FreeBusyInfo,VisualCard.Parts.Implementations.FreeBusyInfo)
+  name.vb: =(FreeBusyInfo, FreeBusyInfo)
+  fullName: VisualCard.Parts.Implementations.FreeBusyInfo.operator ==(VisualCard.Parts.Implementations.FreeBusyInfo, VisualCard.Parts.Implementations.FreeBusyInfo)
+  fullName.vb: VisualCard.Parts.Implementations.FreeBusyInfo.=(VisualCard.Parts.Implementations.FreeBusyInfo, VisualCard.Parts.Implementations.FreeBusyInfo)
+  nameWithType: FreeBusyInfo.operator ==(FreeBusyInfo, FreeBusyInfo)
+  nameWithType.vb: FreeBusyInfo.=(FreeBusyInfo, FreeBusyInfo)
+- uid: VisualCard.Parts.Implementations.FreeBusyInfo.op_Equality*
+  name: operator ==
+  href: api/VisualCard.Parts.Implementations.FreeBusyInfo.html#VisualCard_Parts_Implementations_FreeBusyInfo_op_Equality_
+  commentId: Overload:VisualCard.Parts.Implementations.FreeBusyInfo.op_Equality
+  isSpec: "True"
+  name.vb: =
+  fullName: VisualCard.Parts.Implementations.FreeBusyInfo.operator ==
+  fullName.vb: VisualCard.Parts.Implementations.FreeBusyInfo.=
+  nameWithType: FreeBusyInfo.operator ==
+  nameWithType.vb: FreeBusyInfo.=
+- uid: VisualCard.Parts.Implementations.FreeBusyInfo.op_Inequality(VisualCard.Parts.Implementations.FreeBusyInfo,VisualCard.Parts.Implementations.FreeBusyInfo)
+  name: operator !=(FreeBusyInfo, FreeBusyInfo)
+  href: api/VisualCard.Parts.Implementations.FreeBusyInfo.html#VisualCard_Parts_Implementations_FreeBusyInfo_op_Inequality_VisualCard_Parts_Implementations_FreeBusyInfo_VisualCard_Parts_Implementations_FreeBusyInfo_
+  commentId: M:VisualCard.Parts.Implementations.FreeBusyInfo.op_Inequality(VisualCard.Parts.Implementations.FreeBusyInfo,VisualCard.Parts.Implementations.FreeBusyInfo)
+  name.vb: <>(FreeBusyInfo, FreeBusyInfo)
+  fullName: VisualCard.Parts.Implementations.FreeBusyInfo.operator !=(VisualCard.Parts.Implementations.FreeBusyInfo, VisualCard.Parts.Implementations.FreeBusyInfo)
+  fullName.vb: VisualCard.Parts.Implementations.FreeBusyInfo.<>(VisualCard.Parts.Implementations.FreeBusyInfo, VisualCard.Parts.Implementations.FreeBusyInfo)
+  nameWithType: FreeBusyInfo.operator !=(FreeBusyInfo, FreeBusyInfo)
+  nameWithType.vb: FreeBusyInfo.<>(FreeBusyInfo, FreeBusyInfo)
+- uid: VisualCard.Parts.Implementations.FreeBusyInfo.op_Inequality*
+  name: operator !=
+  href: api/VisualCard.Parts.Implementations.FreeBusyInfo.html#VisualCard_Parts_Implementations_FreeBusyInfo_op_Inequality_
+  commentId: Overload:VisualCard.Parts.Implementations.FreeBusyInfo.op_Inequality
+  isSpec: "True"
+  name.vb: <>
+  fullName: VisualCard.Parts.Implementations.FreeBusyInfo.operator !=
+  fullName.vb: VisualCard.Parts.Implementations.FreeBusyInfo.<>
+  nameWithType: FreeBusyInfo.operator !=
+  nameWithType.vb: FreeBusyInfo.<>
+- uid: VisualCard.Parts.Implementations.FullNameInfo
+  name: FullNameInfo
+  href: api/VisualCard.Parts.Implementations.FullNameInfo.html
+  commentId: T:VisualCard.Parts.Implementations.FullNameInfo
+  fullName: VisualCard.Parts.Implementations.FullNameInfo
+  nameWithType: FullNameInfo
+- uid: VisualCard.Parts.Implementations.FullNameInfo.Equals(System.Object)
+  name: Equals(object)
+  href: api/VisualCard.Parts.Implementations.FullNameInfo.html#VisualCard_Parts_Implementations_FullNameInfo_Equals_System_Object_
+  commentId: M:VisualCard.Parts.Implementations.FullNameInfo.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Parts.Implementations.FullNameInfo.Equals(object)
+  fullName.vb: VisualCard.Parts.Implementations.FullNameInfo.Equals(Object)
+  nameWithType: FullNameInfo.Equals(object)
+  nameWithType.vb: FullNameInfo.Equals(Object)
+- uid: VisualCard.Parts.Implementations.FullNameInfo.Equals(VisualCard.Parts.Implementations.FullNameInfo)
+  name: Equals(FullNameInfo)
+  href: api/VisualCard.Parts.Implementations.FullNameInfo.html#VisualCard_Parts_Implementations_FullNameInfo_Equals_VisualCard_Parts_Implementations_FullNameInfo_
+  commentId: M:VisualCard.Parts.Implementations.FullNameInfo.Equals(VisualCard.Parts.Implementations.FullNameInfo)
+  fullName: VisualCard.Parts.Implementations.FullNameInfo.Equals(VisualCard.Parts.Implementations.FullNameInfo)
+  nameWithType: FullNameInfo.Equals(FullNameInfo)
+- uid: VisualCard.Parts.Implementations.FullNameInfo.Equals(VisualCard.Parts.Implementations.FullNameInfo,VisualCard.Parts.Implementations.FullNameInfo)
+  name: Equals(FullNameInfo, FullNameInfo)
+  href: api/VisualCard.Parts.Implementations.FullNameInfo.html#VisualCard_Parts_Implementations_FullNameInfo_Equals_VisualCard_Parts_Implementations_FullNameInfo_VisualCard_Parts_Implementations_FullNameInfo_
+  commentId: M:VisualCard.Parts.Implementations.FullNameInfo.Equals(VisualCard.Parts.Implementations.FullNameInfo,VisualCard.Parts.Implementations.FullNameInfo)
+  fullName: VisualCard.Parts.Implementations.FullNameInfo.Equals(VisualCard.Parts.Implementations.FullNameInfo, VisualCard.Parts.Implementations.FullNameInfo)
+  nameWithType: FullNameInfo.Equals(FullNameInfo, FullNameInfo)
+- uid: VisualCard.Parts.Implementations.FullNameInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Parts.Implementations.FullNameInfo.html#VisualCard_Parts_Implementations_FullNameInfo_Equals_
+  commentId: Overload:VisualCard.Parts.Implementations.FullNameInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.FullNameInfo.Equals
+  nameWithType: FullNameInfo.Equals
+- uid: VisualCard.Parts.Implementations.FullNameInfo.FullName
+  name: FullName
+  href: api/VisualCard.Parts.Implementations.FullNameInfo.html#VisualCard_Parts_Implementations_FullNameInfo_FullName
+  commentId: P:VisualCard.Parts.Implementations.FullNameInfo.FullName
+  fullName: VisualCard.Parts.Implementations.FullNameInfo.FullName
+  nameWithType: FullNameInfo.FullName
+- uid: VisualCard.Parts.Implementations.FullNameInfo.FullName*
+  name: FullName
+  href: api/VisualCard.Parts.Implementations.FullNameInfo.html#VisualCard_Parts_Implementations_FullNameInfo_FullName_
+  commentId: Overload:VisualCard.Parts.Implementations.FullNameInfo.FullName
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.FullNameInfo.FullName
+  nameWithType: FullNameInfo.FullName
+- uid: VisualCard.Parts.Implementations.FullNameInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Parts.Implementations.FullNameInfo.html#VisualCard_Parts_Implementations_FullNameInfo_GetHashCode
+  commentId: M:VisualCard.Parts.Implementations.FullNameInfo.GetHashCode
+  fullName: VisualCard.Parts.Implementations.FullNameInfo.GetHashCode()
+  nameWithType: FullNameInfo.GetHashCode()
+- uid: VisualCard.Parts.Implementations.FullNameInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Parts.Implementations.FullNameInfo.html#VisualCard_Parts_Implementations_FullNameInfo_GetHashCode_
+  commentId: Overload:VisualCard.Parts.Implementations.FullNameInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.FullNameInfo.GetHashCode
+  nameWithType: FullNameInfo.GetHashCode
+- uid: VisualCard.Parts.Implementations.FullNameInfo.op_Equality(VisualCard.Parts.Implementations.FullNameInfo,VisualCard.Parts.Implementations.FullNameInfo)
+  name: operator ==(FullNameInfo, FullNameInfo)
+  href: api/VisualCard.Parts.Implementations.FullNameInfo.html#VisualCard_Parts_Implementations_FullNameInfo_op_Equality_VisualCard_Parts_Implementations_FullNameInfo_VisualCard_Parts_Implementations_FullNameInfo_
+  commentId: M:VisualCard.Parts.Implementations.FullNameInfo.op_Equality(VisualCard.Parts.Implementations.FullNameInfo,VisualCard.Parts.Implementations.FullNameInfo)
+  name.vb: =(FullNameInfo, FullNameInfo)
+  fullName: VisualCard.Parts.Implementations.FullNameInfo.operator ==(VisualCard.Parts.Implementations.FullNameInfo, VisualCard.Parts.Implementations.FullNameInfo)
+  fullName.vb: VisualCard.Parts.Implementations.FullNameInfo.=(VisualCard.Parts.Implementations.FullNameInfo, VisualCard.Parts.Implementations.FullNameInfo)
+  nameWithType: FullNameInfo.operator ==(FullNameInfo, FullNameInfo)
+  nameWithType.vb: FullNameInfo.=(FullNameInfo, FullNameInfo)
+- uid: VisualCard.Parts.Implementations.FullNameInfo.op_Equality*
+  name: operator ==
+  href: api/VisualCard.Parts.Implementations.FullNameInfo.html#VisualCard_Parts_Implementations_FullNameInfo_op_Equality_
+  commentId: Overload:VisualCard.Parts.Implementations.FullNameInfo.op_Equality
+  isSpec: "True"
+  name.vb: =
+  fullName: VisualCard.Parts.Implementations.FullNameInfo.operator ==
+  fullName.vb: VisualCard.Parts.Implementations.FullNameInfo.=
+  nameWithType: FullNameInfo.operator ==
+  nameWithType.vb: FullNameInfo.=
+- uid: VisualCard.Parts.Implementations.FullNameInfo.op_Inequality(VisualCard.Parts.Implementations.FullNameInfo,VisualCard.Parts.Implementations.FullNameInfo)
+  name: operator !=(FullNameInfo, FullNameInfo)
+  href: api/VisualCard.Parts.Implementations.FullNameInfo.html#VisualCard_Parts_Implementations_FullNameInfo_op_Inequality_VisualCard_Parts_Implementations_FullNameInfo_VisualCard_Parts_Implementations_FullNameInfo_
+  commentId: M:VisualCard.Parts.Implementations.FullNameInfo.op_Inequality(VisualCard.Parts.Implementations.FullNameInfo,VisualCard.Parts.Implementations.FullNameInfo)
+  name.vb: <>(FullNameInfo, FullNameInfo)
+  fullName: VisualCard.Parts.Implementations.FullNameInfo.operator !=(VisualCard.Parts.Implementations.FullNameInfo, VisualCard.Parts.Implementations.FullNameInfo)
+  fullName.vb: VisualCard.Parts.Implementations.FullNameInfo.<>(VisualCard.Parts.Implementations.FullNameInfo, VisualCard.Parts.Implementations.FullNameInfo)
+  nameWithType: FullNameInfo.operator !=(FullNameInfo, FullNameInfo)
+  nameWithType.vb: FullNameInfo.<>(FullNameInfo, FullNameInfo)
+- uid: VisualCard.Parts.Implementations.FullNameInfo.op_Inequality*
+  name: operator !=
+  href: api/VisualCard.Parts.Implementations.FullNameInfo.html#VisualCard_Parts_Implementations_FullNameInfo_op_Inequality_
+  commentId: Overload:VisualCard.Parts.Implementations.FullNameInfo.op_Inequality
+  isSpec: "True"
+  name.vb: <>
+  fullName: VisualCard.Parts.Implementations.FullNameInfo.operator !=
+  fullName.vb: VisualCard.Parts.Implementations.FullNameInfo.<>
+  nameWithType: FullNameInfo.operator !=
+  nameWithType.vb: FullNameInfo.<>
 - uid: VisualCard.Parts.Implementations.GenderInfo
   name: GenderInfo
   href: api/VisualCard.Parts.Implementations.GenderInfo.html
@@ -2401,6 +2793,104 @@ references:
   fullName.vb: VisualCard.Parts.Implementations.NicknameInfo.<>
   nameWithType: NicknameInfo.operator !=
   nameWithType.vb: NicknameInfo.<>
+- uid: VisualCard.Parts.Implementations.NoteInfo
+  name: NoteInfo
+  href: api/VisualCard.Parts.Implementations.NoteInfo.html
+  commentId: T:VisualCard.Parts.Implementations.NoteInfo
+  fullName: VisualCard.Parts.Implementations.NoteInfo
+  nameWithType: NoteInfo
+- uid: VisualCard.Parts.Implementations.NoteInfo.Equals(System.Object)
+  name: Equals(object)
+  href: api/VisualCard.Parts.Implementations.NoteInfo.html#VisualCard_Parts_Implementations_NoteInfo_Equals_System_Object_
+  commentId: M:VisualCard.Parts.Implementations.NoteInfo.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Parts.Implementations.NoteInfo.Equals(object)
+  fullName.vb: VisualCard.Parts.Implementations.NoteInfo.Equals(Object)
+  nameWithType: NoteInfo.Equals(object)
+  nameWithType.vb: NoteInfo.Equals(Object)
+- uid: VisualCard.Parts.Implementations.NoteInfo.Equals(VisualCard.Parts.Implementations.NoteInfo)
+  name: Equals(NoteInfo)
+  href: api/VisualCard.Parts.Implementations.NoteInfo.html#VisualCard_Parts_Implementations_NoteInfo_Equals_VisualCard_Parts_Implementations_NoteInfo_
+  commentId: M:VisualCard.Parts.Implementations.NoteInfo.Equals(VisualCard.Parts.Implementations.NoteInfo)
+  fullName: VisualCard.Parts.Implementations.NoteInfo.Equals(VisualCard.Parts.Implementations.NoteInfo)
+  nameWithType: NoteInfo.Equals(NoteInfo)
+- uid: VisualCard.Parts.Implementations.NoteInfo.Equals(VisualCard.Parts.Implementations.NoteInfo,VisualCard.Parts.Implementations.NoteInfo)
+  name: Equals(NoteInfo, NoteInfo)
+  href: api/VisualCard.Parts.Implementations.NoteInfo.html#VisualCard_Parts_Implementations_NoteInfo_Equals_VisualCard_Parts_Implementations_NoteInfo_VisualCard_Parts_Implementations_NoteInfo_
+  commentId: M:VisualCard.Parts.Implementations.NoteInfo.Equals(VisualCard.Parts.Implementations.NoteInfo,VisualCard.Parts.Implementations.NoteInfo)
+  fullName: VisualCard.Parts.Implementations.NoteInfo.Equals(VisualCard.Parts.Implementations.NoteInfo, VisualCard.Parts.Implementations.NoteInfo)
+  nameWithType: NoteInfo.Equals(NoteInfo, NoteInfo)
+- uid: VisualCard.Parts.Implementations.NoteInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Parts.Implementations.NoteInfo.html#VisualCard_Parts_Implementations_NoteInfo_Equals_
+  commentId: Overload:VisualCard.Parts.Implementations.NoteInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.NoteInfo.Equals
+  nameWithType: NoteInfo.Equals
+- uid: VisualCard.Parts.Implementations.NoteInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Parts.Implementations.NoteInfo.html#VisualCard_Parts_Implementations_NoteInfo_GetHashCode
+  commentId: M:VisualCard.Parts.Implementations.NoteInfo.GetHashCode
+  fullName: VisualCard.Parts.Implementations.NoteInfo.GetHashCode()
+  nameWithType: NoteInfo.GetHashCode()
+- uid: VisualCard.Parts.Implementations.NoteInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Parts.Implementations.NoteInfo.html#VisualCard_Parts_Implementations_NoteInfo_GetHashCode_
+  commentId: Overload:VisualCard.Parts.Implementations.NoteInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.NoteInfo.GetHashCode
+  nameWithType: NoteInfo.GetHashCode
+- uid: VisualCard.Parts.Implementations.NoteInfo.Note
+  name: Note
+  href: api/VisualCard.Parts.Implementations.NoteInfo.html#VisualCard_Parts_Implementations_NoteInfo_Note
+  commentId: P:VisualCard.Parts.Implementations.NoteInfo.Note
+  fullName: VisualCard.Parts.Implementations.NoteInfo.Note
+  nameWithType: NoteInfo.Note
+- uid: VisualCard.Parts.Implementations.NoteInfo.Note*
+  name: Note
+  href: api/VisualCard.Parts.Implementations.NoteInfo.html#VisualCard_Parts_Implementations_NoteInfo_Note_
+  commentId: Overload:VisualCard.Parts.Implementations.NoteInfo.Note
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.NoteInfo.Note
+  nameWithType: NoteInfo.Note
+- uid: VisualCard.Parts.Implementations.NoteInfo.op_Equality(VisualCard.Parts.Implementations.NoteInfo,VisualCard.Parts.Implementations.NoteInfo)
+  name: operator ==(NoteInfo, NoteInfo)
+  href: api/VisualCard.Parts.Implementations.NoteInfo.html#VisualCard_Parts_Implementations_NoteInfo_op_Equality_VisualCard_Parts_Implementations_NoteInfo_VisualCard_Parts_Implementations_NoteInfo_
+  commentId: M:VisualCard.Parts.Implementations.NoteInfo.op_Equality(VisualCard.Parts.Implementations.NoteInfo,VisualCard.Parts.Implementations.NoteInfo)
+  name.vb: =(NoteInfo, NoteInfo)
+  fullName: VisualCard.Parts.Implementations.NoteInfo.operator ==(VisualCard.Parts.Implementations.NoteInfo, VisualCard.Parts.Implementations.NoteInfo)
+  fullName.vb: VisualCard.Parts.Implementations.NoteInfo.=(VisualCard.Parts.Implementations.NoteInfo, VisualCard.Parts.Implementations.NoteInfo)
+  nameWithType: NoteInfo.operator ==(NoteInfo, NoteInfo)
+  nameWithType.vb: NoteInfo.=(NoteInfo, NoteInfo)
+- uid: VisualCard.Parts.Implementations.NoteInfo.op_Equality*
+  name: operator ==
+  href: api/VisualCard.Parts.Implementations.NoteInfo.html#VisualCard_Parts_Implementations_NoteInfo_op_Equality_
+  commentId: Overload:VisualCard.Parts.Implementations.NoteInfo.op_Equality
+  isSpec: "True"
+  name.vb: =
+  fullName: VisualCard.Parts.Implementations.NoteInfo.operator ==
+  fullName.vb: VisualCard.Parts.Implementations.NoteInfo.=
+  nameWithType: NoteInfo.operator ==
+  nameWithType.vb: NoteInfo.=
+- uid: VisualCard.Parts.Implementations.NoteInfo.op_Inequality(VisualCard.Parts.Implementations.NoteInfo,VisualCard.Parts.Implementations.NoteInfo)
+  name: operator !=(NoteInfo, NoteInfo)
+  href: api/VisualCard.Parts.Implementations.NoteInfo.html#VisualCard_Parts_Implementations_NoteInfo_op_Inequality_VisualCard_Parts_Implementations_NoteInfo_VisualCard_Parts_Implementations_NoteInfo_
+  commentId: M:VisualCard.Parts.Implementations.NoteInfo.op_Inequality(VisualCard.Parts.Implementations.NoteInfo,VisualCard.Parts.Implementations.NoteInfo)
+  name.vb: <>(NoteInfo, NoteInfo)
+  fullName: VisualCard.Parts.Implementations.NoteInfo.operator !=(VisualCard.Parts.Implementations.NoteInfo, VisualCard.Parts.Implementations.NoteInfo)
+  fullName.vb: VisualCard.Parts.Implementations.NoteInfo.<>(VisualCard.Parts.Implementations.NoteInfo, VisualCard.Parts.Implementations.NoteInfo)
+  nameWithType: NoteInfo.operator !=(NoteInfo, NoteInfo)
+  nameWithType.vb: NoteInfo.<>(NoteInfo, NoteInfo)
+- uid: VisualCard.Parts.Implementations.NoteInfo.op_Inequality*
+  name: operator !=
+  href: api/VisualCard.Parts.Implementations.NoteInfo.html#VisualCard_Parts_Implementations_NoteInfo_op_Inequality_
+  commentId: Overload:VisualCard.Parts.Implementations.NoteInfo.op_Inequality
+  isSpec: "True"
+  name.vb: <>
+  fullName: VisualCard.Parts.Implementations.NoteInfo.operator !=
+  fullName.vb: VisualCard.Parts.Implementations.NoteInfo.<>
+  nameWithType: NoteInfo.operator !=
+  nameWithType.vb: NoteInfo.<>
 - uid: VisualCard.Parts.Implementations.OrganizationInfo
   name: OrganizationInfo
   href: api/VisualCard.Parts.Implementations.OrganizationInfo.html
@@ -2943,6 +3433,104 @@ references:
   fullName.vb: VisualCard.Parts.Implementations.SoundInfo.<>
   nameWithType: SoundInfo.operator !=
   nameWithType.vb: SoundInfo.<>
+- uid: VisualCard.Parts.Implementations.SourceInfo
+  name: SourceInfo
+  href: api/VisualCard.Parts.Implementations.SourceInfo.html
+  commentId: T:VisualCard.Parts.Implementations.SourceInfo
+  fullName: VisualCard.Parts.Implementations.SourceInfo
+  nameWithType: SourceInfo
+- uid: VisualCard.Parts.Implementations.SourceInfo.Equals(System.Object)
+  name: Equals(object)
+  href: api/VisualCard.Parts.Implementations.SourceInfo.html#VisualCard_Parts_Implementations_SourceInfo_Equals_System_Object_
+  commentId: M:VisualCard.Parts.Implementations.SourceInfo.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Parts.Implementations.SourceInfo.Equals(object)
+  fullName.vb: VisualCard.Parts.Implementations.SourceInfo.Equals(Object)
+  nameWithType: SourceInfo.Equals(object)
+  nameWithType.vb: SourceInfo.Equals(Object)
+- uid: VisualCard.Parts.Implementations.SourceInfo.Equals(VisualCard.Parts.Implementations.SourceInfo)
+  name: Equals(SourceInfo)
+  href: api/VisualCard.Parts.Implementations.SourceInfo.html#VisualCard_Parts_Implementations_SourceInfo_Equals_VisualCard_Parts_Implementations_SourceInfo_
+  commentId: M:VisualCard.Parts.Implementations.SourceInfo.Equals(VisualCard.Parts.Implementations.SourceInfo)
+  fullName: VisualCard.Parts.Implementations.SourceInfo.Equals(VisualCard.Parts.Implementations.SourceInfo)
+  nameWithType: SourceInfo.Equals(SourceInfo)
+- uid: VisualCard.Parts.Implementations.SourceInfo.Equals(VisualCard.Parts.Implementations.SourceInfo,VisualCard.Parts.Implementations.SourceInfo)
+  name: Equals(SourceInfo, SourceInfo)
+  href: api/VisualCard.Parts.Implementations.SourceInfo.html#VisualCard_Parts_Implementations_SourceInfo_Equals_VisualCard_Parts_Implementations_SourceInfo_VisualCard_Parts_Implementations_SourceInfo_
+  commentId: M:VisualCard.Parts.Implementations.SourceInfo.Equals(VisualCard.Parts.Implementations.SourceInfo,VisualCard.Parts.Implementations.SourceInfo)
+  fullName: VisualCard.Parts.Implementations.SourceInfo.Equals(VisualCard.Parts.Implementations.SourceInfo, VisualCard.Parts.Implementations.SourceInfo)
+  nameWithType: SourceInfo.Equals(SourceInfo, SourceInfo)
+- uid: VisualCard.Parts.Implementations.SourceInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Parts.Implementations.SourceInfo.html#VisualCard_Parts_Implementations_SourceInfo_Equals_
+  commentId: Overload:VisualCard.Parts.Implementations.SourceInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.SourceInfo.Equals
+  nameWithType: SourceInfo.Equals
+- uid: VisualCard.Parts.Implementations.SourceInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Parts.Implementations.SourceInfo.html#VisualCard_Parts_Implementations_SourceInfo_GetHashCode
+  commentId: M:VisualCard.Parts.Implementations.SourceInfo.GetHashCode
+  fullName: VisualCard.Parts.Implementations.SourceInfo.GetHashCode()
+  nameWithType: SourceInfo.GetHashCode()
+- uid: VisualCard.Parts.Implementations.SourceInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Parts.Implementations.SourceInfo.html#VisualCard_Parts_Implementations_SourceInfo_GetHashCode_
+  commentId: Overload:VisualCard.Parts.Implementations.SourceInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.SourceInfo.GetHashCode
+  nameWithType: SourceInfo.GetHashCode
+- uid: VisualCard.Parts.Implementations.SourceInfo.Source
+  name: Source
+  href: api/VisualCard.Parts.Implementations.SourceInfo.html#VisualCard_Parts_Implementations_SourceInfo_Source
+  commentId: P:VisualCard.Parts.Implementations.SourceInfo.Source
+  fullName: VisualCard.Parts.Implementations.SourceInfo.Source
+  nameWithType: SourceInfo.Source
+- uid: VisualCard.Parts.Implementations.SourceInfo.Source*
+  name: Source
+  href: api/VisualCard.Parts.Implementations.SourceInfo.html#VisualCard_Parts_Implementations_SourceInfo_Source_
+  commentId: Overload:VisualCard.Parts.Implementations.SourceInfo.Source
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.SourceInfo.Source
+  nameWithType: SourceInfo.Source
+- uid: VisualCard.Parts.Implementations.SourceInfo.op_Equality(VisualCard.Parts.Implementations.SourceInfo,VisualCard.Parts.Implementations.SourceInfo)
+  name: operator ==(SourceInfo, SourceInfo)
+  href: api/VisualCard.Parts.Implementations.SourceInfo.html#VisualCard_Parts_Implementations_SourceInfo_op_Equality_VisualCard_Parts_Implementations_SourceInfo_VisualCard_Parts_Implementations_SourceInfo_
+  commentId: M:VisualCard.Parts.Implementations.SourceInfo.op_Equality(VisualCard.Parts.Implementations.SourceInfo,VisualCard.Parts.Implementations.SourceInfo)
+  name.vb: =(SourceInfo, SourceInfo)
+  fullName: VisualCard.Parts.Implementations.SourceInfo.operator ==(VisualCard.Parts.Implementations.SourceInfo, VisualCard.Parts.Implementations.SourceInfo)
+  fullName.vb: VisualCard.Parts.Implementations.SourceInfo.=(VisualCard.Parts.Implementations.SourceInfo, VisualCard.Parts.Implementations.SourceInfo)
+  nameWithType: SourceInfo.operator ==(SourceInfo, SourceInfo)
+  nameWithType.vb: SourceInfo.=(SourceInfo, SourceInfo)
+- uid: VisualCard.Parts.Implementations.SourceInfo.op_Equality*
+  name: operator ==
+  href: api/VisualCard.Parts.Implementations.SourceInfo.html#VisualCard_Parts_Implementations_SourceInfo_op_Equality_
+  commentId: Overload:VisualCard.Parts.Implementations.SourceInfo.op_Equality
+  isSpec: "True"
+  name.vb: =
+  fullName: VisualCard.Parts.Implementations.SourceInfo.operator ==
+  fullName.vb: VisualCard.Parts.Implementations.SourceInfo.=
+  nameWithType: SourceInfo.operator ==
+  nameWithType.vb: SourceInfo.=
+- uid: VisualCard.Parts.Implementations.SourceInfo.op_Inequality(VisualCard.Parts.Implementations.SourceInfo,VisualCard.Parts.Implementations.SourceInfo)
+  name: operator !=(SourceInfo, SourceInfo)
+  href: api/VisualCard.Parts.Implementations.SourceInfo.html#VisualCard_Parts_Implementations_SourceInfo_op_Inequality_VisualCard_Parts_Implementations_SourceInfo_VisualCard_Parts_Implementations_SourceInfo_
+  commentId: M:VisualCard.Parts.Implementations.SourceInfo.op_Inequality(VisualCard.Parts.Implementations.SourceInfo,VisualCard.Parts.Implementations.SourceInfo)
+  name.vb: <>(SourceInfo, SourceInfo)
+  fullName: VisualCard.Parts.Implementations.SourceInfo.operator !=(VisualCard.Parts.Implementations.SourceInfo, VisualCard.Parts.Implementations.SourceInfo)
+  fullName.vb: VisualCard.Parts.Implementations.SourceInfo.<>(VisualCard.Parts.Implementations.SourceInfo, VisualCard.Parts.Implementations.SourceInfo)
+  nameWithType: SourceInfo.operator !=(SourceInfo, SourceInfo)
+  nameWithType.vb: SourceInfo.<>(SourceInfo, SourceInfo)
+- uid: VisualCard.Parts.Implementations.SourceInfo.op_Inequality*
+  name: operator !=
+  href: api/VisualCard.Parts.Implementations.SourceInfo.html#VisualCard_Parts_Implementations_SourceInfo_op_Inequality_
+  commentId: Overload:VisualCard.Parts.Implementations.SourceInfo.op_Inequality
+  isSpec: "True"
+  name.vb: <>
+  fullName: VisualCard.Parts.Implementations.SourceInfo.operator !=
+  fullName.vb: VisualCard.Parts.Implementations.SourceInfo.<>
+  nameWithType: SourceInfo.operator !=
+  nameWithType.vb: SourceInfo.<>
 - uid: VisualCard.Parts.Implementations.TelephoneInfo
   name: TelephoneInfo
   href: api/VisualCard.Parts.Implementations.TelephoneInfo.html
@@ -3285,6 +3873,104 @@ references:
   commentId: F:VisualCard.Parts.Implementations.Tools.Gender.Unspecified
   fullName: VisualCard.Parts.Implementations.Tools.Gender.Unspecified
   nameWithType: Gender.Unspecified
+- uid: VisualCard.Parts.Implementations.UrlInfo
+  name: UrlInfo
+  href: api/VisualCard.Parts.Implementations.UrlInfo.html
+  commentId: T:VisualCard.Parts.Implementations.UrlInfo
+  fullName: VisualCard.Parts.Implementations.UrlInfo
+  nameWithType: UrlInfo
+- uid: VisualCard.Parts.Implementations.UrlInfo.Equals(System.Object)
+  name: Equals(object)
+  href: api/VisualCard.Parts.Implementations.UrlInfo.html#VisualCard_Parts_Implementations_UrlInfo_Equals_System_Object_
+  commentId: M:VisualCard.Parts.Implementations.UrlInfo.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Parts.Implementations.UrlInfo.Equals(object)
+  fullName.vb: VisualCard.Parts.Implementations.UrlInfo.Equals(Object)
+  nameWithType: UrlInfo.Equals(object)
+  nameWithType.vb: UrlInfo.Equals(Object)
+- uid: VisualCard.Parts.Implementations.UrlInfo.Equals(VisualCard.Parts.Implementations.UrlInfo)
+  name: Equals(UrlInfo)
+  href: api/VisualCard.Parts.Implementations.UrlInfo.html#VisualCard_Parts_Implementations_UrlInfo_Equals_VisualCard_Parts_Implementations_UrlInfo_
+  commentId: M:VisualCard.Parts.Implementations.UrlInfo.Equals(VisualCard.Parts.Implementations.UrlInfo)
+  fullName: VisualCard.Parts.Implementations.UrlInfo.Equals(VisualCard.Parts.Implementations.UrlInfo)
+  nameWithType: UrlInfo.Equals(UrlInfo)
+- uid: VisualCard.Parts.Implementations.UrlInfo.Equals(VisualCard.Parts.Implementations.UrlInfo,VisualCard.Parts.Implementations.UrlInfo)
+  name: Equals(UrlInfo, UrlInfo)
+  href: api/VisualCard.Parts.Implementations.UrlInfo.html#VisualCard_Parts_Implementations_UrlInfo_Equals_VisualCard_Parts_Implementations_UrlInfo_VisualCard_Parts_Implementations_UrlInfo_
+  commentId: M:VisualCard.Parts.Implementations.UrlInfo.Equals(VisualCard.Parts.Implementations.UrlInfo,VisualCard.Parts.Implementations.UrlInfo)
+  fullName: VisualCard.Parts.Implementations.UrlInfo.Equals(VisualCard.Parts.Implementations.UrlInfo, VisualCard.Parts.Implementations.UrlInfo)
+  nameWithType: UrlInfo.Equals(UrlInfo, UrlInfo)
+- uid: VisualCard.Parts.Implementations.UrlInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Parts.Implementations.UrlInfo.html#VisualCard_Parts_Implementations_UrlInfo_Equals_
+  commentId: Overload:VisualCard.Parts.Implementations.UrlInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.UrlInfo.Equals
+  nameWithType: UrlInfo.Equals
+- uid: VisualCard.Parts.Implementations.UrlInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Parts.Implementations.UrlInfo.html#VisualCard_Parts_Implementations_UrlInfo_GetHashCode
+  commentId: M:VisualCard.Parts.Implementations.UrlInfo.GetHashCode
+  fullName: VisualCard.Parts.Implementations.UrlInfo.GetHashCode()
+  nameWithType: UrlInfo.GetHashCode()
+- uid: VisualCard.Parts.Implementations.UrlInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Parts.Implementations.UrlInfo.html#VisualCard_Parts_Implementations_UrlInfo_GetHashCode_
+  commentId: Overload:VisualCard.Parts.Implementations.UrlInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.UrlInfo.GetHashCode
+  nameWithType: UrlInfo.GetHashCode
+- uid: VisualCard.Parts.Implementations.UrlInfo.Url
+  name: Url
+  href: api/VisualCard.Parts.Implementations.UrlInfo.html#VisualCard_Parts_Implementations_UrlInfo_Url
+  commentId: P:VisualCard.Parts.Implementations.UrlInfo.Url
+  fullName: VisualCard.Parts.Implementations.UrlInfo.Url
+  nameWithType: UrlInfo.Url
+- uid: VisualCard.Parts.Implementations.UrlInfo.Url*
+  name: Url
+  href: api/VisualCard.Parts.Implementations.UrlInfo.html#VisualCard_Parts_Implementations_UrlInfo_Url_
+  commentId: Overload:VisualCard.Parts.Implementations.UrlInfo.Url
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.UrlInfo.Url
+  nameWithType: UrlInfo.Url
+- uid: VisualCard.Parts.Implementations.UrlInfo.op_Equality(VisualCard.Parts.Implementations.UrlInfo,VisualCard.Parts.Implementations.UrlInfo)
+  name: operator ==(UrlInfo, UrlInfo)
+  href: api/VisualCard.Parts.Implementations.UrlInfo.html#VisualCard_Parts_Implementations_UrlInfo_op_Equality_VisualCard_Parts_Implementations_UrlInfo_VisualCard_Parts_Implementations_UrlInfo_
+  commentId: M:VisualCard.Parts.Implementations.UrlInfo.op_Equality(VisualCard.Parts.Implementations.UrlInfo,VisualCard.Parts.Implementations.UrlInfo)
+  name.vb: =(UrlInfo, UrlInfo)
+  fullName: VisualCard.Parts.Implementations.UrlInfo.operator ==(VisualCard.Parts.Implementations.UrlInfo, VisualCard.Parts.Implementations.UrlInfo)
+  fullName.vb: VisualCard.Parts.Implementations.UrlInfo.=(VisualCard.Parts.Implementations.UrlInfo, VisualCard.Parts.Implementations.UrlInfo)
+  nameWithType: UrlInfo.operator ==(UrlInfo, UrlInfo)
+  nameWithType.vb: UrlInfo.=(UrlInfo, UrlInfo)
+- uid: VisualCard.Parts.Implementations.UrlInfo.op_Equality*
+  name: operator ==
+  href: api/VisualCard.Parts.Implementations.UrlInfo.html#VisualCard_Parts_Implementations_UrlInfo_op_Equality_
+  commentId: Overload:VisualCard.Parts.Implementations.UrlInfo.op_Equality
+  isSpec: "True"
+  name.vb: =
+  fullName: VisualCard.Parts.Implementations.UrlInfo.operator ==
+  fullName.vb: VisualCard.Parts.Implementations.UrlInfo.=
+  nameWithType: UrlInfo.operator ==
+  nameWithType.vb: UrlInfo.=
+- uid: VisualCard.Parts.Implementations.UrlInfo.op_Inequality(VisualCard.Parts.Implementations.UrlInfo,VisualCard.Parts.Implementations.UrlInfo)
+  name: operator !=(UrlInfo, UrlInfo)
+  href: api/VisualCard.Parts.Implementations.UrlInfo.html#VisualCard_Parts_Implementations_UrlInfo_op_Inequality_VisualCard_Parts_Implementations_UrlInfo_VisualCard_Parts_Implementations_UrlInfo_
+  commentId: M:VisualCard.Parts.Implementations.UrlInfo.op_Inequality(VisualCard.Parts.Implementations.UrlInfo,VisualCard.Parts.Implementations.UrlInfo)
+  name.vb: <>(UrlInfo, UrlInfo)
+  fullName: VisualCard.Parts.Implementations.UrlInfo.operator !=(VisualCard.Parts.Implementations.UrlInfo, VisualCard.Parts.Implementations.UrlInfo)
+  fullName.vb: VisualCard.Parts.Implementations.UrlInfo.<>(VisualCard.Parts.Implementations.UrlInfo, VisualCard.Parts.Implementations.UrlInfo)
+  nameWithType: UrlInfo.operator !=(UrlInfo, UrlInfo)
+  nameWithType.vb: UrlInfo.<>(UrlInfo, UrlInfo)
+- uid: VisualCard.Parts.Implementations.UrlInfo.op_Inequality*
+  name: operator !=
+  href: api/VisualCard.Parts.Implementations.UrlInfo.html#VisualCard_Parts_Implementations_UrlInfo_op_Inequality_
+  commentId: Overload:VisualCard.Parts.Implementations.UrlInfo.op_Inequality
+  isSpec: "True"
+  name.vb: <>
+  fullName: VisualCard.Parts.Implementations.UrlInfo.operator !=
+  fullName.vb: VisualCard.Parts.Implementations.UrlInfo.<>
+  nameWithType: UrlInfo.operator !=
+  nameWithType.vb: UrlInfo.<>
 - uid: VisualCard.Parts.Implementations.XNameInfo
   name: XNameInfo
   href: api/VisualCard.Parts.Implementations.XNameInfo.html
