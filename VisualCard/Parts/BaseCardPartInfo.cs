@@ -78,6 +78,22 @@ namespace VisualCard.Parts
         }
 
         /// <summary>
+        /// Checks to see if this part has a specific type
+        /// </summary>
+        /// <param name="type">Type to check (home, work, ...)</param>
+        /// <returns>True if found; otherwise, false.</returns>
+        public bool HasType(string type)
+        {
+            bool found = false;
+            foreach (string elementType in ElementTypes)
+            {
+                if (type.Equals(elementType, StringComparison.OrdinalIgnoreCase))
+                    found = true;
+            }
+            return found;
+        }
+
+        /// <summary>
         /// Checks to see if both the parts are equal
         /// </summary>
         /// <param name="other">The target <see cref="BaseCardPartInfo"/> instance to check to see if they equal</param>

@@ -206,6 +206,37 @@ namespace VisualCard.Tests
         }
 
         [TestMethod]
+        [DynamicData(nameof(ContactData.meCardContactsReparsed), typeof(ContactData))]
+        public void ParseDifferentMeCardContactsAndReparse((string, string) cardText)
+        {
+            Card[] cards = [];
+            Card[] secondCards = [];
+            Should.NotThrow(() => cards = MeCard.GetContactsFromMeCardString(cardText.Item1));
+            foreach (var card in cards)
+            {
+                string meCardSaved = MeCard.SaveCardToMeCardString(card);
+                meCardSaved.ShouldBe(cardText.Item2);
+                Should.NotThrow(() => secondCards = MeCard.GetContactsFromMeCardString(meCardSaved));
+                secondCards[0].ShouldBe(card);
+            }
+        }
+
+        [TestMethod]
+        [DynamicData(nameof(ContactData.meCardContactsReparsedCompatibility), typeof(ContactData))]
+        public void ParseDifferentMeCardContactsAndReparseCompatibility((string, string) cardText)
+        {
+            Card[] cards = [];
+            Card[] secondCards = [];
+            Should.NotThrow(() => cards = MeCard.GetContactsFromMeCardString(cardText.Item1));
+            foreach (var card in cards)
+            {
+                string meCardSaved = MeCard.SaveCardToMeCardString(card, true);
+                meCardSaved.ShouldBe(cardText.Item2);
+                Should.NotThrow(() => secondCards = MeCard.GetContactsFromMeCardString(meCardSaved));
+            }
+        }
+
+        [TestMethod]
         [DynamicData(nameof(ContactData.meCardContacts), typeof(ContactData))]
         public void ParseDifferentMeCardContactsAndTestEquality(string cardText)
         {

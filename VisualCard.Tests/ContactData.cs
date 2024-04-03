@@ -30,6 +30,18 @@ namespace VisualCard.Tests
             """
         ;
 
+        private static readonly string singleMeCardContactShortReparsed =
+            """
+            MECARD:N:Hood,Rick;;
+            """
+        ;
+
+        private static readonly string singleMeCardContactShortReparsedCompatibility =
+            """
+            MECARD:N:Hood,Rick;;
+            """
+        ;
+
         private static readonly string singleVcardContactShortFromMeCard =
             """
             BEGIN:VCARD
@@ -98,6 +110,30 @@ namespace VisualCard.Tests
         private static readonly string singleMeCardContactFull =
             """
             MECARD:N:Sanders,John,,,;SOUND:Saunders,John;TEL:495-522-3560;TEL-AV:495-522-3550;EMAIL:john.s@acme.co;ADR:,,Los Angeles,,,,USA;NOTE:Note test for VisualCard;;
+            """
+        ;
+
+        private static readonly string singleMeCardContactReparsed =
+            """
+            MECARD:N:Sanders,John;TEL:495-522-3560;EMAIL:john.s@acme.co;NOTE:Note test for VisualCard;ADR:,,Los Angeles,,,,USA;;
+            """
+        ;
+
+        private static readonly string singleMeCardContactFullReparsed =
+            """
+            MECARD:N:Sanders,John;SOUND:Saunders,John;TEL:495-522-3560;TEL-AV:495-522-3550;EMAIL:john.s@acme.co;NOTE:Note test for VisualCard;ADR:,,Los Angeles,,,,USA;;
+            """
+        ;
+
+        private static readonly string singleMeCardContactReparsedCompatibility =
+            """
+            MECARD:N:Sanders,John;TEL:495-522-3560;EMAIL:john.s@acme.co;ADR:,,Los Angeles,,,,USA;;
+            """
+        ;
+
+        private static readonly string singleMeCardContactFullReparsedCompatibility =
+            """
+            MECARD:N:Sanders,John;SOUND:Saunders,John;TEL:495-522-3560;EMAIL:john.s@acme.co;ADR:,,Los Angeles,,,,USA;;
             """
         ;
 
@@ -582,6 +618,38 @@ namespace VisualCard.Tests
             ],
             [
                 singleMeCardContactFull,
+            ],
+        ];
+
+        /// <summary>
+        /// Test MeCard contacts
+        /// </summary>
+        public static IEnumerable<object[]> meCardContactsReparsed =>
+        [
+            [
+                (singleMeCardContactShort, singleMeCardContactShortReparsed),
+            ],
+            [
+                (singleMeCardContact, singleMeCardContactReparsed),
+            ],
+            [
+                (singleMeCardContactFull, singleMeCardContactFullReparsed),
+            ],
+        ];
+
+        /// <summary>
+        /// Test MeCard contacts
+        /// </summary>
+        public static IEnumerable<object[]> meCardContactsReparsedCompatibility =>
+        [
+            [
+                (singleMeCardContactShort, singleMeCardContactShortReparsedCompatibility),
+            ],
+            [
+                (singleMeCardContact, singleMeCardContactReparsedCompatibility),
+            ],
+            [
+                (singleMeCardContactFull, singleMeCardContactFullReparsedCompatibility),
             ],
         ];
 
