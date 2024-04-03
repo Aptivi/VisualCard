@@ -124,5 +124,33 @@ namespace VisualCard.Parts.Enums
         /// The contact's gender
         /// </summary>
         Gender,
+        /// <summary>
+        /// The contact's full name
+        /// </summary>
+        FullName,
+        /// <summary>
+        /// The contact's URL
+        /// </summary>
+        Url,
+        /// <summary>
+        /// The contact's notes
+        /// </summary>
+        Notes,
+        /// <summary>
+        /// The contact's card source
+        /// </summary>
+        Source,
+        /// <summary>
+        /// The contact's free/busy indicator URL
+        /// </summary>
+        FreeBusyUrl,
+        /// <summary>
+        /// The contact's calendar URL
+        /// </summary>
+        CalendarUrl,
+        /// <summary>
+        /// The contact's calendar scheduling request URL
+        /// </summary>
+        CalendarSchedulingRequestUrl,
     }
 }

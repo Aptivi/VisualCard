@@ -153,27 +153,27 @@ namespace VisualCard.Converters
 
             // Now, get all the values in the below order
             var names = card.GetPartsArray<NameInfo>();
-            var fullName = card.GetString(StringsEnum.FullName);
+            var fullNames = card.GetPartsArray<FullNameInfo>();
             var xNames = card.GetPartsArray<XNameInfo>();
             var telephones = card.GetPartsArray<TelephoneInfo>();
             var emails = card.GetPartsArray<EmailInfo>();
-            var note = card.GetString(StringsEnum.Notes);
+            var notes = card.GetPartsArray<NoteInfo>();
             var birthdays = card.GetPartsArray<BirthDateInfo>();
             var addresses = card.GetPartsArray<AddressInfo>();
-            var url = card.GetString(StringsEnum.Url);
+            var urls = card.GetPartsArray<UrlInfo>();
             var nicknames = card.GetPartsArray<NicknameInfo>();
 
             // Check them for existence
             bool hasNames = names.Length > 0;
-            bool hasFullName = !string.IsNullOrEmpty(fullName);
+            bool hasFullName = fullNames.Length > 0;
             bool hasReading = xNames.Any((xName) => xName.XKeyName == _meCardXNameKanaSpecifier);
             bool hasTelephone = telephones.Length > 0 && telephones.Any((tel) => !tel.HasType("video"));
             bool hasVideophone = telephones.Length > 0 && telephones.Any((tel) => tel.HasType("video")) && !compatibility;
             bool hasEmails = emails.Length > 0;
-            bool hasNote = !string.IsNullOrEmpty(note) && !compatibility;
+            bool hasNote = notes.Length > 0 && !compatibility;
             bool hasBirthday = birthdays.Length > 0;
             bool hasAddresses = addresses.Length > 0;
-            bool hasUrl = !string.IsNullOrEmpty(url) && !compatibility;
+            bool hasUrl = urls.Length > 0 && !compatibility;
             bool hasNicknames = nicknames.Length > 0 && !compatibility;
             if (!hasNames && !hasFullName)
                 throw new InvalidDataException("Can't build a MeCard string from a vCard containing an empty name or an empty full name.");
@@ -192,7 +192,8 @@ namespace VisualCard.Converters
             else if (hasFullName)
             {
                 StringBuilder builder = new();
-                string[] splitFullName = fullName.Split([" "], StringSplitOptions.RemoveEmptyEntries);
+                var fullName = fullNames[0];
+                string[] splitFullName = fullName.FullName.Split([" "], StringSplitOptions.RemoveEmptyEntries);
                 builder.Append(_meCardNameSpecifier + _meCardArgumentDelimiter);
                 builder.Append(string.Join(_meCardValueDelimiter.ToString(), splitFullName));
                 properties.Add(builder.ToString());
@@ -232,8 +233,9 @@ namespace VisualCard.Converters
             if (hasNote)
             {
                 StringBuilder builder = new();
+                var note = notes[0];
                 builder.Append(_meCardNoteSpecifier + _meCardArgumentDelimiter);
-                builder.Append(note);
+                builder.Append(note.Note);
                 properties.Add(builder.ToString());
             }
             if (hasBirthday)
@@ -261,8 +263,9 @@ namespace VisualCard.Converters
             if (hasUrl)
             {
                 StringBuilder builder = new();
+                var url = urls[0];
                 builder.Append(_meCardUrlSpecifier + _meCardArgumentDelimiter);
-                builder.Append(url);
+                builder.Append(url.Url);
                 properties.Add(builder.ToString());
             }
             if (hasNicknames)

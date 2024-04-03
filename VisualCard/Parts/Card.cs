@@ -270,8 +270,16 @@ namespace VisualCard.Parts
                 // We need to check the cardinality.
                 var cardinality = VcardParserTools.GetPartsArrayEnumFromType(enumType, CardVersion).Item2;
                 int actualAltId = partsArray[key][0].AltId;
-                if ((cardinality == PartCardinality.ShouldBeOne || cardinality == PartCardinality.MayBeOne) && actualAltId != value.AltId)
-                    throw new InvalidOperationException($"Can't overwrite part array {key} with AltID {actualAltId}, because cardinality is {cardinality} and expected AltID is {value.AltId}.");
+                bool onlyOne =
+                    cardinality == PartCardinality.ShouldBeOne ||
+                    cardinality == PartCardinality.MayBeOne;
+                bool onlyOneNoAltId =
+                    cardinality == PartCardinality.ShouldBeOneNoAltId ||
+                    cardinality == PartCardinality.MayBeOneNoAltId;
+                if (onlyOne && actualAltId != value.AltId)
+                    throw new InvalidOperationException($"Can't overwrite part array {key} with AltID {value.AltId}, because cardinality is {cardinality} and expected AltID is {actualAltId}.");
+                if (onlyOneNoAltId)
+                    throw new InvalidOperationException($"Can never overwrite part array {key} with AltID {value.AltId}, because cardinality is {cardinality}, even though the expected AltID is {actualAltId}.");
                 partsArray[key].Add(value);
             }
         }

@@ -86,7 +86,13 @@ namespace VisualCard.ShowContacts
                 foreach (Card Contact in contacts)
                 {
                     TextWriterColor.WriteColor("----------------------------", ConsoleColors.Green);
-                    TextWriterColor.WriteColor("Name:                    {0}", ConsoleColors.Green, Contact.GetString(StringsEnum.FullName));
+
+                    // List names
+                    foreach (var fullName in Contact.GetPartsArray<FullNameInfo>())
+                    {
+                        TextWriterColor.Write("Name:                    {0}", fullName.FullName);
+                        TextWriterColor.Write("ALTID:                   {0}", fullName.AltId);
+                    }
 
                     // List names
                     foreach (var name in Contact.GetPartsArray<NameInfo>())
@@ -155,15 +161,19 @@ namespace VisualCard.ShowContacts
                     var birth = Contact.GetPartsArray<BirthDateInfo>();
                     var wedding = Contact.GetPartsArray<AnniversaryInfo>();
                     var gender = Contact.GetPartsArray<GenderInfo>();
+                    var url = Contact.GetPartsArray<UrlInfo>();
+                    var note = Contact.GetPartsArray<NoteInfo>();
                     if (birth.Length > 0)
                         TextWriterColor.Write("Contact birthdate:       {0}", birth[0].BirthDate);
                     if (wedding.Length > 0)
                         TextWriterColor.Write("Contact wedding date:    {0}", wedding[0].Anniversary);
                     if (gender.Length > 0)
                         TextWriterColor.Write("Contact gender           {0} [{1}]", gender[0].Gender.ToString(), gender[0].GenderDescription);
+                    if (url.Length > 0)
+                        TextWriterColor.Write("Contact URL:             {0}", url[0].Url);
+                    if (note.Length > 0)
+                        TextWriterColor.Write("Contact Note:            {0}", note[0].Note);
                     TextWriterColor.Write("Contact mailer:          {0}", Contact.GetString(StringsEnum.Mailer));
-                    TextWriterColor.Write("Contact URL:             {0}", Contact.GetString(StringsEnum.Url));
-                    TextWriterColor.Write("Contact Note:            {0}", Contact.GetString(StringsEnum.Notes));
 
                     // Print VCard
                     string raw = Contact.SaveToString();

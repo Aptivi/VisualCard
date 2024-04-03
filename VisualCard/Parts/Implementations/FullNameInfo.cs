@@ -26,51 +26,51 @@ using VisualCard.Parsers;
 namespace VisualCard.Parts.Implementations
 {
     /// <summary>
-    /// Contact geographical information
+    /// Contact full name info
     /// </summary>
-    [DebuggerDisplay("Geography = {Geo}")]
-    public class GeoInfo : BaseCardPartInfo, IEquatable<GeoInfo>
+    [DebuggerDisplay("Full name = {FullName}")]
+    public class FullNameInfo : BaseCardPartInfo, IEquatable<FullNameInfo>
     {
         /// <summary>
-        /// The contact's geographical information
+        /// The contact's full name
         /// </summary>
-        public string Geo { get; }
+        public string FullName { get; }
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
-            new GeoInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
+            new FullNameInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
-            Geo;
+            FullName;
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Get the value
-            string _geoStr = Regex.Unescape(value);
+            string _fullNameStr = Regex.Unescape(value);
 
             // Populate the fields
-            GeoInfo _geo = new(altId, finalArgs, elementTypes, valueType, _geoStr);
-            return _geo;
+            FullNameInfo _fullName = new(altId, finalArgs, elementTypes, valueType, _fullNameStr);
+            return _fullName;
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj) =>
-            Equals((GeoInfo)obj);
+            Equals((FullNameInfo)obj);
 
         /// <summary>
         /// Checks to see if both the parts are equal
         /// </summary>
-        /// <param name="other">The target <see cref="GeoInfo"/> instance to check to see if they equal</param>
+        /// <param name="other">The target <see cref="FullNameInfo"/> instance to check to see if they equal</param>
         /// <returns>True if all the part elements are equal. Otherwise, false.</returns>
-        public bool Equals(GeoInfo other) =>
+        public bool Equals(FullNameInfo other) =>
             Equals(this, other);
 
         /// <summary>
         /// Checks to see if both the parts are equal
         /// </summary>
-        /// <param name="source">The source <see cref="GeoInfo"/> instance to check to see if they equal</param>
-        /// <param name="target">The target <see cref="GeoInfo"/> instance to check to see if they equal</param>
+        /// <param name="source">The source <see cref="FullNameInfo"/> instance to check to see if they equal</param>
+        /// <param name="target">The target <see cref="FullNameInfo"/> instance to check to see if they equal</param>
         /// <returns>True if all the part elements are equal. Otherwise, false.</returns>
-        public bool Equals(GeoInfo source, GeoInfo target)
+        public bool Equals(FullNameInfo source, FullNameInfo target)
         {
             // We can't perform this operation on null.
             if (source is null || target is null)
@@ -78,36 +78,36 @@ namespace VisualCard.Parts.Implementations
 
             // Check all the properties
             return
-                source.Geo == target.Geo
+                source.FullName == target.FullName
             ;
         }
 
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = -456581192;
+            int hashCode = -1441119731;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Geo);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(FullName);
             return hashCode;
         }
 
         /// <inheritdoc/>
-        public static bool operator ==(GeoInfo left, GeoInfo right) =>
+        public static bool operator ==(FullNameInfo left, FullNameInfo right) =>
             left.Equals(right);
 
         /// <inheritdoc/>
-        public static bool operator !=(GeoInfo left, GeoInfo right) =>
+        public static bool operator !=(FullNameInfo left, FullNameInfo right) =>
             !(left == right);
 
         internal override bool EqualsInternal(BaseCardPartInfo source, BaseCardPartInfo target) =>
-            ((GeoInfo)source) == ((GeoInfo)target);
+            ((FullNameInfo)source) == ((FullNameInfo)target);
 
-        internal GeoInfo() { }
+        internal FullNameInfo() { }
 
-        internal GeoInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string geo) :
+        internal FullNameInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string fullName) :
             base(arguments, altId, elementTypes, valueType)
         {
-            Geo = geo;
+            FullName = fullName;
         }
     }
 }

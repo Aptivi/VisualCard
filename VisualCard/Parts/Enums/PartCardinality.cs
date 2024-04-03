@@ -25,20 +25,28 @@ namespace VisualCard.Parts.Enums
     internal enum PartCardinality
     {
         /// <summary>
-        /// Cardinality: * (One or more instances per vCard MAY be present.)
+        /// Cardinality: * (One or more instances per vCard MAY be present.) - AltID supported
         /// </summary>
         Any,
         /// <summary>
-        /// Cardinality: 1* (One or more instances per vCard MUST be present.)
+        /// Cardinality: 1* (One or more instances per vCard MUST be present.) - AltID supported
         /// </summary>
         AtLeastOne,
         /// <summary>
-        /// Cardinality: *1 (Exactly one instance per vCard MAY be present.)
+        /// Cardinality: *1 (Exactly one instance per vCard MAY be present.) - AltID supported
         /// </summary>
         MayBeOne,
         /// <summary>
-        /// Cardinality: 1 (Exactly one instance per vCard MUST be present.)
+        /// Cardinality: 1 (Exactly one instance per vCard MUST be present.) - AltID supported
         /// </summary>
         ShouldBeOne,
+        /// <summary>
+        /// Cardinality: *1 (Exactly one instance per vCard MAY be present.) - AltID not supported
+        /// </summary>
+        MayBeOneNoAltId,
+        /// <summary>
+        /// Cardinality: 1 (Exactly one instance per vCard MUST be present.) - AltID not supported
+        /// </summary>
+        ShouldBeOneNoAltId,
     }
 }

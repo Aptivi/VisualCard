@@ -20,57 +20,58 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text.RegularExpressions;
-using VisualCard.Parsers;
+using System.IO;
 
 namespace VisualCard.Parts.Implementations
 {
     /// <summary>
-    /// Contact geographical information
+    /// Contact URL info
     /// </summary>
-    [DebuggerDisplay("Geography = {Geo}")]
-    public class GeoInfo : BaseCardPartInfo, IEquatable<GeoInfo>
+    [DebuggerDisplay("Url, {Url}")]
+    public class UrlInfo : BaseCardPartInfo, IEquatable<UrlInfo>
     {
         /// <summary>
-        /// The contact's geographical information
+        /// Encoded URL
         /// </summary>
-        public string Geo { get; }
+        public string Url { get; }
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
-            new GeoInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
+            new UrlInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
-            Geo;
+            Url;
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
-            // Get the value
-            string _geoStr = Regex.Unescape(value);
+            // Try to parse the URL to ensure that it conforms the IETF RFC 1738: Uniform Resource Locators
+            if (!Uri.TryCreate(value, UriKind.Absolute, out Uri uri))
+                throw new InvalidDataException($"URL {value} is invalid");
+            value = uri.ToString();
 
             // Populate the fields
-            GeoInfo _geo = new(altId, finalArgs, elementTypes, valueType, _geoStr);
-            return _geo;
+            UrlInfo _url = new(altId, finalArgs, elementTypes, valueType, value);
+            return _url;
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj) =>
-            Equals((GeoInfo)obj);
+            Equals((UrlInfo)obj);
 
         /// <summary>
         /// Checks to see if both the parts are equal
         /// </summary>
-        /// <param name="other">The target <see cref="GeoInfo"/> instance to check to see if they equal</param>
+        /// <param name="other">The target <see cref="UrlInfo"/> instance to check to see if they equal</param>
         /// <returns>True if all the part elements are equal. Otherwise, false.</returns>
-        public bool Equals(GeoInfo other) =>
+        public bool Equals(UrlInfo other) =>
             Equals(this, other);
 
         /// <summary>
         /// Checks to see if both the parts are equal
         /// </summary>
-        /// <param name="source">The source <see cref="GeoInfo"/> instance to check to see if they equal</param>
-        /// <param name="target">The target <see cref="GeoInfo"/> instance to check to see if they equal</param>
+        /// <param name="source">The source <see cref="UrlInfo"/> instance to check to see if they equal</param>
+        /// <param name="target">The target <see cref="UrlInfo"/> instance to check to see if they equal</param>
         /// <returns>True if all the part elements are equal. Otherwise, false.</returns>
-        public bool Equals(GeoInfo source, GeoInfo target)
+        public bool Equals(UrlInfo source, UrlInfo target)
         {
             // We can't perform this operation on null.
             if (source is null || target is null)
@@ -78,36 +79,36 @@ namespace VisualCard.Parts.Implementations
 
             // Check all the properties
             return
-                source.Geo == target.Geo
+                source.Url == target.Url
             ;
         }
 
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = -456581192;
+            int hashCode = -1169443244;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Geo);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Url);
             return hashCode;
         }
 
         /// <inheritdoc/>
-        public static bool operator ==(GeoInfo left, GeoInfo right) =>
+        public static bool operator ==(UrlInfo left, UrlInfo right) =>
             left.Equals(right);
 
         /// <inheritdoc/>
-        public static bool operator !=(GeoInfo left, GeoInfo right) =>
+        public static bool operator !=(UrlInfo left, UrlInfo right) =>
             !(left == right);
 
         internal override bool EqualsInternal(BaseCardPartInfo source, BaseCardPartInfo target) =>
-            ((GeoInfo)source) == ((GeoInfo)target);
+            ((UrlInfo)source) == ((UrlInfo)target);
 
-        internal GeoInfo() { }
+        internal UrlInfo() { }
 
-        internal GeoInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string geo) :
+        internal UrlInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string url) :
             base(arguments, altId, elementTypes, valueType)
         {
-            Geo = geo;
+            Url = url;
         }
     }
 }

@@ -20,57 +20,58 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text.RegularExpressions;
-using VisualCard.Parsers;
+using System.IO;
 
 namespace VisualCard.Parts.Implementations
 {
     /// <summary>
-    /// Contact geographical information
+    /// Contact calendar scheduling request URL info
     /// </summary>
-    [DebuggerDisplay("Geography = {Geo}")]
-    public class GeoInfo : BaseCardPartInfo, IEquatable<GeoInfo>
+    [DebuggerDisplay("Calendar Scheduling Request URL, {CalendarSchedulingRequestUrl}")]
+    public class CalendarSchedulingRequestUrlInfo : BaseCardPartInfo, IEquatable<CalendarSchedulingRequestUrlInfo>
     {
         /// <summary>
-        /// The contact's geographical information
+        /// Encoded calendar scheduling request URL
         /// </summary>
-        public string Geo { get; }
+        public string CalendarSchedulingRequestUrl { get; }
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
-            new GeoInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
+            new CalendarSchedulingRequestUrlInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
-            Geo;
+            CalendarSchedulingRequestUrl;
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
-            // Get the value
-            string _geoStr = Regex.Unescape(value);
+            // Try to parse the source to ensure that it conforms the IETF RFC 1738: Uniform Resource Locators
+            if (!Uri.TryCreate(value, UriKind.Absolute, out Uri uri))
+                throw new InvalidDataException($"source {value} is invalid");
+            value = uri.ToString();
 
             // Populate the fields
-            GeoInfo _geo = new(altId, finalArgs, elementTypes, valueType, _geoStr);
-            return _geo;
+            CalendarSchedulingRequestUrlInfo _source = new(altId, finalArgs, elementTypes, valueType, value);
+            return _source;
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj) =>
-            Equals((GeoInfo)obj);
+            Equals((CalendarSchedulingRequestUrlInfo)obj);
 
         /// <summary>
         /// Checks to see if both the parts are equal
         /// </summary>
-        /// <param name="other">The target <see cref="GeoInfo"/> instance to check to see if they equal</param>
+        /// <param name="other">The target <see cref="CalendarSchedulingRequestUrlInfo"/> instance to check to see if they equal</param>
         /// <returns>True if all the part elements are equal. Otherwise, false.</returns>
-        public bool Equals(GeoInfo other) =>
+        public bool Equals(CalendarSchedulingRequestUrlInfo other) =>
             Equals(this, other);
 
         /// <summary>
         /// Checks to see if both the parts are equal
         /// </summary>
-        /// <param name="source">The source <see cref="GeoInfo"/> instance to check to see if they equal</param>
-        /// <param name="target">The target <see cref="GeoInfo"/> instance to check to see if they equal</param>
+        /// <param name="source">The source <see cref="CalendarSchedulingRequestUrlInfo"/> instance to check to see if they equal</param>
+        /// <param name="target">The target <see cref="CalendarSchedulingRequestUrlInfo"/> instance to check to see if they equal</param>
         /// <returns>True if all the part elements are equal. Otherwise, false.</returns>
-        public bool Equals(GeoInfo source, GeoInfo target)
+        public bool Equals(CalendarSchedulingRequestUrlInfo source, CalendarSchedulingRequestUrlInfo target)
         {
             // We can't perform this operation on null.
             if (source is null || target is null)
@@ -78,36 +79,36 @@ namespace VisualCard.Parts.Implementations
 
             // Check all the properties
             return
-                source.Geo == target.Geo
+                source.CalendarSchedulingRequestUrl == target.CalendarSchedulingRequestUrl
             ;
         }
 
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = -456581192;
+            int hashCode = 416516725;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Geo);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(CalendarSchedulingRequestUrl);
             return hashCode;
         }
 
         /// <inheritdoc/>
-        public static bool operator ==(GeoInfo left, GeoInfo right) =>
+        public static bool operator ==(CalendarSchedulingRequestUrlInfo left, CalendarSchedulingRequestUrlInfo right) =>
             left.Equals(right);
 
         /// <inheritdoc/>
-        public static bool operator !=(GeoInfo left, GeoInfo right) =>
+        public static bool operator !=(CalendarSchedulingRequestUrlInfo left, CalendarSchedulingRequestUrlInfo right) =>
             !(left == right);
 
         internal override bool EqualsInternal(BaseCardPartInfo source, BaseCardPartInfo target) =>
-            ((GeoInfo)source) == ((GeoInfo)target);
+            ((CalendarSchedulingRequestUrlInfo)source) == ((CalendarSchedulingRequestUrlInfo)target);
 
-        internal GeoInfo() { }
+        internal CalendarSchedulingRequestUrlInfo() { }
 
-        internal GeoInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string geo) :
+        internal CalendarSchedulingRequestUrlInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string source) :
             base(arguments, altId, elementTypes, valueType)
         {
-            Geo = geo;
+            CalendarSchedulingRequestUrl = source;
         }
     }
 }

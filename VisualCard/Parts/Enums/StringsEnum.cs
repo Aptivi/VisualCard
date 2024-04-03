@@ -29,18 +29,6 @@ namespace VisualCard.Parts.Enums
         /// </summary>
         Kind,
         /// <summary>
-        /// The contact's full name
-        /// </summary>
-        FullName,
-        /// <summary>
-        /// The contact's URL
-        /// </summary>
-        Url,
-        /// <summary>
-        /// The contact's notes
-        /// </summary>
-        Notes,
-        /// <summary>
         /// The contact's mailing software
         /// </summary>
         Mailer,
@@ -52,22 +40,6 @@ namespace VisualCard.Parts.Enums
         /// The contact's sort string
         /// </summary>
         SortString,
-        /// <summary>
-        /// The contact's card source
-        /// </summary>
-        Source,
-        /// <summary>
-        /// The contact's free/busy indicator URL
-        /// </summary>
-        FreeBusyUrl,
-        /// <summary>
-        /// The contact's calendar URL
-        /// </summary>
-        CalendarUrl,
-        /// <summary>
-        /// The contact's calendar scheduling request URL
-        /// </summary>
-        CalendarSchedulingRequestUrl,
         /// <summary>
         /// The contact's access classification
         /// </summary>

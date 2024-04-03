@@ -83,18 +83,11 @@ namespace VisualCard.Parsers
         internal static bool StringSupported(StringsEnum stringsEnum, Version cardVersion) =>
             stringsEnum switch
             {
-                StringsEnum.FullName => true,
-                StringsEnum.Url => true,
-                StringsEnum.Notes => true,
-                StringsEnum.Source => true,
                 StringsEnum.Kind => cardVersion.Major >= 4,
                 StringsEnum.Mailer => cardVersion.Major != 4,
                 StringsEnum.ProductId => cardVersion.Major >= 3,
                 StringsEnum.SortString => cardVersion.Major == 3 || cardVersion.Major == 5,
                 StringsEnum.AccessClassification => cardVersion.Major != 2 || cardVersion.Major != 4,
-                StringsEnum.FreeBusyUrl => cardVersion.Major >= 4,
-                StringsEnum.CalendarUrl => cardVersion.Major >= 4,
-                StringsEnum.CalendarSchedulingRequestUrl => cardVersion.Major >= 4,
                 _ =>
                     throw new InvalidOperationException("Invalid string enumeration type to get supported value"),
             };
@@ -118,6 +111,10 @@ namespace VisualCard.Parsers
                 PartsArrayEnum.Key => true,
                 PartsArrayEnum.Revision => true,
                 PartsArrayEnum.Birthdate => true,
+                PartsArrayEnum.FullName => true,
+                PartsArrayEnum.Url => true,
+                PartsArrayEnum.Notes => true,
+                PartsArrayEnum.Source => true,
                 PartsArrayEnum.NonstandardNames => true,
                 PartsArrayEnum.Impps => cardVersion.Major >= 3,
                 PartsArrayEnum.Nicknames => cardVersion.Major >= 3,
@@ -127,6 +124,9 @@ namespace VisualCard.Parsers
                 PartsArrayEnum.Xml => cardVersion.Major == 4,
                 PartsArrayEnum.Anniversary => cardVersion.Major >= 4,
                 PartsArrayEnum.Gender => cardVersion.Major >= 4,
+                PartsArrayEnum.FreeBusyUrl => cardVersion.Major >= 4,
+                PartsArrayEnum.CalendarUrl => cardVersion.Major >= 4,
+                PartsArrayEnum.CalendarSchedulingRequestUrl => cardVersion.Major >= 4,
                 _ =>
                     throw new InvalidOperationException("Invalid parts array enumeration type to get supported value"),
             };
@@ -135,17 +135,10 @@ namespace VisualCard.Parsers
             stringsEnum switch
             {
                 StringsEnum.AccessClassification => VcardConstants._classSpecifier,
-                StringsEnum.CalendarSchedulingRequestUrl => VcardConstants._caladrUriSpecifier,
-                StringsEnum.CalendarUrl => VcardConstants._calUriSpecifier,
-                StringsEnum.FreeBusyUrl => VcardConstants._fbUrlSpecifier,
-                StringsEnum.FullName => VcardConstants._fullNameSpecifier,
                 StringsEnum.Kind => VcardConstants._kindSpecifier,
                 StringsEnum.Mailer => VcardConstants._mailerSpecifier,
-                StringsEnum.Notes => VcardConstants._noteSpecifier,
                 StringsEnum.ProductId => VcardConstants._productIdSpecifier,
                 StringsEnum.SortString => VcardConstants._sortStringSpecifier,
-                StringsEnum.Source => VcardConstants._sourceSpecifier,
-                StringsEnum.Url => VcardConstants._urlSpecifier,
                 _ =>
                     throw new NotImplementedException($"String enumeration {stringsEnum} is not implemented.")
             };
@@ -177,6 +170,13 @@ namespace VisualCard.Parsers
                 PartsArrayEnum.Revision => VcardConstants._revSpecifier,
                 PartsArrayEnum.Anniversary => VcardConstants._anniversarySpecifier,
                 PartsArrayEnum.Gender => VcardConstants._genderSpecifier,
+                PartsArrayEnum.CalendarSchedulingRequestUrl => VcardConstants._caladrUriSpecifier,
+                PartsArrayEnum.CalendarUrl => VcardConstants._calUriSpecifier,
+                PartsArrayEnum.FreeBusyUrl => VcardConstants._fbUrlSpecifier,
+                PartsArrayEnum.FullName => VcardConstants._fullNameSpecifier,
+                PartsArrayEnum.Notes => VcardConstants._noteSpecifier,
+                PartsArrayEnum.Source => VcardConstants._sourceSpecifier,
+                PartsArrayEnum.Url => VcardConstants._urlSpecifier,
                 PartsArrayEnum.NonstandardNames => VcardConstants._xSpecifier,
                 _ =>
                     throw new NotImplementedException($"String enumeration {partsArrayEnum} is not implemented.")
@@ -237,7 +237,21 @@ namespace VisualCard.Parsers
             else if (partsArrayType == typeof(AnniversaryInfo))
                 return (PartsArrayEnum.Anniversary, PartCardinality.MayBeOne);
             else if (partsArrayType == typeof(GenderInfo))
-                return (PartsArrayEnum.Gender, PartCardinality.MayBeOne);
+                return (PartsArrayEnum.Gender, PartCardinality.MayBeOneNoAltId);
+            else if (partsArrayType == typeof(FullNameInfo))
+                return (PartsArrayEnum.FullName, cardVersion.Major >= 3 ? PartCardinality.AtLeastOne : PartCardinality.Any);
+            else if (partsArrayType == typeof(UrlInfo))
+                return (PartsArrayEnum.Url, PartCardinality.Any);
+            else if (partsArrayType == typeof(NoteInfo))
+                return (PartsArrayEnum.Notes, PartCardinality.Any);
+            else if (partsArrayType == typeof(SourceInfo))
+                return (PartsArrayEnum.Source, PartCardinality.Any);
+            else if (partsArrayType == typeof(FreeBusyInfo))
+                return (PartsArrayEnum.FreeBusyUrl, PartCardinality.Any);
+            else if (partsArrayType == typeof(CalendarUrlInfo))
+                return (PartsArrayEnum.CalendarUrl, PartCardinality.Any);
+            else if (partsArrayType == typeof(CalendarSchedulingRequestUrlInfo))
+                return (PartsArrayEnum.CalendarSchedulingRequestUrl, PartCardinality.Any);
             throw new NotImplementedException($"Type {partsArrayType.Name} doesn't represent any part array.");
         }
 
@@ -264,23 +278,23 @@ namespace VisualCard.Parsers
                 VcardConstants._langSpecifier => (PartType.PartsArray, PartsArrayEnum.Langs, typeof(LangInfo), LangInfo.FromStringVcardStatic, "HOME", ""),
                 VcardConstants._xmlSpecifier => (PartType.PartsArray, PartsArrayEnum.Xml, typeof(XmlInfo), XmlInfo.FromStringVcardStatic, "", ""),
                 VcardConstants._keySpecifier => (PartType.PartsArray, PartsArrayEnum.Key, typeof(KeyInfo), KeyInfo.FromStringVcardStatic, "", ""),
-                VcardConstants._xSpecifier => (PartType.PartsArray, PartsArrayEnum.NonstandardNames, typeof(XNameInfo), XNameInfo.FromStringVcardStatic, "", ""),
                 VcardConstants._revSpecifier => (PartType.PartsArray, PartsArrayEnum.Revision, typeof(RevisionInfo), RevisionInfo.FromStringVcardStatic, "", ""),
                 VcardConstants._birthSpecifier => (PartType.PartsArray, PartsArrayEnum.Birthdate, typeof(BirthDateInfo), BirthDateInfo.FromStringVcardStatic, "", ""),
                 VcardConstants._anniversarySpecifier => (PartType.PartsArray, PartsArrayEnum.Anniversary, typeof(AnniversaryInfo), AnniversaryInfo.FromStringVcardStatic, "", ""),
                 VcardConstants._genderSpecifier => (PartType.PartsArray, PartsArrayEnum.Gender, typeof(GenderInfo), GenderInfo.FromStringVcardStatic, "", ""),
-                VcardConstants._fullNameSpecifier => (PartType.Strings, StringsEnum.FullName, null, null, "", ""),
-                VcardConstants._urlSpecifier => (PartType.Strings, StringsEnum.Url, null, null, "", ""),
-                VcardConstants._noteSpecifier => (PartType.Strings, StringsEnum.Notes, null, null, "", ""),
-                VcardConstants._sourceSpecifier => (PartType.Strings, StringsEnum.Source, null, null, "", ""),
+                VcardConstants._fullNameSpecifier => (PartType.PartsArray, PartsArrayEnum.FullName, typeof(FullNameInfo), FullNameInfo.FromStringVcardStatic, "", ""),
+                VcardConstants._urlSpecifier => (PartType.PartsArray, PartsArrayEnum.Url, typeof(UrlInfo), UrlInfo.FromStringVcardStatic, "", ""),
+                VcardConstants._noteSpecifier => (PartType.PartsArray, PartsArrayEnum.Notes, typeof(NoteInfo), NoteInfo.FromStringVcardStatic, "", ""),
+                VcardConstants._sourceSpecifier => (PartType.PartsArray, PartsArrayEnum.Source, typeof(SourceInfo), SourceInfo.FromStringVcardStatic, "", ""),
+                VcardConstants._fbUrlSpecifier => (PartType.PartsArray, PartsArrayEnum.FreeBusyUrl, typeof(FreeBusyInfo), FreeBusyInfo.FromStringVcardStatic, "", ""),
+                VcardConstants._calUriSpecifier => (PartType.PartsArray, PartsArrayEnum.CalendarUrl, typeof(CalendarUrlInfo), CalendarUrlInfo.FromStringVcardStatic, "", ""),
+                VcardConstants._caladrUriSpecifier => (PartType.PartsArray, PartsArrayEnum.CalendarSchedulingRequestUrl, typeof(CalendarSchedulingRequestUrlInfo), CalendarSchedulingRequestUrlInfo.FromStringVcardStatic, "", ""),
+                VcardConstants._xSpecifier => (PartType.PartsArray, PartsArrayEnum.NonstandardNames, typeof(XNameInfo), XNameInfo.FromStringVcardStatic, "", ""),
                 VcardConstants._kindSpecifier => (PartType.Strings, StringsEnum.Kind, null, null, "", ""),
                 VcardConstants._mailerSpecifier => (PartType.Strings, StringsEnum.Mailer, null, null, "", ""),
                 VcardConstants._productIdSpecifier => (PartType.Strings, StringsEnum.ProductId, null, null, "", ""),
                 VcardConstants._sortStringSpecifier => (PartType.Strings, StringsEnum.SortString, null, null, "", ""),
                 VcardConstants._classSpecifier => (PartType.Strings, StringsEnum.AccessClassification, null, null, "", ""),
-                VcardConstants._fbUrlSpecifier => (PartType.Strings, StringsEnum.FreeBusyUrl, null, null, "", ""),
-                VcardConstants._calUriSpecifier => (PartType.Strings, StringsEnum.CalendarUrl, null, null, "", ""),
-                VcardConstants._caladrUriSpecifier => (PartType.Strings, StringsEnum.CalendarSchedulingRequestUrl, null, null, "", ""),
                 _ =>
                     throw new InvalidOperationException($"Unknown prefix {prefix}"),
             };

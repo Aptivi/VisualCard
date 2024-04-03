@@ -142,7 +142,8 @@ namespace VisualCard.Parsers
                             splitArgs.Where((arg) =>
                                 arg.StartsWith(VcardConstants._altIdArgumentSpecifier) ||
                                 arg.StartsWith(VcardConstants._valueArgumentSpecifier) ||
-                                arg.StartsWith(VcardConstants._typeArgumentSpecifier)
+                                arg.StartsWith(VcardConstants._typeArgumentSpecifier) ||
+                                (CardVersion.Major == 2 && !arg.Contains(VcardConstants._argumentValueDelimiter))
                             )
                         ));
                     }
@@ -160,24 +161,12 @@ namespace VisualCard.Parsers
                                 // Now, handle each type individually
                                 switch (stringType)
                                 {
-                                    case StringsEnum.FullName:
-                                    case StringsEnum.Notes:
                                     case StringsEnum.Mailer:
                                     case StringsEnum.ProductId:
                                     case StringsEnum.SortString:
                                     case StringsEnum.AccessClassification:
                                         // Unescape the value
                                         finalValue = Regex.Unescape(value);
-                                        break;
-                                    case StringsEnum.Url:
-                                    case StringsEnum.Source:
-                                    case StringsEnum.FreeBusyUrl:
-                                    case StringsEnum.CalendarUrl:
-                                    case StringsEnum.CalendarSchedulingRequestUrl:
-                                        // Try to parse the URL to ensure that it conforms to IETF RFC 1738: Uniform Resource Locators
-                                        if (!Uri.TryCreate(value, UriKind.Absolute, out Uri uri))
-                                            throw new InvalidDataException($"URL {value} is invalid");
-                                        finalValue = uri.ToString();
                                         break;
                                     case StringsEnum.Kind:
                                         // Get the kind
@@ -231,9 +220,11 @@ namespace VisualCard.Parsers
             // Track the required fields
             List<string> expectedFields = [];
             List<string> actualFields = [];
-            if (VcardParserTools.GetPartsArrayEnumFromType(typeof(NameInfo), CardVersion).Item2 == PartCardinality.ShouldBeOne)
+            var nameCardinality = VcardParserTools.GetPartsArrayEnumFromType(typeof(NameInfo), CardVersion).Item2;
+            var fullNameCardinality = VcardParserTools.GetPartsArrayEnumFromType(typeof(FullNameInfo), CardVersion).Item2;
+            if (nameCardinality == PartCardinality.ShouldBeOne)
                 expectedFields.Add(VcardConstants._nameSpecifier);
-            if (CardVersion.Major >= 3)
+            if (fullNameCardinality == PartCardinality.AtLeastOne)
                 expectedFields.Add(VcardConstants._fullNameSpecifier);
 
             // Requirement checks
@@ -246,8 +237,8 @@ namespace VisualCard.Parsers
             }
             if (expectedFields.Contains(VcardConstants._fullNameSpecifier))
             {
-                string fullName = card.GetString(StringsEnum.FullName);
-                bool exists = !string.IsNullOrEmpty(fullName);
+                var fullNames = card.GetPartsArray<FullNameInfo>(PartsArrayEnum.FullName);
+                bool exists = fullNames is not null && fullNames.Length > 0;
                 if (exists)
                     actualFields.Add(VcardConstants._fullNameSpecifier);
             }
