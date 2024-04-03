@@ -108,5 +108,21 @@ namespace VisualCard.Parts.Enums
         /// The contact's extended options (usually starts with X-SOMETHING:Value1;Value2...)
         /// </summary>
         NonstandardNames,
+        /// <summary>
+        /// The card revision
+        /// </summary>
+        Revision,
+        /// <summary>
+        /// The contact's birthdate
+        /// </summary>
+        Birthdate,
+        /// <summary>
+        /// The contact's wedding anniversary date (that is, the day that this contact is married)
+        /// </summary>
+        Anniversary,
+        /// <summary>
+        /// The contact's gender
+        /// </summary>
+        Gender,
     }
 }

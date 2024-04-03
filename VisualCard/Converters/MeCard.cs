@@ -158,7 +158,7 @@ namespace VisualCard.Converters
             var telephones = card.GetPartsArray<TelephoneInfo>();
             var emails = card.GetPartsArray<EmailInfo>();
             var note = card.GetString(StringsEnum.Notes);
-            var birthday = card.GetPart<BirthDateInfo>();
+            var birthdays = card.GetPartsArray<BirthDateInfo>();
             var addresses = card.GetPartsArray<AddressInfo>();
             var url = card.GetString(StringsEnum.Url);
             var nicknames = card.GetPartsArray<NicknameInfo>();
@@ -171,7 +171,7 @@ namespace VisualCard.Converters
             bool hasVideophone = telephones.Length > 0 && telephones.Any((tel) => tel.HasType("video")) && !compatibility;
             bool hasEmails = emails.Length > 0;
             bool hasNote = !string.IsNullOrEmpty(note) && !compatibility;
-            bool hasBirthday = birthday is not null;
+            bool hasBirthday = birthdays.Length > 0;
             bool hasAddresses = addresses.Length > 0;
             bool hasUrl = !string.IsNullOrEmpty(url) && !compatibility;
             bool hasNicknames = nicknames.Length > 0 && !compatibility;
@@ -239,6 +239,7 @@ namespace VisualCard.Converters
             if (hasBirthday)
             {
                 StringBuilder builder = new();
+                var birthday = birthdays[0];
                 builder.Append(_meCardBirthdaySpecifier + _meCardArgumentDelimiter);
                 builder.Append($"{birthday.BirthDate:yyyyMMdd}");
                 properties.Add(builder.ToString());

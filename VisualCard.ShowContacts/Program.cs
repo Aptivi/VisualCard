@@ -87,7 +87,6 @@ namespace VisualCard.ShowContacts
                 {
                     TextWriterColor.WriteColor("----------------------------", ConsoleColors.Green);
                     TextWriterColor.WriteColor("Name:                    {0}", ConsoleColors.Green, Contact.GetString(StringsEnum.FullName));
-                    TextWriterColor.WriteColor("Revision:                {0}", ConsoleColors.Green, Contact.GetPart<RevisionInfo>());
 
                     // List names
                     foreach (var name in Contact.GetPartsArray<NameInfo>())
@@ -153,15 +152,15 @@ namespace VisualCard.ShowContacts
                     }
 
                     // List remaining
-                    var birth = Contact.GetPart<BirthDateInfo>();
-                    var wedding = Contact.GetPart<AnniversaryInfo>();
-                    var gender = Contact.GetPart<GenderInfo>();
-                    if (birth is not null)
-                        TextWriterColor.Write("Contact birthdate:       {0}", birth.BirthDate);
-                    if (wedding is not null)
-                        TextWriterColor.Write("Contact wedding date:    {0}", wedding.Anniversary);
-                    if (gender is not null)
-                        TextWriterColor.Write("Contact gender           {0} [{1}]", gender.Gender.ToString(), gender.GenderDescription);
+                    var birth = Contact.GetPartsArray<BirthDateInfo>();
+                    var wedding = Contact.GetPartsArray<AnniversaryInfo>();
+                    var gender = Contact.GetPartsArray<GenderInfo>();
+                    if (birth.Length > 0)
+                        TextWriterColor.Write("Contact birthdate:       {0}", birth[0].BirthDate);
+                    if (wedding.Length > 0)
+                        TextWriterColor.Write("Contact wedding date:    {0}", wedding[0].Anniversary);
+                    if (gender.Length > 0)
+                        TextWriterColor.Write("Contact gender           {0} [{1}]", gender[0].Gender.ToString(), gender[0].GenderDescription);
                     TextWriterColor.Write("Contact mailer:          {0}", Contact.GetString(StringsEnum.Mailer));
                     TextWriterColor.Write("Contact URL:             {0}", Contact.GetString(StringsEnum.Url));
                     TextWriterColor.Write("Contact Note:            {0}", Contact.GetString(StringsEnum.Notes));

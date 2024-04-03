@@ -38,7 +38,6 @@ namespace VisualCard.Parts
     {
         internal bool kindExplicitlySpecified = false;
         private readonly Version version;
-        private readonly Dictionary<PartsEnum, BaseCardPartInfo> parts = [];
         private readonly Dictionary<PartsArrayEnum, List<BaseCardPartInfo>> partsArray = [];
         private readonly Dictionary<StringsEnum, string> strings = [];
 
@@ -55,10 +54,10 @@ namespace VisualCard.Parts
         public TPart[] GetPartsArray<TPart>() where TPart : BaseCardPartInfo
         {
             // Get the parts enumeration according to the type
-            var key = VcardParserTools.GetPartsArrayEnumFromType(typeof(TPart));
+            var key = VcardParserTools.GetPartsArrayEnumFromType(typeof(TPart), CardVersion);
 
             // Now, return the value
-            return GetPartsArray<TPart>(key);
+            return GetPartsArray<TPart>(key.Item1);
         }
 
         /// <summary>
@@ -77,7 +76,7 @@ namespace VisualCard.Parts
             if (type != typeof(BaseCardPartInfo))
             {
                 // We don't need the base, but a derivative of it. Check it.
-                var partsArrayEnum = VcardParserTools.GetPartsArrayEnumFromType(typeof(TPart));
+                var partsArrayEnum = VcardParserTools.GetPartsArrayEnumFromType(typeof(TPart), CardVersion).Item1;
                 if (key != partsArrayEnum)
                     throw new InvalidOperationException($"Parts array enumeration [{key}] is different from the expected one [{partsArrayEnum}] according to type {typeof(TPart).Name}.");
             }
@@ -96,55 +95,6 @@ namespace VisualCard.Parts
 
             // Now, return the value
             return parts;
-        }
-
-        /// <summary>
-        /// Gets a part from a specified key
-        /// </summary>
-        /// <returns>A value or an empty part if any other type doesn't exist</returns>
-        public TPart GetPart<TPart>() where TPart : BaseCardPartInfo
-        {
-            // Get the parts enumeration according to the type
-            var key = VcardParserTools.GetPartsEnumFromType(typeof(TPart));
-
-            // Now, return the value
-            return GetPart<TPart>(key);
-        }
-
-        /// <summary>
-        /// Gets a part from a specified key
-        /// </summary>
-        /// <param name="key">A key to use</param>
-        /// <returns>A value or an empty part if any other type doesn't exist</returns>
-        public TPart GetPart<TPart>(PartsEnum key) where TPart : BaseCardPartInfo
-        {
-            // Check for version support
-            if (!VcardParserTools.EnumTypeSupported(key, CardVersion))
-                return null;
-
-            // Get the parts enumeration according to the type
-            var type = typeof(TPart);
-            if (type != typeof(BaseCardPartInfo))
-            {
-                // We don't need the base, but a derivative of it. Check it.
-                var partsEnum = VcardParserTools.GetPartsEnumFromType(typeof(TPart));
-                if (key != partsEnum)
-                    throw new InvalidOperationException($"Part enumeration [{key}] is different from the expected one [{partsEnum}] according to type {typeof(TPart).Name}.");
-            }
-
-            // Get the fallback value
-            TPart fallback = default;
-
-            // Check to see if the part has a value or not
-            bool hasValue = parts.ContainsKey(key);
-            if (!hasValue)
-                return fallback;
-
-            // Cast the values
-            TPart part = (TPart)parts[key];
-
-            // Now, return the value
-            return part;
         }
 
         /// <summary>
@@ -202,7 +152,7 @@ namespace VisualCard.Parts
                 cardBuilder.AppendLine($"{prefix}{VcardConstants._argumentDelimiter}{stringValue}");
             }
 
-            // Next, enumerate all the arrays
+            // Finally, enumerate all the arrays
             PartsArrayEnum[] partsArrayEnums = (PartsArrayEnum[])Enum.GetValues(typeof(PartsArrayEnum));
             foreach (PartsArrayEnum partsArrayEnum in partsArrayEnums)
             {
@@ -229,32 +179,6 @@ namespace VisualCard.Parts
                     partBuilder.Append($"{VcardParserTools.MakeStringBlock(partRepresentation, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length)}");
                     cardBuilder.AppendLine($"{partBuilder}");
                 }
-            }
-
-            // Finally, enumerate all the parts
-            PartsEnum[] partsEnums = (PartsEnum[])Enum.GetValues(typeof(PartsEnum));
-            foreach (PartsEnum partsEnum in partsEnums)
-            {
-                // Get the part value
-                var part = GetPart<BaseCardPartInfo>(partsEnum);
-                if (part is null)
-                    continue;
-
-                // Get the prefix
-                string prefix = VcardParserTools.GetPrefixFromPartsEnum(partsEnum);
-                var type = VcardParserTools.GetPartType(prefix);
-                string defaultType = type.defaultType;
-                string defaultValue = type.defaultValue;
-
-                // Now, assemble the line
-                var partBuilder = new StringBuilder();
-                string partRepresentation = part.ToStringVcardInternal(version);
-                string partArguments = CardBuilderTools.BuildArguments(part, version, defaultType, defaultValue);
-                string[] partArgumentsLines = partArguments.SplitNewLines();
-                partBuilder.Append($"{prefix}");
-                partBuilder.Append($"{partArguments}");
-                partBuilder.Append($"{VcardParserTools.MakeStringBlock(partRepresentation, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length)}");
-                cardBuilder.AppendLine($"{partBuilder}");
             }
 
             // End the card and return it
@@ -305,7 +229,6 @@ namespace VisualCard.Parts
 
             // Check all the properties
             return
-                PartComparison.PartsEnumEqual(source.parts, target.parts) &&
                 PartComparison.PartsArrayEnumEqual(source.partsArray, target.partsArray) &&
                 PartComparison.StringsEqual(source.strings, target.strings)
             ;
@@ -314,8 +237,7 @@ namespace VisualCard.Parts
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = -1645291684;
-            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<PartsEnum, BaseCardPartInfo>>.Default.GetHashCode(parts);
+            int hashCode = 1047895655;
             hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<PartsArrayEnum, List<BaseCardPartInfo>>>.Default.GetHashCode(partsArray);
             hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<StringsEnum, string>>.Default.GetHashCode(strings);
             return hashCode;
@@ -344,25 +266,14 @@ namespace VisualCard.Parts
             if (!partsArray.ContainsKey(key))
                 partsArray.Add(key, [value]);
             else
+            {
+                // We need to check the cardinality.
+                var cardinality = VcardParserTools.GetPartsArrayEnumFromType(enumType, CardVersion).Item2;
+                int actualAltId = partsArray[key][0].AltId;
+                if ((cardinality == PartCardinality.ShouldBeOne || cardinality == PartCardinality.MayBeOne) && actualAltId != value.AltId)
+                    throw new InvalidOperationException($"Can't overwrite part array {key} with AltID {actualAltId}, because cardinality is {cardinality} and expected AltID is {value.AltId}.");
                 partsArray[key].Add(value);
-        }
-
-        internal void SetPart(PartsEnum key, BaseCardPartInfo value)
-        {
-            if (value is null)
-                return;
-
-            // Get the appropriate type and check it
-            string prefix = VcardParserTools.GetPrefixFromPartsEnum(key);
-            var enumType = VcardParserTools.GetPartType(prefix).enumType;
-            if (value.GetType() != enumType)
-                return;
-
-            // If we don't have this key yet, add it.
-            if (!parts.ContainsKey(key))
-                parts.Add(key, value);
-            else
-                parts[key] = value;
+            }
         }
 
         internal void SetString(StringsEnum key, string value)
@@ -374,7 +285,7 @@ namespace VisualCard.Parts
             if (!strings.ContainsKey(key))
                 strings.Add(key, value);
             else
-                strings[key] = value;
+                throw new InvalidOperationException($"Can't overwrite string {key}.");
         }
 
         internal Card(Version version) =>

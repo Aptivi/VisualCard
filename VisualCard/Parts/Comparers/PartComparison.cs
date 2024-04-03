@@ -25,28 +25,6 @@ namespace VisualCard.Parts.Comparers
 {
     internal static class PartComparison
     {
-        internal static bool PartsEnumEqual(
-            IDictionary<PartsEnum, BaseCardPartInfo> source,
-            IDictionary<PartsEnum, BaseCardPartInfo> target)
-        {
-            // Verify the dictionaries
-            if (!VerifyDicts(source, target))
-                return false;
-
-            // If they are really equal using the equals operator, return true.
-            if (source == target)
-                return true;
-
-            // Now, test the equality
-            bool equal = source.All(kvp =>
-            {
-                bool exists = target.TryGetValue(kvp.Key, out BaseCardPartInfo part);
-                bool partsEqual = EqualityComparer<BaseCardPartInfo>.Default.Equals(kvp.Value, part);
-                return exists && partsEqual;
-            });
-            return equal;
-        }
-        
         internal static bool PartsArrayEnumEqual(
             IDictionary<PartsArrayEnum, List<BaseCardPartInfo>> source,
             IDictionary<PartsArrayEnum, List<BaseCardPartInfo>> target)

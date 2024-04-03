@@ -116,6 +116,8 @@ namespace VisualCard.Parsers
                 PartsArrayEnum.Sounds => true,
                 PartsArrayEnum.Categories => true,
                 PartsArrayEnum.Key => true,
+                PartsArrayEnum.Revision => true,
+                PartsArrayEnum.Birthdate => true,
                 PartsArrayEnum.NonstandardNames => true,
                 PartsArrayEnum.Impps => cardVersion.Major >= 3,
                 PartsArrayEnum.Nicknames => cardVersion.Major >= 3,
@@ -123,19 +125,10 @@ namespace VisualCard.Parsers
                 PartsArrayEnum.Agents => cardVersion.Major != 4,
                 PartsArrayEnum.Langs => cardVersion.Major >= 4,
                 PartsArrayEnum.Xml => cardVersion.Major == 4,
+                PartsArrayEnum.Anniversary => cardVersion.Major >= 4,
+                PartsArrayEnum.Gender => cardVersion.Major >= 4,
                 _ =>
                     throw new InvalidOperationException("Invalid parts array enumeration type to get supported value"),
-            };
-
-        internal static bool EnumTypeSupported(PartsEnum partsEnum, Version cardVersion) =>
-            partsEnum switch
-            {
-                PartsEnum.Revision => true,
-                PartsEnum.Birthdate => true,
-                PartsEnum.Anniversary => cardVersion.Major >= 4,
-                PartsEnum.Gender => cardVersion.Major >= 4,
-                _ =>
-                    throw new InvalidOperationException("Invalid parts enumeration type to get supported value"),
             };
 
         internal static string GetPrefixFromStringsEnum(StringsEnum stringsEnum) =>
@@ -155,17 +148,6 @@ namespace VisualCard.Parsers
                 StringsEnum.Url => VcardConstants._urlSpecifier,
                 _ =>
                     throw new NotImplementedException($"String enumeration {stringsEnum} is not implemented.")
-            };
-
-        internal static string GetPrefixFromPartsEnum(PartsEnum partsEnum) =>
-            partsEnum switch
-            {
-                PartsEnum.Birthdate => VcardConstants._birthSpecifier,
-                PartsEnum.Revision => VcardConstants._revSpecifier,
-                PartsEnum.Anniversary => VcardConstants._anniversarySpecifier,
-                PartsEnum.Gender => VcardConstants._genderSpecifier,
-                _ =>
-                    throw new NotImplementedException($"String enumeration {partsEnum} is not implemented.")
             };
 
         internal static string GetPrefixFromPartsArrayEnum(PartsArrayEnum partsArrayEnum) =>
@@ -191,76 +173,71 @@ namespace VisualCard.Parsers
                 PartsArrayEnum.Langs => VcardConstants._langSpecifier,
                 PartsArrayEnum.Xml => VcardConstants._xmlSpecifier,
                 PartsArrayEnum.Key => VcardConstants._keySpecifier,
+                PartsArrayEnum.Birthdate => VcardConstants._birthSpecifier,
+                PartsArrayEnum.Revision => VcardConstants._revSpecifier,
+                PartsArrayEnum.Anniversary => VcardConstants._anniversarySpecifier,
+                PartsArrayEnum.Gender => VcardConstants._genderSpecifier,
                 PartsArrayEnum.NonstandardNames => VcardConstants._xSpecifier,
                 _ =>
                     throw new NotImplementedException($"String enumeration {partsArrayEnum} is not implemented.")
             };
 
-        internal static PartsEnum GetPartsEnumFromType(Type partsType)
-        {
-            if (partsType == null)
-                throw new NotImplementedException("Type is not provided.");
-
-            // Now, iterate through every type
-            if (partsType == typeof(RevisionInfo))
-                return PartsEnum.Revision;
-            else if (partsType == typeof(BirthDateInfo))
-                return PartsEnum.Birthdate;
-            else if (partsType == typeof(AnniversaryInfo))
-                return PartsEnum.Anniversary;
-            else if (partsType == typeof(GenderInfo))
-                return PartsEnum.Gender;
-            throw new NotImplementedException($"Type {partsType.Name} doesn't represent any part.");
-        }
-
-        internal static PartsArrayEnum GetPartsArrayEnumFromType(Type partsArrayType)
+        internal static (PartsArrayEnum, PartCardinality) GetPartsArrayEnumFromType(Type partsArrayType, Version cardVersion)
         {
             if (partsArrayType == null)
                 throw new NotImplementedException("Type is not provided.");
 
             // Now, iterate through every type
             if (partsArrayType == typeof(NameInfo))
-                return PartsArrayEnum.Names;
+                return (PartsArrayEnum.Names, cardVersion.Major == 4 ? PartCardinality.MayBeOne : PartCardinality.ShouldBeOne);
             else if (partsArrayType == typeof(TelephoneInfo))
-                return PartsArrayEnum.Telephones;
+                return (PartsArrayEnum.Telephones, PartCardinality.Any);
             else if (partsArrayType == typeof(AddressInfo))
-                return PartsArrayEnum.Addresses;
+                return (PartsArrayEnum.Addresses, PartCardinality.Any);
             else if (partsArrayType == typeof(LabelAddressInfo))
-                return PartsArrayEnum.Labels;
+                return (PartsArrayEnum.Labels, PartCardinality.Any);
             else if (partsArrayType == typeof(AgentInfo))
-                return PartsArrayEnum.Agents;
+                return (PartsArrayEnum.Agents, PartCardinality.Any);
             else if (partsArrayType == typeof(EmailInfo))
-                return PartsArrayEnum.Mails;
+                return (PartsArrayEnum.Mails, PartCardinality.Any);
             else if (partsArrayType == typeof(OrganizationInfo))
-                return PartsArrayEnum.Organizations;
+                return (PartsArrayEnum.Organizations, PartCardinality.Any);
             else if (partsArrayType == typeof(TitleInfo))
-                return PartsArrayEnum.Titles;
+                return (PartsArrayEnum.Titles, PartCardinality.Any);
             else if (partsArrayType == typeof(PhotoInfo))
-                return PartsArrayEnum.Photos;
+                return (PartsArrayEnum.Photos, PartCardinality.Any);
             else if (partsArrayType == typeof(NicknameInfo))
-                return PartsArrayEnum.Nicknames;
+                return (PartsArrayEnum.Nicknames, PartCardinality.Any);
             else if (partsArrayType == typeof(RoleInfo))
-                return PartsArrayEnum.Roles;
+                return (PartsArrayEnum.Roles, PartCardinality.Any);
             else if (partsArrayType == typeof(LogoInfo))
-                return PartsArrayEnum.Logos;
+                return (PartsArrayEnum.Logos, PartCardinality.Any);
             else if (partsArrayType == typeof(TimeDateZoneInfo))
-                return PartsArrayEnum.TimeZone;
+                return (PartsArrayEnum.TimeZone, PartCardinality.Any);
             else if (partsArrayType == typeof(GeoInfo))
-                return PartsArrayEnum.Geo;
+                return (PartsArrayEnum.Geo, PartCardinality.Any);
             else if (partsArrayType == typeof(SoundInfo))
-                return PartsArrayEnum.Sounds;
+                return (PartsArrayEnum.Sounds, PartCardinality.Any);
             else if (partsArrayType == typeof(ImppInfo))
-                return PartsArrayEnum.Impps;
+                return (PartsArrayEnum.Impps, PartCardinality.Any);
             else if (partsArrayType == typeof(CategoryInfo))
-                return PartsArrayEnum.Categories;
+                return (PartsArrayEnum.Categories, PartCardinality.Any);
             else if (partsArrayType == typeof(LangInfo))
-                return PartsArrayEnum.Langs;
+                return (PartsArrayEnum.Langs, PartCardinality.Any);
             else if (partsArrayType == typeof(XmlInfo))
-                return PartsArrayEnum.Xml;
+                return (PartsArrayEnum.Xml, PartCardinality.Any);
             else if (partsArrayType == typeof(KeyInfo))
-                return PartsArrayEnum.Key;
+                return (PartsArrayEnum.Key, PartCardinality.Any);
             else if (partsArrayType == typeof(XNameInfo))
-                return PartsArrayEnum.NonstandardNames;
+                return (PartsArrayEnum.NonstandardNames, PartCardinality.Any);
+            else if (partsArrayType == typeof(RevisionInfo))
+                return (PartsArrayEnum.Revision, PartCardinality.MayBeOne);
+            else if (partsArrayType == typeof(BirthDateInfo))
+                return (PartsArrayEnum.Birthdate, PartCardinality.MayBeOne);
+            else if (partsArrayType == typeof(AnniversaryInfo))
+                return (PartsArrayEnum.Anniversary, PartCardinality.MayBeOne);
+            else if (partsArrayType == typeof(GenderInfo))
+                return (PartsArrayEnum.Gender, PartCardinality.MayBeOne);
             throw new NotImplementedException($"Type {partsArrayType.Name} doesn't represent any part array.");
         }
 
@@ -288,10 +265,10 @@ namespace VisualCard.Parsers
                 VcardConstants._xmlSpecifier => (PartType.PartsArray, PartsArrayEnum.Xml, typeof(XmlInfo), XmlInfo.FromStringVcardStatic, "", ""),
                 VcardConstants._keySpecifier => (PartType.PartsArray, PartsArrayEnum.Key, typeof(KeyInfo), KeyInfo.FromStringVcardStatic, "", ""),
                 VcardConstants._xSpecifier => (PartType.PartsArray, PartsArrayEnum.NonstandardNames, typeof(XNameInfo), XNameInfo.FromStringVcardStatic, "", ""),
-                VcardConstants._revSpecifier => (PartType.Parts, PartsEnum.Revision, typeof(RevisionInfo), RevisionInfo.FromStringVcardStatic, "", ""),
-                VcardConstants._birthSpecifier => (PartType.Parts, PartsEnum.Birthdate, typeof(BirthDateInfo), BirthDateInfo.FromStringVcardStatic, "", ""),
-                VcardConstants._anniversarySpecifier => (PartType.Parts, PartsEnum.Anniversary, typeof(AnniversaryInfo), AnniversaryInfo.FromStringVcardStatic, "", ""),
-                VcardConstants._genderSpecifier => (PartType.Parts, PartsEnum.Gender, typeof(GenderInfo), GenderInfo.FromStringVcardStatic, "", ""),
+                VcardConstants._revSpecifier => (PartType.PartsArray, PartsArrayEnum.Revision, typeof(RevisionInfo), RevisionInfo.FromStringVcardStatic, "", ""),
+                VcardConstants._birthSpecifier => (PartType.PartsArray, PartsArrayEnum.Birthdate, typeof(BirthDateInfo), BirthDateInfo.FromStringVcardStatic, "", ""),
+                VcardConstants._anniversarySpecifier => (PartType.PartsArray, PartsArrayEnum.Anniversary, typeof(AnniversaryInfo), AnniversaryInfo.FromStringVcardStatic, "", ""),
+                VcardConstants._genderSpecifier => (PartType.PartsArray, PartsArrayEnum.Gender, typeof(GenderInfo), GenderInfo.FromStringVcardStatic, "", ""),
                 VcardConstants._fullNameSpecifier => (PartType.Strings, StringsEnum.FullName, null, null, "", ""),
                 VcardConstants._urlSpecifier => (PartType.Strings, StringsEnum.Url, null, null, "", ""),
                 VcardConstants._noteSpecifier => (PartType.Strings, StringsEnum.Notes, null, null, "", ""),

@@ -29,10 +29,6 @@ namespace VisualCard.Parts.Enums
         /// </summary>
         Strings,
         /// <summary>
-        /// Parts that can't be expressed as arrays
-        /// </summary>
-        Parts,
-        /// <summary>
         /// Parts that can be expressed as arrays
         /// </summary>
         PartsArray

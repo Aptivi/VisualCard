@@ -108,10 +108,16 @@ namespace VisualCard.Parsers
                 // Now, parse a line
                 try
                 {
+                    // Get the part type
+                    bool xNonstandard = prefix.StartsWith(VcardConstants._xSpecifier);
+                    bool specifierRequired = CardVersion.Major >= 3;
+                    var (type, enumeration, classType, fromString, defaultType, defaultValue) = VcardParserTools.GetPartType(xNonstandard ? VcardConstants._xSpecifier : prefix);
+                    
+                    // Handle arguments
                     if (isWithType)
                     {
                         // If we have more than one argument, check for ALTID
-                        if (CardVersion.Major >= 4)
+                        if (CardVersion.Major >= 4 && type == PartType.PartsArray)
                         {
                             if (splitArgs[0].StartsWith(VcardConstants._altIdArgumentSpecifier))
                             {
@@ -141,10 +147,7 @@ namespace VisualCard.Parsers
                         ));
                     }
 
-                    // Get the part type and handle it
-                    bool xNonstandard = prefix.StartsWith(VcardConstants._xSpecifier);
-                    bool specifierRequired = CardVersion.Major >= 3;
-                    var (type, enumeration, classType, fromString, defaultType, defaultValue) = VcardParserTools.GetPartType(xNonstandard ? VcardConstants._xSpecifier : prefix);
+                    // Handle the part type
                     string[] elementTypes = VcardParserTools.GetTypes(splitArgs, defaultType, specifierRequired);
                     string values = VcardParserTools.GetValuesString(splitArgs, defaultValue, VcardConstants._valueArgumentSpecifier);
                     switch (type)
@@ -194,19 +197,6 @@ namespace VisualCard.Parsers
                                 card.SetString(stringType, finalValue);
                             }
                             break;
-                        case PartType.Parts:
-                            {
-                                PartsEnum partsType = (PartsEnum)enumeration;
-                                Type partsClass = classType;
-                                bool supported = VcardParserTools.EnumTypeSupported(partsType, CardVersion);
-                                if (!supported)
-                                    continue;
-
-                                // Now, get the part info
-                                var partInfo = fromString(value, [.. finalArgs], altId, elementTypes, values, CardVersion);
-                                card.SetPart(partsType, partInfo);
-                            }
-                            break;
                         case PartType.PartsArray:
                             {
                                 PartsArrayEnum partsArrayType = (PartsArrayEnum)enumeration;
@@ -241,20 +231,10 @@ namespace VisualCard.Parsers
             // Track the required fields
             List<string> expectedFields = [];
             List<string> actualFields = [];
-            switch (CardVersion.ToString(2))
-            {
-                case "2.1":
-                    expectedFields.Add(VcardConstants._nameSpecifier);
-                    break;
-                case "4.0":
-                    expectedFields.Add(VcardConstants._fullNameSpecifier);
-                    break;
-                case "3.0":
-                case "5.0":
-                    expectedFields.Add(VcardConstants._nameSpecifier);
-                    expectedFields.Add(VcardConstants._fullNameSpecifier);
-                    break;
-            }
+            if (VcardParserTools.GetPartsArrayEnumFromType(typeof(NameInfo), CardVersion).Item2 == PartCardinality.ShouldBeOne)
+                expectedFields.Add(VcardConstants._nameSpecifier);
+            if (CardVersion.Major >= 3)
+                expectedFields.Add(VcardConstants._fullNameSpecifier);
 
             // Requirement checks
             if (expectedFields.Contains(VcardConstants._nameSpecifier))
@@ -275,14 +255,6 @@ namespace VisualCard.Parsers
             actualFields.Sort();
             if (!actualFields.SequenceEqual(expectedFields))
                 throw new InvalidDataException($"The following keys [{string.Join(", ", expectedFields)}] are required. Got [{string.Join(", ", actualFields)}].");
-
-            // Check the cardinality of properties
-            CheckCardinality(card);
-        }
-
-        internal void CheckCardinality(Card card)
-        {
-            // TODO: Scaffolding. Actually check the cardinality.
         }
 
         internal VcardParser(string[] cardContent, Version cardVersion)

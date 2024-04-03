@@ -402,7 +402,7 @@ namespace VisualCard.Tests
             IMPP;TYPE=HOME:aim:IM
             IMPP;TYPE=HOME:msn:Windows LIVE
             IMPP;TYPE=HOME:ymsgr:Yahoo
-            N:Navasquillo;Neville;Neville\,Nevile;Mr.;Jr.
+            N;ALTID=0;LANGUAGE=en:Navasquillo;Neville;Neville\,Nevile;Mr.;Jr.
             N;ALTID=0;LANGUAGE=de:NAVASQUILLO;Neville;Neville\,Nevile;Mr.;Jr.
             NOTE:Notes
             ORG:Organization
@@ -467,7 +467,7 @@ namespace VisualCard.Tests
             IMPP;TYPE=HOME:aim:IM
             IMPP;TYPE=HOME:msn:Windows LIVE
             IMPP;TYPE=HOME:ymsgr:Yahoo
-            N:Navasquillo;Neville;Neville\,Nevile;Mr.;Jr.
+            N;ALTID=0;LANGUAGE=en:Navasquillo;Neville;Neville\,Nevile;Mr.;Jr.
             N;ALTID=0;LANGUAGE=de:NAVASQUILLO;Neville;Neville\,Nevile;Mr.;Jr.
             NOTE:Notes
             ORG:Organization
