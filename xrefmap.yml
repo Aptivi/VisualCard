@@ -107,12 +107,15 @@ references:
   isSpec: "True"
   fullName: VisualCard.Converters.MeCard.GetContactsFromMeCardString
   nameWithType: MeCard.GetContactsFromMeCardString
-- uid: VisualCard.Converters.MeCard.SaveCardToMeCardString(VisualCard.Parts.Card)
-  name: SaveCardToMeCardString(Card)
-  href: api/VisualCard.Converters.MeCard.html#VisualCard_Converters_MeCard_SaveCardToMeCardString_VisualCard_Parts_Card_
-  commentId: M:VisualCard.Converters.MeCard.SaveCardToMeCardString(VisualCard.Parts.Card)
-  fullName: VisualCard.Converters.MeCard.SaveCardToMeCardString(VisualCard.Parts.Card)
-  nameWithType: MeCard.SaveCardToMeCardString(Card)
+- uid: VisualCard.Converters.MeCard.SaveCardToMeCardString(VisualCard.Parts.Card,System.Boolean)
+  name: SaveCardToMeCardString(Card, bool)
+  href: api/VisualCard.Converters.MeCard.html#VisualCard_Converters_MeCard_SaveCardToMeCardString_VisualCard_Parts_Card_System_Boolean_
+  commentId: M:VisualCard.Converters.MeCard.SaveCardToMeCardString(VisualCard.Parts.Card,System.Boolean)
+  name.vb: SaveCardToMeCardString(Card, Boolean)
+  fullName: VisualCard.Converters.MeCard.SaveCardToMeCardString(VisualCard.Parts.Card, bool)
+  fullName.vb: VisualCard.Converters.MeCard.SaveCardToMeCardString(VisualCard.Parts.Card, Boolean)
+  nameWithType: MeCard.SaveCardToMeCardString(Card, bool)
+  nameWithType.vb: MeCard.SaveCardToMeCardString(Card, Boolean)
 - uid: VisualCard.Converters.MeCard.SaveCardToMeCardString*
   name: SaveCardToMeCardString
   href: api/VisualCard.Converters.MeCard.html#VisualCard_Converters_MeCard_SaveCardToMeCardString_
@@ -237,6 +240,22 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.BaseCardPartInfo.GetHashCode
   nameWithType: BaseCardPartInfo.GetHashCode
+- uid: VisualCard.Parts.BaseCardPartInfo.HasType(System.String)
+  name: HasType(string)
+  href: api/VisualCard.Parts.BaseCardPartInfo.html#VisualCard_Parts_BaseCardPartInfo_HasType_System_String_
+  commentId: M:VisualCard.Parts.BaseCardPartInfo.HasType(System.String)
+  name.vb: HasType(String)
+  fullName: VisualCard.Parts.BaseCardPartInfo.HasType(string)
+  fullName.vb: VisualCard.Parts.BaseCardPartInfo.HasType(String)
+  nameWithType: BaseCardPartInfo.HasType(string)
+  nameWithType.vb: BaseCardPartInfo.HasType(String)
+- uid: VisualCard.Parts.BaseCardPartInfo.HasType*
+  name: HasType
+  href: api/VisualCard.Parts.BaseCardPartInfo.html#VisualCard_Parts_BaseCardPartInfo_HasType_
+  commentId: Overload:VisualCard.Parts.BaseCardPartInfo.HasType
+  isSpec: "True"
+  fullName: VisualCard.Parts.BaseCardPartInfo.HasType
+  nameWithType: BaseCardPartInfo.HasType
 - uid: VisualCard.Parts.BaseCardPartInfo.ValueType
   name: ValueType
   href: api/VisualCard.Parts.BaseCardPartInfo.html#VisualCard_Parts_BaseCardPartInfo_ValueType
