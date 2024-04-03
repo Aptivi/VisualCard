@@ -119,22 +119,28 @@ namespace VisualCard.Parsers
                         // If we have more than one argument, check for ALTID
                         if (CardVersion.Major >= 4 && type == PartType.PartsArray)
                         {
-                            if (splitArgs[0].StartsWith(VcardConstants._altIdArgumentSpecifier))
+                            var cardinality = VcardParserTools.GetPartsArrayEnumFromType(classType, CardVersion).Item2;
+                            if (cardinality != PartCardinality.MayBeOneNoAltId && cardinality != PartCardinality.ShouldBeOneNoAltId &&
+                                cardinality != PartCardinality.AtLeastOneNoAltId && cardinality != PartCardinality.AnyNoAltId)
                             {
-                                // We need ALTID to be numeric
-                                if (!int.TryParse(splitArgs[0].Substring(VcardConstants._altIdArgumentSpecifier.Length), out altId))
-                                    throw new InvalidDataException("ALTID must be numeric");
+                                // The type supports ALTID.
+                                if (splitArgs[0].StartsWith(VcardConstants._altIdArgumentSpecifier))
+                                {
+                                    // We need ALTID to be numeric
+                                    if (!int.TryParse(splitArgs[0].Substring(VcardConstants._altIdArgumentSpecifier.Length), out altId))
+                                        throw new InvalidDataException("ALTID must be numeric");
 
-                                // We need ALTID to be positive
-                                if (altId < 0)
-                                    throw new InvalidDataException("ALTID must be positive");
+                                    // We need ALTID to be positive
+                                    if (altId < 0)
+                                        throw new InvalidDataException("ALTID must be positive");
 
-                                // Here, we require arguments for ALTID
-                                if (splitArgs.Length <= 1)
-                                    throw new InvalidDataException("ALTID must have one or more arguments to specify why this instance is an alternative");
+                                    // Here, we require arguments for ALTID
+                                    if (splitArgs.Length <= 1)
+                                        throw new InvalidDataException("ALTID must have one or more arguments to specify why this instance is an alternative");
+                                }
+                                else if (splitArgs.Any((arg) => arg.StartsWith(VcardConstants._altIdArgumentSpecifier)))
+                                    throw new InvalidDataException("ALTID must be exactly in the first position of the argument, because arguments that follow it are required to be specified");
                             }
-                            else if (splitArgs.Any((arg) => arg.StartsWith(VcardConstants._altIdArgumentSpecifier)))
-                                throw new InvalidDataException("ALTID must be exactly in the first position of the argument, because arguments that follow it are required to be specified");
                         }
 
                         // Finalize the arguments

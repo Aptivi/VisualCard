@@ -231,7 +231,7 @@ namespace VisualCard.Parsers
             else if (partsArrayType == typeof(XNameInfo))
                 return (PartsArrayEnum.NonstandardNames, PartCardinality.Any);
             else if (partsArrayType == typeof(RevisionInfo))
-                return (PartsArrayEnum.Revision, PartCardinality.MayBeOne);
+                return (PartsArrayEnum.Revision, PartCardinality.MayBeOneNoAltId);
             else if (partsArrayType == typeof(BirthDateInfo))
                 return (PartsArrayEnum.Birthdate, PartCardinality.MayBeOne);
             else if (partsArrayType == typeof(AnniversaryInfo))

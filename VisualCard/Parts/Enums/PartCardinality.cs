@@ -41,6 +41,14 @@ namespace VisualCard.Parts.Enums
         /// </summary>
         ShouldBeOne,
         /// <summary>
+        /// Cardinality: * (One or more instances per vCard MAY be present.) - AltID not supported
+        /// </summary>
+        AnyNoAltId,
+        /// <summary>
+        /// Cardinality: 1* (One or more instances per vCard MUST be present.) - AltID not supported
+        /// </summary>
+        AtLeastOneNoAltId,
+        /// <summary>
         /// Cardinality: *1 (Exactly one instance per vCard MAY be present.) - AltID not supported
         /// </summary>
         MayBeOneNoAltId,
