@@ -367,31 +367,6 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Card.GetHashCode
   nameWithType: Card.GetHashCode
-- uid: VisualCard.Parts.Card.GetPart*
-  name: GetPart
-  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_GetPart_
-  commentId: Overload:VisualCard.Parts.Card.GetPart
-  isSpec: "True"
-  fullName: VisualCard.Parts.Card.GetPart
-  nameWithType: Card.GetPart
-- uid: VisualCard.Parts.Card.GetPart``1
-  name: GetPart<TPart>()
-  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_GetPart__1
-  commentId: M:VisualCard.Parts.Card.GetPart``1
-  name.vb: GetPart(Of TPart)()
-  fullName: VisualCard.Parts.Card.GetPart<TPart>()
-  fullName.vb: VisualCard.Parts.Card.GetPart(Of TPart)()
-  nameWithType: Card.GetPart<TPart>()
-  nameWithType.vb: Card.GetPart(Of TPart)()
-- uid: VisualCard.Parts.Card.GetPart``1(VisualCard.Parts.Enums.PartsEnum)
-  name: GetPart<TPart>(PartsEnum)
-  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_GetPart__1_VisualCard_Parts_Enums_PartsEnum_
-  commentId: M:VisualCard.Parts.Card.GetPart``1(VisualCard.Parts.Enums.PartsEnum)
-  name.vb: GetPart(Of TPart)(PartsEnum)
-  fullName: VisualCard.Parts.Card.GetPart<TPart>(VisualCard.Parts.Enums.PartsEnum)
-  fullName.vb: VisualCard.Parts.Card.GetPart(Of TPart)(VisualCard.Parts.Enums.PartsEnum)
-  nameWithType: Card.GetPart<TPart>(PartsEnum)
-  nameWithType.vb: Card.GetPart(Of TPart)(PartsEnum)
 - uid: VisualCard.Parts.Card.GetPartsArray*
   name: GetPartsArray
   href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_GetPartsArray_
@@ -522,12 +497,6 @@ references:
   commentId: T:VisualCard.Parts.Enums.PartType
   fullName: VisualCard.Parts.Enums.PartType
   nameWithType: PartType
-- uid: VisualCard.Parts.Enums.PartType.Parts
-  name: Parts
-  href: api/VisualCard.Parts.Enums.PartType.html#VisualCard_Parts_Enums_PartType_Parts
-  commentId: F:VisualCard.Parts.Enums.PartType.Parts
-  fullName: VisualCard.Parts.Enums.PartType.Parts
-  nameWithType: PartType.Parts
 - uid: VisualCard.Parts.Enums.PartType.PartsArray
   name: PartsArray
   href: api/VisualCard.Parts.Enums.PartType.html#VisualCard_Parts_Enums_PartType_PartsArray
@@ -558,12 +527,30 @@ references:
   commentId: F:VisualCard.Parts.Enums.PartsArrayEnum.Agents
   fullName: VisualCard.Parts.Enums.PartsArrayEnum.Agents
   nameWithType: PartsArrayEnum.Agents
+- uid: VisualCard.Parts.Enums.PartsArrayEnum.Anniversary
+  name: Anniversary
+  href: api/VisualCard.Parts.Enums.PartsArrayEnum.html#VisualCard_Parts_Enums_PartsArrayEnum_Anniversary
+  commentId: F:VisualCard.Parts.Enums.PartsArrayEnum.Anniversary
+  fullName: VisualCard.Parts.Enums.PartsArrayEnum.Anniversary
+  nameWithType: PartsArrayEnum.Anniversary
+- uid: VisualCard.Parts.Enums.PartsArrayEnum.Birthdate
+  name: Birthdate
+  href: api/VisualCard.Parts.Enums.PartsArrayEnum.html#VisualCard_Parts_Enums_PartsArrayEnum_Birthdate
+  commentId: F:VisualCard.Parts.Enums.PartsArrayEnum.Birthdate
+  fullName: VisualCard.Parts.Enums.PartsArrayEnum.Birthdate
+  nameWithType: PartsArrayEnum.Birthdate
 - uid: VisualCard.Parts.Enums.PartsArrayEnum.Categories
   name: Categories
   href: api/VisualCard.Parts.Enums.PartsArrayEnum.html#VisualCard_Parts_Enums_PartsArrayEnum_Categories
   commentId: F:VisualCard.Parts.Enums.PartsArrayEnum.Categories
   fullName: VisualCard.Parts.Enums.PartsArrayEnum.Categories
   nameWithType: PartsArrayEnum.Categories
+- uid: VisualCard.Parts.Enums.PartsArrayEnum.Gender
+  name: Gender
+  href: api/VisualCard.Parts.Enums.PartsArrayEnum.html#VisualCard_Parts_Enums_PartsArrayEnum_Gender
+  commentId: F:VisualCard.Parts.Enums.PartsArrayEnum.Gender
+  fullName: VisualCard.Parts.Enums.PartsArrayEnum.Gender
+  nameWithType: PartsArrayEnum.Gender
 - uid: VisualCard.Parts.Enums.PartsArrayEnum.Geo
   name: Geo
   href: api/VisualCard.Parts.Enums.PartsArrayEnum.html#VisualCard_Parts_Enums_PartsArrayEnum_Geo
@@ -636,6 +623,12 @@ references:
   commentId: F:VisualCard.Parts.Enums.PartsArrayEnum.Photos
   fullName: VisualCard.Parts.Enums.PartsArrayEnum.Photos
   nameWithType: PartsArrayEnum.Photos
+- uid: VisualCard.Parts.Enums.PartsArrayEnum.Revision
+  name: Revision
+  href: api/VisualCard.Parts.Enums.PartsArrayEnum.html#VisualCard_Parts_Enums_PartsArrayEnum_Revision
+  commentId: F:VisualCard.Parts.Enums.PartsArrayEnum.Revision
+  fullName: VisualCard.Parts.Enums.PartsArrayEnum.Revision
+  nameWithType: PartsArrayEnum.Revision
 - uid: VisualCard.Parts.Enums.PartsArrayEnum.Roles
   name: Roles
   href: api/VisualCard.Parts.Enums.PartsArrayEnum.html#VisualCard_Parts_Enums_PartsArrayEnum_Roles
@@ -672,36 +665,6 @@ references:
   commentId: F:VisualCard.Parts.Enums.PartsArrayEnum.Xml
   fullName: VisualCard.Parts.Enums.PartsArrayEnum.Xml
   nameWithType: PartsArrayEnum.Xml
-- uid: VisualCard.Parts.Enums.PartsEnum
-  name: PartsEnum
-  href: api/VisualCard.Parts.Enums.PartsEnum.html
-  commentId: T:VisualCard.Parts.Enums.PartsEnum
-  fullName: VisualCard.Parts.Enums.PartsEnum
-  nameWithType: PartsEnum
-- uid: VisualCard.Parts.Enums.PartsEnum.Anniversary
-  name: Anniversary
-  href: api/VisualCard.Parts.Enums.PartsEnum.html#VisualCard_Parts_Enums_PartsEnum_Anniversary
-  commentId: F:VisualCard.Parts.Enums.PartsEnum.Anniversary
-  fullName: VisualCard.Parts.Enums.PartsEnum.Anniversary
-  nameWithType: PartsEnum.Anniversary
-- uid: VisualCard.Parts.Enums.PartsEnum.Birthdate
-  name: Birthdate
-  href: api/VisualCard.Parts.Enums.PartsEnum.html#VisualCard_Parts_Enums_PartsEnum_Birthdate
-  commentId: F:VisualCard.Parts.Enums.PartsEnum.Birthdate
-  fullName: VisualCard.Parts.Enums.PartsEnum.Birthdate
-  nameWithType: PartsEnum.Birthdate
-- uid: VisualCard.Parts.Enums.PartsEnum.Gender
-  name: Gender
-  href: api/VisualCard.Parts.Enums.PartsEnum.html#VisualCard_Parts_Enums_PartsEnum_Gender
-  commentId: F:VisualCard.Parts.Enums.PartsEnum.Gender
-  fullName: VisualCard.Parts.Enums.PartsEnum.Gender
-  nameWithType: PartsEnum.Gender
-- uid: VisualCard.Parts.Enums.PartsEnum.Revision
-  name: Revision
-  href: api/VisualCard.Parts.Enums.PartsEnum.html#VisualCard_Parts_Enums_PartsEnum_Revision
-  commentId: F:VisualCard.Parts.Enums.PartsEnum.Revision
-  fullName: VisualCard.Parts.Enums.PartsEnum.Revision
-  nameWithType: PartsEnum.Revision
 - uid: VisualCard.Parts.Enums.StringsEnum
   name: StringsEnum
   href: api/VisualCard.Parts.Enums.StringsEnum.html
