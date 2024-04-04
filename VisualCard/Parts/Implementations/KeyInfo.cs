@@ -63,7 +63,8 @@ namespace VisualCard.Parts.Implementations
             {
                 // vCard 3.0 handles this in a different way
                 keyEncoding = VcardParserTools.GetValuesString(finalArgs, "b", VcardConstants._encodingArgumentSpecifier);
-                if (!keyEncoding.Equals("b", StringComparison.OrdinalIgnoreCase))
+                if (!keyEncoding.Equals("b", StringComparison.OrdinalIgnoreCase) &&
+                    !keyEncoding.Equals("BLOB", StringComparison.OrdinalIgnoreCase))
                 {
                     // Since we don't need embedded keys, we need to check a URL.
                     if (!Uri.TryCreate(value, UriKind.Absolute, out Uri uri))

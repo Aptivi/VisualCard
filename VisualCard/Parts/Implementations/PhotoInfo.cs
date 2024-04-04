@@ -63,7 +63,9 @@ namespace VisualCard.Parts.Implementations
             {
                 // vCard 3.0 handles this in a different way
                 photoEncoding = VcardParserTools.GetValuesString(finalArgs, "b", VcardConstants._encodingArgumentSpecifier);
-                if (!photoEncoding.Equals("b", StringComparison.OrdinalIgnoreCase) && !photoEncoding.Equals("BASE64", StringComparison.OrdinalIgnoreCase))
+                if (!photoEncoding.Equals("b", StringComparison.OrdinalIgnoreCase) &&
+                    !photoEncoding.Equals("BASE64", StringComparison.OrdinalIgnoreCase) &&
+                    !photoEncoding.Equals("BLOB", StringComparison.OrdinalIgnoreCase))
                 {
                     // Since we don't need embedded photos, we need to check a URL.
                     if (!Uri.TryCreate(value, UriKind.Absolute, out Uri uri))

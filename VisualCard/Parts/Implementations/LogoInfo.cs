@@ -63,7 +63,9 @@ namespace VisualCard.Parts.Implementations
             {
                 // vCard 3.0 handles this in a different way
                 logoEncoding = VcardParserTools.GetValuesString(finalArgs, "b", VcardConstants._encodingArgumentSpecifier);
-                if (!logoEncoding.Equals("b", StringComparison.OrdinalIgnoreCase) && !logoEncoding.Equals("BASE64", StringComparison.OrdinalIgnoreCase))
+                if (!logoEncoding.Equals("b", StringComparison.OrdinalIgnoreCase) &&
+                    !logoEncoding.Equals("BASE64", StringComparison.OrdinalIgnoreCase) &&
+                    !logoEncoding.Equals("BLOB", StringComparison.OrdinalIgnoreCase))
                 {
                     // Since we don't need embedded logos, we need to check a URL.
                     if (!Uri.TryCreate(value, UriKind.Absolute, out Uri uri))
