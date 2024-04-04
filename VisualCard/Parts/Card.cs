@@ -33,7 +33,7 @@ namespace VisualCard.Parts
     /// <summary>
     /// A vCard card instance
     /// </summary>
-    [DebuggerDisplay("vCard version {CardVersion.ToString()}, parts: (P [{parts.Count}] | A [{partsArray.Count}] | S [{strings.Count}]), explicit kind: {kindExplicitlySpecified}")]
+    [DebuggerDisplay("vCard version {CardVersion.ToString()}, parts: (A [{partsArray.Count}] | S [{strings.Count}]), explicit kind: {kindExplicitlySpecified}")]
     public class Card : IEquatable<Card>
     {
         internal bool kindExplicitlySpecified = false;
