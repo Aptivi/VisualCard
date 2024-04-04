@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using System.IO;
 using VisualCard.Converters;
 using VisualCard.Exceptions;
+using VisualCard.Extras;
 using VisualCard.Parts;
 
 namespace VisualCard.Tests
@@ -87,6 +88,27 @@ namespace VisualCard.Tests
             {
                 string saved = Should.NotThrow(card.SaveToString);
                 Should.NotThrow(() => secondCards = CardTools.GetCardsFromString(saved));
+            }
+        }
+
+        [TestMethod]
+        public void ParseGeneratedContacts()
+        {
+            Card[] cards;
+            Should.NotThrow(() => cards = CardGenerator.GenerateCards());
+        }
+
+        [TestMethod]
+        public void ReparseGeneratedContacts()
+        {
+            Card[] cards = [];
+            Should.NotThrow(() => cards = CardGenerator.GenerateCards());
+
+            // Save all the cards to strings and re-parse
+            foreach (Card card in cards)
+            {
+                string saved = Should.NotThrow(card.SaveToString);
+                Should.NotThrow(() => CardTools.GetCardsFromString(saved));
             }
         }
 
