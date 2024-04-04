@@ -36,26 +36,36 @@ namespace VisualCard.Extras
         /// <summary>
         /// Generates cards
         /// </summary>
+        /// <param name="namePrefix">Prefix of the first name</param>
+        /// <param name="nameSuffix">Suffix of the first name</param>
+        /// <param name="surnamePrefix">Prefix of the last name</param>
+        /// <param name="surnameSuffix">Suffix of the last name</param>
+        /// <param name="nameGender">Name gender type</param>
         /// <returns>A list of generated cards (by default, it generates up to 100 cards.)</returns>
-        public static Card[] GenerateCards()
+        public static Card[] GenerateCards(string namePrefix = "", string nameSuffix = "", string surnamePrefix = "", string surnameSuffix = "", NameGenderType nameGender = NameGenderType.Unified)
         {
             int cardNumbers = rng.Next(1, 101);
-            return GenerateCards(cardNumbers);
+            return GenerateCards(cardNumbers, namePrefix, nameSuffix, surnamePrefix, surnameSuffix, nameGender);
         }
 
         /// <summary>
         /// Generates cards
         /// </summary>
+        /// <param name="namePrefix">Prefix of the first name</param>
+        /// <param name="nameSuffix">Suffix of the first name</param>
+        /// <param name="surnamePrefix">Prefix of the last name</param>
+        /// <param name="surnameSuffix">Suffix of the last name</param>
+        /// <param name="nameGender">Name gender type</param>
         /// <param name="cards">Number of cards to generate</param>
         /// <returns>A list of generated cards or an empty array if <paramref name="cards"/> is less than or equal to zero.</returns>
-        public static Card[] GenerateCards(int cards)
+        public static Card[] GenerateCards(int cards, string namePrefix = "", string nameSuffix = "", string surnamePrefix = "", string surnameSuffix = "", NameGenderType nameGender = NameGenderType.Unified)
         {
             if (cards <= 0)
                 return [];
 
             // Get first and last names
-            string[] firstNames = NameGenerator.GenerateFirstNames(cards);
-            string[] lastNames = NameGenerator.GenerateLastNames(cards);
+            string[] firstNames = NameGenerator.GenerateFirstNames(cards, namePrefix, nameSuffix, nameGender);
+            string[] lastNames = NameGenerator.GenerateLastNames(cards, surnamePrefix, surnameSuffix);
             string[] mailHosts = ["gmail.com", "mail.com", "outlook.com", "hotmail.com", "yahoo.com"];
             List<Card> cardList = [];
 
