@@ -135,6 +135,40 @@ references:
   commentId: T:VisualCard.Exceptions.VCardParseException
   fullName: VisualCard.Exceptions.VCardParseException
   nameWithType: VCardParseException
+- uid: VisualCard.Extras
+  name: VisualCard.Extras
+  href: api/VisualCard.Extras.html
+  commentId: N:VisualCard.Extras
+  fullName: VisualCard.Extras
+  nameWithType: VisualCard.Extras
+- uid: VisualCard.Extras.CardGenerator
+  name: CardGenerator
+  href: api/VisualCard.Extras.CardGenerator.html
+  commentId: T:VisualCard.Extras.CardGenerator
+  fullName: VisualCard.Extras.CardGenerator
+  nameWithType: CardGenerator
+- uid: VisualCard.Extras.CardGenerator.GenerateCards
+  name: GenerateCards()
+  href: api/VisualCard.Extras.CardGenerator.html#VisualCard_Extras_CardGenerator_GenerateCards
+  commentId: M:VisualCard.Extras.CardGenerator.GenerateCards
+  fullName: VisualCard.Extras.CardGenerator.GenerateCards()
+  nameWithType: CardGenerator.GenerateCards()
+- uid: VisualCard.Extras.CardGenerator.GenerateCards(System.Int32)
+  name: GenerateCards(int)
+  href: api/VisualCard.Extras.CardGenerator.html#VisualCard_Extras_CardGenerator_GenerateCards_System_Int32_
+  commentId: M:VisualCard.Extras.CardGenerator.GenerateCards(System.Int32)
+  name.vb: GenerateCards(Integer)
+  fullName: VisualCard.Extras.CardGenerator.GenerateCards(int)
+  fullName.vb: VisualCard.Extras.CardGenerator.GenerateCards(Integer)
+  nameWithType: CardGenerator.GenerateCards(int)
+  nameWithType.vb: CardGenerator.GenerateCards(Integer)
+- uid: VisualCard.Extras.CardGenerator.GenerateCards*
+  name: GenerateCards
+  href: api/VisualCard.Extras.CardGenerator.html#VisualCard_Extras_CardGenerator_GenerateCards_
+  commentId: Overload:VisualCard.Extras.CardGenerator.GenerateCards
+  isSpec: "True"
+  fullName: VisualCard.Extras.CardGenerator.GenerateCards
+  nameWithType: CardGenerator.GenerateCards
 - uid: VisualCard.Parts
   name: VisualCard.Parts
   href: api/VisualCard.Parts.html
