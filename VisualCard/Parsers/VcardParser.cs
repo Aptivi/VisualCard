@@ -68,7 +68,7 @@ namespace VisualCard.Parsers
             // Iterate through all the lines
             bool constructing = false;
             StringBuilder valueBuilder = new();
-            string[] allowedTypes = ["HOME", "WORK"];
+            string[] allowedTypes = ["HOME", "WORK", "PREF"];
             for (int i = 0; i < CardContent.Length; i++)
             {
                 // Get line
