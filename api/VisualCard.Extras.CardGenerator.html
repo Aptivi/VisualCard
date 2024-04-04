@@ -99,51 +99,19 @@
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Aptivi/VisualCard/new/main/apiSpec/new?filename=VisualCard_Extras_CardGenerator_GenerateCards.md&amp;value=---%0Auid%3A%20VisualCard.Extras.CardGenerator.GenerateCards%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/Aptivi/VisualCard/new/main/apiSpec/new?filename=VisualCard_Extras_CardGenerator_GenerateCards_System_Int32_System_String_System_String_System_String_System_String_Textify_NameGen_NameGenderType_.md&amp;value=---%0Auid%3A%20VisualCard.Extras.CardGenerator.GenerateCards(System.Int32%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.String%2CTextify.NameGen.NameGenderType)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Aptivi/VisualCard/blob/main/VisualCard/Extras/CardGenerator.cs/#L40">View Source</a>
+    <a href="https://github.com/Aptivi/VisualCard/blob/main/VisualCard/Extras/CardGenerator.cs/#L61">View Source</a>
   </span>
   <a id="VisualCard_Extras_CardGenerator_GenerateCards_" data-uid="VisualCard.Extras.CardGenerator.GenerateCards*"></a>
-  <h4 id="VisualCard_Extras_CardGenerator_GenerateCards" data-uid="VisualCard.Extras.CardGenerator.GenerateCards">GenerateCards()</h4>
+  <h4 id="VisualCard_Extras_CardGenerator_GenerateCards_System_Int32_System_String_System_String_System_String_System_String_Textify_NameGen_NameGenderType_" data-uid="VisualCard.Extras.CardGenerator.GenerateCards(System.Int32,System.String,System.String,System.String,System.String,Textify.NameGen.NameGenderType)">GenerateCards(int, string, string, string, string, NameGenderType)</h4>
   <div class="markdown level1 summary"><p>Generates cards</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Card[] GenerateCards()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="VisualCard.Parts.Card.html">Card</a>[]</td>
-        <td><p>A list of generated cards (by default, it generates up to 100 cards.)</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/Aptivi/VisualCard/new/main/apiSpec/new?filename=VisualCard_Extras_CardGenerator_GenerateCards_System_Int32_.md&amp;value=---%0Auid%3A%20VisualCard.Extras.CardGenerator.GenerateCards(System.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Aptivi/VisualCard/blob/main/VisualCard/Extras/CardGenerator.cs/#L51">View Source</a>
-  </span>
-  <a id="VisualCard_Extras_CardGenerator_GenerateCards_" data-uid="VisualCard.Extras.CardGenerator.GenerateCards*"></a>
-  <h4 id="VisualCard_Extras_CardGenerator_GenerateCards_System_Int32_" data-uid="VisualCard.Extras.CardGenerator.GenerateCards(System.Int32)">GenerateCards(int)</h4>
-  <div class="markdown level1 summary"><p>Generates cards</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Card[] GenerateCards(int cards)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Card[] GenerateCards(int cards, string namePrefix = &quot;&quot;, string nameSuffix = &quot;&quot;, string surnamePrefix = &quot;&quot;, string surnameSuffix = &quot;&quot;, NameGenderType nameGender = NameGenderType.Unified)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -161,6 +129,36 @@
         <td><p>Number of cards to generate</p>
 </td>
       </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">namePrefix</span></td>
+        <td><p>Prefix of the first name</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">nameSuffix</span></td>
+        <td><p>Suffix of the first name</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">surnamePrefix</span></td>
+        <td><p>Prefix of the last name</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">surnameSuffix</span></td>
+        <td><p>Suffix of the last name</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">NameGenderType</span></td>
+        <td><span class="parametername">nameGender</span></td>
+        <td><p>Name gender type</p>
+</td>
+      </tr>
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
@@ -175,6 +173,80 @@
       <tr>
         <td><a class="xref" href="VisualCard.Parts.Card.html">Card</a>[]</td>
         <td><p>A list of generated cards or an empty array if <code class="paramref">cards</code> is less than or equal to zero.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Aptivi/VisualCard/new/main/apiSpec/new?filename=VisualCard_Extras_CardGenerator_GenerateCards_System_String_System_String_System_String_System_String_Textify_NameGen_NameGenderType_.md&amp;value=---%0Auid%3A%20VisualCard.Extras.CardGenerator.GenerateCards(System.String%2CSystem.String%2CSystem.String%2CSystem.String%2CTextify.NameGen.NameGenderType)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Aptivi/VisualCard/blob/main/VisualCard/Extras/CardGenerator.cs/#L45">View Source</a>
+  </span>
+  <a id="VisualCard_Extras_CardGenerator_GenerateCards_" data-uid="VisualCard.Extras.CardGenerator.GenerateCards*"></a>
+  <h4 id="VisualCard_Extras_CardGenerator_GenerateCards_System_String_System_String_System_String_System_String_Textify_NameGen_NameGenderType_" data-uid="VisualCard.Extras.CardGenerator.GenerateCards(System.String,System.String,System.String,System.String,Textify.NameGen.NameGenderType)">GenerateCards(string, string, string, string, NameGenderType)</h4>
+  <div class="markdown level1 summary"><p>Generates cards</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Card[] GenerateCards(string namePrefix = &quot;&quot;, string nameSuffix = &quot;&quot;, string surnamePrefix = &quot;&quot;, string surnameSuffix = &quot;&quot;, NameGenderType nameGender = NameGenderType.Unified)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">namePrefix</span></td>
+        <td><p>Prefix of the first name</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">nameSuffix</span></td>
+        <td><p>Suffix of the first name</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">surnamePrefix</span></td>
+        <td><p>Prefix of the last name</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">surnameSuffix</span></td>
+        <td><p>Suffix of the last name</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">NameGenderType</span></td>
+        <td><span class="parametername">nameGender</span></td>
+        <td><p>Name gender type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="VisualCard.Parts.Card.html">Card</a>[]</td>
+        <td><p>A list of generated cards (by default, it generates up to 100 cards.)</p>
 </td>
       </tr>
     </tbody>
