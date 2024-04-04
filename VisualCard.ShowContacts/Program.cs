@@ -23,6 +23,7 @@ using System.Linq;
 using Terminaux.Colors.Data;
 using Terminaux.Writer.ConsoleWriters;
 using VisualCard.Converters;
+using VisualCard.Extras;
 using VisualCard.Parts;
 using VisualCard.Parts.Enums;
 using VisualCard.Parts.Implementations;
@@ -45,7 +46,8 @@ namespace VisualCard.ShowContacts
                 bool dbg = args.Contains("-debug");
                 bool android = args.Contains("-android");
                 bool mecard = args.Contains("-mecard");
-                args = args.Except(["-noprint", "-save", "-debug", "-android", "-mecard"]).ToArray();
+                bool gen = args.Contains("-gen");
+                args = args.Except(["-noprint", "-save", "-debug", "-android", "-mecard", "-gen"]).ToArray();
 
                 // If debug, wait for debugger
                 if (dbg)
@@ -62,6 +64,7 @@ namespace VisualCard.ShowContacts
 
                 // Parse all contacts
                 Card[] contacts =
+                    gen ? CardGenerator.GenerateCards() :
                     android ? (args.Length > 0 ? AndroidContactsDb.GetContactsFromDb(args[0]) : AndroidContactsDb.GetContactsFromDb()) :
                     mecard ? MeCard.GetContactsFromMeCardString(meCardString) :
                     CardTools.GetCards(args[0]);
