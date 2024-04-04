@@ -76,17 +76,14 @@ namespace VisualCard
             string CardLine;
             StringBuilder CardContent = new();
             Version CardVersion = new();
-            bool CardSawNull = false;
-            CardLine = stream.ReadLine();
             while (!stream.EndOfStream)
             {
                 bool append = false;
 
                 // Skip empty lines
+                CardLine = stream.ReadLine();
                 if (string.IsNullOrEmpty(CardLine))
                 {
-                    CardLine = stream.ReadLine();
-                    CardSawNull = true;
                     if (!stream.EndOfStream)
                         continue;
                 }
@@ -105,14 +102,11 @@ namespace VisualCard
                     BeginSpotted = true;
                     VersionSpotted = false;
                     EndSpotted = false;
-                    CardSawNull = false;
+                    continue;
                 }
 
                 // Now that the beginning of the card tag is spotted, parse the version as we need to know how to select the appropriate parser.
                 // All VCards are required to have their own version directly after the BEGIN:VCARD tag
-                if (!CardSawNull)
-                    CardLine = stream.ReadLine();
-                CardSawNull = false;
                 if (CardLine != $"{VcardConstants._versionSpecifier}:2.1" &&
                     CardLine != $"{VcardConstants._versionSpecifier}:3.0" &&
                     CardLine != $"{VcardConstants._versionSpecifier}:4.0" &&
@@ -123,6 +117,7 @@ namespace VisualCard
                 {
                     VersionSpotted = true;
                     CardVersion = new(CardLine.Substring(8));
+                    continue;
                 }
 
                 // If the ending tag is spotted, reset everything.
@@ -139,7 +134,6 @@ namespace VisualCard
                     // Clear the content in case we want to make a second contact
                     CardContent.Clear();
                     BeginSpotted = false;
-                    CardLine = stream.ReadLine();
                 }
                 else if (append)
                     CardContent.AppendLine();
