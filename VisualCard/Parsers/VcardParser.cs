@@ -68,7 +68,7 @@ namespace VisualCard.Parsers
             // Iterate through all the lines
             bool constructing = false;
             StringBuilder valueBuilder = new();
-            string[] allowedTypes = ["HOME", "WORK", "PREF", "X-OTHER"];
+            string[] allowedTypes = ["HOME", "WORK", "PREF"];
             for (int i = 0; i < CardContent.Length; i++)
             {
                 // Get line
@@ -166,7 +166,7 @@ namespace VisualCard.Parsers
                     foreach (string elementType in elementTypes)
                     {
                         string elementTypeUpper = elementType.ToUpper();
-                        if (!allowedTypes.Contains(elementTypeUpper) && !extraAllowedTypes.Contains(elementTypeUpper))
+                        if (!allowedTypes.Contains(elementTypeUpper) && !extraAllowedTypes.Contains(elementTypeUpper) && !elementTypeUpper.StartsWith("X-"))
                             throw new InvalidDataException($"Part info type {classType.Name} doesn't support property type {elementTypeUpper} because the following base types are supported: [{string.Join(", ", allowedTypes)}] and the extra types are supported: [{string.Join(", ", extraAllowedTypes)}]");
                     }
 
