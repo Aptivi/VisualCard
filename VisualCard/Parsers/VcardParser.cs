@@ -163,12 +163,11 @@ namespace VisualCard.Parsers
 
                     // Check the type for allowed types
                     string[] elementTypes = VcardParserTools.GetTypes(splitArgs, defaultType, specifierRequired);
-                    string[] finalTypes = allowedTypes.Union(extraAllowedTypes).Select((type) => type.ToUpper()).ToArray();
                     foreach (string elementType in elementTypes)
                     {
                         string elementTypeUpper = elementType.ToUpper();
-                        if (!finalTypes.Contains(elementTypeUpper))
-                            throw new InvalidDataException($"Part info type {classType.Name} doesn't support property type {elementTypeUpper} because the following types are supported: [{string.Join(", ", finalTypes)}]");
+                        if (!allowedTypes.Contains(elementTypeUpper) && !extraAllowedTypes.Contains(elementTypeUpper))
+                            throw new InvalidDataException($"Part info type {classType.Name} doesn't support property type {elementTypeUpper} because the following base types are supported: [{string.Join(", ", allowedTypes)}] and the extra types are supported: [{string.Join(", ", extraAllowedTypes)}]");
                     }
 
                     // Handle the part type
