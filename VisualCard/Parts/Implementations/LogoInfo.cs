@@ -20,6 +20,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using VisualCard.Parsers;
 
 namespace VisualCard.Parts.Implementations
@@ -47,8 +48,29 @@ namespace VisualCard.Parts.Implementations
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
+            bool vCard4 = cardVersion.Major >= 4;
+
             // Check to see if the value is prepended by the ENCODING= argument
-            string logoEncoding = VcardParserTools.GetValuesString(finalArgs, "BASE64", VcardConstants._encodingArgumentSpecifier);
+            string logoEncoding = "";
+            if (vCard4)
+            {
+                // We're on a vCard 4.0 contact that contains this information
+                if (!Uri.TryCreate(value, UriKind.Absolute, out Uri uri))
+                    throw new InvalidDataException($"URL {value} is invalid");
+                value = uri.ToString();
+            }
+            else
+            {
+                // vCard 3.0 handles this in a different way
+                logoEncoding = VcardParserTools.GetValuesString(finalArgs, "b", VcardConstants._encodingArgumentSpecifier);
+                if (!logoEncoding.Equals("b", StringComparison.OrdinalIgnoreCase) && !logoEncoding.Equals("BASE64", StringComparison.OrdinalIgnoreCase))
+                {
+                    // Since we don't need embedded logos, we need to check a URL.
+                    if (!Uri.TryCreate(value, UriKind.Absolute, out Uri uri))
+                        throw new InvalidDataException($"URL {value} is invalid");
+                    value = uri.ToString();
+                }
+            }
 
             // Populate the fields
             LogoInfo _logo = new(altId, finalArgs, elementTypes, valueType, logoEncoding, value);

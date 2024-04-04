@@ -148,7 +148,7 @@ namespace VisualCard.ShowContacts
                     foreach (var Photo in Contact.GetPartsArray<PhotoInfo>())
                     {
                         TextWriterColor.Write("Photo encoding:          {0}", Photo.Encoding);
-                        TextWriterColor.Write("Photo value type:        {0}", Photo.ValueType);
+                        TextWriterColor.Write("Photo value type:        {0}", string.Join(",", Photo.ElementTypes));
                         TextWriterColor.Write("ALTID:                   {0}", Photo.AltId);
                         TextWriterColor.Write("Photo data: \n{0}", Photo.PhotoEncoded);
                     }
