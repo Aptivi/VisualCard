@@ -19,7 +19,7 @@
 
 using System;
 using System.Collections.Generic;
-using Textify.NameGen;
+using Textify.Data.Analysis.NameGen;
 using VisualCard.Parts;
 using VisualCard.Parts.Enums;
 using VisualCard.Parts.Implementations;
