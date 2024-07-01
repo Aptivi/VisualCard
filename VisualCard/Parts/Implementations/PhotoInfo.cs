@@ -43,7 +43,7 @@ namespace VisualCard.Parts.Implementations
         /// Whether this photo is a blob or not
         /// </summary>
         public bool IsBlob =>
-            VcardParserTools.IsEncodingBlob(Arguments) || PhotoEncoded.StartsWith("data:");
+            VcardParserTools.IsEncodingBlob(Arguments, PhotoEncoded);
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new PhotoInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
@@ -68,7 +68,7 @@ namespace VisualCard.Parts.Implementations
             {
                 // vCard 3.0 handles this in a different way
                 photoEncoding = VcardParserTools.GetValuesString(finalArgs, "b", VcardConstants._encodingArgumentSpecifier);
-                if (!VcardParserTools.IsEncodingBlob(finalArgs))
+                if (!VcardParserTools.IsEncodingBlob(finalArgs, value))
                 {
                     // Since we don't need embedded photos, we need to check a URL.
                     if (!Uri.TryCreate(value, UriKind.Absolute, out Uri uri))

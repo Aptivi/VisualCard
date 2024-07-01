@@ -336,9 +336,16 @@ namespace VisualCard.Parsers
             }
         }
 
-        internal static bool IsEncodingBlob(string[] args)
+        internal static bool IsEncodingBlob(string[] args, string keyEncoded)
         {
             string encoding = GetValuesString(args, "b", VcardConstants._encodingArgumentSpecifier);
+            bool isValidUri = Uri.TryCreate(keyEncoded, UriKind.Absolute, out Uri uri);
+            if (isValidUri)
+            {
+                if (uri.Scheme == "data")
+                    return true;
+                return false;
+            }
             return
                 encoding.Equals("b", StringComparison.OrdinalIgnoreCase) ||
                 encoding.Equals("BASE64", StringComparison.OrdinalIgnoreCase) ||
