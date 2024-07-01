@@ -2531,6 +2531,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Implementations.LogoInfo.GetHashCode
   nameWithType: LogoInfo.GetHashCode
+- uid: VisualCard.Parts.Implementations.LogoInfo.IsBlob
+  name: IsBlob
+  href: api/VisualCard.Parts.Implementations.LogoInfo.html#VisualCard_Parts_Implementations_LogoInfo_IsBlob
+  commentId: P:VisualCard.Parts.Implementations.LogoInfo.IsBlob
+  fullName: VisualCard.Parts.Implementations.LogoInfo.IsBlob
+  nameWithType: LogoInfo.IsBlob
+- uid: VisualCard.Parts.Implementations.LogoInfo.IsBlob*
+  name: IsBlob
+  href: api/VisualCard.Parts.Implementations.LogoInfo.html#VisualCard_Parts_Implementations_LogoInfo_IsBlob_
+  commentId: Overload:VisualCard.Parts.Implementations.LogoInfo.IsBlob
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.LogoInfo.IsBlob
+  nameWithType: LogoInfo.IsBlob
 - uid: VisualCard.Parts.Implementations.LogoInfo.LogoEncoded
   name: LogoEncoded
   href: api/VisualCard.Parts.Implementations.LogoInfo.html#VisualCard_Parts_Implementations_LogoInfo_LogoEncoded
@@ -3112,6 +3125,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Implementations.PhotoInfo.GetHashCode
   nameWithType: PhotoInfo.GetHashCode
+- uid: VisualCard.Parts.Implementations.PhotoInfo.IsBlob
+  name: IsBlob
+  href: api/VisualCard.Parts.Implementations.PhotoInfo.html#VisualCard_Parts_Implementations_PhotoInfo_IsBlob
+  commentId: P:VisualCard.Parts.Implementations.PhotoInfo.IsBlob
+  fullName: VisualCard.Parts.Implementations.PhotoInfo.IsBlob
+  nameWithType: PhotoInfo.IsBlob
+- uid: VisualCard.Parts.Implementations.PhotoInfo.IsBlob*
+  name: IsBlob
+  href: api/VisualCard.Parts.Implementations.PhotoInfo.html#VisualCard_Parts_Implementations_PhotoInfo_IsBlob_
+  commentId: Overload:VisualCard.Parts.Implementations.PhotoInfo.IsBlob
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.PhotoInfo.IsBlob
+  nameWithType: PhotoInfo.IsBlob
 - uid: VisualCard.Parts.Implementations.PhotoInfo.PhotoEncoded
   name: PhotoEncoded
   href: api/VisualCard.Parts.Implementations.PhotoInfo.html#VisualCard_Parts_Implementations_PhotoInfo_PhotoEncoded
@@ -3419,6 +3445,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Implementations.SoundInfo.GetHashCode
   nameWithType: SoundInfo.GetHashCode
+- uid: VisualCard.Parts.Implementations.SoundInfo.IsBlob
+  name: IsBlob
+  href: api/VisualCard.Parts.Implementations.SoundInfo.html#VisualCard_Parts_Implementations_SoundInfo_IsBlob
+  commentId: P:VisualCard.Parts.Implementations.SoundInfo.IsBlob
+  fullName: VisualCard.Parts.Implementations.SoundInfo.IsBlob
+  nameWithType: SoundInfo.IsBlob
+- uid: VisualCard.Parts.Implementations.SoundInfo.IsBlob*
+  name: IsBlob
+  href: api/VisualCard.Parts.Implementations.SoundInfo.html#VisualCard_Parts_Implementations_SoundInfo_IsBlob_
+  commentId: Overload:VisualCard.Parts.Implementations.SoundInfo.IsBlob
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.SoundInfo.IsBlob
+  nameWithType: SoundInfo.IsBlob
 - uid: VisualCard.Parts.Implementations.SoundInfo.SoundEncoded
   name: SoundEncoded
   href: api/VisualCard.Parts.Implementations.SoundInfo.html#VisualCard_Parts_Implementations_SoundInfo_SoundEncoded
