@@ -2211,6 +2211,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Implementations.KeyInfo.GetHashCode
   nameWithType: KeyInfo.GetHashCode
+- uid: VisualCard.Parts.Implementations.KeyInfo.GetStream
+  name: GetStream()
+  href: api/VisualCard.Parts.Implementations.KeyInfo.html#VisualCard_Parts_Implementations_KeyInfo_GetStream
+  commentId: M:VisualCard.Parts.Implementations.KeyInfo.GetStream
+  fullName: VisualCard.Parts.Implementations.KeyInfo.GetStream()
+  nameWithType: KeyInfo.GetStream()
+- uid: VisualCard.Parts.Implementations.KeyInfo.GetStream*
+  name: GetStream
+  href: api/VisualCard.Parts.Implementations.KeyInfo.html#VisualCard_Parts_Implementations_KeyInfo_GetStream_
+  commentId: Overload:VisualCard.Parts.Implementations.KeyInfo.GetStream
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.KeyInfo.GetStream
+  nameWithType: KeyInfo.GetStream
 - uid: VisualCard.Parts.Implementations.KeyInfo.IsBlob
   name: IsBlob
   href: api/VisualCard.Parts.Implementations.KeyInfo.html#VisualCard_Parts_Implementations_KeyInfo_IsBlob
@@ -2544,6 +2557,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Implementations.LogoInfo.GetHashCode
   nameWithType: LogoInfo.GetHashCode
+- uid: VisualCard.Parts.Implementations.LogoInfo.GetStream
+  name: GetStream()
+  href: api/VisualCard.Parts.Implementations.LogoInfo.html#VisualCard_Parts_Implementations_LogoInfo_GetStream
+  commentId: M:VisualCard.Parts.Implementations.LogoInfo.GetStream
+  fullName: VisualCard.Parts.Implementations.LogoInfo.GetStream()
+  nameWithType: LogoInfo.GetStream()
+- uid: VisualCard.Parts.Implementations.LogoInfo.GetStream*
+  name: GetStream
+  href: api/VisualCard.Parts.Implementations.LogoInfo.html#VisualCard_Parts_Implementations_LogoInfo_GetStream_
+  commentId: Overload:VisualCard.Parts.Implementations.LogoInfo.GetStream
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.LogoInfo.GetStream
+  nameWithType: LogoInfo.GetStream
 - uid: VisualCard.Parts.Implementations.LogoInfo.IsBlob
   name: IsBlob
   href: api/VisualCard.Parts.Implementations.LogoInfo.html#VisualCard_Parts_Implementations_LogoInfo_IsBlob
@@ -3138,6 +3164,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Implementations.PhotoInfo.GetHashCode
   nameWithType: PhotoInfo.GetHashCode
+- uid: VisualCard.Parts.Implementations.PhotoInfo.GetStream
+  name: GetStream()
+  href: api/VisualCard.Parts.Implementations.PhotoInfo.html#VisualCard_Parts_Implementations_PhotoInfo_GetStream
+  commentId: M:VisualCard.Parts.Implementations.PhotoInfo.GetStream
+  fullName: VisualCard.Parts.Implementations.PhotoInfo.GetStream()
+  nameWithType: PhotoInfo.GetStream()
+- uid: VisualCard.Parts.Implementations.PhotoInfo.GetStream*
+  name: GetStream
+  href: api/VisualCard.Parts.Implementations.PhotoInfo.html#VisualCard_Parts_Implementations_PhotoInfo_GetStream_
+  commentId: Overload:VisualCard.Parts.Implementations.PhotoInfo.GetStream
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.PhotoInfo.GetStream
+  nameWithType: PhotoInfo.GetStream
 - uid: VisualCard.Parts.Implementations.PhotoInfo.IsBlob
   name: IsBlob
   href: api/VisualCard.Parts.Implementations.PhotoInfo.html#VisualCard_Parts_Implementations_PhotoInfo_IsBlob
@@ -3458,6 +3497,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Implementations.SoundInfo.GetHashCode
   nameWithType: SoundInfo.GetHashCode
+- uid: VisualCard.Parts.Implementations.SoundInfo.GetStream
+  name: GetStream()
+  href: api/VisualCard.Parts.Implementations.SoundInfo.html#VisualCard_Parts_Implementations_SoundInfo_GetStream
+  commentId: M:VisualCard.Parts.Implementations.SoundInfo.GetStream
+  fullName: VisualCard.Parts.Implementations.SoundInfo.GetStream()
+  nameWithType: SoundInfo.GetStream()
+- uid: VisualCard.Parts.Implementations.SoundInfo.GetStream*
+  name: GetStream
+  href: api/VisualCard.Parts.Implementations.SoundInfo.html#VisualCard_Parts_Implementations_SoundInfo_GetStream_
+  commentId: Overload:VisualCard.Parts.Implementations.SoundInfo.GetStream
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.SoundInfo.GetStream
+  nameWithType: SoundInfo.GetStream
 - uid: VisualCard.Parts.Implementations.SoundInfo.IsBlob
   name: IsBlob
   href: api/VisualCard.Parts.Implementations.SoundInfo.html#VisualCard_Parts_Implementations_SoundInfo_IsBlob
