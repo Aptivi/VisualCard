@@ -150,7 +150,7 @@ namespace VisualCard.ShowContacts
                         TextWriterColor.Write("Photo encoding:          {0}", Photo.Encoding);
                         TextWriterColor.Write("Photo value type:        {0}", string.Join(",", Photo.ElementTypes));
                         TextWriterColor.Write("ALTID:                   {0}", Photo.AltId);
-                        TextWriterColor.Write("Photo data: \n{0}", Photo.PhotoEncoded);
+                        TextWriterColor.Write("Photo data [blob: {0}]: \n{1}", true, Photo.IsBlob, Photo.PhotoEncoded);
                     }
 
                     // List roles

@@ -39,6 +39,11 @@ namespace VisualCard.Parts.Implementations
         /// Encoded logo
         /// </summary>
         public string LogoEncoded { get; }
+        /// <summary>
+        /// Whether this logo is a blob or not
+        /// </summary>
+        public bool IsBlob =>
+            VcardParserTools.IsEncodingBlob(Arguments) || LogoEncoded.StartsWith("data:");
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new LogoInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
@@ -63,9 +68,7 @@ namespace VisualCard.Parts.Implementations
             {
                 // vCard 3.0 handles this in a different way
                 logoEncoding = VcardParserTools.GetValuesString(finalArgs, "b", VcardConstants._encodingArgumentSpecifier);
-                if (!logoEncoding.Equals("b", StringComparison.OrdinalIgnoreCase) &&
-                    !logoEncoding.Equals("BASE64", StringComparison.OrdinalIgnoreCase) &&
-                    !logoEncoding.Equals("BLOB", StringComparison.OrdinalIgnoreCase))
+                if (!VcardParserTools.IsEncodingBlob(finalArgs))
                 {
                     // Since we don't need embedded logos, we need to check a URL.
                     if (!Uri.TryCreate(value, UriKind.Absolute, out Uri uri))

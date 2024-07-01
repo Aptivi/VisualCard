@@ -335,5 +335,14 @@ namespace VisualCard.Parsers
                 yield return individualFactor;
             }
         }
+
+        internal static bool IsEncodingBlob(string[] args)
+        {
+            string encoding = GetValuesString(args, "b", VcardConstants._encodingArgumentSpecifier);
+            return
+                encoding.Equals("b", StringComparison.OrdinalIgnoreCase) ||
+                encoding.Equals("BASE64", StringComparison.OrdinalIgnoreCase) ||
+                encoding.Equals("BLOB", StringComparison.OrdinalIgnoreCase);
+        }
     }
 }
