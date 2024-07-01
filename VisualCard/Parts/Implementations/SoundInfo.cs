@@ -82,6 +82,13 @@ namespace VisualCard.Parts.Implementations
             return _sound;
         }
 
+        /// <summary>
+        /// Gets a stream representing the sound data
+        /// </summary>
+        /// <returns>A stream that contains sound data</returns>
+        public Stream GetStream() =>
+            VcardParserTools.GetBlobData(Arguments, SoundEncoded);
+
         /// <inheritdoc/>
         public override bool Equals(object obj) =>
             Equals((SoundInfo)obj);

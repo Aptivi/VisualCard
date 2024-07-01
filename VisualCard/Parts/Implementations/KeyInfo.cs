@@ -82,6 +82,13 @@ namespace VisualCard.Parts.Implementations
             return _key;
         }
 
+        /// <summary>
+        /// Gets a stream representing the key data
+        /// </summary>
+        /// <returns>A stream that contains key data</returns>
+        public Stream GetStream() =>
+            VcardParserTools.GetBlobData(Arguments, KeyEncoded);
+
         /// <inheritdoc/>
         public override bool Equals(object obj) =>
             Equals((KeyInfo)obj);

@@ -82,6 +82,13 @@ namespace VisualCard.Parts.Implementations
             return _logo;
         }
 
+        /// <summary>
+        /// Gets a stream representing the logo data
+        /// </summary>
+        /// <returns>A stream that contains logo data</returns>
+        public Stream GetStream() =>
+            VcardParserTools.GetBlobData(Arguments, LogoEncoded);
+
         /// <inheritdoc/>
         public override bool Equals(object obj) =>
             Equals((LogoInfo)obj);

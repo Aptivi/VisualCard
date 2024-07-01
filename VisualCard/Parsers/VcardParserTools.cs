@@ -351,5 +351,28 @@ namespace VisualCard.Parsers
                 encoding.Equals("BASE64", StringComparison.OrdinalIgnoreCase) ||
                 encoding.Equals("BLOB", StringComparison.OrdinalIgnoreCase);
         }
+
+        internal static Stream GetBlobData(string[] args, string keyEncoded)
+        {
+            if (IsEncodingBlob(args, keyEncoded))
+            {
+                bool isValidUri = Uri.TryCreate(keyEncoded, UriKind.Absolute, out Uri uri);
+                string dataStr;
+                if (isValidUri)
+                {
+                    if (uri.Scheme == "data")
+                        dataStr = uri.AbsolutePath.Substring(uri.AbsolutePath.IndexOf(",") + 1);
+                    else
+                        throw new InvalidDataException("Contains a valid URL; you should fetch that URL manually and convert the response to the stream.");
+                }
+                else
+                    dataStr = keyEncoded;
+                byte[] dataBytes = Convert.FromBase64String(dataStr);
+                Stream blobStream = new MemoryStream(dataBytes);
+                return blobStream;
+            }
+            else
+                throw new InvalidOperationException("Not a blob. You should somehow handle it.");
+        }
     }
 }

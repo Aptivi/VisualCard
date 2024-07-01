@@ -82,6 +82,13 @@ namespace VisualCard.Parts.Implementations
             return _photo;
         }
 
+        /// <summary>
+        /// Gets a stream representing the image data
+        /// </summary>
+        /// <returns>A stream that contains image data</returns>
+        public Stream GetStream() =>
+            VcardParserTools.GetBlobData(Arguments, PhotoEncoded);
+
         /// <inheritdoc/>
         public override bool Equals(object obj) =>
             Equals((PhotoInfo)obj);
