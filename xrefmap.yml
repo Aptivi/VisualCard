@@ -2211,6 +2211,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Implementations.KeyInfo.GetHashCode
   nameWithType: KeyInfo.GetHashCode
+- uid: VisualCard.Parts.Implementations.KeyInfo.IsBlob
+  name: IsBlob
+  href: api/VisualCard.Parts.Implementations.KeyInfo.html#VisualCard_Parts_Implementations_KeyInfo_IsBlob
+  commentId: P:VisualCard.Parts.Implementations.KeyInfo.IsBlob
+  fullName: VisualCard.Parts.Implementations.KeyInfo.IsBlob
+  nameWithType: KeyInfo.IsBlob
+- uid: VisualCard.Parts.Implementations.KeyInfo.IsBlob*
+  name: IsBlob
+  href: api/VisualCard.Parts.Implementations.KeyInfo.html#VisualCard_Parts_Implementations_KeyInfo_IsBlob_
+  commentId: Overload:VisualCard.Parts.Implementations.KeyInfo.IsBlob
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.KeyInfo.IsBlob
+  nameWithType: KeyInfo.IsBlob
 - uid: VisualCard.Parts.Implementations.KeyInfo.KeyEncoded
   name: KeyEncoded
   href: api/VisualCard.Parts.Implementations.KeyInfo.html#VisualCard_Parts_Implementations_KeyInfo_KeyEncoded
