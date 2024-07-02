@@ -293,6 +293,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.BaseCardPartInfo.HasType
   nameWithType: BaseCardPartInfo.HasType
+- uid: VisualCard.Parts.BaseCardPartInfo.IsPreferred
+  name: IsPreferred
+  href: api/VisualCard.Parts.BaseCardPartInfo.html#VisualCard_Parts_BaseCardPartInfo_IsPreferred
+  commentId: P:VisualCard.Parts.BaseCardPartInfo.IsPreferred
+  fullName: VisualCard.Parts.BaseCardPartInfo.IsPreferred
+  nameWithType: BaseCardPartInfo.IsPreferred
+- uid: VisualCard.Parts.BaseCardPartInfo.IsPreferred*
+  name: IsPreferred
+  href: api/VisualCard.Parts.BaseCardPartInfo.html#VisualCard_Parts_BaseCardPartInfo_IsPreferred_
+  commentId: Overload:VisualCard.Parts.BaseCardPartInfo.IsPreferred
+  isSpec: "True"
+  fullName: VisualCard.Parts.BaseCardPartInfo.IsPreferred
+  nameWithType: BaseCardPartInfo.IsPreferred
 - uid: VisualCard.Parts.BaseCardPartInfo.ValueType
   name: ValueType
   href: api/VisualCard.Parts.BaseCardPartInfo.html#VisualCard_Parts_BaseCardPartInfo_ValueType
