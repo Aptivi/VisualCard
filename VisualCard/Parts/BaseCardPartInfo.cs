@@ -53,6 +53,12 @@ namespace VisualCard.Parts
         public virtual string ValueType { get; internal set; }
 
         /// <summary>
+        /// Is this part preferred?
+        /// </summary>
+        public bool IsPreferred =>
+            HasType("PREF");
+
+        /// <summary>
         /// Arguments in key/value pair format
         /// </summary>
         public ReadOnlyDictionary<string, string> ArgumentValues
