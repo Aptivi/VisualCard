@@ -2,313 +2,313 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.CardTools.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Converters.AndroidContactsDb.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Converters.MeCard.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Converters.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Exceptions.VCardParseException.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Exceptions.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Extras.CardGenerator.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Extras.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.BaseCardPartInfo.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.Card.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.Enums.PartType.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.Enums.PartsArrayEnum.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.Enums.StringsEnum.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.Enums.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.Implementations.AddressInfo.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.Implementations.AgentInfo.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.Implementations.AnniversaryInfo.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.Implementations.BirthDateInfo.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.Implementations.CalendarUrlInfo.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.Implementations.CategoryInfo.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.Implementations.EmailInfo.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.Implementations.FreeBusyInfo.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.Implementations.FullNameInfo.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.Implementations.GenderInfo.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.Implementations.GeoInfo.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.Implementations.ImppInfo.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.Implementations.KeyInfo.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.Implementations.LabelAddressInfo.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.Implementations.LangInfo.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.Implementations.LogoInfo.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.Implementations.NameInfo.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.Implementations.NicknameInfo.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.Implementations.NoteInfo.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.Implementations.OrganizationInfo.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.Implementations.PhotoInfo.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.Implementations.RevisionInfo.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.Implementations.RoleInfo.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.Implementations.SoundInfo.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.Implementations.SourceInfo.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.Implementations.TelephoneInfo.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.Implementations.TimeDateZoneInfo.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.Implementations.TitleInfo.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.Implementations.Tools.Gender.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.Implementations.Tools.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.Implementations.UrlInfo.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.Implementations.XNameInfo.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.Implementations.XmlInfo.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.Implementations.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.Parts.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/api/VisualCard.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aptivi.github.io/VisualCard/index.html</loc>
-    <lastmod>2024-08-19T05:39:10+00:00</lastmod>
+    <lastmod>2024-08-19T05:50:46+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
