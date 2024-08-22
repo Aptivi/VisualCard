@@ -15,7 +15,7 @@ fi
 
 # Download packages
 echo Downloading packages...
-"$dotnetpath" restore "../VisualCard.sln" --configuration $releaseconf
+"$dotnetpath" restore "../VisualCard.sln" -p:Configuration=$releaseconf
 if [ ! $? == 0 ]; then
 	echo Download failed.
 	exit 1
@@ -23,7 +23,7 @@ fi
 
 # Build VisualCard
 echo Building VisualCard...
-"$dotnetpath" build "../VisualCard.sln" --configuration $releaseconf
+"$dotnetpath" build "../VisualCard.sln" -p:Configuration=$releaseconf
 if [ ! $? == 0 ]; then
 	echo Build failed.
 	exit 1
