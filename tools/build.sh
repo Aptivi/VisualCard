@@ -15,15 +15,15 @@ fi
 
 # Download packages
 echo Downloading packages...
-"$dotnetpath" msbuild "../VisualCard.sln" -t:restore -p:Configuration=$releaseconf
+"$dotnetpath" restore "../VisualCard.sln" --configuration $releaseconf
 if [ ! $? == 0 ]; then
 	echo Download failed.
 	exit 1
 fi
 
-# Build KS
-echo Building KS...
-"$dotnetpath" msbuild "../VisualCard.sln" -p:Configuration=$releaseconf
+# Build VisualCard
+echo Building VisualCard...
+"$dotnetpath" build "../VisualCard.sln" --configuration $releaseconf
 if [ ! $? == 0 ]; then
 	echo Build failed.
 	exit 1
