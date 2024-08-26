@@ -7,12 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisualCard", "VisualCard\Vi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisualCard.ShowContacts", "VisualCard.ShowContacts\VisualCard.ShowContacts.csproj", "{798FA5EC-E411-4DF3-B8C7-D5E0AA63AA58}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9EB96994-DDAB-4F53-8D4F-0E8EEFD08CFD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisualCard.Tests", "VisualCard.Tests\VisualCard.Tests.csproj", "{93EB56B7-90CD-4EA9-B7C3-51C040E135F7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{CE28233F-91D8-490D-839F-BC599A77E524}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		Directory.Build.props = Directory.Build.props
 	EndProjectSection
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisualCard.Tests", "VisualCard.Tests\VisualCard.Tests.csproj", "{93EB56B7-90CD-4EA9-B7C3-51C040E135F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
