@@ -12,6 +12,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{CE28233F-91D8-490D-839F-BC599A77E524}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		CHANGES = CHANGES
+		CHANGES.TITLE = CHANGES.TITLE
 		Directory.Build.props = Directory.Build.props
 	EndProjectSection
 EndProject
