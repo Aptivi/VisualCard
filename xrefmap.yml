@@ -455,6 +455,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Card.GetString
   nameWithType: Card.GetString
+- uid: VisualCard.Parts.Card.NestedCards
+  name: NestedCards
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_NestedCards
+  commentId: P:VisualCard.Parts.Card.NestedCards
+  fullName: VisualCard.Parts.Card.NestedCards
+  nameWithType: Card.NestedCards
+- uid: VisualCard.Parts.Card.NestedCards*
+  name: NestedCards
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_NestedCards_
+  commentId: Overload:VisualCard.Parts.Card.NestedCards
+  isSpec: "True"
+  fullName: VisualCard.Parts.Card.NestedCards
+  nameWithType: Card.NestedCards
 - uid: VisualCard.Parts.Card.SaveTo(System.String)
   name: SaveTo(string)
   href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_SaveTo_System_String_
