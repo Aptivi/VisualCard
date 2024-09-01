@@ -55,6 +55,12 @@ namespace VisualCard.Parts
             nestedCards;
 
         /// <summary>
+        /// Unique ID for this card
+        /// </summary>
+        public string UniqueId =>
+            GetString(StringsEnum.Uid);
+
+        /// <summary>
         /// Gets a part array from a specified key
         /// </summary>
         /// <returns>An array of values or an empty part array []</returns>
