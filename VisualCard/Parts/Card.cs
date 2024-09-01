@@ -248,7 +248,8 @@ namespace VisualCard.Parts
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = 1047895655;
+            int hashCode = 1365540608;
+            hashCode = hashCode * -1521134295 + EqualityComparer<Card[]>.Default.GetHashCode(nestedCards);
             hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<PartsArrayEnum, List<BaseCardPartInfo>>>.Default.GetHashCode(partsArray);
             hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<StringsEnum, string>>.Default.GetHashCode(strings);
             return hashCode;
