@@ -17,6 +17,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+using Nettify.MailAddress;
 using System;
 using System.Collections.Generic;
 using Textify.Data.Analysis.NameGen;
@@ -66,7 +67,7 @@ namespace VisualCard.Extras
             // Get first and last names
             string[] firstNames = NameGenerator.GenerateFirstNames(cards, namePrefix, nameSuffix, nameGender);
             string[] lastNames = NameGenerator.GenerateLastNames(cards, surnamePrefix, surnameSuffix);
-            string[] mailHosts = ["gmail.com", "mail.com", "outlook.com", "hotmail.com", "yahoo.com"];
+            string[] mailHosts = IspTools.KnownIspHosts;
             List<Card> cardList = [];
 
             for (int i = 0; i < cards; i++)

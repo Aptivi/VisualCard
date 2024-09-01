@@ -36,6 +36,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.8" />
+    <PackageReference Include="Nettify" Version="1.5.2" />
     <PackageReference Include="Textify.Offline" Version="1.11.2" />
     <PackageReference Include="Textify.Offline.Data.Analysis" Version="1.11.2" />
   </ItemGroup>
