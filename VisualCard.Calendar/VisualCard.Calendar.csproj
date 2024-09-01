@@ -34,4 +34,12 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Textify.Offline" Version="1.11.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VisualCard\VisualCard.csproj" />
+  </ItemGroup>
+
 </Project>
