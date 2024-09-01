@@ -43,6 +43,10 @@ namespace VisualCard.Parts.Enums
         /// <summary>
         /// The contact's access classification
         /// </summary>
-        AccessClassification
+        AccessClassification,
+        /// <summary>
+        /// The contact's unique ID
+        /// </summary>
+        Uid,
     }
 }

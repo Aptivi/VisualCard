@@ -1,11 +1,13 @@
 BEGIN:VCARD
 VERSION:4.0
+UID;VALUE=uri:urn:uuid:d39d7cea-9392-48cf-ab86-7a6d9e926edb
 FN:Rick Hood
 N:Hood;Rick;;;
 END:VCARD
 
 BEGIN:VCARD
 VERSION:4.0
+UID:urn:uuid:19c35b18-7d93-43ac-9418-b890f6048ec7
 ADR;TYPE=work:POBOX;;Street Address ExtAddress;Reg;Loc;Postal;Country
 ADR;TYPE=home:;;Street Address;;;;
 EMAIL;TYPE=HOME:neville.nvs@gmail.com
@@ -38,6 +40,7 @@ END:VCARD
 
 BEGIN:VCARD
 VERSION:4.0
+UID:urn:uuid:136c1090-d7d3-4399-9f59-8f7a7b6e2ef1
 ADR;TYPE=home:;;New York\, USA;;;;
 EMAIL;TYPE=HOME:sarah.s@gmail.com
 EMAIL;TYPE=WORK:sarah.s@sso.org
@@ -54,6 +57,7 @@ END:VCARD
 
 BEGIN:VCARD
 VERSION:4.0
+UID:urn:uuid:0ade86f0-cea4-46cf-aed1-80d42f1f3b28
 ADR;TYPE=home:;;Los Angeles\, USA;;;;
 EMAIL;TYPE=HOME:john.s@acme.co
 FN:John Sanders
@@ -70,6 +74,7 @@ END:VCARD
 
 BEGIN:VCARD
 VERSION:4.0
+UID:urn:uuid:c3b37dc5-e5b6-4046-b03f-b4a9310b934f
 FN:VCardTest
 N:VCardTest;;;;
 TEL;TYPE=work:1091090902

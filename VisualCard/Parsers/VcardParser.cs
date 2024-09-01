@@ -190,6 +190,13 @@ namespace VisualCard.Parsers
                                         // Unescape the value
                                         finalValue = Regex.Unescape(value);
                                         break;
+                                    case StringsEnum.Uid:
+                                        // Unescape the value
+                                        finalValue = Regex.Unescape(value);
+                                        if (!Uri.TryCreate(finalValue, UriKind.Absolute, out Uri uri) && values.Equals("uri", StringComparison.OrdinalIgnoreCase))
+                                            throw new InvalidDataException($"URL {finalValue} is invalid");
+                                        finalValue = uri is not null ? uri.ToString() : finalValue;
+                                        break;
                                     case StringsEnum.Kind:
                                         // Get the kind
                                         if (!string.IsNullOrEmpty(value))

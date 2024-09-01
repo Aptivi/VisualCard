@@ -178,6 +178,7 @@ namespace VisualCard.ShowContacts
                     if (note.Length > 0)
                         TextWriterColor.Write("Contact Note:            {0}", note[0].Note);
                     TextWriterColor.Write("Contact mailer:          {0}", Contact.GetString(StringsEnum.Mailer));
+                    TextWriterColor.Write("Contact UUID:            {0}", Contact.GetString(StringsEnum.Uid));
 
                     // Print VCard
                     string raw = Contact.SaveToString();

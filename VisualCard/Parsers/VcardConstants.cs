@@ -66,6 +66,9 @@ namespace VisualCard.Parsers
         internal const string _valueArgumentSpecifier = "VALUE=";
         internal const string _encodingArgumentSpecifier = "ENCODING=";
 
+        // Available in vCard 2.1, 3.0, and 4.0
+        internal const string _uidSpecifier = "UID";
+
         // Available in vCard 2.1, 3.0, and 5.0
         internal const string _labelSpecifier = "LABEL";
         internal const string _sortStringSpecifier = "SORT-STRING";

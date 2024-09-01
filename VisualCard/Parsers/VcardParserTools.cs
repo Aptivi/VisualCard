@@ -88,6 +88,7 @@ namespace VisualCard.Parsers
                 StringsEnum.ProductId => cardVersion.Major >= 3,
                 StringsEnum.SortString => cardVersion.Major == 3 || cardVersion.Major == 5,
                 StringsEnum.AccessClassification => cardVersion.Major != 2 || cardVersion.Major != 4,
+                StringsEnum.Uid => cardVersion.Major <= 4,
                 _ =>
                     throw new InvalidOperationException("Invalid string enumeration type to get supported value"),
             };
@@ -139,6 +140,7 @@ namespace VisualCard.Parsers
                 StringsEnum.Mailer => VcardConstants._mailerSpecifier,
                 StringsEnum.ProductId => VcardConstants._productIdSpecifier,
                 StringsEnum.SortString => VcardConstants._sortStringSpecifier,
+                StringsEnum.Uid => VcardConstants._uidSpecifier,
                 _ =>
                     throw new NotImplementedException($"String enumeration {stringsEnum} is not implemented.")
             };
@@ -295,6 +297,7 @@ namespace VisualCard.Parsers
                 VcardConstants._productIdSpecifier => (PartType.Strings, StringsEnum.ProductId, null, null, "", "", []),
                 VcardConstants._sortStringSpecifier => (PartType.Strings, StringsEnum.SortString, null, null, "", "", []),
                 VcardConstants._classSpecifier => (PartType.Strings, StringsEnum.AccessClassification, null, null, "", "", []),
+                VcardConstants._uidSpecifier => (PartType.Strings, StringsEnum.Uid, null, null, "", "", []),
                 _ =>
                     throw new InvalidOperationException($"Unknown prefix {prefix}"),
             };
