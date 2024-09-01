@@ -31,6 +31,10 @@
     "vCard - Generation test": {
       "commandName": "Project",
       "commandLineArgs": "-gen"
+    },
+    "vCard 5.0 test (with nested agents)": {
+      "commandName": "Project",
+      "commandLineArgs": "TestFiles/fourVCard5NestedAgents.vcf"
     }
   }
 }

@@ -76,6 +76,8 @@ namespace VisualCard
             string CardLine;
             StringBuilder CardContent = new();
             Version CardVersion = new();
+            List<Card> nestedCards = [];
+            bool nested = false;
             while (!stream.EndOfStream)
             {
                 bool append = false;
@@ -91,6 +93,31 @@ namespace VisualCard
                          !CardLine.StartsWith(VcardConstants._versionSpecifier) &&
                          CardLine != VcardConstants._endText)
                     append = true;
+                else if (CardLine == VcardConstants._beginText && nested)
+                {
+                    // We have a nested card!
+                    StringBuilder nestedBuilder = new();
+                    int nestLevel = 1;
+                    nestedBuilder.AppendLine(CardLine);
+                    while (CardLine != VcardConstants._endText)
+                    {
+                        CardLine = stream.ReadLine();
+                        nestedBuilder.AppendLine(CardLine);
+                        if (CardLine == VcardConstants._beginText)
+                            nestLevel++;
+                        else if (CardLine == VcardConstants._endText && nestLevel > 1)
+                        {
+                            nestLevel--;
+                            CardLine = "";
+                            continue;
+                        }
+                    }
+
+                    // Get the cards from the nested card content
+                    var nestedCardList = GetCardsFromString(nestedBuilder.ToString());
+                    nestedCards.AddRange(nestedCardList);
+                    continue;
+                }
                 if (append)
                     CardContent.Append(CardLine);
 
@@ -102,6 +129,7 @@ namespace VisualCard
                     BeginSpotted = true;
                     VersionSpotted = false;
                     EndSpotted = false;
+                    nested = true;
                     continue;
                 }
 
@@ -124,15 +152,20 @@ namespace VisualCard
                 if (CardLine == VcardConstants._endText && !EndSpotted)
                 {
                     EndSpotted = true;
+                    nested = false;
 
                     // Make a new parser instance
                     string content = CardContent.ToString();
                     string[] contentLines = content.SplitNewLines();
-                    VcardParser CardParser = new(contentLines, CardVersion);
+                    VcardParser CardParser = new(contentLines, CardVersion)
+                    {
+                        nestedCards = [.. nestedCards]
+                    };
                     FinalParsers.Add(CardParser);
 
                     // Clear the content in case we want to make a second contact
                     CardContent.Clear();
+                    nestedCards.Clear();
                     BeginSpotted = false;
                 }
                 else if (append)

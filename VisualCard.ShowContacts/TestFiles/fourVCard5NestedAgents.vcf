@@ -1,0 +1,118 @@
+BEGIN:VCARD
+VERSION:5.0
+FN:Rick Hood
+N:Hood;Rick;;;
+END:VCARD
+
+BEGIN:VCARD
+VERSION:5.0
+ADR;TYPE=work:POBOX;;Street Address ExtAddress;Reg;Loc;Postal;Country
+ADR;TYPE=home:;;Street Address;;;;
+EMAIL;TYPE=HOME:neville.nvs@gmail.com
+EMAIL;TYPE=WORK:neville.nvs@nvsc.com
+FN:Neville Navasquillo
+IMPP;TYPE=HOME:aim:IM
+IMPP;TYPE=HOME:msn:Windows LIVE
+IMPP;TYPE=HOME:ymsgr:Yahoo
+N;ALTID=0;LANGUAGE=en:Navasquillo;Neville;Neville\,Nevile;Mr.;Jr.
+N;ALTID=0;LANGUAGE=de:NAVASQUILLO;Neville;Neville\,Nevile;Mr.;Jr.
+NOTE:Notes
+ORG:Organization
+TEL;TYPE=work:098-765-4321
+TEL;TYPE=cell:1-234-567-890
+TEL;TYPE=voice:078-494-6434
+TEL;TYPE=home:348-404-8404
+TITLE:Title
+GENDER:M
+BEGIN:VCARD
+VERSION:5.0
+ADR;TYPE=home:;;Los Angeles\, USA;;;;
+EMAIL;TYPE=HOME:john.s@acme.co
+FN:John Sanders
+IMPP:aim:john.s
+N:Sanders;John;;;
+NOTE:Note test for VisualCard
+ORG:Acme Co.
+BEGIN:VCARD
+VERSION:5.0
+FN:Joe Friday
+N:Friday;Joe;;;
+TEL:+1-919-555-7878
+TITLE:Area Administrator, Assistant
+EMAIL;TYPE=INTERNET:jfriday@host.com
+END:VCARD
+BEGIN:VCARD
+VERSION:5.0
+FN:Jim Friday
+N:Friday;Jim;;;
+TEL:+1-919-555-7878
+TITLE:Area Administrator, Assistant
+EMAIL;TYPE=INTERNET:jfriday@host.com
+END:VCARD
+BEGIN:VCARD
+VERSION:5.0
+FN:Jane Friday
+N:Friday;Jane;;;
+TEL:+1-919-555-7878
+TITLE:Area Administrator, Assistant
+EMAIL;TYPE=INTERNET:jfriday@host.com
+END:VCARD
+TEL;TYPE=cell:495-522-3560
+TITLE:Product Manager
+X-ANDROID-CUSTOM:vnd.android.cursor.item/nickname;JS;1;;;;;;;;;;;;;
+X-PHONETIC-FIRST-NAME:Saunders
+X-PHONETIC-LAST-NAME:John
+SORT-STRING:johnsanders
+END:VCARD
+X-ANDROID-CUSTOM:vnd.android.cursor.item/nickname;NVL.N;1;;;;;;;;;;;;;
+END:VCARD
+
+BEGIN:VCARD
+VERSION:5.0
+ADR;TYPE=home:;;New York\, USA;;;;
+EMAIL;TYPE=HOME:sarah.s@gmail.com
+EMAIL;TYPE=WORK:sarah.s@sso.org
+FN:Sarah Santos
+N:Santos;Sarah;;;
+ORG:Support Scammer Outcry Organization
+TEL;TYPE=cell:589-210-1059
+TITLE:Chief Executive Officer
+URL:https://sso.org/
+X-SIP-SIP:sip test
+SORT-STRING:sarahsantos
+ANNIVERSARY:20230406
+GENDER:F;grrrl
+END:VCARD
+
+BEGIN:VCARD
+VERSION:5.0
+ADR;TYPE=home:;;Los Angeles\, USA;;;;
+EMAIL;TYPE=HOME:john.s@acme.co
+FN:John Sanders
+IMPP:aim:john.s
+N:Sanders;John;;;
+NOTE:Note test for VisualCard
+ORG:Acme Co.
+BEGIN:VCARD
+VERSION:5.0
+FN:Joe Friday
+N:Friday;Joe;;;
+TEL:+1-919-555-7878
+TITLE:Area Administrator, Assistant
+EMAIL;TYPE=INTERNET:jfriday@host.com
+END:VCARD
+TEL;TYPE=cell:495-522-3560
+TITLE:Product Manager
+X-ANDROID-CUSTOM:vnd.android.cursor.item/nickname;JS;1;;;;;;;;;;;;;
+X-PHONETIC-FIRST-NAME:Saunders
+X-PHONETIC-LAST-NAME:John
+SORT-STRING:johnsanders
+END:VCARD
+
+BEGIN:VCARD
+VERSION:5.0
+FN:VCardTest
+N:VCardTest;;;;
+TEL;TYPE=work:1091090902
+TEL;TYPE=home:1092222222
+END:VCARD

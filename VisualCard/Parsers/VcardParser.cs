@@ -38,6 +38,7 @@ namespace VisualCard.Parsers
     [DebuggerDisplay("vCard contact, version {CardVersion.ToString()}, {CardContent.Length} lines")]
     internal class VcardParser
     {
+        internal Card[] nestedCards = [];
         private readonly Version cardVersion = new();
         private readonly string[] cardContent = [];
 
@@ -230,6 +231,9 @@ namespace VisualCard.Parsers
                     throw new VCardParseException(ex.Message, _value, lineNumber, ex);
                 }
             }
+
+            // Add any possible nested cards
+            card.nestedCards = nestedCards;
 
             // Validate this card before returning it.
             ValidateCard(card);

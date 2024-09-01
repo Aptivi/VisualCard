@@ -37,6 +37,7 @@ namespace VisualCard.Parts
     public class Card : IEquatable<Card>
     {
         internal bool kindExplicitlySpecified = false;
+        internal Card[] nestedCards = [];
         private readonly Version version;
         private readonly Dictionary<PartsArrayEnum, List<BaseCardPartInfo>> partsArray = [];
         private readonly Dictionary<StringsEnum, string> strings = [];
@@ -46,6 +47,12 @@ namespace VisualCard.Parts
         /// </summary>
         public Version CardVersion =>
             version;
+
+        /// <summary>
+        /// List of parsed nested cards
+        /// </summary>
+        public Card[] NestedCards =>
+            nestedCards;
 
         /// <summary>
         /// Gets a part array from a specified key
@@ -152,7 +159,7 @@ namespace VisualCard.Parts
                 cardBuilder.AppendLine($"{prefix}{VcardConstants._argumentDelimiter}{stringValue}");
             }
 
-            // Finally, enumerate all the arrays
+            // Then, enumerate all the arrays
             PartsArrayEnum[] partsArrayEnums = (PartsArrayEnum[])Enum.GetValues(typeof(PartsArrayEnum));
             foreach (PartsArrayEnum partsArrayEnum in partsArrayEnums)
             {
@@ -180,6 +187,10 @@ namespace VisualCard.Parts
                     cardBuilder.AppendLine($"{partBuilder}");
                 }
             }
+
+            // Finally, save the nested cards
+            foreach (var nestedCard in nestedCards)
+                cardBuilder.Append(nestedCard.ToString());
 
             // End the card and return it
             cardBuilder.AppendLine(VcardConstants._endText);
