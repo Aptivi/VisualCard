@@ -15,7 +15,7 @@
 
    This document contains info about the vCard 5.0 specification.
 
-   Date created:  December 16th, 2023              Document ID: A-INT-0028-121623
+   Date created:  December 16th, 2023              Document ID: A-OSS-0028-121623
    Date modified: Check the filesystem entry       Doc Record:  f7650b80-054ba689
    Author:        Aptivi OSS                       Content SHA: a8d9b1437508ce58f
 
