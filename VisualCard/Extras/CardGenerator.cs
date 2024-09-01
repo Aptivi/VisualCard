@@ -101,8 +101,10 @@ namespace VisualCard.Extras
                 if (generateEmail)
                 {
                     bool generateWorkEmail = rng.NextDouble() < 0.25;
+                    bool firstNameLong = rng.NextDouble() < 0.25;
+                    string firstNameNormalized = firstName.ToLower().Replace(" ", "-");
                     string lastNameNormalized = lastName.ToLower().Replace(" ", "-");
-                    string emailName = char.ToLower(firstName[0]) + "." + lastNameNormalized;
+                    string emailName = firstNameLong ? firstNameNormalized + "." + char.ToLower(lastName[0]) : char.ToLower(firstName[0]) + "." + lastNameNormalized;
                     string mailHost = mailHosts[rng.Next(mailHosts.Length)];
                     emails.Add("HOME", $"{emailName}@{mailHost}");
                     if (generateWorkEmail)
