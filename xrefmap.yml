@@ -510,6 +510,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Card.ToString
   nameWithType: Card.ToString
+- uid: VisualCard.Parts.Card.UniqueId
+  name: UniqueId
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_UniqueId
+  commentId: P:VisualCard.Parts.Card.UniqueId
+  fullName: VisualCard.Parts.Card.UniqueId
+  nameWithType: Card.UniqueId
+- uid: VisualCard.Parts.Card.UniqueId*
+  name: UniqueId
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_UniqueId_
+  commentId: Overload:VisualCard.Parts.Card.UniqueId
+  isSpec: "True"
+  fullName: VisualCard.Parts.Card.UniqueId
+  nameWithType: Card.UniqueId
 - uid: VisualCard.Parts.Card.op_Equality(VisualCard.Parts.Card,VisualCard.Parts.Card)
   name: operator ==(Card, Card)
   href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_op_Equality_VisualCard_Parts_Card_VisualCard_Parts_Card_
