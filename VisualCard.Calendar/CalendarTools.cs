@@ -106,11 +106,12 @@ namespace VisualCard.Calendar
 
                 // Now that the beginning of the calendar tag is spotted, parse the version as we need to know how to select the appropriate parser.
                 // All vCalendars are required to have their own version directly after the BEGIN:VCALENDAR tag
-                if (CalendarLine != $"{VCalendarConstants._versionSpecifier}:1.0" &&
+                if (CalendarLine.StartsWith(VCalendarConstants._versionSpecifier) &&
+                    CalendarLine != $"{VCalendarConstants._versionSpecifier}:1.0" &&
                     CalendarLine != $"{VCalendarConstants._versionSpecifier}:2.0" &&
                     !VersionSpotted)
                     throw new InvalidDataException($"This has an invalid vCalendar version {CalendarLine}.");
-                else if (!VersionSpotted)
+                else if (!VersionSpotted && CalendarLine.StartsWith(VCalendarConstants._versionSpecifier))
                 {
                     VersionSpotted = true;
                     CalendarVersion = new(CalendarLine.Substring(8));

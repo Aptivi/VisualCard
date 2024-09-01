@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "WSL": {
+      "commandName": "WSL2",
+      "distributionName": ""
+    },
+    "vCalendar 2.0 test - simple": {
+      "commandName": "Project",
+      "commandLineArgs": "TestFiles/vevent.vcs"
+    }
+  }
+}

@@ -23,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Private", "Private", "{FBDC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Public", "Public", "{F07A71FB-5A78-448F-A5A2-5B7608319ACD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisualCard.ShowCalendars", "VisualCard.ShowCalendars\VisualCard.ShowCalendars.csproj", "{80A3B32A-F96E-4E87-837F-94E6EB188547}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{C67176FD-09C7-4F0E-B7C3-A15550961484}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C67176FD-09C7-4F0E-B7C3-A15550961484}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C67176FD-09C7-4F0E-B7C3-A15550961484}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80A3B32A-F96E-4E87-837F-94E6EB188547}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80A3B32A-F96E-4E87-837F-94E6EB188547}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80A3B32A-F96E-4E87-837F-94E6EB188547}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80A3B32A-F96E-4E87-837F-94E6EB188547}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -54,6 +60,7 @@ Global
 		{798FA5EC-E411-4DF3-B8C7-D5E0AA63AA58} = {FBDC2E9C-4689-46B6-9889-3BA1D34D133D}
 		{93EB56B7-90CD-4EA9-B7C3-51C040E135F7} = {FBDC2E9C-4689-46B6-9889-3BA1D34D133D}
 		{C67176FD-09C7-4F0E-B7C3-A15550961484} = {F07A71FB-5A78-448F-A5A2-5B7608319ACD}
+		{80A3B32A-F96E-4E87-837F-94E6EB188547} = {FBDC2E9C-4689-46B6-9889-3BA1D34D133D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {889936F5-3595-4A31-90D3-A39A9B398546}
