@@ -62,7 +62,7 @@
   "api/VisualCard.Parts.Enums.StringsEnum.html": {
     "href": "api/VisualCard.Parts.Enums.StringsEnum.html",
     "title": "Enum StringsEnum | VisualCard API - Aptivi",
-    "keywords": "Enum StringsEnum Enumeration for available parts that are strings Namespace: VisualCard.Parts.Enums Assembly: VisualCard.dll Syntax public enum StringsEnum Fields Name Description AccessClassification The contact's access classification Kind The VCard kind (individual is the default) Mailer The contact's mailing software ProductId The contact's product ID SortString The contact's sort string"
+    "keywords": "Enum StringsEnum Enumeration for available parts that are strings Namespace: VisualCard.Parts.Enums Assembly: VisualCard.dll Syntax public enum StringsEnum Fields Name Description AccessClassification The contact's access classification Kind The VCard kind (individual is the default) Mailer The contact's mailing software ProductId The contact's product ID SortString The contact's sort string Uid The contact's unique ID"
   },
   "api/VisualCard.Parts.Enums.html": {
     "href": "api/VisualCard.Parts.Enums.html",

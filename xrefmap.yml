@@ -806,6 +806,12 @@ references:
   commentId: F:VisualCard.Parts.Enums.StringsEnum.SortString
   fullName: VisualCard.Parts.Enums.StringsEnum.SortString
   nameWithType: StringsEnum.SortString
+- uid: VisualCard.Parts.Enums.StringsEnum.Uid
+  name: Uid
+  href: api/VisualCard.Parts.Enums.StringsEnum.html#VisualCard_Parts_Enums_StringsEnum_Uid
+  commentId: F:VisualCard.Parts.Enums.StringsEnum.Uid
+  fullName: VisualCard.Parts.Enums.StringsEnum.Uid
+  nameWithType: StringsEnum.Uid
 - uid: VisualCard.Parts.Implementations
   name: VisualCard.Parts.Implementations
   href: api/VisualCard.Parts.Implementations.html
