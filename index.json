@@ -52,7 +52,7 @@
   "api/VisualCard.Parts.Enums.PartType.html": {
     "href": "api/VisualCard.Parts.Enums.PartType.html",
     "title": "Enum PartType | VisualCard API - Aptivi",
-    "keywords": "Enum PartType Part type Namespace: VisualCard.Parts.Enums Assembly: VisualCard.dll Syntax public enum PartType Fields Name Description PartsArray Parts that can be expressed as arrays Strings Literal strings"
+    "keywords": "Enum PartType Part type Namespace: VisualCard.Parts.Enums Assembly: VisualCard.dll Syntax public enum PartType Fields Name Description Integers Literal integers PartsArray Parts that can be expressed as arrays Strings Literal strings"
   },
   "api/VisualCard.Parts.Enums.PartsArrayEnum.html": {
     "href": "api/VisualCard.Parts.Enums.PartsArrayEnum.html",

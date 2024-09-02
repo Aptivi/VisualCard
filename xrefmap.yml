@@ -573,6 +573,12 @@ references:
   commentId: T:VisualCard.Parts.Enums.PartType
   fullName: VisualCard.Parts.Enums.PartType
   nameWithType: PartType
+- uid: VisualCard.Parts.Enums.PartType.Integers
+  name: Integers
+  href: api/VisualCard.Parts.Enums.PartType.html#VisualCard_Parts_Enums_PartType_Integers
+  commentId: F:VisualCard.Parts.Enums.PartType.Integers
+  fullName: VisualCard.Parts.Enums.PartType.Integers
+  nameWithType: PartType.Integers
 - uid: VisualCard.Parts.Enums.PartType.PartsArray
   name: PartsArray
   href: api/VisualCard.Parts.Enums.PartType.html#VisualCard_Parts_Enums_PartType_PartsArray
