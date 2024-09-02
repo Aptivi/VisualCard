@@ -53,6 +53,7 @@ namespace VisualCard.Calendar.Parsers
             integersEnum switch
             {
                 CalendarIntegersEnum.Priority => calendarVersion.Major == 2,
+                CalendarIntegersEnum.Sequence => true,
                 _ =>
                     throw new InvalidOperationException("Invalid integer enumeration type to get supported value"),
             };
@@ -65,6 +66,8 @@ namespace VisualCard.Calendar.Parsers
                 CalendarPartsArrayEnum.Comment => calendarVersion.Major == 2,
                 CalendarPartsArrayEnum.Geography => true,
                 CalendarPartsArrayEnum.Location => calendarVersion.Major == 2,
+                CalendarPartsArrayEnum.Resources => true,
+                CalendarPartsArrayEnum.Attendee => true,
                 CalendarPartsArrayEnum.DateStart => true,
                 CalendarPartsArrayEnum.DateEnd => true,
                 CalendarPartsArrayEnum.NonstandardNames => true,
@@ -93,6 +96,7 @@ namespace VisualCard.Calendar.Parsers
             integersEnum switch
             {
                 CalendarIntegersEnum.Priority => VCalendarConstants._prioritySpecifier,
+                CalendarIntegersEnum.Sequence => VCalendarConstants._sequenceSpecifier,
                 _ =>
                     throw new NotImplementedException($"Integer enumeration {integersEnum} is not implemented.")
             };
@@ -105,6 +109,8 @@ namespace VisualCard.Calendar.Parsers
                 CalendarPartsArrayEnum.Comment => VCalendarConstants._commentSpecifier,
                 CalendarPartsArrayEnum.Geography => VCalendarConstants._geoSpecifier,
                 CalendarPartsArrayEnum.Location => VCalendarConstants._locationSpecifier,
+                CalendarPartsArrayEnum.Resources => VCalendarConstants._resourcesSpecifier,
+                CalendarPartsArrayEnum.Attendee => VCalendarConstants._attendeeSpecifier,
                 CalendarPartsArrayEnum.DateStart => VCalendarConstants._dateStartSpecifier,
                 CalendarPartsArrayEnum.DateEnd => VCalendarConstants._dateEndSpecifier,
                 CalendarPartsArrayEnum.DateStamp => VCalendarConstants._dateStampSpecifier,
@@ -128,6 +134,10 @@ namespace VisualCard.Calendar.Parsers
                 return (CalendarPartsArrayEnum.Geography, PartCardinality.Any);
             else if (partsArrayType == typeof(LocationInfo))
                 return (CalendarPartsArrayEnum.Location, PartCardinality.Any);
+            else if (partsArrayType == typeof(ResourcesInfo))
+                return (CalendarPartsArrayEnum.Resources, PartCardinality.MayBeOne);
+            else if (partsArrayType == typeof(AttendeeInfo))
+                return (CalendarPartsArrayEnum.Attendee, PartCardinality.Any);
             else if (partsArrayType == typeof(DateStartInfo))
                 return (CalendarPartsArrayEnum.DateStart, PartCardinality.ShouldBeOne);
             else if (partsArrayType == typeof(DateEndInfo))
@@ -145,6 +155,8 @@ namespace VisualCard.Calendar.Parsers
                 VCalendarConstants._commentSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.Comment, typeof(CommentInfo), CommentInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._geoSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.Geography, typeof(GeoInfo), GeoInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._locationSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.Location, typeof(LocationInfo), LocationInfo.FromStringVcalendarStatic, "", "", []),
+                VCalendarConstants._resourcesSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.Resources, typeof(ResourcesInfo), ResourcesInfo.FromStringVcalendarStatic, "", "", []),
+                VCalendarConstants._attendeeSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.Attendee, typeof(AttendeeInfo), AttendeeInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._dateStartSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DateStart, typeof(DateStartInfo), DateStartInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._dateEndSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DateEnd, typeof(DateEndInfo), DateEndInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._dateStampSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DateStamp, typeof(DateStampInfo), DateStampInfo.FromStringVcalendarStatic, "", "", []),
@@ -159,6 +171,7 @@ namespace VisualCard.Calendar.Parsers
                 VCalendarConstants._summarySpecifier => (PartType.Strings, CalendarStringsEnum.Summary, null, null, "", "", []),
                 VCalendarConstants._descriptionSpecifier => (PartType.Strings, CalendarStringsEnum.Description, null, null, "", "", []),
                 VCalendarConstants._prioritySpecifier => (PartType.Integers, CalendarIntegersEnum.Priority, null, null, "", "", []),
+                VCalendarConstants._sequenceSpecifier => (PartType.Integers, CalendarIntegersEnum.Sequence, null, null, "", "", []),
                 _ =>
                     throw new InvalidOperationException($"Unknown prefix {prefix}"),
             };

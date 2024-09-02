@@ -54,28 +54,14 @@ namespace VisualCard.Calendar.Parts.Implementations
 
         internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, string[] finalArgs, string[] elementTypes, string valueType, Version calendarVersion)
         {
-            bool vCalendar4 = calendarVersion.Major >= 4;
-
             // Check to see if the value is prepended by the ENCODING= argument
-            string attachEncoding = "";
-            if (vCalendar4)
+            string attachEncoding = VcardParserTools.GetValuesString(finalArgs, "b", VCalendarConstants._encodingArgumentSpecifier);
+            if (!VcardParserTools.IsEncodingBlob(finalArgs, value))
             {
-                // We're on a vCalendar 4.0 contact that contains this information
+                // Since we don't need embedded attachs, we need to check a URL.
                 if (!Uri.TryCreate(value, UriKind.Absolute, out Uri uri))
                     throw new InvalidDataException($"URL {value} is invalid");
                 value = uri.ToString();
-            }
-            else
-            {
-                // vCalendar 3.0 handles this in a different way
-                attachEncoding = VcardParserTools.GetValuesString(finalArgs, "b", VCalendarConstants._encodingArgumentSpecifier);
-                if (!VcardParserTools.IsEncodingBlob(finalArgs, value))
-                {
-                    // Since we don't need embedded attachs, we need to check a URL.
-                    if (!Uri.TryCreate(value, UriKind.Absolute, out Uri uri))
-                        throw new InvalidDataException($"URL {value} is invalid");
-                    value = uri.ToString();
-                }
             }
 
             // Populate the fields

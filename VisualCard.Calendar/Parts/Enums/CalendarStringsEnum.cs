@@ -53,11 +53,11 @@ namespace VisualCard.Calendar.Parts.Enums
         /// </summary>
         Organizer,
         /// <summary>
-        /// The calendar's status
+        /// The calendar's status (event, to-do, or journal)
         /// </summary>
         Status,
         /// <summary>
-        /// The calendar's summary
+        /// The calendar's summary (event, to-do, journal, or alarm)
         /// </summary>
         Summary,
     }

@@ -28,5 +28,9 @@ namespace VisualCard.Calendar.Parts.Enums
         /// The calendar's priority (event or to-do)
         /// </summary>
         Priority,
+        /// <summary>
+        /// The calendar's sequence (event, to-do, or journal)
+        /// </summary>
+        Sequence,
     }
 }

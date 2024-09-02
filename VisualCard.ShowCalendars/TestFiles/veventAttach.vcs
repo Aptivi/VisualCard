@@ -14,9 +14,9 @@ CATEGORIES:MEETING,PROJECT
 CLASS:PUBLIC
 SUMMARY:Calendaring Interoperability Planning Meeting
 DESCRIPTION:Discuss how we can test c&s interoperability\n
-using iCalendar and other IETF standards.
+ using iCalendar and other IETF standards.
 LOCATION:LDB Lobby
 ATTACH;FMTTYPE=application/postscript:ftp://example.com/pub/
-conf/bkgrnd.ps
+ conf/bkgrnd.ps
 END:VEVENT
 END:VCALENDAR

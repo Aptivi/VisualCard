@@ -182,7 +182,6 @@ namespace VisualCard.Calendar.Parsers
                                 {
                                     case CalendarStringsEnum.ProductId:
                                     case CalendarStringsEnum.Organizer:
-                                    case CalendarStringsEnum.Status:
                                     case CalendarStringsEnum.Summary:
                                     case CalendarStringsEnum.Description:
                                     case CalendarStringsEnum.CalScale:
@@ -190,6 +189,12 @@ namespace VisualCard.Calendar.Parsers
                                     case CalendarStringsEnum.Class:
                                         // Unescape the value
                                         finalValue = Regex.Unescape(value);
+                                        break;
+                                    case CalendarStringsEnum.Status:
+                                        // Unescape the value
+                                        finalValue = Regex.Unescape(value);
+                                        if (finalValue != "TENTATIVE" && finalValue != "CONFIRMED" && finalValue != "CANCELLED")
+                                            throw new ArgumentException($"Invalid status {finalValue}");
                                         break;
                                     case CalendarStringsEnum.Uid:
                                         // Unescape the value
@@ -222,6 +227,12 @@ namespace VisualCard.Calendar.Parsers
                                         // Check the range
                                         if (primaryValue < 0 || primaryValue > 9)
                                             throw new ArgumentOutOfRangeException(nameof(primaryValue), primaryValue, "Priority may not be less than zero or greater than 9");
+                                        finalValue = primaryValue;
+                                        break;
+                                    case CalendarIntegersEnum.Sequence:
+                                        // Check the range
+                                        if (primaryValue < 0)
+                                            throw new ArgumentOutOfRangeException(nameof(primaryValue), primaryValue, "Value may not be less than zero");
                                         finalValue = primaryValue;
                                         break;
                                     default:

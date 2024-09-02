@@ -45,6 +45,14 @@ namespace VisualCard.Calendar.Parts.Enums
         /// </summary>
         Location,
         /// <summary>
+        /// Calendar resources (event or to-do)
+        /// </summary>
+        Resources,
+        /// <summary>
+        /// Calendar attendees (event, todo, journal, free/busy, or alarm)
+        /// </summary>
+        Attendee,
+        /// <summary>
         /// Event date start
         /// </summary>
         DateStart,

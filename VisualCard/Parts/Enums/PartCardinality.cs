@@ -20,7 +20,7 @@
 namespace VisualCard.Parts.Enums
 {
     /// <summary>
-    /// Part cardinality (specifies how many times a part, a string, or a parts array may exist)
+    /// Part cardinality (specifies how many times an integer, a string, or an array of parts may exist)
     /// </summary>
     internal enum PartCardinality
     {
