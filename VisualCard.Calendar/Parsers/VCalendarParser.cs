@@ -240,7 +240,25 @@ namespace VisualCard.Calendar.Parsers
 
         internal void ValidateCalendar(Parts.Calendar calendar)
         {
-            // TODO: Actually implement vCalendar from scaffolding
+            // Track the required fields
+            List<string> expectedFields =
+            [
+                VCalendarConstants._productIdSpecifier,
+            ];
+            List<string> actualFields = [];
+
+            // Requirement checks
+            if (expectedFields.Contains(VCalendarConstants._productIdSpecifier))
+            {
+                var prodId = calendar.GetString(CalendarStringsEnum.ProductId);
+                bool exists = !string.IsNullOrEmpty(prodId);
+                if (exists)
+                    actualFields.Add(VcardConstants._productIdSpecifier);
+            }
+            expectedFields.Sort();
+            actualFields.Sort();
+            if (!actualFields.SequenceEqual(expectedFields))
+                throw new InvalidDataException($"The following keys [{string.Join(", ", expectedFields)}] are required. Got [{string.Join(", ", actualFields)}].");
         }
 
         private Parts.Calendar GetCalendarInheritedInstance(string type)
