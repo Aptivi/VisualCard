@@ -52,9 +52,7 @@ namespace VisualCard.Calendar.Parsers
         internal const string _descriptionSpecifier = "DESCRIPTION";
         internal const string _attachSpecifier = "ATTACH";
         internal const string _classSpecifier = "CLASS";
-        internal const string _commentSpecifier = "COMMENT";
         internal const string _geoSpecifier = "GEO";
-        internal const string _locationSpecifier = "LOCATION";
         internal const string _xSpecifier = "X-";
         internal const string _typeArgumentSpecifier = "TYPE=";
         internal const string _valueArgumentSpecifier = "VALUE=";
@@ -64,5 +62,8 @@ namespace VisualCard.Calendar.Parsers
         internal const string _dateStampSpecifier = "DTSTAMP";
         internal const string _calScaleSpecifier = "CALSCALE";
         internal const string _methodSpecifier = "METHOD";
+        internal const string _locationSpecifier = "LOCATION";
+        internal const string _commentSpecifier = "COMMENT";
+        internal const string _prioritySpecifier = "PRIORITY";
     }
 }

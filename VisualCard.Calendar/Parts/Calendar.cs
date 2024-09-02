@@ -42,6 +42,7 @@ namespace VisualCard.Calendar.Parts
         private readonly Version version;
         private readonly Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray = [];
         private readonly Dictionary<CalendarStringsEnum, string> strings = [];
+        private readonly Dictionary<CalendarIntegersEnum, int> integers = [];
 
         /// <summary>
         /// The vCalendar version
@@ -145,6 +146,30 @@ namespace VisualCard.Calendar.Parts
         }
 
         /// <summary>
+        /// Gets a integer from a specified key
+        /// </summary>
+        /// <param name="key">A key to use</param>
+        /// <returns>A value or -1 if any other type either doesn't exist or the type is not supported by the card version</returns>
+        public int GetInteger(CalendarIntegersEnum key) =>
+            GetInteger(key, version, integers);
+
+        internal int GetInteger(CalendarIntegersEnum key, Version version, Dictionary<CalendarIntegersEnum, int> integers)
+        {
+            // Check for version support
+            if (!VCalendarParserTools.IntegerSupported(key, version))
+                return -1;
+
+            // Get the fallback value
+            int fallback = -1;
+
+            // Check to see if the integer has a value or not
+            bool hasValue = integers.TryGetValue(key, out int value);
+            if (!hasValue)
+                return fallback;
+            return value;
+        }
+
+        /// <summary>
         /// Saves this parsed card to the string
         /// </summary>
         public string SaveToString() =>
@@ -173,6 +198,20 @@ namespace VisualCard.Calendar.Parts
                 string prefix = VCalendarParserTools.GetPrefixFromStringsEnum(stringEnum);
                 cardBuilder.Append($"{prefix}{VCalendarConstants._argumentDelimiter}");
                 cardBuilder.AppendLine($"{VcardParserTools.MakeStringBlock(stringValue, prefix.Length)}");
+            }
+
+            // Then, enumerate all the integers
+            CalendarIntegersEnum[] integerEnums = (CalendarIntegersEnum[])Enum.GetValues(typeof(CalendarIntegersEnum));
+            foreach (CalendarIntegersEnum integerEnum in integerEnums)
+            {
+                // Get the integer value
+                int integerValue = GetInteger(integerEnum, version, integers);
+                if (integerValue == -1)
+                    continue;
+
+                // Now, locate the prefix and assemble the line
+                string prefix = VCalendarParserTools.GetPrefixFromIntegersEnum(integerEnum);
+                cardBuilder.AppendLine($"{prefix}{VCalendarConstants._argumentDelimiter}{integerValue}");
             }
 
             // Then, enumerate all the arrays
@@ -257,16 +296,18 @@ namespace VisualCard.Calendar.Parts
             // Check all the properties
             return
                 PartComparison.PartsArrayEnumEqual(source.partsArray, target.partsArray) &&
-                PartComparison.StringsEqual(source.strings, target.strings)
+                PartComparison.StringsEqual(source.strings, target.strings) &&
+                PartComparison.IntegersEqual(source.integers, target.integers)
             ;
         }
 
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = 1047895655;
+            int hashCode = 946631297;
             hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>>>.Default.GetHashCode(partsArray);
             hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarStringsEnum, string>>.Default.GetHashCode(strings);
+            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarIntegersEnum, int>>.Default.GetHashCode(integers);
             return hashCode;
         }
 
@@ -321,6 +362,21 @@ namespace VisualCard.Calendar.Parts
                 strings.Add(key, value);
             else
                 throw new InvalidOperationException($"Can't overwrite string {key}.");
+        }
+
+        internal void SetInteger(CalendarIntegersEnum key, int value) =>
+            SetInteger(key, value, integers);
+
+        internal void SetInteger(CalendarIntegersEnum key, int value, Dictionary<CalendarIntegersEnum, int> integers)
+        {
+            if (value == -1)
+                return;
+
+            // If we don't have this key yet, add it.
+            if (!integers.ContainsKey(key))
+                integers.Add(key, value);
+            else
+                throw new InvalidOperationException($"Can't overwrite integer {key}.");
         }
 
         internal Calendar(Version version) =>

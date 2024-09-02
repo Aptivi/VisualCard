@@ -48,6 +48,14 @@ namespace VisualCard.Calendar.Parsers
                 _ =>
                     throw new InvalidOperationException("Invalid string enumeration type to get supported value"),
             };
+        
+        internal static bool IntegerSupported(CalendarIntegersEnum integersEnum, Version calendarVersion) =>
+            integersEnum switch
+            {
+                CalendarIntegersEnum.Priority => calendarVersion.Major == 2,
+                _ =>
+                    throw new InvalidOperationException("Invalid integer enumeration type to get supported value"),
+            };
 
         internal static bool EnumArrayTypeSupported(CalendarPartsArrayEnum partsArrayEnum, Version calendarVersion) =>
             partsArrayEnum switch
@@ -79,6 +87,14 @@ namespace VisualCard.Calendar.Parsers
                 CalendarStringsEnum.Description => VCalendarConstants._descriptionSpecifier,
                 _ =>
                     throw new NotImplementedException($"String enumeration {stringsEnum} is not implemented.")
+            };
+
+        internal static string GetPrefixFromIntegersEnum(CalendarIntegersEnum integersEnum) =>
+            integersEnum switch
+            {
+                CalendarIntegersEnum.Priority => VCalendarConstants._prioritySpecifier,
+                _ =>
+                    throw new NotImplementedException($"Integer enumeration {integersEnum} is not implemented.")
             };
 
         internal static string GetPrefixFromPartsArrayEnum(CalendarPartsArrayEnum partsArrayEnum) =>
@@ -142,6 +158,7 @@ namespace VisualCard.Calendar.Parsers
                 VCalendarConstants._statusSpecifier => (PartType.Strings, CalendarStringsEnum.Status, null, null, "", "", []),
                 VCalendarConstants._summarySpecifier => (PartType.Strings, CalendarStringsEnum.Summary, null, null, "", "", []),
                 VCalendarConstants._descriptionSpecifier => (PartType.Strings, CalendarStringsEnum.Description, null, null, "", "", []),
+                VCalendarConstants._prioritySpecifier => (PartType.Integers, CalendarIntegersEnum.Priority, null, null, "", "", []),
                 _ =>
                     throw new InvalidOperationException($"Unknown prefix {prefix}"),
             };

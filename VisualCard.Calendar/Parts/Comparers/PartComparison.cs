@@ -84,6 +84,28 @@ namespace VisualCard.Calendar.Parts.Comparers
             return equal;
         }
 
+        internal static bool IntegersEqual(
+            IDictionary<CalendarIntegersEnum, int> source,
+            IDictionary<CalendarIntegersEnum, int> target)
+        {
+            // Verify the dictionaries
+            if (!VerifyDicts(source, target))
+                return false;
+
+            // If they are really equal using the equals operator, return true.
+            if (source == target)
+                return true;
+
+            // Now, test the equality
+            bool equal = source.All(kvp =>
+            {
+                bool exists = target.TryGetValue(kvp.Key, out int part);
+                bool partsEqual = kvp.Value == part;
+                return exists && partsEqual;
+            });
+            return equal;
+        }
+
         private static bool VerifyLists<TValue>(
             IList<TValue> source,
             IList<TValue> target)

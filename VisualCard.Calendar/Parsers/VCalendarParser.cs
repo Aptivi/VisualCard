@@ -209,6 +209,32 @@ namespace VisualCard.Calendar.Parsers
                                     calendar.SetString(stringType, finalValue);
                             }
                             break;
+                        case PartType.Integers:
+                            {
+                                CalendarIntegersEnum integerType = (CalendarIntegersEnum)enumeration;
+                                int primaryValue = int.Parse(value);
+                                int finalValue = 0;
+
+                                // Now, handle each type individually
+                                switch (integerType)
+                                {
+                                    case CalendarIntegersEnum.Priority:
+                                        // Check the range
+                                        if (primaryValue < 0 || primaryValue > 9)
+                                            throw new ArgumentOutOfRangeException(nameof(primaryValue), primaryValue, "Priority may not be less than zero or greater than 9");
+                                        finalValue = primaryValue;
+                                        break;
+                                    default:
+                                        throw new InvalidDataException($"The integer enum type {integerType} is invalid. Are you sure that you've specified the correct type in your vCalendar representation?");
+                                }
+
+                                // Set the integer for real
+                                if (subPart is not null)
+                                    subPart.SetInteger(integerType, finalValue);
+                                else
+                                    calendar.SetInteger(integerType, finalValue);
+                            }
+                            break;
                         case PartType.PartsArray:
                             {
                                 CalendarPartsArrayEnum partsArrayType = (CalendarPartsArrayEnum)enumeration;

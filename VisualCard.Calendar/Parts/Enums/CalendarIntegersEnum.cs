@@ -17,24 +17,16 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-namespace VisualCard.Parts.Enums
+namespace VisualCard.Calendar.Parts.Enums
 {
     /// <summary>
-    /// Part type
+    /// Enumeration for available parts that are integers
     /// </summary>
-    public enum PartType
+    public enum CalendarIntegersEnum
     {
         /// <summary>
-        /// Literal strings
+        /// The calendar's priority (event or to-do)
         /// </summary>
-        Strings,
-        /// <summary>
-        /// Parts that can be expressed as arrays
-        /// </summary>
-        PartsArray,
-        /// <summary>
-        /// Literal integers
-        /// </summary>
-        Integers,
+        Priority,
     }
 }
