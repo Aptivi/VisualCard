@@ -53,6 +53,14 @@ namespace VisualCard.Calendar.Parts.Enums
         /// </summary>
         Attendee,
         /// <summary>
+        /// Calendar date of creation (event, todo, or journal)
+        /// </summary>
+        DateCreated,
+        /// <summary>
+        /// Calendar date of creation (vCalendar 1.0) (event, todo, or journal)
+        /// </summary>
+        DateCreatedAlt,
+        /// <summary>
         /// Event date start
         /// </summary>
         DateStart,

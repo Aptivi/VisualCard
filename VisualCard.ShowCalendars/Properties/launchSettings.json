@@ -15,6 +15,10 @@
     "vCalendar 2.0 test - with transparency info": {
       "commandName": "Project",
       "commandLineArgs": "TestFiles/veventTransp.vcs"
+    },
+    "vCalendar 2.0 test - with X-nonstandard properties": {
+      "commandName": "Project",
+      "commandLineArgs": "TestFiles/veventXnonstandard.ics"
     }
   }
 }

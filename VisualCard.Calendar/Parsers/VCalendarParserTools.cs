@@ -69,6 +69,8 @@ namespace VisualCard.Calendar.Parsers
                 CalendarPartsArrayEnum.Location => calendarVersion.Major == 2,
                 CalendarPartsArrayEnum.Resources => true,
                 CalendarPartsArrayEnum.Attendee => true,
+                CalendarPartsArrayEnum.DateCreated => true,
+                CalendarPartsArrayEnum.DateCreatedAlt => true,
                 CalendarPartsArrayEnum.DateStart => true,
                 CalendarPartsArrayEnum.DateEnd => true,
                 CalendarPartsArrayEnum.NonstandardNames => true,
@@ -113,6 +115,8 @@ namespace VisualCard.Calendar.Parsers
                 CalendarPartsArrayEnum.Location => VCalendarConstants._locationSpecifier,
                 CalendarPartsArrayEnum.Resources => VCalendarConstants._resourcesSpecifier,
                 CalendarPartsArrayEnum.Attendee => VCalendarConstants._attendeeSpecifier,
+                CalendarPartsArrayEnum.DateCreated => VCalendarConstants._createdSpecifier,
+                CalendarPartsArrayEnum.DateCreatedAlt => VCalendarConstants._created1Specifier,
                 CalendarPartsArrayEnum.DateStart => VCalendarConstants._dateStartSpecifier,
                 CalendarPartsArrayEnum.DateEnd => VCalendarConstants._dateEndSpecifier,
                 CalendarPartsArrayEnum.DateStamp => VCalendarConstants._dateStampSpecifier,
@@ -140,6 +144,8 @@ namespace VisualCard.Calendar.Parsers
                 return (CalendarPartsArrayEnum.Resources, PartCardinality.MayBeOne);
             else if (partsArrayType == typeof(AttendeeInfo))
                 return (CalendarPartsArrayEnum.Attendee, PartCardinality.Any);
+            else if (partsArrayType == typeof(DateCreatedInfo))
+                return (calendarVersion.Major == 1 ? CalendarPartsArrayEnum.DateCreatedAlt : CalendarPartsArrayEnum.DateCreated, PartCardinality.MayBeOne);
             else if (partsArrayType == typeof(DateStartInfo))
                 return (CalendarPartsArrayEnum.DateStart, PartCardinality.ShouldBeOne);
             else if (partsArrayType == typeof(DateEndInfo))
@@ -159,6 +165,8 @@ namespace VisualCard.Calendar.Parsers
                 VCalendarConstants._locationSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.Location, typeof(LocationInfo), LocationInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._resourcesSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.Resources, typeof(ResourcesInfo), ResourcesInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._attendeeSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.Attendee, typeof(AttendeeInfo), AttendeeInfo.FromStringVcalendarStatic, "", "", []),
+                VCalendarConstants._createdSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DateCreated, typeof(DateCreatedInfo), DateCreatedInfo.FromStringVcalendarStatic, "", "", []),
+                VCalendarConstants._created1Specifier => (PartType.PartsArray, CalendarPartsArrayEnum.DateCreatedAlt, typeof(DateCreatedInfo), DateCreatedInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._dateStartSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DateStart, typeof(DateStartInfo), DateStartInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._dateEndSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DateEnd, typeof(DateEndInfo), DateEndInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._dateStampSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DateStamp, typeof(DateStampInfo), DateStampInfo.FromStringVcalendarStatic, "", "", []),
