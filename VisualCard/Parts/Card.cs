@@ -162,7 +162,8 @@ namespace VisualCard.Parts
 
                 // Now, locate the prefix and assemble the line
                 string prefix = VcardParserTools.GetPrefixFromStringsEnum(stringEnum);
-                cardBuilder.AppendLine($"{prefix}{VcardConstants._argumentDelimiter}{stringValue}");
+                cardBuilder.Append($"{prefix}{VcardConstants._argumentDelimiter}");
+                cardBuilder.AppendLine($"{VcardParserTools.MakeStringBlock(stringValue, prefix.Length)}");
             }
 
             // Then, enumerate all the arrays

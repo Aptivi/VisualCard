@@ -170,7 +170,8 @@ namespace VisualCard.Calendar.Parts
 
                 // Now, locate the prefix and assemble the line
                 string prefix = VCalendarParserTools.GetPrefixFromStringsEnum(stringEnum);
-                cardBuilder.AppendLine($"{prefix}{VCalendarConstants._argumentDelimiter}{stringValue}");
+                cardBuilder.Append($"{prefix}{VCalendarConstants._argumentDelimiter}");
+                cardBuilder.AppendLine($"{VCalendarParserTools.MakeStringBlock(stringValue, prefix.Length)}");
             }
 
             // Then, enumerate all the arrays

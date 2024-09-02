@@ -313,9 +313,12 @@ namespace VisualCard.Parsers
             int processed = 0;
             for (int currCharNum = 0; currCharNum < target.Length; currCharNum++)
             {
-                block.Append(target[currCharNum]);
-                processed++;
-                if (processed >= selectedMax)
+                if (target[currCharNum] != '\n' && target[currCharNum] != '\r')
+                {
+                    block.Append(target[currCharNum]);
+                    processed++;
+                }
+                if (processed >= selectedMax || target[currCharNum] == '\n')
                 {
                     // Append a new line because we reached the maximum limit
                     selectedMax = maxChars;
