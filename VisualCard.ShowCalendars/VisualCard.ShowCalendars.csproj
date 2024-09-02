@@ -21,6 +21,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="TestFiles\veventAttach.vcs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="TestFiles\vevent.vcs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

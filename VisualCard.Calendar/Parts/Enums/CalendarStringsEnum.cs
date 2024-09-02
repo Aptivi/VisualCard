@@ -25,17 +25,25 @@ namespace VisualCard.Calendar.Parts.Enums
     public enum CalendarStringsEnum
     {
         /// <summary>
-        /// The calendar's product ID
+        /// The calendar's product ID (top-level)
         /// </summary>
         ProductId,
         /// <summary>
-        /// The calendar's scale
+        /// The calendar's scale (top-level)
         /// </summary>
         CalScale,
         /// <summary>
-        /// The calendar's method
+        /// The calendar's method (top-level)
         /// </summary>
         Method,
+        /// <summary>
+        /// The calendar's classification (event, to-do, or journal)
+        /// </summary>
+        Class,
+        /// <summary>
+        /// The calendar's description (event, to-do, journal (1+), or alarm)
+        /// </summary>
+        Description,
         /// <summary>
         /// The calendar's unique ID
         /// </summary>
@@ -52,9 +60,5 @@ namespace VisualCard.Calendar.Parts.Enums
         /// The calendar's summary
         /// </summary>
         Summary,
-        /// <summary>
-        /// The calendar's description
-        /// </summary>
-        Description,
     }
 }

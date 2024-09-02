@@ -25,23 +25,39 @@ namespace VisualCard.Calendar.Parts.Enums
     public enum CalendarPartsArrayEnum
     {
         /// <summary>
-        /// Calendar date start
+        /// Calendar attachments (event, todo, journal, or alarm)
         /// </summary>
-        DateStart,
+        Attach,
         /// <summary>
-        /// Calendar date end
-        /// </summary>
-        DateEnd,
-        /// <summary>
-        /// Calendar date stamp
-        /// </summary>
-        DateStamp,
-        /// <summary>
-        /// Calendar categories
+        /// Calendar categories (event, todo, or journal)
         /// </summary>
         Categories,
         /// <summary>
-        /// X-nonstandard names
+        /// Calendar comments (event, to-do, journal, or free/busy + daylight/standard)
+        /// </summary>
+        Comment,
+        /// <summary>
+        /// Calendar geographic location (event or to-do)
+        /// </summary>
+        Geography,
+        /// <summary>
+        /// Calendar location (event or to-do)
+        /// </summary>
+        Location,
+        /// <summary>
+        /// Event date start
+        /// </summary>
+        DateStart,
+        /// <summary>
+        /// Event date end
+        /// </summary>
+        DateEnd,
+        /// <summary>
+        /// Event date stamp
+        /// </summary>
+        DateStamp,
+        /// <summary>
+        /// X-nonstandard names (event, todo, journal, free/busy, or alarm)
         /// </summary>
         NonstandardNames,
     }

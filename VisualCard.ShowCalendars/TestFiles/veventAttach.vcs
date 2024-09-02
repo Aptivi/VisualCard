@@ -1,0 +1,22 @@
+BEGIN:VCALENDAR
+METHOD:xyz
+VERSION:2.0
+PRODID:-//ABC Corporation//NONSGML My Product//EN
+BEGIN:VEVENT
+DTSTAMP:1997-03-24 12:00:00
+SEQUENCE:0
+UID:uid3@example.com
+ORGANIZER:mailto:jdoe@example.com
+ATTENDEE;RSVP=TRUE:mailto:jsmith@example.com
+DTSTART:1997-03-24 12:30:00
+DTEND:1997-03-24 21:00:00
+CATEGORIES:MEETING,PROJECT
+CLASS:PUBLIC
+SUMMARY:Calendaring Interoperability Planning Meeting
+DESCRIPTION:Discuss how we can test c&s interoperability\n
+using iCalendar and other IETF standards.
+LOCATION:LDB Lobby
+ATTACH;FMTTYPE=application/postscript:ftp://example.com/pub/
+conf/bkgrnd.ps
+END:VEVENT
+END:VCALENDAR

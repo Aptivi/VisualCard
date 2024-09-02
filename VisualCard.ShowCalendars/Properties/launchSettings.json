@@ -7,6 +7,10 @@
     "vCalendar 2.0 test - simple": {
       "commandName": "Project",
       "commandLineArgs": "TestFiles/vevent.vcs"
+    },
+    "vCalendar 2.0 test - with attachment": {
+      "commandName": "Project",
+      "commandLineArgs": "TestFiles/veventAttach.vcs"
     }
   }
 }

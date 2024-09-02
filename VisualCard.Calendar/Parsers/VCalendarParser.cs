@@ -187,6 +187,7 @@ namespace VisualCard.Calendar.Parsers
                                     case CalendarStringsEnum.Description:
                                     case CalendarStringsEnum.CalScale:
                                     case CalendarStringsEnum.Method:
+                                    case CalendarStringsEnum.Class:
                                         // Unescape the value
                                         finalValue = Regex.Unescape(value);
                                         break;
