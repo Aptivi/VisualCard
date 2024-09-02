@@ -45,7 +45,6 @@ namespace VisualCard.Calendar.Parsers
         internal const string _uidSpecifier = "UID";
         internal const string _dateStartSpecifier = "DTSTART";
         internal const string _dateEndSpecifier = "DTEND";
-        internal const string _dateStampSpecifier = "DTSTAMP";
         internal const string _organizerSpecifier = "ORGANIZER";
         internal const string _statusSpecifier = "STATUS";
         internal const string _categoriesSpecifier = "CATEGORIES";
@@ -55,5 +54,10 @@ namespace VisualCard.Calendar.Parsers
         internal const string _typeArgumentSpecifier = "TYPE=";
         internal const string _valueArgumentSpecifier = "VALUE=";
         internal const string _encodingArgumentSpecifier = "ENCODING=";
+
+        // Available in vCalendar 2.0
+        internal const string _dateStampSpecifier = "DTSTAMP";
+        internal const string _calScaleSpecifier = "CALSCALE";
+        internal const string _methodSpecifier = "METHOD";
     }
 }

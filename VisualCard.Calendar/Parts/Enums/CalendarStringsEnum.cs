@@ -29,6 +29,14 @@ namespace VisualCard.Calendar.Parts.Enums
         /// </summary>
         ProductId,
         /// <summary>
+        /// The calendar's scale
+        /// </summary>
+        CalScale,
+        /// <summary>
+        /// The calendar's method
+        /// </summary>
+        Method,
+        /// <summary>
         /// The calendar's unique ID
         /// </summary>
         Uid,

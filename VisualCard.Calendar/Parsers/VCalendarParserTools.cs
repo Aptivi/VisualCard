@@ -42,6 +42,8 @@ namespace VisualCard.Calendar.Parsers
                 CalendarStringsEnum.Status => true,
                 CalendarStringsEnum.Summary => true,
                 CalendarStringsEnum.Description => true,
+                CalendarStringsEnum.CalScale => calendarVersion.Major == 2,
+                CalendarStringsEnum.Method => calendarVersion.Major == 2,
                 _ =>
                     throw new InvalidOperationException("Invalid string enumeration type to get supported value"),
             };
@@ -67,6 +69,8 @@ namespace VisualCard.Calendar.Parsers
                 CalendarStringsEnum.Status => VCalendarConstants._statusSpecifier,
                 CalendarStringsEnum.Summary => VCalendarConstants._summarySpecifier,
                 CalendarStringsEnum.Description => VCalendarConstants._descriptionSpecifier,
+                CalendarStringsEnum.CalScale => VCalendarConstants._calScaleSpecifier,
+                CalendarStringsEnum.Method => VCalendarConstants._methodSpecifier,
                 _ =>
                     throw new NotImplementedException($"String enumeration {stringsEnum} is not implemented.")
             };
@@ -113,6 +117,8 @@ namespace VisualCard.Calendar.Parsers
                 VCalendarConstants._statusSpecifier => (PartType.Strings, CalendarStringsEnum.Status, null, null, "", "", []),
                 VCalendarConstants._summarySpecifier => (PartType.Strings, CalendarStringsEnum.Summary, null, null, "", "", []),
                 VCalendarConstants._descriptionSpecifier => (PartType.Strings, CalendarStringsEnum.Description, null, null, "", "", []),
+                VCalendarConstants._calScaleSpecifier => (PartType.Strings, CalendarStringsEnum.CalScale, null, null, "", "", []),
+                VCalendarConstants._methodSpecifier => (PartType.Strings, CalendarStringsEnum.Method, null, null, "", "", []),
                 _ =>
                     throw new InvalidOperationException($"Unknown prefix {prefix}"),
             };
