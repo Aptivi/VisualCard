@@ -60,5 +60,9 @@ namespace VisualCard.Calendar.Parts.Enums
         /// The calendar's summary (event, to-do, journal, or alarm)
         /// </summary>
         Summary,
+        /// <summary>
+        /// Event transparency
+        /// </summary>
+        Transparency,
     }
 }

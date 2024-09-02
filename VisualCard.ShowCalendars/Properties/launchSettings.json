@@ -11,6 +11,10 @@
     "vCalendar 2.0 test - with attachment": {
       "commandName": "Project",
       "commandLineArgs": "TestFiles/veventAttach.vcs"
+    },
+    "vCalendar 2.0 test - with transparency info": {
+      "commandName": "Project",
+      "commandLineArgs": "TestFiles/veventTransp.vcs"
     }
   }
 }

@@ -45,6 +45,7 @@ namespace VisualCard.Calendar.Parsers
                 CalendarStringsEnum.Status => true,
                 CalendarStringsEnum.Summary => true,
                 CalendarStringsEnum.Description => true,
+                CalendarStringsEnum.Transparency => true,
                 _ =>
                     throw new InvalidOperationException("Invalid string enumeration type to get supported value"),
             };
@@ -88,6 +89,7 @@ namespace VisualCard.Calendar.Parsers
                 CalendarStringsEnum.Status => VCalendarConstants._statusSpecifier,
                 CalendarStringsEnum.Summary => VCalendarConstants._summarySpecifier,
                 CalendarStringsEnum.Description => VCalendarConstants._descriptionSpecifier,
+                CalendarStringsEnum.Transparency => VCalendarConstants._transparencySpecifier,
                 _ =>
                     throw new NotImplementedException($"String enumeration {stringsEnum} is not implemented.")
             };
@@ -170,6 +172,7 @@ namespace VisualCard.Calendar.Parsers
                 VCalendarConstants._statusSpecifier => (PartType.Strings, CalendarStringsEnum.Status, null, null, "", "", []),
                 VCalendarConstants._summarySpecifier => (PartType.Strings, CalendarStringsEnum.Summary, null, null, "", "", []),
                 VCalendarConstants._descriptionSpecifier => (PartType.Strings, CalendarStringsEnum.Description, null, null, "", "", []),
+                VCalendarConstants._transparencySpecifier => (PartType.Strings, CalendarStringsEnum.Transparency, null, null, "", "", []),
                 VCalendarConstants._prioritySpecifier => (PartType.Integers, CalendarIntegersEnum.Priority, null, null, "", "", []),
                 VCalendarConstants._sequenceSpecifier => (PartType.Integers, CalendarIntegersEnum.Sequence, null, null, "", "", []),
                 _ =>

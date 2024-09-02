@@ -56,6 +56,7 @@ namespace VisualCard.Calendar.Parsers
         internal const string _resourcesSpecifier = "RESOURCES";
         internal const string _sequenceSpecifier = "SEQUENCE";
         internal const string _attendeeSpecifier = "ATTENDEE";
+        internal const string _transparencySpecifier = "TRANSP";
         internal const string _xSpecifier = "X-";
         internal const string _typeArgumentSpecifier = "TYPE=";
         internal const string _valueArgumentSpecifier = "VALUE=";

@@ -196,6 +196,14 @@ namespace VisualCard.Calendar.Parsers
                                         if (finalValue != "TENTATIVE" && finalValue != "CONFIRMED" && finalValue != "CANCELLED")
                                             throw new ArgumentException($"Invalid status {finalValue}");
                                         break;
+                                    case CalendarStringsEnum.Transparency:
+                                        // Unescape the value
+                                        finalValue = Regex.Unescape(value);
+                                        if (CalendarVersion.Major == 1 && !int.TryParse(finalValue, out _))
+                                            throw new ArgumentException($"Invalid transparency number {finalValue}");
+                                        else if (CalendarVersion.Major == 2 && finalValue != "TRANSPARENT" && finalValue != "OPAQUE")
+                                            throw new ArgumentException($"Invalid transparency {finalValue}");
+                                        break;
                                     case CalendarStringsEnum.Uid:
                                         // Unescape the value
                                         finalValue = Regex.Unescape(value);
