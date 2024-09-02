@@ -42,11 +42,8 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
 
         internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
         {
-            // Get the value
-            string endValue = value.Substring(VCalendarConstants._dateEndSpecifier.Length + 1);
-
             // Populate the fields
-            DateTime end = DateTime.Parse(endValue);
+            DateTime end = DateTime.Parse(value);
 
             // Add the fetched information
             DateEndInfo _time = new(finalArgs, elementTypes, valueType, end);

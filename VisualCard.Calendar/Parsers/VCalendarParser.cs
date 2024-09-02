@@ -70,6 +70,7 @@ namespace VisualCard.Calendar.Parsers
             bool constructing = false;
             StringBuilder valueBuilder = new();
             string[] allowedTypes = ["HOME", "WORK", "PREF"];
+            List<(string, Parts.Calendar)> begins = [];
             for (int i = 0; i < CalendarContent.Length; i++)
             {
                 // Get line
@@ -77,6 +78,11 @@ namespace VisualCard.Calendar.Parsers
                 int lineNumber = i + 1;
                 if (string.IsNullOrEmpty(_value))
                     continue;
+
+                // Take the last sub-part if available
+                Parts.Calendar subPart = null;
+                if (begins.Count > 0)
+                    subPart = begins[begins.Count - 1].Item2;
 
                 // First, check to see if we need to construct blocks
                 string secondLine = i + 1 < CalendarContent.Length ? CalendarContent[i + 1] : "";
@@ -109,6 +115,31 @@ namespace VisualCard.Calendar.Parsers
                 // Now, parse a line
                 try
                 {
+                    // Check to see if we have a BEGIN or an END prefix
+                    if (prefix == VCalendarConstants._beginSpecifier)
+                    {
+                        begins.Add((value, GetCalendarInheritedInstance(value)));
+                        continue;
+                    }
+                    else if (prefix == VCalendarConstants._endSpecifier)
+                    {
+                        string expectedType = begins[begins.Count - 1].Item1;
+                        if (value == expectedType)
+                        {
+                            if (begins.Count == 1)
+                                SaveLastSubPart(subPart, ref calendar);
+                            else
+                            {
+                                var lastSubPart = begins[begins.Count - 1].Item2;
+                                SaveLastSubPart(subPart, ref lastSubPart);
+                            }
+                            begins.RemoveAt(begins.Count - 1);
+                        }
+                        else
+                            throw new ArgumentException($"Ending mismatch: Expected {expectedType} vs. actual {value}");
+                        continue;
+                    }
+
                     // Get the part type
                     bool xNonstandard = prefix.StartsWith(VCalendarConstants._xSpecifier);
                     bool specifierRequired = CalendarVersion.Major >= 3;
@@ -149,6 +180,10 @@ namespace VisualCard.Calendar.Parsers
                                 switch (stringType)
                                 {
                                     case CalendarStringsEnum.ProductId:
+                                    case CalendarStringsEnum.Organizer:
+                                    case CalendarStringsEnum.Status:
+                                    case CalendarStringsEnum.Summary:
+                                    case CalendarStringsEnum.Description:
                                         // Unescape the value
                                         finalValue = Regex.Unescape(value);
                                         break;
@@ -164,7 +199,10 @@ namespace VisualCard.Calendar.Parsers
                                 }
 
                                 // Set the string for real
-                                calendar.SetString(stringType, finalValue);
+                                if (subPart is not null)
+                                    subPart.SetString(stringType, finalValue);
+                                else
+                                    calendar.SetString(stringType, finalValue);
                             }
                             break;
                         case PartType.PartsArray:
@@ -178,7 +216,10 @@ namespace VisualCard.Calendar.Parsers
                                 // Now, get the part info
                                 string finalValue = partsArrayType == CalendarPartsArrayEnum.NonstandardNames ? _value : value;
                                 var partInfo = fromString(finalValue, [.. finalArgs], elementTypes, values, CalendarVersion);
-                                calendar.AddPartToArray(partsArrayType, partInfo);
+                                if (subPart is not null)
+                                    subPart.AddPartToArray(partsArrayType, partInfo);
+                                else
+                                    subPart.AddPartToArray(partsArrayType, partInfo);
                             }
                             break;
                         default:
@@ -199,6 +240,41 @@ namespace VisualCard.Calendar.Parsers
         internal void ValidateCalendar(Parts.Calendar calendar)
         {
             // TODO: Actually implement vCalendar from scaffolding
+        }
+
+        private Parts.Calendar GetCalendarInheritedInstance(string type)
+        {
+            return type switch
+            {
+                VCalendarConstants._objectVEventSpecifier => new CalendarEvent(CalendarVersion),
+                _ => throw new ArgumentException($"Invalid type {type}"),
+            };
+        }
+
+        private void SaveLastSubPart(Parts.Calendar subpart, ref Parts.Calendar part)
+        {
+            switch (part.GetType().Name)
+            {
+                case nameof(Calendar):
+                    switch (subpart.GetType().Name)
+                    {
+                        case nameof(Calendar):
+                            throw new ArgumentException("Can't nest calendar inside calendar");
+                        case nameof(CalendarEvent):
+                            part.events.Add((CalendarEvent)subpart);
+                            break;
+                    }
+                    break;
+                case nameof(CalendarEvent):
+                    switch (subpart.GetType().Name)
+                    {
+                        case nameof(Calendar):
+                            throw new ArgumentException("Can't nest calendar inside event");
+                        case nameof(CalendarEvent):
+                            throw new ArgumentException("Can't nest event inside event");
+                    }
+                    break;
+            }
         }
 
         internal VCalendarParser(string[] calendarContent, Version calendarVersion)

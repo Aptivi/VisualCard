@@ -37,6 +37,7 @@ namespace VisualCard.Calendar.Parts
     [DebuggerDisplay("vCalendar version {CalendarVersion.ToString()}, parts: (A [{partsArray.Count}] | S [{strings.Count}])")]
     public class Calendar : IEquatable<Calendar>
     {
+        internal readonly List<CalendarEvent> events = [];
         private readonly Version version;
         private readonly Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray = [];
         private readonly Dictionary<CalendarStringsEnum, string> strings = [];
@@ -71,10 +72,22 @@ namespace VisualCard.Calendar.Parts
         /// </summary>
         /// <param name="key">A key to use</param>
         /// <returns>An array of values or an empty part array []</returns>
-        public TPart[] GetPartsArray<TPart>(CalendarPartsArrayEnum key) where TPart : BaseCalendarPartInfo
+        public TPart[] GetPartsArray<TPart>(CalendarPartsArrayEnum key) where TPart : BaseCalendarPartInfo =>
+            GetPartsArray<TPart>(key, version, partsArray);
+
+        internal TPart[] GetPartsArray<TPart>(Version version, Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray) where TPart : BaseCalendarPartInfo
+        {
+            // Get the parts enumeration according to the type
+            var key = VCalendarParserTools.GetPartsArrayEnumFromType(typeof(TPart), version);
+
+            // Now, return the value
+            return GetPartsArray<TPart>(key.Item1, version, partsArray);
+        }
+
+        internal TPart[] GetPartsArray<TPart>(CalendarPartsArrayEnum key, Version version, Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray) where TPart : BaseCalendarPartInfo
         {
             // Check for version support
-            if (!VCalendarParserTools.EnumArrayTypeSupported(key, CalendarVersion))
+            if (!VCalendarParserTools.EnumArrayTypeSupported(key, version))
                 return [];
 
             // Get the parts enumeration according to the type
@@ -82,7 +95,7 @@ namespace VisualCard.Calendar.Parts
             if (type != typeof(BaseCalendarPartInfo))
             {
                 // We don't need the base, but a derivative of it. Check it.
-                var partsArrayEnum = VCalendarParserTools.GetPartsArrayEnumFromType(typeof(TPart), CalendarVersion).Item1;
+                var partsArrayEnum = VCalendarParserTools.GetPartsArrayEnumFromType(typeof(TPart), version).Item1;
                 if (key != partsArrayEnum)
                     throw new InvalidOperationException($"Parts array enumeration [{key}] is different from the expected one [{partsArrayEnum}] according to type {typeof(TPart).Name}.");
             }
@@ -108,10 +121,13 @@ namespace VisualCard.Calendar.Parts
         /// </summary>
         /// <param name="key">A key to use</param>
         /// <returns>A value, or "individual" if the kind doesn't exist, or an empty string ("") if any other type either doesn't exist or the type is not supported by the card version</returns>
-        public string GetString(CalendarStringsEnum key)
+        public string GetString(CalendarStringsEnum key) =>
+            GetString(key, version, strings);
+
+        internal string GetString(CalendarStringsEnum key, Version version, Dictionary<CalendarStringsEnum, string> strings)
         {
             // Check for version support
-            if (!VCalendarParserTools.StringSupported(key, CalendarVersion))
+            if (!VCalendarParserTools.StringSupported(key, version))
                 return "";
 
             // Get the fallback value
@@ -130,22 +146,25 @@ namespace VisualCard.Calendar.Parts
         /// <summary>
         /// Saves this parsed card to the string
         /// </summary>
-        public string SaveToString()
+        public string SaveToString() =>
+            SaveToString(version, partsArray, strings, VCalendarConstants._objectVCalendarSpecifier);
+
+        internal string SaveToString(Version version, Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray, Dictionary<CalendarStringsEnum, string> strings, string objectType)
         {
             // Initialize the card builder
             var cardBuilder = new StringBuilder();
-            var version = CalendarVersion;
 
             // First, write the header
-            cardBuilder.AppendLine(VCalendarConstants._beginText);
-            cardBuilder.AppendLine($"{VCalendarConstants._versionSpecifier}:{version}");
+            cardBuilder.AppendLine($"{VCalendarConstants._beginSpecifier}:{objectType}");
+            if (objectType == VCalendarConstants._objectVCalendarSpecifier)
+                cardBuilder.AppendLine($"{VCalendarConstants._versionSpecifier}:{version}");
 
             // Then, enumerate all the strings
             CalendarStringsEnum[] stringEnums = (CalendarStringsEnum[])Enum.GetValues(typeof(CalendarStringsEnum));
             foreach (CalendarStringsEnum stringEnum in stringEnums)
             {
                 // Get the string value
-                string stringValue = GetString(stringEnum);
+                string stringValue = GetString(stringEnum, version, strings);
                 if (string.IsNullOrEmpty(stringValue))
                     continue;
 
@@ -159,7 +178,7 @@ namespace VisualCard.Calendar.Parts
             foreach (CalendarPartsArrayEnum partsArrayEnum in partsArrayEnums)
             {
                 // Get the array value
-                var array = GetPartsArray<BaseCalendarPartInfo>(partsArrayEnum);
+                var array = GetPartsArray<BaseCalendarPartInfo>(partsArrayEnum, version, partsArray);
                 if (array is null || array.Length == 0)
                     continue;
 
@@ -183,8 +202,12 @@ namespace VisualCard.Calendar.Parts
                 }
             }
 
+            // Then, the events
+            foreach (var calendarEvent in events)
+                cardBuilder.Append(calendarEvent.SaveToString(version, calendarEvent.partsArray, calendarEvent.strings, VCalendarConstants._objectVEventSpecifier));
+
             // End the card and return it
-            cardBuilder.AppendLine(VCalendarConstants._endText);
+            cardBuilder.AppendLine($"{VCalendarConstants._endSpecifier}:{objectType}");
             return cardBuilder.ToString();
         }
 
@@ -253,7 +276,10 @@ namespace VisualCard.Calendar.Parts
         public static bool operator !=(Calendar a, Calendar b)
             => !a.Equals(b);
 
-        internal void AddPartToArray(CalendarPartsArrayEnum key, BaseCalendarPartInfo value)
+        internal void AddPartToArray(CalendarPartsArrayEnum key, BaseCalendarPartInfo value) =>
+            AddPartToArray(key, value, version, partsArray);
+
+        internal void AddPartToArray(CalendarPartsArrayEnum key, BaseCalendarPartInfo value, Version version, Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray)
         {
             if (value is null)
                 return;
@@ -270,7 +296,7 @@ namespace VisualCard.Calendar.Parts
             else
             {
                 // We need to check the cardinality.
-                var cardinality = VCalendarParserTools.GetPartsArrayEnumFromType(enumType, CalendarVersion).Item2;
+                var cardinality = VCalendarParserTools.GetPartsArrayEnumFromType(enumType, version).Item2;
                 bool onlyOne =
                     cardinality == PartCardinality.ShouldBeOne ||
                     cardinality == PartCardinality.MayBeOne;
@@ -280,7 +306,10 @@ namespace VisualCard.Calendar.Parts
             }
         }
 
-        internal void SetString(CalendarStringsEnum key, string value)
+        internal void SetString(CalendarStringsEnum key, string value) =>
+            SetString(key, value, strings);
+
+        internal void SetString(CalendarStringsEnum key, string value, Dictionary<CalendarStringsEnum, string> strings)
         {
             if (string.IsNullOrEmpty(value))
                 return;

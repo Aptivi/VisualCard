@@ -33,6 +33,14 @@ namespace VisualCard.Calendar.Parts.Enums
         /// </summary>
         DateEnd,
         /// <summary>
+        /// Calendar date stamp
+        /// </summary>
+        DateStamp,
+        /// <summary>
+        /// Calendar categories
+        /// </summary>
+        Categories,
+        /// <summary>
         /// X-nonstandard names
         /// </summary>
         NonstandardNames,

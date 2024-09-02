@@ -32,5 +32,21 @@ namespace VisualCard.Calendar.Parts.Enums
         /// The calendar's unique ID
         /// </summary>
         Uid,
+        /// <summary>
+        /// The calendar's organizer
+        /// </summary>
+        Organizer,
+        /// <summary>
+        /// The calendar's status
+        /// </summary>
+        Status,
+        /// <summary>
+        /// The calendar's summary
+        /// </summary>
+        Summary,
+        /// <summary>
+        /// The calendar's description
+        /// </summary>
+        Description,
     }
 }

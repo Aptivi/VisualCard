@@ -24,51 +24,51 @@ using VisualCard.Calendar.Parsers;
 namespace VisualCard.Calendar.Parts.Implementations.Event
 {
     /// <summary>
-    /// Card date start info
+    /// Card date stamp info
     /// </summary>
-    [DebuggerDisplay("Date Start = {dateStart}")]
-    public class DateStartInfo : BaseCalendarPartInfo, IEquatable<DateStartInfo>
+    [DebuggerDisplay("Date Stamp = {dateStamp}")]
+    public class DateStampInfo : BaseCalendarPartInfo, IEquatable<DateStampInfo>
     {
         /// <summary>
         /// The card's revision
         /// </summary>
-        public DateTime? DateStart { get; }
+        public DateTime? DateStamp { get; }
 
         internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
-            new DateStartInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
+            new DateStampInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion) =>
-            $"{DateStart:yyyy-MM-dd HH:mm:ss}";
+            $"{DateStamp:yyyy-MM-dd HH:mm:ss}";
 
         internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Populate the fields
-            DateTime start = DateTime.Parse(value);
+            DateTime stamp = DateTime.Parse(value);
 
             // Add the fetched information
-            DateStartInfo _time = new(finalArgs, elementTypes, valueType, start);
+            DateStampInfo _time = new(finalArgs, elementTypes, valueType, stamp);
             return _time;
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj) =>
-            Equals((DateStartInfo)obj);
+            Equals((DateStampInfo)obj);
 
         /// <summary>
         /// Checks to see if both the parts are equal
         /// </summary>
-        /// <param name="other">The target <see cref="DateStartInfo"/> instance to check to see if they equal</param>
+        /// <param name="other">The target <see cref="DateStampInfo"/> instance to check to see if they equal</param>
         /// <returns>True if all the part elements are equal. Otherwise, false.</returns>
-        public bool Equals(DateStartInfo other) =>
+        public bool Equals(DateStampInfo other) =>
             Equals(this, other);
 
         /// <summary>
         /// Checks to see if both the parts are equal
         /// </summary>
-        /// <param name="source">The source <see cref="DateStartInfo"/> instance to check to see if they equal</param>
-        /// <param name="target">The target <see cref="DateStartInfo"/> instance to check to see if they equal</param>
+        /// <param name="source">The source <see cref="DateStampInfo"/> instance to check to see if they equal</param>
+        /// <param name="target">The target <see cref="DateStampInfo"/> instance to check to see if they equal</param>
         /// <returns>True if all the part elements are equal. Otherwise, false.</returns>
-        public bool Equals(DateStartInfo source, DateStartInfo target)
+        public bool Equals(DateStampInfo source, DateStampInfo target)
         {
             // We can't perform this operation on null.
             if (source is null || target is null)
@@ -76,7 +76,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
 
             // Check all the properties
             return
-                source.DateStart == target.DateStart
+                source.DateStamp == target.DateStamp
             ;
         }
 
@@ -85,27 +85,27 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
         {
             int hashCode = 47832270;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + DateStart.GetHashCode();
+            hashCode = hashCode * -1521134295 + DateStamp.GetHashCode();
             return hashCode;
         }
 
         /// <inheritdoc/>
-        public static bool operator ==(DateStartInfo left, DateStartInfo right) =>
+        public static bool operator ==(DateStampInfo left, DateStampInfo right) =>
             left.Equals(right);
 
         /// <inheritdoc/>
-        public static bool operator !=(DateStartInfo left, DateStartInfo right) =>
+        public static bool operator !=(DateStampInfo left, DateStampInfo right) =>
             !(left == right);
 
         internal override bool EqualsInternal(BaseCalendarPartInfo source, BaseCalendarPartInfo target) =>
-            (DateStartInfo)source == (DateStartInfo)target;
+            (DateStampInfo)source == (DateStampInfo)target;
 
-        internal DateStartInfo() { }
+        internal DateStampInfo() { }
 
-        internal DateStartInfo(string[] arguments, string[] elementTypes, string valueType, DateTime? rev) :
+        internal DateStampInfo(string[] arguments, string[] elementTypes, string valueType, DateTime? rev) :
             base(arguments, elementTypes, valueType)
         {
-            DateStart = rev;
+            DateStamp = rev;
         }
     }
 }

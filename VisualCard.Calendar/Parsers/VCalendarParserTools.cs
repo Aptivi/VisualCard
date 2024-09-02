@@ -32,6 +32,7 @@ namespace VisualCard.Calendar.Parsers
 {
     internal class VCalendarParserTools
     {
+#pragma warning disable IDE0060
         internal static string GetTypesString(string[] args, string @default, bool isSpecifierRequired = true)
         {
             // We're given an array of split arguments of an element delimited by the colon, such as: "...TYPE=home..."
@@ -87,6 +88,10 @@ namespace VisualCard.Calendar.Parsers
             {
                 CalendarStringsEnum.ProductId => true,
                 CalendarStringsEnum.Uid => true,
+                CalendarStringsEnum.Organizer => true,
+                CalendarStringsEnum.Status => true,
+                CalendarStringsEnum.Summary => true,
+                CalendarStringsEnum.Description => true,
                 _ =>
                     throw new InvalidOperationException("Invalid string enumeration type to get supported value"),
             };
@@ -96,6 +101,9 @@ namespace VisualCard.Calendar.Parsers
             {
                 CalendarPartsArrayEnum.DateStart => true,
                 CalendarPartsArrayEnum.DateEnd => true,
+                CalendarPartsArrayEnum.DateStamp => calendarVersion.Major == 2,
+                CalendarPartsArrayEnum.Categories => true,
+                CalendarPartsArrayEnum.NonstandardNames => true,
                 _ =>
                     throw new InvalidOperationException("Invalid parts array enumeration type to get supported value"),
             };
@@ -105,6 +113,10 @@ namespace VisualCard.Calendar.Parsers
             {
                 CalendarStringsEnum.ProductId => VCalendarConstants._productIdSpecifier,
                 CalendarStringsEnum.Uid => VCalendarConstants._uidSpecifier,
+                CalendarStringsEnum.Organizer => VCalendarConstants._organizerSpecifier,
+                CalendarStringsEnum.Status => VCalendarConstants._statusSpecifier,
+                CalendarStringsEnum.Summary => VCalendarConstants._summarySpecifier,
+                CalendarStringsEnum.Description => VCalendarConstants._descriptionSpecifier,
                 _ =>
                     throw new NotImplementedException($"String enumeration {stringsEnum} is not implemented.")
             };
@@ -114,6 +126,8 @@ namespace VisualCard.Calendar.Parsers
             {
                 CalendarPartsArrayEnum.DateStart => VCalendarConstants._dateStartSpecifier,
                 CalendarPartsArrayEnum.DateEnd => VCalendarConstants._dateEndSpecifier,
+                CalendarPartsArrayEnum.DateStamp => VCalendarConstants._dateStampSpecifier,
+                CalendarPartsArrayEnum.Categories => VCalendarConstants._categoriesSpecifier,
                 _ =>
                     throw new NotImplementedException($"String enumeration {partsArrayEnum} is not implemented.")
             };
@@ -128,6 +142,10 @@ namespace VisualCard.Calendar.Parsers
                 return (CalendarPartsArrayEnum.DateStart, PartCardinality.ShouldBeOne);
             else if (partsArrayType == typeof(DateEndInfo))
                 return (CalendarPartsArrayEnum.DateEnd, PartCardinality.MayBeOne);
+            else if (partsArrayType == typeof(DateStampInfo))
+                return (CalendarPartsArrayEnum.DateStamp, PartCardinality.MayBeOne);
+            else if (partsArrayType == typeof(CategoriesInfo))
+                return (CalendarPartsArrayEnum.Categories, PartCardinality.MayBeOne);
             throw new NotImplementedException($"Type {partsArrayType.Name} doesn't represent any part array.");
         }
 
@@ -136,9 +154,15 @@ namespace VisualCard.Calendar.Parsers
             {
                 VCalendarConstants._dateStartSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DateStart, typeof(DateStartInfo), DateStartInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._dateEndSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DateEnd, typeof(DateEndInfo), DateEndInfo.FromStringVcalendarStatic, "", "", []),
+                VCalendarConstants._dateStampSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DateStamp, typeof(DateStampInfo), DateStampInfo.FromStringVcalendarStatic, "", "", []),
+                VCalendarConstants._categoriesSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.Categories, typeof(CategoriesInfo), CategoriesInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._xSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.NonstandardNames, typeof(XNameInfo), XNameInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._productIdSpecifier => (PartType.Strings, CalendarStringsEnum.ProductId, null, null, "", "", []),
                 VCalendarConstants._uidSpecifier => (PartType.Strings, CalendarStringsEnum.Uid, null, null, "", "", []),
+                VCalendarConstants._organizerSpecifier => (PartType.Strings, CalendarStringsEnum.Organizer, null, null, "", "", []),
+                VCalendarConstants._statusSpecifier => (PartType.Strings, CalendarStringsEnum.Status, null, null, "", "", []),
+                VCalendarConstants._summarySpecifier => (PartType.Strings, CalendarStringsEnum.Summary, null, null, "", "", []),
+                VCalendarConstants._descriptionSpecifier => (PartType.Strings, CalendarStringsEnum.Description, null, null, "", "", []),
                 _ =>
                     throw new InvalidOperationException($"Unknown prefix {prefix}"),
             };
@@ -218,5 +242,6 @@ namespace VisualCard.Calendar.Parsers
             else
                 throw new InvalidOperationException("Not a blob. You should somehow handle it.");
         }
+#pragma warning restore IDE0060
     }
 }
