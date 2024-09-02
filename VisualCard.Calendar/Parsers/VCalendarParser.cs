@@ -30,6 +30,7 @@ using VisualCard.Calendar.Parts.Enums;
 using VisualCard.Calendar.Parts.Implementations;
 using VisualCard.Calendar.Exceptions;
 using VisualCard.Parts.Enums;
+using VisualCard.Parsers;
 
 namespace VisualCard.Calendar.Parsers
 {
@@ -159,7 +160,7 @@ namespace VisualCard.Calendar.Parsers
                     }
 
                     // Check the type for allowed types
-                    string[] elementTypes = VCalendarParserTools.GetTypes(splitArgs, defaultType, specifierRequired);
+                    string[] elementTypes = VcardParserTools.GetTypes(splitArgs, defaultType, specifierRequired);
                     foreach (string elementType in elementTypes)
                     {
                         string elementTypeUpper = elementType.ToUpper();
@@ -168,7 +169,7 @@ namespace VisualCard.Calendar.Parsers
                     }
 
                     // Handle the part type
-                    string values = VCalendarParserTools.GetValuesString(splitArgs, defaultValue, VCalendarConstants._valueArgumentSpecifier);
+                    string values = VcardParserTools.GetValuesString(splitArgs, defaultValue, VCalendarConstants._valueArgumentSpecifier);
                     switch (type)
                     {
                         case PartType.Strings:

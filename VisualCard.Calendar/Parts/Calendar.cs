@@ -27,6 +27,7 @@ using Textify.General;
 using VisualCard.Calendar.Parsers;
 using VisualCard.Calendar.Parts.Comparers;
 using VisualCard.Calendar.Parts.Enums;
+using VisualCard.Parsers;
 using VisualCard.Parts.Enums;
 
 namespace VisualCard.Calendar.Parts
@@ -171,7 +172,7 @@ namespace VisualCard.Calendar.Parts
                 // Now, locate the prefix and assemble the line
                 string prefix = VCalendarParserTools.GetPrefixFromStringsEnum(stringEnum);
                 cardBuilder.Append($"{prefix}{VCalendarConstants._argumentDelimiter}");
-                cardBuilder.AppendLine($"{VCalendarParserTools.MakeStringBlock(stringValue, prefix.Length)}");
+                cardBuilder.AppendLine($"{VcardParserTools.MakeStringBlock(stringValue, prefix.Length)}");
             }
 
             // Then, enumerate all the arrays
@@ -198,7 +199,7 @@ namespace VisualCard.Calendar.Parts
                     string[] partArgumentsLines = partArguments.SplitNewLines();
                     partBuilder.Append($"{prefix}");
                     partBuilder.Append($"{partArguments}");
-                    partBuilder.Append($"{VCalendarParserTools.MakeStringBlock(partRepresentation, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length)}");
+                    partBuilder.Append($"{VcardParserTools.MakeStringBlock(partRepresentation, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length)}");
                     cardBuilder.AppendLine($"{partBuilder}");
                 }
             }
