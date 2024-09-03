@@ -103,19 +103,20 @@ namespace VisualCard.Calendar.Parsers
                     valueBuilder.Clear();
                 }
 
-                // Variables
-                string value = _value.Substring(_value.IndexOf(VCalendarConstants._argumentDelimiter) + 1);
-                string prefixWithArgs = _value.Substring(0, _value.IndexOf(VCalendarConstants._argumentDelimiter));
-                string prefix = prefixWithArgs.Contains(';') ? prefixWithArgs.Substring(0, prefixWithArgs.IndexOf(';')) : prefixWithArgs;
-                string args = prefixWithArgs.Contains(';') ? prefixWithArgs.Substring(prefix.Length + 1) : "";
-                string[] splitArgs = args.Split([VCalendarConstants._fieldDelimiter], StringSplitOptions.RemoveEmptyEntries);
-                string[] splitValues = value.Split([VCalendarConstants._fieldDelimiter], StringSplitOptions.RemoveEmptyEntries);
-                bool isWithType = splitArgs.Length > 0;
-                List<string> finalArgs = [];
-
-                // Now, parse a line
                 try
                 {
+                    // Now, parse a line
+                    if (!_value.Contains(VCalendarConstants._argumentDelimiter))
+                        throw new ArgumentException("The line must contain an argument delimiter.");
+                    string value = _value.Substring(_value.IndexOf(VCalendarConstants._argumentDelimiter) + 1);
+                    string prefixWithArgs = _value.Substring(0, _value.IndexOf(VCalendarConstants._argumentDelimiter));
+                    string prefix = prefixWithArgs.Contains(';') ? prefixWithArgs.Substring(0, prefixWithArgs.IndexOf(';')) : prefixWithArgs;
+                    string args = prefixWithArgs.Contains(';') ? prefixWithArgs.Substring(prefix.Length + 1) : "";
+                    string[] splitArgs = args.Split([VCalendarConstants._fieldDelimiter], StringSplitOptions.RemoveEmptyEntries);
+                    string[] splitValues = value.Split([VCalendarConstants._fieldDelimiter], StringSplitOptions.RemoveEmptyEntries);
+                    bool isWithType = splitArgs.Length > 0;
+                    List<string> finalArgs = [];
+
                     // Check to see if we have a BEGIN or an END prefix
                     if (prefix == VCalendarConstants._beginSpecifier)
                     {

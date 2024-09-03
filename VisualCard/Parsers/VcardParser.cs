@@ -96,20 +96,21 @@ namespace VisualCard.Parsers
                     valueBuilder.Clear();
                 }
 
-                // Variables
-                string value = _value.Substring(_value.IndexOf(VcardConstants._argumentDelimiter) + 1);
-                string prefixWithArgs = _value.Substring(0, _value.IndexOf(VcardConstants._argumentDelimiter));
-                string prefix = prefixWithArgs.Contains(';') ? prefixWithArgs.Substring(0, prefixWithArgs.IndexOf(';')) : prefixWithArgs;
-                string args = prefixWithArgs.Contains(';') ? prefixWithArgs.Substring(prefix.Length + 1) : "";
-                string[] splitArgs = args.Split([VcardConstants._fieldDelimiter], StringSplitOptions.RemoveEmptyEntries);
-                string[] splitValues = value.Split([VcardConstants._fieldDelimiter], StringSplitOptions.RemoveEmptyEntries);
-                bool isWithType = splitArgs.Length > 0;
-                List<string> finalArgs = [];
-                int altId = -1;
-
-                // Now, parse a line
                 try
                 {
+                    // Now, parse a line
+                    if (!_value.Contains(VcardConstants._argumentDelimiter))
+                        throw new ArgumentException("The line must contain an argument delimiter.");
+                    string value = _value.Substring(_value.IndexOf(VcardConstants._argumentDelimiter) + 1);
+                    string prefixWithArgs = _value.Substring(0, _value.IndexOf(VcardConstants._argumentDelimiter));
+                    string prefix = prefixWithArgs.Contains(';') ? prefixWithArgs.Substring(0, prefixWithArgs.IndexOf(';')) : prefixWithArgs;
+                    string args = prefixWithArgs.Contains(';') ? prefixWithArgs.Substring(prefix.Length + 1) : "";
+                    string[] splitArgs = args.Split([VcardConstants._fieldDelimiter], StringSplitOptions.RemoveEmptyEntries);
+                    string[] splitValues = value.Split([VcardConstants._fieldDelimiter], StringSplitOptions.RemoveEmptyEntries);
+                    bool isWithType = splitArgs.Length > 0;
+                    List<string> finalArgs = [];
+                    int altId = -1;
+
                     // Get the part type
                     bool xNonstandard = prefix.StartsWith(VcardConstants._xSpecifier);
                     bool specifierRequired = CardVersion.Major >= 3;
