@@ -1,10 +1,14 @@
-We've made a small release to update all libraries
+VisualCard has undergone many changes, such as a very basic implementation of the vCalendar specification.
 
 ### Changes
 
 This release contains a variety of changes, including, but not limited to:
 
-- `[*]` Updated libraries
+- `[+]` Added very basic vCalendar implementation
+- `[+]` Added nested cards support
+- `[+]` Added UID support
+- `[*]` Improved newline handling
+- `[*]` General improvements and bug fixes
 
 Review the commit history if you want to get a deep insight about the changes.
 
