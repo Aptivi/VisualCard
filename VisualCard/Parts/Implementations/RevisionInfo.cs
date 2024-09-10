@@ -32,13 +32,13 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// The card's revision
         /// </summary>
-        public DateTime? Revision { get; }
+        public DateTime Revision { get; }
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new RevisionInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
-            $"{Revision:yyyy-MM-dd HH:mm:ss}";
+            $"{VcardParserTools.SavePosixDate(Revision)}";
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
@@ -46,7 +46,7 @@ namespace VisualCard.Parts.Implementations
             string revValue = value.Substring(VcardConstants._revSpecifier.Length + 1);
 
             // Populate the fields
-            DateTime rev = DateTime.Parse(revValue);
+            DateTime rev = VcardParserTools.ParsePosixDate(revValue);
 
             // Add the fetched information
             RevisionInfo _time = new(altId, finalArgs, elementTypes, valueType, rev);
@@ -105,7 +105,7 @@ namespace VisualCard.Parts.Implementations
 
         internal RevisionInfo() { }
 
-        internal RevisionInfo(int altId, string[] arguments, string[] elementTypes, string valueType, DateTime? rev) :
+        internal RevisionInfo(int altId, string[] arguments, string[] elementTypes, string valueType, DateTime rev) :
             base(arguments, altId, elementTypes, valueType)
         {
             Revision = rev;

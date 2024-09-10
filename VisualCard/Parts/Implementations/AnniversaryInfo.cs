@@ -33,13 +33,13 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// The contact's wedding anniversary date (that is, the day that this contact is married)
         /// </summary>
-        public DateTime? Anniversary { get; }
+        public DateTime Anniversary { get; }
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new AnniversaryInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
-            $"{Anniversary:yyyyMMdd}";
+            $"{VcardParserTools.SavePosixDate(Anniversary, true)}";
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
@@ -55,7 +55,7 @@ namespace VisualCard.Parts.Implementations
                 anniversary = new DateTime(anniversaryYear, anniversaryMonth, anniversaryDay);
             }
             else
-                anniversary = DateTime.Parse(value);
+                anniversary = VcardParserTools.ParsePosixDate(value);
 
             // Add the fetched information
             AnniversaryInfo _time = new(-1, [], [], valueType, anniversary);
@@ -114,7 +114,7 @@ namespace VisualCard.Parts.Implementations
 
         internal AnniversaryInfo() { }
 
-        internal AnniversaryInfo(int altId, string[] arguments, string[] elementTypes, string valueType, DateTime? anniversary) :
+        internal AnniversaryInfo(int altId, string[] arguments, string[] elementTypes, string valueType, DateTime anniversary) :
             base(arguments, altId, elementTypes, valueType)
         {
             Anniversary = anniversary;

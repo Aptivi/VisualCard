@@ -33,13 +33,13 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// The contact's birth date
         /// </summary>
-        public DateTime? BirthDate { get; }
+        public DateTime BirthDate { get; }
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new BirthDateInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
-            $"{BirthDate:yyyyMMdd}";
+            $"{VcardParserTools.SavePosixDate(BirthDate, true)}";
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
@@ -55,7 +55,7 @@ namespace VisualCard.Parts.Implementations
                 bday = new DateTime(birthYear, birthMonth, birthDay);
             }
             else
-                bday = DateTime.Parse(value);
+                bday = VcardParserTools.ParsePosixDate(value);
 
             // Add the fetched information
             BirthDateInfo _time = new(altId, finalArgs, elementTypes, valueType, bday);
@@ -114,7 +114,7 @@ namespace VisualCard.Parts.Implementations
 
         internal BirthDateInfo() { }
 
-        internal BirthDateInfo(int altId, string[] arguments, string[] elementTypes, string valueType, DateTime? birth) :
+        internal BirthDateInfo(int altId, string[] arguments, string[] elementTypes, string valueType, DateTime birth) :
             base(arguments, altId, elementTypes, valueType)
         {
             BirthDate = birth;

@@ -167,9 +167,9 @@ namespace VisualCard.ShowContacts
                     var url = Contact.GetPartsArray<UrlInfo>();
                     var note = Contact.GetPartsArray<NoteInfo>();
                     if (birth.Length > 0)
-                        TextWriterColor.Write("Contact birthdate:       {0}", birth[0].BirthDate ?? new());
+                        TextWriterColor.Write("Contact birthdate:       {0}", birth[0].BirthDate);
                     if (wedding.Length > 0)
-                        TextWriterColor.Write("Contact wedding date:    {0}", wedding[0].Anniversary ?? new());
+                        TextWriterColor.Write("Contact wedding date:    {0}", wedding[0].Anniversary);
                     if (gender.Length > 0)
                         TextWriterColor.Write("Contact gender           {0} [{1}]", gender[0].Gender.ToString(), gender[0].GenderDescription ?? "");
                     if (url.Length > 0)

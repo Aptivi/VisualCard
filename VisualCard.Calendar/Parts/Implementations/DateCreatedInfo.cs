@@ -19,6 +19,7 @@
 
 using System;
 using System.Diagnostics;
+using VisualCard.Parsers;
 
 namespace VisualCard.Calendar.Parts.Implementations
 {
@@ -31,18 +32,18 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// <summary>
         /// The card's revision
         /// </summary>
-        public DateTime? DateCreated { get; }
+        public DateTime DateCreated { get; }
 
         internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
             new DateCreatedInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion) =>
-            $"{DateCreated:yyyy-MM-dd HH:mm:ss}";
+            $"{VcardParserTools.SavePosixDate(DateCreated)}";
 
         internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Populate the fields
-            DateTime created = DateTime.Parse(value);
+            DateTime created = VcardParserTools.ParsePosixDate(value);
 
             // Add the fetched information
             DateCreatedInfo _time = new(finalArgs, elementTypes, valueType, created);
@@ -101,7 +102,7 @@ namespace VisualCard.Calendar.Parts.Implementations
 
         internal DateCreatedInfo() { }
 
-        internal DateCreatedInfo(string[] arguments, string[] elementTypes, string valueType, DateTime? rev) :
+        internal DateCreatedInfo(string[] arguments, string[] elementTypes, string valueType, DateTime rev) :
             base(arguments, elementTypes, valueType)
         {
             DateCreated = rev;
