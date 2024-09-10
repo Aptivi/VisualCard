@@ -130,7 +130,7 @@ namespace VisualCard.Calendar.Parsers
                                 SaveLastSubPart(subPart, ref calendar);
                             else
                             {
-                                var lastSubPart = begins[begins.Count - 1].Item2;
+                                var lastSubPart = begins[begins.Count - 2].Item2;
                                 SaveLastSubPart(subPart, ref lastSubPart);
                             }
                             begins.RemoveAt(begins.Count - 1);
@@ -192,7 +192,7 @@ namespace VisualCard.Calendar.Parsers
                                     case CalendarStringsEnum.Class:
                                     case CalendarStringsEnum.Trigger:
                                     case CalendarStringsEnum.TimeZoneId:
-                                    case CalendarStringsEnum.TimeZoneName:
+                                    case CalendarStringsEnum.Recursion:
                                         // Unescape the value
                                         finalValue = Regex.Unescape(value);
                                         break;

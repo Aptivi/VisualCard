@@ -76,5 +76,13 @@ namespace VisualCard.Calendar.Parts.Enums
         /// X-nonstandard names (event, todo, journal, free/busy, or alarm)
         /// </summary>
         NonstandardNames,
+        /// <summary>
+        /// Time zone name
+        /// </summary>
+        TimeZoneName,
+        /// <summary>
+        /// Recurrence date and time (event, todo, journal, or standard/daylight timezone components)
+        /// </summary>
+        RecDate,
     }
 }

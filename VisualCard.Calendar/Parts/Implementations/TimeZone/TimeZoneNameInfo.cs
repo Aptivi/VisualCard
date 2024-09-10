@@ -21,56 +21,55 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
-using VisualCard.Calendar.Parsers;
 
-namespace VisualCard.Calendar.Parts.Implementations.Event
+namespace VisualCard.Calendar.Parts.Implementations
 {
     /// <summary>
-    /// Contact categories info
+    /// Calendar time zone name info
     /// </summary>
-    [DebuggerDisplay("Categories = {Categories}")]
-    public class CategoriesInfo : BaseCalendarPartInfo, IEquatable<CategoriesInfo>
+    [DebuggerDisplay("TimeZoneName = {TimeZoneName}")]
+    public class TimeZoneNameInfo : BaseCalendarPartInfo, IEquatable<TimeZoneNameInfo>
     {
         /// <summary>
-        /// The contact's categories
+        /// The timezonename address
         /// </summary>
-        public string[]? Categories { get; }
+        public string? TimeZoneName { get; }
 
         internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
-            new CategoriesInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
+            new TimeZoneNameInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion) =>
-            $"{string.Join(cardVersion.Major == 1 ? ";" : ",", Categories)}";
+            TimeZoneName ?? "";
 
         internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Populate the fields
-            var categories = Regex.Unescape(value).Split(cardVersion.Major == 1 ? ';' : ',');
+            var timezonename = Regex.Unescape(value);
 
             // Add the fetched information
-            CategoriesInfo _time = new([], elementTypes, valueType, categories);
+            TimeZoneNameInfo _time = new([], elementTypes, valueType, timezonename);
             return _time;
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj) =>
-            Equals((CategoriesInfo)obj);
+            Equals((TimeZoneNameInfo)obj);
 
         /// <summary>
         /// Checks to see if both the parts are equal
         /// </summary>
-        /// <param name="other">The target <see cref="CategoriesInfo"/> instance to check to see if they equal</param>
+        /// <param name="other">The target <see cref="TimeZoneNameInfo"/> instance to check to see if they equal</param>
         /// <returns>True if all the part elements are equal. Otherwise, false.</returns>
-        public bool Equals(CategoriesInfo other) =>
+        public bool Equals(TimeZoneNameInfo other) =>
             Equals(this, other);
 
         /// <summary>
         /// Checks to see if both the parts are equal
         /// </summary>
-        /// <param name="source">The source <see cref="CategoriesInfo"/> instance to check to see if they equal</param>
-        /// <param name="target">The target <see cref="CategoriesInfo"/> instance to check to see if they equal</param>
+        /// <param name="source">The source <see cref="TimeZoneNameInfo"/> instance to check to see if they equal</param>
+        /// <param name="target">The target <see cref="TimeZoneNameInfo"/> instance to check to see if they equal</param>
         /// <returns>True if all the part elements are equal. Otherwise, false.</returns>
-        public bool Equals(CategoriesInfo source, CategoriesInfo target)
+        public bool Equals(TimeZoneNameInfo source, TimeZoneNameInfo target)
         {
             // We can't perform this operation on null.
             if (source is null || target is null)
@@ -78,36 +77,36 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
 
             // Check all the properties
             return
-                source.Categories == target.Categories
+                source.TimeZoneName == target.TimeZoneName
             ;
         }
 
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = -723142617;
+            int hashCode = -1115589996;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]?>.Default.GetHashCode(Categories);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(TimeZoneName);
             return hashCode;
         }
 
         /// <inheritdoc/>
-        public static bool operator ==(CategoriesInfo left, CategoriesInfo right) =>
+        public static bool operator ==(TimeZoneNameInfo left, TimeZoneNameInfo right) =>
             left.Equals(right);
 
         /// <inheritdoc/>
-        public static bool operator !=(CategoriesInfo left, CategoriesInfo right) =>
+        public static bool operator !=(TimeZoneNameInfo left, TimeZoneNameInfo right) =>
             !(left == right);
 
         internal override bool EqualsInternal(BaseCalendarPartInfo source, BaseCalendarPartInfo target) =>
-            (CategoriesInfo)source == (CategoriesInfo)target;
+            (TimeZoneNameInfo)source == (TimeZoneNameInfo)target;
 
-        internal CategoriesInfo() { }
+        internal TimeZoneNameInfo() { }
 
-        internal CategoriesInfo(string[] arguments, string[] elementTypes, string valueType, string[] categories) :
+        internal TimeZoneNameInfo(string[] arguments, string[] elementTypes, string valueType, string timezonename) :
             base(arguments, elementTypes, valueType)
         {
-            Categories = categories;
+            TimeZoneName = timezonename;
         }
     }
 }

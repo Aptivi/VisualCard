@@ -81,8 +81,8 @@ namespace VisualCard.Calendar.Parts.Enums
         /// </summary>
         TimeZoneUrl,
         /// <summary>
-        /// Time zone name
+        /// Calendar recursion (event, todo, journal, or standard/daylight timezone components)
         /// </summary>
-        TimeZoneName,
+        Recursion,
     }
 }

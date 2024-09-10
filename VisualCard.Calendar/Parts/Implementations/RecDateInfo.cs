@@ -21,56 +21,55 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
-using VisualCard.Calendar.Parsers;
 
-namespace VisualCard.Calendar.Parts.Implementations.Event
+namespace VisualCard.Calendar.Parts.Implementations
 {
     /// <summary>
-    /// Contact categories info
+    /// Calendar recurrence date info
     /// </summary>
-    [DebuggerDisplay("Categories = {Categories}")]
-    public class CategoriesInfo : BaseCalendarPartInfo, IEquatable<CategoriesInfo>
+    [DebuggerDisplay("RecDate = {RecDates}")]
+    public class RecDateInfo : BaseCalendarPartInfo, IEquatable<RecDateInfo>
     {
         /// <summary>
-        /// The contact's categories
+        /// The recurrence date list
         /// </summary>
-        public string[]? Categories { get; }
+        public string[]? RecDates { get; }
 
         internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
-            new CategoriesInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
+            new RecDateInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion) =>
-            $"{string.Join(cardVersion.Major == 1 ? ";" : ",", Categories)}";
+            $"{string.Join(cardVersion.Major == 1 ? ";" : ",", RecDates)}";
 
         internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Populate the fields
-            var categories = Regex.Unescape(value).Split(cardVersion.Major == 1 ? ';' : ',');
+            var recDates = Regex.Unescape(value).Split(cardVersion.Major == 1 ? ';' : ',');
 
             // Add the fetched information
-            CategoriesInfo _time = new([], elementTypes, valueType, categories);
+            RecDateInfo _time = new([], elementTypes, valueType, recDates);
             return _time;
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj) =>
-            Equals((CategoriesInfo)obj);
+            Equals((RecDateInfo)obj);
 
         /// <summary>
         /// Checks to see if both the parts are equal
         /// </summary>
-        /// <param name="other">The target <see cref="CategoriesInfo"/> instance to check to see if they equal</param>
+        /// <param name="other">The target <see cref="RecDateInfo"/> instance to check to see if they equal</param>
         /// <returns>True if all the part elements are equal. Otherwise, false.</returns>
-        public bool Equals(CategoriesInfo other) =>
+        public bool Equals(RecDateInfo other) =>
             Equals(this, other);
 
         /// <summary>
         /// Checks to see if both the parts are equal
         /// </summary>
-        /// <param name="source">The source <see cref="CategoriesInfo"/> instance to check to see if they equal</param>
-        /// <param name="target">The target <see cref="CategoriesInfo"/> instance to check to see if they equal</param>
+        /// <param name="source">The source <see cref="RecDateInfo"/> instance to check to see if they equal</param>
+        /// <param name="target">The target <see cref="RecDateInfo"/> instance to check to see if they equal</param>
         /// <returns>True if all the part elements are equal. Otherwise, false.</returns>
-        public bool Equals(CategoriesInfo source, CategoriesInfo target)
+        public bool Equals(RecDateInfo source, RecDateInfo target)
         {
             // We can't perform this operation on null.
             if (source is null || target is null)
@@ -78,36 +77,36 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
 
             // Check all the properties
             return
-                source.Categories == target.Categories
+                source.RecDates == target.RecDates
             ;
         }
 
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = -723142617;
+            int hashCode = 498518712;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]?>.Default.GetHashCode(Categories);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string[]?>.Default.GetHashCode(RecDates);
             return hashCode;
         }
 
         /// <inheritdoc/>
-        public static bool operator ==(CategoriesInfo left, CategoriesInfo right) =>
+        public static bool operator ==(RecDateInfo left, RecDateInfo right) =>
             left.Equals(right);
 
         /// <inheritdoc/>
-        public static bool operator !=(CategoriesInfo left, CategoriesInfo right) =>
+        public static bool operator !=(RecDateInfo left, RecDateInfo right) =>
             !(left == right);
 
         internal override bool EqualsInternal(BaseCalendarPartInfo source, BaseCalendarPartInfo target) =>
-            (CategoriesInfo)source == (CategoriesInfo)target;
+            (RecDateInfo)source == (RecDateInfo)target;
 
-        internal CategoriesInfo() { }
+        internal RecDateInfo() { }
 
-        internal CategoriesInfo(string[] arguments, string[] elementTypes, string valueType, string[] categories) :
+        internal RecDateInfo(string[] arguments, string[] elementTypes, string valueType, string[] recDates) :
             base(arguments, elementTypes, valueType)
         {
-            Categories = categories;
+            RecDates = recDates;
         }
     }
 }

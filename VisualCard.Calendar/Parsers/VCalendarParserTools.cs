@@ -46,6 +46,7 @@ namespace VisualCard.Calendar.Parsers
                 CalendarStringsEnum.Trigger => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(CalendarAlarm)),
                 CalendarStringsEnum.TimeZoneId => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(TimeZoneInfo)),
                 CalendarStringsEnum.TimeZoneUrl => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(TimeZoneInfo)),
+                CalendarStringsEnum.Recursion => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal), typeof(CalendarStandard), typeof(CalendarDaylight)),
                 _ =>
                     throw new InvalidOperationException("Invalid string enumeration type to get supported value"),
             };
@@ -75,8 +76,10 @@ namespace VisualCard.Calendar.Parsers
                 CalendarPartsArrayEnum.DateCreatedAlt => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo)),
                 CalendarPartsArrayEnum.DateStart => TypeMatch(componentType, typeof(CalendarEvent)),
                 CalendarPartsArrayEnum.DateEnd => TypeMatch(componentType, typeof(CalendarEvent)),
-                CalendarPartsArrayEnum.NonstandardNames => true,
                 CalendarPartsArrayEnum.DateStamp => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal), typeof(CalendarFreeBusy)),
+                CalendarPartsArrayEnum.TimeZoneName => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(TimeZoneNameInfo)),
+                CalendarPartsArrayEnum.RecDate => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal), typeof(CalendarStandard), typeof(CalendarDaylight)),
+                CalendarPartsArrayEnum.NonstandardNames => true,
                 _ =>
                     throw new InvalidOperationException("Invalid parts array enumeration type to get supported value"),
             };
@@ -98,6 +101,7 @@ namespace VisualCard.Calendar.Parsers
                 CalendarStringsEnum.Trigger => VCalendarConstants._triggerSpecifier,
                 CalendarStringsEnum.TimeZoneId => VCalendarConstants._tzidSpecifier,
                 CalendarStringsEnum.TimeZoneUrl => VCalendarConstants._tzUrlSpecifier,
+                CalendarStringsEnum.Recursion => VCalendarConstants._recurseSpecifier,
                 _ =>
                     throw new NotImplementedException($"String enumeration {stringsEnum} is not implemented.")
             };
@@ -128,6 +132,8 @@ namespace VisualCard.Calendar.Parsers
                 CalendarPartsArrayEnum.DateStart => VCalendarConstants._dateStartSpecifier,
                 CalendarPartsArrayEnum.DateEnd => VCalendarConstants._dateEndSpecifier,
                 CalendarPartsArrayEnum.DateStamp => VCalendarConstants._dateStampSpecifier,
+                CalendarPartsArrayEnum.TimeZoneName => VCalendarConstants._tzNameSpecifier,
+                CalendarPartsArrayEnum.RecDate => VCalendarConstants._recDateSpecifier,
                 CalendarPartsArrayEnum.NonstandardNames => VCalendarConstants._xSpecifier,
                 _ =>
                     throw new NotImplementedException($"Array enumeration {partsArrayEnum} is not implemented.")
@@ -161,6 +167,10 @@ namespace VisualCard.Calendar.Parsers
                 return (CalendarPartsArrayEnum.DateEnd, PartCardinality.MayBeOne);
             else if (partsArrayType == typeof(DateStampInfo))
                 return (CalendarPartsArrayEnum.DateStamp, PartCardinality.MayBeOne);
+            else if (partsArrayType == typeof(TimeZoneNameInfo))
+                return (CalendarPartsArrayEnum.TimeZoneName, PartCardinality.Any);
+            else if (partsArrayType == typeof(RecDateInfo))
+                return (CalendarPartsArrayEnum.RecDate, PartCardinality.Any);
             else if (partsArrayType == typeof(XNameInfo))
                 return (CalendarPartsArrayEnum.NonstandardNames, PartCardinality.Any);
             throw new NotImplementedException($"Type {partsArrayType.Name} doesn't represent any part array.");
@@ -181,6 +191,8 @@ namespace VisualCard.Calendar.Parsers
                 VCalendarConstants._dateStartSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DateStart, typeof(DateStartInfo), DateStartInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._dateEndSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DateEnd, typeof(DateEndInfo), DateEndInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._dateStampSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DateStamp, typeof(DateStampInfo), DateStampInfo.FromStringVcalendarStatic, "", "", []),
+                VCalendarConstants._tzNameSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.TimeZoneName, typeof(TimeZoneNameInfo), TimeZoneNameInfo.FromStringVcalendarStatic, "", "", []),
+                VCalendarConstants._recDateSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.RecDate, typeof(RecDateInfo), RecDateInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._xSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.NonstandardNames, typeof(XNameInfo), XNameInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._productIdSpecifier => (PartType.Strings, CalendarStringsEnum.ProductId, null, null, "", "", []),
                 VCalendarConstants._calScaleSpecifier => (PartType.Strings, CalendarStringsEnum.CalScale, null, null, "", "", []),
@@ -196,6 +208,7 @@ namespace VisualCard.Calendar.Parsers
                 VCalendarConstants._triggerSpecifier => (PartType.Strings, CalendarStringsEnum.Trigger, null, null, "", "", []),
                 VCalendarConstants._tzidSpecifier => (PartType.Strings, CalendarStringsEnum.TimeZoneId, null, null, "", "", []),
                 VCalendarConstants._tzUrlSpecifier => (PartType.Strings, CalendarStringsEnum.TimeZoneUrl, null, null, "", "", []),
+                VCalendarConstants._recurseSpecifier => (PartType.Strings, CalendarStringsEnum.Recursion, null, null, "", "", []),
                 VCalendarConstants._prioritySpecifier => (PartType.Integers, CalendarIntegersEnum.Priority, null, null, "", "", []),
                 VCalendarConstants._sequenceSpecifier => (PartType.Integers, CalendarIntegersEnum.Sequence, null, null, "", "", []),
                 VCalendarConstants._tzOffsetFromSpecifier => (PartType.Integers, CalendarIntegersEnum.TimeZoneOffsetFrom, null, null, "", "", []),
