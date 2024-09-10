@@ -57,6 +57,12 @@ namespace VisualCard.Calendar.Parts
             GetString(CalendarStringsEnum.Uid);
 
         /// <summary>
+        /// Unique ID for this card
+        /// </summary>
+        public CalendarEvent[] Events =>
+            [.. events];
+
+        /// <summary>
         /// Gets a part array from a specified key
         /// </summary>
         /// <returns>An array of values or an empty part array []</returns>

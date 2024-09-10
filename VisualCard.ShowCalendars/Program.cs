@@ -85,6 +85,7 @@ namespace VisualCard.ShowCalendars
                         TextWriterColor.Write("Calendar end date:   {0}", ends[0].DateEnd ?? new());
                     TextWriterColor.Write("Calendar product ID: {0}", Calendar.GetString(CalendarStringsEnum.ProductId));
                     TextWriterColor.Write("Calendar UUID:       {0}", Calendar.UniqueId);
+                    TextWriterColor.Write("Calendar events:     {0} event(s)", Calendar.Events.Length);
 
                     // Print VCalendar
                     string raw = Calendar.SaveToString();
