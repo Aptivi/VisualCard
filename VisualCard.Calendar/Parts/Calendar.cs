@@ -39,6 +39,10 @@ namespace VisualCard.Calendar.Parts
     public class Calendar : IEquatable<Calendar>
     {
         internal readonly List<CalendarEvent> events = [];
+        internal readonly List<CalendarTodo> todos = [];
+        internal readonly List<CalendarJournal> journals = [];
+        internal readonly List<CalendarFreeBusy> freeBusyList = [];
+        internal readonly List<CalendarTimeZone> timeZones = [];
         private readonly Version version;
         private readonly Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray = [];
         private readonly Dictionary<CalendarStringsEnum, string> strings = [];
@@ -57,10 +61,34 @@ namespace VisualCard.Calendar.Parts
             GetString(CalendarStringsEnum.Uid);
 
         /// <summary>
-        /// Unique ID for this card
+        /// Event list
         /// </summary>
         public CalendarEvent[] Events =>
             [.. events];
+
+        /// <summary>
+        /// To-do list
+        /// </summary>
+        public CalendarTodo[] Todos =>
+            [.. todos];
+
+        /// <summary>
+        /// Journal list
+        /// </summary>
+        public CalendarJournal[] Journals =>
+            [.. journals];
+
+        /// <summary>
+        /// Free/busy list
+        /// </summary>
+        public CalendarFreeBusy[] FreeBusyList =>
+            [.. freeBusyList];
+
+        /// <summary>
+        /// Time zone list
+        /// </summary>
+        public CalendarTimeZone[] TimeZones =>
+            [.. timeZones];
 
         /// <summary>
         /// Gets a part array from a specified key

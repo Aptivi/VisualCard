@@ -29,18 +29,11 @@ namespace VisualCard.Calendar.Parts
     /// <summary>
     /// A vCalendar card instance
     /// </summary>
-    [DebuggerDisplay("vCalendar event version {CalendarVersion.ToString()}, parts: (A [{partsArray.Count}] | S [{strings.Count}])")]
-    public class CalendarEvent : Calendar, IEquatable<CalendarEvent>
+    [DebuggerDisplay("vCalendar free/busy version {CalendarVersion.ToString()}, parts: (A [{partsArray.Count}] | S [{strings.Count}])")]
+    public class CalendarFreeBusy : Calendar, IEquatable<CalendarFreeBusy>
     {
-        internal readonly List<CalendarAlarm> alarms = [];
         private readonly Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray = [];
         private readonly Dictionary<CalendarStringsEnum, string> strings = [];
-
-        /// <summary>
-        /// Alarm list
-        /// </summary>
-        public CalendarAlarm[] Alarms =>
-            [.. alarms];
 
         /// <summary>
         /// Gets a part array from a specified key
@@ -75,7 +68,7 @@ namespace VisualCard.Calendar.Parts
         /// Saves this parsed card to the string
         /// </summary>
         public new string SaveToString() =>
-            SaveToString(CalendarVersion, partsArray, strings, VCalendarConstants._objectVEventSpecifier);
+            SaveToString(CalendarVersion, partsArray, strings, VCalendarConstants._objectVFreeBusySpecifier);
 
         /// <summary>
         /// Saves the contact to the returned string
@@ -85,14 +78,14 @@ namespace VisualCard.Calendar.Parts
 
         /// <inheritdoc/>
         public override bool Equals(object obj) =>
-            Equals((CalendarEvent)obj);
+            Equals((CalendarFreeBusy)obj);
 
         /// <summary>
         /// Checks to see if both the cards are equal
         /// </summary>
         /// <param name="other">The target <see cref="Calendar"/> instance to check to see if they equal</param>
         /// <returns>True if all the card elements are equal. Otherwise, false.</returns>
-        public bool Equals(CalendarEvent other) =>
+        public bool Equals(CalendarFreeBusy other) =>
             Equals(this, other);
 
         /// <summary>
@@ -101,7 +94,7 @@ namespace VisualCard.Calendar.Parts
         /// <param name="source">The source <see cref="Calendar"/> instance to check to see if they equal</param>
         /// <param name="target">The target <see cref="Calendar"/> instance to check to see if they equal</param>
         /// <returns>True if all the card elements are equal. Otherwise, false.</returns>
-        public bool Equals(CalendarEvent source, CalendarEvent target)
+        public bool Equals(CalendarFreeBusy source, CalendarFreeBusy target)
         {
             // We can't perform this operation on null.
             if (source is null || target is null)
@@ -124,11 +117,11 @@ namespace VisualCard.Calendar.Parts
         }
 
         /// <inheritdoc/>
-        public static bool operator ==(CalendarEvent a, CalendarEvent b)
+        public static bool operator ==(CalendarFreeBusy a, CalendarFreeBusy b)
             => a.Equals(b);
 
         /// <inheritdoc/>
-        public static bool operator !=(CalendarEvent a, CalendarEvent b)
+        public static bool operator !=(CalendarFreeBusy a, CalendarFreeBusy b)
             => !a.Equals(b);
 
         internal new void AddPartToArray(CalendarPartsArrayEnum key, BaseCalendarPartInfo value) =>
@@ -137,7 +130,7 @@ namespace VisualCard.Calendar.Parts
         internal new void SetString(CalendarStringsEnum key, string value) =>
             SetString(key, value, strings);
 
-        internal CalendarEvent(Version version) :
+        internal CalendarFreeBusy(Version version) :
             base(version)
         { }
     }

@@ -22,8 +22,8 @@ namespace VisualCard.Calendar.Parsers
     internal static class VCalendarConstants
     {
         // Mandatory for each vCalendar
-        internal const string _beginText = _beginSpecifier + ":VCALENDAR";
-        internal const string _endText = _endSpecifier + ":VCALENDAR";
+        internal const string _beginText = _beginSpecifier + ":" + _objectVCalendarSpecifier;
+        internal const string _endText = _endSpecifier + ":" + _objectVCalendarSpecifier;
         internal const string _beginSpecifier = "BEGIN";
         internal const string _endSpecifier = "END";
         internal const string _versionSpecifier = "VERSION";
@@ -31,6 +31,15 @@ namespace VisualCard.Calendar.Parsers
         // Object specifiers
         internal const string _objectVCalendarSpecifier = "VCALENDAR";
         internal const string _objectVEventSpecifier = "VEVENT";
+        internal const string _objectVTodoSpecifier = "VTODO";
+
+        // Object specifiers (vCalendar 2.0)
+        internal const string _objectVJournalSpecifier = "VJOURNAL";
+        internal const string _objectVFreeBusySpecifier = "VFREEBUSY";
+        internal const string _objectVTimeZoneSpecifier = "VTIMEZONE";
+        internal const string _objectVStandardSpecifier = "VSTANDARD";
+        internal const string _objectVDaylightSpecifier = "VDAYLIGHT";
+        internal const string _objectVAlarmSpecifier = "VALARM";
 
         // Misc vCalendar constants
         internal const string _spaceBreak = " ";
