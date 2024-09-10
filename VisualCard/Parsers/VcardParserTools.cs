@@ -25,6 +25,7 @@ using VisualCard.Parts.Enums;
 using VisualCard.Parts.Implementations;
 using System.Text;
 using VisualCard.Parts;
+using System.Globalization;
 
 namespace VisualCard.Parsers
 {
@@ -382,6 +383,61 @@ namespace VisualCard.Parsers
             }
             else
                 throw new InvalidOperationException("Not a blob. You should somehow handle it.");
+        }
+
+        internal static DateTime ParsePosixDate(string posixDateRepresentation)
+        {
+            // Check to see if this date and time representation is supported by .NET
+            if (DateTime.TryParse(posixDateRepresentation, out DateTime date))
+                return date;
+
+            // Now, this date might be a POSIX date that follows the vCard specification, but check it
+            if (posixDateRepresentation.Length == 8)
+            {
+                // It might be yyyyMMdd, but check again
+                string yearStr = posixDateRepresentation.Substring(0, 4);
+                string monthStr = posixDateRepresentation.Substring(4, 2);
+                string dayStr = posixDateRepresentation.Substring(6, 2);
+                if (DateTime.TryParseExact($"{yearStr}/{monthStr}/{dayStr}", "yyyy/MM/dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
+                    return date;
+            }
+            else if (posixDateRepresentation.Length == 15 || posixDateRepresentation.Length == 16)
+            {
+                // It might be yyyyMMdd + "T" + HHmmss + ["Z"], but check again
+                string yearStr = posixDateRepresentation.Substring(0, 4);
+                string monthStr = posixDateRepresentation.Substring(4, 2);
+                string dayStr = posixDateRepresentation.Substring(6, 2);
+                char timeIndicator = posixDateRepresentation[8];
+                string hourStr = posixDateRepresentation.Substring(9, 2);
+                string minuteStr = posixDateRepresentation.Substring(11, 2);
+                string secondStr = posixDateRepresentation.Substring(13, 2);
+                if (timeIndicator != 'T')
+                    throw new ArgumentException($"Time indicator is invalid.");
+                if (posixDateRepresentation.Length == 16 && posixDateRepresentation[15] != 'Z')
+                    throw new ArgumentException($"UTC indicator is invalid.");
+                bool assumeUtc = posixDateRepresentation.Length == 16 && posixDateRepresentation[15] == 'Z';
+                if (DateTime.TryParseExact($"{yearStr}/{monthStr}/{dayStr} {hourStr}:{minuteStr}:{secondStr}", "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture, assumeUtc ? DateTimeStyles.AdjustToUniversal : DateTimeStyles.None, out date))
+                    return date;
+            }
+            throw new ArgumentException($"Can't parse date {posixDateRepresentation}");
+        }
+
+        internal static string SavePosixDate(DateTime posixDateRepresentation, bool dateOnly = false, bool assumeUtc = false)
+        {
+            StringBuilder posixDateBuilder = new(
+                $"{posixDateRepresentation.Year:0000}" +
+                $"{posixDateRepresentation.Month:00}" +
+                $"{posixDateRepresentation.Day:00}"
+            );
+            if (!dateOnly)
+                posixDateBuilder.Append(
+                    $"T" +
+                    $"{posixDateRepresentation.Hour:00}" +
+                    $"{posixDateRepresentation.Minute:00}" +
+                    $"{posixDateRepresentation.Second:00}" +
+                    $"{(assumeUtc ? "Z" : "")}"
+                );
+            return posixDateBuilder.ToString();
         }
     }
 }
