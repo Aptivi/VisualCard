@@ -295,10 +295,30 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.RecDateInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.RecDateInfo.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.ResourcesInfo.yml",
       "output": {
         ".html": {
           "relative_path": "api/VisualCard.Calendar.Parts.Implementations.ResourcesInfo.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.TimeZoneNameInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.TimeZoneNameInfo.html"
         }
       },
       "version": ""
