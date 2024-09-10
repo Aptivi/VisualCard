@@ -19,7 +19,6 @@
 
 using System;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using Terminaux.Colors.Data;
 using Terminaux.Writer.ConsoleWriters;

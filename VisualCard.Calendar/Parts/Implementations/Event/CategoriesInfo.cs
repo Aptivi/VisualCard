@@ -22,7 +22,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using VisualCard.Calendar.Parsers;
-using VisualCard.Calendar.Parts;
 
 namespace VisualCard.Calendar.Parts.Implementations.Event
 {

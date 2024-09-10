@@ -19,7 +19,6 @@
 
 using System;
 using System.Diagnostics;
-using VisualCard.Calendar.Parsers;
 
 namespace VisualCard.Calendar.Parts.Implementations
 {

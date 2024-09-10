@@ -20,14 +20,9 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Text;
-using Textify.General;
 using VisualCard.Calendar.Parsers;
 using VisualCard.Calendar.Parts.Comparers;
 using VisualCard.Calendar.Parts.Enums;
-using VisualCard.Parts.Enums;
 
 namespace VisualCard.Calendar.Parts
 {

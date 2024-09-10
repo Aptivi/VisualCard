@@ -17,11 +17,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-using System.Collections.Generic;
 using System;
-using System.IO;
-using System.Linq;
-using System.Text;
 using VisualCard.Calendar.Parts;
 using VisualCard.Calendar.Parts.Implementations;
 using VisualCard.Calendar.Parts.Enums;
@@ -32,7 +28,6 @@ namespace VisualCard.Calendar.Parsers
 {
     internal class VCalendarParserTools
     {
-#pragma warning disable IDE0060
         internal static bool StringSupported(CalendarStringsEnum stringsEnum, Version calendarVersion) =>
             stringsEnum switch
             {
@@ -189,6 +184,5 @@ namespace VisualCard.Calendar.Parsers
                 _ =>
                     throw new InvalidOperationException($"Unknown prefix {prefix}"),
             };
-#pragma warning restore IDE0060
     }
 }

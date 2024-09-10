@@ -27,7 +27,6 @@ using System.Text.RegularExpressions;
 using Textify.General;
 using VisualCard.Calendar.Parts;
 using VisualCard.Calendar.Parts.Enums;
-using VisualCard.Calendar.Parts.Implementations;
 using VisualCard.Calendar.Exceptions;
 using VisualCard.Parts.Enums;
 using VisualCard.Parsers;

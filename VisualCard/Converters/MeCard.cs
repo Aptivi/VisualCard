@@ -23,7 +23,6 @@ using System;
 using VisualCard.Parsers;
 using VisualCard.Parts;
 using VisualCard.Parts.Implementations;
-using VisualCard.Parts.Enums;
 using System.Linq;
 using System.Collections.Generic;
 
