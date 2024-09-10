@@ -1952,6 +1952,18 @@ references:
   commentId: F:VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.TimeZoneId
   fullName: VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.TimeZoneId
   nameWithType: CalendarStringsEnum.TimeZoneId
+- uid: VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.TimeZoneName
+  name: TimeZoneName
+  href: api/VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.html#VisualCard_Calendar_Parts_Enums_CalendarStringsEnum_TimeZoneName
+  commentId: F:VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.TimeZoneName
+  fullName: VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.TimeZoneName
+  nameWithType: CalendarStringsEnum.TimeZoneName
+- uid: VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.TimeZoneUrl
+  name: TimeZoneUrl
+  href: api/VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.html#VisualCard_Calendar_Parts_Enums_CalendarStringsEnum_TimeZoneUrl
+  commentId: F:VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.TimeZoneUrl
+  fullName: VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.TimeZoneUrl
+  nameWithType: CalendarStringsEnum.TimeZoneUrl
 - uid: VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.Transparency
   name: Transparency
   href: api/VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.html#VisualCard_Calendar_Parts_Enums_CalendarStringsEnum_Transparency
