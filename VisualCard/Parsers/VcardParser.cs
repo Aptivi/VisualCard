@@ -253,34 +253,56 @@ namespace VisualCard.Parsers
         internal void ValidateCard(Card card)
         {
             // Track the required fields
-            List<string> expectedFields = [];
-            List<string> actualFields = [];
+            List<string> expectedFieldList = [];
             var nameCardinality = VcardParserTools.GetPartsArrayEnumFromType(typeof(NameInfo), CardVersion).Item2;
             var fullNameCardinality = VcardParserTools.GetPartsArrayEnumFromType(typeof(FullNameInfo), CardVersion).Item2;
             if (nameCardinality == PartCardinality.ShouldBeOne)
-                expectedFields.Add(VcardConstants._nameSpecifier);
+                expectedFieldList.Add(VcardConstants._nameSpecifier);
             if (fullNameCardinality == PartCardinality.AtLeastOne)
-                expectedFields.Add(VcardConstants._fullNameSpecifier);
+                expectedFieldList.Add(VcardConstants._fullNameSpecifier);
+
+            // Now, check for requirements
+            string[] expectedFields = [.. expectedFieldList];
+            if (!ValidateComponent(ref expectedFields, out string[] actualFields, card))
+                throw new InvalidDataException($"The following keys [{string.Join(", ", expectedFields)}] are required. Got [{string.Join(", ", actualFields)}].");
+        }
+
+        private bool ValidateComponent<TComponent>(ref string[] expectedFields, out string[] actualFields, TComponent component)
+            where TComponent : Card
+        {
+            // Track the required fields
+            List<string> actualFieldList = [];
 
             // Requirement checks
-            if (expectedFields.Contains(VcardConstants._nameSpecifier))
+            foreach (string expectedFieldName in expectedFields)
             {
-                var names = card.GetPartsArray<NameInfo>(PartsArrayEnum.Names);
-                bool exists = names is not null && names.Length > 0;
-                if (exists)
-                    actualFields.Add(VcardConstants._nameSpecifier);
+                var (type, enumeration, enumType, _, _, _, _) = VcardParserTools.GetPartType(expectedFieldName);
+                switch (type)
+                {
+                    case PartType.Strings:
+                        {
+                            string value = component.GetString((StringsEnum)enumeration);
+                            bool exists = !string.IsNullOrEmpty(value);
+                            if (exists)
+                                actualFieldList.Add(expectedFieldName);
+                        }
+                        break;
+                    case PartType.PartsArray:
+                        {
+                            if (enumType is null)
+                                continue;
+                            var values = component.GetPartsArray(enumType, (PartsArrayEnum)enumeration);
+                            bool exists = values.Length > 0;
+                            if (exists)
+                                actualFieldList.Add(expectedFieldName);
+                        }
+                        break;
+                }
             }
-            if (expectedFields.Contains(VcardConstants._fullNameSpecifier))
-            {
-                var fullNames = card.GetPartsArray<FullNameInfo>(PartsArrayEnum.FullName);
-                bool exists = fullNames is not null && fullNames.Length > 0;
-                if (exists)
-                    actualFields.Add(VcardConstants._fullNameSpecifier);
-            }
-            expectedFields.Sort();
-            actualFields.Sort();
-            if (!actualFields.SequenceEqual(expectedFields))
-                throw new InvalidDataException($"The following keys [{string.Join(", ", expectedFields)}] are required. Got [{string.Join(", ", actualFields)}].");
+            Array.Sort(expectedFields);
+            actualFieldList.Sort();
+            actualFields = [.. actualFieldList];
+            return actualFields.SequenceEqual(expectedFields);
         }
 
         internal VcardParser(string[] cardContent, Version cardVersion)

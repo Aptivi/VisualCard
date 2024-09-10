@@ -303,7 +303,7 @@ namespace VisualCard.Calendar.Parsers
             foreach (var eventInfo in calendar.events)
             {
                 if (!ValidateComponent(ref expectedEventFields, out string[] actualEventFields, eventInfo))
-                    throw new InvalidDataException($"The following keys [{string.Join(", ", expectedEventFields)}] are required in the root calendar. Got [{string.Join(", ", actualEventFields)}].");
+                    throw new InvalidDataException($"The following keys [{string.Join(", ", expectedEventFields)}] are required in the event representation. Got [{string.Join(", ", actualEventFields)}].");
             }
         }
 

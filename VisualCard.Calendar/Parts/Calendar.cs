@@ -104,7 +104,7 @@ namespace VisualCard.Calendar.Parts
         public BaseCalendarPartInfo[] GetPartsArray(Type partType, CalendarPartsArrayEnum key)
         {
             // Check the base type
-            if (partType.BaseType != typeof(BaseCalendarPartInfo))
+            if (partType.BaseType != typeof(BaseCalendarPartInfo) && partType != typeof(BaseCalendarPartInfo))
                 throw new InvalidOperationException($"Base type is not BaseCalendarPartInfo [{partType.BaseType.Name}] and the part type is [{partType.Name}] that doesn't represent calendar part.");
 
             return GetPartsArray(partType, key, version, partsArray);

@@ -64,7 +64,8 @@ namespace VisualCard.Parts
         /// Gets a part array from a specified key
         /// </summary>
         /// <returns>An array of values or an empty part array []</returns>
-        public TPart[] GetPartsArray<TPart>() where TPart : BaseCardPartInfo
+        public TPart[] GetPartsArray<TPart>()
+            where TPart : BaseCardPartInfo
         {
             // Get the parts enumeration according to the type
             var key = VcardParserTools.GetPartsArrayEnumFromType(typeof(TPart), CardVersion);
@@ -78,24 +79,55 @@ namespace VisualCard.Parts
         /// </summary>
         /// <param name="key">A key to use</param>
         /// <returns>An array of values or an empty part array []</returns>
-        public TPart[] GetPartsArray<TPart>(PartsArrayEnum key) where TPart : BaseCardPartInfo
+        public TPart[] GetPartsArray<TPart>(PartsArrayEnum key)
+            where TPart : BaseCardPartInfo =>
+            GetPartsArray(typeof(TPart), key).Cast<TPart>().ToArray();
+
+        /// <summary>
+        /// Gets a part array from a specified key
+        /// </summary>
+        /// <param name="partType">Target part type that derives from <see cref="BaseCardPartInfo"/></param>
+        /// <returns>An array of values or an empty part array []</returns>
+        public BaseCardPartInfo[] GetPartsArray(Type partType)
         {
+            // Check the base type
+            if (partType.BaseType != typeof(BaseCardPartInfo))
+                throw new InvalidOperationException($"Base type is not BaseCardPartInfo [{partType.BaseType.Name}] and the part type is [{partType.Name}] that doesn't represent card part.");
+
+            // Get the parts enumeration according to the type
+            var key = VcardParserTools.GetPartsArrayEnumFromType(partType, CardVersion);
+
+            // Now, return the value
+            return GetPartsArray(partType, key.Item1);
+        }
+
+        /// <summary>
+        /// Gets a part array from a specified key
+        /// </summary>
+        /// <param name="partType">Target part type that derives from <see cref="BaseCardPartInfo"/></param>
+        /// <param name="key">A key to use</param>
+        /// <returns>An array of values or an empty part array []</returns>
+        public BaseCardPartInfo[] GetPartsArray(Type partType, PartsArrayEnum key)
+        {
+            // Check the base type
+            if (partType.BaseType != typeof(BaseCardPartInfo) && partType != typeof(BaseCardPartInfo))
+                throw new InvalidOperationException($"Base type is not BaseCardPartInfo [{partType.BaseType.Name}] and the part type is [{partType.Name}] that doesn't represent card part.");
+
             // Check for version support
             if (!VcardParserTools.EnumArrayTypeSupported(key, CardVersion))
                 return [];
 
             // Get the parts enumeration according to the type
-            var type = typeof(TPart);
-            if (type != typeof(BaseCardPartInfo))
+            if (partType != typeof(BaseCardPartInfo))
             {
                 // We don't need the base, but a derivative of it. Check it.
-                var partsArrayEnum = VcardParserTools.GetPartsArrayEnumFromType(typeof(TPart), CardVersion).Item1;
+                var partsArrayEnum = VcardParserTools.GetPartsArrayEnumFromType(partType, CardVersion).Item1;
                 if (key != partsArrayEnum)
-                    throw new InvalidOperationException($"Parts array enumeration [{key}] is different from the expected one [{partsArrayEnum}] according to type {typeof(TPart).Name}.");
+                    throw new InvalidOperationException($"Parts array enumeration [{key}] is different from the expected one [{partsArrayEnum}] according to type {typeof(BaseCardPartInfo).Name}.");
             }
 
             // Get the fallback value
-            TPart[] fallback = [];
+            BaseCardPartInfo[] fallback = [];
 
             // Check to see if the partarray has a value or not
             bool hasValue = partsArray.ContainsKey(key);
@@ -104,7 +136,7 @@ namespace VisualCard.Parts
 
             // Cast the values
             var value = partsArray[key];
-            TPart[] parts = value.Cast<TPart>().ToArray();
+            BaseCardPartInfo[] parts = value.ToArray();
 
             // Now, return the value
             return parts;
