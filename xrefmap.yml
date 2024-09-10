@@ -2122,13 +2122,13 @@ references:
   fullName: VisualCard.Converters.MeCard.GetContactsFromMeCardString
   nameWithType: MeCard.GetContactsFromMeCardString
 - uid: VisualCard.Converters.MeCard.SaveCardToMeCardString(VisualCard.Parts.Card,System.Boolean)
-  name: SaveCardToMeCardString(Card, bool)
+  name: SaveCardToMeCardString(Card?, bool)
   href: api/VisualCard.Converters.MeCard.html#VisualCard_Converters_MeCard_SaveCardToMeCardString_VisualCard_Parts_Card_System_Boolean_
   commentId: M:VisualCard.Converters.MeCard.SaveCardToMeCardString(VisualCard.Parts.Card,System.Boolean)
   name.vb: SaveCardToMeCardString(Card, Boolean)
-  fullName: VisualCard.Converters.MeCard.SaveCardToMeCardString(VisualCard.Parts.Card, bool)
+  fullName: VisualCard.Converters.MeCard.SaveCardToMeCardString(VisualCard.Parts.Card?, bool)
   fullName.vb: VisualCard.Converters.MeCard.SaveCardToMeCardString(VisualCard.Parts.Card, Boolean)
-  nameWithType: MeCard.SaveCardToMeCardString(Card, bool)
+  nameWithType: MeCard.SaveCardToMeCardString(Card?, bool)
   nameWithType.vb: MeCard.SaveCardToMeCardString(Card, Boolean)
 - uid: VisualCard.Converters.MeCard.SaveCardToMeCardString*
   name: SaveCardToMeCardString
