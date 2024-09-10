@@ -2443,6 +2443,18 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Card.GetHashCode
   nameWithType: Card.GetHashCode
+- uid: VisualCard.Parts.Card.GetPartsArray(System.Type)
+  name: GetPartsArray(Type)
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_GetPartsArray_System_Type_
+  commentId: M:VisualCard.Parts.Card.GetPartsArray(System.Type)
+  fullName: VisualCard.Parts.Card.GetPartsArray(System.Type)
+  nameWithType: Card.GetPartsArray(Type)
+- uid: VisualCard.Parts.Card.GetPartsArray(System.Type,VisualCard.Parts.Enums.PartsArrayEnum)
+  name: GetPartsArray(Type, PartsArrayEnum)
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_GetPartsArray_System_Type_VisualCard_Parts_Enums_PartsArrayEnum_
+  commentId: M:VisualCard.Parts.Card.GetPartsArray(System.Type,VisualCard.Parts.Enums.PartsArrayEnum)
+  fullName: VisualCard.Parts.Card.GetPartsArray(System.Type, VisualCard.Parts.Enums.PartsArrayEnum)
+  nameWithType: Card.GetPartsArray(Type, PartsArrayEnum)
 - uid: VisualCard.Parts.Card.GetPartsArray*
   name: GetPartsArray
   href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_GetPartsArray_
