@@ -36,13 +36,15 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// The contact's agent <see cref="Card"/> instances
         /// </summary>
-        public Card[] AgentCards { get; }
+        public Card[]? AgentCards { get; }
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new AgentInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion)
         {
+            if (AgentCards is null)
+                return "";
             var agents = new StringBuilder();
 
             foreach (var a in AgentCards)
@@ -102,7 +104,7 @@ namespace VisualCard.Parts.Implementations
         {
             int hashCode = -582546693;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<Card[]>.Default.GetHashCode(AgentCards);
+            hashCode = hashCode * -1521134295 + EqualityComparer<Card[]?>.Default.GetHashCode(AgentCards);
             return hashCode;
         }
 

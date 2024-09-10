@@ -40,7 +40,7 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// The contact's gender description
         /// </summary>
-        public string GenderDescription { get; }
+        public string? GenderDescription { get; }
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new GenderInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
@@ -119,7 +119,7 @@ namespace VisualCard.Parts.Implementations
             int hashCode = 1213594384;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
             hashCode = hashCode * -1521134295 + Gender.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(GenderDescription);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(GenderDescription);
             return hashCode;
         }
 

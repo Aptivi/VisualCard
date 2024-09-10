@@ -33,13 +33,13 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// The contact's time zone
         /// </summary>
-        public string TimeZone { get; }
+        public string? TimeZone { get; }
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new TimeDateZoneInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
-            TimeZone;
+            TimeZone ?? "";
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
@@ -86,7 +86,7 @@ namespace VisualCard.Parts.Implementations
         {
             int hashCode = 1988546296;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(TimeZone);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(TimeZone);
             return hashCode;
         }
 

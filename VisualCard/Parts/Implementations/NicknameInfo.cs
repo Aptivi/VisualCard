@@ -33,13 +33,13 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// The contact's nickname
         /// </summary>
-        public string ContactNickname { get; }
+        public string? ContactNickname { get; }
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new NicknameInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
-            ContactNickname;
+            ContactNickname ?? "";
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
@@ -84,7 +84,7 @@ namespace VisualCard.Parts.Implementations
         {
             int hashCode = 536678633;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactNickname);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(ContactNickname);
             return hashCode;
         }
 

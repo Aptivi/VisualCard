@@ -34,11 +34,11 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// Photo encoding type
         /// </summary>
-        public string Encoding { get; }
+        public string? Encoding { get; }
         /// <summary>
         /// Encoded photo
         /// </summary>
-        public string PhotoEncoded { get; }
+        public string? PhotoEncoded { get; }
         /// <summary>
         /// Whether this photo is a blob or not
         /// </summary>
@@ -49,7 +49,7 @@ namespace VisualCard.Parts.Implementations
             new PhotoInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
-            PhotoEncoded;
+            PhotoEncoded ?? "";
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
@@ -125,8 +125,8 @@ namespace VisualCard.Parts.Implementations
         {
             int hashCode = -365738507;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Encoding);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(PhotoEncoded);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(Encoding);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(PhotoEncoded);
             return hashCode;
         }
 

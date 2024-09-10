@@ -81,7 +81,7 @@ namespace VisualCard.Calendar.Parsers
                     continue;
 
                 // Take the last sub-part if available
-                Parts.Calendar subPart = null;
+                Parts.Calendar? subPart = null;
                 if (begins.Count > 0)
                     subPart = begins[begins.Count - 1].Item2;
 
@@ -166,7 +166,7 @@ namespace VisualCard.Calendar.Parsers
                     {
                         string elementTypeUpper = elementType.ToUpper();
                         if (!allowedTypes.Contains(elementTypeUpper) && !extraAllowedTypes.Contains(elementTypeUpper) && !elementTypeUpper.StartsWith("X-"))
-                            throw new InvalidDataException($"Part info type {classType.Name} doesn't support property type {elementTypeUpper} because the following base types are supported: [{string.Join(", ", allowedTypes)}] and the extra types are supported: [{string.Join(", ", extraAllowedTypes)}]");
+                            throw new InvalidDataException($"Part info type {classType?.Name ?? "<null>"} doesn't support property type {elementTypeUpper} because the following base types are supported: [{string.Join(", ", allowedTypes)}] and the extra types are supported: [{string.Join(", ", extraAllowedTypes)}]");
                     }
 
                     // Handle the part type
@@ -258,9 +258,11 @@ namespace VisualCard.Calendar.Parsers
                         case PartType.PartsArray:
                             {
                                 CalendarPartsArrayEnum partsArrayType = (CalendarPartsArrayEnum)enumeration;
-                                Type partsArrayClass = classType;
+                                Type? partsArrayClass = classType;
                                 bool supported = VCalendarParserTools.EnumArrayTypeSupported(partsArrayType, CalendarVersion);
                                 if (!supported)
+                                    continue;
+                                if (fromString is null)
                                     continue;
 
                                 // Now, get the part info
@@ -269,7 +271,7 @@ namespace VisualCard.Calendar.Parsers
                                 if (subPart is not null)
                                     subPart.AddPartToArray(partsArrayType, partInfo);
                                 else
-                                    subPart.AddPartToArray(partsArrayType, partInfo);
+                                    calendar.AddPartToArray(partsArrayType, partInfo);
                             }
                             break;
                         default:
@@ -319,8 +321,10 @@ namespace VisualCard.Calendar.Parsers
             };
         }
 
-        private void SaveLastSubPart(Parts.Calendar subpart, ref Parts.Calendar part)
+        private void SaveLastSubPart(Parts.Calendar? subpart, ref Parts.Calendar part)
         {
+            if (subpart is null)
+                return;
             switch (part.GetType().Name)
             {
                 case nameof(Calendar):

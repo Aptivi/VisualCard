@@ -35,31 +35,31 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// The contact's post office box
         /// </summary>
-        public string PostOfficeBox { get; }
+        public string? PostOfficeBox { get; }
         /// <summary>
         /// The contact's extended address
         /// </summary>
-        public string ExtendedAddress { get; }
+        public string? ExtendedAddress { get; }
         /// <summary>
         /// The contact's street address
         /// </summary>
-        public string StreetAddress { get; }
+        public string? StreetAddress { get; }
         /// <summary>
         /// The contact's locality
         /// </summary>
-        public string Locality { get; }
+        public string? Locality { get; }
         /// <summary>
         /// The contact's region
         /// </summary>
-        public string Region { get; }
+        public string? Region { get; }
         /// <summary>
         /// The contact's postal code
         /// </summary>
-        public string PostalCode { get; }
+        public string? PostalCode { get; }
         /// <summary>
         /// The contact's country
         /// </summary>
-        public string Country { get; }
+        public string? Country { get; }
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new AddressInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
@@ -136,13 +136,13 @@ namespace VisualCard.Parts.Implementations
         {
             int hashCode = -427937047;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(PostOfficeBox);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ExtendedAddress);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(StreetAddress);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Locality);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Region);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(PostalCode);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Country);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(PostOfficeBox);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(ExtendedAddress);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(StreetAddress);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(Locality);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(Region);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(PostalCode);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(Country);
             return hashCode;
         }
 

@@ -33,13 +33,13 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// Encoded free/busy URL
         /// </summary>
-        public string FreeBusy { get; }
+        public string? FreeBusy { get; }
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new FreeBusyInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
-            FreeBusy;
+            FreeBusy ?? "";
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
@@ -88,7 +88,7 @@ namespace VisualCard.Parts.Implementations
         {
             int hashCode = 478819452;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(FreeBusy);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(FreeBusy);
             return hashCode;
         }
 

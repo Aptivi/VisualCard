@@ -30,18 +30,20 @@ namespace VisualCard.Calendar.Parts
         internal static string BuildArguments(BaseCalendarPartInfo partInfo, string defaultType, string defaultValue)
         {
             // Filter the list of types and values first
+            string valueType = partInfo.ValueType ?? "";
+            string[] valueArguments = partInfo.Arguments ?? [];
             string[] finalElementTypes = partInfo.ElementTypes.Where((type) => !type.Equals(defaultType, StringComparison.OrdinalIgnoreCase)).ToArray();
-            string finalValue = partInfo.ValueType.Equals(defaultValue, StringComparison.OrdinalIgnoreCase) ? "" : partInfo.ValueType;
+            string finalValue = valueType.Equals(defaultValue, StringComparison.OrdinalIgnoreCase) ? "" : valueType;
 
             // Check to see if we've been provided arguments
-            bool noSemicolon = partInfo.Arguments.Length == 0 && finalElementTypes.Length == 0 && string.IsNullOrEmpty(finalValue);
-            string xNonstandardName = partInfo is XNameInfo xName ? xName.XKeyName : "";
+            bool noSemicolon = valueArguments.Length == 0 && finalElementTypes.Length == 0 && string.IsNullOrEmpty(finalValue);
+            string xNonstandardName = (partInfo is XNameInfo xName ? xName.XKeyName : "") ?? "";
             if (noSemicolon)
                 return xNonstandardName + VCalendarConstants._argumentDelimiter.ToString();
 
             // Now, initialize the argument builder
             StringBuilder argumentsBuilder = new(xNonstandardName + VCalendarConstants._fieldDelimiter.ToString());
-            bool installArguments = partInfo.Arguments.Length > 0;
+            bool installArguments = valueArguments.Length > 0;
             bool installElementTypes = finalElementTypes.Length > 0;
             bool installValueType = !string.IsNullOrEmpty(finalValue);
 
@@ -76,7 +78,7 @@ namespace VisualCard.Calendar.Parts
             // Finally, install the remaining arguments if they exist and contain keys and values
             if (installArguments)
             {
-                string[] finalArguments = partInfo.Arguments.Where((arg) => arg.Contains(VCalendarConstants._argumentValueDelimiter)).ToArray();
+                string[] finalArguments = valueArguments.Where((arg) => arg.Contains(VCalendarConstants._argumentValueDelimiter)).ToArray();
                 argumentsBuilder.Append(string.Join(VCalendarConstants._fieldDelimiter.ToString(), finalArguments));
             }
 

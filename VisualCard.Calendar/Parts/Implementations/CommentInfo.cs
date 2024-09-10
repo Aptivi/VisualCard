@@ -34,13 +34,13 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// <summary>
         /// The contact's comment
         /// </summary>
-        public string Comment { get; }
+        public string? Comment { get; }
 
         internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
             new CommentInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion) =>
-            Comment;
+            Comment ?? "";
 
         internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
         {
@@ -87,7 +87,7 @@ namespace VisualCard.Calendar.Parts.Implementations
         {
             int hashCode = -1115589996;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Comment);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(Comment);
             return hashCode;
         }
 

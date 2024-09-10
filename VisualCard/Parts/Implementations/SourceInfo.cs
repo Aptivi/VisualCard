@@ -33,13 +33,13 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// Encoded source
         /// </summary>
-        public string Source { get; }
+        public string? Source { get; }
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new SourceInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
-            Source;
+            Source ?? "";
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
@@ -88,7 +88,7 @@ namespace VisualCard.Parts.Implementations
         {
             int hashCode = -2028702066;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Source);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(Source);
             return hashCode;
         }
 

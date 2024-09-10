@@ -35,17 +35,17 @@ namespace VisualCard.Calendar.Parts
         /// <summary>
         /// Final arguments
         /// </summary>
-        public virtual string[] Arguments { get; internal set; }
+        public virtual string[]? Arguments { get; internal set; }
 
         /// <summary>
         /// Card element type (home, work, ...)
         /// </summary>
-        public virtual string[] ElementTypes { get; internal set; }
+        public virtual string[]? ElementTypes { get; internal set; }
 
         /// <summary>
         /// Value type (usually set by VALUE=)
         /// </summary>
-        public virtual string ValueType { get; internal set; }
+        public virtual string? ValueType { get; internal set; }
 
         /// <summary>
         /// Is this part preferred?
@@ -85,6 +85,8 @@ namespace VisualCard.Calendar.Parts
         /// <returns>True if found; otherwise, false.</returns>
         public bool HasType(string type)
         {
+            if (ElementTypes is null)
+                return false;
             bool found = false;
             foreach (string elementType in ElementTypes)
             {
@@ -131,9 +133,9 @@ namespace VisualCard.Calendar.Parts
         public override int GetHashCode()
         {
             int hashCode = -452519667;
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(Arguments);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(ElementTypes);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ValueType);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string[]?>.Default.GetHashCode(Arguments);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string[]?>.Default.GetHashCode(ElementTypes);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(ValueType);
             return hashCode;
         }
 

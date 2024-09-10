@@ -33,13 +33,13 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// Encoded URL
         /// </summary>
-        public string Url { get; }
+        public string? Url { get; }
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new UrlInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
-            Url;
+            Url ?? "";
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
@@ -88,7 +88,7 @@ namespace VisualCard.Parts.Implementations
         {
             int hashCode = -1169443244;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Url);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(Url);
             return hashCode;
         }
 

@@ -34,13 +34,13 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// The contact's geographical information
         /// </summary>
-        public string Geo { get; }
+        public string? Geo { get; }
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new GeoInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
-            Geo;
+            Geo ?? "";
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
@@ -87,7 +87,7 @@ namespace VisualCard.Parts.Implementations
         {
             int hashCode = -456581192;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Geo);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(Geo);
             return hashCode;
         }
 

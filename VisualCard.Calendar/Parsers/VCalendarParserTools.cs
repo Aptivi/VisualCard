@@ -155,7 +155,7 @@ namespace VisualCard.Calendar.Parsers
             throw new NotImplementedException($"Type {partsArrayType.Name} doesn't represent any part array.");
         }
 
-        internal static (PartType type, object enumeration, Type enumType, Func<string, string[], string[], string, Version, BaseCalendarPartInfo> fromStringFunc, string defaultType, string defaultValue, string[] allowedExtraTypes) GetPartType(string prefix) =>
+        internal static (PartType type, object enumeration, Type? enumType, Func<string, string[], string[], string, Version, BaseCalendarPartInfo>? fromStringFunc, string defaultType, string defaultValue, string[] allowedExtraTypes) GetPartType(string prefix) =>
             prefix switch
             {
                 VCalendarConstants._attachSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.Attach, typeof(AttachInfo), AttachInfo.FromStringVcalendarStatic, "", "", []),

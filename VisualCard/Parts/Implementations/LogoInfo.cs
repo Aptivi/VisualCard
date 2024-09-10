@@ -34,11 +34,11 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// Logo encoding type
         /// </summary>
-        public string Encoding { get; }
+        public string? Encoding { get; }
         /// <summary>
         /// Encoded logo
         /// </summary>
-        public string LogoEncoded { get; }
+        public string? LogoEncoded { get; }
         /// <summary>
         /// Whether this logo is a blob or not
         /// </summary>
@@ -49,7 +49,7 @@ namespace VisualCard.Parts.Implementations
             new LogoInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
-            LogoEncoded;
+            LogoEncoded ?? "";
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
@@ -125,8 +125,8 @@ namespace VisualCard.Parts.Implementations
         {
             int hashCode = 2051368178;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Encoding);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(LogoEncoded);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(Encoding);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(LogoEncoded);
             return hashCode;
         }
 

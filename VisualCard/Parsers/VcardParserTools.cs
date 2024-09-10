@@ -184,9 +184,9 @@ namespace VisualCard.Parsers
                     throw new NotImplementedException($"String enumeration {partsArrayEnum} is not implemented.")
             };
 
-        internal static (PartsArrayEnum, PartCardinality) GetPartsArrayEnumFromType(Type partsArrayType, Version cardVersion)
+        internal static (PartsArrayEnum, PartCardinality) GetPartsArrayEnumFromType(Type? partsArrayType, Version cardVersion)
         {
-            if (partsArrayType == null)
+            if (partsArrayType is null)
                 throw new NotImplementedException("Type is not provided.");
 
             // Now, iterate through every type
@@ -257,7 +257,7 @@ namespace VisualCard.Parsers
             throw new NotImplementedException($"Type {partsArrayType.Name} doesn't represent any part array.");
         }
 
-        internal static (PartType type, object enumeration, Type enumType, Func<string, string[], int, string[], string, Version, BaseCardPartInfo> fromStringFunc, string defaultType, string defaultValue, string[] allowedExtraTypes) GetPartType(string prefix) =>
+        internal static (PartType type, object enumeration, Type? enumType, Func<string, string[], int, string[], string, Version, BaseCardPartInfo>? fromStringFunc, string defaultType, string defaultValue, string[] allowedExtraTypes) GetPartType(string prefix) =>
             prefix switch
             {
                 VcardConstants._nameSpecifier => (PartType.PartsArray, PartsArrayEnum.Names, typeof(NameInfo), NameInfo.FromStringVcardStatic, "", "", []),
@@ -342,8 +342,9 @@ namespace VisualCard.Parsers
             }
         }
 
-        internal static bool IsEncodingBlob(string[] args, string keyEncoded)
+        internal static bool IsEncodingBlob(string[]? args, string? keyEncoded)
         {
+            args ??= [];
             string encoding = GetValuesString(args, "b", VcardConstants._encodingArgumentSpecifier);
             bool isValidUri = Uri.TryCreate(keyEncoded, UriKind.Absolute, out Uri uri);
             if (isValidUri)
@@ -358,8 +359,9 @@ namespace VisualCard.Parsers
                 encoding.Equals("BLOB", StringComparison.OrdinalIgnoreCase);
         }
 
-        internal static Stream GetBlobData(string[] args, string keyEncoded)
+        internal static Stream GetBlobData(string[]? args, string? keyEncoded)
         {
+            args ??= [];
             if (IsEncodingBlob(args, keyEncoded))
             {
                 bool isValidUri = Uri.TryCreate(keyEncoded, UriKind.Absolute, out Uri uri);
@@ -372,7 +374,8 @@ namespace VisualCard.Parsers
                         throw new InvalidDataException("Contains a valid URL; you should fetch that URL manually and convert the response to the stream.");
                 }
                 else
-                    dataStr = keyEncoded;
+                    dataStr = keyEncoded ??
+                        throw new InvalidDataException("There is no encoded data.");
                 byte[] dataBytes = Convert.FromBase64String(dataStr);
                 Stream blobStream = new MemoryStream(dataBytes);
                 return blobStream;

@@ -33,13 +33,13 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// The contact's title
         /// </summary>
-        public string ContactTitle { get; }
+        public string? ContactTitle { get; }
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new TitleInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
-            ContactTitle;
+            ContactTitle ?? "";
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
@@ -83,7 +83,7 @@ namespace VisualCard.Parts.Implementations
         {
             int hashCode = -345092951;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactTitle);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(ContactTitle);
             return hashCode;
         }
 

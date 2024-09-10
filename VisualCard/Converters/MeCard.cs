@@ -145,10 +145,10 @@ namespace VisualCard.Converters
         /// <param name="card">Card instance</param>
         /// <param name="compatibility">Compatibility mode (excludes some MeCard values)</param>
         /// <returns>A MeCard string</returns>
-        public static string SaveCardToMeCardString(Card card, bool compatibility = false)
+        public static string SaveCardToMeCardString(Card? card, bool compatibility = false)
         {
             // Check the card for validity
-            if (card == null)
+            if (card is null)
                 throw new ArgumentNullException(nameof(card), "Card is not provided.");
 
             // Now, get all the values in the below order
@@ -192,8 +192,8 @@ namespace VisualCard.Converters
             else if (hasFullName)
             {
                 StringBuilder builder = new();
-                var fullName = fullNames[0];
-                string[] splitFullName = fullName.FullName.Split([" "], StringSplitOptions.RemoveEmptyEntries);
+                var fullName = fullNames[0].FullName ?? "";
+                string[] splitFullName = fullName.Split([" "], StringSplitOptions.RemoveEmptyEntries);
                 builder.Append(_meCardNameSpecifier + _meCardArgumentDelimiter);
                 builder.Append(string.Join(_meCardValueDelimiter.ToString(), splitFullName));
                 properties.Add(builder.ToString());

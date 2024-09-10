@@ -34,7 +34,7 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// The contact's categories
         /// </summary>
-        public string[] Category { get; }
+        public string[]? Category { get; }
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new CategoryInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
@@ -87,7 +87,7 @@ namespace VisualCard.Parts.Implementations
         {
             int hashCode = -723142617;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(Category);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string[]?>.Default.GetHashCode(Category);
             return hashCode;
         }
 

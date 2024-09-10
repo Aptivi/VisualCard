@@ -36,13 +36,13 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// The contact's language code
         /// </summary>
-        public string ContactLang { get; }
+        public string? ContactLang { get; }
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new LangInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
-            ContactLang;
+            ContactLang ?? "";
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
@@ -87,7 +87,7 @@ namespace VisualCard.Parts.Implementations
             int hashCode = -2101786561;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
             hashCode = hashCode * -1521134295 + ContactLangPreference.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactLang);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(ContactLang);
             return hashCode;
         }
 

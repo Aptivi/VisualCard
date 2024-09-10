@@ -35,7 +35,7 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// <summary>
         /// The contact's resources
         /// </summary>
-        public string[] Resources { get; }
+        public string[]? Resources { get; }
 
         internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
             new ResourcesInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
@@ -88,7 +88,7 @@ namespace VisualCard.Calendar.Parts.Implementations
         {
             int hashCode = -723142617;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(Resources);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string[]?>.Default.GetHashCode(Resources);
             return hashCode;
         }
 

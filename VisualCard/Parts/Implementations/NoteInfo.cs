@@ -34,13 +34,13 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// The contact's note
         /// </summary>
-        public string Note { get; }
+        public string? Note { get; }
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new NoteInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
-            Note;
+            Note ?? "";
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
@@ -87,7 +87,7 @@ namespace VisualCard.Parts.Implementations
         {
             int hashCode = 963810291;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Note);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(Note);
             return hashCode;
         }
 

@@ -33,13 +33,13 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// The contact's delivery address label
         /// </summary>
-        public string DeliveryLabel { get; }
+        public string? DeliveryLabel { get; }
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new LabelAddressInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
-            DeliveryLabel;
+            DeliveryLabel ?? "";
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
@@ -84,7 +84,7 @@ namespace VisualCard.Parts.Implementations
         {
             int hashCode = 1203542083;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(DeliveryLabel);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(DeliveryLabel);
             return hashCode;
         }
 

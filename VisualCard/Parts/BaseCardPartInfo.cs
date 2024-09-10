@@ -35,7 +35,7 @@ namespace VisualCard.Parts
         /// <summary>
         /// Final arguments
         /// </summary>
-        public virtual string[] Arguments { get; internal set; }
+        public virtual string[] Arguments { get; internal set; } = [];
 
         /// <summary>
         /// Alternative ID. Zero if unspecified.
@@ -45,12 +45,12 @@ namespace VisualCard.Parts
         /// <summary>
         /// Card element type (home, work, ...)
         /// </summary>
-        public virtual string[] ElementTypes { get; internal set; }
+        public virtual string[] ElementTypes { get; internal set; } = [];
 
         /// <summary>
         /// Value type (usually set by VALUE=)
         /// </summary>
-        public virtual string ValueType { get; internal set; }
+        public virtual string ValueType { get; internal set; } = "";
 
         /// <summary>
         /// Is this part preferred?

@@ -33,13 +33,13 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// Encoded calendar URL
         /// </summary>
-        public string CalendarUrl { get; }
+        public string? CalendarUrl { get; }
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new CalendarUrlInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
-            CalendarUrl;
+            CalendarUrl ?? "";
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
@@ -88,7 +88,7 @@ namespace VisualCard.Parts.Implementations
         {
             int hashCode = 1694405134;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(CalendarUrl);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(CalendarUrl);
             return hashCode;
         }
 

@@ -34,11 +34,11 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// Key encoding type
         /// </summary>
-        public string Encoding { get; }
+        public string? Encoding { get; }
         /// <summary>
         /// Encoded key
         /// </summary>
-        public string KeyEncoded { get; }
+        public string? KeyEncoded { get; }
         /// <summary>
         /// Whether this key is a blob or not
         /// </summary>
@@ -49,7 +49,7 @@ namespace VisualCard.Parts.Implementations
             new KeyInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
-            KeyEncoded;
+            KeyEncoded ?? "";
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
@@ -125,8 +125,8 @@ namespace VisualCard.Parts.Implementations
         {
             int hashCode = 2051368178;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Encoding);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(KeyEncoded);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(Encoding);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(KeyEncoded);
             return hashCode;
         }
 

@@ -34,11 +34,11 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// <summary>
         /// X- key name
         /// </summary>
-        public string XKeyName { get; }
+        public string? XKeyName { get; }
         /// <summary>
         /// X- values
         /// </summary>
-        public string[] XValues { get; }
+        public string[]? XValues { get; }
 
         internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
             new XNameInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
@@ -98,8 +98,8 @@ namespace VisualCard.Calendar.Parts.Implementations
         {
             int hashCode = 390070728;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(XKeyName);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(XValues);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(XKeyName);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string[]?>.Default.GetHashCode(XValues);
             return hashCode;
         }
 

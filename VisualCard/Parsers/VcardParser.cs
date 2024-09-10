@@ -169,7 +169,7 @@ namespace VisualCard.Parsers
                     {
                         string elementTypeUpper = elementType.ToUpper();
                         if (!allowedTypes.Contains(elementTypeUpper) && !extraAllowedTypes.Contains(elementTypeUpper) && !elementTypeUpper.StartsWith("X-"))
-                            throw new InvalidDataException($"Part info type {classType.Name} doesn't support property type {elementTypeUpper} because the following base types are supported: [{string.Join(", ", allowedTypes)}] and the extra types are supported: [{string.Join(", ", extraAllowedTypes)}]");
+                            throw new InvalidDataException($"Part info type {classType?.Name ?? "<null>"} doesn't support property type {elementTypeUpper} because the following base types are supported: [{string.Join(", ", allowedTypes)}] and the extra types are supported: [{string.Join(", ", extraAllowedTypes)}]");
                     }
 
                     // Handle the part type
@@ -219,9 +219,11 @@ namespace VisualCard.Parsers
                         case PartType.PartsArray:
                             {
                                 PartsArrayEnum partsArrayType = (PartsArrayEnum)enumeration;
-                                Type partsArrayClass = classType;
+                                Type? partsArrayClass = classType;
                                 bool supported = VcardParserTools.EnumArrayTypeSupported(partsArrayType, CardVersion);
                                 if (!supported)
+                                    continue;
+                                if (fromString is null)
                                     continue;
 
                                 // Now, get the part info

@@ -33,13 +33,13 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// The contact's IMPP information, such as SIP and XMPP
         /// </summary>
-        public string ContactIMPP { get; }
+        public string? ContactIMPP { get; }
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new ImppInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
-            ContactIMPP;
+            ContactIMPP ?? "";
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
@@ -84,7 +84,7 @@ namespace VisualCard.Parts.Implementations
         {
             int hashCode = 175591591;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactIMPP);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(ContactIMPP);
             return hashCode;
         }
 

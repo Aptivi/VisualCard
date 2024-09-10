@@ -80,9 +80,9 @@ namespace VisualCard.ShowCalendars
                     var starts = Calendar.GetPartsArray<DateStartInfo>();
                     var ends = Calendar.GetPartsArray<DateEndInfo>();
                     if (starts.Length > 0)
-                        TextWriterColor.Write("Calendar start date: {0}", starts[0].DateStart);
+                        TextWriterColor.Write("Calendar start date: {0}", starts[0].DateStart ?? new());
                     if (ends.Length > 0)
-                        TextWriterColor.Write("Calendar end date:   {0}", ends[0].DateEnd);
+                        TextWriterColor.Write("Calendar end date:   {0}", ends[0].DateEnd ?? new());
                     TextWriterColor.Write("Calendar product ID: {0}", Calendar.GetString(CalendarStringsEnum.ProductId));
                     TextWriterColor.Write("Calendar UUID:       {0}", Calendar.UniqueId);
 

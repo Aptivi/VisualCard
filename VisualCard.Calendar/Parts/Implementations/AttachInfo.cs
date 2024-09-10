@@ -35,11 +35,11 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// <summary>
         /// Attach encoding type
         /// </summary>
-        public string Encoding { get; }
+        public string? Encoding { get; }
         /// <summary>
         /// Encoded attach
         /// </summary>
-        public string AttachEncoded { get; }
+        public string? AttachEncoded { get; }
         /// <summary>
         /// Whether this attach is a blob or not
         /// </summary>
@@ -50,7 +50,7 @@ namespace VisualCard.Calendar.Parts.Implementations
             new AttachInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, calendarVersion);
 
         internal override string ToStringVcalendarInternal(Version calendarVersion) =>
-            AttachEncoded;
+            AttachEncoded ?? "";
 
         internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, string[] finalArgs, string[] elementTypes, string valueType, Version calendarVersion)
         {
@@ -112,8 +112,8 @@ namespace VisualCard.Calendar.Parts.Implementations
         {
             int hashCode = -365738507;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Encoding);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(AttachEncoded);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(Encoding);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(AttachEncoded);
             return hashCode;
         }
 

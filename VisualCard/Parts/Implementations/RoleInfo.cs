@@ -33,13 +33,13 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// The contact's role
         /// </summary>
-        public string ContactRole { get; }
+        public string? ContactRole { get; }
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new RoleInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
-            ContactRole;
+            ContactRole ?? "";
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
@@ -85,7 +85,7 @@ namespace VisualCard.Parts.Implementations
         {
             int hashCode = -81571651;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactRole);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(ContactRole);
             return hashCode;
         }
 

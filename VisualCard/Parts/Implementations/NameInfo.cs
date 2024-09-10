@@ -36,23 +36,23 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// The contact's first name
         /// </summary>
-        public string ContactFirstName { get; }
+        public string? ContactFirstName { get; }
         /// <summary>
         /// The contact's last name
         /// </summary>
-        public string ContactLastName { get; }
+        public string? ContactLastName { get; }
         /// <summary>
         /// The contact's alternative names
         /// </summary>
-        public string[] AltNames { get; }
+        public string[]? AltNames { get; }
         /// <summary>
         /// The contact's prefixes
         /// </summary>
-        public string[] Prefixes { get; }
+        public string[]? Prefixes { get; }
         /// <summary>
         /// The contact's suffixes
         /// </summary>
-        public string[] Suffixes { get; }
+        public string[]? Suffixes { get; }
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new NameInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
@@ -125,11 +125,11 @@ namespace VisualCard.Parts.Implementations
         {
             int hashCode = -465884477;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactFirstName);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ContactLastName);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(AltNames);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(Prefixes);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(Suffixes);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(ContactFirstName);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(ContactLastName);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string[]?>.Default.GetHashCode(AltNames);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string[]?>.Default.GetHashCode(Prefixes);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string[]?>.Default.GetHashCode(Suffixes);
             return hashCode;
         }
 

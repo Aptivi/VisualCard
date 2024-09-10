@@ -34,15 +34,15 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// The contact's organization name
         /// </summary>
-        public string Name { get; }
+        public string? Name { get; }
         /// <summary>
         /// The contact's organization unit
         /// </summary>
-        public string Unit { get; }
+        public string? Unit { get; }
         /// <summary>
         /// The contact's organization unit's role
         /// </summary>
-        public string Role { get; }
+        public string? Role { get; }
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new OrganizationInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
@@ -101,9 +101,9 @@ namespace VisualCard.Parts.Implementations
         {
             int hashCode = 1382759124;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Name);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Unit);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Role);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(Name);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(Unit);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(Role);
             return hashCode;
         }
 
