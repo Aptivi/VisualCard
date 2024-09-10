@@ -69,7 +69,6 @@ namespace VisualCard.Calendar.Parsers
             // Iterate through all the lines
             bool constructing = false;
             StringBuilder valueBuilder = new();
-            string[] allowedTypes = ["HOME", "WORK", "PREF"];
             List<(string, Parts.Calendar)> begins = [];
             for (int i = 0; i < CalendarContent.Length; i++)
             {
@@ -164,8 +163,8 @@ namespace VisualCard.Calendar.Parsers
                     foreach (string elementType in elementTypes)
                     {
                         string elementTypeUpper = elementType.ToUpper();
-                        if (!allowedTypes.Contains(elementTypeUpper) && !extraAllowedTypes.Contains(elementTypeUpper) && !elementTypeUpper.StartsWith("X-"))
-                            throw new InvalidDataException($"Part info type {classType?.Name ?? "<null>"} doesn't support property type {elementTypeUpper} because the following base types are supported: [{string.Join(", ", allowedTypes)}] and the extra types are supported: [{string.Join(", ", extraAllowedTypes)}]");
+                        if (!extraAllowedTypes.Contains(elementTypeUpper) && !elementTypeUpper.StartsWith("X-"))
+                            throw new InvalidDataException($"Part info type {classType?.Name ?? "<null>"} doesn't support property type {elementTypeUpper} because the following types are supported: [{string.Join(", ", extraAllowedTypes)}]");
                     }
 
                     // Handle the part type
