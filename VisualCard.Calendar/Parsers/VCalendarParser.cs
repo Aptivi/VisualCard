@@ -190,8 +190,17 @@ namespace VisualCard.Calendar.Parsers
                                     case CalendarStringsEnum.CalScale:
                                     case CalendarStringsEnum.Method:
                                     case CalendarStringsEnum.Class:
+                                    case CalendarStringsEnum.Trigger:
+                                    case CalendarStringsEnum.TimeZoneId:
+                                    case CalendarStringsEnum.TimeZoneName:
                                         // Unescape the value
                                         finalValue = Regex.Unescape(value);
+                                        break;
+                                    case CalendarStringsEnum.Action:
+                                        // Unescape the value
+                                        finalValue = Regex.Unescape(value);
+                                        if (finalValue != "AUDIO" && finalValue != "DISPLAY" && finalValue != "EMAIL")
+                                            throw new ArgumentException($"Invalid status {finalValue}");
                                         break;
                                     case CalendarStringsEnum.Status:
                                         // Unescape the value
@@ -213,6 +222,13 @@ namespace VisualCard.Calendar.Parsers
                                         if (!Uri.TryCreate(finalValue, UriKind.Absolute, out Uri uri) && values.Equals("uri", StringComparison.OrdinalIgnoreCase))
                                             throw new InvalidDataException($"URL {finalValue} is invalid");
                                         finalValue = uri is not null ? uri.ToString() : finalValue;
+                                        break;
+                                    case CalendarStringsEnum.TimeZoneUrl:
+                                        // Unescape the value
+                                        finalValue = Regex.Unescape(value);
+                                        if (!Uri.TryCreate(finalValue, UriKind.Absolute, out Uri zoneUri))
+                                            throw new InvalidDataException($"Time zone URL {finalValue} is invalid");
+                                        finalValue = zoneUri.ToString();
                                         break;
                                     default:
                                         throw new InvalidDataException($"The string enum type {stringType} is invalid. Are you sure that you've specified the correct type in your vCalendar representation?");
@@ -247,6 +263,10 @@ namespace VisualCard.Calendar.Parsers
                                         // Check the range
                                         if (primaryValue < 0)
                                             throw new ArgumentOutOfRangeException(nameof(primaryValue), primaryValue, "Value may not be less than zero");
+                                        finalValue = primaryValue;
+                                        break;
+                                    case CalendarIntegersEnum.TimeZoneOffsetFrom:
+                                    case CalendarIntegersEnum.TimeZoneOffsetTo:
                                         finalValue = primaryValue;
                                         break;
                                     default:

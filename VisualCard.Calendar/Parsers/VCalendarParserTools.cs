@@ -45,6 +45,7 @@ namespace VisualCard.Calendar.Parsers
                 CalendarStringsEnum.Action => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(CalendarAlarm)),
                 CalendarStringsEnum.Trigger => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(CalendarAlarm)),
                 CalendarStringsEnum.TimeZoneId => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(TimeZoneInfo)),
+                CalendarStringsEnum.TimeZoneUrl => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(TimeZoneInfo)),
                 _ =>
                     throw new InvalidOperationException("Invalid string enumeration type to get supported value"),
             };
@@ -96,6 +97,7 @@ namespace VisualCard.Calendar.Parsers
                 CalendarStringsEnum.Action => VCalendarConstants._actionSpecifier,
                 CalendarStringsEnum.Trigger => VCalendarConstants._triggerSpecifier,
                 CalendarStringsEnum.TimeZoneId => VCalendarConstants._tzidSpecifier,
+                CalendarStringsEnum.TimeZoneUrl => VCalendarConstants._tzUrlSpecifier,
                 _ =>
                     throw new NotImplementedException($"String enumeration {stringsEnum} is not implemented.")
             };
@@ -193,6 +195,7 @@ namespace VisualCard.Calendar.Parsers
                 VCalendarConstants._actionSpecifier => (PartType.Strings, CalendarStringsEnum.Action, null, null, "", "", []),
                 VCalendarConstants._triggerSpecifier => (PartType.Strings, CalendarStringsEnum.Trigger, null, null, "", "", []),
                 VCalendarConstants._tzidSpecifier => (PartType.Strings, CalendarStringsEnum.TimeZoneId, null, null, "", "", []),
+                VCalendarConstants._tzUrlSpecifier => (PartType.Strings, CalendarStringsEnum.TimeZoneUrl, null, null, "", "", []),
                 VCalendarConstants._prioritySpecifier => (PartType.Integers, CalendarIntegersEnum.Priority, null, null, "", "", []),
                 VCalendarConstants._sequenceSpecifier => (PartType.Integers, CalendarIntegersEnum.Sequence, null, null, "", "", []),
                 VCalendarConstants._tzOffsetFromSpecifier => (PartType.Integers, CalendarIntegersEnum.TimeZoneOffsetFrom, null, null, "", "", []),

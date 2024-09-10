@@ -76,5 +76,13 @@ namespace VisualCard.Calendar.Parts.Enums
         /// Time zone ID
         /// </summary>
         TimeZoneId,
+        /// <summary>
+        /// Time zone URL
+        /// </summary>
+        TimeZoneUrl,
+        /// <summary>
+        /// Time zone name
+        /// </summary>
+        TimeZoneName,
     }
 }

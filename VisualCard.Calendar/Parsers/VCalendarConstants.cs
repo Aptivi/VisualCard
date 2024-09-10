@@ -37,8 +37,8 @@ namespace VisualCard.Calendar.Parsers
         internal const string _objectVJournalSpecifier = "VJOURNAL";
         internal const string _objectVFreeBusySpecifier = "VFREEBUSY";
         internal const string _objectVTimeZoneSpecifier = "VTIMEZONE";
-        internal const string _objectVStandardSpecifier = "VSTANDARD";
-        internal const string _objectVDaylightSpecifier = "VDAYLIGHT";
+        internal const string _objectVStandardSpecifier = "STANDARD";
+        internal const string _objectVDaylightSpecifier = "DAYLIGHT";
         internal const string _objectVAlarmSpecifier = "VALARM";
 
         // Misc vCalendar constants
@@ -73,6 +73,7 @@ namespace VisualCard.Calendar.Parsers
         internal const string _tzidSpecifier = "TZID";
         internal const string _tzOffsetFromSpecifier = "TZOFFSETFROM";
         internal const string _tzOffsetToSpecifier = "TZOFFSETTO";
+        internal const string _tzUrlSpecifier = "TZURL";
         internal const string _xSpecifier = "X-";
         internal const string _typeArgumentSpecifier = "TYPE=";
         internal const string _valueArgumentSpecifier = "VALUE=";
