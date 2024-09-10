@@ -120,6 +120,7 @@ namespace VisualCard.Calendar.Parsers
                 CalendarPartsArrayEnum.DateStart => VCalendarConstants._dateStartSpecifier,
                 CalendarPartsArrayEnum.DateEnd => VCalendarConstants._dateEndSpecifier,
                 CalendarPartsArrayEnum.DateStamp => VCalendarConstants._dateStampSpecifier,
+                CalendarPartsArrayEnum.NonstandardNames => VCalendarConstants._xSpecifier,
                 _ =>
                     throw new NotImplementedException($"Array enumeration {partsArrayEnum} is not implemented.")
             };
@@ -152,6 +153,8 @@ namespace VisualCard.Calendar.Parsers
                 return (CalendarPartsArrayEnum.DateEnd, PartCardinality.MayBeOne);
             else if (partsArrayType == typeof(DateStampInfo))
                 return (CalendarPartsArrayEnum.DateStamp, PartCardinality.MayBeOne);
+            else if (partsArrayType == typeof(XNameInfo))
+                return (CalendarPartsArrayEnum.NonstandardNames, PartCardinality.Any);
             throw new NotImplementedException($"Type {partsArrayType.Name} doesn't represent any part array.");
         }
 
