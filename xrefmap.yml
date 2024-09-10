@@ -288,6 +288,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Calendar.Parts.Calendar.Equals
   nameWithType: Calendar.Equals
+- uid: VisualCard.Calendar.Parts.Calendar.Events
+  name: Events
+  href: api/VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_Events
+  commentId: P:VisualCard.Calendar.Parts.Calendar.Events
+  fullName: VisualCard.Calendar.Parts.Calendar.Events
+  nameWithType: Calendar.Events
+- uid: VisualCard.Calendar.Parts.Calendar.Events*
+  name: Events
+  href: api/VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_Events_
+  commentId: Overload:VisualCard.Calendar.Parts.Calendar.Events
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Calendar.Events
+  nameWithType: Calendar.Events
 - uid: VisualCard.Calendar.Parts.Calendar.GetHashCode
   name: GetHashCode()
   href: api/VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_GetHashCode
