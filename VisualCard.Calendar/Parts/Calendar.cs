@@ -170,7 +170,7 @@ namespace VisualCard.Calendar.Parts
         internal BaseCalendarPartInfo[] GetPartsArray(Type partType, CalendarPartsArrayEnum key, Version version, Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray)
         {
             // Check for version support
-            if (!VCalendarParserTools.EnumArrayTypeSupported(key, version))
+            if (!VCalendarParserTools.EnumArrayTypeSupported(key, version, GetType()))
                 return [];
 
             // Get the parts enumeration according to the type
@@ -209,7 +209,7 @@ namespace VisualCard.Calendar.Parts
         internal string GetString(CalendarStringsEnum key, Version version, Dictionary<CalendarStringsEnum, string> strings)
         {
             // Check for version support
-            if (!VCalendarParserTools.StringSupported(key, version))
+            if (!VCalendarParserTools.StringSupported(key, version, GetType()))
                 return "";
 
             // Get the fallback value
@@ -236,7 +236,7 @@ namespace VisualCard.Calendar.Parts
         internal int GetInteger(CalendarIntegersEnum key, Version version, Dictionary<CalendarIntegersEnum, int> integers)
         {
             // Check for version support
-            if (!VCalendarParserTools.IntegerSupported(key, version))
+            if (!VCalendarParserTools.IntegerSupported(key, version, GetType()))
                 return -1;
 
             // Get the fallback value

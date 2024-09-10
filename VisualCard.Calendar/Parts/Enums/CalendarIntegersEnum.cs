@@ -32,5 +32,13 @@ namespace VisualCard.Calendar.Parts.Enums
         /// The calendar's sequence (event, to-do, or journal)
         /// </summary>
         Sequence,
+        /// <summary>
+        /// Time zone offset from
+        /// </summary>
+        TimeZoneOffsetFrom,
+        /// <summary>
+        /// Time zone offset to
+        /// </summary>
+        TimeZoneOffsetTo,
     }
 }

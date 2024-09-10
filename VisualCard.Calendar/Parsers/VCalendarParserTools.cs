@@ -23,53 +23,59 @@ using VisualCard.Calendar.Parts.Implementations;
 using VisualCard.Calendar.Parts.Enums;
 using VisualCard.Calendar.Parts.Implementations.Event;
 using VisualCard.Parts.Enums;
+using System.Linq;
 
 namespace VisualCard.Calendar.Parsers
 {
     internal class VCalendarParserTools
     {
-        internal static bool StringSupported(CalendarStringsEnum stringsEnum, Version calendarVersion) =>
+        internal static bool StringSupported(CalendarStringsEnum stringsEnum, Version calendarVersion, Type componentType) =>
             stringsEnum switch
             {
                 CalendarStringsEnum.ProductId => true,
                 CalendarStringsEnum.CalScale => calendarVersion.Major == 2,
                 CalendarStringsEnum.Method => calendarVersion.Major == 2,
-                CalendarStringsEnum.Class => true,
-                CalendarStringsEnum.Uid => true,
-                CalendarStringsEnum.Organizer => true,
-                CalendarStringsEnum.Status => true,
-                CalendarStringsEnum.Summary => true,
-                CalendarStringsEnum.Description => true,
-                CalendarStringsEnum.Transparency => true,
+                CalendarStringsEnum.Class => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal)),
+                CalendarStringsEnum.Uid => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal), typeof(CalendarFreeBusy)),
+                CalendarStringsEnum.Organizer => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal), typeof(CalendarFreeBusy)),
+                CalendarStringsEnum.Status => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal)),
+                CalendarStringsEnum.Summary => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal), typeof(CalendarAlarm)),
+                CalendarStringsEnum.Description => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal), typeof(CalendarAlarm)),
+                CalendarStringsEnum.Transparency => TypeMatch(componentType, typeof(CalendarEvent)),
+                CalendarStringsEnum.Action => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(CalendarAlarm)),
+                CalendarStringsEnum.Trigger => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(CalendarAlarm)),
+                CalendarStringsEnum.TimeZoneId => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(TimeZoneInfo)),
                 _ =>
                     throw new InvalidOperationException("Invalid string enumeration type to get supported value"),
             };
         
-        internal static bool IntegerSupported(CalendarIntegersEnum integersEnum, Version calendarVersion) =>
+        internal static bool IntegerSupported(CalendarIntegersEnum integersEnum, Version calendarVersion, Type componentType) =>
             integersEnum switch
             {
-                CalendarIntegersEnum.Priority => calendarVersion.Major == 2,
-                CalendarIntegersEnum.Sequence => true,
+                CalendarIntegersEnum.Priority => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo)),
+                CalendarIntegersEnum.Sequence => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal)),
+                CalendarIntegersEnum.TimeZoneOffsetFrom => TypeMatch(componentType, typeof(CalendarStandard), typeof(CalendarDaylight)),
+                CalendarIntegersEnum.TimeZoneOffsetTo => TypeMatch(componentType, typeof(CalendarStandard), typeof(CalendarDaylight)),
                 _ =>
                     throw new InvalidOperationException("Invalid integer enumeration type to get supported value"),
             };
 
-        internal static bool EnumArrayTypeSupported(CalendarPartsArrayEnum partsArrayEnum, Version calendarVersion) =>
+        internal static bool EnumArrayTypeSupported(CalendarPartsArrayEnum partsArrayEnum, Version calendarVersion, Type componentType) =>
             partsArrayEnum switch
             {
-                CalendarPartsArrayEnum.Attach => true,
-                CalendarPartsArrayEnum.Categories => true,
-                CalendarPartsArrayEnum.Comment => calendarVersion.Major == 2,
-                CalendarPartsArrayEnum.Geography => true,
-                CalendarPartsArrayEnum.Location => calendarVersion.Major == 2,
-                CalendarPartsArrayEnum.Resources => true,
-                CalendarPartsArrayEnum.Attendee => true,
-                CalendarPartsArrayEnum.DateCreated => true,
-                CalendarPartsArrayEnum.DateCreatedAlt => true,
-                CalendarPartsArrayEnum.DateStart => true,
-                CalendarPartsArrayEnum.DateEnd => true,
+                CalendarPartsArrayEnum.Attach => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal), typeof(CalendarAlarm)),
+                CalendarPartsArrayEnum.Categories => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal)),
+                CalendarPartsArrayEnum.Comment => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal), typeof(CalendarFreeBusy), typeof(CalendarStandard), typeof(CalendarDaylight)),
+                CalendarPartsArrayEnum.Geography => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo)),
+                CalendarPartsArrayEnum.Location => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo)),
+                CalendarPartsArrayEnum.Resources => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo)),
+                CalendarPartsArrayEnum.Attendee => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal), typeof(CalendarFreeBusy), typeof(CalendarAlarm)),
+                CalendarPartsArrayEnum.DateCreated => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal)),
+                CalendarPartsArrayEnum.DateCreatedAlt => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo)),
+                CalendarPartsArrayEnum.DateStart => TypeMatch(componentType, typeof(CalendarEvent)),
+                CalendarPartsArrayEnum.DateEnd => TypeMatch(componentType, typeof(CalendarEvent)),
                 CalendarPartsArrayEnum.NonstandardNames => true,
-                CalendarPartsArrayEnum.DateStamp => calendarVersion.Major == 2,
+                CalendarPartsArrayEnum.DateStamp => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal), typeof(CalendarFreeBusy)),
                 _ =>
                     throw new InvalidOperationException("Invalid parts array enumeration type to get supported value"),
             };
@@ -87,6 +93,9 @@ namespace VisualCard.Calendar.Parsers
                 CalendarStringsEnum.Summary => VCalendarConstants._summarySpecifier,
                 CalendarStringsEnum.Description => VCalendarConstants._descriptionSpecifier,
                 CalendarStringsEnum.Transparency => VCalendarConstants._transparencySpecifier,
+                CalendarStringsEnum.Action => VCalendarConstants._actionSpecifier,
+                CalendarStringsEnum.Trigger => VCalendarConstants._triggerSpecifier,
+                CalendarStringsEnum.TimeZoneId => VCalendarConstants._tzidSpecifier,
                 _ =>
                     throw new NotImplementedException($"String enumeration {stringsEnum} is not implemented.")
             };
@@ -96,6 +105,8 @@ namespace VisualCard.Calendar.Parsers
             {
                 CalendarIntegersEnum.Priority => VCalendarConstants._prioritySpecifier,
                 CalendarIntegersEnum.Sequence => VCalendarConstants._sequenceSpecifier,
+                CalendarIntegersEnum.TimeZoneOffsetFrom => VCalendarConstants._tzOffsetFromSpecifier,
+                CalendarIntegersEnum.TimeZoneOffsetTo => VCalendarConstants._tzOffsetToSpecifier,
                 _ =>
                     throw new NotImplementedException($"Integer enumeration {integersEnum} is not implemented.")
             };
@@ -179,10 +190,18 @@ namespace VisualCard.Calendar.Parsers
                 VCalendarConstants._summarySpecifier => (PartType.Strings, CalendarStringsEnum.Summary, null, null, "", "", []),
                 VCalendarConstants._descriptionSpecifier => (PartType.Strings, CalendarStringsEnum.Description, null, null, "", "", []),
                 VCalendarConstants._transparencySpecifier => (PartType.Strings, CalendarStringsEnum.Transparency, null, null, "", "", []),
+                VCalendarConstants._actionSpecifier => (PartType.Strings, CalendarStringsEnum.Action, null, null, "", "", []),
+                VCalendarConstants._triggerSpecifier => (PartType.Strings, CalendarStringsEnum.Trigger, null, null, "", "", []),
+                VCalendarConstants._tzidSpecifier => (PartType.Strings, CalendarStringsEnum.TimeZoneId, null, null, "", "", []),
                 VCalendarConstants._prioritySpecifier => (PartType.Integers, CalendarIntegersEnum.Priority, null, null, "", "", []),
                 VCalendarConstants._sequenceSpecifier => (PartType.Integers, CalendarIntegersEnum.Sequence, null, null, "", "", []),
+                VCalendarConstants._tzOffsetFromSpecifier => (PartType.Integers, CalendarIntegersEnum.TimeZoneOffsetFrom, null, null, "", "", []),
+                VCalendarConstants._tzOffsetToSpecifier => (PartType.Integers, CalendarIntegersEnum.TimeZoneOffsetTo, null, null, "", "", []),
                 _ =>
                     throw new InvalidOperationException($"Unknown prefix {prefix}"),
             };
+
+        private static bool TypeMatch(Type componentType, params Type[] expectedTypes) =>
+            expectedTypes.Contains(componentType);
     }
 }

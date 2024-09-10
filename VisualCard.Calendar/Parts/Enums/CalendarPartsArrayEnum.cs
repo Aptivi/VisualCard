@@ -57,7 +57,7 @@ namespace VisualCard.Calendar.Parts.Enums
         /// </summary>
         DateCreated,
         /// <summary>
-        /// Calendar date of creation (vCalendar 1.0) (event, todo, or journal)
+        /// Calendar date of creation (vCalendar 1.0) (event or todo)
         /// </summary>
         DateCreatedAlt,
         /// <summary>
@@ -69,7 +69,7 @@ namespace VisualCard.Calendar.Parts.Enums
         /// </summary>
         DateEnd,
         /// <summary>
-        /// Event date stamp
+        /// Date stamp (event, todo, journal, or free/busy)
         /// </summary>
         DateStamp,
         /// <summary>

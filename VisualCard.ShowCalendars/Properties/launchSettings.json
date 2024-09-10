@@ -19,6 +19,10 @@
     "vCalendar 2.0 test - with X-nonstandard properties": {
       "commandName": "Project",
       "commandLineArgs": "TestFiles/veventXnonstandard.ics"
+    },
+    "vCalendar 2.0 test - event with time zone": {
+      "commandName": "Project",
+      "commandLineArgs": "TestFiles/vcalendarEventTz.ics"
     }
   }
 }

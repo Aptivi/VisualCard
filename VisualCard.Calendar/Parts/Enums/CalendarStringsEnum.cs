@@ -64,5 +64,17 @@ namespace VisualCard.Calendar.Parts.Enums
         /// Event transparency
         /// </summary>
         Transparency,
+        /// <summary>
+        /// Alarm action
+        /// </summary>
+        Action,
+        /// <summary>
+        /// Alarm trigger
+        /// </summary>
+        Trigger,
+        /// <summary>
+        /// Time zone ID
+        /// </summary>
+        TimeZoneId,
     }
 }

@@ -168,6 +168,7 @@ namespace VisualCard.Calendar.Parsers
                     }
 
                     // Handle the part type
+                    Type calendarType = subPart is not null ? subPart.GetType() : calendar.GetType();
                     string values = VcardParserTools.GetValuesString(splitArgs, defaultValue, VCalendarConstants._valueArgumentSpecifier);
                     switch (type)
                     {
@@ -175,6 +176,9 @@ namespace VisualCard.Calendar.Parsers
                             {
                                 CalendarStringsEnum stringType = (CalendarStringsEnum)enumeration;
                                 string finalValue = value;
+                                bool supported = VCalendarParserTools.StringSupported(stringType, CalendarVersion, calendarType);
+                                if (!supported)
+                                    continue;
 
                                 // Now, handle each type individually
                                 switch (stringType)
@@ -226,6 +230,9 @@ namespace VisualCard.Calendar.Parsers
                                 CalendarIntegersEnum integerType = (CalendarIntegersEnum)enumeration;
                                 int primaryValue = int.Parse(value);
                                 int finalValue = 0;
+                                bool supported = VCalendarParserTools.IntegerSupported(integerType, CalendarVersion, calendarType);
+                                if (!supported)
+                                    continue;
 
                                 // Now, handle each type individually
                                 switch (integerType)
@@ -257,7 +264,7 @@ namespace VisualCard.Calendar.Parsers
                             {
                                 CalendarPartsArrayEnum partsArrayType = (CalendarPartsArrayEnum)enumeration;
                                 Type? partsArrayClass = classType;
-                                bool supported = VCalendarParserTools.EnumArrayTypeSupported(partsArrayType, CalendarVersion);
+                                bool supported = VCalendarParserTools.EnumArrayTypeSupported(partsArrayType, CalendarVersion, calendarType);
                                 if (!supported)
                                     continue;
                                 if (fromString is null)

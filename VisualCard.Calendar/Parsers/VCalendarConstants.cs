@@ -68,6 +68,11 @@ namespace VisualCard.Calendar.Parsers
         internal const string _transparencySpecifier = "TRANSP";
         internal const string _createdSpecifier = "CREATED";
         internal const string _created1Specifier = "DCREATED";
+        internal const string _actionSpecifier = "ACTION";
+        internal const string _triggerSpecifier = "TRIGGER";
+        internal const string _tzidSpecifier = "TZID";
+        internal const string _tzOffsetFromSpecifier = "TZOFFSETFROM";
+        internal const string _tzOffsetToSpecifier = "TZOFFSETTO";
         internal const string _xSpecifier = "X-";
         internal const string _typeArgumentSpecifier = "TYPE=";
         internal const string _valueArgumentSpecifier = "VALUE=";
