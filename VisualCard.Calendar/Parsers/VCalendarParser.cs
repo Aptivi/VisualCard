@@ -290,25 +290,67 @@ namespace VisualCard.Calendar.Parsers
 
         internal void ValidateCalendar(Parts.Calendar calendar)
         {
+            // Track the required root fields
+            string[] expectedFields = [VCalendarConstants._productIdSpecifier];
+            if (!ValidateComponent(ref expectedFields, out string[] actualFields, calendar))
+                throw new InvalidDataException($"The following keys [{string.Join(", ", expectedFields)}] are required in the root calendar. Got [{string.Join(", ", actualFields)}].");
+
+            // Now, track the individual components starting from events
+            string[] expectedEventFields =
+                calendar.CalendarVersion.Major == 2 ?
+                [VCalendarConstants._uidSpecifier, VCalendarConstants._dateStampSpecifier] :
+                [VCalendarConstants._uidSpecifier];
+            foreach (var eventInfo in calendar.events)
+            {
+                if (!ValidateComponent(ref expectedEventFields, out string[] actualEventFields, eventInfo))
+                    throw new InvalidDataException($"The following keys [{string.Join(", ", expectedEventFields)}] are required in the root calendar. Got [{string.Join(", ", actualEventFields)}].");
+            }
+        }
+
+        private bool ValidateComponent<TComponent>(ref string[] expectedFields, out string[] actualFields, TComponent component)
+            where TComponent : Parts.Calendar
+        {
             // Track the required fields
-            List<string> expectedFields =
-            [
-                VCalendarConstants._productIdSpecifier,
-            ];
-            List<string> actualFields = [];
+            List<string> actualFieldList = [];
 
             // Requirement checks
-            if (expectedFields.Contains(VCalendarConstants._productIdSpecifier))
+            foreach (string expectedFieldName in expectedFields)
             {
-                var prodId = calendar.GetString(CalendarStringsEnum.ProductId);
-                bool exists = !string.IsNullOrEmpty(prodId);
-                if (exists)
-                    actualFields.Add(VcardConstants._productIdSpecifier);
+                var (type, enumeration, enumType, _, _, _, _) = VCalendarParserTools.GetPartType(expectedFieldName);
+                switch (type)
+                {
+                    case PartType.Strings:
+                        {
+                            string value = component.GetString((CalendarStringsEnum)enumeration);
+                            bool exists = !string.IsNullOrEmpty(value);
+                            if (exists)
+                                actualFieldList.Add(expectedFieldName);
+                        }
+                        break;
+                    case PartType.PartsArray:
+                        {
+                            if (enumType is null)
+                                continue;
+                            var values = component.GetPartsArray(enumType, (CalendarPartsArrayEnum)enumeration);
+                            bool exists = values.Length > 0;
+                            if (exists)
+                                actualFieldList.Add(expectedFieldName);
+                        }
+                        break;
+                    case PartType.Integers:
+                        {
+                            int value = component.GetInteger((CalendarIntegersEnum)enumeration);
+                            bool exists = value > -1;
+                            if (exists)
+                                actualFieldList.Add(expectedFieldName);
+                        }
+                        break;
+                }
             }
-            expectedFields.Sort();
-            actualFields.Sort();
-            if (!actualFields.SequenceEqual(expectedFields))
-                throw new InvalidDataException($"The following keys [{string.Join(", ", expectedFields)}] are required. Got [{string.Join(", ", actualFields)}].");
+            Array.Sort(expectedFields);
+            actualFieldList.Sort();
+            actualFields = [.. actualFieldList];
+            return actualFields.SequenceEqual(expectedFields);
         }
 
         private Parts.Calendar GetCalendarInheritedInstance(string type)

@@ -77,7 +77,41 @@ namespace VisualCard.Calendar.Parts
         public TPart[] GetPartsArray<TPart>(CalendarPartsArrayEnum key) where TPart : BaseCalendarPartInfo =>
             GetPartsArray<TPart>(key, version, partsArray);
 
-        internal TPart[] GetPartsArray<TPart>(Version version, Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray) where TPart : BaseCalendarPartInfo
+        /// <summary>
+        /// Gets a part array from a specified key
+        /// </summary>
+        /// <param name="partType">Target part type that derives from <see cref="BaseCalendarPartInfo"/></param>
+        /// <returns>An array of values or an empty part array []</returns>
+        public BaseCalendarPartInfo[] GetPartsArray(Type partType)
+        {
+            // Check the base type
+            if (partType.BaseType != typeof(BaseCalendarPartInfo))
+                throw new InvalidOperationException($"Base type is not BaseCalendarPartInfo [{partType.BaseType.Name}] and the part type is [{partType.Name}] that doesn't represent calendar part.");
+
+            // Get the parts enumeration according to the type
+            var key = VCalendarParserTools.GetPartsArrayEnumFromType(partType, CalendarVersion);
+
+            // Now, return the value
+            return GetPartsArray(partType, key.Item1);
+        }
+
+        /// <summary>
+        /// Gets a part array from a specified key
+        /// </summary>
+        /// <param name="partType">Target part type that derives from <see cref="BaseCalendarPartInfo"/></param>
+        /// <param name="key">A key to use</param>
+        /// <returns>An array of values or an empty part array []</returns>
+        public BaseCalendarPartInfo[] GetPartsArray(Type partType, CalendarPartsArrayEnum key)
+        {
+            // Check the base type
+            if (partType.BaseType != typeof(BaseCalendarPartInfo))
+                throw new InvalidOperationException($"Base type is not BaseCalendarPartInfo [{partType.BaseType.Name}] and the part type is [{partType.Name}] that doesn't represent calendar part.");
+
+            return GetPartsArray(partType, key, version, partsArray);
+        }
+
+        internal TPart[] GetPartsArray<TPart>(Version version, Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray)
+            where TPart : BaseCalendarPartInfo
         {
             // Get the parts enumeration according to the type
             var key = VCalendarParserTools.GetPartsArrayEnumFromType(typeof(TPart), version);
@@ -86,24 +120,36 @@ namespace VisualCard.Calendar.Parts
             return GetPartsArray<TPart>(key.Item1, version, partsArray);
         }
 
-        internal TPart[] GetPartsArray<TPart>(CalendarPartsArrayEnum key, Version version, Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray) where TPart : BaseCalendarPartInfo
+        internal TPart[] GetPartsArray<TPart>(CalendarPartsArrayEnum key, Version version, Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray)
+            where TPart : BaseCalendarPartInfo =>
+            GetPartsArray(typeof(TPart), key, version, partsArray).Cast<TPart>().ToArray();
+
+        internal BaseCalendarPartInfo[] GetPartsArray(Type partType, Version version, Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray)
+        {
+            // Get the parts enumeration according to the type
+            var key = VCalendarParserTools.GetPartsArrayEnumFromType(typeof(BaseCalendarPartInfo), version);
+
+            // Now, return the value
+            return GetPartsArray(partType, key.Item1, version, partsArray);
+        }
+
+        internal BaseCalendarPartInfo[] GetPartsArray(Type partType, CalendarPartsArrayEnum key, Version version, Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray)
         {
             // Check for version support
             if (!VCalendarParserTools.EnumArrayTypeSupported(key, version))
                 return [];
 
             // Get the parts enumeration according to the type
-            var type = typeof(TPart);
-            if (type != typeof(BaseCalendarPartInfo))
+            if (partType != typeof(BaseCalendarPartInfo))
             {
                 // We don't need the base, but a derivative of it. Check it.
-                var partsArrayEnum = VCalendarParserTools.GetPartsArrayEnumFromType(typeof(TPart), version).Item1;
+                var partsArrayEnum = VCalendarParserTools.GetPartsArrayEnumFromType(partType, version).Item1;
                 if (key != partsArrayEnum)
-                    throw new InvalidOperationException($"Parts array enumeration [{key}] is different from the expected one [{partsArrayEnum}] according to type {typeof(TPart).Name}.");
+                    throw new InvalidOperationException($"Parts array enumeration [{key}] is different from the expected one [{partsArrayEnum}] according to type {partType.Name}.");
             }
 
             // Get the fallback value
-            TPart[] fallback = [];
+            BaseCalendarPartInfo[] fallback = [];
 
             // Check to see if the partarray has a value or not
             bool hasValue = partsArray.ContainsKey(key);
@@ -112,7 +158,7 @@ namespace VisualCard.Calendar.Parts
 
             // Cast the values
             var value = partsArray[key];
-            TPart[] parts = value.Cast<TPart>().ToArray();
+            BaseCalendarPartInfo[] parts = value.ToArray();
 
             // Now, return the value
             return parts;
