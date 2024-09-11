@@ -1,13 +1,16 @@
-VisualCard has undergone many changes, such as a very basic implementation of the vCalendar specification.
+We've improved the vCalendar implementation to a great degree where we've added almost everything!
 
 ### Changes
 
 This release contains a variety of changes, including, but not limited to:
 
-- `[+]` Added very basic vCalendar implementation
-- `[+]` Added nested cards support
-- `[+]` Added UID support
-- `[*]` Improved newline handling
+- `[+]` Added a lot of vCalendar properties
+- `[+]` Added all calendar components
+- `[+]` Added full nullable support
+- `[+]` Added full calendar saving
+- `[+]` Added calendar component comparison
+- `[*]` Improved calendar event and component querying
+- `[*]` Improved validation code
 - `[*]` General improvements and bug fixes
 
 Review the commit history if you want to get a deep insight about the changes.
