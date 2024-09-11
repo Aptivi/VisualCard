@@ -58,6 +58,7 @@ namespace VisualCard.Calendar.Parsers
                 CalendarIntegersEnum.Sequence => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal)),
                 CalendarIntegersEnum.TimeZoneOffsetFrom => TypeMatch(componentType, typeof(CalendarStandard), typeof(CalendarDaylight)),
                 CalendarIntegersEnum.TimeZoneOffsetTo => TypeMatch(componentType, typeof(CalendarStandard), typeof(CalendarDaylight)),
+                CalendarIntegersEnum.PercentComplete => TypeMatch(componentType, typeof(CalendarTodo)),
                 _ =>
                     throw new InvalidOperationException("Invalid integer enumeration type to get supported value"),
             };
@@ -113,6 +114,7 @@ namespace VisualCard.Calendar.Parsers
                 CalendarIntegersEnum.Sequence => VCalendarConstants._sequenceSpecifier,
                 CalendarIntegersEnum.TimeZoneOffsetFrom => VCalendarConstants._tzOffsetFromSpecifier,
                 CalendarIntegersEnum.TimeZoneOffsetTo => VCalendarConstants._tzOffsetToSpecifier,
+                CalendarIntegersEnum.PercentComplete => VCalendarConstants._percentCompletionSpecifier,
                 _ =>
                     throw new NotImplementedException($"Integer enumeration {integersEnum} is not implemented.")
             };
@@ -213,6 +215,7 @@ namespace VisualCard.Calendar.Parsers
                 VCalendarConstants._sequenceSpecifier => (PartType.Integers, CalendarIntegersEnum.Sequence, null, null, "", "", []),
                 VCalendarConstants._tzOffsetFromSpecifier => (PartType.Integers, CalendarIntegersEnum.TimeZoneOffsetFrom, null, null, "", "", []),
                 VCalendarConstants._tzOffsetToSpecifier => (PartType.Integers, CalendarIntegersEnum.TimeZoneOffsetTo, null, null, "", "", []),
+                VCalendarConstants._percentCompletionSpecifier => (PartType.Integers, CalendarIntegersEnum.PercentComplete, null, null, "", "", []),
                 _ =>
                     throw new InvalidOperationException($"Unknown prefix {prefix}"),
             };

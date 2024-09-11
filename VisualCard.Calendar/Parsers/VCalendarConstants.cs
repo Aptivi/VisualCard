@@ -89,5 +89,6 @@ namespace VisualCard.Calendar.Parsers
         internal const string _commentSpecifier = "COMMENT";
         internal const string _prioritySpecifier = "PRIORITY";
         internal const string _tzNameSpecifier = "TZNAME";
+        internal const string _percentCompletionSpecifier = "PERCENT-COMPLETION";
     }
 }

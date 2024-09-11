@@ -40,5 +40,9 @@ namespace VisualCard.Calendar.Parts.Enums
         /// Time zone offset to
         /// </summary>
         TimeZoneOffsetTo,
+        /// <summary>
+        /// To-do percent completion
+        /// </summary>
+        PercentComplete,
     }
 }

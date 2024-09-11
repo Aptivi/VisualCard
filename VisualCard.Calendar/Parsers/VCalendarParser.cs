@@ -269,7 +269,13 @@ namespace VisualCard.Calendar.Parsers
                                     case CalendarIntegersEnum.Sequence:
                                         // Check the range
                                         if (primaryValue < 0)
-                                            throw new ArgumentOutOfRangeException(nameof(primaryValue), primaryValue, "Value may not be less than zero");
+                                            throw new ArgumentOutOfRangeException(nameof(primaryValue), primaryValue, "Sequence may not be less than zero");
+                                        finalValue = primaryValue;
+                                        break;
+                                    case CalendarIntegersEnum.PercentComplete:
+                                        // Check the range
+                                        if (primaryValue < 0 || primaryValue > 100)
+                                            throw new ArgumentOutOfRangeException(nameof(primaryValue), primaryValue, "Percent completion may not be less than zero or greater than 100");
                                         finalValue = primaryValue;
                                         break;
                                     case CalendarIntegersEnum.TimeZoneOffsetFrom:
@@ -334,7 +340,6 @@ namespace VisualCard.Calendar.Parsers
                 [VCalendarConstants._uidSpecifier, VCalendarConstants._dateStampSpecifier] :
                 [VCalendarConstants._uidSpecifier];
             string[] expectedTodoFields = expectedEventFields;
-            string[] expectedAlarmFields = [VCalendarConstants._actionSpecifier, VCalendarConstants._triggerSpecifier];
             foreach (var eventInfo in calendar.events)
             {
                 if (!ValidateComponent(ref expectedEventFields, out string[] actualEventFields, eventInfo))
