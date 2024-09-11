@@ -169,6 +169,13 @@ namespace VisualCard.Calendar.Parsers
 
                     // Handle the part type
                     Type calendarType = subPart is not null ? subPart.GetType() : calendar.GetType();
+                    string[] allowedStatuses =
+                        calendarType == typeof(CalendarEvent) && CalendarVersion.Major == 2 ? ["TENTATIVE", "CONFIRMED", "CANCELLED"] :
+                        calendarType == typeof(CalendarEvent) && CalendarVersion.Major == 1 ? ["NEEDS ACTION", "SENT", "TENTATIVE", "CONFIRMED", "DECLINED", "DELEGATED"] :
+                        calendarType == typeof(CalendarTodo) && CalendarVersion.Major == 2 ? ["NEEDS-ACTION", "COMPLETED", "IN-PROCESS", "CANCELLED"] :
+                        calendarType == typeof(CalendarTodo) && CalendarVersion.Major == 1 ? ["NEEDS ACTION", "SENT", "ACCEPTED", "COMPLETED", "DECLINED", "DELEGATED"] :
+                        calendarType == typeof(CalendarJournal) ? ["DRAFT", "FINAL", "CANCELLED"] :
+                        [];
                     string values = VcardParserTools.GetValuesString(splitArgs, defaultValue, VCalendarConstants._valueArgumentSpecifier);
                     switch (type)
                     {
@@ -200,12 +207,12 @@ namespace VisualCard.Calendar.Parsers
                                         // Unescape the value
                                         finalValue = Regex.Unescape(value);
                                         if (finalValue != "AUDIO" && finalValue != "DISPLAY" && finalValue != "EMAIL")
-                                            throw new ArgumentException($"Invalid status {finalValue}");
+                                            throw new ArgumentException($"Invalid action {finalValue}");
                                         break;
                                     case CalendarStringsEnum.Status:
                                         // Unescape the value
                                         finalValue = Regex.Unescape(value);
-                                        if (finalValue != "TENTATIVE" && finalValue != "CONFIRMED" && finalValue != "CANCELLED")
+                                        if (!allowedStatuses.Contains(finalValue))
                                             throw new ArgumentException($"Invalid status {finalValue}");
                                         break;
                                     case CalendarStringsEnum.Transparency:
