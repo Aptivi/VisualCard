@@ -405,14 +405,24 @@ namespace VisualCard.Calendar.Parts
             return
                 PartComparison.PartsArrayEnumEqual(source.partsArray, target.partsArray) &&
                 PartComparison.StringsEqual(source.strings, target.strings) &&
-                PartComparison.IntegersEqual(source.integers, target.integers)
+                PartComparison.IntegersEqual(source.integers, target.integers) &&
+                PartComparison.CompareCalendarComponents(source.events, target.events) &&
+                PartComparison.CompareCalendarComponents(source.todos, target.todos) &&
+                PartComparison.CompareCalendarComponents(source.journals, target.journals) &&
+                PartComparison.CompareCalendarComponents(source.freeBusyList, target.freeBusyList) &&
+                PartComparison.CompareCalendarComponents(source.timeZones, target.timeZones)
             ;
         }
 
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = 946631297;
+            int hashCode = -1266621595;
+            hashCode = hashCode * -1521134295 + EqualityComparer<List<CalendarEvent>>.Default.GetHashCode(events);
+            hashCode = hashCode * -1521134295 + EqualityComparer<List<CalendarTodo>>.Default.GetHashCode(todos);
+            hashCode = hashCode * -1521134295 + EqualityComparer<List<CalendarJournal>>.Default.GetHashCode(journals);
+            hashCode = hashCode * -1521134295 + EqualityComparer<List<CalendarFreeBusy>>.Default.GetHashCode(freeBusyList);
+            hashCode = hashCode * -1521134295 + EqualityComparer<List<CalendarTimeZone>>.Default.GetHashCode(timeZones);
             hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>>>.Default.GetHashCode(partsArray);
             hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarStringsEnum, string>>.Default.GetHashCode(strings);
             hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarIntegersEnum, int>>.Default.GetHashCode(integers);

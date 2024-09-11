@@ -112,15 +112,17 @@ namespace VisualCard.Calendar.Parts
             return
                 PartComparison.PartsArrayEnumEqual(source.partsArray, target.partsArray) &&
                 PartComparison.StringsEqual(source.strings, target.strings) &&
-                PartComparison.IntegersEqual(source.integers, target.integers)
+                PartComparison.IntegersEqual(source.integers, target.integers) &&
+                PartComparison.CompareCalendarComponents(source.alarms, target.alarms)
             ;
         }
 
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = 1333672311;
+            int hashCode = -177474982;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<List<CalendarAlarm>>.Default.GetHashCode(alarms);
             hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>>>.Default.GetHashCode(partsArray);
             hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarStringsEnum, string>>.Default.GetHashCode(strings);
             hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarIntegersEnum, int>>.Default.GetHashCode(integers);

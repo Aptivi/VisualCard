@@ -106,6 +106,30 @@ namespace VisualCard.Calendar.Parts.Comparers
             return equal;
         }
 
+        internal static bool CompareCalendarComponents<TComponent>(
+            IList<TComponent> source,
+            IList<TComponent> target)
+            where TComponent : Calendar
+        {
+            if (!VerifyLists(source, target))
+                return false;
+
+            // If they are really equal using the equals operator, return true.
+            if (source == target)
+                return true;
+
+            // Now, test the equality
+            List<bool> results = [];
+            for (int i = 0; i < source.Count; i++)
+            {
+                TComponent sourcePart = source[i];
+                TComponent targetPart = target[i];
+                bool equals = sourcePart == targetPart;
+                results.Add(equals);
+            }
+            return !results.Contains(false);
+        }
+
         private static bool VerifyLists<TValue>(
             IList<TValue> source,
             IList<TValue> target)
