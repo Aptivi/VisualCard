@@ -417,7 +417,7 @@ namespace VisualCard.Calendar.Parsers
                     case PartType.Integers:
                         {
                             int value = component.GetInteger((CalendarIntegersEnum)enumeration);
-                            bool exists = value > -1;
+                            bool exists = value != -1;
                             if (exists)
                                 actualFieldList.Add(expectedFieldName);
                         }

@@ -61,11 +61,11 @@ namespace VisualCard.Calendar.Parts.Enums
         /// </summary>
         DateCreatedAlt,
         /// <summary>
-        /// Event date start
+        /// Date start (event, to-do, free/busy, or standard/daylight timezone components)
         /// </summary>
         DateStart,
         /// <summary>
-        /// Event date end
+        /// Date end (event or free/busy)
         /// </summary>
         DateEnd,
         /// <summary>
