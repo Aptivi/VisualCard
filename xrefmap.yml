@@ -1874,6 +1874,12 @@ references:
   commentId: F:VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.DateStart
   fullName: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.DateStart
   nameWithType: CalendarPartsArrayEnum.DateStart
+- uid: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.DueDate
+  name: DueDate
+  href: api/VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.html#VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_DueDate
+  commentId: F:VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.DueDate
+  fullName: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.DueDate
+  nameWithType: CalendarPartsArrayEnum.DueDate
 - uid: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.Geography
   name: Geography
   href: api/VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.html#VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_Geography
@@ -3454,6 +3460,104 @@ references:
   fullName.vb: VisualCard.Calendar.Parts.Implementations.Todo.DateCompletedInfo.<>
   nameWithType: DateCompletedInfo.operator !=
   nameWithType.vb: DateCompletedInfo.<>
+- uid: VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo
+  name: DueDateInfo
+  href: api/VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.html
+  commentId: T:VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo
+  fullName: VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo
+  nameWithType: DueDateInfo
+- uid: VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.DueDate
+  name: DueDate
+  href: api/VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.html#VisualCard_Calendar_Parts_Implementations_Todo_DueDateInfo_DueDate
+  commentId: P:VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.DueDate
+  fullName: VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.DueDate
+  nameWithType: DueDateInfo.DueDate
+- uid: VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.DueDate*
+  name: DueDate
+  href: api/VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.html#VisualCard_Calendar_Parts_Implementations_Todo_DueDateInfo_DueDate_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.DueDate
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.DueDate
+  nameWithType: DueDateInfo.DueDate
+- uid: VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.Equals(System.Object)
+  name: Equals(object)
+  href: api/VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.html#VisualCard_Calendar_Parts_Implementations_Todo_DueDateInfo_Equals_System_Object_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.Equals(object)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.Equals(Object)
+  nameWithType: DueDateInfo.Equals(object)
+  nameWithType.vb: DueDateInfo.Equals(Object)
+- uid: VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.Equals(VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo)
+  name: Equals(DueDateInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.html#VisualCard_Calendar_Parts_Implementations_Todo_DueDateInfo_Equals_VisualCard_Calendar_Parts_Implementations_Todo_DueDateInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.Equals(VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.Equals(VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo)
+  nameWithType: DueDateInfo.Equals(DueDateInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.Equals(VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo,VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo)
+  name: Equals(DueDateInfo, DueDateInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.html#VisualCard_Calendar_Parts_Implementations_Todo_DueDateInfo_Equals_VisualCard_Calendar_Parts_Implementations_Todo_DueDateInfo_VisualCard_Calendar_Parts_Implementations_Todo_DueDateInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.Equals(VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo,VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.Equals(VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo, VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo)
+  nameWithType: DueDateInfo.Equals(DueDateInfo, DueDateInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.html#VisualCard_Calendar_Parts_Implementations_Todo_DueDateInfo_Equals_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.Equals
+  nameWithType: DueDateInfo.Equals
+- uid: VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.html#VisualCard_Calendar_Parts_Implementations_Todo_DueDateInfo_GetHashCode
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.GetHashCode
+  fullName: VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.GetHashCode()
+  nameWithType: DueDateInfo.GetHashCode()
+- uid: VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.html#VisualCard_Calendar_Parts_Implementations_Todo_DueDateInfo_GetHashCode_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.GetHashCode
+  nameWithType: DueDateInfo.GetHashCode
+- uid: VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.op_Equality(VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo,VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo)
+  name: operator ==(DueDateInfo, DueDateInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.html#VisualCard_Calendar_Parts_Implementations_Todo_DueDateInfo_op_Equality_VisualCard_Calendar_Parts_Implementations_Todo_DueDateInfo_VisualCard_Calendar_Parts_Implementations_Todo_DueDateInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.op_Equality(VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo,VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo)
+  name.vb: =(DueDateInfo, DueDateInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.operator ==(VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo, VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.=(VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo, VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo)
+  nameWithType: DueDateInfo.operator ==(DueDateInfo, DueDateInfo)
+  nameWithType.vb: DueDateInfo.=(DueDateInfo, DueDateInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.op_Equality*
+  name: operator ==
+  href: api/VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.html#VisualCard_Calendar_Parts_Implementations_Todo_DueDateInfo_op_Equality_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.op_Equality
+  isSpec: "True"
+  name.vb: =
+  fullName: VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.operator ==
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.=
+  nameWithType: DueDateInfo.operator ==
+  nameWithType.vb: DueDateInfo.=
+- uid: VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.op_Inequality(VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo,VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo)
+  name: operator !=(DueDateInfo, DueDateInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.html#VisualCard_Calendar_Parts_Implementations_Todo_DueDateInfo_op_Inequality_VisualCard_Calendar_Parts_Implementations_Todo_DueDateInfo_VisualCard_Calendar_Parts_Implementations_Todo_DueDateInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.op_Inequality(VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo,VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo)
+  name.vb: <>(DueDateInfo, DueDateInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.operator !=(VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo, VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.<>(VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo, VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo)
+  nameWithType: DueDateInfo.operator !=(DueDateInfo, DueDateInfo)
+  nameWithType.vb: DueDateInfo.<>(DueDateInfo, DueDateInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.op_Inequality*
+  name: operator !=
+  href: api/VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.html#VisualCard_Calendar_Parts_Implementations_Todo_DueDateInfo_op_Inequality_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.op_Inequality
+  isSpec: "True"
+  name.vb: <>
+  fullName: VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.operator !=
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.<>
+  nameWithType: DueDateInfo.operator !=
+  nameWithType.vb: DueDateInfo.<>
 - uid: VisualCard.Calendar.Parts.Implementations.XNameInfo
   name: XNameInfo
   href: api/VisualCard.Calendar.Parts.Implementations.XNameInfo.html
