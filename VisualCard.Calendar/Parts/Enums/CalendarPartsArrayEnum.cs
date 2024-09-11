@@ -88,5 +88,9 @@ namespace VisualCard.Calendar.Parts.Enums
         /// To-do date completion
         /// </summary>
         DateCompleted,
+        /// <summary>
+        /// To-do due date
+        /// </summary>
+        DueDate,
     }
 }

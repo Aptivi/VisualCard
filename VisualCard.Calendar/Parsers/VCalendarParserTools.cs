@@ -80,6 +80,7 @@ namespace VisualCard.Calendar.Parsers
                 CalendarPartsArrayEnum.DateStart => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarFreeBusy), typeof(CalendarStandard), typeof(CalendarDaylight)),
                 CalendarPartsArrayEnum.DateEnd => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarFreeBusy)),
                 CalendarPartsArrayEnum.DateCompleted => TypeMatch(componentType, typeof(CalendarTodo)),
+                CalendarPartsArrayEnum.DueDate => TypeMatch(componentType, typeof(CalendarTodo)),
                 CalendarPartsArrayEnum.DateStamp => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal), typeof(CalendarFreeBusy)),
                 CalendarPartsArrayEnum.TimeZoneName => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(CalendarTimeZone)),
                 CalendarPartsArrayEnum.RecDate => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal), typeof(CalendarStandard), typeof(CalendarDaylight)),
@@ -137,6 +138,7 @@ namespace VisualCard.Calendar.Parsers
                 CalendarPartsArrayEnum.DateStart => VCalendarConstants._dateStartSpecifier,
                 CalendarPartsArrayEnum.DateEnd => VCalendarConstants._dateEndSpecifier,
                 CalendarPartsArrayEnum.DateCompleted => VCalendarConstants._dateCompletedSpecifier,
+                CalendarPartsArrayEnum.DueDate => VCalendarConstants._dueDateSpecifier,
                 CalendarPartsArrayEnum.DateStamp => VCalendarConstants._dateStampSpecifier,
                 CalendarPartsArrayEnum.TimeZoneName => VCalendarConstants._tzNameSpecifier,
                 CalendarPartsArrayEnum.RecDate => VCalendarConstants._recDateSpecifier,
@@ -173,6 +175,8 @@ namespace VisualCard.Calendar.Parsers
                 return (CalendarPartsArrayEnum.DateEnd, PartCardinality.MayBeOne);
             else if (partsArrayType == typeof(DateCompletedInfo))
                 return (CalendarPartsArrayEnum.DateCompleted, PartCardinality.MayBeOne);
+            else if (partsArrayType == typeof(DueDateInfo))
+                return (CalendarPartsArrayEnum.DueDate, PartCardinality.MayBeOne);
             else if (partsArrayType == typeof(DateStampInfo))
                 return (CalendarPartsArrayEnum.DateStamp, PartCardinality.MayBeOne);
             else if (partsArrayType == typeof(TimeZoneNameInfo))
@@ -199,6 +203,7 @@ namespace VisualCard.Calendar.Parsers
                 VCalendarConstants._dateStartSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DateStart, typeof(DateStartInfo), DateStartInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._dateEndSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DateEnd, typeof(DateEndInfo), DateEndInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._dateCompletedSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DateCompleted, typeof(DateCompletedInfo), DateCompletedInfo.FromStringVcalendarStatic, "", "", []),
+                VCalendarConstants._dueDateSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DueDate, typeof(DueDateInfo), DueDateInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._dateStampSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DateStamp, typeof(DateStampInfo), DateStampInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._tzNameSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.TimeZoneName, typeof(TimeZoneNameInfo), TimeZoneNameInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._recDateSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.RecDate, typeof(RecDateInfo), RecDateInfo.FromStringVcalendarStatic, "", "", []),
