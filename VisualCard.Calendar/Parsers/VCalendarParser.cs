@@ -340,20 +340,14 @@ namespace VisualCard.Calendar.Parsers
                 if (!ValidateComponent(ref expectedEventFields, out string[] actualEventFields, eventInfo))
                     throw new InvalidDataException($"The following keys [{string.Join(", ", expectedEventFields)}] are required in the event representation. Got [{string.Join(", ", actualEventFields)}].");
                 foreach (var alarmInfo in eventInfo.Alarms)
-                {
-                    if (!ValidateComponent(ref expectedAlarmFields, out string[] actualAlarmFields, alarmInfo))
-                        throw new InvalidDataException($"The following keys [{string.Join(", ", expectedAlarmFields)}] are required in the alarm representation. Got [{string.Join(", ", actualAlarmFields)}].");
-                }
+                    ValidateAlarm(alarmInfo);
             }
             foreach (var todoInfo in calendar.Todos)
             {
                 if (!ValidateComponent(ref expectedTodoFields, out string[] actualTodoFields, todoInfo))
                     throw new InvalidDataException($"The following keys [{string.Join(", ", expectedTodoFields)}] are required in the todo representation. Got [{string.Join(", ", actualTodoFields)}].");
                 foreach (var alarmInfo in todoInfo.Alarms)
-                {
-                    if (!ValidateComponent(ref expectedAlarmFields, out string[] actualAlarmFields, alarmInfo))
-                        throw new InvalidDataException($"The following keys [{string.Join(", ", expectedAlarmFields)}] are required in the alarm representation. Got [{string.Join(", ", actualAlarmFields)}].");
-                }
+                    ValidateAlarm(alarmInfo);
             }
 
             // Continue if we have a calendar with version 2.0
@@ -435,6 +429,34 @@ namespace VisualCard.Calendar.Parsers
             actualFieldList.Sort();
             actualFields = [.. actualFieldList];
             return actualFields.SequenceEqual(expectedFields);
+        }
+
+        private void ValidateAlarm(CalendarAlarm alarmInfo)
+        {
+            string[] expectedAlarmFields = [VCalendarConstants._actionSpecifier, VCalendarConstants._triggerSpecifier];
+            if (!ValidateComponent(ref expectedAlarmFields, out string[] actualAlarmFields, alarmInfo))
+                throw new InvalidDataException($"The following keys [{string.Join(", ", expectedAlarmFields)}] are required in the alarm representation. Got [{string.Join(", ", actualAlarmFields)}].");
+
+            // Check the alarm action
+            string[] expectedAudioAlarmFields = [VCalendarConstants._attachSpecifier];
+            string[] expectedDisplayAlarmFields = [VCalendarConstants._descriptionSpecifier];
+            string[] expectedMailAlarmFields = [VCalendarConstants._descriptionSpecifier, VCalendarConstants._summarySpecifier, VCalendarConstants._attendeeSpecifier];
+            string type = alarmInfo.GetString(CalendarStringsEnum.Action);
+            switch (type)
+            {
+                case "AUDIO":
+                    if (!ValidateComponent(ref expectedAudioAlarmFields, out string[] actualAudioAlarmFields, alarmInfo))
+                        throw new InvalidDataException($"The following keys [{string.Join(", ", expectedAudioAlarmFields)}] are required in the audio alarm representation. Got [{string.Join(", ", actualAudioAlarmFields)}].");
+                    break;
+                case "DISPLAY":
+                    if (!ValidateComponent(ref expectedDisplayAlarmFields, out string[] actualDisplayAlarmFields, alarmInfo))
+                        throw new InvalidDataException($"The following keys [{string.Join(", ", expectedDisplayAlarmFields)}] are required in the display alarm representation. Got [{string.Join(", ", actualDisplayAlarmFields)}].");
+                    break;
+                case "EMAIL":
+                    if (!ValidateComponent(ref expectedMailAlarmFields, out string[] actualMailAlarmFields, alarmInfo))
+                        throw new InvalidDataException($"The following keys [{string.Join(", ", expectedMailAlarmFields)}] are required in the mail alarm representation. Got [{string.Join(", ", actualMailAlarmFields)}].");
+                    break;
+            }    
         }
 
         private Parts.Calendar GetCalendarInheritedInstance(string type)
