@@ -315,10 +315,40 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.TimeZoneNameInfo.yml",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneNameInfo.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.TimeZoneNameInfo.html"
+          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneNameInfo.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.TimeZone.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.TimeZone.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.Todo.DateCompletedInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.Todo.DateCompletedInfo.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.Todo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.Todo.html"
         }
       },
       "version": ""
