@@ -35,6 +35,7 @@ namespace VisualCard.Calendar.Parts
         internal readonly List<CalendarAlarm> alarms = [];
         private readonly Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray = [];
         private readonly Dictionary<CalendarStringsEnum, string> strings = [];
+        private readonly Dictionary<CalendarIntegersEnum, int> integers = [];
 
         /// <summary>
         /// Alarm list
@@ -75,7 +76,7 @@ namespace VisualCard.Calendar.Parts
         /// Saves this parsed card to the string
         /// </summary>
         public new string SaveToString() =>
-            SaveToString(CalendarVersion, partsArray, strings, VCalendarConstants._objectVEventSpecifier);
+            SaveToString(CalendarVersion, partsArray, strings, integers, VCalendarConstants._objectVEventSpecifier);
 
         /// <summary>
         /// Saves the contact to the returned string
@@ -110,16 +111,19 @@ namespace VisualCard.Calendar.Parts
             // Check all the properties
             return
                 PartComparison.PartsArrayEnumEqual(source.partsArray, target.partsArray) &&
-                PartComparison.StringsEqual(source.strings, target.strings)
+                PartComparison.StringsEqual(source.strings, target.strings) &&
+                PartComparison.IntegersEqual(source.integers, target.integers)
             ;
         }
 
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = 1047895655;
+            int hashCode = 1333672311;
+            hashCode = hashCode * -1521134295 + base.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>>>.Default.GetHashCode(partsArray);
             hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarStringsEnum, string>>.Default.GetHashCode(strings);
+            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarIntegersEnum, int>>.Default.GetHashCode(integers);
             return hashCode;
         }
 
@@ -136,6 +140,9 @@ namespace VisualCard.Calendar.Parts
 
         internal new void SetString(CalendarStringsEnum key, string value) =>
             SetString(key, value, strings);
+
+        internal new void SetInteger(CalendarIntegersEnum key, int value) =>
+            SetInteger(key, value, integers);
 
         internal CalendarEvent(Version version) :
             base(version)

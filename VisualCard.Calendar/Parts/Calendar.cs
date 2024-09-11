@@ -253,9 +253,9 @@ namespace VisualCard.Calendar.Parts
         /// Saves this parsed card to the string
         /// </summary>
         public string SaveToString() =>
-            SaveToString(version, partsArray, strings, VCalendarConstants._objectVCalendarSpecifier);
+            SaveToString(version, partsArray, strings, integers, VCalendarConstants._objectVCalendarSpecifier);
 
-        internal string SaveToString(Version version, Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray, Dictionary<CalendarStringsEnum, string> strings, string objectType)
+        internal string SaveToString(Version version, Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray, Dictionary<CalendarStringsEnum, string> strings, Dictionary<CalendarIntegersEnum, int> integers, string objectType)
         {
             // Initialize the card builder
             var cardBuilder = new StringBuilder();
@@ -323,9 +323,37 @@ namespace VisualCard.Calendar.Parts
                 }
             }
 
-            // Then, the events
-            foreach (var calendarEvent in events)
-                cardBuilder.Append(calendarEvent.SaveToString(version, calendarEvent.partsArray, calendarEvent.strings, VCalendarConstants._objectVEventSpecifier));
+            // Then, the components
+            if (objectType == VCalendarConstants._objectVCalendarSpecifier)
+            {
+                foreach (var calendarEvent in events)
+                    cardBuilder.Append(calendarEvent.SaveToString(version, calendarEvent.partsArray, calendarEvent.strings, calendarEvent.integers, VCalendarConstants._objectVEventSpecifier));
+                foreach (var calendarTodo in todos)
+                    cardBuilder.Append(calendarTodo.SaveToString(version, calendarTodo.partsArray, calendarTodo.strings, calendarTodo.integers, VCalendarConstants._objectVTodoSpecifier));
+                foreach (var calendarJournal in journals)
+                    cardBuilder.Append(calendarJournal.SaveToString(version, calendarJournal.partsArray, calendarJournal.strings, calendarJournal.integers, VCalendarConstants._objectVJournalSpecifier));
+                foreach (var calendarFreeBusy in freeBusyList)
+                    cardBuilder.Append(calendarFreeBusy.SaveToString(version, calendarFreeBusy.partsArray, calendarFreeBusy.strings, calendarFreeBusy.integers, VCalendarConstants._objectVFreeBusySpecifier));
+                foreach (var calendarTimeZone in timeZones)
+                    cardBuilder.Append(calendarTimeZone.SaveToString(version, calendarTimeZone.partsArray, calendarTimeZone.strings, calendarTimeZone.integers, VCalendarConstants._objectVTimeZoneSpecifier));
+            }
+            else if (objectType == VCalendarConstants._objectVEventSpecifier)
+            {
+                foreach (var calendarAlarm in ((CalendarEvent)this).alarms)
+                    cardBuilder.Append(calendarAlarm.SaveToString(version, calendarAlarm.partsArray, calendarAlarm.strings, calendarAlarm.integers, VCalendarConstants._objectVAlarmSpecifier));
+            }
+            else if (objectType == VCalendarConstants._objectVTodoSpecifier)
+            {
+                foreach (var calendarAlarm in ((CalendarTodo)this).alarms)
+                    cardBuilder.Append(calendarAlarm.SaveToString(version, calendarAlarm.partsArray, calendarAlarm.strings, calendarAlarm.integers, VCalendarConstants._objectVAlarmSpecifier));
+            }
+            else if (objectType == VCalendarConstants._objectVTimeZoneSpecifier)
+            {
+                foreach (var calendarStandard in ((CalendarTimeZone)this).standards)
+                    cardBuilder.Append(calendarStandard.SaveToString(version, calendarStandard.partsArray, calendarStandard.strings, calendarStandard.integers, VCalendarConstants._objectVStandardSpecifier));
+                foreach (var calendarDaylight in ((CalendarTimeZone)this).daylights)
+                    cardBuilder.Append(calendarDaylight.SaveToString(version, calendarDaylight.partsArray, calendarDaylight.strings, calendarDaylight.integers, VCalendarConstants._objectVDaylightSpecifier));
+            }
 
             // End the card and return it
             cardBuilder.AppendLine($"{VCalendarConstants._endSpecifier}:{objectType}");
