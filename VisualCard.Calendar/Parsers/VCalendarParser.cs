@@ -399,41 +399,45 @@ namespace VisualCard.Calendar.Parsers
             // Requirement checks
             foreach (string expectedFieldName in expectedFields)
             {
-                var (type, enumeration, enumType, _, _, _, _) = VCalendarParserTools.GetPartType(expectedFieldName);
-                switch (type)
-                {
-                    case PartType.Strings:
-                        {
-                            string value = component.GetString((CalendarStringsEnum)enumeration);
-                            bool exists = !string.IsNullOrEmpty(value);
-                            if (exists)
-                                actualFieldList.Add(expectedFieldName);
-                        }
-                        break;
-                    case PartType.PartsArray:
-                        {
-                            if (enumType is null)
-                                continue;
-                            var values = component.GetPartsArray(enumType, (CalendarPartsArrayEnum)enumeration);
-                            bool exists = values.Length > 0;
-                            if (exists)
-                                actualFieldList.Add(expectedFieldName);
-                        }
-                        break;
-                    case PartType.Integers:
-                        {
-                            int value = component.GetInteger((CalendarIntegersEnum)enumeration);
-                            bool exists = value != -1;
-                            if (exists)
-                                actualFieldList.Add(expectedFieldName);
-                        }
-                        break;
-                }
+                if (HasComponent(expectedFieldName, component))
+                    actualFieldList.Add(expectedFieldName);
             }
             Array.Sort(expectedFields);
             actualFieldList.Sort();
             actualFields = [.. actualFieldList];
             return actualFields.SequenceEqual(expectedFields);
+        }
+
+        private bool HasComponent<TComponent>(string expectedFieldName, TComponent component)
+            where TComponent : Parts.Calendar
+        {
+            // Requirement checks
+            var (type, enumeration, enumType, _, _, _, _) = VCalendarParserTools.GetPartType(expectedFieldName);
+            bool exists = false;
+            switch (type)
+            {
+                case PartType.Strings:
+                    {
+                        string value = component.GetString((CalendarStringsEnum)enumeration);
+                        exists = !string.IsNullOrEmpty(value);
+                    }
+                    break;
+                case PartType.PartsArray:
+                    {
+                        if (enumType is null)
+                            return false;
+                        var values = component.GetPartsArray(enumType, (CalendarPartsArrayEnum)enumeration);
+                        exists = values.Length > 0;
+                    }
+                    break;
+                case PartType.Integers:
+                    {
+                        int value = component.GetInteger((CalendarIntegersEnum)enumeration);
+                        exists = value != -1;
+                    }
+                    break;
+            }
+            return exists;
         }
 
         private void ValidateAlarm(CalendarAlarm alarmInfo)
