@@ -67,7 +67,7 @@
   "api/VisualCard.Calendar.Parts.Enums.CalendarIntegersEnum.html": {
     "href": "api/VisualCard.Calendar.Parts.Enums.CalendarIntegersEnum.html",
     "title": "Enum CalendarIntegersEnum | VisualCard API - Aptivi",
-    "keywords": "Enum CalendarIntegersEnum Enumeration for available parts that are integers Namespace: VisualCard.Calendar.Parts.Enums Assembly: VisualCard.Calendar.dll Syntax public enum CalendarIntegersEnum Fields Name Description Priority The calendar's priority (event or to-do) Sequence The calendar's sequence (event, to-do, or journal) TimeZoneOffsetFrom Time zone offset from TimeZoneOffsetTo Time zone offset to"
+    "keywords": "Enum CalendarIntegersEnum Enumeration for available parts that are integers Namespace: VisualCard.Calendar.Parts.Enums Assembly: VisualCard.Calendar.dll Syntax public enum CalendarIntegersEnum Fields Name Description PercentComplete To-do percent completion Priority The calendar's priority (event or to-do) Sequence The calendar's sequence (event, to-do, or journal) TimeZoneOffsetFrom Time zone offset from TimeZoneOffsetTo Time zone offset to"
   },
   "api/VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.html": {
     "href": "api/VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.html",

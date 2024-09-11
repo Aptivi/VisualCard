@@ -1778,6 +1778,12 @@ references:
   commentId: T:VisualCard.Calendar.Parts.Enums.CalendarIntegersEnum
   fullName: VisualCard.Calendar.Parts.Enums.CalendarIntegersEnum
   nameWithType: CalendarIntegersEnum
+- uid: VisualCard.Calendar.Parts.Enums.CalendarIntegersEnum.PercentComplete
+  name: PercentComplete
+  href: api/VisualCard.Calendar.Parts.Enums.CalendarIntegersEnum.html#VisualCard_Calendar_Parts_Enums_CalendarIntegersEnum_PercentComplete
+  commentId: F:VisualCard.Calendar.Parts.Enums.CalendarIntegersEnum.PercentComplete
+  fullName: VisualCard.Calendar.Parts.Enums.CalendarIntegersEnum.PercentComplete
+  nameWithType: CalendarIntegersEnum.PercentComplete
 - uid: VisualCard.Calendar.Parts.Enums.CalendarIntegersEnum.Priority
   name: Priority
   href: api/VisualCard.Calendar.Parts.Enums.CalendarIntegersEnum.html#VisualCard_Calendar_Parts_Enums_CalendarIntegersEnum_Priority
