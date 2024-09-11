@@ -76,6 +76,7 @@ namespace VisualCard.Calendar.Parsers
         internal const string _tzUrlSpecifier = "TZURL";
         internal const string _recurseSpecifier = "RRULE";
         internal const string _recDateSpecifier = "RDATE";
+        internal const string _dateCompletedSpecifier = "COMPLETED";
         internal const string _xSpecifier = "X-";
         internal const string _typeArgumentSpecifier = "TYPE=";
         internal const string _valueArgumentSpecifier = "VALUE=";

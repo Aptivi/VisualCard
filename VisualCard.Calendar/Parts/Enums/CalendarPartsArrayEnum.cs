@@ -84,5 +84,9 @@ namespace VisualCard.Calendar.Parts.Enums
         /// Recurrence date and time (event, todo, journal, or standard/daylight timezone components)
         /// </summary>
         RecDate,
+        /// <summary>
+        /// To-do date completion
+        /// </summary>
+        DateCompleted,
     }
 }

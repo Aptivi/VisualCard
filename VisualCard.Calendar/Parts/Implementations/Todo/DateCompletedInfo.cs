@@ -18,58 +18,57 @@
 //
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text.RegularExpressions;
+using VisualCard.Parsers;
 
-namespace VisualCard.Calendar.Parts.Implementations.TimeZone
+namespace VisualCard.Calendar.Parts.Implementations.Todo
 {
     /// <summary>
-    /// Calendar time zone name info
+    /// Card date completed info
     /// </summary>
-    [DebuggerDisplay("TimeZoneName = {TimeZoneName}")]
-    public class TimeZoneNameInfo : BaseCalendarPartInfo, IEquatable<TimeZoneNameInfo>
+    [DebuggerDisplay("Date Completed = {DateCompleted}")]
+    public class DateCompletedInfo : BaseCalendarPartInfo, IEquatable<DateCompletedInfo>
     {
         /// <summary>
-        /// The timezonename address
+        /// The to-do completion date
         /// </summary>
-        public string? TimeZoneName { get; }
+        public DateTime DateCompleted { get; }
 
         internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
-            new TimeZoneNameInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
+            new DateCompletedInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion) =>
-            TimeZoneName ?? "";
+            $"{VcardParserTools.SavePosixDate(DateCompleted)}";
 
         internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Populate the fields
-            var timezonename = Regex.Unescape(value);
+            DateTime completed = VcardParserTools.ParsePosixDate(value);
 
             // Add the fetched information
-            TimeZoneNameInfo _time = new([], elementTypes, valueType, timezonename);
+            DateCompletedInfo _time = new(finalArgs, elementTypes, valueType, completed);
             return _time;
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj) =>
-            Equals((TimeZoneNameInfo)obj);
+            Equals((DateCompletedInfo)obj);
 
         /// <summary>
         /// Checks to see if both the parts are equal
         /// </summary>
-        /// <param name="other">The target <see cref="TimeZoneNameInfo"/> instance to check to see if they equal</param>
+        /// <param name="other">The target <see cref="DateCompletedInfo"/> instance to check to see if they equal</param>
         /// <returns>True if all the part elements are equal. Otherwise, false.</returns>
-        public bool Equals(TimeZoneNameInfo other) =>
+        public bool Equals(DateCompletedInfo other) =>
             Equals(this, other);
 
         /// <summary>
         /// Checks to see if both the parts are equal
         /// </summary>
-        /// <param name="source">The source <see cref="TimeZoneNameInfo"/> instance to check to see if they equal</param>
-        /// <param name="target">The target <see cref="TimeZoneNameInfo"/> instance to check to see if they equal</param>
+        /// <param name="source">The source <see cref="DateCompletedInfo"/> instance to check to see if they equal</param>
+        /// <param name="target">The target <see cref="DateCompletedInfo"/> instance to check to see if they equal</param>
         /// <returns>True if all the part elements are equal. Otherwise, false.</returns>
-        public bool Equals(TimeZoneNameInfo source, TimeZoneNameInfo target)
+        public bool Equals(DateCompletedInfo source, DateCompletedInfo target)
         {
             // We can't perform this operation on null.
             if (source is null || target is null)
@@ -77,36 +76,36 @@ namespace VisualCard.Calendar.Parts.Implementations.TimeZone
 
             // Check all the properties
             return
-                source.TimeZoneName == target.TimeZoneName
+                source.DateCompleted == target.DateCompleted
             ;
         }
 
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = -1115589996;
+            int hashCode = 47832270;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(TimeZoneName);
+            hashCode = hashCode * -1521134295 + DateCompleted.GetHashCode();
             return hashCode;
         }
 
         /// <inheritdoc/>
-        public static bool operator ==(TimeZoneNameInfo left, TimeZoneNameInfo right) =>
+        public static bool operator ==(DateCompletedInfo left, DateCompletedInfo right) =>
             left.Equals(right);
 
         /// <inheritdoc/>
-        public static bool operator !=(TimeZoneNameInfo left, TimeZoneNameInfo right) =>
+        public static bool operator !=(DateCompletedInfo left, DateCompletedInfo right) =>
             !(left == right);
 
         internal override bool EqualsInternal(BaseCalendarPartInfo source, BaseCalendarPartInfo target) =>
-            (TimeZoneNameInfo)source == (TimeZoneNameInfo)target;
+            (DateCompletedInfo)source == (DateCompletedInfo)target;
 
-        internal TimeZoneNameInfo() { }
+        internal DateCompletedInfo() { }
 
-        internal TimeZoneNameInfo(string[] arguments, string[] elementTypes, string valueType, string timezonename) :
+        internal DateCompletedInfo(string[] arguments, string[] elementTypes, string valueType, DateTime rev) :
             base(arguments, elementTypes, valueType)
         {
-            TimeZoneName = timezonename;
+            DateCompleted = rev;
         }
     }
 }
