@@ -92,5 +92,13 @@ namespace VisualCard.Calendar.Parts.Enums
         /// To-do due date
         /// </summary>
         DueDate,
+        /// <summary>
+        /// Time zone offset from
+        /// </summary>
+        TimeZoneOffsetFrom,
+        /// <summary>
+        /// Time zone offset to
+        /// </summary>
+        TimeZoneOffsetTo,
     }
 }

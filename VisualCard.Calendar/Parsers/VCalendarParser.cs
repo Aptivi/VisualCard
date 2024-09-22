@@ -278,10 +278,6 @@ namespace VisualCard.Calendar.Parsers
                                             throw new ArgumentOutOfRangeException(nameof(primaryValue), primaryValue, "Percent completion may not be less than zero or greater than 100");
                                         finalValue = primaryValue;
                                         break;
-                                    case CalendarIntegersEnum.TimeZoneOffsetFrom:
-                                    case CalendarIntegersEnum.TimeZoneOffsetTo:
-                                        finalValue = primaryValue;
-                                        break;
                                     default:
                                         throw new InvalidDataException($"The integer enum type {integerType} is invalid. Are you sure that you've specified the correct type in your vCalendar representation?");
                                 }

@@ -58,8 +58,6 @@ namespace VisualCard.Calendar.Parsers
             {
                 CalendarIntegersEnum.Priority => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo)),
                 CalendarIntegersEnum.Sequence => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal)),
-                CalendarIntegersEnum.TimeZoneOffsetFrom => TypeMatch(componentType, typeof(CalendarStandard), typeof(CalendarDaylight)),
-                CalendarIntegersEnum.TimeZoneOffsetTo => TypeMatch(componentType, typeof(CalendarStandard), typeof(CalendarDaylight)),
                 CalendarIntegersEnum.PercentComplete => TypeMatch(componentType, typeof(CalendarTodo)),
                 _ =>
                     throw new InvalidOperationException("Invalid integer enumeration type to get supported value"),
@@ -83,6 +81,8 @@ namespace VisualCard.Calendar.Parsers
                 CalendarPartsArrayEnum.DueDate => TypeMatch(componentType, typeof(CalendarTodo)),
                 CalendarPartsArrayEnum.DateStamp => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal), typeof(CalendarFreeBusy)),
                 CalendarPartsArrayEnum.TimeZoneName => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(CalendarTimeZone)),
+                CalendarPartsArrayEnum.TimeZoneOffsetFrom => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(CalendarStandard), typeof(CalendarDaylight)),
+                CalendarPartsArrayEnum.TimeZoneOffsetTo => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(CalendarStandard), typeof(CalendarDaylight)),
                 CalendarPartsArrayEnum.RecDate => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal), typeof(CalendarStandard), typeof(CalendarDaylight)),
                 CalendarPartsArrayEnum.NonstandardNames => true,
                 _ =>
@@ -116,8 +116,6 @@ namespace VisualCard.Calendar.Parsers
             {
                 CalendarIntegersEnum.Priority => VCalendarConstants._prioritySpecifier,
                 CalendarIntegersEnum.Sequence => VCalendarConstants._sequenceSpecifier,
-                CalendarIntegersEnum.TimeZoneOffsetFrom => VCalendarConstants._tzOffsetFromSpecifier,
-                CalendarIntegersEnum.TimeZoneOffsetTo => VCalendarConstants._tzOffsetToSpecifier,
                 CalendarIntegersEnum.PercentComplete => VCalendarConstants._percentCompletionSpecifier,
                 _ =>
                     throw new NotImplementedException($"Integer enumeration {integersEnum} is not implemented.")
@@ -141,6 +139,8 @@ namespace VisualCard.Calendar.Parsers
                 CalendarPartsArrayEnum.DueDate => VCalendarConstants._dueDateSpecifier,
                 CalendarPartsArrayEnum.DateStamp => VCalendarConstants._dateStampSpecifier,
                 CalendarPartsArrayEnum.TimeZoneName => VCalendarConstants._tzNameSpecifier,
+                CalendarPartsArrayEnum.TimeZoneOffsetFrom => VCalendarConstants._tzOffsetFromSpecifier,
+                CalendarPartsArrayEnum.TimeZoneOffsetTo => VCalendarConstants._tzOffsetToSpecifier,
                 CalendarPartsArrayEnum.RecDate => VCalendarConstants._recDateSpecifier,
                 CalendarPartsArrayEnum.NonstandardNames => VCalendarConstants._xSpecifier,
                 _ =>
@@ -181,6 +181,10 @@ namespace VisualCard.Calendar.Parsers
                 return (CalendarPartsArrayEnum.DateStamp, PartCardinality.MayBeOne);
             else if (partsArrayType == typeof(TimeZoneNameInfo))
                 return (CalendarPartsArrayEnum.TimeZoneName, PartCardinality.Any);
+            else if (partsArrayType == typeof(TimeZoneOffsetFromInfo))
+                return (CalendarPartsArrayEnum.TimeZoneOffsetFrom, PartCardinality.MayBeOne);
+            else if (partsArrayType == typeof(TimeZoneOffsetToInfo))
+                return (CalendarPartsArrayEnum.TimeZoneOffsetTo, PartCardinality.MayBeOne);
             else if (partsArrayType == typeof(RecDateInfo))
                 return (CalendarPartsArrayEnum.RecDate, PartCardinality.Any);
             else if (partsArrayType == typeof(XNameInfo))
@@ -206,6 +210,8 @@ namespace VisualCard.Calendar.Parsers
                 VCalendarConstants._dueDateSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DueDate, typeof(DueDateInfo), DueDateInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._dateStampSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DateStamp, typeof(DateStampInfo), DateStampInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._tzNameSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.TimeZoneName, typeof(TimeZoneNameInfo), TimeZoneNameInfo.FromStringVcalendarStatic, "", "", []),
+                VCalendarConstants._tzOffsetFromSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.TimeZoneOffsetFrom, typeof(TimeZoneOffsetFromInfo), TimeZoneOffsetFromInfo.FromStringVcalendarStatic, "", "", []),
+                VCalendarConstants._tzOffsetToSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.TimeZoneOffsetTo, typeof(TimeZoneOffsetToInfo), TimeZoneOffsetToInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._recDateSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.RecDate, typeof(RecDateInfo), RecDateInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._xSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.NonstandardNames, typeof(XNameInfo), XNameInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._productIdSpecifier => (PartType.Strings, CalendarStringsEnum.ProductId, null, null, "", "", []),
@@ -225,8 +231,6 @@ namespace VisualCard.Calendar.Parsers
                 VCalendarConstants._recurseSpecifier => (PartType.Strings, CalendarStringsEnum.Recursion, null, null, "", "", []),
                 VCalendarConstants._prioritySpecifier => (PartType.Integers, CalendarIntegersEnum.Priority, null, null, "", "", []),
                 VCalendarConstants._sequenceSpecifier => (PartType.Integers, CalendarIntegersEnum.Sequence, null, null, "", "", []),
-                VCalendarConstants._tzOffsetFromSpecifier => (PartType.Integers, CalendarIntegersEnum.TimeZoneOffsetFrom, null, null, "", "", []),
-                VCalendarConstants._tzOffsetToSpecifier => (PartType.Integers, CalendarIntegersEnum.TimeZoneOffsetTo, null, null, "", "", []),
                 VCalendarConstants._percentCompletionSpecifier => (PartType.Integers, CalendarIntegersEnum.PercentComplete, null, null, "", "", []),
                 _ =>
                     throw new InvalidOperationException($"Unknown prefix {prefix}"),

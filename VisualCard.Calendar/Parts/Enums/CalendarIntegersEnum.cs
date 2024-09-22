@@ -33,14 +33,6 @@ namespace VisualCard.Calendar.Parts.Enums
         /// </summary>
         Sequence,
         /// <summary>
-        /// Time zone offset from
-        /// </summary>
-        TimeZoneOffsetFrom,
-        /// <summary>
-        /// Time zone offset to
-        /// </summary>
-        TimeZoneOffsetTo,
-        /// <summary>
         /// To-do percent completion
         /// </summary>
         PercentComplete,

@@ -439,5 +439,45 @@ namespace VisualCard.Parsers
                 );
             return posixDateBuilder.ToString();
         }
+
+        internal static TimeSpan ParseUtcOffset(string utcOffsetRepresentation)
+        {
+            // Check for sanity
+            if (utcOffsetRepresentation.Length != 5 && utcOffsetRepresentation.Length != 7)
+                throw new ArgumentException($"UTC offset representation [{utcOffsetRepresentation}] is invalid.");
+            bool hasSeconds = utcOffsetRepresentation.Length == 7;
+
+            // Now, this representation might be a POSIX offset that follows the vCard specification, but check it,
+            // because it might be either <+/->HHmmss or <+/->HHmm.
+            string designatorStr = utcOffsetRepresentation.Substring(0, 1);
+            string hourStr = utcOffsetRepresentation.Substring(1, 2);
+            string minuteStr = utcOffsetRepresentation.Substring(3, 2);
+            string secondStr = hasSeconds ? utcOffsetRepresentation.Substring(5, 2) : "";
+            if (designatorStr != "+" && designatorStr != "-")
+                throw new ArgumentException($"Designator {designatorStr} is invalid.");
+            if (hourStr == "00" && minuteStr == "00" && (!hasSeconds || (hasSeconds && secondStr == "00")))
+            {
+                if (designatorStr == "-")
+                    throw new ArgumentException($"Can't specify negative zero offset.");
+                return new();
+            }
+            if (TimeSpan.TryParseExact($"{hourStr}:{minuteStr}:{(hasSeconds ? secondStr : "00")}", "hh\\:mm\\:ss", CultureInfo.InvariantCulture, out TimeSpan offset))
+                return designatorStr == "-" ? -offset : offset;
+            throw new ArgumentException($"Can't parse offset {utcOffsetRepresentation}");
+        }
+
+        internal static string SaveUtcOffset(TimeSpan utcOffsetRepresentation)
+        {
+            StringBuilder utcOffsetBuilder = new(
+                $"{(utcOffsetRepresentation < new TimeSpan() ? "-" : "+")}" +
+                $"{Math.Abs(utcOffsetRepresentation.Hours):00}" +
+                $"{Math.Abs(utcOffsetRepresentation.Minutes):00}"
+            );
+            if (utcOffsetRepresentation.Seconds != 0)
+                utcOffsetBuilder.Append(
+                    $"{Math.Abs(utcOffsetRepresentation.Seconds):00}"
+                );
+            return utcOffsetBuilder.ToString();
+        }
     }
 }
