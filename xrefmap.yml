@@ -1796,18 +1796,6 @@ references:
   commentId: F:VisualCard.Calendar.Parts.Enums.CalendarIntegersEnum.Sequence
   fullName: VisualCard.Calendar.Parts.Enums.CalendarIntegersEnum.Sequence
   nameWithType: CalendarIntegersEnum.Sequence
-- uid: VisualCard.Calendar.Parts.Enums.CalendarIntegersEnum.TimeZoneOffsetFrom
-  name: TimeZoneOffsetFrom
-  href: api/VisualCard.Calendar.Parts.Enums.CalendarIntegersEnum.html#VisualCard_Calendar_Parts_Enums_CalendarIntegersEnum_TimeZoneOffsetFrom
-  commentId: F:VisualCard.Calendar.Parts.Enums.CalendarIntegersEnum.TimeZoneOffsetFrom
-  fullName: VisualCard.Calendar.Parts.Enums.CalendarIntegersEnum.TimeZoneOffsetFrom
-  nameWithType: CalendarIntegersEnum.TimeZoneOffsetFrom
-- uid: VisualCard.Calendar.Parts.Enums.CalendarIntegersEnum.TimeZoneOffsetTo
-  name: TimeZoneOffsetTo
-  href: api/VisualCard.Calendar.Parts.Enums.CalendarIntegersEnum.html#VisualCard_Calendar_Parts_Enums_CalendarIntegersEnum_TimeZoneOffsetTo
-  commentId: F:VisualCard.Calendar.Parts.Enums.CalendarIntegersEnum.TimeZoneOffsetTo
-  fullName: VisualCard.Calendar.Parts.Enums.CalendarIntegersEnum.TimeZoneOffsetTo
-  nameWithType: CalendarIntegersEnum.TimeZoneOffsetTo
 - uid: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum
   name: CalendarPartsArrayEnum
   href: api/VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.html
@@ -1916,6 +1904,18 @@ references:
   commentId: F:VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.TimeZoneName
   fullName: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.TimeZoneName
   nameWithType: CalendarPartsArrayEnum.TimeZoneName
+- uid: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.TimeZoneOffsetFrom
+  name: TimeZoneOffsetFrom
+  href: api/VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.html#VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_TimeZoneOffsetFrom
+  commentId: F:VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.TimeZoneOffsetFrom
+  fullName: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.TimeZoneOffsetFrom
+  nameWithType: CalendarPartsArrayEnum.TimeZoneOffsetFrom
+- uid: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.TimeZoneOffsetTo
+  name: TimeZoneOffsetTo
+  href: api/VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.html#VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_TimeZoneOffsetTo
+  commentId: F:VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.TimeZoneOffsetTo
+  fullName: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.TimeZoneOffsetTo
+  nameWithType: CalendarPartsArrayEnum.TimeZoneOffsetTo
 - uid: VisualCard.Calendar.Parts.Enums.CalendarStringsEnum
   name: CalendarStringsEnum
   href: api/VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.html
@@ -3356,6 +3356,202 @@ references:
   fullName.vb: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneNameInfo.<>
   nameWithType: TimeZoneNameInfo.operator !=
   nameWithType.vb: TimeZoneNameInfo.<>
+- uid: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo
+  name: TimeZoneOffsetFromInfo
+  href: api/VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.html
+  commentId: T:VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo
+  fullName: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo
+  nameWithType: TimeZoneOffsetFromInfo
+- uid: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.Equals(System.Object)
+  name: Equals(object)
+  href: api/VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.html#VisualCard_Calendar_Parts_Implementations_TimeZone_TimeZoneOffsetFromInfo_Equals_System_Object_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.Equals(object)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.Equals(Object)
+  nameWithType: TimeZoneOffsetFromInfo.Equals(object)
+  nameWithType.vb: TimeZoneOffsetFromInfo.Equals(Object)
+- uid: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.Equals(VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo)
+  name: Equals(TimeZoneOffsetFromInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.html#VisualCard_Calendar_Parts_Implementations_TimeZone_TimeZoneOffsetFromInfo_Equals_VisualCard_Calendar_Parts_Implementations_TimeZone_TimeZoneOffsetFromInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.Equals(VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.Equals(VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo)
+  nameWithType: TimeZoneOffsetFromInfo.Equals(TimeZoneOffsetFromInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.Equals(VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo,VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo)
+  name: Equals(TimeZoneOffsetFromInfo, TimeZoneOffsetFromInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.html#VisualCard_Calendar_Parts_Implementations_TimeZone_TimeZoneOffsetFromInfo_Equals_VisualCard_Calendar_Parts_Implementations_TimeZone_TimeZoneOffsetFromInfo_VisualCard_Calendar_Parts_Implementations_TimeZone_TimeZoneOffsetFromInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.Equals(VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo,VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.Equals(VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo, VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo)
+  nameWithType: TimeZoneOffsetFromInfo.Equals(TimeZoneOffsetFromInfo, TimeZoneOffsetFromInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.html#VisualCard_Calendar_Parts_Implementations_TimeZone_TimeZoneOffsetFromInfo_Equals_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.Equals
+  nameWithType: TimeZoneOffsetFromInfo.Equals
+- uid: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.html#VisualCard_Calendar_Parts_Implementations_TimeZone_TimeZoneOffsetFromInfo_GetHashCode
+  commentId: M:VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.GetHashCode
+  fullName: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.GetHashCode()
+  nameWithType: TimeZoneOffsetFromInfo.GetHashCode()
+- uid: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.html#VisualCard_Calendar_Parts_Implementations_TimeZone_TimeZoneOffsetFromInfo_GetHashCode_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.GetHashCode
+  nameWithType: TimeZoneOffsetFromInfo.GetHashCode
+- uid: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.Offset
+  name: Offset
+  href: api/VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.html#VisualCard_Calendar_Parts_Implementations_TimeZone_TimeZoneOffsetFromInfo_Offset
+  commentId: P:VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.Offset
+  fullName: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.Offset
+  nameWithType: TimeZoneOffsetFromInfo.Offset
+- uid: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.Offset*
+  name: Offset
+  href: api/VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.html#VisualCard_Calendar_Parts_Implementations_TimeZone_TimeZoneOffsetFromInfo_Offset_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.Offset
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.Offset
+  nameWithType: TimeZoneOffsetFromInfo.Offset
+- uid: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.op_Equality(VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo,VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo)
+  name: operator ==(TimeZoneOffsetFromInfo, TimeZoneOffsetFromInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.html#VisualCard_Calendar_Parts_Implementations_TimeZone_TimeZoneOffsetFromInfo_op_Equality_VisualCard_Calendar_Parts_Implementations_TimeZone_TimeZoneOffsetFromInfo_VisualCard_Calendar_Parts_Implementations_TimeZone_TimeZoneOffsetFromInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.op_Equality(VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo,VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo)
+  name.vb: =(TimeZoneOffsetFromInfo, TimeZoneOffsetFromInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.operator ==(VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo, VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.=(VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo, VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo)
+  nameWithType: TimeZoneOffsetFromInfo.operator ==(TimeZoneOffsetFromInfo, TimeZoneOffsetFromInfo)
+  nameWithType.vb: TimeZoneOffsetFromInfo.=(TimeZoneOffsetFromInfo, TimeZoneOffsetFromInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.op_Equality*
+  name: operator ==
+  href: api/VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.html#VisualCard_Calendar_Parts_Implementations_TimeZone_TimeZoneOffsetFromInfo_op_Equality_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.op_Equality
+  isSpec: "True"
+  name.vb: =
+  fullName: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.operator ==
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.=
+  nameWithType: TimeZoneOffsetFromInfo.operator ==
+  nameWithType.vb: TimeZoneOffsetFromInfo.=
+- uid: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.op_Inequality(VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo,VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo)
+  name: operator !=(TimeZoneOffsetFromInfo, TimeZoneOffsetFromInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.html#VisualCard_Calendar_Parts_Implementations_TimeZone_TimeZoneOffsetFromInfo_op_Inequality_VisualCard_Calendar_Parts_Implementations_TimeZone_TimeZoneOffsetFromInfo_VisualCard_Calendar_Parts_Implementations_TimeZone_TimeZoneOffsetFromInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.op_Inequality(VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo,VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo)
+  name.vb: <>(TimeZoneOffsetFromInfo, TimeZoneOffsetFromInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.operator !=(VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo, VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.<>(VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo, VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo)
+  nameWithType: TimeZoneOffsetFromInfo.operator !=(TimeZoneOffsetFromInfo, TimeZoneOffsetFromInfo)
+  nameWithType.vb: TimeZoneOffsetFromInfo.<>(TimeZoneOffsetFromInfo, TimeZoneOffsetFromInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.op_Inequality*
+  name: operator !=
+  href: api/VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.html#VisualCard_Calendar_Parts_Implementations_TimeZone_TimeZoneOffsetFromInfo_op_Inequality_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.op_Inequality
+  isSpec: "True"
+  name.vb: <>
+  fullName: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.operator !=
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.<>
+  nameWithType: TimeZoneOffsetFromInfo.operator !=
+  nameWithType.vb: TimeZoneOffsetFromInfo.<>
+- uid: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo
+  name: TimeZoneOffsetToInfo
+  href: api/VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.html
+  commentId: T:VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo
+  fullName: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo
+  nameWithType: TimeZoneOffsetToInfo
+- uid: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.Equals(System.Object)
+  name: Equals(object)
+  href: api/VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.html#VisualCard_Calendar_Parts_Implementations_TimeZone_TimeZoneOffsetToInfo_Equals_System_Object_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.Equals(object)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.Equals(Object)
+  nameWithType: TimeZoneOffsetToInfo.Equals(object)
+  nameWithType.vb: TimeZoneOffsetToInfo.Equals(Object)
+- uid: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.Equals(VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo)
+  name: Equals(TimeZoneOffsetToInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.html#VisualCard_Calendar_Parts_Implementations_TimeZone_TimeZoneOffsetToInfo_Equals_VisualCard_Calendar_Parts_Implementations_TimeZone_TimeZoneOffsetToInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.Equals(VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.Equals(VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo)
+  nameWithType: TimeZoneOffsetToInfo.Equals(TimeZoneOffsetToInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.Equals(VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo,VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo)
+  name: Equals(TimeZoneOffsetToInfo, TimeZoneOffsetToInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.html#VisualCard_Calendar_Parts_Implementations_TimeZone_TimeZoneOffsetToInfo_Equals_VisualCard_Calendar_Parts_Implementations_TimeZone_TimeZoneOffsetToInfo_VisualCard_Calendar_Parts_Implementations_TimeZone_TimeZoneOffsetToInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.Equals(VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo,VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.Equals(VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo, VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo)
+  nameWithType: TimeZoneOffsetToInfo.Equals(TimeZoneOffsetToInfo, TimeZoneOffsetToInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.html#VisualCard_Calendar_Parts_Implementations_TimeZone_TimeZoneOffsetToInfo_Equals_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.Equals
+  nameWithType: TimeZoneOffsetToInfo.Equals
+- uid: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.html#VisualCard_Calendar_Parts_Implementations_TimeZone_TimeZoneOffsetToInfo_GetHashCode
+  commentId: M:VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.GetHashCode
+  fullName: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.GetHashCode()
+  nameWithType: TimeZoneOffsetToInfo.GetHashCode()
+- uid: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.html#VisualCard_Calendar_Parts_Implementations_TimeZone_TimeZoneOffsetToInfo_GetHashCode_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.GetHashCode
+  nameWithType: TimeZoneOffsetToInfo.GetHashCode
+- uid: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.Offset
+  name: Offset
+  href: api/VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.html#VisualCard_Calendar_Parts_Implementations_TimeZone_TimeZoneOffsetToInfo_Offset
+  commentId: P:VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.Offset
+  fullName: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.Offset
+  nameWithType: TimeZoneOffsetToInfo.Offset
+- uid: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.Offset*
+  name: Offset
+  href: api/VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.html#VisualCard_Calendar_Parts_Implementations_TimeZone_TimeZoneOffsetToInfo_Offset_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.Offset
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.Offset
+  nameWithType: TimeZoneOffsetToInfo.Offset
+- uid: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.op_Equality(VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo,VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo)
+  name: operator ==(TimeZoneOffsetToInfo, TimeZoneOffsetToInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.html#VisualCard_Calendar_Parts_Implementations_TimeZone_TimeZoneOffsetToInfo_op_Equality_VisualCard_Calendar_Parts_Implementations_TimeZone_TimeZoneOffsetToInfo_VisualCard_Calendar_Parts_Implementations_TimeZone_TimeZoneOffsetToInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.op_Equality(VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo,VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo)
+  name.vb: =(TimeZoneOffsetToInfo, TimeZoneOffsetToInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.operator ==(VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo, VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.=(VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo, VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo)
+  nameWithType: TimeZoneOffsetToInfo.operator ==(TimeZoneOffsetToInfo, TimeZoneOffsetToInfo)
+  nameWithType.vb: TimeZoneOffsetToInfo.=(TimeZoneOffsetToInfo, TimeZoneOffsetToInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.op_Equality*
+  name: operator ==
+  href: api/VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.html#VisualCard_Calendar_Parts_Implementations_TimeZone_TimeZoneOffsetToInfo_op_Equality_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.op_Equality
+  isSpec: "True"
+  name.vb: =
+  fullName: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.operator ==
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.=
+  nameWithType: TimeZoneOffsetToInfo.operator ==
+  nameWithType.vb: TimeZoneOffsetToInfo.=
+- uid: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.op_Inequality(VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo,VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo)
+  name: operator !=(TimeZoneOffsetToInfo, TimeZoneOffsetToInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.html#VisualCard_Calendar_Parts_Implementations_TimeZone_TimeZoneOffsetToInfo_op_Inequality_VisualCard_Calendar_Parts_Implementations_TimeZone_TimeZoneOffsetToInfo_VisualCard_Calendar_Parts_Implementations_TimeZone_TimeZoneOffsetToInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.op_Inequality(VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo,VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo)
+  name.vb: <>(TimeZoneOffsetToInfo, TimeZoneOffsetToInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.operator !=(VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo, VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.<>(VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo, VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo)
+  nameWithType: TimeZoneOffsetToInfo.operator !=(TimeZoneOffsetToInfo, TimeZoneOffsetToInfo)
+  nameWithType.vb: TimeZoneOffsetToInfo.<>(TimeZoneOffsetToInfo, TimeZoneOffsetToInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.op_Inequality*
+  name: operator !=
+  href: api/VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.html#VisualCard_Calendar_Parts_Implementations_TimeZone_TimeZoneOffsetToInfo_op_Inequality_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.op_Inequality
+  isSpec: "True"
+  name.vb: <>
+  fullName: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.operator !=
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.<>
+  nameWithType: TimeZoneOffsetToInfo.operator !=
+  nameWithType.vb: TimeZoneOffsetToInfo.<>
 - uid: VisualCard.Calendar.Parts.Implementations.Todo
   name: VisualCard.Calendar.Parts.Implementations.Todo
   href: api/VisualCard.Calendar.Parts.Implementations.Todo.html

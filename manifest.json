@@ -325,6 +325,26 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.TimeZone.yml",
       "output": {
         ".html": {
