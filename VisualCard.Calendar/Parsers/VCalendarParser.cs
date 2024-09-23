@@ -326,15 +326,15 @@ namespace VisualCard.Calendar.Parsers
         internal void ValidateCalendar(Parts.Calendar calendar)
         {
             // Track the required root fields
-            string[] expectedFields = [VCalendarConstants._productIdSpecifier];
+            string[] expectedFields =
+                calendar.CalendarVersion.Major == 2 ? [VCalendarConstants._productIdSpecifier] : [];
             if (!ValidateComponent(ref expectedFields, out string[] actualFields, calendar))
                 throw new InvalidDataException($"The following keys [{string.Join(", ", expectedFields)}] are required in the root calendar. Got [{string.Join(", ", actualFields)}].");
 
             // Now, track the individual components starting from events
             string[] expectedEventFields =
                 calendar.CalendarVersion.Major == 2 ?
-                [VCalendarConstants._uidSpecifier, VCalendarConstants._dateStampSpecifier] :
-                [VCalendarConstants._uidSpecifier];
+                [VCalendarConstants._uidSpecifier, VCalendarConstants._dateStampSpecifier] : [];
             string[] expectedTodoFields = expectedEventFields;
             foreach (var eventInfo in calendar.events)
             {
