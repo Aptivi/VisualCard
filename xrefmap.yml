@@ -1862,6 +1862,12 @@ references:
   commentId: F:VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.DateStart
   fullName: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.DateStart
   nameWithType: CalendarPartsArrayEnum.DateStart
+- uid: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.Daylight
+  name: Daylight
+  href: api/VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.html#VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_Daylight
+  commentId: F:VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.Daylight
+  fullName: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.Daylight
+  nameWithType: CalendarPartsArrayEnum.Daylight
 - uid: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.DueDate
   name: DueDate
   href: api/VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.html#VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_DueDate
@@ -2958,6 +2964,175 @@ references:
   fullName.vb: VisualCard.Calendar.Parts.Implementations.GeoInfo.<>
   nameWithType: GeoInfo.operator !=
   nameWithType.vb: GeoInfo.<>
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy
+  name: VisualCard.Calendar.Parts.Implementations.Legacy
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.html
+  commentId: N:VisualCard.Calendar.Parts.Implementations.Legacy
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy
+  nameWithType: VisualCard.Calendar.Parts.Implementations.Legacy
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo
+  name: DaylightInfo
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.html
+  commentId: T:VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo
+  nameWithType: DaylightInfo
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.DaylightDesignation
+  name: DaylightDesignation
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DaylightInfo_DaylightDesignation
+  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.DaylightDesignation
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.DaylightDesignation
+  nameWithType: DaylightInfo.DaylightDesignation
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.DaylightDesignation*
+  name: DaylightDesignation
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DaylightInfo_DaylightDesignation_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.DaylightDesignation
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.DaylightDesignation
+  nameWithType: DaylightInfo.DaylightDesignation
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.DaylightEnd
+  name: DaylightEnd
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DaylightInfo_DaylightEnd
+  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.DaylightEnd
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.DaylightEnd
+  nameWithType: DaylightInfo.DaylightEnd
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.DaylightEnd*
+  name: DaylightEnd
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DaylightInfo_DaylightEnd_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.DaylightEnd
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.DaylightEnd
+  nameWithType: DaylightInfo.DaylightEnd
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.DaylightStart
+  name: DaylightStart
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DaylightInfo_DaylightStart
+  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.DaylightStart
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.DaylightStart
+  nameWithType: DaylightInfo.DaylightStart
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.DaylightStart*
+  name: DaylightStart
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DaylightInfo_DaylightStart_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.DaylightStart
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.DaylightStart
+  nameWithType: DaylightInfo.DaylightStart
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.Equals(System.Object)
+  name: Equals(object)
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DaylightInfo_Equals_System_Object_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.Equals(object)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.Equals(Object)
+  nameWithType: DaylightInfo.Equals(object)
+  nameWithType.vb: DaylightInfo.Equals(Object)
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo)
+  name: Equals(DaylightInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DaylightInfo_Equals_VisualCard_Calendar_Parts_Implementations_Legacy_DaylightInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo)
+  nameWithType: DaylightInfo.Equals(DaylightInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo,VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo)
+  name: Equals(DaylightInfo, DaylightInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DaylightInfo_Equals_VisualCard_Calendar_Parts_Implementations_Legacy_DaylightInfo_VisualCard_Calendar_Parts_Implementations_Legacy_DaylightInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo,VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo, VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo)
+  nameWithType: DaylightInfo.Equals(DaylightInfo, DaylightInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DaylightInfo_Equals_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.Equals
+  nameWithType: DaylightInfo.Equals
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.Flag
+  name: Flag
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DaylightInfo_Flag
+  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.Flag
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.Flag
+  nameWithType: DaylightInfo.Flag
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.Flag*
+  name: Flag
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DaylightInfo_Flag_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.Flag
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.Flag
+  nameWithType: DaylightInfo.Flag
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DaylightInfo_GetHashCode
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.GetHashCode
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.GetHashCode()
+  nameWithType: DaylightInfo.GetHashCode()
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DaylightInfo_GetHashCode_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.GetHashCode
+  nameWithType: DaylightInfo.GetHashCode
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.StandardDesignation
+  name: StandardDesignation
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DaylightInfo_StandardDesignation
+  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.StandardDesignation
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.StandardDesignation
+  nameWithType: DaylightInfo.StandardDesignation
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.StandardDesignation*
+  name: StandardDesignation
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DaylightInfo_StandardDesignation_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.StandardDesignation
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.StandardDesignation
+  nameWithType: DaylightInfo.StandardDesignation
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.UtcOffset
+  name: UtcOffset
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DaylightInfo_UtcOffset
+  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.UtcOffset
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.UtcOffset
+  nameWithType: DaylightInfo.UtcOffset
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.UtcOffset*
+  name: UtcOffset
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DaylightInfo_UtcOffset_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.UtcOffset
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.UtcOffset
+  nameWithType: DaylightInfo.UtcOffset
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.op_Equality(VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo,VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo)
+  name: operator ==(DaylightInfo, DaylightInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DaylightInfo_op_Equality_VisualCard_Calendar_Parts_Implementations_Legacy_DaylightInfo_VisualCard_Calendar_Parts_Implementations_Legacy_DaylightInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.op_Equality(VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo,VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo)
+  name.vb: =(DaylightInfo, DaylightInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.operator ==(VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo, VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.=(VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo, VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo)
+  nameWithType: DaylightInfo.operator ==(DaylightInfo, DaylightInfo)
+  nameWithType.vb: DaylightInfo.=(DaylightInfo, DaylightInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.op_Equality*
+  name: operator ==
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DaylightInfo_op_Equality_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.op_Equality
+  isSpec: "True"
+  name.vb: =
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.operator ==
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.=
+  nameWithType: DaylightInfo.operator ==
+  nameWithType.vb: DaylightInfo.=
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.op_Inequality(VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo,VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo)
+  name: operator !=(DaylightInfo, DaylightInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DaylightInfo_op_Inequality_VisualCard_Calendar_Parts_Implementations_Legacy_DaylightInfo_VisualCard_Calendar_Parts_Implementations_Legacy_DaylightInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.op_Inequality(VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo,VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo)
+  name.vb: <>(DaylightInfo, DaylightInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.operator !=(VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo, VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.<>(VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo, VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo)
+  nameWithType: DaylightInfo.operator !=(DaylightInfo, DaylightInfo)
+  nameWithType.vb: DaylightInfo.<>(DaylightInfo, DaylightInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.op_Inequality*
+  name: operator !=
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DaylightInfo_op_Inequality_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.op_Inequality
+  isSpec: "True"
+  name.vb: <>
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.operator !=
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.<>
+  nameWithType: DaylightInfo.operator !=
+  nameWithType.vb: DaylightInfo.<>
 - uid: VisualCard.Calendar.Parts.Implementations.LocationInfo
   name: LocationInfo
   href: api/VisualCard.Calendar.Parts.Implementations.LocationInfo.html
