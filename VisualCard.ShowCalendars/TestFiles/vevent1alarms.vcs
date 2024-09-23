@@ -10,8 +10,8 @@ SUMMARY:Steve's Proposal Review
 DESCRIPTION:Steve and John to review newest proposal material
 CLASS:PRIVATE
 DALARM:19960415T235000;PT5M;2;Your Taxes Are Due !!!
-AALARM:19960415T235959; ; ; file:///mmedia/taps.wav
-PALARM:19960415T235000;PT5M;2;file:///myapps/shockme.exe
+AALARM;TYPE=WAVE;VALUE=URL:19960415T235959; ; ; file:///mmedia/taps.wav
+PALARM;VALUE=URL:19960415T235000;PT5M;2;file:///myapps/shockme.exe
 MALARM:19960415T235000;PT5M;2;Address;Note
 END:VEVENT
 BEGIN:VTODO
