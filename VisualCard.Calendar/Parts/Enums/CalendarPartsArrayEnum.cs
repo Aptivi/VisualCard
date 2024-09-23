@@ -85,6 +85,10 @@ namespace VisualCard.Calendar.Parts.Enums
         /// </summary>
         RecDate,
         /// <summary>
+        /// Excluded date and time (event, todo, journal, or standard/daylight timezone components)
+        /// </summary>
+        ExDate,
+        /// <summary>
         /// To-do date completion
         /// </summary>
         DateCompleted,

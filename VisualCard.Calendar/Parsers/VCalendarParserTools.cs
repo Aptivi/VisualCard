@@ -84,7 +84,8 @@ namespace VisualCard.Calendar.Parsers
                 CalendarPartsArrayEnum.TimeZoneName => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(CalendarTimeZone)),
                 CalendarPartsArrayEnum.TimeZoneOffsetFrom => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(CalendarStandard), typeof(CalendarDaylight)),
                 CalendarPartsArrayEnum.TimeZoneOffsetTo => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(CalendarStandard), typeof(CalendarDaylight)),
-                CalendarPartsArrayEnum.RecDate => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal), typeof(CalendarStandard), typeof(CalendarDaylight)),
+                CalendarPartsArrayEnum.RecDate => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal), typeof(CalendarStandard), typeof(CalendarDaylight)),
+                CalendarPartsArrayEnum.ExDate => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal), typeof(CalendarStandard), typeof(CalendarDaylight)),
                 CalendarPartsArrayEnum.Daylight => calendarVersion.Major == 1 && TypeMatch(componentType, typeof(Parts.Calendar)),
                 CalendarPartsArrayEnum.AudioAlarm => calendarVersion.Major == 1 && TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo)),
                 CalendarPartsArrayEnum.DisplayAlarm => calendarVersion.Major == 1 && TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo)),
@@ -149,6 +150,7 @@ namespace VisualCard.Calendar.Parsers
                 CalendarPartsArrayEnum.TimeZoneOffsetFrom => VCalendarConstants._tzOffsetFromSpecifier,
                 CalendarPartsArrayEnum.TimeZoneOffsetTo => VCalendarConstants._tzOffsetToSpecifier,
                 CalendarPartsArrayEnum.RecDate => VCalendarConstants._recDateSpecifier,
+                CalendarPartsArrayEnum.ExDate => VCalendarConstants._exDateSpecifier,
                 CalendarPartsArrayEnum.Daylight => VCalendarConstants._daylightSpecifier,
                 CalendarPartsArrayEnum.AudioAlarm => VCalendarConstants._aAlarmSpecifier,
                 CalendarPartsArrayEnum.DisplayAlarm => VCalendarConstants._dAlarmSpecifier,
@@ -200,6 +202,8 @@ namespace VisualCard.Calendar.Parsers
                 return (CalendarPartsArrayEnum.TimeZoneOffsetTo, PartCardinality.MayBeOne);
             else if (partsArrayType == typeof(RecDateInfo))
                 return (CalendarPartsArrayEnum.RecDate, PartCardinality.Any);
+            else if (partsArrayType == typeof(ExDateInfo))
+                return (CalendarPartsArrayEnum.ExDate, PartCardinality.Any);
             else if (partsArrayType == typeof(DaylightInfo))
                 return (CalendarPartsArrayEnum.Daylight, PartCardinality.MayBeOne);
             else if (partsArrayType == typeof(RelatedToInfo))
@@ -230,6 +234,7 @@ namespace VisualCard.Calendar.Parsers
                 VCalendarConstants._tzOffsetFromSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.TimeZoneOffsetFrom, typeof(TimeZoneOffsetFromInfo), TimeZoneOffsetFromInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._tzOffsetToSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.TimeZoneOffsetTo, typeof(TimeZoneOffsetToInfo), TimeZoneOffsetToInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._recDateSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.RecDate, typeof(RecDateInfo), RecDateInfo.FromStringVcalendarStatic, "", "", []),
+                VCalendarConstants._exDateSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.ExDate, typeof(ExDateInfo), ExDateInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._daylightSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.Daylight, typeof(DaylightInfo), DaylightInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._aAlarmSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.AudioAlarm, typeof(AudioAlarmInfo), AudioAlarmInfo.FromStringVcalendarStatic, "PCM", "", ["PCM", "WAVE", "AIFF"]),
                 VCalendarConstants._dAlarmSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DisplayAlarm, typeof(DisplayAlarmInfo), DisplayAlarmInfo.FromStringVcalendarStatic, "", "", []),
