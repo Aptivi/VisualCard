@@ -27,6 +27,10 @@
     "vCalendar 1.0 test": {
       "commandName": "Project",
       "commandLineArgs": "TestFiles/vevent1.vcs"
+    },
+    "vCalendar 1.0 test - alarms": {
+      "commandName": "Project",
+      "commandLineArgs": "TestFiles/vevent1alarms.vcs"
     }
   }
 }

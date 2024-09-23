@@ -104,5 +104,21 @@ namespace VisualCard.Calendar.Parts.Enums
         /// Daylight saving time info (vCalendar 1.0)
         /// </summary>
         Daylight,
+        /// <summary>
+        /// Event/to-do alarm (audio) (vCalendar 1.0)
+        /// </summary>
+        AudioAlarm,
+        /// <summary>
+        /// Event/to-do alarm (display) (vCalendar 1.0)
+        /// </summary>
+        DisplayAlarm,
+        /// <summary>
+        /// Event/to-do alarm (note) (vCalendar 1.0)
+        /// </summary>
+        NoteAlarm,
+        /// <summary>
+        /// Event/to-do alarm (procedure) (vCalendar 1.0)
+        /// </summary>
+        ProcedureAlarm,
     }
 }
