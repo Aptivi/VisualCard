@@ -120,5 +120,9 @@ namespace VisualCard.Calendar.Parts.Enums
         /// Event/to-do alarm (procedure) (vCalendar 1.0)
         /// </summary>
         ProcedureAlarm,
+        /// <summary>
+        /// The calendar's relationship (event, todo, or journal)
+        /// </summary>
+        RelatedTo,
     }
 }

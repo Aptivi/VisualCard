@@ -90,6 +90,7 @@ namespace VisualCard.Calendar.Parsers
                 CalendarPartsArrayEnum.DisplayAlarm => calendarVersion.Major == 1 && TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo)),
                 CalendarPartsArrayEnum.NoteAlarm => calendarVersion.Major == 1 && TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo)),
                 CalendarPartsArrayEnum.ProcedureAlarm => calendarVersion.Major == 1 && TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo)),
+                CalendarPartsArrayEnum.RelatedTo => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal)),
                 CalendarPartsArrayEnum.NonstandardNames => true,
                 _ =>
                     throw new InvalidOperationException("Invalid parts array enumeration type to get supported value"),
@@ -153,6 +154,7 @@ namespace VisualCard.Calendar.Parsers
                 CalendarPartsArrayEnum.DisplayAlarm => VCalendarConstants._dAlarmSpecifier,
                 CalendarPartsArrayEnum.NoteAlarm => VCalendarConstants._mAlarmSpecifier,
                 CalendarPartsArrayEnum.ProcedureAlarm => VCalendarConstants._pAlarmSpecifier,
+                CalendarPartsArrayEnum.RelatedTo => VCalendarConstants._relationshipSpecifier,
                 CalendarPartsArrayEnum.NonstandardNames => VCalendarConstants._xSpecifier,
                 _ =>
                     throw new NotImplementedException($"Array enumeration {partsArrayEnum} is not implemented.")
@@ -200,6 +202,8 @@ namespace VisualCard.Calendar.Parsers
                 return (CalendarPartsArrayEnum.RecDate, PartCardinality.Any);
             else if (partsArrayType == typeof(DaylightInfo))
                 return (CalendarPartsArrayEnum.Daylight, PartCardinality.MayBeOne);
+            else if (partsArrayType == typeof(RelatedToInfo))
+                return (CalendarPartsArrayEnum.RelatedTo, PartCardinality.Any);
             else if (partsArrayType == typeof(XNameInfo))
                 return (CalendarPartsArrayEnum.NonstandardNames, PartCardinality.Any);
             throw new NotImplementedException($"Type {partsArrayType.Name} doesn't represent any part array.");
@@ -231,6 +235,7 @@ namespace VisualCard.Calendar.Parsers
                 VCalendarConstants._dAlarmSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DisplayAlarm, typeof(DisplayAlarmInfo), DisplayAlarmInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._mAlarmSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.NoteAlarm, typeof(NoteAlarmInfo), NoteAlarmInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._pAlarmSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.ProcedureAlarm, typeof(ProcedureAlarmInfo), ProcedureAlarmInfo.FromStringVcalendarStatic, "", "", []),
+                VCalendarConstants._relationshipSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.RelatedTo, typeof(RelatedToInfo), RelatedToInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._xSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.NonstandardNames, typeof(XNameInfo), XNameInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._productIdSpecifier => (PartType.Strings, CalendarStringsEnum.ProductId, null, null, "", "", []),
                 VCalendarConstants._calScaleSpecifier => (PartType.Strings, CalendarStringsEnum.CalScale, null, null, "", "", []),
