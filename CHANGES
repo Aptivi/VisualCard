@@ -1,10 +1,11 @@
-We've made a small minor version that improves time zone offset support!
+VisualCard has now reached to a certain extent where we're ready to say that almost all properties have been implemented! The next version that will be in development is v3.0.
 
 ### Changes
 
 This release contains a variety of changes, including, but not limited to:
 
-- `[*]` Improved time zone offset support
+- `[+]` Added more calendar properties
+- `[+]` Added type support for calendars
 
 Review the commit history if you want to get a deep insight about the changes.
 
