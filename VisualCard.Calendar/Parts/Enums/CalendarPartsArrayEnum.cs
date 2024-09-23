@@ -100,5 +100,9 @@ namespace VisualCard.Calendar.Parts.Enums
         /// Time zone offset to
         /// </summary>
         TimeZoneOffsetTo,
+        /// <summary>
+        /// Daylight saving time info (vCalendar 1.0)
+        /// </summary>
+        Daylight,
     }
 }

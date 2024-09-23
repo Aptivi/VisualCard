@@ -443,25 +443,26 @@ namespace VisualCard.Parsers
         internal static TimeSpan ParseUtcOffset(string utcOffsetRepresentation)
         {
             // Check for sanity
-            if (utcOffsetRepresentation.Length != 5 && utcOffsetRepresentation.Length != 7)
+            if (utcOffsetRepresentation.Length != 3 && utcOffsetRepresentation.Length != 5 && utcOffsetRepresentation.Length != 7)
                 throw new ArgumentException($"UTC offset representation [{utcOffsetRepresentation}] is invalid.");
+            bool hasMinutes = utcOffsetRepresentation.Length >= 5;
             bool hasSeconds = utcOffsetRepresentation.Length == 7;
 
             // Now, this representation might be a POSIX offset that follows the vCard specification, but check it,
-            // because it might be either <+/->HHmmss or <+/->HHmm.
+            // because it might be either <+/->HHmmss, <+/->HHmm, or <+/->HH.
             string designatorStr = utcOffsetRepresentation.Substring(0, 1);
             string hourStr = utcOffsetRepresentation.Substring(1, 2);
-            string minuteStr = utcOffsetRepresentation.Substring(3, 2);
+            string minuteStr = hasMinutes ? utcOffsetRepresentation.Substring(3, 2) : "";
             string secondStr = hasSeconds ? utcOffsetRepresentation.Substring(5, 2) : "";
             if (designatorStr != "+" && designatorStr != "-")
                 throw new ArgumentException($"Designator {designatorStr} is invalid.");
-            if (hourStr == "00" && minuteStr == "00" && (!hasSeconds || (hasSeconds && secondStr == "00")))
+            if (hourStr == "00" && (!hasMinutes || (hasMinutes && minuteStr == "00")) && (!hasSeconds || (hasSeconds && secondStr == "00")))
             {
                 if (designatorStr == "-")
                     throw new ArgumentException($"Can't specify negative zero offset.");
                 return new();
             }
-            if (TimeSpan.TryParseExact($"{hourStr}:{minuteStr}:{(hasSeconds ? secondStr : "00")}", "hh\\:mm\\:ss", CultureInfo.InvariantCulture, out TimeSpan offset))
+            if (TimeSpan.TryParseExact($"{hourStr}:{(hasMinutes ? minuteStr : "00")}:{(hasSeconds ? secondStr : "00")}", "hh\\:mm\\:ss", CultureInfo.InvariantCulture, out TimeSpan offset))
                 return designatorStr == "-" ? -offset : offset;
             throw new ArgumentException($"Can't parse offset {utcOffsetRepresentation}");
         }

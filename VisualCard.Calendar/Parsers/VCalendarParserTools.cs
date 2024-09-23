@@ -26,6 +26,7 @@ using VisualCard.Parts.Enums;
 using System.Linq;
 using VisualCard.Calendar.Parts.Implementations.TimeZone;
 using VisualCard.Calendar.Parts.Implementations.Todo;
+using VisualCard.Calendar.Parts.Implementations.Legacy;
 
 namespace VisualCard.Calendar.Parsers
 {
@@ -83,7 +84,8 @@ namespace VisualCard.Calendar.Parsers
                 CalendarPartsArrayEnum.TimeZoneName => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(CalendarTimeZone)),
                 CalendarPartsArrayEnum.TimeZoneOffsetFrom => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(CalendarStandard), typeof(CalendarDaylight)),
                 CalendarPartsArrayEnum.TimeZoneOffsetTo => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(CalendarStandard), typeof(CalendarDaylight)),
-                CalendarPartsArrayEnum.RecDate => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal), typeof(CalendarStandard), typeof(CalendarDaylight)),
+                CalendarPartsArrayEnum.RecDate => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(Parts.Calendar)),
+                CalendarPartsArrayEnum.Daylight => calendarVersion.Major == 1 && TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal), typeof(CalendarStandard), typeof(CalendarDaylight)),
                 CalendarPartsArrayEnum.NonstandardNames => true,
                 _ =>
                     throw new InvalidOperationException("Invalid parts array enumeration type to get supported value"),
@@ -142,6 +144,7 @@ namespace VisualCard.Calendar.Parsers
                 CalendarPartsArrayEnum.TimeZoneOffsetFrom => VCalendarConstants._tzOffsetFromSpecifier,
                 CalendarPartsArrayEnum.TimeZoneOffsetTo => VCalendarConstants._tzOffsetToSpecifier,
                 CalendarPartsArrayEnum.RecDate => VCalendarConstants._recDateSpecifier,
+                CalendarPartsArrayEnum.Daylight => VCalendarConstants._daylightSpecifier,
                 CalendarPartsArrayEnum.NonstandardNames => VCalendarConstants._xSpecifier,
                 _ =>
                     throw new NotImplementedException($"Array enumeration {partsArrayEnum} is not implemented.")
@@ -187,6 +190,8 @@ namespace VisualCard.Calendar.Parsers
                 return (CalendarPartsArrayEnum.TimeZoneOffsetTo, PartCardinality.MayBeOne);
             else if (partsArrayType == typeof(RecDateInfo))
                 return (CalendarPartsArrayEnum.RecDate, PartCardinality.Any);
+            else if (partsArrayType == typeof(DaylightInfo))
+                return (CalendarPartsArrayEnum.Daylight, PartCardinality.MayBeOne);
             else if (partsArrayType == typeof(XNameInfo))
                 return (CalendarPartsArrayEnum.NonstandardNames, PartCardinality.Any);
             throw new NotImplementedException($"Type {partsArrayType.Name} doesn't represent any part array.");
@@ -213,6 +218,7 @@ namespace VisualCard.Calendar.Parsers
                 VCalendarConstants._tzOffsetFromSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.TimeZoneOffsetFrom, typeof(TimeZoneOffsetFromInfo), TimeZoneOffsetFromInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._tzOffsetToSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.TimeZoneOffsetTo, typeof(TimeZoneOffsetToInfo), TimeZoneOffsetToInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._recDateSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.RecDate, typeof(RecDateInfo), RecDateInfo.FromStringVcalendarStatic, "", "", []),
+                VCalendarConstants._daylightSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.Daylight, typeof(DaylightInfo), DaylightInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._xSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.NonstandardNames, typeof(XNameInfo), XNameInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._productIdSpecifier => (PartType.Strings, CalendarStringsEnum.ProductId, null, null, "", "", []),
                 VCalendarConstants._calScaleSpecifier => (PartType.Strings, CalendarStringsEnum.CalScale, null, null, "", "", []),

@@ -83,6 +83,9 @@ namespace VisualCard.Calendar.Parsers
         internal const string _valueArgumentSpecifier = "VALUE=";
         internal const string _encodingArgumentSpecifier = "ENCODING=";
 
+        // Available in vCalendar 1.0
+        internal const string _daylightSpecifier = "DAYLIGHT";
+
         // Available in vCalendar 2.0
         internal const string _dateStampSpecifier = "DTSTAMP";
         internal const string _calScaleSpecifier = "CALSCALE";
