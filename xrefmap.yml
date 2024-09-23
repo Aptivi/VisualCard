@@ -1886,6 +1886,12 @@ references:
   commentId: F:VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.DueDate
   fullName: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.DueDate
   nameWithType: CalendarPartsArrayEnum.DueDate
+- uid: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.ExDate
+  name: ExDate
+  href: api/VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.html#VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_ExDate
+  commentId: F:VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.ExDate
+  fullName: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.ExDate
+  nameWithType: CalendarPartsArrayEnum.ExDate
 - uid: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.Geography
   name: Geography
   href: api/VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.html#VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_Geography
@@ -2883,6 +2889,104 @@ references:
   fullName.vb: VisualCard.Calendar.Parts.Implementations.Event.DateStartInfo.<>
   nameWithType: DateStartInfo.operator !=
   nameWithType.vb: DateStartInfo.<>
+- uid: VisualCard.Calendar.Parts.Implementations.ExDateInfo
+  name: ExDateInfo
+  href: api/VisualCard.Calendar.Parts.Implementations.ExDateInfo.html
+  commentId: T:VisualCard.Calendar.Parts.Implementations.ExDateInfo
+  fullName: VisualCard.Calendar.Parts.Implementations.ExDateInfo
+  nameWithType: ExDateInfo
+- uid: VisualCard.Calendar.Parts.Implementations.ExDateInfo.Equals(System.Object)
+  name: Equals(object)
+  href: api/VisualCard.Calendar.Parts.Implementations.ExDateInfo.html#VisualCard_Calendar_Parts_Implementations_ExDateInfo_Equals_System_Object_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.ExDateInfo.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Calendar.Parts.Implementations.ExDateInfo.Equals(object)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.ExDateInfo.Equals(Object)
+  nameWithType: ExDateInfo.Equals(object)
+  nameWithType.vb: ExDateInfo.Equals(Object)
+- uid: VisualCard.Calendar.Parts.Implementations.ExDateInfo.Equals(VisualCard.Calendar.Parts.Implementations.ExDateInfo)
+  name: Equals(ExDateInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.ExDateInfo.html#VisualCard_Calendar_Parts_Implementations_ExDateInfo_Equals_VisualCard_Calendar_Parts_Implementations_ExDateInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.ExDateInfo.Equals(VisualCard.Calendar.Parts.Implementations.ExDateInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.ExDateInfo.Equals(VisualCard.Calendar.Parts.Implementations.ExDateInfo)
+  nameWithType: ExDateInfo.Equals(ExDateInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.ExDateInfo.Equals(VisualCard.Calendar.Parts.Implementations.ExDateInfo,VisualCard.Calendar.Parts.Implementations.ExDateInfo)
+  name: Equals(ExDateInfo, ExDateInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.ExDateInfo.html#VisualCard_Calendar_Parts_Implementations_ExDateInfo_Equals_VisualCard_Calendar_Parts_Implementations_ExDateInfo_VisualCard_Calendar_Parts_Implementations_ExDateInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.ExDateInfo.Equals(VisualCard.Calendar.Parts.Implementations.ExDateInfo,VisualCard.Calendar.Parts.Implementations.ExDateInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.ExDateInfo.Equals(VisualCard.Calendar.Parts.Implementations.ExDateInfo, VisualCard.Calendar.Parts.Implementations.ExDateInfo)
+  nameWithType: ExDateInfo.Equals(ExDateInfo, ExDateInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.ExDateInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Calendar.Parts.Implementations.ExDateInfo.html#VisualCard_Calendar_Parts_Implementations_ExDateInfo_Equals_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.ExDateInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.ExDateInfo.Equals
+  nameWithType: ExDateInfo.Equals
+- uid: VisualCard.Calendar.Parts.Implementations.ExDateInfo.ExDates
+  name: ExDates
+  href: api/VisualCard.Calendar.Parts.Implementations.ExDateInfo.html#VisualCard_Calendar_Parts_Implementations_ExDateInfo_ExDates
+  commentId: P:VisualCard.Calendar.Parts.Implementations.ExDateInfo.ExDates
+  fullName: VisualCard.Calendar.Parts.Implementations.ExDateInfo.ExDates
+  nameWithType: ExDateInfo.ExDates
+- uid: VisualCard.Calendar.Parts.Implementations.ExDateInfo.ExDates*
+  name: ExDates
+  href: api/VisualCard.Calendar.Parts.Implementations.ExDateInfo.html#VisualCard_Calendar_Parts_Implementations_ExDateInfo_ExDates_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.ExDateInfo.ExDates
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.ExDateInfo.ExDates
+  nameWithType: ExDateInfo.ExDates
+- uid: VisualCard.Calendar.Parts.Implementations.ExDateInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Calendar.Parts.Implementations.ExDateInfo.html#VisualCard_Calendar_Parts_Implementations_ExDateInfo_GetHashCode
+  commentId: M:VisualCard.Calendar.Parts.Implementations.ExDateInfo.GetHashCode
+  fullName: VisualCard.Calendar.Parts.Implementations.ExDateInfo.GetHashCode()
+  nameWithType: ExDateInfo.GetHashCode()
+- uid: VisualCard.Calendar.Parts.Implementations.ExDateInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Calendar.Parts.Implementations.ExDateInfo.html#VisualCard_Calendar_Parts_Implementations_ExDateInfo_GetHashCode_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.ExDateInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.ExDateInfo.GetHashCode
+  nameWithType: ExDateInfo.GetHashCode
+- uid: VisualCard.Calendar.Parts.Implementations.ExDateInfo.op_Equality(VisualCard.Calendar.Parts.Implementations.ExDateInfo,VisualCard.Calendar.Parts.Implementations.ExDateInfo)
+  name: operator ==(ExDateInfo, ExDateInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.ExDateInfo.html#VisualCard_Calendar_Parts_Implementations_ExDateInfo_op_Equality_VisualCard_Calendar_Parts_Implementations_ExDateInfo_VisualCard_Calendar_Parts_Implementations_ExDateInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.ExDateInfo.op_Equality(VisualCard.Calendar.Parts.Implementations.ExDateInfo,VisualCard.Calendar.Parts.Implementations.ExDateInfo)
+  name.vb: =(ExDateInfo, ExDateInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.ExDateInfo.operator ==(VisualCard.Calendar.Parts.Implementations.ExDateInfo, VisualCard.Calendar.Parts.Implementations.ExDateInfo)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.ExDateInfo.=(VisualCard.Calendar.Parts.Implementations.ExDateInfo, VisualCard.Calendar.Parts.Implementations.ExDateInfo)
+  nameWithType: ExDateInfo.operator ==(ExDateInfo, ExDateInfo)
+  nameWithType.vb: ExDateInfo.=(ExDateInfo, ExDateInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.ExDateInfo.op_Equality*
+  name: operator ==
+  href: api/VisualCard.Calendar.Parts.Implementations.ExDateInfo.html#VisualCard_Calendar_Parts_Implementations_ExDateInfo_op_Equality_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.ExDateInfo.op_Equality
+  isSpec: "True"
+  name.vb: =
+  fullName: VisualCard.Calendar.Parts.Implementations.ExDateInfo.operator ==
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.ExDateInfo.=
+  nameWithType: ExDateInfo.operator ==
+  nameWithType.vb: ExDateInfo.=
+- uid: VisualCard.Calendar.Parts.Implementations.ExDateInfo.op_Inequality(VisualCard.Calendar.Parts.Implementations.ExDateInfo,VisualCard.Calendar.Parts.Implementations.ExDateInfo)
+  name: operator !=(ExDateInfo, ExDateInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.ExDateInfo.html#VisualCard_Calendar_Parts_Implementations_ExDateInfo_op_Inequality_VisualCard_Calendar_Parts_Implementations_ExDateInfo_VisualCard_Calendar_Parts_Implementations_ExDateInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.ExDateInfo.op_Inequality(VisualCard.Calendar.Parts.Implementations.ExDateInfo,VisualCard.Calendar.Parts.Implementations.ExDateInfo)
+  name.vb: <>(ExDateInfo, ExDateInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.ExDateInfo.operator !=(VisualCard.Calendar.Parts.Implementations.ExDateInfo, VisualCard.Calendar.Parts.Implementations.ExDateInfo)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.ExDateInfo.<>(VisualCard.Calendar.Parts.Implementations.ExDateInfo, VisualCard.Calendar.Parts.Implementations.ExDateInfo)
+  nameWithType: ExDateInfo.operator !=(ExDateInfo, ExDateInfo)
+  nameWithType.vb: ExDateInfo.<>(ExDateInfo, ExDateInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.ExDateInfo.op_Inequality*
+  name: operator !=
+  href: api/VisualCard.Calendar.Parts.Implementations.ExDateInfo.html#VisualCard_Calendar_Parts_Implementations_ExDateInfo_op_Inequality_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.ExDateInfo.op_Inequality
+  isSpec: "True"
+  name.vb: <>
+  fullName: VisualCard.Calendar.Parts.Implementations.ExDateInfo.operator !=
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.ExDateInfo.<>
+  nameWithType: ExDateInfo.operator !=
+  nameWithType.vb: ExDateInfo.<>
 - uid: VisualCard.Calendar.Parts.Implementations.GeoInfo
   name: GeoInfo
   href: api/VisualCard.Calendar.Parts.Implementations.GeoInfo.html
