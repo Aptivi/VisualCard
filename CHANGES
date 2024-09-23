@@ -1,17 +1,10 @@
-We've improved the vCalendar implementation to a great degree where we've added almost everything!
+We've made a small minor version that improves time zone offset support!
 
 ### Changes
 
 This release contains a variety of changes, including, but not limited to:
 
-- `[+]` Added a lot of vCalendar properties
-- `[+]` Added all calendar components
-- `[+]` Added full nullable support
-- `[+]` Added full calendar saving
-- `[+]` Added calendar component comparison
-- `[*]` Improved calendar event and component querying
-- `[*]` Improved validation code
-- `[*]` General improvements and bug fixes
+- `[*]` Improved time zone offset support
 
 Review the commit history if you want to get a deep insight about the changes.
 
