@@ -1814,6 +1814,12 @@ references:
   commentId: F:VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.Attendee
   fullName: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.Attendee
   nameWithType: CalendarPartsArrayEnum.Attendee
+- uid: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.AudioAlarm
+  name: AudioAlarm
+  href: api/VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.html#VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_AudioAlarm
+  commentId: F:VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.AudioAlarm
+  fullName: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.AudioAlarm
+  nameWithType: CalendarPartsArrayEnum.AudioAlarm
 - uid: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.Categories
   name: Categories
   href: api/VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.html#VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_Categories
@@ -1868,6 +1874,12 @@ references:
   commentId: F:VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.Daylight
   fullName: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.Daylight
   nameWithType: CalendarPartsArrayEnum.Daylight
+- uid: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.DisplayAlarm
+  name: DisplayAlarm
+  href: api/VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.html#VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_DisplayAlarm
+  commentId: F:VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.DisplayAlarm
+  fullName: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.DisplayAlarm
+  nameWithType: CalendarPartsArrayEnum.DisplayAlarm
 - uid: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.DueDate
   name: DueDate
   href: api/VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.html#VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_DueDate
@@ -1892,6 +1904,18 @@ references:
   commentId: F:VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.NonstandardNames
   fullName: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.NonstandardNames
   nameWithType: CalendarPartsArrayEnum.NonstandardNames
+- uid: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.NoteAlarm
+  name: NoteAlarm
+  href: api/VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.html#VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_NoteAlarm
+  commentId: F:VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.NoteAlarm
+  fullName: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.NoteAlarm
+  nameWithType: CalendarPartsArrayEnum.NoteAlarm
+- uid: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.ProcedureAlarm
+  name: ProcedureAlarm
+  href: api/VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.html#VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_ProcedureAlarm
+  commentId: F:VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.ProcedureAlarm
+  fullName: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.ProcedureAlarm
+  nameWithType: CalendarPartsArrayEnum.ProcedureAlarm
 - uid: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.RecDate
   name: RecDate
   href: api/VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.html#VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_RecDate
@@ -2970,6 +2994,143 @@ references:
   commentId: N:VisualCard.Calendar.Parts.Implementations.Legacy
   fullName: VisualCard.Calendar.Parts.Implementations.Legacy
   nameWithType: VisualCard.Calendar.Parts.Implementations.Legacy
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo
+  name: AudioAlarmInfo
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.html
+  commentId: T:VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo
+  nameWithType: AudioAlarmInfo
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.AudioResource
+  name: AudioResource
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_AudioAlarmInfo_AudioResource
+  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.AudioResource
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.AudioResource
+  nameWithType: AudioAlarmInfo.AudioResource
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.AudioResource*
+  name: AudioResource
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_AudioAlarmInfo_AudioResource_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.AudioResource
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.AudioResource
+  nameWithType: AudioAlarmInfo.AudioResource
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.Equals(System.Object)
+  name: Equals(object)
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_AudioAlarmInfo_Equals_System_Object_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.Equals(object)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.Equals(Object)
+  nameWithType: AudioAlarmInfo.Equals(object)
+  nameWithType.vb: AudioAlarmInfo.Equals(Object)
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo)
+  name: Equals(AudioAlarmInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_AudioAlarmInfo_Equals_VisualCard_Calendar_Parts_Implementations_Legacy_AudioAlarmInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo)
+  nameWithType: AudioAlarmInfo.Equals(AudioAlarmInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo,VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo)
+  name: Equals(AudioAlarmInfo, AudioAlarmInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_AudioAlarmInfo_Equals_VisualCard_Calendar_Parts_Implementations_Legacy_AudioAlarmInfo_VisualCard_Calendar_Parts_Implementations_Legacy_AudioAlarmInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo,VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo, VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo)
+  nameWithType: AudioAlarmInfo.Equals(AudioAlarmInfo, AudioAlarmInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_AudioAlarmInfo_Equals_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.Equals
+  nameWithType: AudioAlarmInfo.Equals
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_AudioAlarmInfo_GetHashCode
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.GetHashCode
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.GetHashCode()
+  nameWithType: AudioAlarmInfo.GetHashCode()
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_AudioAlarmInfo_GetHashCode_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.GetHashCode
+  nameWithType: AudioAlarmInfo.GetHashCode
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.RepeatCount
+  name: RepeatCount
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_AudioAlarmInfo_RepeatCount
+  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.RepeatCount
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.RepeatCount
+  nameWithType: AudioAlarmInfo.RepeatCount
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.RepeatCount*
+  name: RepeatCount
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_AudioAlarmInfo_RepeatCount_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.RepeatCount
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.RepeatCount
+  nameWithType: AudioAlarmInfo.RepeatCount
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.RunTime
+  name: RunTime
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_AudioAlarmInfo_RunTime
+  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.RunTime
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.RunTime
+  nameWithType: AudioAlarmInfo.RunTime
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.RunTime*
+  name: RunTime
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_AudioAlarmInfo_RunTime_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.RunTime
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.RunTime
+  nameWithType: AudioAlarmInfo.RunTime
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.SnoozeTime
+  name: SnoozeTime
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_AudioAlarmInfo_SnoozeTime
+  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.SnoozeTime
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.SnoozeTime
+  nameWithType: AudioAlarmInfo.SnoozeTime
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.SnoozeTime*
+  name: SnoozeTime
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_AudioAlarmInfo_SnoozeTime_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.SnoozeTime
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.SnoozeTime
+  nameWithType: AudioAlarmInfo.SnoozeTime
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.op_Equality(VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo,VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo)
+  name: operator ==(AudioAlarmInfo, AudioAlarmInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_AudioAlarmInfo_op_Equality_VisualCard_Calendar_Parts_Implementations_Legacy_AudioAlarmInfo_VisualCard_Calendar_Parts_Implementations_Legacy_AudioAlarmInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.op_Equality(VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo,VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo)
+  name.vb: =(AudioAlarmInfo, AudioAlarmInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.operator ==(VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo, VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.=(VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo, VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo)
+  nameWithType: AudioAlarmInfo.operator ==(AudioAlarmInfo, AudioAlarmInfo)
+  nameWithType.vb: AudioAlarmInfo.=(AudioAlarmInfo, AudioAlarmInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.op_Equality*
+  name: operator ==
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_AudioAlarmInfo_op_Equality_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.op_Equality
+  isSpec: "True"
+  name.vb: =
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.operator ==
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.=
+  nameWithType: AudioAlarmInfo.operator ==
+  nameWithType.vb: AudioAlarmInfo.=
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.op_Inequality(VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo,VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo)
+  name: operator !=(AudioAlarmInfo, AudioAlarmInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_AudioAlarmInfo_op_Inequality_VisualCard_Calendar_Parts_Implementations_Legacy_AudioAlarmInfo_VisualCard_Calendar_Parts_Implementations_Legacy_AudioAlarmInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.op_Inequality(VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo,VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo)
+  name.vb: <>(AudioAlarmInfo, AudioAlarmInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.operator !=(VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo, VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.<>(VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo, VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo)
+  nameWithType: AudioAlarmInfo.operator !=(AudioAlarmInfo, AudioAlarmInfo)
+  nameWithType.vb: AudioAlarmInfo.<>(AudioAlarmInfo, AudioAlarmInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.op_Inequality*
+  name: operator !=
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_AudioAlarmInfo_op_Inequality_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.op_Inequality
+  isSpec: "True"
+  name.vb: <>
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.operator !=
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.<>
+  nameWithType: AudioAlarmInfo.operator !=
+  nameWithType.vb: AudioAlarmInfo.<>
 - uid: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo
   name: DaylightInfo
   href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.html
@@ -3133,6 +3294,430 @@ references:
   fullName.vb: VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.<>
   nameWithType: DaylightInfo.operator !=
   nameWithType.vb: DaylightInfo.<>
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo
+  name: DisplayAlarmInfo
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.html
+  commentId: T:VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo
+  nameWithType: DisplayAlarmInfo
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.Display
+  name: Display
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DisplayAlarmInfo_Display
+  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.Display
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.Display
+  nameWithType: DisplayAlarmInfo.Display
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.Display*
+  name: Display
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DisplayAlarmInfo_Display_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.Display
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.Display
+  nameWithType: DisplayAlarmInfo.Display
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.Equals(System.Object)
+  name: Equals(object)
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DisplayAlarmInfo_Equals_System_Object_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.Equals(object)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.Equals(Object)
+  nameWithType: DisplayAlarmInfo.Equals(object)
+  nameWithType.vb: DisplayAlarmInfo.Equals(Object)
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo)
+  name: Equals(DisplayAlarmInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DisplayAlarmInfo_Equals_VisualCard_Calendar_Parts_Implementations_Legacy_DisplayAlarmInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo)
+  nameWithType: DisplayAlarmInfo.Equals(DisplayAlarmInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo,VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo)
+  name: Equals(DisplayAlarmInfo, DisplayAlarmInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DisplayAlarmInfo_Equals_VisualCard_Calendar_Parts_Implementations_Legacy_DisplayAlarmInfo_VisualCard_Calendar_Parts_Implementations_Legacy_DisplayAlarmInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo,VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo, VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo)
+  nameWithType: DisplayAlarmInfo.Equals(DisplayAlarmInfo, DisplayAlarmInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DisplayAlarmInfo_Equals_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.Equals
+  nameWithType: DisplayAlarmInfo.Equals
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DisplayAlarmInfo_GetHashCode
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.GetHashCode
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.GetHashCode()
+  nameWithType: DisplayAlarmInfo.GetHashCode()
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DisplayAlarmInfo_GetHashCode_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.GetHashCode
+  nameWithType: DisplayAlarmInfo.GetHashCode
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.RepeatCount
+  name: RepeatCount
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DisplayAlarmInfo_RepeatCount
+  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.RepeatCount
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.RepeatCount
+  nameWithType: DisplayAlarmInfo.RepeatCount
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.RepeatCount*
+  name: RepeatCount
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DisplayAlarmInfo_RepeatCount_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.RepeatCount
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.RepeatCount
+  nameWithType: DisplayAlarmInfo.RepeatCount
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.RunTime
+  name: RunTime
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DisplayAlarmInfo_RunTime
+  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.RunTime
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.RunTime
+  nameWithType: DisplayAlarmInfo.RunTime
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.RunTime*
+  name: RunTime
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DisplayAlarmInfo_RunTime_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.RunTime
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.RunTime
+  nameWithType: DisplayAlarmInfo.RunTime
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.SnoozeTime
+  name: SnoozeTime
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DisplayAlarmInfo_SnoozeTime
+  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.SnoozeTime
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.SnoozeTime
+  nameWithType: DisplayAlarmInfo.SnoozeTime
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.SnoozeTime*
+  name: SnoozeTime
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DisplayAlarmInfo_SnoozeTime_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.SnoozeTime
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.SnoozeTime
+  nameWithType: DisplayAlarmInfo.SnoozeTime
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.op_Equality(VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo,VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo)
+  name: operator ==(DisplayAlarmInfo, DisplayAlarmInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DisplayAlarmInfo_op_Equality_VisualCard_Calendar_Parts_Implementations_Legacy_DisplayAlarmInfo_VisualCard_Calendar_Parts_Implementations_Legacy_DisplayAlarmInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.op_Equality(VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo,VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo)
+  name.vb: =(DisplayAlarmInfo, DisplayAlarmInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.operator ==(VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo, VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.=(VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo, VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo)
+  nameWithType: DisplayAlarmInfo.operator ==(DisplayAlarmInfo, DisplayAlarmInfo)
+  nameWithType.vb: DisplayAlarmInfo.=(DisplayAlarmInfo, DisplayAlarmInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.op_Equality*
+  name: operator ==
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DisplayAlarmInfo_op_Equality_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.op_Equality
+  isSpec: "True"
+  name.vb: =
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.operator ==
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.=
+  nameWithType: DisplayAlarmInfo.operator ==
+  nameWithType.vb: DisplayAlarmInfo.=
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.op_Inequality(VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo,VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo)
+  name: operator !=(DisplayAlarmInfo, DisplayAlarmInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DisplayAlarmInfo_op_Inequality_VisualCard_Calendar_Parts_Implementations_Legacy_DisplayAlarmInfo_VisualCard_Calendar_Parts_Implementations_Legacy_DisplayAlarmInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.op_Inequality(VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo,VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo)
+  name.vb: <>(DisplayAlarmInfo, DisplayAlarmInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.operator !=(VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo, VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.<>(VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo, VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo)
+  nameWithType: DisplayAlarmInfo.operator !=(DisplayAlarmInfo, DisplayAlarmInfo)
+  nameWithType.vb: DisplayAlarmInfo.<>(DisplayAlarmInfo, DisplayAlarmInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.op_Inequality*
+  name: operator !=
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DisplayAlarmInfo_op_Inequality_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.op_Inequality
+  isSpec: "True"
+  name.vb: <>
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.operator !=
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.<>
+  nameWithType: DisplayAlarmInfo.operator !=
+  nameWithType.vb: DisplayAlarmInfo.<>
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo
+  name: NoteAlarmInfo
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html
+  commentId: T:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo
+  nameWithType: NoteAlarmInfo
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Address
+  name: Address
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_Address
+  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Address
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Address
+  nameWithType: NoteAlarmInfo.Address
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Address*
+  name: Address
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_Address_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Address
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Address
+  nameWithType: NoteAlarmInfo.Address
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Equals(System.Object)
+  name: Equals(object)
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_Equals_System_Object_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Equals(object)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Equals(Object)
+  nameWithType: NoteAlarmInfo.Equals(object)
+  nameWithType.vb: NoteAlarmInfo.Equals(Object)
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo)
+  name: Equals(NoteAlarmInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_Equals_VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo)
+  nameWithType: NoteAlarmInfo.Equals(NoteAlarmInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo,VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo)
+  name: Equals(NoteAlarmInfo, NoteAlarmInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_Equals_VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo,VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo, VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo)
+  nameWithType: NoteAlarmInfo.Equals(NoteAlarmInfo, NoteAlarmInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_Equals_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Equals
+  nameWithType: NoteAlarmInfo.Equals
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_GetHashCode
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.GetHashCode
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.GetHashCode()
+  nameWithType: NoteAlarmInfo.GetHashCode()
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_GetHashCode_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.GetHashCode
+  nameWithType: NoteAlarmInfo.GetHashCode
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Note
+  name: Note
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_Note
+  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Note
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Note
+  nameWithType: NoteAlarmInfo.Note
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Note*
+  name: Note
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_Note_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Note
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Note
+  nameWithType: NoteAlarmInfo.Note
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.RepeatCount
+  name: RepeatCount
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_RepeatCount
+  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.RepeatCount
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.RepeatCount
+  nameWithType: NoteAlarmInfo.RepeatCount
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.RepeatCount*
+  name: RepeatCount
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_RepeatCount_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.RepeatCount
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.RepeatCount
+  nameWithType: NoteAlarmInfo.RepeatCount
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.RunTime
+  name: RunTime
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_RunTime
+  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.RunTime
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.RunTime
+  nameWithType: NoteAlarmInfo.RunTime
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.RunTime*
+  name: RunTime
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_RunTime_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.RunTime
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.RunTime
+  nameWithType: NoteAlarmInfo.RunTime
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.SnoozeTime
+  name: SnoozeTime
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_SnoozeTime
+  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.SnoozeTime
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.SnoozeTime
+  nameWithType: NoteAlarmInfo.SnoozeTime
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.SnoozeTime*
+  name: SnoozeTime
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_SnoozeTime_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.SnoozeTime
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.SnoozeTime
+  nameWithType: NoteAlarmInfo.SnoozeTime
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.op_Equality(VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo,VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo)
+  name: operator ==(NoteAlarmInfo, NoteAlarmInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_op_Equality_VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.op_Equality(VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo,VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo)
+  name.vb: =(NoteAlarmInfo, NoteAlarmInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.operator ==(VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo, VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.=(VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo, VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo)
+  nameWithType: NoteAlarmInfo.operator ==(NoteAlarmInfo, NoteAlarmInfo)
+  nameWithType.vb: NoteAlarmInfo.=(NoteAlarmInfo, NoteAlarmInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.op_Equality*
+  name: operator ==
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_op_Equality_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.op_Equality
+  isSpec: "True"
+  name.vb: =
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.operator ==
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.=
+  nameWithType: NoteAlarmInfo.operator ==
+  nameWithType.vb: NoteAlarmInfo.=
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.op_Inequality(VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo,VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo)
+  name: operator !=(NoteAlarmInfo, NoteAlarmInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_op_Inequality_VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.op_Inequality(VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo,VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo)
+  name.vb: <>(NoteAlarmInfo, NoteAlarmInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.operator !=(VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo, VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.<>(VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo, VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo)
+  nameWithType: NoteAlarmInfo.operator !=(NoteAlarmInfo, NoteAlarmInfo)
+  nameWithType.vb: NoteAlarmInfo.<>(NoteAlarmInfo, NoteAlarmInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.op_Inequality*
+  name: operator !=
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_op_Inequality_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.op_Inequality
+  isSpec: "True"
+  name.vb: <>
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.operator !=
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.<>
+  nameWithType: NoteAlarmInfo.operator !=
+  nameWithType.vb: NoteAlarmInfo.<>
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo
+  name: ProcedureAlarmInfo
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.html
+  commentId: T:VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo
+  nameWithType: ProcedureAlarmInfo
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.Equals(System.Object)
+  name: Equals(object)
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_ProcedureAlarmInfo_Equals_System_Object_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.Equals(object)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.Equals(Object)
+  nameWithType: ProcedureAlarmInfo.Equals(object)
+  nameWithType.vb: ProcedureAlarmInfo.Equals(Object)
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo)
+  name: Equals(ProcedureAlarmInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_ProcedureAlarmInfo_Equals_VisualCard_Calendar_Parts_Implementations_Legacy_ProcedureAlarmInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo)
+  nameWithType: ProcedureAlarmInfo.Equals(ProcedureAlarmInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo,VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo)
+  name: Equals(ProcedureAlarmInfo, ProcedureAlarmInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_ProcedureAlarmInfo_Equals_VisualCard_Calendar_Parts_Implementations_Legacy_ProcedureAlarmInfo_VisualCard_Calendar_Parts_Implementations_Legacy_ProcedureAlarmInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo,VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo, VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo)
+  nameWithType: ProcedureAlarmInfo.Equals(ProcedureAlarmInfo, ProcedureAlarmInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_ProcedureAlarmInfo_Equals_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.Equals
+  nameWithType: ProcedureAlarmInfo.Equals
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_ProcedureAlarmInfo_GetHashCode
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.GetHashCode
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.GetHashCode()
+  nameWithType: ProcedureAlarmInfo.GetHashCode()
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_ProcedureAlarmInfo_GetHashCode_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.GetHashCode
+  nameWithType: ProcedureAlarmInfo.GetHashCode
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.Procedure
+  name: Procedure
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_ProcedureAlarmInfo_Procedure
+  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.Procedure
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.Procedure
+  nameWithType: ProcedureAlarmInfo.Procedure
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.Procedure*
+  name: Procedure
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_ProcedureAlarmInfo_Procedure_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.Procedure
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.Procedure
+  nameWithType: ProcedureAlarmInfo.Procedure
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.RepeatCount
+  name: RepeatCount
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_ProcedureAlarmInfo_RepeatCount
+  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.RepeatCount
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.RepeatCount
+  nameWithType: ProcedureAlarmInfo.RepeatCount
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.RepeatCount*
+  name: RepeatCount
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_ProcedureAlarmInfo_RepeatCount_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.RepeatCount
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.RepeatCount
+  nameWithType: ProcedureAlarmInfo.RepeatCount
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.RunTime
+  name: RunTime
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_ProcedureAlarmInfo_RunTime
+  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.RunTime
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.RunTime
+  nameWithType: ProcedureAlarmInfo.RunTime
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.RunTime*
+  name: RunTime
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_ProcedureAlarmInfo_RunTime_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.RunTime
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.RunTime
+  nameWithType: ProcedureAlarmInfo.RunTime
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.SnoozeTime
+  name: SnoozeTime
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_ProcedureAlarmInfo_SnoozeTime
+  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.SnoozeTime
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.SnoozeTime
+  nameWithType: ProcedureAlarmInfo.SnoozeTime
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.SnoozeTime*
+  name: SnoozeTime
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_ProcedureAlarmInfo_SnoozeTime_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.SnoozeTime
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.SnoozeTime
+  nameWithType: ProcedureAlarmInfo.SnoozeTime
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.op_Equality(VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo,VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo)
+  name: operator ==(ProcedureAlarmInfo, ProcedureAlarmInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_ProcedureAlarmInfo_op_Equality_VisualCard_Calendar_Parts_Implementations_Legacy_ProcedureAlarmInfo_VisualCard_Calendar_Parts_Implementations_Legacy_ProcedureAlarmInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.op_Equality(VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo,VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo)
+  name.vb: =(ProcedureAlarmInfo, ProcedureAlarmInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.operator ==(VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo, VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.=(VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo, VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo)
+  nameWithType: ProcedureAlarmInfo.operator ==(ProcedureAlarmInfo, ProcedureAlarmInfo)
+  nameWithType.vb: ProcedureAlarmInfo.=(ProcedureAlarmInfo, ProcedureAlarmInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.op_Equality*
+  name: operator ==
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_ProcedureAlarmInfo_op_Equality_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.op_Equality
+  isSpec: "True"
+  name.vb: =
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.operator ==
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.=
+  nameWithType: ProcedureAlarmInfo.operator ==
+  nameWithType.vb: ProcedureAlarmInfo.=
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.op_Inequality(VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo,VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo)
+  name: operator !=(ProcedureAlarmInfo, ProcedureAlarmInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_ProcedureAlarmInfo_op_Inequality_VisualCard_Calendar_Parts_Implementations_Legacy_ProcedureAlarmInfo_VisualCard_Calendar_Parts_Implementations_Legacy_ProcedureAlarmInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.op_Inequality(VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo,VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo)
+  name.vb: <>(ProcedureAlarmInfo, ProcedureAlarmInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.operator !=(VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo, VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.<>(VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo, VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo)
+  nameWithType: ProcedureAlarmInfo.operator !=(ProcedureAlarmInfo, ProcedureAlarmInfo)
+  nameWithType.vb: ProcedureAlarmInfo.<>(ProcedureAlarmInfo, ProcedureAlarmInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.op_Inequality*
+  name: operator !=
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_ProcedureAlarmInfo_op_Inequality_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.op_Inequality
+  isSpec: "True"
+  name.vb: <>
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.operator !=
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.<>
+  nameWithType: ProcedureAlarmInfo.operator !=
+  nameWithType.vb: ProcedureAlarmInfo.<>
 - uid: VisualCard.Calendar.Parts.Implementations.LocationInfo
   name: LocationInfo
   href: api/VisualCard.Calendar.Parts.Implementations.LocationInfo.html
