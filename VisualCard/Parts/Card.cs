@@ -61,6 +61,12 @@ namespace VisualCard.Parts
             GetString(StringsEnum.Uid);
 
         /// <summary>
+        /// Card kind
+        /// </summary>
+        public string CardKind =>
+            GetString(StringsEnum.Kind);
+
+        /// <summary>
         /// Gets a part array from a specified key
         /// </summary>
         /// <returns>An array of values or an empty part array []</returns>
@@ -114,7 +120,7 @@ namespace VisualCard.Parts
                 throw new InvalidOperationException($"Base type is not BaseCardPartInfo [{partType.BaseType.Name}] and the part type is [{partType.Name}] that doesn't represent card part.");
 
             // Check for version support
-            if (!VcardParserTools.EnumArrayTypeSupported(key, CardVersion))
+            if (!VcardParserTools.EnumArrayTypeSupported(key, CardVersion, CardKind))
                 return [];
 
             // Get the parts enumeration according to the type
