@@ -5301,6 +5301,19 @@ references:
   commentId: T:VisualCard.Parts.Card
   fullName: VisualCard.Parts.Card
   nameWithType: Card
+- uid: VisualCard.Parts.Card.CardKind
+  name: CardKind
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_CardKind
+  commentId: P:VisualCard.Parts.Card.CardKind
+  fullName: VisualCard.Parts.Card.CardKind
+  nameWithType: Card.CardKind
+- uid: VisualCard.Parts.Card.CardKind*
+  name: CardKind
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_CardKind_
+  commentId: Overload:VisualCard.Parts.Card.CardKind
+  isSpec: "True"
+  fullName: VisualCard.Parts.Card.CardKind
+  nameWithType: Card.CardKind
 - uid: VisualCard.Parts.Card.CardVersion
   name: CardVersion
   href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_CardVersion
