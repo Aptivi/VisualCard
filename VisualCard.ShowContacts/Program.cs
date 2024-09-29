@@ -23,7 +23,6 @@ using System.Linq;
 using Terminaux.Colors.Data;
 using Terminaux.Writer.ConsoleWriters;
 using VisualCard.Extras.Converters;
-using VisualCard.Extras;
 using VisualCard.Parts;
 using VisualCard.Parts.Enums;
 using VisualCard.Parts.Implementations;
