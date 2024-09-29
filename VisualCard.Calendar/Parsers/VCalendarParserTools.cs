@@ -56,10 +56,10 @@ namespace VisualCard.Calendar.Parsers
                     throw new InvalidOperationException("Invalid string enumeration type to get supported value"),
             };
         
-        internal static bool IntegerSupported(CalendarIntegersEnum integersEnum, Version calendarVersion, Type componentType) =>
+        internal static bool IntegerSupported(CalendarIntegersEnum integersEnum, Type componentType) =>
             integersEnum switch
             {
-                CalendarIntegersEnum.Priority => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo)),
+                CalendarIntegersEnum.Priority => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo)),
                 CalendarIntegersEnum.Sequence => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal)),
                 CalendarIntegersEnum.PercentComplete => TypeMatch(componentType, typeof(CalendarTodo)),
                 _ =>

@@ -81,6 +81,7 @@ namespace VisualCard.Calendar.Parsers
         internal const string _dueDateSpecifier = "DUE";
         internal const string _relationshipSpecifier = "RELATED-TO";
         internal const string _lastModSpecifier = "LAST-MODIFIED";
+        internal const string _prioritySpecifier = "PRIORITY";
         internal const string _xSpecifier = "X-";
         internal const string _typeArgumentSpecifier = "TYPE=";
         internal const string _valueArgumentSpecifier = "VALUE=";
@@ -99,7 +100,6 @@ namespace VisualCard.Calendar.Parsers
         internal const string _methodSpecifier = "METHOD";
         internal const string _locationSpecifier = "LOCATION";
         internal const string _commentSpecifier = "COMMENT";
-        internal const string _prioritySpecifier = "PRIORITY";
         internal const string _tzNameSpecifier = "TZNAME";
         internal const string _percentCompletionSpecifier = "PERCENT-COMPLETION";
     }

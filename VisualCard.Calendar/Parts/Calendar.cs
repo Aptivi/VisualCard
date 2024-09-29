@@ -231,12 +231,12 @@ namespace VisualCard.Calendar.Parts
         /// <param name="key">A key to use</param>
         /// <returns>A value or -1 if any other type either doesn't exist or the type is not supported by the card version</returns>
         public int GetInteger(CalendarIntegersEnum key) =>
-            GetInteger(key, version, integers);
+            GetInteger(key, integers);
 
-        internal int GetInteger(CalendarIntegersEnum key, Version version, Dictionary<CalendarIntegersEnum, int> integers)
+        internal int GetInteger(CalendarIntegersEnum key, Dictionary<CalendarIntegersEnum, int> integers)
         {
             // Check for version support
-            if (!VCalendarParserTools.IntegerSupported(key, version, GetType()))
+            if (!VCalendarParserTools.IntegerSupported(key, GetType()))
                 return -1;
 
             // Get the fallback value
@@ -285,7 +285,7 @@ namespace VisualCard.Calendar.Parts
             foreach (CalendarIntegersEnum integerEnum in integerEnums)
             {
                 // Get the integer value
-                int integerValue = GetInteger(integerEnum, version, integers);
+                int integerValue = GetInteger(integerEnum, integers);
                 if (integerValue == -1)
                     continue;
 
