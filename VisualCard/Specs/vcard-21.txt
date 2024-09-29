@@ -81,16 +81,16 @@ The cited references contain provisions which, through reference in this specifi
 •	ISO 9070, Information Processing—SGML support facilities—Registration Procedures for Public Text Owner Identifiers, 1990-02-01.
 •	ISO/IEC 9070, Information Technology—SGML Support Facilities—Registration Procedures for Public Text Owner Identifiers, Second Edition, International Organization for Standardization, April, 1991.
 •	ISO/IEC 11180, Postal addressing, International Organization for Standardization, 1993.
-•	Apple’s Representation of a Canonical Static DeviceID in The Telephony Suite, version 1.0, Apple Computer, Inc., 1993.
-•	Microsoft TAPI in Microsoft Windows 3.1 Telephony Programmers’ Guide, version 1.0, Microsoft Corporation, 1993.
+•	Apple's Representation of a Canonical Static DeviceID in The Telephony Suite, version 1.0, Apple Computer, Inc., 1993.
+•	Microsoft TAPI in Microsoft Windows 3.1 Telephony Programmers' Guide, version 1.0, Microsoft Corporation, 1993.
 •	RFC1521, MIME (Multipurpose Internet Mail Extensions) Part One: Mechanisms for Specifying and Describing the Format of Internet Message Bodies, Network Working Group, September, 1993.
 •	The Unicode Standard, Version 1.1: Version 1.0, Volume 1 (ISBN 0-201-56788-1), version 1.0, volume 2 (ISBN 0-20-60845-6) and Unicode Technical Report #4, The Unicode Standard, version 1.1, The Unicode Consortium, October, 1991. Both references to be published by Addison-Wesley.
 
  
 versit Update
 versit  is a multivendor development initiative of the communication and computer industries, founded by Apple, AT&T, IBM and Siemens. The versit parties believe that great potential exists in improving the nature of communications in the business world—permitting companies to better manage their quality, productivity, customer satisfaction and cost of operations, while expanding the market opportunities for a variety of product and service vendors. versit parties will jointly define and support open specifications that facilitate and promote the interoperability of advanced personal information and communication devices, networks and services.
-The versit vision is to enable diverse communication and computing devices, applications and services from competing vendors to interoperate in all environments. Through developing a series of specifications for interoperability among diverse communications and computing devices, applications, networks and services, versit ’s vision will become a reality.
-versit ’s primary development areas are in:
+The versit vision is to enable diverse communication and computing devices, applications and services from competing vendors to interoperate in all environments. Through developing a series of specifications for interoperability among diverse communications and computing devices, applications, networks and services, versit 's vision will become a reality.
+versit 's primary development areas are in:
 •	Personal Data Interchange (PDI)
 •	Computer Telephone Integration (CTI)
 •	Conferencing and Messaging (C&M)
@@ -199,7 +199,7 @@ Conceptually, a vCard Writer creates vCard data streams and a vCard Reader inter
 This specification provides for a clear-text encoding that is intended to be based on the syntax used by the MIME specification (RFC 1521).
 The encoding of this specification can be used in environments which are constrained to 7-bit transfer encodings, short line lengths, and low bandwidth. In addition, the encoding is simple in order to facilitate the implementation of reader and writer applications on small platforms, such as Personal Digital Assistants (PDA), cellular telephones, or alphanumeric pagers.
 2	Scope
-The vCard is intended to be used for exchanging information about people and resources. In today’s business environment, this information is typically exchanged on business cards. It is appropriate, then that this specification define this information in terms of a paradigm based on an electronic business card object.
+The vCard is intended to be used for exchanging information about people and resources. In today's business environment, this information is typically exchanged on business cards. It is appropriate, then that this specification define this information in terms of a paradigm based on an electronic business card object.
 The ultimate destination for this information is often a collection of business cards, Rolodex® file, or electronic contact manager. Prior to the introduction of the vCard specification, users of such applications typically had to re-key the original information, often transcribing it from paper business cards. With the advent of the vCard specification, this information can be exchanged in an automated fashion.
 The basis for the data types supported by this specification have their origin in openly defined, international standards and in additional capabilities based on enhancements suggested by the demonstration of the exchange of prototypical vCards using the Internet based World-Wide-Web, Infra-red data transport, and simultaneous voice and data (SVD) modems.
 The "person" object defined by the CCITT X.500 Series Recommendation for Directory Services was the primary reference for the properties that are defined by this specification. Every attempt was made to make it possible to map the X.520/X.521 attributes and objects into and out of an instance of a vCard. The vCard specification has extended the capabilities that have been defined within the CCITT X.500 Series Recommendation to allow the exchange of additional information often recorded on business cards and electronic contact managers. For example, this specification provides support for exchanging graphic images representing company logos, photographs of individuals, geo-positioning information, and other extensions to properties defined by the X.500 Recommendation.
@@ -245,15 +245,15 @@ The vCard object is terminated with either the logical end of the data stream or
 END:VCARD
 .2	Property
 A property is the definition of an individual attribute describing the vCard. A property takes the following form:
-PropertyName [‘;‘ PropertyParameters] ’:‘ PropertyValue
+PropertyName [';' PropertyParameters] ':' PropertyValue
 as shown in the following example:
 TEL;HOME:+1-919-555-1234
 A property takes the form of one or more lines of text. The specification of property names and property parameters is case insensitive. The property name can be one of a set of pre-defined strings. The property name, along with an optional grouping label, must appear as the first characters on a line. In the previous example, "TEL" is the name of the Telephone Number property. Property values are specified as strings. In the previous example, "+1-919-555-1234" is the formatted value for the Telephone Number property.
 A property value can be further qualified with a property parameter expression. Property parameter expressions are delimited from the property name with a Semi-colon character (ASCII 59). A Semi-colon in a property parameter value must be escaped with a Backslash character (ASCII 92). The property parameter expressions are specified as either a name=value or a value string. The value string can be specified alone in those cases where the value is unambiguous. For example a complete property parameter specification might be:
-NOTE;ENCODING=QUOTED-PRINTABLE:Don’t remember to order Girl=
+NOTE;ENCODING=QUOTED-PRINTABLE:Don't remember to order Girl=
   Scout cookies from Stacey today!	//Full property parameter expression
 A valid short version of the same property parameter specification might be:
-NOTE;QUOTED-PRINTABLE:Don’t remember to order Girl=
+NOTE;QUOTED-PRINTABLE:Don't remember to order Girl=
   Scout cookies from Stacey today!	//Full property parameter expression
 .3	Delimiters
 Individual lines within the vCard data stream are delimited by the (RFC 822) line break, which is a CRLF sequence (ASCII decimal 13, followed by ASCII decimal 10). Long lines of text can be split into a multiple-line representation using the RFC 822 "folding" technique. That is, wherever there may be linear white space (NOT simply LWSP-chars), a CRLF immediately followed by at least one LWSP-char may instead be inserted. For example the line:
@@ -311,7 +311,7 @@ FN:Mr. John Q. Public, Esq.
 Support for this property is optional for vCard Writers conforming to this specification.
 .2	Name
 This property specifies a structured representation of the name of the person, place or thing associated with the vCard object.
-This property is identified by the property name N. This property is defined to encapsulate the individual components of an object’s name. The property value consists of the components of the name specified as positional fields separated by the Field Delimiter character (ASCII decimal 59). The property value is a concatenation of the Family Name (first field), Given Name (second field), Additional Names (third field), Name Prefix (fourth field), and Name Suffix (fifth field) strings. The following is an example of the Name property for a person:
+This property is identified by the property name N. This property is defined to encapsulate the individual components of an object's name. The property value consists of the components of the name specified as positional fields separated by the Field Delimiter character (ASCII decimal 59). The property value is a concatenation of the Family Name (first field), Given Name (second field), Additional Names (third field), Name Prefix (fourth field), and Name Suffix (fifth field) strings. The following is an example of the Name property for a person:
 N:Public;John;Quinlan;Mr.;Esq.
 The following is an example of the Name property for a resource or place:
 N:Veni, Vidi, Vici;The Restaurant.
@@ -413,8 +413,8 @@ These property types are concerned with information associated with the telecomm
 This property specifies the canonical number string for a telephone number for telephony communication with the vCard object. The value of this property is specified in a canonical form in order to specify an unambiguous representation of the globally unique telephony endpoint. This property is based on the X.520 Telephone Number attribute.
 The canonical form cannot be dialed without first being transformed by a dialing algorithm. The dialing algorithm combines the canonical number string with knowledge of the local dialing procedures, in effect at the time of call placement to produce actual dialing instructions. The actual dialing algorithm is outside the scope of this specification.
 Two important canonical forms allowed by this specification are:
-•	Apple Computer’s Representation of a Canonical Static DeviceID in The Telephony Suite, version 1.0,
-•	Microsoft TAPI in the Microsoft Windows 3.1 Telephony Programmer’s Guide, version 1.0.
+•	Apple Computer's Representation of a Canonical Static DeviceID in The Telephony Suite, version 1.0,
+•	Microsoft TAPI in the Microsoft Windows 3.1 Telephony Programmer's Guide, version 1.0.
 Software which creates this property can store a string in these allowed formats. Dialing software should be prepared to parse numbers from either of the supported formats; as neither format is considered to be technically costly to support.
 This property is identified by the property name TEL. An example of this property follows:
 TEL;PREF;WORK;MSG;FAX:+1-800-555-1234
@@ -610,7 +610,7 @@ Indicates a X.509 public key certificate type of key	X509
 Indicates an IETF PGP type of key	PGP
 8	Miscellaneous Properties
 .1	Extensions
-The vCard provides a "standard mechanism for doing non-standard things". This extension support is provided for implementers to "push the envelope" on the existing version of the specification. Extension properties are specified by property and/or property parameter names that have the initial sub-string of X- (the two character sequence: Capital X character followed by the Dash character. It is recommended that vendors concatenate onto this sentinel an added short sub-string to identify the vendor. This will facilitate readability of the extensions and minimize possible collision of names between different vendors. For example, the following might be the ABC vendor’s extension for a video-clip form of identification property:
+The vCard provides a "standard mechanism for doing non-standard things". This extension support is provided for implementers to "push the envelope" on the existing version of the specification. Extension properties are specified by property and/or property parameter names that have the initial sub-string of X- (the two character sequence: Capital X character followed by the Dash character. It is recommended that vendors concatenate onto this sentinel an added short sub-string to identify the vendor. This will facilitate readability of the extensions and minimize possible collision of names between different vendors. For example, the following might be the ABC vendor's extension for a video-clip form of identification property:
 X-ABC-VIDEO;MPEG2:http://lonestar.bubbas.org/billibob.mpg
 or, the following example might be an extension for grouping vCard objects into a distribution list for the Design Work Group. 
 BEGIN:VCARD
@@ -831,7 +831,7 @@ Steve:
 I am not in the office today. You may want to try
 reaching me either on my cellular telephone or fax your
 new ideas to my office.
-Let’s setup a face-to-face meeting later this week, after I review
+Let's setup a face-to-face meeting later this week, after I review
 your updated material. I am including a picture in my business card
 data, since we have not met yet.
 -- John
@@ -1006,11 +1006,11 @@ Send my Versitcard to this <b>internet</b> email address:
 Section 4 : UI Support Recommendations
 When  integrating vCard support into an application, an implementor needs to consider a number of user interface (UI) implications. Most applications provide some levels of support for interacting with other applications. This is usually accomplished in three ways. These include the File System, Clipboard, and Drag/Drop. The full potential of the vCard technology can be better utilized if an application supports the vCard in each of these UI actions.
 1	File System
-It is recommended that applications integrating support for vCard specification provide support for importing and exporting vCard objects from the operating system’s file system. In operating systems that support file types, it is recommended that a file type of VCF be used to distinguish the vCard objects. Applications should make use of the file system capabilities to support the FileOpen and FileSaveAs, or their equivalent function, of a vCard object.
+It is recommended that applications integrating support for vCard specification provide support for importing and exporting vCard objects from the operating system's file system. In operating systems that support file types, it is recommended that a file type of VCF be used to distinguish the vCard objects. Applications should make use of the file system capabilities to support the FileOpen and FileSaveAs, or their equivalent function, of a vCard object.
 2	Clipboard
-It is recommended that applications integrating support for the vCard specification provide UI capabilities for exchanging vCard objects through the operating system’s clipboard. In operating systems that provide support for registering clipboard format types, it is recommended that the vCard object be registered using the string +//ISBN 1-887687-00-9::versit::PDI//vCard. This string is an ISO 9070 Formal Public Identifier (FPI). Applications should make use of the operating system’s clipboard capability to support the Cut, Copy, and Paste, or their equivalent function, of a vCard object. Applications copying a vCard to the clipboard should put the vCard object on to the clipboard in both the vCard registered format and a plain text format.
+It is recommended that applications integrating support for the vCard specification provide UI capabilities for exchanging vCard objects through the operating system's clipboard. In operating systems that provide support for registering clipboard format types, it is recommended that the vCard object be registered using the string +//ISBN 1-887687-00-9::versit::PDI//vCard. This string is an ISO 9070 Formal Public Identifier (FPI). Applications should make use of the operating system's clipboard capability to support the Cut, Copy, and Paste, or their equivalent function, of a vCard object. Applications copying a vCard to the clipboard should put the vCard object on to the clipboard in both the vCard registered format and a plain text format.
 3	Drag/Drop
-It is recommended that applications integrating support for the vCard specification provide UI capabilities for exchanging vCard objects through the operating system’s drag/drop capability. In operating systems that provide support for registering drag/drop object types, it is recommended that the vCard object be registered using the string +//ISBN 1-887687-00-9::versit::PDI//vCard. This string is an ISO 9070 Formal Public Identifier (FPI). Applications should make use of the operating system’s drag/drop capability to enable the application to act as either a Drag Source and Drag Target, or their equivalent function, of a vcard object. Applications acting as a Drag Source should advertise their ability to render the vCard in both the vCard registered format and a plain text format
+It is recommended that applications integrating support for the vCard specification provide UI capabilities for exchanging vCard objects through the operating system's drag/drop capability. In operating systems that provide support for registering drag/drop object types, it is recommended that the vCard object be registered using the string +//ISBN 1-887687-00-9::versit::PDI//vCard. This string is an ISO 9070 Formal Public Identifier (FPI). Applications should make use of the operating system's drag/drop capability to enable the application to act as either a Drag Source and Drag Target, or their equivalent function, of a vcard object. Applications acting as a Drag Source should advertise their ability to render the vCard in both the vCard registered format and a plain text format
 Where an operating system environment provided multiple drag/drop protocols (e.g., file specification or clipboard based), it is recommended that an implementation provide negotiated support for both. For example, the file specification based drag/drop protocol is useful when dragging a desktop file object or a web based URL to a target application. In addition, the clipboard based drag/drop protocol is useful when dragging an event or todo from a source within an application to a target in another application. Supporting just one of these mechanisms will unnecessarily lead to a lack of interoperability between applications supporting this specifications.
 . 
 

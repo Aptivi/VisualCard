@@ -34,7 +34,7 @@ John Hansen, Starfish Software	Niraj Jain, Oracle Corporation
 Del Jensen, Novell	Bruce M. Johnston, Lotus Development Corporation
 Dr. Mark K. Joseph, Attachmate Corporation	Bruce Kahn, Iris Associates
 Don Lavange, Novell	Larry Mason, Microsystems Software, Inc.
-Skip Montanaro, Automatrix, Inc.	Pete O’Leary, Clear Blue Networking Systems, Inc.
+Skip Montanaro, Automatrix, Inc.	Pete O'Leary, Clear Blue Networking Systems, Inc.
 Ron Rassner, Creative Networks, Inc.	Vinod Seraphin, Lotus Development Corporation
 Uppili Srivivasan, Oracle Corporation	Tom Steppe, OnTime/Divison of FTP Software
 Dean Stevens, Now Software, Inc.	Budi Sutardja
@@ -59,8 +59,8 @@ The cited references contain provisions which, through reference in this specifi
  
 versit Update
 versit  is a multivendor development initiative of the communication and computer industries, founded by Apple, AT&T, IBM and Siemens. The versit parties believe that great potential exists in improving the nature of communications in the business world—permitting companies to better manage their quality, productivity, customer satisfaction and cost of operations, while expanding the market opportunities for a variety of product and service vendors. versit parties will jointly define and support open specifications that facilitate and promote the interoperability of advanced personal information and communication devices, networks and services.
-The versit vision is to enable diverse communication and computing devices, applications and services from competing vendors to interoperate in all environments. Through developing a series of specifications for interoperability among diverse communications and computing devices, applications, networks and services, versit ’s vision will become a reality.
-versit ’s primary development areas are in:
+The versit vision is to enable diverse communication and computing devices, applications and services from competing vendors to interoperate in all environments. Through developing a series of specifications for interoperability among diverse communications and computing devices, applications, networks and services, versit 's vision will become a reality.
+versit 's primary development areas are in:
 •	Personal Data Interchange (PDI)
 •	Computer Telephone Integration (CTI)
 •	Conferencing and Messaging (C&M)
@@ -179,9 +179,9 @@ This specification provides for a clear-text encoding. The specification also in
 The clear-text encoding of this specification can be used in environments which are constrained to 7-bit transfer encodings, short line lengths, and low bandwidth. In addition, the encoding is simple in order to facilitate the implementation of reader and writer applications on small platforms, such as Personal Digital Assistants (PDA), cellular telephones, or alphanumeric pagers.
 2	Scope
 The vCalendar is intended to be used for exchanging information about event and todo types of calendaring and scheduling entities. An event is a calendaring and scheduling entity that represents a scheduled amount of time on a calendar. For example, it may be an activity; such as a one-hour, department meeting from 8 AM to 9 AM, tomorrow. A todo is a calendaring and scheduling entity that represents an action-item or assignment. For example, it may be an item of work assigned to an individual; such as "turn in travel expense today".
-In today’s business environment, this information is typically kept on a paper-based day-planner or calendar. More and more, this type of information is being also managed within electronic Personal Information Manager or Group Scheduling products. It is appropriate, then that this specification define this information in terms of a paradigm based on a calendaring  and scheduling event and todo entities.
+In today's business environment, this information is typically kept on a paper-based day-planner or calendar. More and more, this type of information is being also managed within electronic Personal Information Manager or Group Scheduling products. It is appropriate, then that this specification define this information in terms of a paradigm based on a calendaring  and scheduling event and todo entities.
 Prior to the introduction of the vCalendar specification, users of such applications typically had to re-key the original information, often transcribing it from paper day-planners, scraps of paper or electronic mail messages. With the advent of the vCalendar specification, this information can be exchanged in an automated and consistent fashion.
-The basis for this specification have their origin in openly defined, industry specifications; such as the X.400 API Association’s Calendaring and Scheduling API (CSA). In addition, this specification has capabilities that were derived from the experience of multi-vendor demonstrations of this capability.
+The basis for this specification have their origin in openly defined, industry specifications; such as the X.400 API Association's Calendaring and Scheduling API (CSA). In addition, this specification has capabilities that were derived from the experience of multi-vendor demonstrations of this capability.
 The specification of all date and time values are defined in terms of the ISO 8601 standard for representation of dates and times. The ISO 8601 standard supersedes all other international standards defined at the time this specification was drafted.
 Personal data applications such as Personal Information Managers (PIM) often provide an import/export capability using Comma Separated Value (CSV) or Tab Delimited Files (TDF) formats. However, these solutions do not preserve the intent of the originating application. When a CSV and TDF format is used by a PIM, the meta-data or semantics of the originating object are only apparent to a similar version of the originating application. Exchange of data between such applications is another important application of an industry-standard specification for an electronic calendaring and scheduling interchange format, such as the vCalendar specification.
 This specification is intended to be used as a format for exchange of calendaring and scheduling information from one product to another. This exchange may take place using desktop application interaction techniques; such as a file system FILE-OPEN or FILE-SAVE-AS functions, an operating systems clipboard CUT or COPY or PASTE operations, or a user interface DRAG and DROP interaction. In addition, this exchange may take place using a wired or wireless network transport; such as LAN or WAN protocols, switched telephone circuits, IrDA-based infra-red "beaming" of data, or emerging cellular data services. In any of these example cases, the vCalendar format is intended to be a transport- and platform-independent format for exchanging calendaring and scheduling personal data.
@@ -241,15 +241,15 @@ END:VTODO
 The vTodo entity can not be nested within another vTodo or vEvent entity. If vTodo entities need to be related to each other or to a vEvent entity, they can specify a relationship with the RELATED-TO property.
 .2	Property
 A property is the definition of an individual attribute describing the event or todo associated with the vCalendar. A property takes the following form:
-PropertyName [‘;‘ PropertyParameters] ’:‘ PropertyValue
+PropertyName [';' PropertyParameters] ':' PropertyValue
 as shown in the following example:
 DTSTART:19960415T083000
 A property takes the form of one or more lines of text. The specification of property names and property parameters is case insensitive. The property name can be one of a set of pre-defined strings. The property name must appear as the first characters on a line. In the previous example, "DTSTART" is the name of the Start Date/Time property. Property values are specified as strings. In the previous example, "19960415T083000" is the ISO 8601 formatted value for the Start Date/Time property.
 A property value can be further qualified with a property parameter expression. Property parameter expressions are delimited from the property name with a Semi-colon character (ASCII 59). A Semi-colon in a property parameter value must be escaped with a Backslash character (ASCII 92). The property parameter expressions are specified as either a name=value or a value string. The value string can be specified alone in those cases where the value is unambiguous. For example a complete property parameter specification might be:
-DESCRIPTION;ENCODING=QUOTED-PRINTABLE:Don’t forget to order Girl=
+DESCRIPTION;ENCODING=QUOTED-PRINTABLE:Don't forget to order Girl=
   Scout cookies from Stacey today!	//Full property parameter expression
 A valid short version of the same property parameter specification might be:
-DESCRIPTION;QUOTED-PRINTABLE:Don’t forget to order Girl=
+DESCRIPTION;QUOTED-PRINTABLE:Don't forget to order Girl=
   Scout cookies from Stacey today!	//Full property parameter expression
 .3	Delimiters
 Individual lines within the vCalendar data stream are delimited by the (RFC 822) line break, which is a CRLF sequence (ASCII decimal 13, followed by ASCII decimal 10). Long lines of text can be split into a multiple-line representation using the RFC 822 "folding" technique. That is, wherever there may be linear white space (NOT simply LWSP-chars), a CRLF immediately followed by at least one LWSP-char may instead be inserted. For example the line:
@@ -307,7 +307,7 @@ ATTACH;VALUE=URL:http://www.abc.com/dir_photos/my_photo.gif
 .10	Binary Values
 The vCalendar specification supports inclusion of binary information, such as computer graphic images (e.g., JPEG), digital audio (e.g., WAVE), or video graphic images (e.g., MPEG). The binary information can either be referenced with a Uniform Reference Locator (URL), referenced with a message using a MIME Content-ID of the MIME part that contains the content, or  placed inline in the vCalendar as the value of a property. Inline binary information is included as a property value after being character encoded using Base 64 (default) or Quoted-Printable encoding.
 .11	Basic Recurrence Rule Grammar
-The specification of recurring events can be simplified by the use of a grammar or rule notation. This specification makes use of the Base Recurrence Rule Grammar from the XAPIA’s CSA Specification.
+The specification of recurring events can be simplified by the use of a grammar or rule notation. This specification makes use of the Base Recurrence Rule Grammar from the XAPIA's CSA Specification.
 A recurrence rule is a string or clear-text encoding of a recurrence specification. A recurrence rule is composed of several components. A rule begins with a frequency which describes the type of repeating event (e.g., daily, weekly, etc.). This is followed by an interval which indicates how often the frequency repeats (i.e., daily, every third day, etc.). This can be followed by optional frequency modifier information and either an end date or a duration. 
 Below is the form of a typical rule. This example causes events to be generated every other week on Tuesday and Thursday, for 8 occurrences: 
 W2 TU TH #4
@@ -482,7 +482,7 @@ ATTACH;VALUE=CONTENT-ID:<jsmith.part3.960817T083000.xyzMail@host1.com>
 ATTACH;VALUE=URL:file://xyzCorp.com/pub/reports/r-960812.ps
 Support for this property is optional for implementations conforming to this specification.
 .2	Attendee
-This property is identified by the property name ATTENDEE. The property defines an attendee to a group event or todo. The default property value is an (RFC 822) address. The property may include property parameters ROLE, for the role of the attendee in the event or todo; STATUS, for the status of the attendee’s participation in the event or todo, RSVP, for indicating whether the favor of a reply is requested, and EXPECT, to indicate the expectation of the attendee’s participation by the originator.
+This property is identified by the property name ATTENDEE. The property defines an attendee to a group event or todo. The default property value is an (RFC 822) address. The property may include property parameters ROLE, for the role of the attendee in the event or todo; STATUS, for the status of the attendee's participation in the event or todo, RSVP, for indicating whether the favor of a reply is requested, and EXPECT, to indicate the expectation of the attendee's participation by the originator.
 Multiple attendees may be specified by including multiple ATTENDEE properties within the vCalendar entity.
 The property value may reference a vCard object. This provides a useful mechanism to allow more than just the address of the attendee to be referenced. 
 The ROLE property parameter for each attendee can have the following values:
@@ -523,7 +523,7 @@ Indicates presence is being requested 	REQUEST
 Indicates an immediate response needed.	IMMEDIATE
 
 The default value for this property parameter is FYI.
-The following is an example of this property’s use for a todo:
+The following is an example of this property's use for a todo:
 ATTENDEE;ROLE=OWNER;STATUS=COMPLETED:jsmith@host1.com
 The following is an example of this property used for specifying multiple attendees to an event:
 ATTENDEE;ROLE=OWNER;STATUS=CONFIRMED:John Smith <jsmith@host1.com>
@@ -603,7 +603,7 @@ DESCRIPTION;ENCODING=QUOTED-PRINTABLE:Meeting to provide technical=
    must attend this meeting. RSVP to team leader.
 The following is an examples of the property with folding of long lines:
 DESCRIPTION:Last draft of the new novel is to be completed
-   for the editor’s proof today.
+   for the editor's proof today.
 Support for this property is mandatory for implementations conforming to this specification.
 .9	Display Reminder
 This property is identified by the property name DALARM. The property defines a display reminder for the vCalendar entity. A display reminder is an alarm that is popped up into the user interface or otherwise visually displayed for the event. 
@@ -625,7 +625,7 @@ This property is identified by the property name EXDATE. This property defines t
 EXDATE:19960402T010000Z;19960403T010000Z;19960404T010000Z
 Support for this property is optional for implementations conforming to this specification.
 .13	Exception Rule
-This property is identified by the property name EXRULE. This property defines a rule or repeating pattern for an exception to a recurring vCalendar entity, based on the Basic Recurrence Rule Grammar of XAPIA’s CSA. The value for the property is a pattern specification for the recurrence exception. The following are some examples of this property:
+This property is identified by the property name EXRULE. This property defines a rule or repeating pattern for an exception to a recurring vCalendar entity, based on the Basic Recurrence Rule Grammar of XAPIA's CSA. The value for the property is a pattern specification for the recurrence exception. The following are some examples of this property:
 XRULE:W2 TU TH #2			// Except every other week, on Tuesday and Thursday
 							// for 4 occurrences
 XRULE:D1 #10				// Except daily for 10 occurrences
@@ -679,7 +679,7 @@ This property is identified by the property name RDATE. This property defines th
 RDATE:19960402T010000Z;19960403T010000Z;19960404T010000Z
 Support for this property is optional for implementations conforming to this specification.
 .22	Recurrence Rule
-This property is identified by the property name RRULE. This property defines a rule or repeating pattern for a recurring vCalendar entity, based on the Basic Recurrence Rule Grammar of XAPIA’s CSA. The value for the property is a pattern specification for the recurrence. The following is an example of this property:
+This property is identified by the property name RRULE. This property defines a rule or repeating pattern for a recurring vCalendar entity, based on the Basic Recurrence Rule Grammar of XAPIA's CSA. The value for the property is a pattern specification for the recurrence. The following is an example of this property:
 RRULE:W2 TU TH			// Every other week, on Tuesday and Thursday
 RRULE:D1 #10				// Daily for 10 occurrences
 RRULE:YM1 6 7 #8			// Yearly in June and July for 8 occurrences
@@ -749,7 +749,7 @@ This property is an important method for group scheduling applications to match 
 Support for this property is optional for implementations conforming to this specification.
 4	Miscellaneous Properties
 .1	Extensions
-The clear-text encoding provides a "standard mechanism for doing non-standard things". This extension support is provided for implementers to "push the envelope" on the existing version of the specification. Extension properties are specified by property and/or property parameter names that have the initial sub-string of X- (the two character sequence: Capital X character followed by the Dash character). It is recommended that vendors concatenate onto this sentinel an added short sub-string to identify the vendor. This will facilitate readability of the extensions and minimize possible collision of names between different vendors. All vCalendar Readers are expected to be able to interpret the extension properties and property parameters but may ignore them. The following might be the ABC vendor’s extension for an audio-clip form of subject property:
+The clear-text encoding provides a "standard mechanism for doing non-standard things". This extension support is provided for implementers to "push the envelope" on the existing version of the specification. Extension properties are specified by property and/or property parameter names that have the initial sub-string of X- (the two character sequence: Capital X character followed by the Dash character). It is recommended that vendors concatenate onto this sentinel an added short sub-string to identify the vendor. This will facilitate readability of the extensions and minimize possible collision of names between different vendors. All vCalendar Readers are expected to be able to interpret the extension properties and property parameters but may ignore them. The following might be the ABC vendor's extension for an audio-clip form of subject property:
 X-ABC-MMSUBJ;TYPE=WAV; VALUE=URL: http://load.noise.org/mysubj.wav
 At present, there is no registration authority for names of extension properties.
 Support for this property is mandatory for implementations conforming to this specification. However, an implementation may not be able to act on the extension property. Conformance only requires that an implementation be able to parse vCalendar data streams with extensions. The implementation need not act on them.
@@ -939,7 +939,7 @@ Sender: john.smith@host.com
 To: smartin@host2.com
 Message-ID: <JOHNSMITH.960125T091020.xyzMail@host3.com>
 
-Steve:  Thanks for the call earlier today. Let’s get together
+Steve:  Thanks for the call earlier today. Let's get together
 tomorrow at 8:30 AM EST to discuss your new proposal. Here is
 the meeting notice for your PIM.
 BEGIN:VCALENDAR
@@ -966,7 +966,7 @@ Message-ID: <ABC-1.00-Note-martin-steve-0824475754>
 --vCalendar
 Content-Type:text/plain; charset=us-ascii
 Content-Transfer-Encoding: 7bit
-John:  I can’t make that meeting at 8:30. How about doing it
+John:  I can't make that meeting at 8:30. How about doing it
 over lunch at noon?  Here is an action item for the meeting.
 --vCalendar
 Content-Type:text/plain; charset=us-ascii; name="MARTIN.VCS"
@@ -995,7 +995,7 @@ Message-ID: <ABC-1.00-Note-martin-steve-0824475754>
 --vCalendar
 Content-Type:text/plain; charset=us-ascii
 Content-Transfer-Encoding: 7bit
-John:  I can’t make that meeting at 8:30. How about doing it
+John:  I can't make that meeting at 8:30. How about doing it
 over lunch at noon?  Here is an event for your PIM. I have 
 also given you an action item for the meeting.
 --vCalendar
@@ -1008,7 +1008,7 @@ CATEGORIES:MEETING
 STATUS:NEEDS ACTION
 DTSTART:19960401T073000Z
 DTEND:19960401T083000Z
-SUMMARY:Steve’s Proposal Review
+SUMMARY:Steve's Proposal Review
 DESCRIPTION:Steve and John to review newest proposal material
 CLASS:PRIVATE
 END:VEVENT
@@ -1160,11 +1160,11 @@ The following example illustrates how a "month at a glance" type of information 
 Section 4 : UI Support Recommendations
 When  integrating vCalendar support into an application, an implementor needs to consider a number of user interface (UI) implications. Most applications provide some levels of support for interacting with other applications. This is usually accomplished in three ways. These include the File System, Clipboard, and Drag/Drop. The full potential of the vCalendar technology can be better utilized if an application supports the vCalendar in each of these UI actions.
 1	File System
-It is recommended that applications integrating support for vCalendar specification provide support for importing and exporting vCalendar objects from the operating system’s file system. In operating systems that support file types, it is recommended that a file type of VCS be used to distinguish the vCalendar objects. Applications should make use of the file system capabilities to support the FileOpen and FileSaveAs, or their equivalent function, of a vCalendar object.
+It is recommended that applications integrating support for vCalendar specification provide support for importing and exporting vCalendar objects from the operating system's file system. In operating systems that support file types, it is recommended that a file type of VCS be used to distinguish the vCalendar objects. Applications should make use of the file system capabilities to support the FileOpen and FileSaveAs, or their equivalent function, of a vCalendar object.
 2	Clipboard
-It is recommended that applications integrating support for the vCalendar specification provide UI capabilities for exchanging vCalendar objects through the operating system’s clipboard. In operating systems that provide support for registering clipboard format types, it is recommended that the vCalendar object be registered using the string +//ISBN 1-887687-00-9::versit::PDI//vCalendar. This string is an ISO 9070 Formal Public Identifier (FPI). Applications should make use of the operating system’s clipboard capability to support the Cut, Copy, and Paste, or their equivalent function, of a vCalendar object. Applications copying a vCalendar to the clipboard should put the vCalendar object on to the clipboard in both the vCalendar registered format and a plain text format.
+It is recommended that applications integrating support for the vCalendar specification provide UI capabilities for exchanging vCalendar objects through the operating system's clipboard. In operating systems that provide support for registering clipboard format types, it is recommended that the vCalendar object be registered using the string +//ISBN 1-887687-00-9::versit::PDI//vCalendar. This string is an ISO 9070 Formal Public Identifier (FPI). Applications should make use of the operating system's clipboard capability to support the Cut, Copy, and Paste, or their equivalent function, of a vCalendar object. Applications copying a vCalendar to the clipboard should put the vCalendar object on to the clipboard in both the vCalendar registered format and a plain text format.
 3	Drag/Drop
-It is recommended that applications integrating support for the vCalendar specification provide UI capabilities for exchanging vCalendar objects through the operating system’s drag/drop capability. In operating systems that provide support for registering drag/drop object types, it is recommended that the vCalendar object be registered using the string +//ISBN 1-887687-00-9::versit::PDI//vCalendar. This string is an ISO 9070 Formal Public Identifier (FPI). Applications should make use of the operating system’s drag/drop capability to enable the application to act as either a Drag Source and Drag Target, or their equivalent function, of a vCalendar object. Applications acting as a Drag Source should advertise their ability to render the vCalendar in both the vCalendar registered format and a plain text format.
+It is recommended that applications integrating support for the vCalendar specification provide UI capabilities for exchanging vCalendar objects through the operating system's drag/drop capability. In operating systems that provide support for registering drag/drop object types, it is recommended that the vCalendar object be registered using the string +//ISBN 1-887687-00-9::versit::PDI//vCalendar. This string is an ISO 9070 Formal Public Identifier (FPI). Applications should make use of the operating system's drag/drop capability to enable the application to act as either a Drag Source and Drag Target, or their equivalent function, of a vCalendar object. Applications acting as a Drag Source should advertise their ability to render the vCalendar in both the vCalendar registered format and a plain text format.
 Where an operating system environment provided multiple drag/drop protocols (e.g., file specification or clipboard based), it is recommended that an implementation provide negotiated support for both. For example, the file specification based drag/drop protocol is useful when dragging a desktop file object or a web based URL to a target application. In addition, the clipboard based drag/drop protocol is useful when dragging an event or todo from a source within an application to a target in another application. Supporting just one of these mechanisms will unnecessarily lead to a lack of interoperability between applications supporting this specifications.  
 Section 5 : Conformance
 In order for a vCalendar Reader or Writer to conform to this specification it must meet the following criteria:
