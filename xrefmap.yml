@@ -19,6 +19,12 @@ references:
   commentId: T:VisualCard.Calendar.CalendarTools
   fullName: VisualCard.Calendar.CalendarTools
   nameWithType: CalendarTools
+- uid: VisualCard.Calendar.CalendarTools.FPI
+  name: FPI
+  href: api/VisualCard.Calendar.CalendarTools.html#VisualCard_Calendar_CalendarTools_FPI
+  commentId: F:VisualCard.Calendar.CalendarTools.FPI
+  fullName: VisualCard.Calendar.CalendarTools.FPI
+  nameWithType: CalendarTools.FPI
 - uid: VisualCard.Calendar.CalendarTools.GetCalendars(System.IO.StreamReader)
   name: GetCalendars(StreamReader)
   href: api/VisualCard.Calendar.CalendarTools.html#VisualCard_Calendar_CalendarTools_GetCalendars_System_IO_StreamReader_
@@ -5060,6 +5066,12 @@ references:
   commentId: T:VisualCard.CardTools
   fullName: VisualCard.CardTools
   nameWithType: CardTools
+- uid: VisualCard.CardTools.FPI
+  name: FPI
+  href: api/VisualCard.CardTools.html#VisualCard_CardTools_FPI
+  commentId: F:VisualCard.CardTools.FPI
+  fullName: VisualCard.CardTools.FPI
+  nameWithType: CardTools.FPI
 - uid: VisualCard.CardTools.GetCards(System.IO.StreamReader)
   name: GetCards(StreamReader)
   href: api/VisualCard.CardTools.html#VisualCard_CardTools_GetCards_System_IO_StreamReader_
