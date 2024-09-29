@@ -69,6 +69,7 @@ namespace VisualCard.Parsers
             bool constructing = false;
             StringBuilder valueBuilder = new();
             string[] allowedTypes = ["HOME", "WORK", "PREF"];
+            string kind = "individual";
             for (int i = 0; i < CardContent.Length; i++)
             {
                 // Get line
@@ -184,7 +185,10 @@ namespace VisualCard.Parsers
 
                                 // Let VisualCard know that we've explicitly specified a kind.
                                 if (stringType == StringsEnum.Kind)
+                                {
+                                    kind = finalValue;
                                     card.kindExplicitlySpecified = true;
+                                }
 
                                 // Set the string for real
                                 card.SetString(stringType, finalValue);
@@ -194,7 +198,7 @@ namespace VisualCard.Parsers
                             {
                                 PartsArrayEnum partsArrayType = (PartsArrayEnum)enumeration;
                                 Type? partsArrayClass = classType;
-                                bool supported = VcardParserTools.EnumArrayTypeSupported(partsArrayType, CardVersion);
+                                bool supported = VcardParserTools.EnumArrayTypeSupported(partsArrayType, CardVersion, kind);
                                 if (!supported)
                                     continue;
                                 if (fromString is null)

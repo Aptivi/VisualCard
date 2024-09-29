@@ -95,7 +95,7 @@ namespace VisualCard.Parsers
                     throw new InvalidOperationException("Invalid string enumeration type to get supported value"),
             };
 
-        internal static bool EnumArrayTypeSupported(PartsArrayEnum partsArrayEnum, Version cardVersion) =>
+        internal static bool EnumArrayTypeSupported(PartsArrayEnum partsArrayEnum, Version cardVersion, string kind) =>
             partsArrayEnum switch
             {
                 PartsArrayEnum.Names => true,
