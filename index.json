@@ -249,21 +249,6 @@
     "title": "Class CardTools | VisualCard API - Aptivi",
     "keywords": "Class CardTools Module for VCard management Inheritance object CardTools Namespace: VisualCard Assembly: VisualCard.dll Syntax public static class CardTools Methods | Edit this page View Source GetCards(StreamReader) Gets the list of parsers for single/multiple contacts from the stream Declaration public static Card[] GetCards(StreamReader stream) Parameters Type Name Description StreamReader stream Stream containing the contacts Returns Type Description Card[] List of contact parsers for single or multiple contacts | Edit this page View Source GetCards(string) Gets the list of parsers for single/multiple contacts from the path Declaration public static Card[] GetCards(string Path) Parameters Type Name Description string Path Path to the contacts file Returns Type Description Card[] List of contact parsers for single or multiple contacts | Edit this page View Source GetCardsFromString(string) Gets the list of parsers for single/multiple contacts from the string Declaration public static Card[] GetCardsFromString(string cardText) Parameters Type Name Description string cardText Contacts text Returns Type Description Card[] List of contact parsers for single or multiple contacts"
   },
-  "api/VisualCard.Converters.AndroidContactsDb.html": {
-    "href": "api/VisualCard.Converters.AndroidContactsDb.html",
-    "title": "Class AndroidContactsDb | VisualCard API - Aptivi",
-    "keywords": "Class AndroidContactsDb Android contacts database management class Inheritance object AndroidContactsDb Namespace: VisualCard.Converters Assembly: VisualCard.dll Syntax public static class AndroidContactsDb Methods | Edit this page View Source GetContactsFromDb() Gets all contacts from the list of known Android database paths. This needs to be run strictly on a rooted Android device. Declaration public static Card[] GetContactsFromDb() Returns Type Description Card[] List of parsed cards from several known Android database paths Remarks Rooting your Android device will void your device's warranty and may cause your device to no longer work properly. It will have issues ranging from several applications (Samsung's Secure Folder, banking and e-payment (Google Pay) applications, and so on.) not being allowed to be run on such devices to Android failing to start. Your application that needs to extract contacts from such database needs to implement root checks. Exceptions Type Condition InvalidDataException | Edit this page View Source GetContactsFromDb(string) Gets all contacts from the Android database Declaration public static Card[] GetContactsFromDb(string pathToDb) Parameters Type Name Description string pathToDb Path to the valid contacts2.db file, usually fetched from /data/data/android.providers.contacts/databases/ found in the rooted Android devices Returns Type Description Card[] List of parsed cards from several known Android database paths Remarks Rooting your Android device will void your device's warranty and may cause your device to no longer work properly. It will have issues ranging from several applications (Samsung's Secure Folder, banking and e-payment (Google Pay) applications, and so on) not being allowed to be run on such devices to Android failing to start. Your application that needs to extract contacts from such database needs to implement root checks. Exceptions Type Condition FileNotFoundException InvalidDataException"
-  },
-  "api/VisualCard.Converters.MeCard.html": {
-    "href": "api/VisualCard.Converters.MeCard.html",
-    "title": "Class MeCard | VisualCard API - Aptivi",
-    "keywords": "Class MeCard MeCard string generator and converter Inheritance object MeCard Namespace: VisualCard.Converters Assembly: VisualCard.dll Syntax public static class MeCard Methods | Edit this page View Source GetContactsFromMeCardString(string) Gets all contacts from a MeCard string Declaration public static Card[] GetContactsFromMeCardString(string meCardString) Parameters Type Name Description string meCardString MeCard string Returns Type Description Card[] Exceptions Type Condition FileNotFoundException InvalidDataException | Edit this page View Source SaveCardToMeCardString(Card?, bool) Saves the vCard Card instance to a MeCard string for QR code generation Declaration public static string SaveCardToMeCardString(Card? card, bool compatibility = false) Parameters Type Name Description Card card Card instance bool compatibility Compatibility mode (excludes some MeCard values) Returns Type Description string A MeCard string"
-  },
-  "api/VisualCard.Converters.html": {
-    "href": "api/VisualCard.Converters.html",
-    "title": "Namespace VisualCard.Converters | VisualCard API - Aptivi",
-    "keywords": "Namespace VisualCard.Converters Classes AndroidContactsDb Android contacts database management class MeCard MeCard string generator and converter"
-  },
   "api/VisualCard.Exceptions.VCardParseException.html": {
     "href": "api/VisualCard.Exceptions.VCardParseException.html",
     "title": "Class VCardParseException | VisualCard API - Aptivi",
@@ -273,16 +258,6 @@
     "href": "api/VisualCard.Exceptions.html",
     "title": "Namespace VisualCard.Exceptions | VisualCard API - Aptivi",
     "keywords": "Namespace VisualCard.Exceptions Classes VCardParseException Exception of VCard parsing"
-  },
-  "api/VisualCard.Extras.CardGenerator.html": {
-    "href": "api/VisualCard.Extras.CardGenerator.html",
-    "title": "Class CardGenerator | VisualCard API - Aptivi",
-    "keywords": "Class CardGenerator A card generator Inheritance object CardGenerator Namespace: VisualCard.Extras Assembly: VisualCard.dll Syntax public static class CardGenerator Methods | Edit this page View Source GenerateCards(int, string, string, string, string, NameGenderType) Generates cards Declaration public static Card[] GenerateCards(int cards, string namePrefix = \"\", string nameSuffix = \"\", string surnamePrefix = \"\", string surnameSuffix = \"\", NameGenderType nameGender = NameGenderType.Unified) Parameters Type Name Description int cards Number of cards to generate string namePrefix Prefix of the first name string nameSuffix Suffix of the first name string surnamePrefix Prefix of the last name string surnameSuffix Suffix of the last name NameGenderType nameGender Name gender type Returns Type Description Card[] A list of generated cards or an empty array if cards is less than or equal to zero. | Edit this page View Source GenerateCards(string, string, string, string, NameGenderType) Generates cards Declaration public static Card[] GenerateCards(string namePrefix = \"\", string nameSuffix = \"\", string surnamePrefix = \"\", string surnameSuffix = \"\", NameGenderType nameGender = NameGenderType.Unified) Parameters Type Name Description string namePrefix Prefix of the first name string nameSuffix Suffix of the first name string surnamePrefix Prefix of the last name string surnameSuffix Suffix of the last name NameGenderType nameGender Name gender type Returns Type Description Card[] A list of generated cards (by default, it generates up to 100 cards.)"
-  },
-  "api/VisualCard.Extras.html": {
-    "href": "api/VisualCard.Extras.html",
-    "title": "Namespace VisualCard.Extras | VisualCard API - Aptivi",
-    "keywords": "Namespace VisualCard.Extras Classes CardGenerator A card generator"
   },
   "api/VisualCard.Parts.BaseCardPartInfo.html": {
     "href": "api/VisualCard.Parts.BaseCardPartInfo.html",

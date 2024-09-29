@@ -515,36 +515,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Converters.AndroidContactsDb.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Converters.AndroidContactsDb.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Converters.MeCard.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Converters.MeCard.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Converters.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Converters.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/VisualCard.Exceptions.VCardParseException.yml",
       "output": {
         ".html": {
@@ -559,26 +529,6 @@
       "output": {
         ".html": {
           "relative_path": "api/VisualCard.Exceptions.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Extras.CardGenerator.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Extras.CardGenerator.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Extras.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Extras.html"
         }
       },
       "version": ""
