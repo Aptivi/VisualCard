@@ -117,9 +117,9 @@ namespace VisualCard.Calendar.Parts.Enums
         /// </summary>
         DisplayAlarm,
         /// <summary>
-        /// Event/to-do alarm (note) (vCalendar 1.0)
+        /// Event/to-do alarm (mail) (vCalendar 1.0)
         /// </summary>
-        NoteAlarm,
+        MailAlarm,
         /// <summary>
         /// Event/to-do alarm (procedure) (vCalendar 1.0)
         /// </summary>

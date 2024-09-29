@@ -28,7 +28,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
     /// Event note alarm information
     /// </summary>
     [DebuggerDisplay("NoteAlarm = {Flag}")]
-    public class NoteAlarmInfo : BaseCalendarPartInfo, IEquatable<NoteAlarmInfo>
+    public class MailAlarmInfo : BaseCalendarPartInfo, IEquatable<MailAlarmInfo>
     {
         /// <summary>
         /// Alarm run time
@@ -46,7 +46,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
         public int RepeatCount { get; }
 
         /// <summary>
-        /// Address string
+        /// Mail address string
         /// </summary>
         public string? Address { get; }
 
@@ -56,12 +56,12 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
         public string? Note { get; }
 
         internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, string[] finalArgs, string[] elementTypes, string valueType, Version calendarVersion) =>
-            new NoteAlarmInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, calendarVersion);
+            new MailAlarmInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, calendarVersion);
 
         internal override string ToStringVcalendarInternal(Version calendarVersion)
         {
             string posixRunTime = VcardParserTools.SavePosixDate(RunTime);
-            return $"{posixRunTime};{SnoozeTime};{RepeatCount};{Note}";
+            return $"{posixRunTime};{SnoozeTime};{RepeatCount};{Address};{Note}";
         }
 
         internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, string[] finalArgs, string[] elementTypes, string valueType, Version calendarVersion)
@@ -83,29 +83,29 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
                 throw new ArgumentException("Invalid repeat times");
 
             // Populate the fields
-            NoteAlarmInfo info = new(finalArgs, elementTypes, valueType, runTime, snoozeTime, repeat, address, note);
+            MailAlarmInfo info = new(finalArgs, elementTypes, valueType, runTime, snoozeTime, repeat, address, note);
             return info;
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj) =>
-            Equals((NoteAlarmInfo)obj);
+            Equals((MailAlarmInfo)obj);
 
         /// <summary>
         /// Checks to see if both the parts are equal
         /// </summary>
-        /// <param name="other">The target <see cref="NoteAlarmInfo"/> instance to check to see if they equal</param>
+        /// <param name="other">The target <see cref="MailAlarmInfo"/> instance to check to see if they equal</param>
         /// <returns>True if all the part elements are equal. Otherwise, false.</returns>
-        public bool Equals(NoteAlarmInfo other) =>
+        public bool Equals(MailAlarmInfo other) =>
             Equals(this, other);
 
         /// <summary>
         /// Checks to see if both the parts are equal
         /// </summary>
-        /// <param name="source">The source <see cref="NoteAlarmInfo"/> instance to check to see if they equal</param>
-        /// <param name="target">The target <see cref="NoteAlarmInfo"/> instance to check to see if they equal</param>
+        /// <param name="source">The source <see cref="MailAlarmInfo"/> instance to check to see if they equal</param>
+        /// <param name="target">The target <see cref="MailAlarmInfo"/> instance to check to see if they equal</param>
         /// <returns>True if all the part elements are equal. Otherwise, false.</returns>
-        public bool Equals(NoteAlarmInfo source, NoteAlarmInfo target)
+        public bool Equals(MailAlarmInfo source, MailAlarmInfo target)
         {
             // We can't perform this operation on null.
             if (source is null || target is null)
@@ -135,19 +135,19 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
         }
 
         /// <inheritdoc/>
-        public static bool operator ==(NoteAlarmInfo left, NoteAlarmInfo right) =>
+        public static bool operator ==(MailAlarmInfo left, MailAlarmInfo right) =>
             left.Equals(right);
 
         /// <inheritdoc/>
-        public static bool operator !=(NoteAlarmInfo left, NoteAlarmInfo right) =>
+        public static bool operator !=(MailAlarmInfo left, MailAlarmInfo right) =>
             !(left == right);
 
         internal override bool EqualsInternal(BaseCalendarPartInfo source, BaseCalendarPartInfo target) =>
-            (NoteAlarmInfo)source == (NoteAlarmInfo)target;
+            (MailAlarmInfo)source == (MailAlarmInfo)target;
 
-        internal NoteAlarmInfo() { }
+        internal MailAlarmInfo() { }
 
-        internal NoteAlarmInfo(string[] arguments, string[] elementTypes, string valueType, DateTime runTime, string snoozeTime, int repeat, string address, string note) :
+        internal MailAlarmInfo(string[] arguments, string[] elementTypes, string valueType, DateTime runTime, string snoozeTime, int repeat, string address, string note) :
             base(arguments, elementTypes, valueType)
         {
             RunTime = runTime;
