@@ -335,10 +335,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.yml",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.yml",
       "output": {
         ".html": {
-          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html"
+          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.html"
         }
       },
       "version": ""

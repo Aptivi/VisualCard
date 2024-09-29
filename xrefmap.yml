@@ -1910,18 +1910,18 @@ references:
   commentId: F:VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.Location
   fullName: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.Location
   nameWithType: CalendarPartsArrayEnum.Location
+- uid: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.MailAlarm
+  name: MailAlarm
+  href: api/VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.html#VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_MailAlarm
+  commentId: F:VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.MailAlarm
+  fullName: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.MailAlarm
+  nameWithType: CalendarPartsArrayEnum.MailAlarm
 - uid: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.NonstandardNames
   name: NonstandardNames
   href: api/VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.html#VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_NonstandardNames
   commentId: F:VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.NonstandardNames
   fullName: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.NonstandardNames
   nameWithType: CalendarPartsArrayEnum.NonstandardNames
-- uid: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.NoteAlarm
-  name: NoteAlarm
-  href: api/VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.html#VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_NoteAlarm
-  commentId: F:VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.NoteAlarm
-  fullName: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.NoteAlarm
-  nameWithType: CalendarPartsArrayEnum.NoteAlarm
 - uid: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.ProcedureAlarm
   name: ProcedureAlarm
   href: api/VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.html#VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_ProcedureAlarm
@@ -3645,156 +3645,156 @@ references:
   fullName.vb: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.<>
   nameWithType: DisplayAlarmInfo.operator !=
   nameWithType.vb: DisplayAlarmInfo.<>
-- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo
-  name: NoteAlarmInfo
-  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html
-  commentId: T:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo
-  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo
-  nameWithType: NoteAlarmInfo
-- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Address
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo
+  name: MailAlarmInfo
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.html
+  commentId: T:VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo
+  nameWithType: MailAlarmInfo
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.Address
   name: Address
-  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_Address
-  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Address
-  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Address
-  nameWithType: NoteAlarmInfo.Address
-- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Address*
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_MailAlarmInfo_Address
+  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.Address
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.Address
+  nameWithType: MailAlarmInfo.Address
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.Address*
   name: Address
-  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_Address_
-  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Address
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_MailAlarmInfo_Address_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.Address
   isSpec: "True"
-  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Address
-  nameWithType: NoteAlarmInfo.Address
-- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Equals(System.Object)
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.Address
+  nameWithType: MailAlarmInfo.Address
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.Equals(System.Object)
   name: Equals(object)
-  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_Equals_System_Object_
-  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Equals(System.Object)
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_MailAlarmInfo_Equals_System_Object_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.Equals(System.Object)
   name.vb: Equals(Object)
-  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Equals(object)
-  fullName.vb: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Equals(Object)
-  nameWithType: NoteAlarmInfo.Equals(object)
-  nameWithType.vb: NoteAlarmInfo.Equals(Object)
-- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo)
-  name: Equals(NoteAlarmInfo)
-  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_Equals_VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_
-  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo)
-  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo)
-  nameWithType: NoteAlarmInfo.Equals(NoteAlarmInfo)
-- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo,VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo)
-  name: Equals(NoteAlarmInfo, NoteAlarmInfo)
-  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_Equals_VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_
-  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo,VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo)
-  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo, VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo)
-  nameWithType: NoteAlarmInfo.Equals(NoteAlarmInfo, NoteAlarmInfo)
-- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Equals*
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.Equals(object)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.Equals(Object)
+  nameWithType: MailAlarmInfo.Equals(object)
+  nameWithType.vb: MailAlarmInfo.Equals(Object)
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo)
+  name: Equals(MailAlarmInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_MailAlarmInfo_Equals_VisualCard_Calendar_Parts_Implementations_Legacy_MailAlarmInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo)
+  nameWithType: MailAlarmInfo.Equals(MailAlarmInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo,VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo)
+  name: Equals(MailAlarmInfo, MailAlarmInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_MailAlarmInfo_Equals_VisualCard_Calendar_Parts_Implementations_Legacy_MailAlarmInfo_VisualCard_Calendar_Parts_Implementations_Legacy_MailAlarmInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo,VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.Equals(VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo, VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo)
+  nameWithType: MailAlarmInfo.Equals(MailAlarmInfo, MailAlarmInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.Equals*
   name: Equals
-  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_Equals_
-  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Equals
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_MailAlarmInfo_Equals_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.Equals
   isSpec: "True"
-  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Equals
-  nameWithType: NoteAlarmInfo.Equals
-- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.GetHashCode
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.Equals
+  nameWithType: MailAlarmInfo.Equals
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.GetHashCode
   name: GetHashCode()
-  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_GetHashCode
-  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.GetHashCode
-  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.GetHashCode()
-  nameWithType: NoteAlarmInfo.GetHashCode()
-- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.GetHashCode*
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_MailAlarmInfo_GetHashCode
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.GetHashCode
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.GetHashCode()
+  nameWithType: MailAlarmInfo.GetHashCode()
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.GetHashCode*
   name: GetHashCode
-  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_GetHashCode_
-  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.GetHashCode
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_MailAlarmInfo_GetHashCode_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.GetHashCode
   isSpec: "True"
-  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.GetHashCode
-  nameWithType: NoteAlarmInfo.GetHashCode
-- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Note
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.GetHashCode
+  nameWithType: MailAlarmInfo.GetHashCode
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.Note
   name: Note
-  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_Note
-  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Note
-  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Note
-  nameWithType: NoteAlarmInfo.Note
-- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Note*
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_MailAlarmInfo_Note
+  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.Note
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.Note
+  nameWithType: MailAlarmInfo.Note
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.Note*
   name: Note
-  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_Note_
-  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Note
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_MailAlarmInfo_Note_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.Note
   isSpec: "True"
-  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.Note
-  nameWithType: NoteAlarmInfo.Note
-- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.RepeatCount
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.Note
+  nameWithType: MailAlarmInfo.Note
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.RepeatCount
   name: RepeatCount
-  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_RepeatCount
-  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.RepeatCount
-  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.RepeatCount
-  nameWithType: NoteAlarmInfo.RepeatCount
-- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.RepeatCount*
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_MailAlarmInfo_RepeatCount
+  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.RepeatCount
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.RepeatCount
+  nameWithType: MailAlarmInfo.RepeatCount
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.RepeatCount*
   name: RepeatCount
-  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_RepeatCount_
-  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.RepeatCount
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_MailAlarmInfo_RepeatCount_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.RepeatCount
   isSpec: "True"
-  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.RepeatCount
-  nameWithType: NoteAlarmInfo.RepeatCount
-- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.RunTime
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.RepeatCount
+  nameWithType: MailAlarmInfo.RepeatCount
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.RunTime
   name: RunTime
-  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_RunTime
-  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.RunTime
-  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.RunTime
-  nameWithType: NoteAlarmInfo.RunTime
-- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.RunTime*
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_MailAlarmInfo_RunTime
+  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.RunTime
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.RunTime
+  nameWithType: MailAlarmInfo.RunTime
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.RunTime*
   name: RunTime
-  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_RunTime_
-  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.RunTime
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_MailAlarmInfo_RunTime_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.RunTime
   isSpec: "True"
-  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.RunTime
-  nameWithType: NoteAlarmInfo.RunTime
-- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.SnoozeTime
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.RunTime
+  nameWithType: MailAlarmInfo.RunTime
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.SnoozeTime
   name: SnoozeTime
-  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_SnoozeTime
-  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.SnoozeTime
-  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.SnoozeTime
-  nameWithType: NoteAlarmInfo.SnoozeTime
-- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.SnoozeTime*
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_MailAlarmInfo_SnoozeTime
+  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.SnoozeTime
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.SnoozeTime
+  nameWithType: MailAlarmInfo.SnoozeTime
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.SnoozeTime*
   name: SnoozeTime
-  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_SnoozeTime_
-  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.SnoozeTime
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_MailAlarmInfo_SnoozeTime_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.SnoozeTime
   isSpec: "True"
-  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.SnoozeTime
-  nameWithType: NoteAlarmInfo.SnoozeTime
-- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.op_Equality(VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo,VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo)
-  name: operator ==(NoteAlarmInfo, NoteAlarmInfo)
-  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_op_Equality_VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_
-  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.op_Equality(VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo,VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo)
-  name.vb: =(NoteAlarmInfo, NoteAlarmInfo)
-  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.operator ==(VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo, VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo)
-  fullName.vb: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.=(VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo, VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo)
-  nameWithType: NoteAlarmInfo.operator ==(NoteAlarmInfo, NoteAlarmInfo)
-  nameWithType.vb: NoteAlarmInfo.=(NoteAlarmInfo, NoteAlarmInfo)
-- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.op_Equality*
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.SnoozeTime
+  nameWithType: MailAlarmInfo.SnoozeTime
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.op_Equality(VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo,VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo)
+  name: operator ==(MailAlarmInfo, MailAlarmInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_MailAlarmInfo_op_Equality_VisualCard_Calendar_Parts_Implementations_Legacy_MailAlarmInfo_VisualCard_Calendar_Parts_Implementations_Legacy_MailAlarmInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.op_Equality(VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo,VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo)
+  name.vb: =(MailAlarmInfo, MailAlarmInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.operator ==(VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo, VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.=(VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo, VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo)
+  nameWithType: MailAlarmInfo.operator ==(MailAlarmInfo, MailAlarmInfo)
+  nameWithType.vb: MailAlarmInfo.=(MailAlarmInfo, MailAlarmInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.op_Equality*
   name: operator ==
-  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_op_Equality_
-  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.op_Equality
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_MailAlarmInfo_op_Equality_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.op_Equality
   isSpec: "True"
   name.vb: =
-  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.operator ==
-  fullName.vb: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.=
-  nameWithType: NoteAlarmInfo.operator ==
-  nameWithType.vb: NoteAlarmInfo.=
-- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.op_Inequality(VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo,VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo)
-  name: operator !=(NoteAlarmInfo, NoteAlarmInfo)
-  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_op_Inequality_VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_
-  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.op_Inequality(VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo,VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo)
-  name.vb: <>(NoteAlarmInfo, NoteAlarmInfo)
-  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.operator !=(VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo, VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo)
-  fullName.vb: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.<>(VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo, VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo)
-  nameWithType: NoteAlarmInfo.operator !=(NoteAlarmInfo, NoteAlarmInfo)
-  nameWithType.vb: NoteAlarmInfo.<>(NoteAlarmInfo, NoteAlarmInfo)
-- uid: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.op_Inequality*
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.operator ==
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.=
+  nameWithType: MailAlarmInfo.operator ==
+  nameWithType.vb: MailAlarmInfo.=
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.op_Inequality(VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo,VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo)
+  name: operator !=(MailAlarmInfo, MailAlarmInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_MailAlarmInfo_op_Inequality_VisualCard_Calendar_Parts_Implementations_Legacy_MailAlarmInfo_VisualCard_Calendar_Parts_Implementations_Legacy_MailAlarmInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.op_Inequality(VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo,VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo)
+  name.vb: <>(MailAlarmInfo, MailAlarmInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.operator !=(VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo, VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.<>(VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo, VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo)
+  nameWithType: MailAlarmInfo.operator !=(MailAlarmInfo, MailAlarmInfo)
+  nameWithType.vb: MailAlarmInfo.<>(MailAlarmInfo, MailAlarmInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.op_Inequality*
   name: operator !=
-  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_NoteAlarmInfo_op_Inequality_
-  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.op_Inequality
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_MailAlarmInfo_op_Inequality_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.op_Inequality
   isSpec: "True"
   name.vb: <>
-  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.operator !=
-  fullName.vb: VisualCard.Calendar.Parts.Implementations.Legacy.NoteAlarmInfo.<>
-  nameWithType: NoteAlarmInfo.operator !=
-  nameWithType.vb: NoteAlarmInfo.<>
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.operator !=
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.<>
+  nameWithType: MailAlarmInfo.operator !=
+  nameWithType.vb: MailAlarmInfo.<>
 - uid: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo
   name: ProcedureAlarmInfo
   href: api/VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.html
