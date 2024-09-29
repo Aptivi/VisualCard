@@ -5589,6 +5589,12 @@ references:
   commentId: F:VisualCard.Parts.Enums.PartsArrayEnum.Categories
   fullName: VisualCard.Parts.Enums.PartsArrayEnum.Categories
   nameWithType: PartsArrayEnum.Categories
+- uid: VisualCard.Parts.Enums.PartsArrayEnum.ContactUri
+  name: ContactUri
+  href: api/VisualCard.Parts.Enums.PartsArrayEnum.html#VisualCard_Parts_Enums_PartsArrayEnum_ContactUri
+  commentId: F:VisualCard.Parts.Enums.PartsArrayEnum.ContactUri
+  fullName: VisualCard.Parts.Enums.PartsArrayEnum.ContactUri
+  nameWithType: PartsArrayEnum.ContactUri
 - uid: VisualCard.Parts.Enums.PartsArrayEnum.FreeBusyUrl
   name: FreeBusyUrl
   href: api/VisualCard.Parts.Enums.PartsArrayEnum.html#VisualCard_Parts_Enums_PartsArrayEnum_FreeBusyUrl
@@ -6557,6 +6563,104 @@ references:
   fullName.vb: VisualCard.Parts.Implementations.CategoryInfo.<>
   nameWithType: CategoryInfo.operator !=
   nameWithType.vb: CategoryInfo.<>
+- uid: VisualCard.Parts.Implementations.ContactUriInfo
+  name: ContactUriInfo
+  href: api/VisualCard.Parts.Implementations.ContactUriInfo.html
+  commentId: T:VisualCard.Parts.Implementations.ContactUriInfo
+  fullName: VisualCard.Parts.Implementations.ContactUriInfo
+  nameWithType: ContactUriInfo
+- uid: VisualCard.Parts.Implementations.ContactUriInfo.ContactUri
+  name: ContactUri
+  href: api/VisualCard.Parts.Implementations.ContactUriInfo.html#VisualCard_Parts_Implementations_ContactUriInfo_ContactUri
+  commentId: P:VisualCard.Parts.Implementations.ContactUriInfo.ContactUri
+  fullName: VisualCard.Parts.Implementations.ContactUriInfo.ContactUri
+  nameWithType: ContactUriInfo.ContactUri
+- uid: VisualCard.Parts.Implementations.ContactUriInfo.ContactUri*
+  name: ContactUri
+  href: api/VisualCard.Parts.Implementations.ContactUriInfo.html#VisualCard_Parts_Implementations_ContactUriInfo_ContactUri_
+  commentId: Overload:VisualCard.Parts.Implementations.ContactUriInfo.ContactUri
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.ContactUriInfo.ContactUri
+  nameWithType: ContactUriInfo.ContactUri
+- uid: VisualCard.Parts.Implementations.ContactUriInfo.Equals(System.Object)
+  name: Equals(object)
+  href: api/VisualCard.Parts.Implementations.ContactUriInfo.html#VisualCard_Parts_Implementations_ContactUriInfo_Equals_System_Object_
+  commentId: M:VisualCard.Parts.Implementations.ContactUriInfo.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Parts.Implementations.ContactUriInfo.Equals(object)
+  fullName.vb: VisualCard.Parts.Implementations.ContactUriInfo.Equals(Object)
+  nameWithType: ContactUriInfo.Equals(object)
+  nameWithType.vb: ContactUriInfo.Equals(Object)
+- uid: VisualCard.Parts.Implementations.ContactUriInfo.Equals(VisualCard.Parts.Implementations.ContactUriInfo)
+  name: Equals(ContactUriInfo)
+  href: api/VisualCard.Parts.Implementations.ContactUriInfo.html#VisualCard_Parts_Implementations_ContactUriInfo_Equals_VisualCard_Parts_Implementations_ContactUriInfo_
+  commentId: M:VisualCard.Parts.Implementations.ContactUriInfo.Equals(VisualCard.Parts.Implementations.ContactUriInfo)
+  fullName: VisualCard.Parts.Implementations.ContactUriInfo.Equals(VisualCard.Parts.Implementations.ContactUriInfo)
+  nameWithType: ContactUriInfo.Equals(ContactUriInfo)
+- uid: VisualCard.Parts.Implementations.ContactUriInfo.Equals(VisualCard.Parts.Implementations.ContactUriInfo,VisualCard.Parts.Implementations.ContactUriInfo)
+  name: Equals(ContactUriInfo, ContactUriInfo)
+  href: api/VisualCard.Parts.Implementations.ContactUriInfo.html#VisualCard_Parts_Implementations_ContactUriInfo_Equals_VisualCard_Parts_Implementations_ContactUriInfo_VisualCard_Parts_Implementations_ContactUriInfo_
+  commentId: M:VisualCard.Parts.Implementations.ContactUriInfo.Equals(VisualCard.Parts.Implementations.ContactUriInfo,VisualCard.Parts.Implementations.ContactUriInfo)
+  fullName: VisualCard.Parts.Implementations.ContactUriInfo.Equals(VisualCard.Parts.Implementations.ContactUriInfo, VisualCard.Parts.Implementations.ContactUriInfo)
+  nameWithType: ContactUriInfo.Equals(ContactUriInfo, ContactUriInfo)
+- uid: VisualCard.Parts.Implementations.ContactUriInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Parts.Implementations.ContactUriInfo.html#VisualCard_Parts_Implementations_ContactUriInfo_Equals_
+  commentId: Overload:VisualCard.Parts.Implementations.ContactUriInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.ContactUriInfo.Equals
+  nameWithType: ContactUriInfo.Equals
+- uid: VisualCard.Parts.Implementations.ContactUriInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Parts.Implementations.ContactUriInfo.html#VisualCard_Parts_Implementations_ContactUriInfo_GetHashCode
+  commentId: M:VisualCard.Parts.Implementations.ContactUriInfo.GetHashCode
+  fullName: VisualCard.Parts.Implementations.ContactUriInfo.GetHashCode()
+  nameWithType: ContactUriInfo.GetHashCode()
+- uid: VisualCard.Parts.Implementations.ContactUriInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Parts.Implementations.ContactUriInfo.html#VisualCard_Parts_Implementations_ContactUriInfo_GetHashCode_
+  commentId: Overload:VisualCard.Parts.Implementations.ContactUriInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.ContactUriInfo.GetHashCode
+  nameWithType: ContactUriInfo.GetHashCode
+- uid: VisualCard.Parts.Implementations.ContactUriInfo.op_Equality(VisualCard.Parts.Implementations.ContactUriInfo,VisualCard.Parts.Implementations.ContactUriInfo)
+  name: operator ==(ContactUriInfo, ContactUriInfo)
+  href: api/VisualCard.Parts.Implementations.ContactUriInfo.html#VisualCard_Parts_Implementations_ContactUriInfo_op_Equality_VisualCard_Parts_Implementations_ContactUriInfo_VisualCard_Parts_Implementations_ContactUriInfo_
+  commentId: M:VisualCard.Parts.Implementations.ContactUriInfo.op_Equality(VisualCard.Parts.Implementations.ContactUriInfo,VisualCard.Parts.Implementations.ContactUriInfo)
+  name.vb: =(ContactUriInfo, ContactUriInfo)
+  fullName: VisualCard.Parts.Implementations.ContactUriInfo.operator ==(VisualCard.Parts.Implementations.ContactUriInfo, VisualCard.Parts.Implementations.ContactUriInfo)
+  fullName.vb: VisualCard.Parts.Implementations.ContactUriInfo.=(VisualCard.Parts.Implementations.ContactUriInfo, VisualCard.Parts.Implementations.ContactUriInfo)
+  nameWithType: ContactUriInfo.operator ==(ContactUriInfo, ContactUriInfo)
+  nameWithType.vb: ContactUriInfo.=(ContactUriInfo, ContactUriInfo)
+- uid: VisualCard.Parts.Implementations.ContactUriInfo.op_Equality*
+  name: operator ==
+  href: api/VisualCard.Parts.Implementations.ContactUriInfo.html#VisualCard_Parts_Implementations_ContactUriInfo_op_Equality_
+  commentId: Overload:VisualCard.Parts.Implementations.ContactUriInfo.op_Equality
+  isSpec: "True"
+  name.vb: =
+  fullName: VisualCard.Parts.Implementations.ContactUriInfo.operator ==
+  fullName.vb: VisualCard.Parts.Implementations.ContactUriInfo.=
+  nameWithType: ContactUriInfo.operator ==
+  nameWithType.vb: ContactUriInfo.=
+- uid: VisualCard.Parts.Implementations.ContactUriInfo.op_Inequality(VisualCard.Parts.Implementations.ContactUriInfo,VisualCard.Parts.Implementations.ContactUriInfo)
+  name: operator !=(ContactUriInfo, ContactUriInfo)
+  href: api/VisualCard.Parts.Implementations.ContactUriInfo.html#VisualCard_Parts_Implementations_ContactUriInfo_op_Inequality_VisualCard_Parts_Implementations_ContactUriInfo_VisualCard_Parts_Implementations_ContactUriInfo_
+  commentId: M:VisualCard.Parts.Implementations.ContactUriInfo.op_Inequality(VisualCard.Parts.Implementations.ContactUriInfo,VisualCard.Parts.Implementations.ContactUriInfo)
+  name.vb: <>(ContactUriInfo, ContactUriInfo)
+  fullName: VisualCard.Parts.Implementations.ContactUriInfo.operator !=(VisualCard.Parts.Implementations.ContactUriInfo, VisualCard.Parts.Implementations.ContactUriInfo)
+  fullName.vb: VisualCard.Parts.Implementations.ContactUriInfo.<>(VisualCard.Parts.Implementations.ContactUriInfo, VisualCard.Parts.Implementations.ContactUriInfo)
+  nameWithType: ContactUriInfo.operator !=(ContactUriInfo, ContactUriInfo)
+  nameWithType.vb: ContactUriInfo.<>(ContactUriInfo, ContactUriInfo)
+- uid: VisualCard.Parts.Implementations.ContactUriInfo.op_Inequality*
+  name: operator !=
+  href: api/VisualCard.Parts.Implementations.ContactUriInfo.html#VisualCard_Parts_Implementations_ContactUriInfo_op_Inequality_
+  commentId: Overload:VisualCard.Parts.Implementations.ContactUriInfo.op_Inequality
+  isSpec: "True"
+  name.vb: <>
+  fullName: VisualCard.Parts.Implementations.ContactUriInfo.operator !=
+  fullName.vb: VisualCard.Parts.Implementations.ContactUriInfo.<>
+  nameWithType: ContactUriInfo.operator !=
+  nameWithType.vb: ContactUriInfo.<>
 - uid: VisualCard.Parts.Implementations.EmailInfo
   name: EmailInfo
   href: api/VisualCard.Parts.Implementations.EmailInfo.html

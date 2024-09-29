@@ -685,6 +685,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.ContactUriInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.Implementations.ContactUriInfo.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/VisualCard.Parts.Implementations.EmailInfo.yml",
       "output": {
         ".html": {
