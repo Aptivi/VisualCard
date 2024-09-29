@@ -9,7 +9,7 @@ September 18, 1996
 © 1996, International Business Machines Corp., Lucent Technologies, Inc., and Siemens. All rights reserved. 
 Permission is granted to copy and distribute this publication provided that it is reproduced in its entirety without modification and includes the above copyright notice and this permission notice.
 No licenses, express or implied, are granted with respect to any of the technology described in this publication. International Business Machines Corp., Lucent Technologies, Inc., and Siemens retain all their intellectual property rights in the technology described in this publication. 
-Even though International Business Machines Corp., Lucent Technologies, Inc., and Siemens have reviewed this specification, INTERNATIONAL BUSINESS MACHINES CORP., LUCENT TECHNOLOGIES, INC, AND SIEMENS, MAKE NO WARRANTY OR REPRESENTATION, EITHER EXPRESS OR IMPLIED, WITH RESPECT TO THIS PUBLICATION, ITS QUALITY OR ACCURACY, NONINFRINGEMENT, MERCHANTABILITY, OR FITNESS FOR A PARTICULAR PURPOSE. AS A RESULT, THIS SPECIFICATION IS DELIVERED “AS IS” AND THE READER ASSUMES THE ENTIRE RISK AS TO ITS QUALITY, ACCURACY OR SUITABILITY FOR ANY PARTICULAR PURPOSE..
+Even though International Business Machines Corp., Lucent Technologies, Inc., and Siemens have reviewed this specification, INTERNATIONAL BUSINESS MACHINES CORP., LUCENT TECHNOLOGIES, INC, AND SIEMENS, MAKE NO WARRANTY OR REPRESENTATION, EITHER EXPRESS OR IMPLIED, WITH RESPECT TO THIS PUBLICATION, ITS QUALITY OR ACCURACY, NONINFRINGEMENT, MERCHANTABILITY, OR FITNESS FOR A PARTICULAR PURPOSE. AS A RESULT, THIS SPECIFICATION IS DELIVERED "AS IS" AND THE READER ASSUMES THE ENTIRE RISK AS TO ITS QUALITY, ACCURACY OR SUITABILITY FOR ANY PARTICULAR PURPOSE..
 IN NO EVENT WILL INTERNATIONAL BUSINESS MACHINES CORP., LUCENT TECHNOLOGIES, INC, AND SIEMENS, BE LIABLE FOR DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES RESULTING FROM ANY DEFECT OR INACCURACY IN THIS PUBLICATION, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 This publication is provided with RESTRICTED RIGHTS. Use, duplication, or disclosure by the Government are subject to restrictions set forth in DFARS 252.227-7013 or 48 CFR 52.227-19, as applicable.
 
@@ -202,17 +202,17 @@ The encoding of this specification can be used in environments which are constra
 The vCard is intended to be used for exchanging information about people and resources. In today’s business environment, this information is typically exchanged on business cards. It is appropriate, then that this specification define this information in terms of a paradigm based on an electronic business card object.
 The ultimate destination for this information is often a collection of business cards, Rolodex® file, or electronic contact manager. Prior to the introduction of the vCard specification, users of such applications typically had to re-key the original information, often transcribing it from paper business cards. With the advent of the vCard specification, this information can be exchanged in an automated fashion.
 The basis for the data types supported by this specification have their origin in openly defined, international standards and in additional capabilities based on enhancements suggested by the demonstration of the exchange of prototypical vCards using the Internet based World-Wide-Web, Infra-red data transport, and simultaneous voice and data (SVD) modems.
-The “person” object defined by the CCITT X.500 Series Recommendation for Directory Services was the primary reference for the properties that are defined by this specification. Every attempt was made to make it possible to map the X.520/X.521 attributes and objects into and out of an instance of a vCard. The vCard specification has extended the capabilities that have been defined within the CCITT X.500 Series Recommendation to allow the exchange of additional information often recorded on business cards and electronic contact managers. For example, this specification provides support for exchanging graphic images representing company logos, photographs of individuals, geo-positioning information, and other extensions to properties defined by the X.500 Recommendation.
+The "person" object defined by the CCITT X.500 Series Recommendation for Directory Services was the primary reference for the properties that are defined by this specification. Every attempt was made to make it possible to map the X.520/X.521 attributes and objects into and out of an instance of a vCard. The vCard specification has extended the capabilities that have been defined within the CCITT X.500 Series Recommendation to allow the exchange of additional information often recorded on business cards and electronic contact managers. For example, this specification provides support for exchanging graphic images representing company logos, photographs of individuals, geo-positioning information, and other extensions to properties defined by the X.500 Recommendation.
 The specification of all date and time values are defined in terms of the ISO 8601 standard for representation of dates and times. ISO 8601 supersedes all other international standards defined at the time this specification was drafted.
-The paradigm of an electronic business card is related to the concepts of an entry in a LAN/WAN directory or an electronic mail address book or distribution list. However, the requirements of the electronic business card go beyond the definitions of a “person” object found in either the CCITT X.500 Series Recommendation, network directory services, or electronic mail address book products. The vCard specification is needed to address the requirements for an interchange format for the “person” personal data type or object.
+The paradigm of an electronic business card is related to the concepts of an entry in a LAN/WAN directory or an electronic mail address book or distribution list. However, the requirements of the electronic business card go beyond the definitions of a "person" object found in either the CCITT X.500 Series Recommendation, network directory services, or electronic mail address book products. The vCard specification is needed to address the requirements for an interchange format for the "person" personal data type or object.
 Personal data applications such as Personal Information Managers (PIM) often provide an import/export capability using Comma Separated Value (CSV) or Tab Delimited Files (TDF) formats. However, these solutions do not preserve the intent of the originating application. When a CSV and TDF format is used by a PIM, the meta-data or semantics of the originating object are only apparent to a similar version of the originating application. Exchange of data between such applications is another important application of an industry-standard specification for an electronic business card interchange format, such as the vCard specification.
 3	Contents
 This specification is separated into eight sections:
-•	“Section 1 : Introduction” introduces PDI and the vCard specification with an overview, scope statement and section on definitions and abbreviations.
-•	“Section 2 : vCard Specification” defines the semantics and syntax for the vCard.
-•	“Section 3 : Internet Recommendations” specifies a set of guidelines to facilitate the exchange of vCard objects over Internet protocols such as HTTP using HTML and SMTP using MIME.
-•	“Section 4 : UI Support Recommendations” specifies a set of guidelines to facilitate the exchange of vCard objects at the desktop user interface using the file system, clipboard and drag/drop capabilities of the operating system.
-•	“Section 5 : Conformance” defines minimum conformance requirements to consider while developing support for this vCard specification.
+•	"Section 1 : Introduction" introduces PDI and the vCard specification with an overview, scope statement and section on definitions and abbreviations.
+•	"Section 2 : vCard Specification" defines the semantics and syntax for the vCard.
+•	"Section 3 : Internet Recommendations" specifies a set of guidelines to facilitate the exchange of vCard objects over Internet protocols such as HTTP using HTML and SMTP using MIME.
+•	"Section 4 : UI Support Recommendations" specifies a set of guidelines to facilitate the exchange of vCard objects at the desktop user interface using the file system, clipboard and drag/drop capabilities of the operating system.
+•	"Section 5 : Conformance" defines minimum conformance requirements to consider while developing support for this vCard specification.
 4	Definitions and Abbreviations
 Definitions and abbreviations used within this specification follow.
 Electronic Business Card: Also known as vCard.
@@ -224,7 +224,7 @@ MIME: Multipurpose Internet Mail Extensions, as defined in RFC1521.
 PDA: Personal Digital Assistant computing device
 PDI: Personal Data Interchange, a collaborative application area which involves the communication of data between people who have a business or personal relationship, but do not necessarily share a common computing infrastructure.
 PIM: Personal Information Manager
-RFC#### documents: Internet “Request For Comment” documents (i.e., RFC822, RFC1521, etc.).
+RFC#### documents: Internet "Request For Comment" documents (i.e., RFC822, RFC1521, etc.).
 URL: Uniform Resource Locator; a string expression that can represent any resource on the Internet or local system. RFC 1738 defines the syntax for an URL.
 UTC: Universal Time Coordinated; also known as UCT, for Universal Coordinated Time.
 vCard: The generic term for an electronic, virtual information card that can be transferred between computers, PDAs, or other electronic devices through telephone lines, or e-mail networks, or infrared links. How, when, why, and where vCard are used depends on the applications developed utilizing a vCard.
@@ -248,7 +248,7 @@ A property is the definition of an individual attribute describing the vCard. A 
 PropertyName [‘;‘ PropertyParameters] ’:‘ PropertyValue
 as shown in the following example:
 TEL;HOME:+1-919-555-1234
-A property takes the form of one or more lines of text. The specification of property names and property parameters is case insensitive. The property name can be one of a set of pre-defined strings. The property name, along with an optional grouping label, must appear as the first characters on a line. In the previous example, “TEL” is the name of the Telephone Number property. Property values are specified as strings. In the previous example, “+1-919-555-1234” is the formatted value for the Telephone Number property.
+A property takes the form of one or more lines of text. The specification of property names and property parameters is case insensitive. The property name can be one of a set of pre-defined strings. The property name, along with an optional grouping label, must appear as the first characters on a line. In the previous example, "TEL" is the name of the Telephone Number property. Property values are specified as strings. In the previous example, "+1-919-555-1234" is the formatted value for the Telephone Number property.
 A property value can be further qualified with a property parameter expression. Property parameter expressions are delimited from the property name with a Semi-colon character (ASCII 59). A Semi-colon in a property parameter value must be escaped with a Backslash character (ASCII 92). The property parameter expressions are specified as either a name=value or a value string. The value string can be specified alone in those cases where the value is unambiguous. For example a complete property parameter specification might be:
 NOTE;ENCODING=QUOTED-PRINTABLE:Don’t remember to order Girl=
   Scout cookies from Stacey today!	//Full property parameter expression
@@ -256,15 +256,15 @@ A valid short version of the same property parameter specification might be:
 NOTE;QUOTED-PRINTABLE:Don’t remember to order Girl=
   Scout cookies from Stacey today!	//Full property parameter expression
 .3	Delimiters
-Individual lines within the vCard data stream are delimited by the (RFC 822) line break, which is a CRLF sequence (ASCII decimal 13, followed by ASCII decimal 10). Long lines of text can be split into a multiple-line representation using the RFC 822 “folding” technique. That is, wherever there may be linear white space (NOT simply LWSP-chars), a CRLF immediately followed by at least one LWSP-char may instead be inserted. For example the line:
+Individual lines within the vCard data stream are delimited by the (RFC 822) line break, which is a CRLF sequence (ASCII decimal 13, followed by ASCII decimal 10). Long lines of text can be split into a multiple-line representation using the RFC 822 "folding" technique. That is, wherever there may be linear white space (NOT simply LWSP-chars), a CRLF immediately followed by at least one LWSP-char may instead be inserted. For example the line:
 NOTE:This is a very long description that exists on a long line.
 Can be represented as:
 NOTE:This is a very long description 
   that exists on a long line.
-The process of moving from this folded multiple-line representation of a property definition to its single line representation is called “unfolding”. Unfolding is accomplished by regarding CRLF immediately followed by a LWSP-char as equivalent to the LWSP-char.
+The process of moving from this folded multiple-line representation of a property definition to its single line representation is called "unfolding". Unfolding is accomplished by regarding CRLF immediately followed by a LWSP-char as equivalent to the LWSP-char.
 It is recommended that folding be limited to higher-level syntactic breaks in structured components of the property definition.
 A formatted text line break in a property value, must also be represented by a (RFC 822) line break, which is a CRLF sequence. However, since the CRLF sequence is used to delimit a line, property values with formatted line breaks (i.e., multiple lines) must be encoded using an alternate encoding of either Quoted-Printable or Base64, as defined in RFC 1521.
-For example, in the Quoted-Printable encoding the multiple lines of formatted text are separated with a Quoted-Printable CRLF sequence of “=0D” followed by “=0A” followed by a Quoted-Printable softline break sequence of “=“. Quoted-Printable lines of text must also be limited to less than 76 characters. The 76 characters does not include the CRLF (RFC 822) line break sequence. For example a multiple line LABEL property value of:
+For example, in the Quoted-Printable encoding the multiple lines of formatted text are separated with a Quoted-Printable CRLF sequence of "=0D" followed by "=0A" followed by a Quoted-Printable softline break sequence of "=". Quoted-Printable lines of text must also be limited to less than 76 characters. The 76 characters does not include the CRLF (RFC 822) line break sequence. For example a multiple line LABEL property value of:
 123 Winding Way
 Any Town, CA 12345
 USA
@@ -286,18 +286,18 @@ A.TEL;HOME:+1-213-555-1234
 A.NOTE:This is my vacation home.
 The vCard Reader conforming to this specification must be able to parse and process the property grouping. The support for Property Grouping is optional for a vCard Writer conforming to this specification.
 .5	Encodings
-The default encoding for the vCard object is 7-Bit. The default encoding can be overridden for an individual property value by using the “ENCODING” property parameter. This parameter value can be either “BASE64”, “QUOTED-PRINTABLE”, or “8BIT”. This parameter may be used on any property.
+The default encoding for the vCard object is 7-Bit. The default encoding can be overridden for an individual property value by using the "ENCODING" property parameter. This parameter value can be either "BASE64", "QUOTED-PRINTABLE", or "8BIT". This parameter may be used on any property.
 Some transports (e.g., MIME based electronic mail) may also provide an encoding property at the transport wrapper level. This property can be used in these cases for transporting a vCard data stream that has been defined using a default encoding other than 7-bit (e.g., 8-bit).
 .6	Character Set
-The default character set is ASCII. The default character set can be overridden for an individual property value by using the “CHARSET” property parameter. This property parameter may be used on any property. However, the use of this parameter on some properties may not make sense.
+The default character set is ASCII. The default character set can be overridden for an individual property value by using the "CHARSET" property parameter. This property parameter may be used on any property. However, the use of this parameter on some properties may not make sense.
 Any character set registered with the Internet Assigned Numbers Authority (IANA) can be specified by this property parameter. For example, ISO 8859-8 or the Latin/Hebrew character set is specified by:
 ADR;CHARSET=ISO-8859-8:...
 Some transports (e.g., MIME based electronic mail) may also provide a character set property at the transport wrapper level. This property can be used in these cases for transporting a vCard data stream that has been defined using a default character set other than ASCII (e.g., UTF-8).
 .7	Language
-The default language is “en-US” (US English). The default language can be overridden for an individual property value by using the “LANGUAGE” property parameter. The values for this property are a string consistent with RFC 1766, Tags for the Identification of Languages. This property parameter may be used on any property. However, the use of this parameter on some properties, such as PHOTO, LOGO, SOUND, TEL, may not make sense. Canadian French would be specified by this parameter by the following:
+The default language is "en-US" (US English). The default language can be overridden for an individual property value by using the "LANGUAGE" property parameter. The values for this property are a string consistent with RFC 1766, Tags for the Identification of Languages. This property parameter may be used on any property. However, the use of this parameter on some properties, such as PHOTO, LOGO, SOUND, TEL, may not make sense. Canadian French would be specified by this parameter by the following:
 ADR;LANGUAGE=fr-CA:...
 .8	Value Location
-The default location of the property value is inline with the property. However, for some properties, such as those that specify multimedia values, it is efficient to organize the property value as a separate entity (e.g., a file out on the network). The property parameter “VALUE” can be specified to override the “INLINE” location of the property value. In the case of the vCard being transported within a MIME email message, the property value can be specified as being located in a separate MIME entity with the “Content-ID” value, or “CID” for short. In this case, the property value is the Content-ID for the MIME entity containing the property value. In addition, the property value can be specified as being located out on the network within some Internet resource with the “URL” value. In this case, the property value is the Uniform Resource Locator for the Internet resource containing the property value. This property parameter may be used on any property. However, the use of this parameter on some properties may not make sense; for example the Version, Time Zone, Comment, Unique Identifier, properties . The following specifies a value not located inline with the vCard but out in the Internet:
+The default location of the property value is inline with the property. However, for some properties, such as those that specify multimedia values, it is efficient to organize the property value as a separate entity (e.g., a file out on the network). The property parameter "VALUE" can be specified to override the "INLINE" location of the property value. In the case of the vCard being transported within a MIME email message, the property value can be specified as being located in a separate MIME entity with the "Content-ID" value, or "CID" for short. In this case, the property value is the Content-ID for the MIME entity containing the property value. In addition, the property value can be specified as being located out on the network within some Internet resource with the "URL" value. In this case, the property value is the Uniform Resource Locator for the Internet resource containing the property value. This property parameter may be used on any property. However, the use of this parameter on some properties may not make sense; for example the Version, Time Zone, Comment, Unique Identifier, properties . The following specifies a value not located inline with the vCard but out in the Internet:
 PHOTO;VALUE=URL;TYPE=GIF:http://www.abc.com/dir_photos/my_photo.gif
 SOUND;VALUE=CONTENT-ID:<jsmith.part3.960817T083000.xyzMail@host1.com
 .9	Binary Values
@@ -305,7 +305,7 @@ The vCard format supports inclusion of binary information, such as computer grap
 2	Identification Properties
 These property types are concerned with information associated with the identification and naming of the individual or resource associated with the vCard object.
 .1	Formatted Name
-This property specifies the formatted name string associated with the vCard object. This is the way that the name is to be displayed. It can contain desired honorific prefixes, suffixes, titles, etc. For example, “Mr. John Q. Public, Jr.”, Dr. Ann Tyler, or Hon. Judge Blackwell. This property is based on the semantics of the X.520 Common Name attribute.
+This property specifies the formatted name string associated with the vCard object. This is the way that the name is to be displayed. It can contain desired honorific prefixes, suffixes, titles, etc. For example, "Mr. John Q. Public, Jr.", Dr. Ann Tyler, or Hon. Judge Blackwell. This property is based on the semantics of the X.520 Common Name attribute.
 This property is identified by the property name FN. The following is an example of the Formatted Name property:
 FN:Mr. John Q. Public, Esq.
 Support for this property is optional for vCard Writers conforming to this specification.
@@ -441,7 +441,7 @@ Indicates a video-phone number	VIDEO
 The default property parameter is overridden to some other set of values by specifying one or more alternate values. For example, the default of a VOICE telephone number can be reset to a WORK and HOME, VOICE and FAX telephone number in the following example:
 TEL;WORK;HOME;VOICE;FAX:+1-800-555-1234
 .2	Electronic Mail
-This property specifies the address for electronic mail communication with the vCard object. The address is in the form of a specific addressing type. For example, the Internet mail address for John Public might be “John.Public@abc.com” or the CompuServe Information Service address might be “71234,5678”.This property is identified by the property name EMAIL.
+This property specifies the address for electronic mail communication with the vCard object. The address is in the form of a specific addressing type. For example, the Internet mail address for John Public might be "John.Public@abc.com" or the CompuServe Information Service address might be "71234,5678".This property is identified by the property name EMAIL.
 An example of this property follows:
 EMAIL;INTERNET:john.public@abc.com
 Support for this property is optional for vCard Writers conforming to this specification.
@@ -464,13 +464,13 @@ Indicates Telex number	TLX
 Indicates X.400 service	X400
 
 .3	Mailer
-This property parameter specifies the type of electronic mail software that is in use by the individual associated with the vCard object. This information may provide assistance to a correspondent regarding the type of data representation which can be used, and how they may be packaged. This property parameter is based on currently accepted practices within the Internet MIME community with the “X-Mailer” header field.
+This property parameter specifies the type of electronic mail software that is in use by the individual associated with the vCard object. This information may provide assistance to a correspondent regarding the type of data representation which can be used, and how they may be packaged. This property parameter is based on currently accepted practices within the Internet MIME community with the "X-Mailer" header field.
 This property is identified by the property name MAILER. Support for this property is optional for vCard Writers conforming to this specification. An example of this property follows:
 MAILER:ccMail 2.2
 .4	Geographical Properties
 These property types are concerned with geographical positions or region information associated with the vCard object.
 .5	Time Zone
-This property specifies information related to the standard time zone of the vCard object. The time zone is a string as specified in a manner consistent with ISO 8601. It is an offset from Coordinated Universal Time (UTC). An ISO 8601 UTC offset, in basic format, is specified as a positive or negative difference in units of hours and minutes (e.g., +hhmm). If minutes are zero, then they may be omitted and the format would be specified in units of hours (e.g., +hh). The time is specified as a 24-hour clock. Hour values are from 00 to 24, and minute values are from 00 through 59. Hour and minute values are 2-digits with high-order zeroes required to maintain digit count. The extended format for ISO 8601 makes use of a colon (i.e., “:”) character as a separator of the hour and minute substrings.
+This property specifies information related to the standard time zone of the vCard object. The time zone is a string as specified in a manner consistent with ISO 8601. It is an offset from Coordinated Universal Time (UTC). An ISO 8601 UTC offset, in basic format, is specified as a positive or negative difference in units of hours and minutes (e.g., +hhmm). If minutes are zero, then they may be omitted and the format would be specified in units of hours (e.g., +hh). The time is specified as a 24-hour clock. Hour values are from 00 to 24, and minute values are from 00 through 59. Hour and minute values are 2-digits with high-order zeroes required to maintain digit count. The extended format for ISO 8601 makes use of a colon (i.e., ":") character as a separator of the hour and minute substrings.
 This is not a property for capturing the daylight savings time rules observed by the vCard object.
 This property is identified by the property name TZ. This property is specified in a manner consistent with ISO 8601. The property value is a signed numeric indicating the number of hours and possibly minutes from UTC. Time zones east of UTC are positive numbers. Time zones west of UTC are negative numbers. Support for this property is optional for vCard Writers conforming to this specification. An example of the Eastern Standard Time (EST) zone value for this property follows using the basic format:
 TZ:-0500
@@ -485,12 +485,12 @@ Support for this property is optional for vCard Writers conforming to this speci
 5	Organizational Properties
 These property types are concerned with information associated with characteristics of the organizations or organizational unites associated with the vCard object.
 .1	Title
-This property specifies the job title, functional position or function of the individual associated with the vCard object within an organization. This property is based on the X.520 Title attribute. For example, “Vice President, Research and Development”.
+This property specifies the job title, functional position or function of the individual associated with the vCard object within an organization. This property is based on the X.520 Title attribute. For example, "Vice President, Research and Development".
 This property is identified by the property name TITLE. An example of this property follows:
 TITLE:V.P., Research and Development
 Support for this property is optional for vCard Writers conforming to this specification.
 .2	Business Category
-This property specifies information concerning the role, occupation, or business category of the vCard object within an organization. This property is based on the X.520 Business Category  explanatory attribute. For example, “Programmer”. This property is included as an organizational property to avoid confusion with the Title property and to avoid incorrect use of the Title property to record Business Category information.
+This property specifies information concerning the role, occupation, or business category of the vCard object within an organization. This property is based on the X.520 Business Category  explanatory attribute. For example, "Programmer". This property is included as an organizational property to avoid confusion with the Title property and to avoid incorrect use of the Title property to record Business Category information.
 This property is identified by the property name ROLE. An example of this property follows:
 ROLE:Executive
 Support for this property is optional for vCard Writers conforming to this specification.
@@ -538,7 +538,7 @@ TEL;WORK;FAX:+1-213-555-5678
 END:VCARD
 Support for this property is optional for vCard Writers conforming to this specification.
 .5	Organization Name and Organizational Unit
-This property specifies the name and optionally the unit(s) of the organization associated with the vCard object. This property is based on the X.520 Organization Name attribute and the X.520 Organization Unit attribute. For example, “The AB Corporation” and the “North American Division”.
+This property specifies the name and optionally the unit(s) of the organization associated with the vCard object. This property is based on the X.520 Organization Name attribute and the X.520 Organization Unit attribute. For example, "The AB Corporation" and the "North American Division".
 This property is identified by the property name ORG. This property is defined to encapsulate the Organization Name and Organization Unit properties as sub-properties. The property value consists of the components of the organization specified as positional fields separated by the Field Delimiter (ASCII decimal 59). The property value is a concatenation of the Organization Name (first field), Organizational Unit (second field) strings. Additional positional fields, if specified, contain additional Organizational Units. The following is an example of the Organization property:
 ORG:ABC, Inc.;North American Division;Marketing
 Support for this property is optional for vCard Writers conforming to this specification.
@@ -587,7 +587,7 @@ This property is identified by the property name URL. Valid values for this prop
 URL:http://abc.com/pub/directory/northam/jpublic.ecd
 Support for this property is optional for vCard Writers conforming to this specification.
 .5	Unique Identifier
-This property specifies a value that represents a persistent, globally unique identifier associated with the object. The property can be used as a mechanism to relate different vCard objects. Some examples of valid forms of unique identifiers would include ISO 9070 formal public identifiers (FPI), X.500 distinguished names, machine-generated “random” numbers with a statistically high likelihood of being globally unique and Uniform Resource Locators (URL). If an URL is specified, it is suggested that the URL reference a service which will produce an updated version of the vCard.
+This property specifies a value that represents a persistent, globally unique identifier associated with the object. The property can be used as a mechanism to relate different vCard objects. Some examples of valid forms of unique identifiers would include ISO 9070 formal public identifiers (FPI), X.500 distinguished names, machine-generated "random" numbers with a statistically high likelihood of being globally unique and Uniform Resource Locators (URL). If an URL is specified, it is suggested that the URL reference a service which will produce an updated version of the vCard.
 This property is identified by the property name UID. This property is provided to enable a vCard Reader and Writer to uniquely identify either a vCard object instance or properties within a vCard object. Valid values for this property are a unique character string. The following is an example of this property:
 UID:19950401-080045-40000F192713-0052
 Support for this property is optional for vCard Writers conforming to this specification.
@@ -610,7 +610,7 @@ Indicates a X.509 public key certificate type of key	X509
 Indicates an IETF PGP type of key	PGP
 8	Miscellaneous Properties
 .1	Extensions
-The vCard provides a “standard mechanism for doing non-standard things”. This extension support is provided for implementers to “push the envelope” on the existing version of the specification. Extension properties are specified by property and/or property parameter names that have the initial sub-string of X- (the two character sequence: Capital X character followed by the Dash character. It is recommended that vendors concatenate onto this sentinel an added short sub-string to identify the vendor. This will facilitate readability of the extensions and minimize possible collision of names between different vendors. For example, the following might be the ABC vendor’s extension for a video-clip form of identification property:
+The vCard provides a "standard mechanism for doing non-standard things". This extension support is provided for implementers to "push the envelope" on the existing version of the specification. Extension properties are specified by property and/or property parameter names that have the initial sub-string of X- (the two character sequence: Capital X character followed by the Dash character. It is recommended that vendors concatenate onto this sentinel an added short sub-string to identify the vendor. This will facilitate readability of the extensions and minimize possible collision of names between different vendors. For example, the following might be the ABC vendor’s extension for a video-clip form of identification property:
 X-ABC-VIDEO;MPEG2:http://lonestar.bubbas.org/billibob.mpg
 or, the following example might be an extension for grouping vCard objects into a distribution list for the Design Work Group. 
 BEGIN:VCARD
@@ -644,34 +644,34 @@ This syntax is written according to the form described in RFC 822, but it refere
   HTAB		=  <ASCII HT, horizontal-tab>   ; (     11,       9.)
 All literal property names are valid as upper, lower, or mixed case.
 ws		= 1*(SPACE / HTAB)
-	; “whitespace,” one or more spaces or tabs
+	; "whitespace," one or more spaces or tabs
 wsls		= 1*(SPACE / HTAB / CRLF)
 	; whitespace with line separators
 word		= <any printable 7bit us-ascii except []=:., >
-groups		= groups “.” word
+groups		= groups "." word
 		/ word
 vcard_file	= [wsls] vcard [wsls]
-vcard		= “BEGIN” [ws] “:” [ws] “VCARD” [ws] 1*CRLF
-		 items *CRLF “END” [ws] “:” [ws] “VCARD”
+vcard		= "BEGIN" [ws] ":" [ws] "VCARD" [ws] 1*CRLF
+		 items *CRLF "END" [ws] ":" [ws] "VCARD"
 items		= items *CRLF item
 		/ item
-	; these may be “folded”
-item		= [groups “.”] name
-		  [params] “:” value CRLF
-		/ [groups “.”] “ADR”
-		  [params] “:” addressparts CRLF
-		/ [groups “.”] “ORG”
-		  [params] “:” orgparts CRLF
-		/ [groups “.”] “N”
-		  [params] “:” nameparts CRLF
-		/ [groups “.”] “AGENT”
-		  [params] “:” vcard CRLF
-	; these may be “folded”
-name		= “LOGO” / “PHOTO” / “LABEL” / “FN” / “TITLE”
-		/ “SOUND” / “VERSION” / “TEL” / “EMAIL” / “TZ” / “GEO” / “NOTE”
-		/ “URL” / “BDAY” / “ROLE” / “REV” / “UID” / “KEY”
-		/ “MAILER” / “X-” word 
-	; these may be “folded”
+	; these may be "folded"
+item		= [groups "."] name
+		  [params] ":" value CRLF
+		/ [groups "."] "ADR"
+		  [params] ":" addressparts CRLF
+		/ [groups "."] "ORG"
+		  [params] ":" orgparts CRLF
+		/ [groups "."] "N"
+		  [params] ":" nameparts CRLF
+		/ [groups "."] "AGENT"
+		  [params] ":" vcard CRLF
+	; these may be "folded"
+name		= "LOGO" / "PHOTO" / "LABEL" / "FN" / "TITLE"
+		/ "SOUND" / "VERSION" / "TEL" / "EMAIL" / "TZ" / "GEO" / "NOTE"
+		/ "URL" / "BDAY" / "ROLE" / "REV" / "UID" / "KEY"
+		/ "MAILER" / "X-" word 
+	; these may be "folded"
 value		= 7bit / quoted-printable / base64
 7bit		= <7bit us-ascii printable chars, excluding CR LF>
 8bit		= <MIME RFC 1521 8-bit text>
@@ -679,45 +679,45 @@ quoted-printable = <MIME RFC 1521 quoted-printable text>
 base64		= <MIME RFC 1521 base64 text>
 	; the end of the text is marked with two CRLF sequences
 	; this results in one blank line before the start of the next property
-params		= “;” [ws] paramlist
-paramlist	= paramlist [ws] “;” [ws] param
+params		= ";" [ws] paramlist
+paramlist	= paramlist [ws] ";" [ws] param
 		/ param
-param		= “TYPE” [ws] “=“ [ws] ptypeval
-		/ “VALUE” [ws] “=“ [ws] pvalueval
-		/ “ENCODING” [ws] “=“ [ws] pencodingval
-		/ “CHARSET” [ws] “=“ [ws] charsetval
-		/ “LANGUAGE” [ws] “=“ [ws] langval
-		/ “X-” word [ws] “=“ [ws] word
+param		= "TYPE" [ws] "=" [ws] ptypeval
+		/ "VALUE" [ws] "=" [ws] pvalueval
+		/ "ENCODING" [ws] "=" [ws] pencodingval
+		/ "CHARSET" [ws] "=" [ws] charsetval
+		/ "LANGUAGE" [ws] "=" [ws] langval
+		/ "X-" word [ws] "=" [ws] word
 		/ knowntype
-ptypeval	= knowntype / “X-” word
-pvalueval	= “INLINE” / “URL” / “CONTENT-ID” / “CID” / “X-” word
-pencodingval 	= “7BIT” / “8BIT” / “QUOTED-PRINTABLE” / “BASE64” / “X-” word
+ptypeval	= knowntype / "X-" word
+pvalueval	= "INLINE" / "URL" / "CONTENT-ID" / "CID" / "X-" word
+pencodingval 	= "7BIT" / "8BIT" / "QUOTED-PRINTABLE" / "BASE64" / "X-" word
 charsetval	= <a character set string as defined in Section 7.1 of 
 		RFC 1521>
 langval		= <a language string as defined in RFC 1766>
-addressparts	= 0*6(strnosemi “;”) strnosemi
+addressparts	= 0*6(strnosemi ";") strnosemi
 	; PO Box, Extended Addr, Street, Locality, Region, Postal Code,
 	Country Name
-orgparts	= *(strnosemi “;”) strnosemi
+orgparts	= *(strnosemi ";") strnosemi
 	; First is Organization Name, remainder are Organization Units.
-nameparts	= 0*4(strnosemi “;”) strnosemi
+nameparts	= 0*4(strnosemi ";") strnosemi
 	; Family, Given, Middle, Prefix, Suffix.
 	; Example:Public;John;Q.;Reverend Dr.;III, Esq.
-strnosemi	= *(*nonsemi (“\;” / “\” CRLF)) *nonsemi
+strnosemi	= *(*nonsemi ("\;" / "\" CRLF)) *nonsemi
 	; To include a semicolon in this string, it must be escaped
-	; with a “\” character.
-nonsemi		= <any non-control ASCII except “;”>
-knowntype	= “DOM” / “INTL” / “POSTAL” / “PARCEL” / “HOME” / “WORK”
-		/ “PREF” / “VOICE” / “FAX” / “MSG” / “CELL” / “PAGER”
-		/ “BBS” / “MODEM” / “CAR” / “ISDN” / “VIDEO”
-		/ “AOL” / “APPLELINK” / “ATTMAIL” / “CIS” / “EWORLD”
-		/ “INTERNET” / “IBMMAIL” / “MCIMAIL”
-		/ “POWERSHARE” / “PRODIGY” / “TLX” / “X400”
-		/ “GIF” / “CGM” / “WMF” / “BMP” / “MET” / “PMB” / “DIB”
-		/ “PICT” / “TIFF” / “PDF” / “PS” / “JPEG” / “QTIME”
-		/ “MPEG” / “MPEG2” / “AVI”
-		/ “WAVE” / “AIFF” / “PCM”
-		/ “X509” / “PGP”
+	; with a "\" character.
+nonsemi		= <any non-control ASCII except ";">
+knowntype	= "DOM" / "INTL" / "POSTAL" / "PARCEL" / "HOME" / "WORK"
+		/ "PREF" / "VOICE" / "FAX" / "MSG" / "CELL" / "PAGER"
+		/ "BBS" / "MODEM" / "CAR" / "ISDN" / "VIDEO"
+		/ "AOL" / "APPLELINK" / "ATTMAIL" / "CIS" / "EWORLD"
+		/ "INTERNET" / "IBMMAIL" / "MCIMAIL"
+		/ "POWERSHARE" / "PRODIGY" / "TLX" / "X400"
+		/ "GIF" / "CGM" / "WMF" / "BMP" / "MET" / "PMB" / "DIB"
+		/ "PICT" / "TIFF" / "PDF" / "PS" / "JPEG" / "QTIME"
+		/ "MPEG" / "MPEG2" / "AVI"
+		/ "WAVE" / "AIFF" / "PCM"
+		/ "X509" / "PGP"
 
  
 Section 3 : Internet Recommendations
@@ -759,7 +759,7 @@ John:  I have looked over my material and feel that you may
 have over looked a couple of appropriate pieces. Please give
 me a call so that we can discuss further.
 --vcard
-Content-Type:text/plain; charset=us-ascii; name=“MARTIN.VCF”
+Content-Type:text/plain; charset=us-ascii; name="MARTIN.VCF"
 
 BEGIN:VCARD
 VERSION:2.1
@@ -770,7 +770,7 @@ ADR;WORK;PARCEL;POSTAL;DOM:123 Cliff Ave.;Big Town;CA;97531
 END:VCARD
 --vcard--
 .2	Text/X-vCard Content Type
-A vCard object may also be transferred in a (RFC 1521) MIME entity as a non-standard “text/x-vCard” content-type. This (RFC 1521) MIME type maybe useful in those cases where the MIME compliant messaging service does not yet support the “application/directory” and “multipart/related” MIME content-types and yet the specificity of a calendaring and scheduling media type is required.
+A vCard object may also be transferred in a (RFC 1521) MIME entity as a non-standard "text/x-vCard" content-type. This (RFC 1521) MIME type maybe useful in those cases where the MIME compliant messaging service does not yet support the "application/directory" and "multipart/related" MIME content-types and yet the specificity of a calendaring and scheduling media type is required.
 The following example demonstrates how a vCard can be included as a separate non-standard text/x-vCard content portion within current MIME user agents.
 Date: Fri, 26 Jan 1996 07:53:00 +0000
 From: smartin@host2.com
@@ -787,7 +787,7 @@ John:  I have looked over my material and feel that you may
 have over looked a couple of appropriate pieces. Please give
 me a call so that we can discuss further.
 --vcard
-Content-Type:text/x-vCard; charset=us-ascii; name=“MARTIN.VCF”
+Content-Type:text/x-vCard; charset=us-ascii; name="MARTIN.VCF"
 
 BEGIN:VCARD
 VERSION:2.1N:Martin;Stephen
@@ -797,10 +797,10 @@ ADR;WORK;PARCEL;POSTAL;DOM:123 Cliff Ave.;Big Town;CA;97531
 END:VCARD
 --vcard--
 .3	Application/Directory Content Type
-The Internet Engineering Task Force (IETF) Access and Searching of Internet Directories (ASID) working group has produced an Internet Draft defining the “application/directory” MIME content type. The current draft name is draft-ietf-asid-mime-direct-01.txt. This specification is intended to be aligned with this work. Internet Drafts are working documents of an IETF working group, valid for at most six months, and should be considered “works in progress”. 
+The Internet Engineering Task Force (IETF) Access and Searching of Internet Directories (ASID) working group has produced an Internet Draft defining the "application/directory" MIME content type. The current draft name is draft-ietf-asid-mime-direct-01.txt. This specification is intended to be aligned with this work. Internet Drafts are working documents of an IETF working group, valid for at most six months, and should be considered "works in progress". 
 This MIME content type was designed to be used to transport directory information across MIME based electronic mail services. The internet draft is directly applicable to the exchange of business card data, such as that defined by the vCard specification.
 The versit PDI Team has worked within the IETF ASID Working Group to draft an application/directory profile that registers the method for transporting a vCard as an application/directory Content-Type. The current draft name is draft-ietf-asid-mime-vcard-00.txt. This work is expected to be progressed to a Request For Comment after the publication of this version of the vCard specification. In the interim, the following guidelines are provided to describe how a vCard might be conveyed using the application/directory draft specification.
-A vCard should be included in a MIME message that has a Content-Type header field value of “multipart/related”. The vCard is included in the message as the primary body part. The position of the body part entity can also be specified with the “start=“ parameter. This MIME body part entity has a Content-Type body part header field value of “application/directory” with a “profile” parameter value of “vcard”. Any vCard binary information, such as a logo, picture, or digital audio pronunciation can be included inline within the vCard, as is specified by the vCard specification. Preferably, the binary information should be extracted from the vCard object and contained in the MIME message as secondary body part entities. The binary content in the secondary body part entities can be referenced from within the vCard object through the use of the “VALUE=” property parameter. In this latter case, the binary information should be transformed into a content type nominally supported by MIME user agents. For image content, this would be the Graphics Image Format (GIF) or Joint Picture Encoding Group (JPEG) formats. For audio content, this would be the 8-bit mu-law (PCM) format specified by the MIME specification.
+A vCard should be included in a MIME message that has a Content-Type header field value of "multipart/related". The vCard is included in the message as the primary body part. The position of the body part entity can also be specified with the "start=" parameter. This MIME body part entity has a Content-Type body part header field value of "application/directory" with a "profile" parameter value of "vcard". Any vCard binary information, such as a logo, picture, or digital audio pronunciation can be included inline within the vCard, as is specified by the vCard specification. Preferably, the binary information should be extracted from the vCard object and contained in the MIME message as secondary body part entities. The binary content in the secondary body part entities can be referenced from within the vCard object through the use of the "VALUE=" property parameter. In this latter case, the binary information should be transformed into a content type nominally supported by MIME user agents. For image content, this would be the Graphics Image Format (GIF) or Joint Picture Encoding Group (JPEG) formats. For audio content, this would be the 8-bit mu-law (PCM) format specified by the MIME specification.
 The following example defines how this might be specified:
 Date: Mon, 29 Jan 96 0830 EDT
 From: john.smith@host.com
@@ -808,12 +808,12 @@ Subject: Re: MIME application/directory vCard Example
 Sender: john.smith@host.com
 To: smartin@host2.com
 Message-ID: <JOHNSMITH.960129T083020.xyzMail@host3.com>
-Content-Type: multipart/related; boundary=“vcard”; 
+Content-Type: multipart/related; boundary="vcard"; 
 			type=application/directory;
 			start=<JOHNSMITH.part1.960129T083020.xyzMail@host3.com>
 --vcard
 Content-Type: application/directory; charset=us-ascii;
-			source=“file://versit.or2”; profile=“vcard”
+			source="file://versit.or2"; profile="vcard"
 Content-ID: <<JOHNSMITH.part1.960129T083020.xyzMail@host3.com>
 BEGIN:VCARD
 VERSION:2.1
@@ -841,7 +841,7 @@ Content-ID: <<JOHNSMITH.part3.960129T083020.xyzMail@host3.com>
 ...image data would go here...
 --vcard--
 2	Recommended Practice with HTTP/HTML
-A vCard object should be transferred over HTTP with the non-standard  MIME type/subtype value of “text/x-vCard”. The non-standard subtype should be used because the vCard has not been registered as a MIME media type with the IANA.
+A vCard object should be transferred over HTTP with the non-standard  MIME type/subtype value of "text/x-vCard". The non-standard subtype should be used because the vCard has not been registered as a MIME media type with the IANA.
 The vCard information can be captured with a FORM type of HTML document. Interoperability of of vCard information can be better assured by following a common set of recommended practices for mapping vCard information into and out of HTML documents.
 .1	Form Element Usage
 The HTML FORM element is a useful method for capturing data intended for input into individual vCard property values. The following recommended practices are provided for such use.
@@ -889,7 +889,7 @@ Explanatory Properties
 Description	Attribute Name	Comment
 Comment	NOTE	TYPE=TEXT
 Last Revision	REV	A hidden field.
-Version	VERSION	A hidden field with the value set to the string “2.1”.
+Version	VERSION	A hidden field with the value set to the string "2.1".
 Language	LANG	A hidden field with the value set to the string associated with the default language used in the form (e.g., US-eng).
 Sound	SOUND	TYPE=TEXT
 Sound Type	N/A	
@@ -904,83 +904,83 @@ Key Type	KEY.Type.x	Where x is one of the enumerated encoding types defined by t
 MISCELLANEOUS PROPERTIES		
 Extensions	X-x	Where x is a string defined by the extension author.
 
-Where multiple properties (e.g., telephone numbers) appear, a label prefix should be used. For example, telephone #1 might have a name attribute of “A.TEL”, telephone #2 might have a name attribute of “B.TEL”, etc.
+Where multiple properties (e.g., telephone numbers) appear, a label prefix should be used. For example, telephone #1 might have a name attribute of "A.TEL", telephone #2 might have a name attribute of "B.TEL", etc.
 .3	Example HTML Code
 The following HTML code is an example of the use of the mapping of INPUT element attributes names to vCard property names. The code can be used to capture input data for creating a vCard on a Web homepage.
-<!DOCTYPE HTML PUBLIC “-//IETF//DTD HTML 2.0//EN”>
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
 <head>
 <title>Create Your Own Versitcard</title>
 </head>
-<IMG src=“versit.gif”>
+<IMG src="versit.gif">
 <h1>Create Your Own Versitcard</h1>
 <P> Fill out this form and we'll
 create a <b>Versitcard</b> for you and send it to the email address of your choice,
 along with more information on the Versitcard format.</P>
 <hr><!-- Identification And Organizational Properties -->
-<FORM METHOD=“POST” ACTION=“/cgi-bin/vcard-maker”>
-Formatted Name:<INPUT name=“FN” type=text size=32 maxlength=64
-value=““><br>
-Phoenetic Pronunciation:<INPUT name=“SOUND” type=text size=32 maxlength=128 value=““><br>
-Company Name:<INPUT name=“ORG.Name” type=text  size=32 maxlength=64
-value=““><br>
-Company Unit:<INPUT name=“ORG.Unit” type=text size=32
-maxlength=64 value=““><br>
-Title:<INPUT name=“TITLE” type=text size=32 maxlength=64
-value=““>
+<FORM METHOD="POST" ACTION="/cgi-bin/vcard-maker">
+Formatted Name:<INPUT name="FN" type=text size=32 maxlength=64
+value=""><br>
+Phoenetic Pronunciation:<INPUT name="SOUND" type=text size=32 maxlength=128 value=""><br>
+Company Name:<INPUT name="ORG.Name" type=text  size=32 maxlength=64
+value=""><br>
+Company Unit:<INPUT name="ORG.Unit" type=text size=32
+maxlength=64 value=""><br>
+Title:<INPUT name="TITLE" type=text size=32 maxlength=64
+value="">
 <hr><!-- Name Property Component Values -->
-Family Name:<INPUT name=“N.Family” type=text size=32 maxlength=64
-value=““><br>
-Given Name:<INPUT name=“N.Given” type=text size=32
-maxlength=64 value=““><br>
-Middle Name:<INPUT name=“N.Middle” type=type size=32
-maxlength=64 value=““><br>
-Name Prefix:<INPUT name=“N.Prefix” type=type size=32
-maxlength=64 value=““><br>
-Name Suffix:<INPUT name=“N.Suffix” type=type size=32
-maxlength=64 value=““><br>
+Family Name:<INPUT name="N.Family" type=text size=32 maxlength=64
+value=""><br>
+Given Name:<INPUT name="N.Given" type=text size=32
+maxlength=64 value=""><br>
+Middle Name:<INPUT name="N.Middle" type=type size=32
+maxlength=64 value=""><br>
+Name Prefix:<INPUT name="N.Prefix" type=type size=32
+maxlength=64 value=""><br>
+Name Suffix:<INPUT name="N.Suffix" type=type size=32
+maxlength=64 value=""><br>
 <hr><!-- Delivery Addressing Properties -->
-Delivery Label:<TEXTAREA name=“LABEL” cols=64 ROWS=5>
+Delivery Label:<TEXTAREA name="LABEL" cols=64 ROWS=5>
 </TEXTAREA><br><br>
-Post Office Address:<INPUT name=“ADR.POAddr” type=text size=32
-maxlength=64 value=““><br>
-Extended Address:<INPUT name=“ADR.ExtAddr” type=text size=32
-maxlength=64 value=““><br>
-Street Address:<INPUT name=“ADR.Street” type=text size=62
-maxlength=128 value=““><br>
-City:<INPUT name=“ADR.Locality” type=text size=16 maxlength=32
-value=““>
-Region:<INPUT name=“ADR.Region” type=text size=16 maxlength=32
-value=““>
-Postal Code:<INPUT name=“ADR.PostalCode” type=text size=16 maxlength=32
-value=““><br>
-Country Name:<INPUT name=“ADR.CountryName” type=text size=16 maxlength=32 value=“USA”>
-<INPUT type=checkbox name=“ADR.Work” value=WORK checked>Work
-<INPUT type=checkbox name=“ADR.Home” value=HOME>Home
-<INPUT type=checkbox name=“ADR.Parcel” value=PARCEL checked>Parcel <INPUT type=checkbox name=“ADR.Postal” value=POSTAL checked>Postal<br>
+Post Office Address:<INPUT name="ADR.POAddr" type=text size=32
+maxlength=64 value=""><br>
+Extended Address:<INPUT name="ADR.ExtAddr" type=text size=32
+maxlength=64 value=""><br>
+Street Address:<INPUT name="ADR.Street" type=text size=62
+maxlength=128 value=""><br>
+City:<INPUT name="ADR.Locality" type=text size=16 maxlength=32
+value="">
+Region:<INPUT name="ADR.Region" type=text size=16 maxlength=32
+value="">
+Postal Code:<INPUT name="ADR.PostalCode" type=text size=16 maxlength=32
+value=""><br>
+Country Name:<INPUT name="ADR.CountryName" type=text size=16 maxlength=32 value="USA">
+<INPUT type=checkbox name="ADR.Work" value=WORK checked>Work
+<INPUT type=checkbox name="ADR.Home" value=HOME>Home
+<INPUT type=checkbox name="ADR.Parcel" value=PARCEL checked>Parcel <INPUT type=checkbox name="ADR.Postal" value=POSTAL checked>Postal<br>
 <hr><!-- Geographical Properties -->
-TimeZone:<INPUT name=“TZ” type=text size=3 maxlength=8
-value=“-06”>
-Location:<INPUT name=“GEO” type=text size=16 maxlength=32 value=““><br>
+TimeZone:<INPUT name="TZ" type=text size=3 maxlength=8
+value="-06">
+Location:<INPUT name="GEO" type=text size=16 maxlength=32 value=""><br>
 <hr><!-- Telephony Addressing Properties -->
 <!-- Telephone #1 -->
-Telephone #1:<INPUT type=text name=“A.TEL” size=20 maxlength=40 value=“+1 (000) 000-0000”><br>
-<INPUT type=checkbox name=“A.TEL.Work” value=WORK checked>Work
-<INPUT type=checkbox name=“A.TEL.Home” value=HOME>Home
-<INPUT type=checkbox name=“A.TEL.Voice” value=VOICE checked>Voice
-<INPUT type=checkbox name=“A.TEL.Msg” value=MSG checked>Msg <INPUT type=checkbox name=“A.TEL.Fax” value=FAX>Fax <INPUT type=checkbox name=“A.TEL.Prefer” value=PREFER checked>Preferred<br>
+Telephone #1:<INPUT type=text name="A.TEL" size=20 maxlength=40 value="+1 (000) 000-0000"><br>
+<INPUT type=checkbox name="A.TEL.Work" value=WORK checked>Work
+<INPUT type=checkbox name="A.TEL.Home" value=HOME>Home
+<INPUT type=checkbox name="A.TEL.Voice" value=VOICE checked>Voice
+<INPUT type=checkbox name="A.TEL.Msg" value=MSG checked>Msg <INPUT type=checkbox name="A.TEL.Fax" value=FAX>Fax <INPUT type=checkbox name="A.TEL.Prefer" value=PREFER checked>Preferred<br>
 <hr><!-- Telephone #2 -->
-Telephone #2:<INPUT type=text name=“B.TEL” size=20 maxlength=40 value=“+1 (000) 000-0000”><br>
-<INPUT type=checkbox name=“B.TEL.Work” value=WORK checked>Work <INPUT type=checkbox name=“B.TEL.Home” value=HOME>Home
-<INPUT type=checkbox name=“B.TEL.Voice” value=VOICE>Voice <INPUT type=checkbox name=“B.TEL.Msg” value=MSG>Msg 
-<INPUT type=checkbox name=“B.TEL.Fax” value=FAX checked>Fax
-<INPUT type=checkbox name=“B.TEL.Prefer” value=PREFER>Preferred<br>
+Telephone #2:<INPUT type=text name="B.TEL" size=20 maxlength=40 value="+1 (000) 000-0000"><br>
+<INPUT type=checkbox name="B.TEL.Work" value=WORK checked>Work <INPUT type=checkbox name="B.TEL.Home" value=HOME>Home
+<INPUT type=checkbox name="B.TEL.Voice" value=VOICE>Voice <INPUT type=checkbox name="B.TEL.Msg" value=MSG>Msg 
+<INPUT type=checkbox name="B.TEL.Fax" value=FAX checked>Fax
+<INPUT type=checkbox name="B.TEL.Prefer" value=PREFER>Preferred<br>
 <hr><!-- Telephone #3 -->
-Telephone #3:<INPUT type=text name= “C.TEL” size=20 maxlength=40 value=“+1 (000) 000-0000”><br>
-<INPUT type=checkbox name=“C.TEL.Work” value=WORK>Work
-<INPUT type=checkbox name=“C.TEL.Home” value=HOME checked>Home <INPUT type=checkbox name=“C.TEL.Voice” value=VOICE checked>Voice <INPUT type=checkbox name=“C.TEL.Msg” value=MSG checked>Msg
-<INPUT type=checkbox name=“C.TEL.Fax” value=FAX checked>Fax <INPUT type=checkbox name=“D.Prefer” value=PREFER>Preferred<br>
+Telephone #3:<INPUT type=text name= "C.TEL" size=20 maxlength=40 value="+1 (000) 000-0000"><br>
+<INPUT type=checkbox name="C.TEL.Work" value=WORK>Work
+<INPUT type=checkbox name="C.TEL.Home" value=HOME checked>Home <INPUT type=checkbox name="C.TEL.Voice" value=VOICE checked>Voice <INPUT type=checkbox name="C.TEL.Msg" value=MSG checked>Msg
+<INPUT type=checkbox name="C.TEL.Fax" value=FAX checked>Fax <INPUT type=checkbox name="D.Prefer" value=PREFER>Preferred<br>
 <hr><!-- Email D -->
-EmailAddress: <select name=“D.EMAILTYPE”>
+EmailAddress: <select name="D.EMAILTYPE">
 <option selected>INTERNET:
 <option>CompuServe:
 <option>AOL:
@@ -994,11 +994,11 @@ EmailAddress: <select name=“D.EMAILTYPE”>
 <option>MCIMail:
 <option>X.400:
 <option>TLX:
-</select><INPUT type=text name=“D.EMAIL” size=32 maxlength=64 value=““>
-<INPUT type=checkbox name=“D.EMAIL.Work” value=WORK checked>Work <INPUT type=checkbox name=“D.EMAIL.Home” value=HOME checked>Home<br>
+</select><INPUT type=text name="D.EMAIL" size=32 maxlength=64 value="">
+<INPUT type=checkbox name="D.EMAIL.Work" value=WORK checked>Work <INPUT type=checkbox name="D.EMAIL.Home" value=HOME checked>Home<br>
 <hr><!-- End of vCard Input -->
 Send my Versitcard to this <b>internet</b> email address: 
-<INPUT type=text name=“SENDTOADDR” size=32 maxlength=64 value=““><br> Press <INPUT TYPE=SUBMIT value=“Send”> to send the form now. Or, press <INPUT TYPE=RESET value=“Reset”> to reset values to the form defaults.
+<INPUT type=text name="SENDTOADDR" size=32 maxlength=64 value=""><br> Press <INPUT TYPE=SUBMIT value="Send"> to send the form now. Or, press <INPUT TYPE=RESET value="Reset"> to reset values to the form defaults.
 </form>
 </body>
 
