@@ -20,7 +20,7 @@
 using Nettify.MailAddress;
 using System;
 using System.Collections.Generic;
-using Textify.Data.Analysis.NameGen;
+using Textify.Data.NameGen;
 using VisualCard.Parts;
 using VisualCard.Parts.Enums;
 using VisualCard.Parts.Implementations;
