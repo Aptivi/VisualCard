@@ -26,7 +26,7 @@ using VisualCard.Parts.Implementations;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace VisualCard.Converters
+namespace VisualCard.Extras.Converters
 {
     /// <summary>
     /// MeCard string generator and converter

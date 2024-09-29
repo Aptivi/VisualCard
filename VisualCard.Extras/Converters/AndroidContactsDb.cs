@@ -25,7 +25,7 @@ using System.Text;
 using VisualCard.Parsers;
 using VisualCard.Parts;
 
-namespace VisualCard.Converters
+namespace VisualCard.Extras.Converters
 {
     /// <summary>
     /// Android contacts database management class
@@ -222,7 +222,7 @@ namespace VisualCard.Converters
                             // | d6: Suffix
                             // ---> will get converted to VCard line:
                             //      N:d3;d2;d5;d4;d6;
-                            const string _nameSpecifier     = "N:";
+                            const string _nameSpecifier = "N:";
                             const string _fullNameSpecifier = "FN:";
                             masterContactBuilder.AppendLine($"{_fullNameSpecifier}{d1}");
                             masterContactBuilder.AppendLine($"{_nameSpecifier}{d3};{d2};{d5};{d4};{d6};");

@@ -22,11 +22,12 @@ using System.Diagnostics;
 using System.Linq;
 using Terminaux.Colors.Data;
 using Terminaux.Writer.ConsoleWriters;
-using VisualCard.Converters;
+using VisualCard.Extras.Converters;
 using VisualCard.Extras;
 using VisualCard.Parts;
 using VisualCard.Parts.Enums;
 using VisualCard.Parts.Implementations;
+using VisualCard.Extras.Misc;
 
 namespace VisualCard.ShowContacts
 {

@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyTitle>Aptivi</AssemblyTitle>
+    <AssemblyDescription>vCard Parsing Library</AssemblyDescription>
+    <Description>
+      A C# library that allows you to parse vCard files in different formats, such as vCard 2.1, 3.0, 4.0, and 5.0. This package provides the vCalendar parser for your calendars.
+      This package provides extra functionality to parse additional contact card formats.
+    </Description>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <DebugType>portable</DebugType>
+    <PackageIcon>OfficialAppIcon-VisualCard-512.png</PackageIcon>
+    <PackageProjectUrl>https://github.com/Aptivi/VisualCard</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/Aptivi/VisualCard</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <IncludeSymbols>True</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\VisualCard\OfficialAppIcon-VisualCard-512.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VisualCard\VisualCard.csproj" />
+  </ItemGroup>
+
+</Project>

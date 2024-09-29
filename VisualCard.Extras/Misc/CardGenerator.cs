@@ -25,7 +25,7 @@ using VisualCard.Parts;
 using VisualCard.Parts.Enums;
 using VisualCard.Parts.Implementations;
 
-namespace VisualCard.Extras
+namespace VisualCard.Extras.Misc
 {
     /// <summary>
     /// A card generator

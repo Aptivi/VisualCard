@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\VisualCard\VisualCard.csproj" />
+    <ProjectReference Include="..\VisualCard.Extras\VisualCard.Extras.csproj" />
   </ItemGroup>
 
   <ItemGroup>

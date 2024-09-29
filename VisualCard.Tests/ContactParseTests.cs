@@ -21,10 +21,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shouldly;
 using System.Collections.Generic;
 using System.IO;
-using VisualCard.Converters;
+using VisualCard.Extras.Converters;
 using VisualCard.Exceptions;
-using VisualCard.Extras;
 using VisualCard.Parts;
+using VisualCard.Extras.Misc;
 
 namespace VisualCard.Tests
 {
