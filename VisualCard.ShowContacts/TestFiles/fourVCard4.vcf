@@ -33,6 +33,7 @@ TITLE:Title
 GENDER:M
 LANG;TYPE=home:en
 LANG;TYPE=work:de
+CONTACT-URI:https://nvsc.com/contact
 X-ANDROID-CUSTOM:vnd.android.cursor.item/nickname;NVL.N;1
 	;;;;;;;;;;;;;
 XML:<b>Not an xCard XML element</b>\n<b>Not a second xCard XML element</b>

@@ -149,6 +149,10 @@ namespace VisualCard.Parts.Enums
         /// </summary>
         CalendarSchedulingRequestUrl,
         /// <summary>
+        /// The contact's contact URI
+        /// </summary>
+        ContactUri,
+        /// <summary>
         /// The contact's extended IANA options (usually starts with SOMETHING:Value1;Value2...)
         /// </summary>
         IanaNames = int.MaxValue - 2,

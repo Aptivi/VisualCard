@@ -129,6 +129,7 @@ namespace VisualCard.Parsers
                 PartsArrayEnum.FreeBusyUrl => cardVersion.Major >= 4,
                 PartsArrayEnum.CalendarUrl => cardVersion.Major >= 4,
                 PartsArrayEnum.CalendarSchedulingRequestUrl => cardVersion.Major >= 4,
+                PartsArrayEnum.ContactUri => cardVersion.Major >= 4,
 
                 // Extensions are allowed
                 _ => true,
@@ -181,6 +182,7 @@ namespace VisualCard.Parsers
                 PartsArrayEnum.Notes => VcardConstants._noteSpecifier,
                 PartsArrayEnum.Source => VcardConstants._sourceSpecifier,
                 PartsArrayEnum.Url => VcardConstants._urlSpecifier,
+                PartsArrayEnum.ContactUri => VcardConstants._contactUriSpecifier,
 
                 // Extensions are allowed
                 PartsArrayEnum.NonstandardNames => VcardConstants._xSpecifier,
@@ -255,6 +257,8 @@ namespace VisualCard.Parsers
                 return (PartsArrayEnum.CalendarUrl, PartCardinality.Any);
             else if (partsArrayType == typeof(CalendarSchedulingRequestUrlInfo))
                 return (PartsArrayEnum.CalendarSchedulingRequestUrl, PartCardinality.Any);
+            else if (partsArrayType == typeof(ContactUriInfo))
+                return (PartsArrayEnum.ContactUri, PartCardinality.Any);
 
             // Extensions are allowed
             else if (partsArrayType == typeof(XNameInfo))
@@ -296,6 +300,7 @@ namespace VisualCard.Parsers
                 VcardConstants._fbUrlSpecifier => (PartType.PartsArray, PartsArrayEnum.FreeBusyUrl, typeof(FreeBusyInfo), FreeBusyInfo.FromStringVcardStatic, "", "", []),
                 VcardConstants._calUriSpecifier => (PartType.PartsArray, PartsArrayEnum.CalendarUrl, typeof(CalendarUrlInfo), CalendarUrlInfo.FromStringVcardStatic, "", "", []),
                 VcardConstants._caladrUriSpecifier => (PartType.PartsArray, PartsArrayEnum.CalendarSchedulingRequestUrl, typeof(CalendarSchedulingRequestUrlInfo), CalendarSchedulingRequestUrlInfo.FromStringVcardStatic, "", "", []),
+                VcardConstants._contactUriSpecifier => (PartType.PartsArray, PartsArrayEnum.ContactUri, typeof(ContactUriInfo), ContactUriInfo.FromStringVcardStatic, "", "", []),
                 VcardConstants._kindSpecifier => (PartType.Strings, StringsEnum.Kind, null, null, "", "", []),
                 VcardConstants._mailerSpecifier => (PartType.Strings, StringsEnum.Mailer, null, null, "", "", []),
                 VcardConstants._productIdSpecifier => (PartType.Strings, StringsEnum.ProductId, null, null, "", "", []),
