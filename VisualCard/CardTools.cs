@@ -33,6 +33,11 @@ namespace VisualCard
     public static class CardTools
     {
         /// <summary>
+        /// ISO 9070 Formal Public Identifier (FPI) for clipboard format type
+        /// </summary>
+        public const string FPI = "+//ISBN 1-887687-00-9::versit::PDI//vCard";
+
+        /// <summary>
         /// Gets the list of parsers for single/multiple contacts from the string
         /// </summary>
         /// <param name="cardText">Contacts text</param>

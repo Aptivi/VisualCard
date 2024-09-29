@@ -32,6 +32,11 @@ namespace VisualCard.Calendar
     public static class CalendarTools
     {
         /// <summary>
+        /// ISO 9070 Formal Public Identifier (FPI) for clipboard format type
+        /// </summary>
+        public const string FPI = "+//ISBN 1-887687-00-9::versit::PDI//vCalendar";
+
+        /// <summary>
         /// Gets the list of parsers for single/multiple contacts from the string
         /// </summary>
         /// <param name="calendarText">Contacts text</param>
