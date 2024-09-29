@@ -128,5 +128,9 @@ namespace VisualCard.Calendar.Parts.Enums
         /// The calendar's relationship (event, todo, or journal)
         /// </summary>
         RelatedTo,
+        /// <summary>
+        /// The calendar's relationship (event, todo, journal, or time zone)
+        /// </summary>
+        LastModified,
     }
 }
