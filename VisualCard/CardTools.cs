@@ -83,6 +83,7 @@ namespace VisualCard
             Version CardVersion = new();
             List<Card> nestedCards = [];
             bool nested = false;
+            bool versionDirect = false;
             while (!stream.EndOfStream)
             {
                 bool append = false;
@@ -135,23 +136,32 @@ namespace VisualCard
                     VersionSpotted = false;
                     EndSpotted = false;
                     nested = true;
+                    versionDirect = true;
                     continue;
                 }
 
                 // Now that the beginning of the card tag is spotted, parse the version as we need to know how to select the appropriate parser.
-                // All VCards are required to have their own version directly after the BEGIN:VCARD tag
-                if (CardLine != $"{VcardConstants._versionSpecifier}:2.1" &&
+                // vCard 4.0 and 5.0 cards are required to have their own version directly after the BEGIN:VCARD tag, but vCard 3.0 and 2.1 may
+                // or may not place VERSION directly after the BEGIN:VCARD tag.
+                if (CardLine.StartsWith(VcardConstants._versionSpecifier) &&
+                    CardLine != $"{VcardConstants._versionSpecifier}:2.1" &&
                     CardLine != $"{VcardConstants._versionSpecifier}:3.0" &&
                     CardLine != $"{VcardConstants._versionSpecifier}:4.0" &&
                     CardLine != $"{VcardConstants._versionSpecifier}:5.0" &&
                     !VersionSpotted)
                     throw new InvalidDataException($"This has an invalid VCard version {CardLine}.");
-                else if (!VersionSpotted)
+                else if (!VersionSpotted && CardLine.StartsWith(VcardConstants._versionSpecifier))
                 {
                     VersionSpotted = true;
                     CardVersion = new(CardLine.Substring(8));
+                    
+                    // Check to see if the vCard has VERSION directly after BEGIN:VCARD for 4.0 and 5.0
+                    if (!versionDirect && (CardVersion.Major == 4 || CardVersion.Major == 5))
+                        throw new InvalidDataException($"vCard {CardVersion.Major}.0 requires that VERSION comes directly after {VcardConstants._beginText}.");
                     continue;
                 }
+                if (!VersionSpotted)
+                    versionDirect = false;
 
                 // If the ending tag is spotted, reset everything.
                 if (CardLine == VcardConstants._endText && !EndSpotted)
@@ -172,6 +182,7 @@ namespace VisualCard
                     CardContent.Clear();
                     nestedCards.Clear();
                     BeginSpotted = false;
+                    versionDirect = false;
                 }
                 else if (append)
                     CardContent.AppendLine();

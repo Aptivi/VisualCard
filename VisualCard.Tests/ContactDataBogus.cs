@@ -44,6 +44,17 @@ namespace VisualCard.Tests
             """
         ;
 
+        private static readonly string vcardTwoWithIndirectVersionSpecify =
+            """
+            BEGIN:VCARD
+            N:Hood;Rick;;;
+            CALURI:https://www.rickhood.com/events/calendar?type=MusicHoodFestival2024
+            NICKNAME:R.H.
+            VERSION:2.1
+            END:VCARD
+            """
+        ;
+
         private static readonly string vcardThreeNoFullName =
             """
             BEGIN:VCARD
@@ -124,6 +135,17 @@ namespace VisualCard.Tests
             """
         ;
 
+        private static readonly string vcardInvalidVersion =
+            """
+            BEGIN:VCARD
+            N:Hood;Rick;;;
+            FN:Rick Hood
+            ADR;TYPE=warehouse:;;Los Angeles, USA;;;;
+            VERSION:5.0
+            END:VCARD
+            """
+        ;
+
         /// <summary>
         /// All of the contacts in this field should fail immediately upon processing the test contacts in the
         /// <see cref="VcardParser.Parse()"/> function. This throws VCardParseException.
@@ -149,6 +171,9 @@ namespace VisualCard.Tests
             ],
             [
                 vcardTwoWithUnsupportedParts,
+            ],
+            [
+                vcardTwoWithIndirectVersionSpecify,
             ],
         ];
 
@@ -178,6 +203,9 @@ namespace VisualCard.Tests
             ],
             [
                 vcardZeroByte,
+            ],
+            [
+                vcardInvalidVersion,
             ],
         ];
     }
