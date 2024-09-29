@@ -27,7 +27,7 @@ namespace VisualCard.Parts.Implementations
     /// <summary>
     /// Contact XML info
     /// </summary>
-    [DebuggerDisplay("XML = {XML}")]
+    [DebuggerDisplay("XML = {XmlString}")]
     public class XmlInfo : BaseCardPartInfo, IEquatable<XmlInfo>
     {
         /// <summary>

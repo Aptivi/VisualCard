@@ -27,7 +27,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
     /// <summary>
     /// Event display alarm information
     /// </summary>
-    [DebuggerDisplay("DisplayAlarm = {Flag}")]
+    [DebuggerDisplay("Display Alarm = @ {RunTime}, {SnoozeTime}, {RepeatCount} times, {Display}")]
     public class DisplayAlarmInfo : BaseCalendarPartInfo, IEquatable<DisplayAlarmInfo>
     {
         /// <summary>

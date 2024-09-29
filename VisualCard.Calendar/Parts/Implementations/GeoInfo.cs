@@ -25,7 +25,7 @@ namespace VisualCard.Calendar.Parts.Implementations
     /// <summary>
     /// Event or to-do geographical information
     /// </summary>
-    [DebuggerDisplay("Geography = {Geo}")]
+    [DebuggerDisplay("Geography = {Latitude}, {Longitude}")]
     public class GeoInfo : BaseCalendarPartInfo, IEquatable<GeoInfo>
     {
         /// <summary>

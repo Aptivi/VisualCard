@@ -26,7 +26,7 @@ namespace VisualCard.Parts.Implementations
     /// <summary>
     /// Contact language information
     /// </summary>
-    [DebuggerDisplay("Language = {ContactLang}")]
+    [DebuggerDisplay("Language {ContactLangPreference} = {ContactLang}")]
     public class LangInfo : BaseCardPartInfo, IEquatable<LangInfo>
     {
         /// <summary>

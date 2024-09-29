@@ -25,13 +25,13 @@ using System.Text.RegularExpressions;
 namespace VisualCard.Calendar.Parts.Implementations
 {
     /// <summary>
-    /// Contact comment info
+    /// Calendar comment info
     /// </summary>
     [DebuggerDisplay("Comment = {Comment}")]
     public class CommentInfo : BaseCalendarPartInfo, IEquatable<CommentInfo>
     {
         /// <summary>
-        /// The contact's comment
+        /// The calendar's comment
         /// </summary>
         public string? Comment { get; }
 

@@ -29,7 +29,7 @@ namespace VisualCard.Calendar.Parts.Implementations
     /// <summary>
     /// Calendar attach info
     /// </summary>
-    [DebuggerDisplay("Attach, {Encoding}, {AttachType}, {ValueType}")]
+    [DebuggerDisplay("Attach, {Encoding}, {ValueType}")]
     public class AttachInfo : BaseCalendarPartInfo, IEquatable<AttachInfo>
     {
         /// <summary>

@@ -29,7 +29,7 @@ namespace VisualCard.Calendar.Parts
     /// <summary>
     /// A vCalendar card instance
     /// </summary>
-    [DebuggerDisplay("vCalendar daylight time version {CalendarVersion.ToString()}, parts: (A [{partsArray.Count}] | S [{strings.Count}])")]
+    [DebuggerDisplay("vCalendar daylight time version {CalendarVersion.ToString()}, parts: (A [{partsArray.Count}] | S [{strings.Count}] | I [{integers.Count}])")]
     public class CalendarDaylight : Calendar, IEquatable<CalendarDaylight>
     {
         private readonly Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray = [];

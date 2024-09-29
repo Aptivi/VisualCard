@@ -27,7 +27,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
     /// <summary>
     /// Event audio alarm information
     /// </summary>
-    [DebuggerDisplay("AudioAlarm = {Flag}")]
+    [DebuggerDisplay("Audio Alarm = @ {RunTime}, {SnoozeTime}, {RepeatCount} times, {AudioResource}")]
     public class AudioAlarmInfo : BaseCalendarPartInfo, IEquatable<AudioAlarmInfo>
     {
         /// <summary>

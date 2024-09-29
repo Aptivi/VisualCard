@@ -30,7 +30,7 @@ namespace VisualCard.Calendar.Parts.Implementations
     /// <summary>
     /// Calendar recurrence date info
     /// </summary>
-    [DebuggerDisplay("RecDate = {RecDates.Length} dates")]
+    [DebuggerDisplay("{RecDates.Length} recurrence dates")]
     public class RecDateInfo : BaseCalendarPartInfo, IEquatable<RecDateInfo>
     {
         /// <summary>

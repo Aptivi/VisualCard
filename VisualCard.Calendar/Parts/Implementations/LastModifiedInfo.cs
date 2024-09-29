@@ -30,7 +30,7 @@ namespace VisualCard.Calendar.Parts.Implementations
     public class LastModifiedInfo : BaseCalendarPartInfo, IEquatable<LastModifiedInfo>
     {
         /// <summary>
-        /// The card's revision
+        /// The calendar's revision
         /// </summary>
         public DateTimeOffset LastModified { get; }
 

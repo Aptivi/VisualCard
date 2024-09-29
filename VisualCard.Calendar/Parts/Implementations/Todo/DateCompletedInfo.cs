@@ -24,7 +24,7 @@ using VisualCard.Parsers;
 namespace VisualCard.Calendar.Parts.Implementations.Todo
 {
     /// <summary>
-    /// Card date completed info
+    /// To-do date completed info
     /// </summary>
     [DebuggerDisplay("Date Completed = {DateCompleted}")]
     public class DateCompletedInfo : BaseCalendarPartInfo, IEquatable<DateCompletedInfo>

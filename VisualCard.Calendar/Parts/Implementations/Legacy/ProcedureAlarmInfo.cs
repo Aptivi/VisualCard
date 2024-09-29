@@ -27,7 +27,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
     /// <summary>
     /// Event procedure alarm information
     /// </summary>
-    [DebuggerDisplay("ProcedureAlarm = {Flag}")]
+    [DebuggerDisplay("Procedure Alarm = @ {RunTime}, {SnoozeTime}, {RepeatCount} times, {Procedure}")]
     public class ProcedureAlarmInfo : BaseCalendarPartInfo, IEquatable<ProcedureAlarmInfo>
     {
         /// <summary>

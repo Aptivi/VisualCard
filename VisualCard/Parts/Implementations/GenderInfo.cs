@@ -30,7 +30,7 @@ namespace VisualCard.Parts.Implementations
     /// <summary>
     /// Contact gender info
     /// </summary>
-    [DebuggerDisplay("Gender = {Gender}")]
+    [DebuggerDisplay("Gender = {Gender} [{GenderDescription}]")]
     public class GenderInfo : BaseCardPartInfo, IEquatable<GenderInfo>
     {
         /// <summary>

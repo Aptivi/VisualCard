@@ -27,7 +27,7 @@ namespace VisualCard.Parts.Implementations
     /// <summary>
     /// Contact free/busy info
     /// </summary>
-    [DebuggerDisplay("Free/Busy URL, {FreeBusy}")]
+    [DebuggerDisplay("Free/Busy URL = {FreeBusy}")]
     public class FreeBusyInfo : BaseCardPartInfo, IEquatable<FreeBusyInfo>
     {
         /// <summary>

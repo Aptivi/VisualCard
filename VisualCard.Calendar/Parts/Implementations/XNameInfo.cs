@@ -26,7 +26,7 @@ using VisualCard.Calendar.Parsers;
 namespace VisualCard.Calendar.Parts.Implementations
 {
     /// <summary>
-    /// Contact non-standard field entry information
+    /// Calendar non-standard field entry information
     /// </summary>
     [DebuggerDisplay("Non-standard: {XKeyName} = {string.Join(\", \", XValues)}")]
     public class XNameInfo : BaseCalendarPartInfo, IEquatable<XNameInfo>

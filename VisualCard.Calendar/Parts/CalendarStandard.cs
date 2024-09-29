@@ -29,7 +29,7 @@ namespace VisualCard.Calendar.Parts
     /// <summary>
     /// A vCalendar card instance
     /// </summary>
-    [DebuggerDisplay("vCalendar standard time version {CalendarVersion.ToString()}, parts: (A [{partsArray.Count}] | S [{strings.Count}])")]
+    [DebuggerDisplay("vCalendar standard time version {CalendarVersion.ToString()}, parts: (A [{partsArray.Count}] | S [{strings.Count}] | I [{integers.Count}])")]
     public class CalendarStandard : Calendar, IEquatable<CalendarStandard>
     {
         private readonly Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray = [];

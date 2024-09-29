@@ -27,11 +27,11 @@ namespace VisualCard.Calendar.Parts.Implementations.TimeZone
     /// <summary>
     /// Calendar time zone name info
     /// </summary>
-    [DebuggerDisplay("TimeZoneName = {TimeZoneName}")]
+    [DebuggerDisplay("Time Zone Name = {TimeZoneName}")]
     public class TimeZoneNameInfo : BaseCalendarPartInfo, IEquatable<TimeZoneNameInfo>
     {
         /// <summary>
-        /// The timezonename address
+        /// The time zone name
         /// </summary>
         public string? TimeZoneName { get; }
 

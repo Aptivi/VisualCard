@@ -29,7 +29,7 @@ namespace VisualCard.Calendar.Parts
     /// <summary>
     /// A vCalendar card instance
     /// </summary>
-    [DebuggerDisplay("vCalendar free/busy version {CalendarVersion.ToString()}, parts: (A [{partsArray.Count}] | S [{strings.Count}])")]
+    [DebuggerDisplay("vCalendar free/busy version {CalendarVersion.ToString()}, parts: (A [{partsArray.Count}] | S [{strings.Count}] | I [{integers.Count}])")]
     public class CalendarFreeBusy : Calendar, IEquatable<CalendarFreeBusy>
     {
         private readonly Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray = [];

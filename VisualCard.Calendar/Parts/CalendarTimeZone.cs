@@ -29,7 +29,7 @@ namespace VisualCard.Calendar.Parts
     /// <summary>
     /// A vCalendar card instance
     /// </summary>
-    [DebuggerDisplay("vCalendar timezone version {CalendarVersion.ToString()}, parts: (A [{partsArray.Count}] | S [{strings.Count}])")]
+    [DebuggerDisplay("vCalendar timezone version {CalendarVersion.ToString()}, parts: (A [{partsArray.Count}] | S [{strings.Count}] | I [{integers.Count}])")]
     public class CalendarTimeZone : Calendar, IEquatable<CalendarTimeZone>
     {
         internal readonly List<CalendarStandard> standards = [];

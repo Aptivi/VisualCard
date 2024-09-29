@@ -35,7 +35,7 @@ namespace VisualCard.Calendar.Parts
     /// <summary>
     /// A vCalendar card instance
     /// </summary>
-    [DebuggerDisplay("vCalendar version {CalendarVersion.ToString()}, parts: (A [{partsArray.Count}] | S [{strings.Count}])")]
+    [DebuggerDisplay("vCalendar version {CalendarVersion.ToString()}, parts: (A [{partsArray.Count}] | S [{strings.Count} | I [{integers.Count}])")]
     public class Calendar : IEquatable<Calendar>
     {
         internal readonly List<CalendarEvent> events = [];

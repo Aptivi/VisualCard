@@ -26,11 +26,11 @@ namespace VisualCard.Calendar.Parts.Implementations.TimeZone
     /// <summary>
     /// Time zone offset from info
     /// </summary>
-    [DebuggerDisplay("Time zone offset from = {offset}")]
+    [DebuggerDisplay("Time zone offset from = {Offset}")]
     public class TimeZoneOffsetFromInfo : BaseCalendarPartInfo, IEquatable<TimeZoneOffsetFromInfo>
     {
         /// <summary>
-        /// The card's revision
+        /// Time zone offset
         /// </summary>
         public TimeSpan Offset { get; }
 

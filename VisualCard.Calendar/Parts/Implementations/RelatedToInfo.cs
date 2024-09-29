@@ -27,7 +27,7 @@ namespace VisualCard.Calendar.Parts.Implementations
     /// <summary>
     /// Calendar relationship info
     /// </summary>
-    [DebuggerDisplay("RelatedTo = {RelatedTo}")]
+    [DebuggerDisplay("Related to = {RelatedTo}")]
     public class RelatedToInfo : BaseCalendarPartInfo, IEquatable<RelatedToInfo>
     {
         /// <summary>

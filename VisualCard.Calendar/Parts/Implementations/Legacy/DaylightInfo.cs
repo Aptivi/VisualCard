@@ -27,7 +27,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
     /// <summary>
     /// Daylight information (entire calendar)
     /// </summary>
-    [DebuggerDisplay("Daylight = {Flag}")]
+    [DebuggerDisplay("Daylight Alarm = {Flag} @ {UtcOffset} (Daylight: {DaylightStart} -> {DaylightEnd} {DaylightDesignation}), {StandardDesignation}")]
     public class DaylightInfo : BaseCalendarPartInfo, IEquatable<DaylightInfo>
     {
         /// <summary>

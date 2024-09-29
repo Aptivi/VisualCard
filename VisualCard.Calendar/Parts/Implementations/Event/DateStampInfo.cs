@@ -24,13 +24,13 @@ using VisualCard.Parsers;
 namespace VisualCard.Calendar.Parts.Implementations.Event
 {
     /// <summary>
-    /// Card date stamp info
+    /// Event date stamp info
     /// </summary>
-    [DebuggerDisplay("Date Stamp = {dateStamp}")]
+    [DebuggerDisplay("Date Stamp = {DateStamp}")]
     public class DateStampInfo : BaseCalendarPartInfo, IEquatable<DateStampInfo>
     {
         /// <summary>
-        /// The card's revision
+        /// The event's date stamp
         /// </summary>
         public DateTimeOffset DateStamp { get; }
 

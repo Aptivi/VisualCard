@@ -27,7 +27,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
     /// <summary>
     /// Event note alarm information
     /// </summary>
-    [DebuggerDisplay("NoteAlarm = {Flag}")]
+    [DebuggerDisplay("Mail Alarm = @ {RunTime}, {SnoozeTime}, {RepeatCount} times, {Address}, {Note}")]
     public class MailAlarmInfo : BaseCalendarPartInfo, IEquatable<MailAlarmInfo>
     {
         /// <summary>

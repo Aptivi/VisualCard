@@ -25,13 +25,13 @@ using System.Text.RegularExpressions;
 namespace VisualCard.Calendar.Parts.Implementations
 {
     /// <summary>
-    /// Contact location info
+    /// Calendar location info
     /// </summary>
     [DebuggerDisplay("Location = {Location}")]
     public class LocationInfo : BaseCalendarPartInfo, IEquatable<LocationInfo>
     {
         /// <summary>
-        /// The contact's location
+        /// The calendar's location
         /// </summary>
         public string? Location { get; }
 

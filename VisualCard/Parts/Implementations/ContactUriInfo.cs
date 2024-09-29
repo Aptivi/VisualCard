@@ -27,7 +27,7 @@ namespace VisualCard.Parts.Implementations
     /// <summary>
     /// Contact URI info
     /// </summary>
-    [DebuggerDisplay("Contact URI, {ContactUri}")]
+    [DebuggerDisplay("Contact URI = {ContactUri}")]
     public class ContactUriInfo : BaseCardPartInfo, IEquatable<ContactUriInfo>
     {
         /// <summary>

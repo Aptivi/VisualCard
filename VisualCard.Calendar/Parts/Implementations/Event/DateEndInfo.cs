@@ -24,13 +24,13 @@ using VisualCard.Parsers;
 namespace VisualCard.Calendar.Parts.Implementations.Event
 {
     /// <summary>
-    /// Card date end info
+    /// Event date end info
     /// </summary>
-    [DebuggerDisplay("Date End = {dateEnd}")]
+    [DebuggerDisplay("Date End = {DateEnd}")]
     public class DateEndInfo : BaseCalendarPartInfo, IEquatable<DateEndInfo>
     {
         /// <summary>
-        /// The card's revision
+        /// The event's end date
         /// </summary>
         public DateTimeOffset DateEnd { get; }
 

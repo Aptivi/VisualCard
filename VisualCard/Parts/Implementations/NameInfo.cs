@@ -30,7 +30,7 @@ namespace VisualCard.Parts.Implementations
     /// <summary>
     /// Name information
     /// </summary>
-    [DebuggerDisplay("FirstName = {ContactFirstName}, LastName = {ContactLastName}")]
+    [DebuggerDisplay("First name = {ContactFirstName}, Last name = {ContactLastName}")]
     public class NameInfo : BaseCardPartInfo, IEquatable<NameInfo>
     {
         /// <summary>

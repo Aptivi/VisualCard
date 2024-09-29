@@ -27,7 +27,7 @@ namespace VisualCard.Calendar.Parts.Implementations
     /// <summary>
     /// Calendar excluded date info
     /// </summary>
-    [DebuggerDisplay("ExDate = {ExDates}")]
+    [DebuggerDisplay("{ExDates.Length} excluded dates")]
     public class ExDateInfo : BaseCalendarPartInfo, IEquatable<ExDateInfo>
     {
         /// <summary>

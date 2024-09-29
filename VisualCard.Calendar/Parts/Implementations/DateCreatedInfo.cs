@@ -24,13 +24,13 @@ using VisualCard.Parsers;
 namespace VisualCard.Calendar.Parts.Implementations
 {
     /// <summary>
-    /// Card date created info
+    /// Calendar date created info
     /// </summary>
     [DebuggerDisplay("Date Created = {DateCreated}")]
     public class DateCreatedInfo : BaseCalendarPartInfo, IEquatable<DateCreatedInfo>
     {
         /// <summary>
-        /// The card's revision
+        /// The calendar's creation date
         /// </summary>
         public DateTimeOffset DateCreated { get; }
 

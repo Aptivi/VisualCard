@@ -25,13 +25,13 @@ using System.Text.RegularExpressions;
 namespace VisualCard.Calendar.Parts.Implementations.Event
 {
     /// <summary>
-    /// Contact categories info
+    /// Event categories info
     /// </summary>
-    [DebuggerDisplay("Categories = {Categories}")]
+    [DebuggerDisplay("{Categories.Length} categories")]
     public class CategoriesInfo : BaseCalendarPartInfo, IEquatable<CategoriesInfo>
     {
         /// <summary>
-        /// The contact's categories
+        /// The calendar event's categories
         /// </summary>
         public string[]? Categories { get; }
 

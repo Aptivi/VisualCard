@@ -24,13 +24,13 @@ using VisualCard.Parsers;
 namespace VisualCard.Calendar.Parts.Implementations.Event
 {
     /// <summary>
-    /// Card date start info
+    /// Event date start info
     /// </summary>
-    [DebuggerDisplay("Date Start = {dateStart}")]
+    [DebuggerDisplay("Date Start = {DateStart}")]
     public class DateStartInfo : BaseCalendarPartInfo, IEquatable<DateStartInfo>
     {
         /// <summary>
-        /// The card's revision
+        /// The event's start date
         /// </summary>
         public DateTimeOffset DateStart { get; }
 

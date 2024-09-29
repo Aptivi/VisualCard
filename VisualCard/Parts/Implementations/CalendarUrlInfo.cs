@@ -27,7 +27,7 @@ namespace VisualCard.Parts.Implementations
     /// <summary>
     /// Contact calendar URL info
     /// </summary>
-    [DebuggerDisplay("Calendar URL, {CalendarUrl}")]
+    [DebuggerDisplay("Calendar URL = {CalendarUrl}")]
     public class CalendarUrlInfo : BaseCardPartInfo, IEquatable<CalendarUrlInfo>
     {
         /// <summary>

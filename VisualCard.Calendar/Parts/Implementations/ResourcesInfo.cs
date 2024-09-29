@@ -26,13 +26,13 @@ using VisualCard.Calendar.Parsers;
 namespace VisualCard.Calendar.Parts.Implementations
 {
     /// <summary>
-    /// Contact resources info
+    /// Calendar resources info
     /// </summary>
-    [DebuggerDisplay("Resources = {Resources}")]
+    [DebuggerDisplay("{Resources.Length} resources")]
     public class ResourcesInfo : BaseCalendarPartInfo, IEquatable<ResourcesInfo>
     {
         /// <summary>
-        /// The contact's resources
+        /// The calendar's resources
         /// </summary>
         public string[]? Resources { get; }
 

@@ -24,13 +24,13 @@ using VisualCard.Parsers;
 namespace VisualCard.Calendar.Parts.Implementations.Todo
 {
     /// <summary>
-    /// Due date info
+    /// To-do due date info
     /// </summary>
     [DebuggerDisplay("Due = {DueDate}")]
     public class DueDateInfo : BaseCalendarPartInfo, IEquatable<DueDateInfo>
     {
         /// <summary>
-        /// The to-do completion date
+        /// The to-do due date
         /// </summary>
         public DateTimeOffset DueDate { get; }
 

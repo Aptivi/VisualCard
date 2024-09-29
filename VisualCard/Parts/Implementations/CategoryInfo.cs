@@ -28,7 +28,7 @@ namespace VisualCard.Parts.Implementations
     /// <summary>
     /// Contact category info
     /// </summary>
-    [DebuggerDisplay("Category = {Category}")]
+    [DebuggerDisplay("{Category.Length} categories")]
     public class CategoryInfo : BaseCardPartInfo, IEquatable<CategoryInfo>
     {
         /// <summary>

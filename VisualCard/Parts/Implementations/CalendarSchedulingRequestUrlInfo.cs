@@ -27,7 +27,7 @@ namespace VisualCard.Parts.Implementations
     /// <summary>
     /// Contact calendar scheduling request URL info
     /// </summary>
-    [DebuggerDisplay("Calendar Scheduling Request URL, {CalendarSchedulingRequestUrl}")]
+    [DebuggerDisplay("Calendar Scheduling Request URL = {CalendarSchedulingRequestUrl}")]
     public class CalendarSchedulingRequestUrlInfo : BaseCardPartInfo, IEquatable<CalendarSchedulingRequestUrlInfo>
     {
         /// <summary>
