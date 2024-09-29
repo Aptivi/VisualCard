@@ -176,13 +176,13 @@ namespace VisualCard.ShowContacts
                         TextWriterColor.Write("Contact URL:             {0}", url[0].Url ?? "");
                     if (note.Length > 0)
                         TextWriterColor.Write("Contact Note:            {0}", note[0].Note ?? "");
-                    TextWriterColor.Write("Contact kind:            {0}", Contact.CardKind);
+                    TextWriterColor.Write("Card kind:               {0}", Contact.CardKind);
 
                     // Print VCard
                     string raw = Contact.SaveToString();
                     TextWriterColor.WriteColor(
-                        "\nRaw VCard\n" +
-                        "---------\n"
+                        "\nRaw vCard representation\n" +
+                          "------------------------\n"
                         , ConsoleColors.Green
                     );
                     TextWriterColor.Write(raw);
