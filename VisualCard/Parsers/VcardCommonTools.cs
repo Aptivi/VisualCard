@@ -200,6 +200,19 @@ namespace VisualCard.Parsers
             throw new ArgumentException($"Can't parse date {posixDateRepresentation}");
         }
 
+        internal static bool TryParsePosixDate(string posixDateRepresentation, out DateTimeOffset date)
+        {
+            try
+            {
+                date = ParsePosixDate(posixDateRepresentation);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         internal static string SavePosixDate(DateTimeOffset posixDateRepresentation, bool dateOnly = false)
         {
             StringBuilder posixDateBuilder = new(
