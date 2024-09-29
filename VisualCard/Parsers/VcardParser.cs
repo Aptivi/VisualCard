@@ -179,38 +179,13 @@ namespace VisualCard.Parsers
                         case PartType.Strings:
                             {
                                 StringsEnum stringType = (StringsEnum)enumeration;
-                                string finalValue = value;
 
-                                // Now, handle each type individually
-                                switch (stringType)
-                                {
-                                    case StringsEnum.Mailer:
-                                    case StringsEnum.ProductId:
-                                    case StringsEnum.SortString:
-                                    case StringsEnum.AccessClassification:
-                                        // Unescape the value
-                                        finalValue = Regex.Unescape(value);
-                                        break;
-                                    case StringsEnum.Uid:
-                                        // Unescape the value
-                                        finalValue = Regex.Unescape(value);
-                                        if (!Uri.TryCreate(finalValue, UriKind.Absolute, out Uri uri) && values.Equals("uri", StringComparison.OrdinalIgnoreCase))
-                                            throw new InvalidDataException($"URL {finalValue} is invalid");
-                                        finalValue = uri is not null ? uri.ToString() : finalValue;
-                                        break;
-                                    case StringsEnum.Kind:
-                                        // Get the kind
-                                        if (!string.IsNullOrEmpty(value))
-                                            finalValue = Regex.Unescape(value);
-                                        else
-                                            finalValue = "individual";
+                                // Get the final value
+                                string finalValue = VcardParserTools.ProcessStringValue(value, values, stringType);
 
-                                        // Let VisualCard know that we've explicitly specified a kind.
-                                        card.kindExplicitlySpecified = true;
-                                        break;
-                                    default:
-                                        throw new InvalidDataException($"The string enum type {stringType} is invalid. Are you sure that you've specified the correct type in your vCard representation?");
-                                }
+                                // Let VisualCard know that we've explicitly specified a kind.
+                                if (stringType == StringsEnum.Kind)
+                                    card.kindExplicitlySpecified = true;
 
                                 // Set the string for real
                                 card.SetString(stringType, finalValue);
@@ -229,6 +204,8 @@ namespace VisualCard.Parsers
                                 // Now, get the part info
                                 string finalValue = partsArrayType == PartsArrayEnum.NonstandardNames ? _value : value;
                                 var partInfo = fromString(finalValue, [.. finalArgs], altId, elementTypes, values, CardVersion);
+
+                                // Set the array for real
                                 card.AddPartToArray(partsArrayType, partInfo);
                             }
                             break;

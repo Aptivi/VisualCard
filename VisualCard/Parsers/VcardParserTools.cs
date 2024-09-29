@@ -26,6 +26,7 @@ using VisualCard.Parts.Implementations;
 using System.Text;
 using VisualCard.Parts;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace VisualCard.Parsers
 {
@@ -479,6 +480,41 @@ namespace VisualCard.Parsers
                     $"{Math.Abs(utcOffsetRepresentation.Seconds):00}"
                 );
             return utcOffsetBuilder.ToString();
+        }
+
+        internal static string ProcessStringValue(string value, string values, StringsEnum stringType)
+        {
+            // Now, handle each type individually
+            string finalValue;
+            switch (stringType)
+            {
+                case StringsEnum.Mailer:
+                case StringsEnum.ProductId:
+                case StringsEnum.SortString:
+                case StringsEnum.AccessClassification:
+                    // Unescape the value
+                    finalValue = Regex.Unescape(value);
+                    break;
+                case StringsEnum.Uid:
+                    // Unescape the value
+                    finalValue = Regex.Unescape(value);
+                    if (!Uri.TryCreate(finalValue, UriKind.Absolute, out Uri uri) && values.Equals("uri", StringComparison.OrdinalIgnoreCase))
+                        throw new InvalidDataException($"URL {finalValue} is invalid");
+                    finalValue = uri is not null ? uri.ToString() : finalValue;
+                    break;
+                case StringsEnum.Kind:
+                    // Get the kind
+                    if (!string.IsNullOrEmpty(value))
+                        finalValue = Regex.Unescape(value);
+                    else
+                        finalValue = "individual";
+                    break;
+                default:
+                    throw new InvalidDataException($"The string enum type {stringType} is invalid. Are you sure that you've specified the correct type in your vCard representation?");
+            }
+
+            // Return the result
+            return finalValue;
         }
     }
 }

@@ -27,6 +27,8 @@ using System.Linq;
 using VisualCard.Calendar.Parts.Implementations.TimeZone;
 using VisualCard.Calendar.Parts.Implementations.Todo;
 using VisualCard.Calendar.Parts.Implementations.Legacy;
+using System.Text.RegularExpressions;
+using System.IO;
 
 namespace VisualCard.Calendar.Parsers
 {
@@ -263,6 +265,108 @@ namespace VisualCard.Calendar.Parsers
                 _ =>
                     throw new InvalidOperationException($"Unknown prefix {prefix}"),
             };
+
+        internal static string ProcessStringValue(string value, string values, CalendarStringsEnum stringType, Type calendarType, Version calendarVersion)
+        {
+            string[] allowedStatuses =
+                calendarType == typeof(CalendarEvent) && calendarVersion.Major == 2 ? ["TENTATIVE", "CONFIRMED", "CANCELLED"] :
+                calendarType == typeof(CalendarEvent) && calendarVersion.Major == 1 ? ["NEEDS ACTION", "SENT", "TENTATIVE", "CONFIRMED", "DECLINED", "DELEGATED"] :
+                calendarType == typeof(CalendarTodo) && calendarVersion.Major == 2 ? ["NEEDS-ACTION", "COMPLETED", "IN-PROCESS", "CANCELLED"] :
+                calendarType == typeof(CalendarTodo) && calendarVersion.Major == 1 ? ["NEEDS ACTION", "SENT", "ACCEPTED", "COMPLETED", "DECLINED", "DELEGATED"] :
+                calendarType == typeof(CalendarJournal) ? ["DRAFT", "FINAL", "CANCELLED"] :
+                [];
+
+            // Now, handle each type individually
+            string finalValue;
+            switch (stringType)
+            {
+                case CalendarStringsEnum.ProductId:
+                case CalendarStringsEnum.Organizer:
+                case CalendarStringsEnum.Summary:
+                case CalendarStringsEnum.Description:
+                case CalendarStringsEnum.CalScale:
+                case CalendarStringsEnum.Method:
+                case CalendarStringsEnum.Class:
+                case CalendarStringsEnum.Trigger:
+                case CalendarStringsEnum.TimeZoneId:
+                case CalendarStringsEnum.Recursion:
+                    // Unescape the value
+                    finalValue = Regex.Unescape(value);
+                    break;
+                case CalendarStringsEnum.Action:
+                    // Unescape the value
+                    finalValue = Regex.Unescape(value);
+                    if (finalValue != "AUDIO" && finalValue != "DISPLAY" && finalValue != "EMAIL")
+                        throw new ArgumentException($"Invalid action {finalValue}");
+                    break;
+                case CalendarStringsEnum.Status:
+                    // Unescape the value
+                    finalValue = Regex.Unescape(value);
+                    if (!allowedStatuses.Contains(finalValue))
+                        throw new ArgumentException($"Invalid status {finalValue}");
+                    break;
+                case CalendarStringsEnum.Transparency:
+                    // Unescape the value
+                    finalValue = Regex.Unescape(value);
+                    if (calendarVersion.Major == 1 && !int.TryParse(finalValue, out _))
+                        throw new ArgumentException($"Invalid transparency number {finalValue}");
+                    else if (calendarVersion.Major == 2 && finalValue != "TRANSPARENT" && finalValue != "OPAQUE")
+                        throw new ArgumentException($"Invalid transparency {finalValue}");
+                    break;
+                case CalendarStringsEnum.Uid:
+                    // Unescape the value
+                    finalValue = Regex.Unescape(value);
+                    if (!Uri.TryCreate(finalValue, UriKind.Absolute, out Uri uri) && values.Equals("uri", StringComparison.OrdinalIgnoreCase))
+                        throw new InvalidDataException($"URL {finalValue} is invalid");
+                    finalValue = uri is not null ? uri.ToString() : finalValue;
+                    break;
+                case CalendarStringsEnum.TimeZoneUrl:
+                    // Unescape the value
+                    finalValue = Regex.Unescape(value);
+                    if (!Uri.TryCreate(finalValue, UriKind.Absolute, out Uri zoneUri))
+                        throw new InvalidDataException($"Time zone URL {finalValue} is invalid");
+                    finalValue = zoneUri.ToString();
+                    break;
+                default:
+                    throw new InvalidDataException($"The string enum type {stringType} is invalid. Are you sure that you've specified the correct type in your vCalendar representation?");
+            }
+
+            // Return the result
+            return finalValue;
+        }
+
+        internal static int ProcessIntegerValue(string value, CalendarIntegersEnum integerType)
+        {
+            // Now, handle each type individually
+            int primaryValue = int.Parse(value);
+            int finalValue;
+            switch (integerType)
+            {
+                case CalendarIntegersEnum.Priority:
+                    // Check the range
+                    if (primaryValue < 0 || primaryValue > 9)
+                        throw new ArgumentOutOfRangeException(nameof(primaryValue), primaryValue, "Priority may not be less than zero or greater than 9");
+                    finalValue = primaryValue;
+                    break;
+                case CalendarIntegersEnum.Sequence:
+                    // Check the range
+                    if (primaryValue < 0)
+                        throw new ArgumentOutOfRangeException(nameof(primaryValue), primaryValue, "Sequence may not be less than zero");
+                    finalValue = primaryValue;
+                    break;
+                case CalendarIntegersEnum.PercentComplete:
+                    // Check the range
+                    if (primaryValue < 0 || primaryValue > 100)
+                        throw new ArgumentOutOfRangeException(nameof(primaryValue), primaryValue, "Percent completion may not be less than zero or greater than 100");
+                    finalValue = primaryValue;
+                    break;
+                default:
+                    throw new InvalidDataException($"The integer enum type {integerType} is invalid. Are you sure that you've specified the correct type in your vCalendar representation?");
+            }
+
+            // Return the result
+            return finalValue;
+        }
 
         private static bool TypeMatch(Type componentType, params Type[] expectedTypes) =>
             expectedTypes.Contains(componentType);

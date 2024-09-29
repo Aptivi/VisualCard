@@ -169,77 +169,18 @@ namespace VisualCard.Calendar.Parsers
 
                     // Handle the part type
                     Type calendarType = subPart is not null ? subPart.GetType() : calendar.GetType();
-                    string[] allowedStatuses =
-                        calendarType == typeof(CalendarEvent) && CalendarVersion.Major == 2 ? ["TENTATIVE", "CONFIRMED", "CANCELLED"] :
-                        calendarType == typeof(CalendarEvent) && CalendarVersion.Major == 1 ? ["NEEDS ACTION", "SENT", "TENTATIVE", "CONFIRMED", "DECLINED", "DELEGATED"] :
-                        calendarType == typeof(CalendarTodo) && CalendarVersion.Major == 2 ? ["NEEDS-ACTION", "COMPLETED", "IN-PROCESS", "CANCELLED"] :
-                        calendarType == typeof(CalendarTodo) && CalendarVersion.Major == 1 ? ["NEEDS ACTION", "SENT", "ACCEPTED", "COMPLETED", "DECLINED", "DELEGATED"] :
-                        calendarType == typeof(CalendarJournal) ? ["DRAFT", "FINAL", "CANCELLED"] :
-                        [];
                     string values = VcardParserTools.GetValuesString(splitArgs, defaultValue, VCalendarConstants._valueArgumentSpecifier);
                     switch (type)
                     {
                         case PartType.Strings:
                             {
                                 CalendarStringsEnum stringType = (CalendarStringsEnum)enumeration;
-                                string finalValue = value;
                                 bool supported = VCalendarParserTools.StringSupported(stringType, CalendarVersion, calendarType);
                                 if (!supported)
                                     continue;
 
-                                // Now, handle each type individually
-                                switch (stringType)
-                                {
-                                    case CalendarStringsEnum.ProductId:
-                                    case CalendarStringsEnum.Organizer:
-                                    case CalendarStringsEnum.Summary:
-                                    case CalendarStringsEnum.Description:
-                                    case CalendarStringsEnum.CalScale:
-                                    case CalendarStringsEnum.Method:
-                                    case CalendarStringsEnum.Class:
-                                    case CalendarStringsEnum.Trigger:
-                                    case CalendarStringsEnum.TimeZoneId:
-                                    case CalendarStringsEnum.Recursion:
-                                        // Unescape the value
-                                        finalValue = Regex.Unescape(value);
-                                        break;
-                                    case CalendarStringsEnum.Action:
-                                        // Unescape the value
-                                        finalValue = Regex.Unescape(value);
-                                        if (finalValue != "AUDIO" && finalValue != "DISPLAY" && finalValue != "EMAIL")
-                                            throw new ArgumentException($"Invalid action {finalValue}");
-                                        break;
-                                    case CalendarStringsEnum.Status:
-                                        // Unescape the value
-                                        finalValue = Regex.Unescape(value);
-                                        if (!allowedStatuses.Contains(finalValue))
-                                            throw new ArgumentException($"Invalid status {finalValue}");
-                                        break;
-                                    case CalendarStringsEnum.Transparency:
-                                        // Unescape the value
-                                        finalValue = Regex.Unescape(value);
-                                        if (CalendarVersion.Major == 1 && !int.TryParse(finalValue, out _))
-                                            throw new ArgumentException($"Invalid transparency number {finalValue}");
-                                        else if (CalendarVersion.Major == 2 && finalValue != "TRANSPARENT" && finalValue != "OPAQUE")
-                                            throw new ArgumentException($"Invalid transparency {finalValue}");
-                                        break;
-                                    case CalendarStringsEnum.Uid:
-                                        // Unescape the value
-                                        finalValue = Regex.Unescape(value);
-                                        if (!Uri.TryCreate(finalValue, UriKind.Absolute, out Uri uri) && values.Equals("uri", StringComparison.OrdinalIgnoreCase))
-                                            throw new InvalidDataException($"URL {finalValue} is invalid");
-                                        finalValue = uri is not null ? uri.ToString() : finalValue;
-                                        break;
-                                    case CalendarStringsEnum.TimeZoneUrl:
-                                        // Unescape the value
-                                        finalValue = Regex.Unescape(value);
-                                        if (!Uri.TryCreate(finalValue, UriKind.Absolute, out Uri zoneUri))
-                                            throw new InvalidDataException($"Time zone URL {finalValue} is invalid");
-                                        finalValue = zoneUri.ToString();
-                                        break;
-                                    default:
-                                        throw new InvalidDataException($"The string enum type {stringType} is invalid. Are you sure that you've specified the correct type in your vCalendar representation?");
-                                }
+                                // Get the final value
+                                string finalValue = VCalendarParserTools.ProcessStringValue(value, values, stringType, calendarType, CalendarVersion);
 
                                 // Set the string for real
                                 if (subPart is not null)
@@ -251,36 +192,12 @@ namespace VisualCard.Calendar.Parsers
                         case PartType.Integers:
                             {
                                 CalendarIntegersEnum integerType = (CalendarIntegersEnum)enumeration;
-                                int primaryValue = int.Parse(value);
-                                int finalValue = 0;
                                 bool supported = VCalendarParserTools.IntegerSupported(integerType, CalendarVersion, calendarType);
                                 if (!supported)
                                     continue;
 
-                                // Now, handle each type individually
-                                switch (integerType)
-                                {
-                                    case CalendarIntegersEnum.Priority:
-                                        // Check the range
-                                        if (primaryValue < 0 || primaryValue > 9)
-                                            throw new ArgumentOutOfRangeException(nameof(primaryValue), primaryValue, "Priority may not be less than zero or greater than 9");
-                                        finalValue = primaryValue;
-                                        break;
-                                    case CalendarIntegersEnum.Sequence:
-                                        // Check the range
-                                        if (primaryValue < 0)
-                                            throw new ArgumentOutOfRangeException(nameof(primaryValue), primaryValue, "Sequence may not be less than zero");
-                                        finalValue = primaryValue;
-                                        break;
-                                    case CalendarIntegersEnum.PercentComplete:
-                                        // Check the range
-                                        if (primaryValue < 0 || primaryValue > 100)
-                                            throw new ArgumentOutOfRangeException(nameof(primaryValue), primaryValue, "Percent completion may not be less than zero or greater than 100");
-                                        finalValue = primaryValue;
-                                        break;
-                                    default:
-                                        throw new InvalidDataException($"The integer enum type {integerType} is invalid. Are you sure that you've specified the correct type in your vCalendar representation?");
-                                }
+                                // Get the final value
+                                int finalValue = VCalendarParserTools.ProcessIntegerValue(value, integerType);
 
                                 // Set the integer for real
                                 if (subPart is not null)
@@ -302,6 +219,8 @@ namespace VisualCard.Calendar.Parsers
                                 // Now, get the part info
                                 string finalValue = partsArrayType == CalendarPartsArrayEnum.NonstandardNames ? _value : value;
                                 var partInfo = fromString(finalValue, [.. finalArgs], elementTypes, values, CalendarVersion);
+
+                                // Set the array for real
                                 if (subPart is not null)
                                     subPart.AddPartToArray(partsArrayType, partInfo);
                                 else
