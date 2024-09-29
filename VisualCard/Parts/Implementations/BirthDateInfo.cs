@@ -38,12 +38,12 @@ namespace VisualCard.Parts.Implementations
             new BirthDateInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
-            $"{VcardParserTools.SavePosixDate(BirthDate, true)}";
+            $"{VcardCommonTools.SavePosixDate(BirthDate, true)}";
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Populate field
-            DateTimeOffset bday = VcardParserTools.ParsePosixDate(value);
+            DateTimeOffset bday = VcardCommonTools.ParsePosixDate(value);
 
             // Add the fetched information
             BirthDateInfo _time = new(altId, finalArgs, elementTypes, valueType, bday);

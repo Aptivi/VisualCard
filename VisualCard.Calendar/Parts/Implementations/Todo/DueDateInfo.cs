@@ -38,12 +38,12 @@ namespace VisualCard.Calendar.Parts.Implementations.Todo
             new DueDateInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion) =>
-            $"{VcardParserTools.SavePosixDate(DueDate)}";
+            $"{VcardCommonTools.SavePosixDate(DueDate)}";
 
         internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Populate the fields
-            DateTimeOffset completed = VcardParserTools.ParsePosixDate(value);
+            DateTimeOffset completed = VcardCommonTools.ParsePosixDate(value);
 
             // Add the fetched information
             DueDateInfo _time = new(finalArgs, elementTypes, valueType, completed);

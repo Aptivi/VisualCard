@@ -60,7 +60,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
 
         internal override string ToStringVcalendarInternal(Version calendarVersion)
         {
-            string posixRunTime = VcardParserTools.SavePosixDate(RunTime);
+            string posixRunTime = VcardCommonTools.SavePosixDate(RunTime);
             return $"{posixRunTime};{SnoozeTime};{RepeatCount};{Address};{Note}";
         }
 
@@ -77,7 +77,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
             string note = split[4];
 
             // Process the run time and the repeat times
-            DateTimeOffset runTime = VcardParserTools.ParsePosixDate(unprocessedRunTime);
+            DateTimeOffset runTime = VcardCommonTools.ParsePosixDate(unprocessedRunTime);
             int repeat = 0;
             if (!string.IsNullOrWhiteSpace(unprocessedRepeat) && !int.TryParse(unprocessedRepeat, out repeat))
                 throw new ArgumentException("Invalid repeat times");

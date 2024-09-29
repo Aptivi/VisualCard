@@ -38,12 +38,12 @@ namespace VisualCard.Parts.Implementations
             new AnniversaryInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
-            $"{VcardParserTools.SavePosixDate(Anniversary, true)}";
+            $"{VcardCommonTools.SavePosixDate(Anniversary, true)}";
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Populate the fields
-            DateTimeOffset anniversary = VcardParserTools.ParsePosixDate(value);
+            DateTimeOffset anniversary = VcardCommonTools.ParsePosixDate(value);
 
             // Add the fetched information
             AnniversaryInfo _time = new(-1, [], [], valueType, anniversary);

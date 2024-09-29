@@ -38,12 +38,12 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
             new DateStartInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion) =>
-            $"{VcardParserTools.SavePosixDate(DateStart)}";
+            $"{VcardCommonTools.SavePosixDate(DateStart)}";
 
         internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Populate the fields
-            DateTimeOffset start = VcardParserTools.ParsePosixDate(value);
+            DateTimeOffset start = VcardCommonTools.ParsePosixDate(value);
 
             // Add the fetched information
             DateStartInfo _time = new(finalArgs, elementTypes, valueType, start);

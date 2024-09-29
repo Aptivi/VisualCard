@@ -277,7 +277,7 @@ namespace VisualCard.Calendar.Parts
                 // Now, locate the prefix and assemble the line
                 string prefix = VCalendarParserTools.GetPrefixFromStringsEnum(stringEnum);
                 cardBuilder.Append($"{prefix}{VCalendarConstants._argumentDelimiter}");
-                cardBuilder.AppendLine($"{VcardParserTools.MakeStringBlock(stringValue, prefix.Length)}");
+                cardBuilder.AppendLine($"{VcardCommonTools.MakeStringBlock(stringValue, prefix.Length)}");
             }
 
             // Then, enumerate all the integers
@@ -318,7 +318,7 @@ namespace VisualCard.Calendar.Parts
                     string[] partArgumentsLines = partArguments.SplitNewLines();
                     partBuilder.Append($"{prefix}");
                     partBuilder.Append($"{partArguments}");
-                    partBuilder.Append($"{VcardParserTools.MakeStringBlock(partRepresentation, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length)}");
+                    partBuilder.Append($"{VcardCommonTools.MakeStringBlock(partRepresentation, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length)}");
                     cardBuilder.AppendLine($"{partBuilder}");
                 }
             }

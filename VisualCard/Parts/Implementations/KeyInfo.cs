@@ -43,7 +43,7 @@ namespace VisualCard.Parts.Implementations
         /// Whether this key is a blob or not
         /// </summary>
         public bool IsBlob =>
-            VcardParserTools.IsEncodingBlob(Arguments, KeyEncoded);
+            VcardCommonTools.IsEncodingBlob(Arguments, KeyEncoded);
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new KeyInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
@@ -67,8 +67,8 @@ namespace VisualCard.Parts.Implementations
             else
             {
                 // vCard 3.0 handles this in a different way
-                keyEncoding = VcardParserTools.GetValuesString(finalArgs, "b", VcardConstants._encodingArgumentSpecifier);
-                if (!VcardParserTools.IsEncodingBlob(finalArgs, value))
+                keyEncoding = VcardCommonTools.GetValuesString(finalArgs, "b", VcardConstants._encodingArgumentSpecifier);
+                if (!VcardCommonTools.IsEncodingBlob(finalArgs, value))
                 {
                     // Since we don't need embedded keys, we need to check a URL.
                     if (!Uri.TryCreate(value, UriKind.Absolute, out Uri uri))
@@ -87,7 +87,7 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         /// <returns>A stream that contains key data</returns>
         public Stream GetStream() =>
-            VcardParserTools.GetBlobData(Arguments, KeyEncoded);
+            VcardCommonTools.GetBlobData(Arguments, KeyEncoded);
 
         /// <inheritdoc/>
         public override bool Equals(object obj) =>

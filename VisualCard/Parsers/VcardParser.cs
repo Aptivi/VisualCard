@@ -164,7 +164,7 @@ namespace VisualCard.Parsers
                     }
 
                     // Check the type for allowed types
-                    string[] elementTypes = VcardParserTools.GetTypes(splitArgs, defaultType, specifierRequired);
+                    string[] elementTypes = VcardCommonTools.GetTypes(splitArgs, defaultType, specifierRequired);
                     foreach (string elementType in elementTypes)
                     {
                         string elementTypeUpper = elementType.ToUpper();
@@ -173,7 +173,7 @@ namespace VisualCard.Parsers
                     }
 
                     // Handle the part type
-                    string values = VcardParserTools.GetValuesString(splitArgs, defaultValue, VcardConstants._valueArgumentSpecifier);
+                    string values = VcardCommonTools.GetValuesString(splitArgs, defaultValue, VcardConstants._valueArgumentSpecifier);
                     switch (type)
                     {
                         case PartType.Strings:

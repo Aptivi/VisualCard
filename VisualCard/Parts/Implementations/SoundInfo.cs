@@ -43,7 +43,7 @@ namespace VisualCard.Parts.Implementations
         /// Whether this sound is a blob or not
         /// </summary>
         public bool IsBlob =>
-            VcardParserTools.IsEncodingBlob(Arguments, SoundEncoded);
+            VcardCommonTools.IsEncodingBlob(Arguments, SoundEncoded);
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new SoundInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
@@ -67,8 +67,8 @@ namespace VisualCard.Parts.Implementations
             else
             {
                 // vCard 3.0 handles this in a different way
-                soundEncoding = VcardParserTools.GetValuesString(finalArgs, "b", VcardConstants._encodingArgumentSpecifier);
-                if (!VcardParserTools.IsEncodingBlob(finalArgs, value))
+                soundEncoding = VcardCommonTools.GetValuesString(finalArgs, "b", VcardConstants._encodingArgumentSpecifier);
+                if (!VcardCommonTools.IsEncodingBlob(finalArgs, value))
                 {
                     // Since we don't need embedded sounds, we need to check a URL.
                     if (!Uri.TryCreate(value, UriKind.Absolute, out Uri uri))
@@ -87,7 +87,7 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         /// <returns>A stream that contains sound data</returns>
         public Stream GetStream() =>
-            VcardParserTools.GetBlobData(Arguments, SoundEncoded);
+            VcardCommonTools.GetBlobData(Arguments, SoundEncoded);
 
         /// <inheritdoc/>
         public override bool Equals(object obj) =>

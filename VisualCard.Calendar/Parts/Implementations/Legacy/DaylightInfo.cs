@@ -67,9 +67,9 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
         {
             if (!Flag)
                 return "FALSE";
-            string posixUtc = VcardParserTools.SaveUtcOffset(UtcOffset);
-            string posixStart = VcardParserTools.SavePosixDate(DaylightStart);
-            string posixEnd = VcardParserTools.SavePosixDate(DaylightEnd);
+            string posixUtc = VcardCommonTools.SaveUtcOffset(UtcOffset);
+            string posixStart = VcardCommonTools.SavePosixDate(DaylightStart);
+            string posixEnd = VcardCommonTools.SavePosixDate(DaylightEnd);
             return $"TRUE;{posixUtc};{posixStart};{posixEnd};{StandardDesignation};{DaylightDesignation}";
         }
 
@@ -88,9 +88,9 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
             string daylight = split[5];
 
             // Process the UTC offset and start/end dates
-            TimeSpan utcOffset = VcardParserTools.ParseUtcOffset(unprocessedUtc);
-            DateTimeOffset startDate = VcardParserTools.ParsePosixDate(unprocessedStart);
-            DateTimeOffset endDate = VcardParserTools.ParsePosixDate(unprocessedEnd);
+            TimeSpan utcOffset = VcardCommonTools.ParseUtcOffset(unprocessedUtc);
+            DateTimeOffset startDate = VcardCommonTools.ParsePosixDate(unprocessedStart);
+            DateTimeOffset endDate = VcardCommonTools.ParsePosixDate(unprocessedEnd);
 
             // Populate the fields
             DaylightInfo _geo = new(finalArgs, elementTypes, valueType, true, utcOffset, startDate, endDate, standard, daylight);

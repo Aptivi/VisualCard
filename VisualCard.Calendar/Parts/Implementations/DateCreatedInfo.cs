@@ -38,12 +38,12 @@ namespace VisualCard.Calendar.Parts.Implementations
             new DateCreatedInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion) =>
-            $"{VcardParserTools.SavePosixDate(DateCreated)}";
+            $"{VcardCommonTools.SavePosixDate(DateCreated)}";
 
         internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Populate the fields
-            DateTimeOffset created = VcardParserTools.ParsePosixDate(value);
+            DateTimeOffset created = VcardCommonTools.ParsePosixDate(value);
 
             // Add the fetched information
             DateCreatedInfo _time = new(finalArgs, elementTypes, valueType, created);

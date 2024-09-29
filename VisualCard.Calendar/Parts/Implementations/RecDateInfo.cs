@@ -48,9 +48,9 @@ namespace VisualCard.Calendar.Parts.Implementations
 
             var builder = new StringBuilder();
             if (cardVersion.Major == 1)
-                builder.Append(string.Join(";", RecDates.Select((dt) => VcardParserTools.SavePosixDate(dt))));
+                builder.Append(string.Join(";", RecDates.Select((dt) => VcardCommonTools.SavePosixDate(dt))));
             else
-                builder.Append(VcardParserTools.SavePosixDate(RecDates[0]));
+                builder.Append(VcardCommonTools.SavePosixDate(RecDates[0]));
             return builder.ToString();
         }
 
@@ -61,7 +61,7 @@ namespace VisualCard.Calendar.Parts.Implementations
                 cardVersion.Major == 1 ?
                 Regex.Unescape(value).Split(';') :
                 [Regex.Unescape(value)];
-            var recDates = recDateStrings.Select(VcardParserTools.ParsePosixDate).ToArray();
+            var recDates = recDateStrings.Select(VcardCommonTools.ParsePosixDate).ToArray();
 
             // Add the fetched information
             RecDateInfo _time = new([], elementTypes, valueType, recDates);

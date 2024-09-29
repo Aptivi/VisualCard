@@ -38,12 +38,12 @@ namespace VisualCard.Calendar.Parts.Implementations.TimeZone
             new TimeZoneOffsetToInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion) =>
-            $"{VcardParserTools.SaveUtcOffset(Offset)}";
+            $"{VcardCommonTools.SaveUtcOffset(Offset)}";
 
         internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Populate the fields
-            TimeSpan start = VcardParserTools.ParseUtcOffset(value);
+            TimeSpan start = VcardCommonTools.ParseUtcOffset(value);
 
             // Add the fetched information
             TimeZoneOffsetToInfo _time = new(finalArgs, elementTypes, valueType, start);

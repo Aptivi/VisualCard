@@ -156,7 +156,7 @@ namespace VisualCard.Parts
         public string GetString(StringsEnum key)
         {
             // Check for version support
-            if (!VcardParserTools.StringSupported(key, CardVersion))
+            if (!VcardCommonTools.StringSupported(key, CardVersion))
                 return "";
 
             // Get the fallback value
@@ -201,7 +201,7 @@ namespace VisualCard.Parts
                 // Now, locate the prefix and assemble the line
                 string prefix = VcardParserTools.GetPrefixFromStringsEnum(stringEnum);
                 cardBuilder.Append($"{prefix}{VcardConstants._argumentDelimiter}");
-                cardBuilder.AppendLine($"{VcardParserTools.MakeStringBlock(stringValue, prefix.Length)}");
+                cardBuilder.AppendLine($"{VcardCommonTools.MakeStringBlock(stringValue, prefix.Length)}");
             }
 
             // Then, enumerate all the arrays
@@ -228,7 +228,7 @@ namespace VisualCard.Parts
                     string[] partArgumentsLines = partArguments.SplitNewLines();
                     partBuilder.Append($"{prefix}");
                     partBuilder.Append($"{partArguments}");
-                    partBuilder.Append($"{VcardParserTools.MakeStringBlock(partRepresentation, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length)}");
+                    partBuilder.Append($"{VcardCommonTools.MakeStringBlock(partRepresentation, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length)}");
                     cardBuilder.AppendLine($"{partBuilder}");
                 }
             }
