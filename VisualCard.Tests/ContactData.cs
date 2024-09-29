@@ -161,9 +161,9 @@ namespace VisualCard.Tests
             TEL;TYPE=VIDEO:495-522-3550
             ADR:;;Los Angeles;;;;USA
             EMAIL:john.s@acme.co
-            X-VISUALCARD-KANA:Saunders;John
             FN:John Sanders
             NOTE:Note test for VisualCard
+            X-VISUALCARD-KANA:Saunders;John
             END:VCARD
 
             """
