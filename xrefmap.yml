@@ -4973,22 +4973,22 @@ references:
   commentId: T:VisualCard.Extras.CardGenerator
   fullName: VisualCard.Extras.CardGenerator
   nameWithType: CardGenerator
-- uid: VisualCard.Extras.CardGenerator.GenerateCards(System.Int32,System.String,System.String,System.String,System.String,Textify.Data.Analysis.NameGen.NameGenderType)
+- uid: VisualCard.Extras.CardGenerator.GenerateCards(System.Int32,System.String,System.String,System.String,System.String,Textify.Data.NameGen.NameGenderType)
   name: GenerateCards(int, string, string, string, string, NameGenderType)
-  href: api/VisualCard.Extras.CardGenerator.html#VisualCard_Extras_CardGenerator_GenerateCards_System_Int32_System_String_System_String_System_String_System_String_Textify_Data_Analysis_NameGen_NameGenderType_
-  commentId: M:VisualCard.Extras.CardGenerator.GenerateCards(System.Int32,System.String,System.String,System.String,System.String,Textify.Data.Analysis.NameGen.NameGenderType)
+  href: api/VisualCard.Extras.CardGenerator.html#VisualCard_Extras_CardGenerator_GenerateCards_System_Int32_System_String_System_String_System_String_System_String_Textify_Data_NameGen_NameGenderType_
+  commentId: M:VisualCard.Extras.CardGenerator.GenerateCards(System.Int32,System.String,System.String,System.String,System.String,Textify.Data.NameGen.NameGenderType)
   name.vb: GenerateCards(Integer, String, String, String, String, NameGenderType)
-  fullName: VisualCard.Extras.CardGenerator.GenerateCards(int, string, string, string, string, Textify.Data.Analysis.NameGen.NameGenderType)
-  fullName.vb: VisualCard.Extras.CardGenerator.GenerateCards(Integer, String, String, String, String, Textify.Data.Analysis.NameGen.NameGenderType)
+  fullName: VisualCard.Extras.CardGenerator.GenerateCards(int, string, string, string, string, Textify.Data.NameGen.NameGenderType)
+  fullName.vb: VisualCard.Extras.CardGenerator.GenerateCards(Integer, String, String, String, String, Textify.Data.NameGen.NameGenderType)
   nameWithType: CardGenerator.GenerateCards(int, string, string, string, string, NameGenderType)
   nameWithType.vb: CardGenerator.GenerateCards(Integer, String, String, String, String, NameGenderType)
-- uid: VisualCard.Extras.CardGenerator.GenerateCards(System.String,System.String,System.String,System.String,Textify.Data.Analysis.NameGen.NameGenderType)
+- uid: VisualCard.Extras.CardGenerator.GenerateCards(System.String,System.String,System.String,System.String,Textify.Data.NameGen.NameGenderType)
   name: GenerateCards(string, string, string, string, NameGenderType)
-  href: api/VisualCard.Extras.CardGenerator.html#VisualCard_Extras_CardGenerator_GenerateCards_System_String_System_String_System_String_System_String_Textify_Data_Analysis_NameGen_NameGenderType_
-  commentId: M:VisualCard.Extras.CardGenerator.GenerateCards(System.String,System.String,System.String,System.String,Textify.Data.Analysis.NameGen.NameGenderType)
+  href: api/VisualCard.Extras.CardGenerator.html#VisualCard_Extras_CardGenerator_GenerateCards_System_String_System_String_System_String_System_String_Textify_Data_NameGen_NameGenderType_
+  commentId: M:VisualCard.Extras.CardGenerator.GenerateCards(System.String,System.String,System.String,System.String,Textify.Data.NameGen.NameGenderType)
   name.vb: GenerateCards(String, String, String, String, NameGenderType)
-  fullName: VisualCard.Extras.CardGenerator.GenerateCards(string, string, string, string, Textify.Data.Analysis.NameGen.NameGenderType)
-  fullName.vb: VisualCard.Extras.CardGenerator.GenerateCards(String, String, String, String, Textify.Data.Analysis.NameGen.NameGenderType)
+  fullName: VisualCard.Extras.CardGenerator.GenerateCards(string, string, string, string, Textify.Data.NameGen.NameGenderType)
+  fullName.vb: VisualCard.Extras.CardGenerator.GenerateCards(String, String, String, String, Textify.Data.NameGen.NameGenderType)
   nameWithType: CardGenerator.GenerateCards(string, string, string, string, NameGenderType)
   nameWithType.vb: CardGenerator.GenerateCards(String, String, String, String, NameGenderType)
 - uid: VisualCard.Extras.CardGenerator.GenerateCards*
