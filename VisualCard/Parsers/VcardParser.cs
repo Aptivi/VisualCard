@@ -202,7 +202,7 @@ namespace VisualCard.Parsers
                                     continue;
 
                                 // Now, get the part info
-                                string finalValue = partsArrayType == PartsArrayEnum.NonstandardNames ? _value : value;
+                                string finalValue = partsArrayType is PartsArrayEnum.NonstandardNames or PartsArrayEnum.IanaNames ? _value : value;
                                 var partInfo = fromString(finalValue, [.. finalArgs], altId, elementTypes, values, CardVersion);
 
                                 // Set the array for real

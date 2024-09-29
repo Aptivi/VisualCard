@@ -118,7 +118,6 @@ namespace VisualCard.Parsers
                 PartsArrayEnum.Url => true,
                 PartsArrayEnum.Notes => true,
                 PartsArrayEnum.Source => true,
-                PartsArrayEnum.NonstandardNames => true,
                 PartsArrayEnum.Impps => cardVersion.Major >= 3,
                 PartsArrayEnum.Nicknames => cardVersion.Major >= 3,
                 PartsArrayEnum.Labels => cardVersion.Major != 4,
@@ -130,8 +129,9 @@ namespace VisualCard.Parsers
                 PartsArrayEnum.FreeBusyUrl => cardVersion.Major >= 4,
                 PartsArrayEnum.CalendarUrl => cardVersion.Major >= 4,
                 PartsArrayEnum.CalendarSchedulingRequestUrl => cardVersion.Major >= 4,
-                _ =>
-                    throw new InvalidOperationException("Invalid parts array enumeration type to get supported value"),
+
+                // Extensions are allowed
+                _ => true,
             };
 
         internal static string GetPrefixFromStringsEnum(StringsEnum stringsEnum) =>
@@ -181,9 +181,10 @@ namespace VisualCard.Parsers
                 PartsArrayEnum.Notes => VcardConstants._noteSpecifier,
                 PartsArrayEnum.Source => VcardConstants._sourceSpecifier,
                 PartsArrayEnum.Url => VcardConstants._urlSpecifier,
+
+                // Extensions are allowed
                 PartsArrayEnum.NonstandardNames => VcardConstants._xSpecifier,
-                _ =>
-                    throw new NotImplementedException($"String enumeration {partsArrayEnum} is not implemented.")
+                _ => ""
             };
 
         internal static (PartsArrayEnum, PartCardinality) GetPartsArrayEnumFromType(Type? partsArrayType, Version cardVersion)
@@ -232,8 +233,6 @@ namespace VisualCard.Parsers
                 return (PartsArrayEnum.Xml, PartCardinality.Any);
             else if (partsArrayType == typeof(KeyInfo))
                 return (PartsArrayEnum.Key, PartCardinality.Any);
-            else if (partsArrayType == typeof(XNameInfo))
-                return (PartsArrayEnum.NonstandardNames, PartCardinality.Any);
             else if (partsArrayType == typeof(RevisionInfo))
                 return (PartsArrayEnum.Revision, PartCardinality.MayBeOneNoAltId);
             else if (partsArrayType == typeof(BirthDateInfo))
@@ -256,7 +255,11 @@ namespace VisualCard.Parsers
                 return (PartsArrayEnum.CalendarUrl, PartCardinality.Any);
             else if (partsArrayType == typeof(CalendarSchedulingRequestUrlInfo))
                 return (PartsArrayEnum.CalendarSchedulingRequestUrl, PartCardinality.Any);
-            throw new NotImplementedException($"Type {partsArrayType.Name} doesn't represent any part array.");
+
+            // Extensions are allowed
+            else if (partsArrayType == typeof(XNameInfo))
+                return (PartsArrayEnum.NonstandardNames, PartCardinality.Any);
+            return (PartsArrayEnum.IanaNames, PartCardinality.Any);
         }
 
         internal static (PartType type, object enumeration, Type? enumType, Func<string, string[], int, string[], string, Version, BaseCardPartInfo>? fromStringFunc, string defaultType, string defaultValue, string[] allowedExtraTypes) GetPartType(string prefix) =>
@@ -293,15 +296,16 @@ namespace VisualCard.Parsers
                 VcardConstants._fbUrlSpecifier => (PartType.PartsArray, PartsArrayEnum.FreeBusyUrl, typeof(FreeBusyInfo), FreeBusyInfo.FromStringVcardStatic, "", "", []),
                 VcardConstants._calUriSpecifier => (PartType.PartsArray, PartsArrayEnum.CalendarUrl, typeof(CalendarUrlInfo), CalendarUrlInfo.FromStringVcardStatic, "", "", []),
                 VcardConstants._caladrUriSpecifier => (PartType.PartsArray, PartsArrayEnum.CalendarSchedulingRequestUrl, typeof(CalendarSchedulingRequestUrlInfo), CalendarSchedulingRequestUrlInfo.FromStringVcardStatic, "", "", []),
-                VcardConstants._xSpecifier => (PartType.PartsArray, PartsArrayEnum.NonstandardNames, typeof(XNameInfo), XNameInfo.FromStringVcardStatic, "", "", []),
                 VcardConstants._kindSpecifier => (PartType.Strings, StringsEnum.Kind, null, null, "", "", []),
                 VcardConstants._mailerSpecifier => (PartType.Strings, StringsEnum.Mailer, null, null, "", "", []),
                 VcardConstants._productIdSpecifier => (PartType.Strings, StringsEnum.ProductId, null, null, "", "", []),
                 VcardConstants._sortStringSpecifier => (PartType.Strings, StringsEnum.SortString, null, null, "", "", []),
                 VcardConstants._classSpecifier => (PartType.Strings, StringsEnum.AccessClassification, null, null, "", "", []),
                 VcardConstants._uidSpecifier => (PartType.Strings, StringsEnum.Uid, null, null, "", "", []),
-                _ =>
-                    throw new InvalidOperationException($"Unknown prefix {prefix}"),
+
+                // Extensions are allowed
+                VcardConstants._xSpecifier => (PartType.PartsArray, PartsArrayEnum.NonstandardNames, typeof(XNameInfo), XNameInfo.FromStringVcardStatic, "", "", []),
+                _ => (PartType.PartsArray, PartsArrayEnum.IanaNames, typeof(ExtraInfo), ExtraInfo.FromStringVcardStatic, "", "", []),
             };
 
         internal static string MakeStringBlock(string target, int firstLength)

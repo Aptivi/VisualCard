@@ -95,9 +95,9 @@ namespace VisualCard.Calendar.Parsers
                 CalendarPartsArrayEnum.ProcedureAlarm => calendarVersion.Major == 1 && TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo)),
                 CalendarPartsArrayEnum.RelatedTo => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal)),
                 CalendarPartsArrayEnum.LastModified => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal), typeof(CalendarTimeZone)),
-                CalendarPartsArrayEnum.NonstandardNames => true,
-                _ =>
-                    throw new InvalidOperationException("Invalid parts array enumeration type to get supported value"),
+
+                // Extensions are allowed
+                _ => true,
             };
 
         internal static string GetPrefixFromStringsEnum(CalendarStringsEnum stringsEnum) =>
@@ -161,9 +161,10 @@ namespace VisualCard.Calendar.Parsers
                 CalendarPartsArrayEnum.ProcedureAlarm => VCalendarConstants._pAlarmSpecifier,
                 CalendarPartsArrayEnum.RelatedTo => VCalendarConstants._relationshipSpecifier,
                 CalendarPartsArrayEnum.LastModified => VCalendarConstants._lastModSpecifier,
+
+                // Extensions are allowed
                 CalendarPartsArrayEnum.NonstandardNames => VCalendarConstants._xSpecifier,
-                _ =>
-                    throw new NotImplementedException($"Array enumeration {partsArrayEnum} is not implemented.")
+                _ => ""
             };
 
         internal static (CalendarPartsArrayEnum, PartCardinality) GetPartsArrayEnumFromType(Type partsArrayType, Version calendarVersion)
@@ -214,9 +215,11 @@ namespace VisualCard.Calendar.Parsers
                 return (CalendarPartsArrayEnum.RelatedTo, PartCardinality.Any);
             else if (partsArrayType == typeof(LastModifiedInfo))
                 return (CalendarPartsArrayEnum.LastModified, PartCardinality.MayBeOne);
+
+            // Extensions are allowed
             else if (partsArrayType == typeof(XNameInfo))
                 return (CalendarPartsArrayEnum.NonstandardNames, PartCardinality.Any);
-            throw new NotImplementedException($"Type {partsArrayType.Name} doesn't represent any part array.");
+            return (CalendarPartsArrayEnum.IanaNames, PartCardinality.Any);
         }
 
         internal static (PartType type, object enumeration, Type? enumType, Func<string, string[], string[], string, Version, BaseCalendarPartInfo>? fromStringFunc, string defaultType, string defaultValue, string[] allowedExtraTypes) GetPartType(string prefix) =>
@@ -248,7 +251,6 @@ namespace VisualCard.Calendar.Parsers
                 VCalendarConstants._pAlarmSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.ProcedureAlarm, typeof(ProcedureAlarmInfo), ProcedureAlarmInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._relationshipSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.RelatedTo, typeof(RelatedToInfo), RelatedToInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._lastModSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.LastModified, typeof(LastModifiedInfo), LastModifiedInfo.FromStringVcalendarStatic, "", "", []),
-                VCalendarConstants._xSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.NonstandardNames, typeof(XNameInfo), XNameInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._productIdSpecifier => (PartType.Strings, CalendarStringsEnum.ProductId, null, null, "", "", []),
                 VCalendarConstants._calScaleSpecifier => (PartType.Strings, CalendarStringsEnum.CalScale, null, null, "", "", []),
                 VCalendarConstants._methodSpecifier => (PartType.Strings, CalendarStringsEnum.Method, null, null, "", "", []),
@@ -267,8 +269,10 @@ namespace VisualCard.Calendar.Parsers
                 VCalendarConstants._prioritySpecifier => (PartType.Integers, CalendarIntegersEnum.Priority, null, null, "", "", []),
                 VCalendarConstants._sequenceSpecifier => (PartType.Integers, CalendarIntegersEnum.Sequence, null, null, "", "", []),
                 VCalendarConstants._percentCompletionSpecifier => (PartType.Integers, CalendarIntegersEnum.PercentComplete, null, null, "", "", []),
-                _ =>
-                    throw new InvalidOperationException($"Unknown prefix {prefix}"),
+
+                // Extensions are allowed
+                VCalendarConstants._xSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.NonstandardNames, typeof(XNameInfo), XNameInfo.FromStringVcalendarStatic, "", "", []),
+                _ => (PartType.PartsArray, CalendarPartsArrayEnum.IanaNames, typeof(ExtraInfo), ExtraInfo.FromStringVcalendarStatic, "", "", []),
             };
 
         internal static string ProcessStringValue(string value, string values, CalendarStringsEnum stringType, Type calendarType, Version calendarVersion)

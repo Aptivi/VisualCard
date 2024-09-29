@@ -105,10 +105,6 @@ namespace VisualCard.Parts.Enums
         /// </summary>
         Key,
         /// <summary>
-        /// The contact's extended options (usually starts with X-SOMETHING:Value1;Value2...)
-        /// </summary>
-        NonstandardNames,
-        /// <summary>
         /// The card revision
         /// </summary>
         Revision,
@@ -152,5 +148,13 @@ namespace VisualCard.Parts.Enums
         /// The contact's calendar scheduling request URL
         /// </summary>
         CalendarSchedulingRequestUrl,
+        /// <summary>
+        /// The contact's extended IANA options (usually starts with SOMETHING:Value1;Value2...)
+        /// </summary>
+        IanaNames = int.MaxValue - 2,
+        /// <summary>
+        /// The contact's extended options (usually starts with X-SOMETHING:Value1;Value2...)
+        /// </summary>
+        NonstandardNames = int.MaxValue - 1,
     }
 }

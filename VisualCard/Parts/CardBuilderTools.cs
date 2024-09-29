@@ -36,12 +36,14 @@ namespace VisualCard.Parts
             // Check to see if we've been provided arguments
             bool installAltId = partInfo.AltId >= 0 && partInfo.Arguments.Length > 0 && cardVersion.Major >= 4;
             bool noSemicolon = partInfo.AltId < 0 && partInfo.Arguments.Length == 0 && finalElementTypes.Length == 0 && string.IsNullOrEmpty(finalValue);
-            string xNonstandardName = (partInfo is XNameInfo xName ? xName.XKeyName : "") ?? "";
+            string extraKeyName =
+                (partInfo is XNameInfo xName ? xName.XKeyName :
+                 partInfo is ExtraInfo exName ? exName.KeyName : "") ?? "";
             if (noSemicolon)
-                return xNonstandardName + VcardConstants._argumentDelimiter.ToString();
+                return extraKeyName + VcardConstants._argumentDelimiter.ToString();
 
             // Now, initialize the argument builder
-            StringBuilder argumentsBuilder = new(xNonstandardName + VcardConstants._fieldDelimiter.ToString());
+            StringBuilder argumentsBuilder = new(extraKeyName + VcardConstants._fieldDelimiter.ToString());
             bool installArguments = partInfo.Arguments.Length > 0;
             bool installElementTypes = finalElementTypes.Length > 0;
             bool installValueType = !string.IsNullOrEmpty(finalValue);

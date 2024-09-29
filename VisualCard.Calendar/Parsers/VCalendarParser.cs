@@ -217,7 +217,7 @@ namespace VisualCard.Calendar.Parsers
                                     continue;
 
                                 // Now, get the part info
-                                string finalValue = partsArrayType == CalendarPartsArrayEnum.NonstandardNames ? _value : value;
+                                string finalValue = partsArrayType is CalendarPartsArrayEnum.IanaNames or CalendarPartsArrayEnum.NonstandardNames ? _value : value;
                                 var partInfo = fromString(finalValue, [.. finalArgs], elementTypes, values, CalendarVersion);
 
                                 // Set the array for real

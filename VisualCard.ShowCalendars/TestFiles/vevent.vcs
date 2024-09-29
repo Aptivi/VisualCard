@@ -14,5 +14,7 @@ SUMMARY:Networld+Interop Conference
 DESCRIPTION:Networld+Interop Conference
   and Exhibit\nAtlanta World Congress Center\n
  Atlanta\, Georgia
+POPULAR:True
+X-TRENDING:True
 END:VEVENT
 END:VCALENDAR

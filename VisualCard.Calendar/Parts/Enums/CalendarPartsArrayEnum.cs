@@ -73,10 +73,6 @@ namespace VisualCard.Calendar.Parts.Enums
         /// </summary>
         DateStamp,
         /// <summary>
-        /// X-nonstandard names (event, todo, journal, free/busy, or alarm)
-        /// </summary>
-        NonstandardNames,
-        /// <summary>
         /// Time zone name
         /// </summary>
         TimeZoneName,
@@ -132,5 +128,13 @@ namespace VisualCard.Calendar.Parts.Enums
         /// The calendar's relationship (event, todo, journal, or time zone)
         /// </summary>
         LastModified,
+        /// <summary>
+        /// The calendar's extended IANA options (usually starts with SOMETHING:Value1;Value2...) (event, todo, journal, free/busy, or alarm)
+        /// </summary>
+        IanaNames = int.MaxValue - 2,
+        /// <summary>
+        /// The calendar's extended options (usually starts with X-SOMETHING:Value1;Value2...) (event, todo, journal, free/busy, or alarm)
+        /// </summary>
+        NonstandardNames = int.MaxValue - 1,
     }
 }
