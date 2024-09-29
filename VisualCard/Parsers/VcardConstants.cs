@@ -89,5 +89,8 @@ namespace VisualCard.Parsers
         internal const string _contactUriSpecifier = "CONTACT-URI";
         internal const string _altIdArgumentSpecifier = "ALTID=";
         internal const string _prefArgumentSpecifier = "PREF=";
+
+        // Available in vCard 4.0
+        internal const string _memberSpecifier = "MEMBER";
     }
 }

@@ -153,6 +153,10 @@ namespace VisualCard.Parts.Enums
         /// </summary>
         ContactUri,
         /// <summary>
+        /// The group member URI
+        /// </summary>
+        Member,
+        /// <summary>
         /// The contact's extended IANA options (usually starts with SOMETHING:Value1;Value2...)
         /// </summary>
         IanaNames = int.MaxValue - 2,
