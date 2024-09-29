@@ -32,7 +32,7 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// <summary>
         /// The card's revision
         /// </summary>
-        public DateTime LastModified { get; }
+        public DateTimeOffset LastModified { get; }
 
         internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
             new LastModifiedInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
@@ -43,7 +43,7 @@ namespace VisualCard.Calendar.Parts.Implementations
         internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Populate the fields
-            DateTime created = VcardParserTools.ParsePosixDate(value);
+            DateTimeOffset created = VcardParserTools.ParsePosixDate(value);
 
             // Add the fetched information
             LastModifiedInfo _time = new(finalArgs, elementTypes, valueType, created);
@@ -102,7 +102,7 @@ namespace VisualCard.Calendar.Parts.Implementations
 
         internal LastModifiedInfo() { }
 
-        internal LastModifiedInfo(string[] arguments, string[] elementTypes, string valueType, DateTime rev) :
+        internal LastModifiedInfo(string[] arguments, string[] elementTypes, string valueType, DateTimeOffset rev) :
             base(arguments, elementTypes, valueType)
         {
             LastModified = rev;

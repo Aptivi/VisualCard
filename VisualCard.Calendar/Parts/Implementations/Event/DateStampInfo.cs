@@ -32,7 +32,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
         /// <summary>
         /// The card's revision
         /// </summary>
-        public DateTime DateStamp { get; }
+        public DateTimeOffset DateStamp { get; }
 
         internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
             new DateStampInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
@@ -43,7 +43,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
         internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Populate the fields
-            DateTime stamp = VcardParserTools.ParsePosixDate(value);
+            DateTimeOffset stamp = VcardParserTools.ParsePosixDate(value);
 
             // Add the fetched information
             DateStampInfo _time = new(finalArgs, elementTypes, valueType, stamp);
@@ -102,7 +102,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
 
         internal DateStampInfo() { }
 
-        internal DateStampInfo(string[] arguments, string[] elementTypes, string valueType, DateTime rev) :
+        internal DateStampInfo(string[] arguments, string[] elementTypes, string valueType, DateTimeOffset rev) :
             base(arguments, elementTypes, valueType)
         {
             DateStamp = rev;

@@ -32,7 +32,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Todo
         /// <summary>
         /// The to-do completion date
         /// </summary>
-        public DateTime DueDate { get; }
+        public DateTimeOffset DueDate { get; }
 
         internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
             new DueDateInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
@@ -43,7 +43,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Todo
         internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Populate the fields
-            DateTime completed = VcardParserTools.ParsePosixDate(value);
+            DateTimeOffset completed = VcardParserTools.ParsePosixDate(value);
 
             // Add the fetched information
             DueDateInfo _time = new(finalArgs, elementTypes, valueType, completed);
@@ -102,7 +102,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Todo
 
         internal DueDateInfo() { }
 
-        internal DueDateInfo(string[] arguments, string[] elementTypes, string valueType, DateTime rev) :
+        internal DueDateInfo(string[] arguments, string[] elementTypes, string valueType, DateTimeOffset rev) :
             base(arguments, elementTypes, valueType)
         {
             DueDate = rev;

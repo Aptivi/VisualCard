@@ -33,7 +33,7 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// The contact's birth date
         /// </summary>
-        public DateTime BirthDate { get; }
+        public DateTimeOffset BirthDate { get; }
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new BirthDateInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
@@ -44,18 +44,7 @@ namespace VisualCard.Parts.Implementations
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Populate field
-            DateTime bday;
-            if (int.TryParse(value, out _) && value.Length == 8)
-            {
-                int birthNum = int.Parse(value);
-                var birthDigits = VcardParserTools.GetDigits(birthNum).ToList();
-                int birthYear = birthDigits[0] * 1000 + birthDigits[1] * 100 + birthDigits[2] * 10 + birthDigits[3];
-                int birthMonth = birthDigits[4] * 10 + birthDigits[5];
-                int birthDay = birthDigits[6] * 10 + birthDigits[7];
-                bday = new DateTime(birthYear, birthMonth, birthDay);
-            }
-            else
-                bday = VcardParserTools.ParsePosixDate(value);
+            DateTimeOffset bday = VcardParserTools.ParsePosixDate(value);
 
             // Add the fetched information
             BirthDateInfo _time = new(altId, finalArgs, elementTypes, valueType, bday);
@@ -114,7 +103,7 @@ namespace VisualCard.Parts.Implementations
 
         internal BirthDateInfo() { }
 
-        internal BirthDateInfo(int altId, string[] arguments, string[] elementTypes, string valueType, DateTime birth) :
+        internal BirthDateInfo(int altId, string[] arguments, string[] elementTypes, string valueType, DateTimeOffset birth) :
             base(arguments, altId, elementTypes, valueType)
         {
             BirthDate = birth;

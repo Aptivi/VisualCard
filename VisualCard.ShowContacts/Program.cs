@@ -74,7 +74,7 @@ namespace VisualCard.ShowContacts
                 foreach (var contact in contacts)
                 {
                     if (save)
-                        contact.SaveTo($"contact_{DateTime.Now:dd-MM-yyyy_HH-mm-ss_ffffff}.vcf");
+                        contact.SaveTo($"contact_{DateTimeOffset.Now:dd-MM-yyyy_HH-mm-ss_ffffff}.vcf");
                 }
 
                 // If not printing, exit

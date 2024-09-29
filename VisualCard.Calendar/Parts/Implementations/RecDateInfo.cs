@@ -36,7 +36,7 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// <summary>
         /// The recurrence date list
         /// </summary>
-        public DateTime[]? RecDates { get; }
+        public DateTimeOffset[]? RecDates { get; }
 
         internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
             new RecDateInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
@@ -103,7 +103,7 @@ namespace VisualCard.Calendar.Parts.Implementations
         {
             int hashCode = 498518712;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<DateTime[]?>.Default.GetHashCode(RecDates);
+            hashCode = hashCode * -1521134295 + EqualityComparer<DateTimeOffset[]?>.Default.GetHashCode(RecDates);
             return hashCode;
         }
 
@@ -120,7 +120,7 @@ namespace VisualCard.Calendar.Parts.Implementations
 
         internal RecDateInfo() { }
 
-        internal RecDateInfo(string[] arguments, string[] elementTypes, string valueType, DateTime[] recDates) :
+        internal RecDateInfo(string[] arguments, string[] elementTypes, string valueType, DateTimeOffset[] recDates) :
             base(arguments, elementTypes, valueType)
         {
             RecDates = recDates;

@@ -33,7 +33,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
         /// <summary>
         /// Alarm run time
         /// </summary>
-        public DateTime RunTime { get; }
+        public DateTimeOffset RunTime { get; }
 
         /// <summary>
         /// Alarm snooze time
@@ -77,7 +77,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
             string note = split[4];
 
             // Process the run time and the repeat times
-            DateTime runTime = VcardParserTools.ParsePosixDate(unprocessedRunTime);
+            DateTimeOffset runTime = VcardParserTools.ParsePosixDate(unprocessedRunTime);
             int repeat = 0;
             if (!string.IsNullOrWhiteSpace(unprocessedRepeat) && !int.TryParse(unprocessedRepeat, out repeat))
                 throw new ArgumentException("Invalid repeat times");
@@ -147,7 +147,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
 
         internal MailAlarmInfo() { }
 
-        internal MailAlarmInfo(string[] arguments, string[] elementTypes, string valueType, DateTime runTime, string snoozeTime, int repeat, string address, string note) :
+        internal MailAlarmInfo(string[] arguments, string[] elementTypes, string valueType, DateTimeOffset runTime, string snoozeTime, int repeat, string address, string note) :
             base(arguments, elementTypes, valueType)
         {
             RunTime = runTime;

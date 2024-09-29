@@ -43,12 +43,12 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
         /// <summary>
         /// Start date and time of the daylight saving time
         /// </summary>
-        public DateTime DaylightStart { get; }
+        public DateTimeOffset DaylightStart { get; }
 
         /// <summary>
         /// End date and time of the daylight saving time
         /// </summary>
-        public DateTime DaylightEnd { get; }
+        public DateTimeOffset DaylightEnd { get; }
 
         /// <summary>
         /// Standard time designation
@@ -89,8 +89,8 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
 
             // Process the UTC offset and start/end dates
             TimeSpan utcOffset = VcardParserTools.ParseUtcOffset(unprocessedUtc);
-            DateTime startDate = VcardParserTools.ParsePosixDate(unprocessedStart);
-            DateTime endDate = VcardParserTools.ParsePosixDate(unprocessedEnd);
+            DateTimeOffset startDate = VcardParserTools.ParsePosixDate(unprocessedStart);
+            DateTimeOffset endDate = VcardParserTools.ParsePosixDate(unprocessedEnd);
 
             // Populate the fields
             DaylightInfo _geo = new(finalArgs, elementTypes, valueType, true, utcOffset, startDate, endDate, standard, daylight);
@@ -159,7 +159,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
 
         internal DaylightInfo() { }
 
-        internal DaylightInfo(string[] arguments, string[] elementTypes, string valueType, bool flag, TimeSpan utcOffset, DateTime daylightStart, DateTime daylightEnd, string standardDesignation, string daylightDesignation) :
+        internal DaylightInfo(string[] arguments, string[] elementTypes, string valueType, bool flag, TimeSpan utcOffset, DateTimeOffset daylightStart, DateTimeOffset daylightEnd, string standardDesignation, string daylightDesignation) :
             base(arguments, elementTypes, valueType)
         {
             Flag = flag;

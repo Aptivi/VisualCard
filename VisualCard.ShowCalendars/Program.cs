@@ -60,7 +60,7 @@ namespace VisualCard.ShowCalendars
                 foreach (var calendar in calendars)
                 {
                     if (save)
-                        calendar.SaveTo($"calendar_{DateTime.Now:dd-MM-yyyy_HH-mm-ss_ffffff}.vcs");
+                        calendar.SaveTo($"calendar_{DateTimeOffset.Now:dd-MM-yyyy_HH-mm-ss_ffffff}.vcs");
                 }
 
                 // If not printing, exit
