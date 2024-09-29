@@ -1898,6 +1898,12 @@ references:
   commentId: F:VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.Geography
   fullName: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.Geography
   nameWithType: CalendarPartsArrayEnum.Geography
+- uid: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.LastModified
+  name: LastModified
+  href: api/VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.html#VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_LastModified
+  commentId: F:VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.LastModified
+  fullName: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.LastModified
+  nameWithType: CalendarPartsArrayEnum.LastModified
 - uid: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.Location
   name: Location
   href: api/VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.html#VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_Location
@@ -3098,6 +3104,104 @@ references:
   fullName.vb: VisualCard.Calendar.Parts.Implementations.GeoInfo.<>
   nameWithType: GeoInfo.operator !=
   nameWithType.vb: GeoInfo.<>
+- uid: VisualCard.Calendar.Parts.Implementations.LastModifiedInfo
+  name: LastModifiedInfo
+  href: api/VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.html
+  commentId: T:VisualCard.Calendar.Parts.Implementations.LastModifiedInfo
+  fullName: VisualCard.Calendar.Parts.Implementations.LastModifiedInfo
+  nameWithType: LastModifiedInfo
+- uid: VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.Equals(System.Object)
+  name: Equals(object)
+  href: api/VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.html#VisualCard_Calendar_Parts_Implementations_LastModifiedInfo_Equals_System_Object_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.Equals(object)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.Equals(Object)
+  nameWithType: LastModifiedInfo.Equals(object)
+  nameWithType.vb: LastModifiedInfo.Equals(Object)
+- uid: VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.Equals(VisualCard.Calendar.Parts.Implementations.LastModifiedInfo)
+  name: Equals(LastModifiedInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.html#VisualCard_Calendar_Parts_Implementations_LastModifiedInfo_Equals_VisualCard_Calendar_Parts_Implementations_LastModifiedInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.Equals(VisualCard.Calendar.Parts.Implementations.LastModifiedInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.Equals(VisualCard.Calendar.Parts.Implementations.LastModifiedInfo)
+  nameWithType: LastModifiedInfo.Equals(LastModifiedInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.Equals(VisualCard.Calendar.Parts.Implementations.LastModifiedInfo,VisualCard.Calendar.Parts.Implementations.LastModifiedInfo)
+  name: Equals(LastModifiedInfo, LastModifiedInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.html#VisualCard_Calendar_Parts_Implementations_LastModifiedInfo_Equals_VisualCard_Calendar_Parts_Implementations_LastModifiedInfo_VisualCard_Calendar_Parts_Implementations_LastModifiedInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.Equals(VisualCard.Calendar.Parts.Implementations.LastModifiedInfo,VisualCard.Calendar.Parts.Implementations.LastModifiedInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.Equals(VisualCard.Calendar.Parts.Implementations.LastModifiedInfo, VisualCard.Calendar.Parts.Implementations.LastModifiedInfo)
+  nameWithType: LastModifiedInfo.Equals(LastModifiedInfo, LastModifiedInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.html#VisualCard_Calendar_Parts_Implementations_LastModifiedInfo_Equals_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.Equals
+  nameWithType: LastModifiedInfo.Equals
+- uid: VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.html#VisualCard_Calendar_Parts_Implementations_LastModifiedInfo_GetHashCode
+  commentId: M:VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.GetHashCode
+  fullName: VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.GetHashCode()
+  nameWithType: LastModifiedInfo.GetHashCode()
+- uid: VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.html#VisualCard_Calendar_Parts_Implementations_LastModifiedInfo_GetHashCode_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.GetHashCode
+  nameWithType: LastModifiedInfo.GetHashCode
+- uid: VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.LastModified
+  name: LastModified
+  href: api/VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.html#VisualCard_Calendar_Parts_Implementations_LastModifiedInfo_LastModified
+  commentId: P:VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.LastModified
+  fullName: VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.LastModified
+  nameWithType: LastModifiedInfo.LastModified
+- uid: VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.LastModified*
+  name: LastModified
+  href: api/VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.html#VisualCard_Calendar_Parts_Implementations_LastModifiedInfo_LastModified_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.LastModified
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.LastModified
+  nameWithType: LastModifiedInfo.LastModified
+- uid: VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.op_Equality(VisualCard.Calendar.Parts.Implementations.LastModifiedInfo,VisualCard.Calendar.Parts.Implementations.LastModifiedInfo)
+  name: operator ==(LastModifiedInfo, LastModifiedInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.html#VisualCard_Calendar_Parts_Implementations_LastModifiedInfo_op_Equality_VisualCard_Calendar_Parts_Implementations_LastModifiedInfo_VisualCard_Calendar_Parts_Implementations_LastModifiedInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.op_Equality(VisualCard.Calendar.Parts.Implementations.LastModifiedInfo,VisualCard.Calendar.Parts.Implementations.LastModifiedInfo)
+  name.vb: =(LastModifiedInfo, LastModifiedInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.operator ==(VisualCard.Calendar.Parts.Implementations.LastModifiedInfo, VisualCard.Calendar.Parts.Implementations.LastModifiedInfo)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.=(VisualCard.Calendar.Parts.Implementations.LastModifiedInfo, VisualCard.Calendar.Parts.Implementations.LastModifiedInfo)
+  nameWithType: LastModifiedInfo.operator ==(LastModifiedInfo, LastModifiedInfo)
+  nameWithType.vb: LastModifiedInfo.=(LastModifiedInfo, LastModifiedInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.op_Equality*
+  name: operator ==
+  href: api/VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.html#VisualCard_Calendar_Parts_Implementations_LastModifiedInfo_op_Equality_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.op_Equality
+  isSpec: "True"
+  name.vb: =
+  fullName: VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.operator ==
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.=
+  nameWithType: LastModifiedInfo.operator ==
+  nameWithType.vb: LastModifiedInfo.=
+- uid: VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.op_Inequality(VisualCard.Calendar.Parts.Implementations.LastModifiedInfo,VisualCard.Calendar.Parts.Implementations.LastModifiedInfo)
+  name: operator !=(LastModifiedInfo, LastModifiedInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.html#VisualCard_Calendar_Parts_Implementations_LastModifiedInfo_op_Inequality_VisualCard_Calendar_Parts_Implementations_LastModifiedInfo_VisualCard_Calendar_Parts_Implementations_LastModifiedInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.op_Inequality(VisualCard.Calendar.Parts.Implementations.LastModifiedInfo,VisualCard.Calendar.Parts.Implementations.LastModifiedInfo)
+  name.vb: <>(LastModifiedInfo, LastModifiedInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.operator !=(VisualCard.Calendar.Parts.Implementations.LastModifiedInfo, VisualCard.Calendar.Parts.Implementations.LastModifiedInfo)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.<>(VisualCard.Calendar.Parts.Implementations.LastModifiedInfo, VisualCard.Calendar.Parts.Implementations.LastModifiedInfo)
+  nameWithType: LastModifiedInfo.operator !=(LastModifiedInfo, LastModifiedInfo)
+  nameWithType.vb: LastModifiedInfo.<>(LastModifiedInfo, LastModifiedInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.op_Inequality*
+  name: operator !=
+  href: api/VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.html#VisualCard_Calendar_Parts_Implementations_LastModifiedInfo_op_Inequality_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.op_Inequality
+  isSpec: "True"
+  name.vb: <>
+  fullName: VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.operator !=
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.<>
+  nameWithType: LastModifiedInfo.operator !=
+  nameWithType.vb: LastModifiedInfo.<>
 - uid: VisualCard.Calendar.Parts.Implementations.Legacy
   name: VisualCard.Calendar.Parts.Implementations.Legacy
   href: api/VisualCard.Calendar.Parts.Implementations.Legacy.html
