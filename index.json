@@ -14,6 +14,26 @@
     "title": "Namespace VisualCard.Calendar.Exceptions | VisualCard API - Aptivi",
     "keywords": "Namespace VisualCard.Calendar.Exceptions Classes VCalendarParseException Exception of VCalendar parsing"
   },
+  "api/VisualCard.Calendar.Parsers.Recurrence.RecurrenceParser.html": {
+    "href": "api/VisualCard.Calendar.Parsers.Recurrence.RecurrenceParser.html",
+    "title": "Class RecurrenceParser | VisualCard API - Aptivi",
+    "keywords": "Class RecurrenceParser Recurrence rule parser Inheritance object RecurrenceParser Namespace: VisualCard.Calendar.Parsers.Recurrence Assembly: VisualCard.Calendar.dll Syntax public static class RecurrenceParser Methods | Edit this page View Source ParseRuleV1(string) Parses the recurrence rule that is formatted with Basic Recurrence Rule Grammar of XAPIA's CSA Declaration public static RecurrenceRule[] ParseRuleV1(string rule) Parameters Type Name Description string rule Recurrence rule Returns Type Description RecurrenceRule[] Parsed recurrence rules | Edit this page View Source ParseRuleV2(string) Parses the recurrence rule that is formatted with Basic Recurrence Rule Grammar of XAPIA's CSA Declaration public static RecurrenceRule[] ParseRuleV2(string rule) Parameters Type Name Description string rule Recurrence rule Returns Type Description RecurrenceRule[] Parsed recurrence rules"
+  },
+  "api/VisualCard.Calendar.Parsers.Recurrence.RecurrenceRule.html": {
+    "href": "api/VisualCard.Calendar.Parsers.Recurrence.RecurrenceRule.html",
+    "title": "Class RecurrenceRule | VisualCard API - Aptivi",
+    "keywords": "Class RecurrenceRule Recurrence rule instance Inheritance object RecurrenceRule Namespace: VisualCard.Calendar.Parsers.Recurrence Assembly: VisualCard.Calendar.dll Syntax public class RecurrenceRule"
+  },
+  "api/VisualCard.Calendar.Parsers.Recurrence.RecurrenceRuleFrequency.html": {
+    "href": "api/VisualCard.Calendar.Parsers.Recurrence.RecurrenceRuleFrequency.html",
+    "title": "Enum RecurrenceRuleFrequency | VisualCard API - Aptivi",
+    "keywords": "Enum RecurrenceRuleFrequency Recurrence rule frequency Namespace: VisualCard.Calendar.Parsers.Recurrence Assembly: VisualCard.Calendar.dll Syntax public enum RecurrenceRuleFrequency Fields Name Description Daily Daily repetition (v1 and v2) Hourly Particular hour repetition (v2) Minute Particular minute repetition (v1 and v2) MonthlyDay Monthly repetition based on an absolute day (v1 and v2) MonthlyPos Monthly repetition based on a relative day (v1 and v2) Position Repetition by set position (v2) Second Particular second repetition (v2) WeekNo Week number repetition (v2) Weekly Weekly repetition (v1) YearlyDay Yearly day repeat (every year in a specific day, for example, September 15th [Day 258 in normal years and 259 in leap years]) (v1 and v2) YearlyMonth Yearly month repeat (every year in a specific month, for example, September [Month 9]) (v1)"
+  },
+  "api/VisualCard.Calendar.Parsers.Recurrence.html": {
+    "href": "api/VisualCard.Calendar.Parsers.Recurrence.html",
+    "title": "Namespace VisualCard.Calendar.Parsers.Recurrence | VisualCard API - Aptivi",
+    "keywords": "Namespace VisualCard.Calendar.Parsers.Recurrence Classes RecurrenceParser Recurrence rule parser RecurrenceRule Recurrence rule instance Enums RecurrenceRuleFrequency Recurrence rule frequency"
+  },
   "api/VisualCard.Calendar.Parts.BaseCalendarPartInfo.html": {
     "href": "api/VisualCard.Calendar.Parts.BaseCalendarPartInfo.html",
     "title": "Class BaseCalendarPartInfo | VisualCard API - Aptivi",

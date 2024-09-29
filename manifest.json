@@ -45,6 +45,46 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parsers.Recurrence.RecurrenceParser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parsers.Recurrence.RecurrenceParser.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parsers.Recurrence.RecurrenceRule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parsers.Recurrence.RecurrenceRule.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parsers.Recurrence.RecurrenceRuleFrequency.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parsers.Recurrence.RecurrenceRuleFrequency.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parsers.Recurrence.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parsers.Recurrence.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/VisualCard.Calendar.Parts.BaseCalendarPartInfo.yml",
       "output": {
         ".html": {
