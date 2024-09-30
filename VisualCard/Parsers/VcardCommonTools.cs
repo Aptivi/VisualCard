@@ -70,7 +70,8 @@ namespace VisualCard.Parsers
                 throw new ArgumentException($"Date representation is not provided.");
 
             // Now, check the representation
-            if (DateTimeOffset.TryParseExact(posixDateRepresentation, dateOnly ? supportedDateFormats : supportedDateTimeFormats, CultureInfo.InvariantCulture, DateTimeStyles.None, out var date))
+            bool assumeUtc = posixDateRepresentation[posixDateRepresentation.Length - 1] == 'Z';
+            if (DateTimeOffset.TryParseExact(posixDateRepresentation, dateOnly ? supportedDateFormats : supportedDateTimeFormats, CultureInfo.InvariantCulture, assumeUtc ? DateTimeStyles.AssumeUniversal : DateTimeStyles.AssumeLocal, out var date))
                 return date;
             throw new ArgumentException($"Can't parse date {posixDateRepresentation}");
         }
