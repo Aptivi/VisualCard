@@ -61,7 +61,7 @@ namespace VisualCard.Calendar.Parts.Implementations
                 cardVersion.Major == 1 ?
                 Regex.Unescape(value).Split(';') :
                 [Regex.Unescape(value)];
-            var recDates = recDateStrings.Select(VcardCommonTools.ParsePosixDate).ToArray();
+            var recDates = recDateStrings.Select((date) => VcardCommonTools.ParsePosixDate(date)).ToArray();
 
             // Add the fetched information
             RecDateInfo _time = new([], elementTypes, valueType, recDates);

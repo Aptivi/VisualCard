@@ -18,7 +18,6 @@
 //
 
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -27,8 +26,140 @@ using VisualCard.Parts.Enums;
 
 namespace VisualCard.Parsers
 {
-    internal static class VcardCommonTools
+    /// <summary>
+    /// Common tools for vCard parsing
+    /// </summary>
+    public static class VcardCommonTools
     {
+        private static readonly string[] supportedDateTimeFormats =
+        [
+            @"yyyyMMdd",
+            @"yyyy-MM-dd",
+            @"yyyyMMdd\THHmmss\Z",
+            @"yyyyMMdd\THHmmss",
+            @"yyyy-MM-dd\THH\:mm\:ss\Z",
+            @"yyyy-MM-dd\THH\:mm\:ss",
+        ];
+
+        private static readonly string[] supportedDateFormats =
+        [
+            @"yyyyMMdd",
+            @"yyyy-MM-dd",
+        ];
+
+        private static readonly string[] supportedTimeFormats =
+        [
+            @"hh",
+            @"hhmm",
+            @"hh\:mm",
+            @"hhmmss",
+            @"hh\:mm\:ss",
+        ];
+
+        /// <summary>
+        /// Parses the POSIX date formatted with the representation according to the vCard and vCalendar specifications
+        /// </summary>
+        /// <param name="posixDateRepresentation">Date representation in basic or extended format of ISO 8601</param>
+        /// <param name="dateOnly">Whether to accept only date</param>
+        /// <returns>An instance of <see cref="DateTimeOffset"/> that matches the representation</returns>
+        /// <exception cref="ArgumentException"></exception>
+        public static DateTimeOffset ParsePosixDate(string posixDateRepresentation, bool dateOnly = false)
+        {
+            // Check for sanity
+            if (string.IsNullOrEmpty(posixDateRepresentation))
+                throw new ArgumentException($"Date representation is not provided.");
+
+            // Now, check the representation
+            if (DateTimeOffset.TryParseExact(posixDateRepresentation, dateOnly ? supportedDateFormats : supportedDateTimeFormats, CultureInfo.InvariantCulture, DateTimeStyles.None, out var date))
+                return date;
+            throw new ArgumentException($"Can't parse date {posixDateRepresentation}");
+        }
+        /// <summary>
+        /// Tries to parse the POSIX date formatted with the representation according to the vCard and vCalendar specifications
+        /// </summary>
+        /// <param name="posixDateRepresentation">Date representation in basic or extended format of ISO 8601</param>
+        /// <param name="dateOnly">Whether to accept only date</param>
+        /// <param name="date">[<see langword="out"/>] Date output parsed from the representation</param>
+        /// <returns>True if parsed successfully; false otherwise.</returns>
+        public static bool TryParsePosixDate(string posixDateRepresentation, out DateTimeOffset date, bool dateOnly = false)
+        {
+            try
+            {
+                date = ParsePosixDate(posixDateRepresentation, dateOnly);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Saves the date to a ISO 8601 formatted date
+        /// </summary>
+        /// <param name="posixDateRepresentation">Date to save</param>
+        /// <param name="dateOnly">Whether to save only date</param>
+        /// <returns>A string representation of a date formatted with the basic ISO 8601 format</returns>
+        public static string SavePosixDate(DateTimeOffset posixDateRepresentation, bool dateOnly = false)
+        {
+            StringBuilder posixDateBuilder = new(
+                $"{posixDateRepresentation.Year:0000}" +
+                $"{posixDateRepresentation.Month:00}" +
+                $"{posixDateRepresentation.Day:00}"
+            );
+            if (!dateOnly)
+                posixDateBuilder.Append(
+                    $"T" +
+                    $"{posixDateRepresentation.Hour:00}" +
+                    $"{posixDateRepresentation.Minute:00}" +
+                    $"{posixDateRepresentation.Second:00}" +
+                    $"{(posixDateRepresentation.Offset == new TimeSpan() ? "Z" : "")}"
+                );
+            return posixDateBuilder.ToString();
+        }
+
+        /// <summary>
+        /// Parses the POSIX UTC offset formatted with the representation according to the vCard and vCalendar specifications
+        /// </summary>
+        /// <param name="utcOffsetRepresentation">UTC offset representation in basic or extended format of ISO 8601, prefixed by either a plus or a minus sign</param>
+        /// <returns>An instance of <see cref="TimeSpan"/> that matches the representation</returns>
+        /// <exception cref="ArgumentException"></exception>
+        public static TimeSpan ParseUtcOffset(string utcOffsetRepresentation)
+        {
+            // Check for sanity
+            if (string.IsNullOrEmpty(utcOffsetRepresentation))
+                throw new ArgumentException($"UTC offset representation is not provided.");
+
+            // Now, this representation might be a POSIX offset that follows the vCard specification, but check the sign,
+            // because it might be either <+/->HHmmss, <+/->HHmm, or <+/->HH.
+            string designatorStr = utcOffsetRepresentation.Substring(0, 1);
+            string offsetNoSign = utcOffsetRepresentation.Substring(1);
+            if (designatorStr != "+" && designatorStr != "-")
+                throw new ArgumentException($"Designator {designatorStr} is invalid.");
+            if (TimeSpan.TryParseExact(offsetNoSign, supportedTimeFormats, CultureInfo.InvariantCulture, out TimeSpan offset))
+                return designatorStr == "-" && offset != new TimeSpan() ? -offset : offset;
+            throw new ArgumentException($"Can't parse offset {utcOffsetRepresentation}");
+        }
+
+        /// <summary>
+        /// Saves the UTC offset to a ISO 8601 formatted time
+        /// </summary>
+        /// <param name="utcOffsetRepresentation">UTC offset to save</param>
+        /// <returns>A string representation of a UTC offset formatted with the basic ISO 8601 format</returns>
+        public static string SaveUtcOffset(TimeSpan utcOffsetRepresentation)
+        {
+            StringBuilder utcOffsetBuilder = new(
+                $"{(utcOffsetRepresentation < new TimeSpan() ? "-" : "+")}" +
+                $"{Math.Abs(utcOffsetRepresentation.Hours):00}" +
+                $"{Math.Abs(utcOffsetRepresentation.Minutes):00}"
+            );
+            if (utcOffsetRepresentation.Seconds != 0)
+                utcOffsetBuilder.Append(
+                    $"{Math.Abs(utcOffsetRepresentation.Seconds):00}"
+                );
+            return utcOffsetBuilder.ToString();
+        }
+
         internal static string GetTypesString(string[] args, string @default, bool isSpecifierRequired = true)
         {
             // We're given an array of split arguments of an element delimited by the colon, such as: "...TYPE=home..."
@@ -159,117 +290,6 @@ namespace VisualCard.Parsers
             }
             else
                 throw new InvalidOperationException("Not a blob. You should somehow handle it.");
-        }
-
-        internal static DateTimeOffset ParsePosixDate(string posixDateRepresentation)
-        {
-            // Check to see if this date and time representation is supported by .NET
-            if (DateTimeOffset.TryParse(posixDateRepresentation, out DateTimeOffset date))
-                return date;
-
-            // Now, this date might be a POSIX date that follows the vCard specification, but check it
-            if (posixDateRepresentation.Length == 8)
-            {
-                // It might be yyyyMMdd, but check again
-                string yearStr = posixDateRepresentation.Substring(0, 4);
-                string monthStr = posixDateRepresentation.Substring(4, 2);
-                string dayStr = posixDateRepresentation.Substring(6, 2);
-                if (DateTimeOffset.TryParseExact($"{yearStr}/{monthStr}/{dayStr}", "yyyy/MM/dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
-                    return date;
-            }
-            else if (posixDateRepresentation.Length == 15 || posixDateRepresentation.Length == 16)
-            {
-                // It might be yyyyMMdd + "T" + HHmmss + ["Z"], but check again
-                string yearStr = posixDateRepresentation.Substring(0, 4);
-                string monthStr = posixDateRepresentation.Substring(4, 2);
-                string dayStr = posixDateRepresentation.Substring(6, 2);
-                char timeIndicator = posixDateRepresentation[8];
-                string hourStr = posixDateRepresentation.Substring(9, 2);
-                string minuteStr = posixDateRepresentation.Substring(11, 2);
-                string secondStr = posixDateRepresentation.Substring(13, 2);
-                if (timeIndicator != 'T')
-                    throw new ArgumentException($"Time indicator is invalid.");
-                if (posixDateRepresentation.Length == 16 && posixDateRepresentation[15] != 'Z')
-                    throw new ArgumentException($"UTC indicator is invalid.");
-                bool assumeUtc = posixDateRepresentation.Length == 16 && posixDateRepresentation[15] == 'Z';
-                var utcOffset = assumeUtc ? DateTimeOffset.UtcNow.Offset : DateTimeOffset.Now.Offset;
-                string renderedOffset = SaveUtcOffset(utcOffset);
-                if (DateTimeOffset.TryParseExact($"{yearStr}/{monthStr}/{dayStr} {hourStr}:{minuteStr}:{secondStr} {renderedOffset}", "yyyy/MM/dd HH:mm:ss zzz", CultureInfo.InvariantCulture, assumeUtc ? DateTimeStyles.AssumeUniversal : DateTimeStyles.AssumeLocal, out date))
-                    return date;
-            }
-            throw new ArgumentException($"Can't parse date {posixDateRepresentation}");
-        }
-
-        internal static bool TryParsePosixDate(string posixDateRepresentation, out DateTimeOffset date)
-        {
-            try
-            {
-                date = ParsePosixDate(posixDateRepresentation);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        internal static string SavePosixDate(DateTimeOffset posixDateRepresentation, bool dateOnly = false)
-        {
-            StringBuilder posixDateBuilder = new(
-                $"{posixDateRepresentation.Year:0000}" +
-                $"{posixDateRepresentation.Month:00}" +
-                $"{posixDateRepresentation.Day:00}"
-            );
-            if (!dateOnly)
-                posixDateBuilder.Append(
-                    $"T" +
-                    $"{posixDateRepresentation.Hour:00}" +
-                    $"{posixDateRepresentation.Minute:00}" +
-                    $"{posixDateRepresentation.Second:00}" +
-                    $"{(posixDateRepresentation.Offset == new TimeSpan() ? "Z" : "")}"
-                );
-            return posixDateBuilder.ToString();
-        }
-
-        internal static TimeSpan ParseUtcOffset(string utcOffsetRepresentation)
-        {
-            // Check for sanity
-            if (utcOffsetRepresentation.Length != 3 && utcOffsetRepresentation.Length != 5 && utcOffsetRepresentation.Length != 7)
-                throw new ArgumentException($"UTC offset representation [{utcOffsetRepresentation}] is invalid.");
-            bool hasMinutes = utcOffsetRepresentation.Length >= 5;
-            bool hasSeconds = utcOffsetRepresentation.Length == 7;
-
-            // Now, this representation might be a POSIX offset that follows the vCard specification, but check it,
-            // because it might be either <+/->HHmmss, <+/->HHmm, or <+/->HH.
-            string designatorStr = utcOffsetRepresentation.Substring(0, 1);
-            string hourStr = utcOffsetRepresentation.Substring(1, 2);
-            string minuteStr = hasMinutes ? utcOffsetRepresentation.Substring(3, 2) : "";
-            string secondStr = hasSeconds ? utcOffsetRepresentation.Substring(5, 2) : "";
-            if (designatorStr != "+" && designatorStr != "-")
-                throw new ArgumentException($"Designator {designatorStr} is invalid.");
-            if (hourStr == "00" && (!hasMinutes || (hasMinutes && minuteStr == "00")) && (!hasSeconds || (hasSeconds && secondStr == "00")))
-            {
-                if (designatorStr == "-")
-                    throw new ArgumentException($"Can't specify negative zero offset.");
-                return new();
-            }
-            if (TimeSpan.TryParseExact($"{hourStr}:{(hasMinutes ? minuteStr : "00")}:{(hasSeconds ? secondStr : "00")}", "hh\\:mm\\:ss", CultureInfo.InvariantCulture, out TimeSpan offset))
-                return designatorStr == "-" ? -offset : offset;
-            throw new ArgumentException($"Can't parse offset {utcOffsetRepresentation}");
-        }
-
-        internal static string SaveUtcOffset(TimeSpan utcOffsetRepresentation)
-        {
-            StringBuilder utcOffsetBuilder = new(
-                $"{(utcOffsetRepresentation < new TimeSpan() ? "-" : "+")}" +
-                $"{Math.Abs(utcOffsetRepresentation.Hours):00}" +
-                $"{Math.Abs(utcOffsetRepresentation.Minutes):00}"
-            );
-            if (utcOffsetRepresentation.Seconds != 0)
-                utcOffsetBuilder.Append(
-                    $"{Math.Abs(utcOffsetRepresentation.Seconds):00}"
-                );
-            return utcOffsetBuilder.ToString();
         }
     }
 }
