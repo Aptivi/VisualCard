@@ -149,6 +149,12 @@ references:
   commentId: F:VisualCard.Calendar.Parsers.Recurrence.RecurrenceRuleFrequency.Minute
   fullName: VisualCard.Calendar.Parsers.Recurrence.RecurrenceRuleFrequency.Minute
   nameWithType: RecurrenceRuleFrequency.Minute
+- uid: VisualCard.Calendar.Parsers.Recurrence.RecurrenceRuleFrequency.Monthly
+  name: Monthly
+  href: api/VisualCard.Calendar.Parsers.Recurrence.RecurrenceRuleFrequency.html#VisualCard_Calendar_Parsers_Recurrence_RecurrenceRuleFrequency_Monthly
+  commentId: F:VisualCard.Calendar.Parsers.Recurrence.RecurrenceRuleFrequency.Monthly
+  fullName: VisualCard.Calendar.Parsers.Recurrence.RecurrenceRuleFrequency.Monthly
+  nameWithType: RecurrenceRuleFrequency.Monthly
 - uid: VisualCard.Calendar.Parsers.Recurrence.RecurrenceRuleFrequency.MonthlyDay
   name: MonthlyDay
   href: api/VisualCard.Calendar.Parsers.Recurrence.RecurrenceRuleFrequency.html#VisualCard_Calendar_Parsers_Recurrence_RecurrenceRuleFrequency_MonthlyDay
@@ -173,18 +179,18 @@ references:
   commentId: F:VisualCard.Calendar.Parsers.Recurrence.RecurrenceRuleFrequency.Second
   fullName: VisualCard.Calendar.Parsers.Recurrence.RecurrenceRuleFrequency.Second
   nameWithType: RecurrenceRuleFrequency.Second
-- uid: VisualCard.Calendar.Parsers.Recurrence.RecurrenceRuleFrequency.WeekNo
-  name: WeekNo
-  href: api/VisualCard.Calendar.Parsers.Recurrence.RecurrenceRuleFrequency.html#VisualCard_Calendar_Parsers_Recurrence_RecurrenceRuleFrequency_WeekNo
-  commentId: F:VisualCard.Calendar.Parsers.Recurrence.RecurrenceRuleFrequency.WeekNo
-  fullName: VisualCard.Calendar.Parsers.Recurrence.RecurrenceRuleFrequency.WeekNo
-  nameWithType: RecurrenceRuleFrequency.WeekNo
 - uid: VisualCard.Calendar.Parsers.Recurrence.RecurrenceRuleFrequency.Weekly
   name: Weekly
   href: api/VisualCard.Calendar.Parsers.Recurrence.RecurrenceRuleFrequency.html#VisualCard_Calendar_Parsers_Recurrence_RecurrenceRuleFrequency_Weekly
   commentId: F:VisualCard.Calendar.Parsers.Recurrence.RecurrenceRuleFrequency.Weekly
   fullName: VisualCard.Calendar.Parsers.Recurrence.RecurrenceRuleFrequency.Weekly
   nameWithType: RecurrenceRuleFrequency.Weekly
+- uid: VisualCard.Calendar.Parsers.Recurrence.RecurrenceRuleFrequency.Yearly
+  name: Yearly
+  href: api/VisualCard.Calendar.Parsers.Recurrence.RecurrenceRuleFrequency.html#VisualCard_Calendar_Parsers_Recurrence_RecurrenceRuleFrequency_Yearly
+  commentId: F:VisualCard.Calendar.Parsers.Recurrence.RecurrenceRuleFrequency.Yearly
+  fullName: VisualCard.Calendar.Parsers.Recurrence.RecurrenceRuleFrequency.Yearly
+  nameWithType: RecurrenceRuleFrequency.Yearly
 - uid: VisualCard.Calendar.Parsers.Recurrence.RecurrenceRuleFrequency.YearlyDay
   name: YearlyDay
   href: api/VisualCard.Calendar.Parsers.Recurrence.RecurrenceRuleFrequency.html#VisualCard_Calendar_Parsers_Recurrence_RecurrenceRuleFrequency_YearlyDay
