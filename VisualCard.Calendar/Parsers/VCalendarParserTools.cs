@@ -29,6 +29,7 @@ using VisualCard.Calendar.Parts.Implementations.Todo;
 using VisualCard.Calendar.Parts.Implementations.Legacy;
 using System.Text.RegularExpressions;
 using System.IO;
+using VisualCard.Calendar.Parts.Implementations.FreeBusy;
 
 namespace VisualCard.Calendar.Parsers
 {
@@ -95,6 +96,7 @@ namespace VisualCard.Calendar.Parsers
                 CalendarPartsArrayEnum.ProcedureAlarm => calendarVersion.Major == 1 && TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo)),
                 CalendarPartsArrayEnum.RelatedTo => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal)),
                 CalendarPartsArrayEnum.LastModified => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal), typeof(CalendarTimeZone)),
+                CalendarPartsArrayEnum.FreeBusy => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(CalendarFreeBusy)),
 
                 // Extensions are allowed
                 _ => true,
@@ -161,6 +163,7 @@ namespace VisualCard.Calendar.Parsers
                 CalendarPartsArrayEnum.ProcedureAlarm => VCalendarConstants._pAlarmSpecifier,
                 CalendarPartsArrayEnum.RelatedTo => VCalendarConstants._relationshipSpecifier,
                 CalendarPartsArrayEnum.LastModified => VCalendarConstants._lastModSpecifier,
+                CalendarPartsArrayEnum.FreeBusy => VCalendarConstants._freeBusySpecifier,
 
                 // Extensions are allowed
                 CalendarPartsArrayEnum.NonstandardNames => VCalendarConstants._xSpecifier,
@@ -215,6 +218,8 @@ namespace VisualCard.Calendar.Parsers
                 return (CalendarPartsArrayEnum.RelatedTo, PartCardinality.Any);
             else if (partsArrayType == typeof(LastModifiedInfo))
                 return (CalendarPartsArrayEnum.LastModified, PartCardinality.MayBeOne);
+            else if (partsArrayType == typeof(CalendarFreeBusyInfo))
+                return (CalendarPartsArrayEnum.FreeBusy, PartCardinality.Any);
 
             // Extensions are allowed
             else if (partsArrayType == typeof(XNameInfo))
@@ -251,6 +256,7 @@ namespace VisualCard.Calendar.Parsers
                 VCalendarConstants._pAlarmSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.ProcedureAlarm, typeof(ProcedureAlarmInfo), ProcedureAlarmInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._relationshipSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.RelatedTo, typeof(RelatedToInfo), RelatedToInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._lastModSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.LastModified, typeof(LastModifiedInfo), LastModifiedInfo.FromStringVcalendarStatic, "", "", []),
+                VCalendarConstants._freeBusySpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.FreeBusy, typeof(CalendarFreeBusyInfo), CalendarFreeBusyInfo.FromStringVcalendarStatic, "", "", []),
                 VCalendarConstants._productIdSpecifier => (PartType.Strings, CalendarStringsEnum.ProductId, null, null, "", "", []),
                 VCalendarConstants._calScaleSpecifier => (PartType.Strings, CalendarStringsEnum.CalScale, null, null, "", "", []),
                 VCalendarConstants._methodSpecifier => (PartType.Strings, CalendarStringsEnum.Method, null, null, "", "", []),
