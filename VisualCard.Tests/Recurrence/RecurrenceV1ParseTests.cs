@@ -71,6 +71,7 @@ namespace VisualCard.Tests.Recurrence
         {
             var rules = RecurrenceParser.ParseRuleV1(rule);
             rules.Length.ShouldBe(expectedCount);
+            rules[0].Version.ShouldBe(new(1, 0));
         }
 
         [TestMethod]
@@ -81,6 +82,7 @@ namespace VisualCard.Tests.Recurrence
 
             // Check the first rule
             var rule1 = rules[0];
+            rule1.Version.ShouldBe(new(1, 0));
             rule1.duration.ShouldBe(12);
             rule1.frequency.ShouldBe(RecurrenceRuleFrequency.Minute);
             rule1.interval.ShouldBe(60);
@@ -94,6 +96,7 @@ namespace VisualCard.Tests.Recurrence
 
             // Check the first rule
             var rule1 = rules[0];
+            rule1.Version.ShouldBe(new(1, 0));
             rule1.duration.ShouldBe(2);
             rule1.frequency.ShouldBe(RecurrenceRuleFrequency.Daily);
             rule1.interval.ShouldBe(2);
@@ -114,6 +117,7 @@ namespace VisualCard.Tests.Recurrence
 
             // Check the first rule
             var rule1 = rules[0];
+            rule1.Version.ShouldBe(new(1, 0));
             rule1.duration.ShouldBe(3);
             rule1.frequency.ShouldBe(RecurrenceRuleFrequency.Daily);
             rule1.interval.ShouldBe(2);
@@ -134,12 +138,14 @@ namespace VisualCard.Tests.Recurrence
 
             // Check the first rule
             var rule1 = rules[0];
+            rule1.Version.ShouldBe(new(1, 0));
             rule1.duration.ShouldBe(5);
             rule1.frequency.ShouldBe(RecurrenceRuleFrequency.Daily);
             rule1.interval.ShouldBe(1);
 
             // Check the second rule
             var rule2 = rules[1];
+            rule2.Version.ShouldBe(new(1, 0));
             rule2.duration.ShouldBe(6);
             rule2.frequency.ShouldBe(RecurrenceRuleFrequency.Minute);
             rule2.interval.ShouldBe(10);
@@ -153,6 +159,7 @@ namespace VisualCard.Tests.Recurrence
 
             // Check the first rule
             var rule1 = rules[0];
+            rule1.Version.ShouldBe(new(1, 0));
             rule1.duration.ShouldBe(4);
             rule1.frequency.ShouldBe(RecurrenceRuleFrequency.Daily);
             rule1.interval.ShouldBe(7);
@@ -162,6 +169,7 @@ namespace VisualCard.Tests.Recurrence
 
             // Check the second rule
             var rule2 = rules[1];
+            rule2.Version.ShouldBe(new(1, 0));
             rule2.duration.ShouldBe(4);
             rule2.frequency.ShouldBe(RecurrenceRuleFrequency.Minute);
             rule2.interval.ShouldBe(15);
@@ -175,6 +183,7 @@ namespace VisualCard.Tests.Recurrence
 
             // Check the first rule
             var rule1 = rules[0];
+            rule1.Version.ShouldBe(new(1, 0));
             rule1.duration.ShouldBe(4);
             rule1.frequency.ShouldBe(RecurrenceRuleFrequency.Weekly);
             rule1.interval.ShouldBe(1);
@@ -188,6 +197,7 @@ namespace VisualCard.Tests.Recurrence
 
             // Check the first rule
             var rule1 = rules[0];
+            rule1.Version.ShouldBe(new(1, 0));
             rule1.dayTimes.Count.ShouldBe(2);
             rule1.dayTimes[0].isEnd.ShouldBeTrue();
             rule1.dayTimes[0].time.ShouldBe(DayOfWeek.Monday);
@@ -206,6 +216,7 @@ namespace VisualCard.Tests.Recurrence
 
             // Check the first rule
             var rule1 = rules[0];
+            rule1.Version.ShouldBe(new(1, 0));
             rule1.dayTimes.Count.ShouldBe(2);
             rule1.dayTimes[0].isEnd.ShouldBeFalse();
             rule1.dayTimes[0].time.ShouldBe(DayOfWeek.Tuesday);
@@ -222,6 +233,7 @@ namespace VisualCard.Tests.Recurrence
 
             // Check the second rule
             var rule2 = rules[1];
+            rule2.Version.ShouldBe(new(1, 0));
             rule2.duration.ShouldBe(2);
             rule2.frequency.ShouldBe(RecurrenceRuleFrequency.Minute);
             rule2.interval.ShouldBe(30);
@@ -235,6 +247,7 @@ namespace VisualCard.Tests.Recurrence
 
             // Check the first rule
             var rule1 = rules[0];
+            rule1.Version.ShouldBe(new(1, 0));
             rule1.dayTimes.Count.ShouldBe(2);
             rule1.dayTimes[0].isEnd.ShouldBeTrue();
             rule1.dayTimes[0].time.ShouldBe(DayOfWeek.Tuesday);
@@ -251,6 +264,7 @@ namespace VisualCard.Tests.Recurrence
 
             // Check the second rule
             var rule2 = rules[1];
+            rule2.Version.ShouldBe(new(1, 0));
             rule2.duration.ShouldBe(2);
             rule2.frequency.ShouldBe(RecurrenceRuleFrequency.Minute);
             rule2.interval.ShouldBe(30);
@@ -264,6 +278,7 @@ namespace VisualCard.Tests.Recurrence
 
             // Check the first rule
             var rule1 = rules[0];
+            rule1.Version.ShouldBe(new(1, 0));
             rule1.duration.ShouldBe(12);
             rule1.frequency.ShouldBe(RecurrenceRuleFrequency.MonthlyPos);
             rule1.interval.ShouldBe(1);
@@ -277,6 +292,7 @@ namespace VisualCard.Tests.Recurrence
 
             // Check the first rule
             var rule1 = rules[0];
+            rule1.Version.ShouldBe(new(1, 0));
             rule1.dayTimes.Count.ShouldBe(1);
             rule1.dayTimes[0].isEnd.ShouldBeFalse();
             rule1.dayTimes[0].time.ShouldBe(DayOfWeek.Friday);
@@ -300,6 +316,7 @@ namespace VisualCard.Tests.Recurrence
 
             // Check the first rule
             var rule1 = rules[0];
+            rule1.Version.ShouldBe(new(1, 0));
             rule1.dayTimes.Count.ShouldBe(1);
             rule1.dayTimes[0].isEnd.ShouldBeFalse();
             rule1.dayTimes[0].time.ShouldBe(DayOfWeek.Monday);
@@ -314,6 +331,7 @@ namespace VisualCard.Tests.Recurrence
 
             // Check the second rule
             var rule2 = rules[1];
+            rule2.Version.ShouldBe(new(1, 0));
             rule2.dayTimes.Count.ShouldBe(0);
             rule2.duration.ShouldBe(10);
             rule2.frequency.ShouldBe(RecurrenceRuleFrequency.Daily);
@@ -336,6 +354,7 @@ namespace VisualCard.Tests.Recurrence
 
             // Check the first rule
             var rule1 = rules[0];
+            rule1.Version.ShouldBe(new(1, 0));
             rule1.dayTimes.Count.ShouldBe(1);
             rule1.dayTimes[0].isEnd.ShouldBeTrue();
             rule1.dayTimes[0].time.ShouldBe(DayOfWeek.Monday);
@@ -349,6 +368,7 @@ namespace VisualCard.Tests.Recurrence
 
             // Check the second rule
             var rule2 = rules[1];
+            rule2.Version.ShouldBe(new(1, 0));
             rule2.dayTimes.Count.ShouldBe(0);
             rule2.duration.ShouldBe(10);
             rule2.frequency.ShouldBe(RecurrenceRuleFrequency.Daily);
@@ -370,6 +390,7 @@ namespace VisualCard.Tests.Recurrence
 
             // Check the first rule
             var rule1 = rules[0];
+            rule1.Version.ShouldBe(new(1, 0));
             rule1.duration.ShouldBe(5);
             rule1.frequency.ShouldBe(RecurrenceRuleFrequency.MonthlyDay);
             rule1.interval.ShouldBe(1);
@@ -388,6 +409,7 @@ namespace VisualCard.Tests.Recurrence
 
             // Check the first rule
             var rule1 = rules[0];
+            rule1.Version.ShouldBe(new(1, 0));
             rule1.duration.ShouldBe(5);
             rule1.frequency.ShouldBe(RecurrenceRuleFrequency.MonthlyDay);
             rule1.interval.ShouldBe(1);
@@ -406,6 +428,7 @@ namespace VisualCard.Tests.Recurrence
 
             // Check the first rule
             var rule1 = rules[0];
+            rule1.Version.ShouldBe(new(1, 0));
             rule1.duration.ShouldBe(24);
             rule1.frequency.ShouldBe(RecurrenceRuleFrequency.MonthlyDay);
             rule1.interval.ShouldBe(1);
@@ -422,6 +445,7 @@ namespace VisualCard.Tests.Recurrence
 
             // Check the second rule
             var rule2 = rules[1];
+            rule2.Version.ShouldBe(new(1, 0));
             rule2.duration.ShouldBe(5);
             rule2.frequency.ShouldBe(RecurrenceRuleFrequency.Daily);
             rule2.interval.ShouldBe(1);
@@ -436,6 +460,7 @@ namespace VisualCard.Tests.Recurrence
 
             // Check the third rule
             var rule3 = rules[2];
+            rule3.Version.ShouldBe(new(1, 0));
             rule3.duration.ShouldBe(4);
             rule3.frequency.ShouldBe(RecurrenceRuleFrequency.Minute);
             rule3.interval.ShouldBe(15);
@@ -451,6 +476,7 @@ namespace VisualCard.Tests.Recurrence
 
             // Check the first rule
             var rule1 = rules[0];
+            rule1.Version.ShouldBe(new(1, 0));
             rule1.duration.ShouldBe(24);
             rule1.frequency.ShouldBe(RecurrenceRuleFrequency.MonthlyDay);
             rule1.interval.ShouldBe(1);
@@ -467,6 +493,7 @@ namespace VisualCard.Tests.Recurrence
 
             // Check the second rule
             var rule2 = rules[1];
+            rule2.Version.ShouldBe(new(1, 0));
             rule2.duration.ShouldBe(5);
             rule2.frequency.ShouldBe(RecurrenceRuleFrequency.Daily);
             rule2.interval.ShouldBe(1);
@@ -481,6 +508,7 @@ namespace VisualCard.Tests.Recurrence
 
             // Check the third rule
             var rule3 = rules[2];
+            rule3.Version.ShouldBe(new(1, 0));
             rule3.duration.ShouldBe(4);
             rule3.frequency.ShouldBe(RecurrenceRuleFrequency.Minute);
             rule3.interval.ShouldBe(15);
@@ -496,6 +524,7 @@ namespace VisualCard.Tests.Recurrence
 
             // Check the first rule
             var rule1 = rules[0];
+            rule1.Version.ShouldBe(new(1, 0));
             rule1.duration.ShouldBe(3);
             rule1.frequency.ShouldBe(RecurrenceRuleFrequency.YearlyMonth);
             rule1.interval.ShouldBe(2);
@@ -512,6 +541,7 @@ namespace VisualCard.Tests.Recurrence
 
             // Check the first rule
             var rule1 = rules[0];
+            rule1.Version.ShouldBe(new(1, 0));
             rule1.duration.ShouldBe(5);
             rule1.frequency.ShouldBe(RecurrenceRuleFrequency.YearlyMonth);
             rule1.interval.ShouldBe(1);
@@ -532,6 +562,7 @@ namespace VisualCard.Tests.Recurrence
 
             // Check the first rule
             var rule1 = rules[0];
+            rule1.Version.ShouldBe(new(1, 0));
             rule1.duration.ShouldBe(10);
             rule1.frequency.ShouldBe(RecurrenceRuleFrequency.YearlyMonth);
             rule1.interval.ShouldBe(1);
@@ -545,6 +576,7 @@ namespace VisualCard.Tests.Recurrence
 
             // Check the second rule
             var rule2 = rules[1];
+            rule2.Version.ShouldBe(new(1, 0));
             rule2.dayTimes.Count.ShouldBe(2);
             rule2.dayTimes[0].isEnd.ShouldBeFalse();
             rule2.dayTimes[0].time.ShouldBe(DayOfWeek.Saturday);
@@ -579,6 +611,7 @@ namespace VisualCard.Tests.Recurrence
 
             // Check the first rule
             var rule1 = rules[0];
+            rule1.Version.ShouldBe(new(1, 0));
             rule1.duration.ShouldBe(5);
             rule1.frequency.ShouldBe(RecurrenceRuleFrequency.YearlyMonth);
             rule1.interval.ShouldBe(1);
@@ -592,6 +625,7 @@ namespace VisualCard.Tests.Recurrence
 
             // Check the second rule
             var rule2 = rules[1];
+            rule2.Version.ShouldBe(new(1, 0));
             rule2.duration.ShouldBe(2);
             rule2.frequency.ShouldBe(RecurrenceRuleFrequency.MonthlyDay);
             rule2.interval.ShouldBe(1);
@@ -622,6 +656,7 @@ namespace VisualCard.Tests.Recurrence
 
             // Check the first rule
             var rule1 = rules[0];
+            rule1.Version.ShouldBe(new(1, 0));
             rule1.duration.ShouldBe(4);
             rule1.frequency.ShouldBe(RecurrenceRuleFrequency.YearlyDay);
             rule1.interval.ShouldBe(1);
@@ -644,6 +679,7 @@ namespace VisualCard.Tests.Recurrence
 
             // Check the first rule
             var rule1 = rules[0];
+            rule1.Version.ShouldBe(new(1, 0));
             rule1.duration.ShouldBe(4);
             rule1.frequency.ShouldBe(RecurrenceRuleFrequency.YearlyDay);
             rule1.interval.ShouldBe(1);
@@ -666,6 +702,7 @@ namespace VisualCard.Tests.Recurrence
 
             // Check the first rule
             var rule1 = rules[0];
+            rule1.Version.ShouldBe(new(1, 0));
             rule1.duration.ShouldBe(5);
             rule1.frequency.ShouldBe(RecurrenceRuleFrequency.YearlyDay);
             rule1.interval.ShouldBe(1);
@@ -677,6 +714,7 @@ namespace VisualCard.Tests.Recurrence
 
             // Check the second rule
             var rule2 = rules[1];
+            rule2.Version.ShouldBe(new(1, 0));
             rule2.duration.ShouldBe(5);
             rule2.frequency.ShouldBe(RecurrenceRuleFrequency.Daily);
             rule2.interval.ShouldBe(1);
@@ -690,6 +728,7 @@ namespace VisualCard.Tests.Recurrence
 
             // Check the first rule
             var rule1 = rules[0];
+            rule1.Version.ShouldBe(new(1, 0));
             rule1.duration.ShouldBe(5);
             rule1.frequency.ShouldBe(RecurrenceRuleFrequency.YearlyDay);
             rule1.interval.ShouldBe(1);
@@ -701,6 +740,7 @@ namespace VisualCard.Tests.Recurrence
 
             // Check the second rule
             var rule2 = rules[1];
+            rule2.Version.ShouldBe(new(1, 0));
             rule2.duration.ShouldBe(5);
             rule2.frequency.ShouldBe(RecurrenceRuleFrequency.Daily);
             rule2.interval.ShouldBe(1);

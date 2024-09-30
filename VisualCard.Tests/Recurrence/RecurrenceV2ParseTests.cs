@@ -71,6 +71,7 @@ namespace VisualCard.Tests.Recurrence
         {
             var ruleInstance = RecurrenceParser.ParseRuleV2(rule);
             ruleInstance.ShouldNotBeNull();
+            ruleInstance.Version.ShouldBe(new(2, 0));
         }
 
         [TestMethod]
@@ -79,6 +80,7 @@ namespace VisualCard.Tests.Recurrence
             var rule = RecurrenceParser.ParseRuleV2("FREQ=DAILY;COUNT=10");
 
             // Check the first rule
+            rule.Version.ShouldBe(new(2, 0));
             rule.duration.ShouldBe(10);
             rule.frequency.ShouldBe(RecurrenceRuleFrequency.Daily);
             rule.interval.ShouldBe(1);
@@ -90,6 +92,7 @@ namespace VisualCard.Tests.Recurrence
             var rule = RecurrenceParser.ParseRuleV2("FREQ=DAILY;UNTIL=19971224T000000Z");
 
             // Check the first rule
+            rule.Version.ShouldBe(new(2, 0));
             rule.duration.ShouldBe(2);
             rule.frequency.ShouldBe(RecurrenceRuleFrequency.Daily);
             rule.interval.ShouldBe(1);
@@ -102,6 +105,7 @@ namespace VisualCard.Tests.Recurrence
             var rule = RecurrenceParser.ParseRuleV2("FREQ=DAILY;INTERVAL=2");
 
             // Check the first rule
+            rule.Version.ShouldBe(new(2, 0));
             rule.duration.ShouldBe(2);
             rule.frequency.ShouldBe(RecurrenceRuleFrequency.Daily);
             rule.interval.ShouldBe(2);
@@ -113,6 +117,7 @@ namespace VisualCard.Tests.Recurrence
             var rule = RecurrenceParser.ParseRuleV2("FREQ=DAILY;INTERVAL=10;COUNT=5");
 
             // Check the first rule
+            rule.Version.ShouldBe(new(2, 0));
             rule.duration.ShouldBe(5);
             rule.frequency.ShouldBe(RecurrenceRuleFrequency.Daily);
             rule.interval.ShouldBe(10);
@@ -124,6 +129,7 @@ namespace VisualCard.Tests.Recurrence
             var rule = RecurrenceParser.ParseRuleV2("FREQ=YEARLY;UNTIL=20000131T140000Z;BYMONTH=1;BYDAY=SU,MO,TU,WE,TH,FR,SA");
 
             // Check the first rule
+            rule.Version.ShouldBe(new(2, 0));
             rule.duration.ShouldBe(2);
             rule.frequency.ShouldBe(RecurrenceRuleFrequency.Yearly);
             rule.interval.ShouldBe(1);
@@ -160,6 +166,7 @@ namespace VisualCard.Tests.Recurrence
             var rule = RecurrenceParser.ParseRuleV2("FREQ=WEEKLY;COUNT=10");
 
             // Check the first rule
+            rule.Version.ShouldBe(new(2, 0));
             rule.duration.ShouldBe(10);
             rule.frequency.ShouldBe(RecurrenceRuleFrequency.Weekly);
             rule.interval.ShouldBe(1);
@@ -171,6 +178,7 @@ namespace VisualCard.Tests.Recurrence
             var rule = RecurrenceParser.ParseRuleV2("FREQ=WEEKLY;UNTIL=19971224T000000Z");
 
             // Check the first rule
+            rule.Version.ShouldBe(new(2, 0));
             rule.duration.ShouldBe(2);
             rule.frequency.ShouldBe(RecurrenceRuleFrequency.Weekly);
             rule.interval.ShouldBe(1);
@@ -183,6 +191,7 @@ namespace VisualCard.Tests.Recurrence
             var rule = RecurrenceParser.ParseRuleV2("FREQ=WEEKLY;INTERVAL=2;WKST=SU");
 
             // Check the first rule
+            rule.Version.ShouldBe(new(2, 0));
             rule.duration.ShouldBe(2);
             rule.frequency.ShouldBe(RecurrenceRuleFrequency.Weekly);
             rule.interval.ShouldBe(2);
@@ -195,6 +204,7 @@ namespace VisualCard.Tests.Recurrence
             var rule = RecurrenceParser.ParseRuleV2("FREQ=WEEKLY;UNTIL=19971007T000000Z;WKST=SU;BYDAY=TU,TH");
 
             // Check the first rule
+            rule.Version.ShouldBe(new(2, 0));
             rule.duration.ShouldBe(2);
             rule.frequency.ShouldBe(RecurrenceRuleFrequency.Weekly);
             rule.interval.ShouldBe(1);
@@ -215,6 +225,7 @@ namespace VisualCard.Tests.Recurrence
             var rule = RecurrenceParser.ParseRuleV2("FREQ=WEEKLY;INTERVAL=2;UNTIL=19971224T000000Z;WKST=SU;BYDAY=MO,WE,FR");
 
             // Check the first rule
+            rule.Version.ShouldBe(new(2, 0));
             rule.duration.ShouldBe(2);
             rule.frequency.ShouldBe(RecurrenceRuleFrequency.Weekly);
             rule.interval.ShouldBe(2);
@@ -238,6 +249,7 @@ namespace VisualCard.Tests.Recurrence
             var rule = RecurrenceParser.ParseRuleV2("FREQ=WEEKLY;INTERVAL=2;COUNT=8;WKST=SU;BYDAY=TU,TH");
 
             // Check the first rule
+            rule.Version.ShouldBe(new(2, 0));
             rule.duration.ShouldBe(8);
             rule.frequency.ShouldBe(RecurrenceRuleFrequency.Weekly);
             rule.interval.ShouldBe(2);
@@ -257,6 +269,7 @@ namespace VisualCard.Tests.Recurrence
             var rule = RecurrenceParser.ParseRuleV2("FREQ=MONTHLY;COUNT=10;BYDAY=1FR");
 
             // Check the first rule
+            rule.Version.ShouldBe(new(2, 0));
             rule.duration.ShouldBe(10);
             rule.frequency.ShouldBe(RecurrenceRuleFrequency.Monthly);
             rule.interval.ShouldBe(1);
@@ -272,6 +285,7 @@ namespace VisualCard.Tests.Recurrence
             var rule = RecurrenceParser.ParseRuleV2("FREQ=MONTHLY;UNTIL=19971224T000000Z;BYDAY=1FR");
 
             // Check the first rule
+            rule.Version.ShouldBe(new(2, 0));
             rule.duration.ShouldBe(2);
             rule.frequency.ShouldBe(RecurrenceRuleFrequency.Monthly);
             rule.interval.ShouldBe(1);
@@ -288,6 +302,7 @@ namespace VisualCard.Tests.Recurrence
             var rule = RecurrenceParser.ParseRuleV2("FREQ=MONTHLY;INTERVAL=2;COUNT=10;BYDAY=1SU,-1SU");
 
             // Check the first rule
+            rule.Version.ShouldBe(new(2, 0));
             rule.duration.ShouldBe(10);
             rule.frequency.ShouldBe(RecurrenceRuleFrequency.Monthly);
             rule.interval.ShouldBe(2);
@@ -306,6 +321,7 @@ namespace VisualCard.Tests.Recurrence
             var rule = RecurrenceParser.ParseRuleV2("FREQ=MONTHLY;COUNT=6;BYDAY=-2MO");
 
             // Check the first rule
+            rule.Version.ShouldBe(new(2, 0));
             rule.duration.ShouldBe(6);
             rule.frequency.ShouldBe(RecurrenceRuleFrequency.Monthly);
             rule.interval.ShouldBe(1);
@@ -321,6 +337,7 @@ namespace VisualCard.Tests.Recurrence
             var rule = RecurrenceParser.ParseRuleV2("FREQ=MONTHLY;BYMONTHDAY=-3");
 
             // Check the first rule
+            rule.Version.ShouldBe(new(2, 0));
             rule.duration.ShouldBe(2);
             rule.frequency.ShouldBe(RecurrenceRuleFrequency.Monthly);
             rule.interval.ShouldBe(1);
@@ -335,6 +352,7 @@ namespace VisualCard.Tests.Recurrence
             var rule = RecurrenceParser.ParseRuleV2("FREQ=MONTHLY;COUNT=10;BYMONTHDAY=2,15");
 
             // Check the first rule
+            rule.Version.ShouldBe(new(2, 0));
             rule.duration.ShouldBe(10);
             rule.frequency.ShouldBe(RecurrenceRuleFrequency.Monthly);
             rule.interval.ShouldBe(1);
@@ -351,6 +369,7 @@ namespace VisualCard.Tests.Recurrence
             var rule = RecurrenceParser.ParseRuleV2("FREQ=MONTHLY;COUNT=10;BYMONTHDAY=1,-1");
 
             // Check the first rule
+            rule.Version.ShouldBe(new(2, 0));
             rule.duration.ShouldBe(10);
             rule.frequency.ShouldBe(RecurrenceRuleFrequency.Monthly);
             rule.interval.ShouldBe(1);
@@ -367,6 +386,7 @@ namespace VisualCard.Tests.Recurrence
             var rule = RecurrenceParser.ParseRuleV2("FREQ=MONTHLY;INTERVAL=18;COUNT=10;BYMONTHDAY=10,11,12,13,14,15");
 
             // Check the first rule
+            rule.Version.ShouldBe(new(2, 0));
             rule.duration.ShouldBe(10);
             rule.frequency.ShouldBe(RecurrenceRuleFrequency.Monthly);
             rule.interval.ShouldBe(18);
@@ -391,6 +411,7 @@ namespace VisualCard.Tests.Recurrence
             var rule = RecurrenceParser.ParseRuleV2("FREQ=MONTHLY;INTERVAL=2;BYDAY=TU");
 
             // Check the first rule
+            rule.Version.ShouldBe(new(2, 0));
             rule.duration.ShouldBe(2);
             rule.frequency.ShouldBe(RecurrenceRuleFrequency.Monthly);
             rule.interval.ShouldBe(2);
@@ -406,6 +427,7 @@ namespace VisualCard.Tests.Recurrence
             var rule = RecurrenceParser.ParseRuleV2("FREQ=YEARLY;COUNT=10;BYMONTH=6,7");
 
             // Check the first rule
+            rule.Version.ShouldBe(new(2, 0));
             rule.duration.ShouldBe(10);
             rule.frequency.ShouldBe(RecurrenceRuleFrequency.Yearly);
             rule.interval.ShouldBe(1);
@@ -420,6 +442,7 @@ namespace VisualCard.Tests.Recurrence
             var rule = RecurrenceParser.ParseRuleV2("FREQ=YEARLY;INTERVAL=2;COUNT=10;BYMONTH=1,2,3");
 
             // Check the first rule
+            rule.Version.ShouldBe(new(2, 0));
             rule.duration.ShouldBe(10);
             rule.frequency.ShouldBe(RecurrenceRuleFrequency.Yearly);
             rule.interval.ShouldBe(2);
@@ -435,6 +458,7 @@ namespace VisualCard.Tests.Recurrence
             var rule = RecurrenceParser.ParseRuleV2("FREQ=YEARLY;INTERVAL=3;COUNT=10;BYYEARDAY=1,100,200");
 
             // Check the first rule
+            rule.Version.ShouldBe(new(2, 0));
             rule.duration.ShouldBe(10);
             rule.frequency.ShouldBe(RecurrenceRuleFrequency.Yearly);
             rule.interval.ShouldBe(3);
@@ -453,6 +477,7 @@ namespace VisualCard.Tests.Recurrence
             var rule = RecurrenceParser.ParseRuleV2("FREQ=YEARLY;BYDAY=20MO");
 
             // Check the first rule
+            rule.Version.ShouldBe(new(2, 0));
             rule.duration.ShouldBe(2);
             rule.frequency.ShouldBe(RecurrenceRuleFrequency.Yearly);
             rule.interval.ShouldBe(1);
@@ -468,6 +493,7 @@ namespace VisualCard.Tests.Recurrence
             var rule = RecurrenceParser.ParseRuleV2("FREQ=YEARLY;BYWEEKNO=20;BYDAY=MO");
 
             // Check the first rule
+            rule.Version.ShouldBe(new(2, 0));
             rule.duration.ShouldBe(2);
             rule.frequency.ShouldBe(RecurrenceRuleFrequency.Yearly);
             rule.interval.ShouldBe(1);
@@ -486,6 +512,7 @@ namespace VisualCard.Tests.Recurrence
             var rule = RecurrenceParser.ParseRuleV2("FREQ=YEARLY;BYMONTH=3;BYDAY=TH");
 
             // Check the first rule
+            rule.Version.ShouldBe(new(2, 0));
             rule.duration.ShouldBe(2);
             rule.frequency.ShouldBe(RecurrenceRuleFrequency.Yearly);
             rule.interval.ShouldBe(1);
@@ -503,6 +530,7 @@ namespace VisualCard.Tests.Recurrence
             var rule = RecurrenceParser.ParseRuleV2("FREQ=YEARLY;BYDAY=TH;BYMONTH=6,7,8");
 
             // Check the first rule
+            rule.Version.ShouldBe(new(2, 0));
             rule.duration.ShouldBe(2);
             rule.frequency.ShouldBe(RecurrenceRuleFrequency.Yearly);
             rule.interval.ShouldBe(1);
@@ -522,6 +550,7 @@ namespace VisualCard.Tests.Recurrence
             var rule = RecurrenceParser.ParseRuleV2("FREQ=MONTHLY;BYDAY=FR;BYMONTHDAY=13");
 
             // Check the first rule
+            rule.Version.ShouldBe(new(2, 0));
             rule.duration.ShouldBe(2);
             rule.frequency.ShouldBe(RecurrenceRuleFrequency.Monthly);
             rule.interval.ShouldBe(1);
@@ -540,6 +569,7 @@ namespace VisualCard.Tests.Recurrence
             var rule = RecurrenceParser.ParseRuleV2("FREQ=MONTHLY;BYDAY=SA;BYMONTHDAY=7,8,9,10,11,12,13");
 
             // Check the first rule
+            rule.Version.ShouldBe(new(2, 0));
             rule.duration.ShouldBe(2);
             rule.frequency.ShouldBe(RecurrenceRuleFrequency.Monthly);
             rule.interval.ShouldBe(1);
@@ -570,6 +600,7 @@ namespace VisualCard.Tests.Recurrence
             var rule = RecurrenceParser.ParseRuleV2("FREQ=YEARLY;INTERVAL=4;BYMONTH=11;BYDAY=TU;BYMONTHDAY=2,3,4,5,6,7,8");
 
             // Check the first rule
+            rule.Version.ShouldBe(new(2, 0));
             rule.duration.ShouldBe(2);
             rule.frequency.ShouldBe(RecurrenceRuleFrequency.Yearly);
             rule.interval.ShouldBe(4);
@@ -602,6 +633,7 @@ namespace VisualCard.Tests.Recurrence
             var rule = RecurrenceParser.ParseRuleV2("FREQ=MONTHLY;COUNT=3;BYDAY=TU,WE,TH;BYSETPOS=3");
 
             // Check the first rule
+            rule.Version.ShouldBe(new(2, 0));
             rule.duration.ShouldBe(3);
             rule.frequency.ShouldBe(RecurrenceRuleFrequency.Monthly);
             rule.interval.ShouldBe(1);
@@ -626,6 +658,7 @@ namespace VisualCard.Tests.Recurrence
             var rule = RecurrenceParser.ParseRuleV2("FREQ=MONTHLY;BYDAY=MO,TU,WE,TH,FR;BYSETPOS=-2");
 
             // Check the first rule
+            rule.Version.ShouldBe(new(2, 0));
             rule.duration.ShouldBe(2);
             rule.frequency.ShouldBe(RecurrenceRuleFrequency.Monthly);
             rule.interval.ShouldBe(1);
@@ -656,6 +689,7 @@ namespace VisualCard.Tests.Recurrence
             var rule = RecurrenceParser.ParseRuleV2("FREQ=HOURLY;INTERVAL=3;UNTIL=19970902T170000Z");
 
             // Check the first rule
+            rule.Version.ShouldBe(new(2, 0));
             rule.duration.ShouldBe(2);
             rule.frequency.ShouldBe(RecurrenceRuleFrequency.Hourly);
             rule.interval.ShouldBe(3);
@@ -668,6 +702,7 @@ namespace VisualCard.Tests.Recurrence
             var rule = RecurrenceParser.ParseRuleV2("FREQ=MINUTELY;INTERVAL=15;COUNT=6");
 
             // Check the first rule
+            rule.Version.ShouldBe(new(2, 0));
             rule.duration.ShouldBe(6);
             rule.frequency.ShouldBe(RecurrenceRuleFrequency.Minute);
             rule.interval.ShouldBe(15);
@@ -679,6 +714,7 @@ namespace VisualCard.Tests.Recurrence
             var rule = RecurrenceParser.ParseRuleV2("FREQ=MINUTELY;INTERVAL=90;COUNT=4");
 
             // Check the first rule
+            rule.Version.ShouldBe(new(2, 0));
             rule.duration.ShouldBe(4);
             rule.frequency.ShouldBe(RecurrenceRuleFrequency.Minute);
             rule.interval.ShouldBe(90);
@@ -690,6 +726,7 @@ namespace VisualCard.Tests.Recurrence
             var rule = RecurrenceParser.ParseRuleV2("FREQ=MINUTELY;INTERVAL=20;BYHOUR=9,10,11,12,13,14,15,16");
 
             // Check the first rule
+            rule.Version.ShouldBe(new(2, 0));
             rule.duration.ShouldBe(2);
             rule.frequency.ShouldBe(RecurrenceRuleFrequency.Minute);
             rule.interval.ShouldBe(20);
@@ -710,6 +747,7 @@ namespace VisualCard.Tests.Recurrence
             var rule = RecurrenceParser.ParseRuleV2("FREQ=WEEKLY;INTERVAL=2;COUNT=4;BYDAY=TU,SU;WKST=MO");
 
             // Check the first rule
+            rule.Version.ShouldBe(new(2, 0));
             rule.duration.ShouldBe(4);
             rule.frequency.ShouldBe(RecurrenceRuleFrequency.Weekly);
             rule.interval.ShouldBe(2);
@@ -729,6 +767,7 @@ namespace VisualCard.Tests.Recurrence
             var rule = RecurrenceParser.ParseRuleV2("FREQ=WEEKLY;INTERVAL=2;COUNT=4;BYDAY=TU,SU;WKST=SU");
 
             // Check the first rule
+            rule.Version.ShouldBe(new(2, 0));
             rule.duration.ShouldBe(4);
             rule.frequency.ShouldBe(RecurrenceRuleFrequency.Weekly);
             rule.interval.ShouldBe(2);
@@ -748,6 +787,7 @@ namespace VisualCard.Tests.Recurrence
             var rule = RecurrenceParser.ParseRuleV2("FREQ=MONTHLY;BYMONTHDAY=15,30;COUNT=5");
 
             // Check the first rule
+            rule.Version.ShouldBe(new(2, 0));
             rule.duration.ShouldBe(5);
             rule.frequency.ShouldBe(RecurrenceRuleFrequency.Monthly);
             rule.interval.ShouldBe(1);
