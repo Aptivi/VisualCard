@@ -595,6 +595,26 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parsers.VcardCommonTools.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parsers.VcardCommonTools.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parsers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parsers.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/VisualCard.Parts.BaseCardPartInfo.yml",
       "output": {
         ".html": {

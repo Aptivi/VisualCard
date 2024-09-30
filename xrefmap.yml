@@ -5250,6 +5250,95 @@ references:
   commentId: T:VisualCard.Exceptions.VCardParseException
   fullName: VisualCard.Exceptions.VCardParseException
   nameWithType: VCardParseException
+- uid: VisualCard.Parsers
+  name: VisualCard.Parsers
+  href: api/VisualCard.Parsers.html
+  commentId: N:VisualCard.Parsers
+  fullName: VisualCard.Parsers
+  nameWithType: VisualCard.Parsers
+- uid: VisualCard.Parsers.VcardCommonTools
+  name: VcardCommonTools
+  href: api/VisualCard.Parsers.VcardCommonTools.html
+  commentId: T:VisualCard.Parsers.VcardCommonTools
+  fullName: VisualCard.Parsers.VcardCommonTools
+  nameWithType: VcardCommonTools
+- uid: VisualCard.Parsers.VcardCommonTools.ParsePosixDate(System.String,System.Boolean)
+  name: ParsePosixDate(string, bool)
+  href: api/VisualCard.Parsers.VcardCommonTools.html#VisualCard_Parsers_VcardCommonTools_ParsePosixDate_System_String_System_Boolean_
+  commentId: M:VisualCard.Parsers.VcardCommonTools.ParsePosixDate(System.String,System.Boolean)
+  name.vb: ParsePosixDate(String, Boolean)
+  fullName: VisualCard.Parsers.VcardCommonTools.ParsePosixDate(string, bool)
+  fullName.vb: VisualCard.Parsers.VcardCommonTools.ParsePosixDate(String, Boolean)
+  nameWithType: VcardCommonTools.ParsePosixDate(string, bool)
+  nameWithType.vb: VcardCommonTools.ParsePosixDate(String, Boolean)
+- uid: VisualCard.Parsers.VcardCommonTools.ParsePosixDate*
+  name: ParsePosixDate
+  href: api/VisualCard.Parsers.VcardCommonTools.html#VisualCard_Parsers_VcardCommonTools_ParsePosixDate_
+  commentId: Overload:VisualCard.Parsers.VcardCommonTools.ParsePosixDate
+  isSpec: "True"
+  fullName: VisualCard.Parsers.VcardCommonTools.ParsePosixDate
+  nameWithType: VcardCommonTools.ParsePosixDate
+- uid: VisualCard.Parsers.VcardCommonTools.ParseUtcOffset(System.String)
+  name: ParseUtcOffset(string)
+  href: api/VisualCard.Parsers.VcardCommonTools.html#VisualCard_Parsers_VcardCommonTools_ParseUtcOffset_System_String_
+  commentId: M:VisualCard.Parsers.VcardCommonTools.ParseUtcOffset(System.String)
+  name.vb: ParseUtcOffset(String)
+  fullName: VisualCard.Parsers.VcardCommonTools.ParseUtcOffset(string)
+  fullName.vb: VisualCard.Parsers.VcardCommonTools.ParseUtcOffset(String)
+  nameWithType: VcardCommonTools.ParseUtcOffset(string)
+  nameWithType.vb: VcardCommonTools.ParseUtcOffset(String)
+- uid: VisualCard.Parsers.VcardCommonTools.ParseUtcOffset*
+  name: ParseUtcOffset
+  href: api/VisualCard.Parsers.VcardCommonTools.html#VisualCard_Parsers_VcardCommonTools_ParseUtcOffset_
+  commentId: Overload:VisualCard.Parsers.VcardCommonTools.ParseUtcOffset
+  isSpec: "True"
+  fullName: VisualCard.Parsers.VcardCommonTools.ParseUtcOffset
+  nameWithType: VcardCommonTools.ParseUtcOffset
+- uid: VisualCard.Parsers.VcardCommonTools.SavePosixDate(System.DateTimeOffset,System.Boolean)
+  name: SavePosixDate(DateTimeOffset, bool)
+  href: api/VisualCard.Parsers.VcardCommonTools.html#VisualCard_Parsers_VcardCommonTools_SavePosixDate_System_DateTimeOffset_System_Boolean_
+  commentId: M:VisualCard.Parsers.VcardCommonTools.SavePosixDate(System.DateTimeOffset,System.Boolean)
+  name.vb: SavePosixDate(DateTimeOffset, Boolean)
+  fullName: VisualCard.Parsers.VcardCommonTools.SavePosixDate(System.DateTimeOffset, bool)
+  fullName.vb: VisualCard.Parsers.VcardCommonTools.SavePosixDate(System.DateTimeOffset, Boolean)
+  nameWithType: VcardCommonTools.SavePosixDate(DateTimeOffset, bool)
+  nameWithType.vb: VcardCommonTools.SavePosixDate(DateTimeOffset, Boolean)
+- uid: VisualCard.Parsers.VcardCommonTools.SavePosixDate*
+  name: SavePosixDate
+  href: api/VisualCard.Parsers.VcardCommonTools.html#VisualCard_Parsers_VcardCommonTools_SavePosixDate_
+  commentId: Overload:VisualCard.Parsers.VcardCommonTools.SavePosixDate
+  isSpec: "True"
+  fullName: VisualCard.Parsers.VcardCommonTools.SavePosixDate
+  nameWithType: VcardCommonTools.SavePosixDate
+- uid: VisualCard.Parsers.VcardCommonTools.SaveUtcOffset(System.TimeSpan)
+  name: SaveUtcOffset(TimeSpan)
+  href: api/VisualCard.Parsers.VcardCommonTools.html#VisualCard_Parsers_VcardCommonTools_SaveUtcOffset_System_TimeSpan_
+  commentId: M:VisualCard.Parsers.VcardCommonTools.SaveUtcOffset(System.TimeSpan)
+  fullName: VisualCard.Parsers.VcardCommonTools.SaveUtcOffset(System.TimeSpan)
+  nameWithType: VcardCommonTools.SaveUtcOffset(TimeSpan)
+- uid: VisualCard.Parsers.VcardCommonTools.SaveUtcOffset*
+  name: SaveUtcOffset
+  href: api/VisualCard.Parsers.VcardCommonTools.html#VisualCard_Parsers_VcardCommonTools_SaveUtcOffset_
+  commentId: Overload:VisualCard.Parsers.VcardCommonTools.SaveUtcOffset
+  isSpec: "True"
+  fullName: VisualCard.Parsers.VcardCommonTools.SaveUtcOffset
+  nameWithType: VcardCommonTools.SaveUtcOffset
+- uid: VisualCard.Parsers.VcardCommonTools.TryParsePosixDate(System.String,System.DateTimeOffset@,System.Boolean)
+  name: TryParsePosixDate(string, out DateTimeOffset, bool)
+  href: api/VisualCard.Parsers.VcardCommonTools.html#VisualCard_Parsers_VcardCommonTools_TryParsePosixDate_System_String_System_DateTimeOffset__System_Boolean_
+  commentId: M:VisualCard.Parsers.VcardCommonTools.TryParsePosixDate(System.String,System.DateTimeOffset@,System.Boolean)
+  name.vb: TryParsePosixDate(String, DateTimeOffset, Boolean)
+  fullName: VisualCard.Parsers.VcardCommonTools.TryParsePosixDate(string, out System.DateTimeOffset, bool)
+  fullName.vb: VisualCard.Parsers.VcardCommonTools.TryParsePosixDate(String, System.DateTimeOffset, Boolean)
+  nameWithType: VcardCommonTools.TryParsePosixDate(string, out DateTimeOffset, bool)
+  nameWithType.vb: VcardCommonTools.TryParsePosixDate(String, DateTimeOffset, Boolean)
+- uid: VisualCard.Parsers.VcardCommonTools.TryParsePosixDate*
+  name: TryParsePosixDate
+  href: api/VisualCard.Parsers.VcardCommonTools.html#VisualCard_Parsers_VcardCommonTools_TryParsePosixDate_
+  commentId: Overload:VisualCard.Parsers.VcardCommonTools.TryParsePosixDate
+  isSpec: "True"
+  fullName: VisualCard.Parsers.VcardCommonTools.TryParsePosixDate
+  nameWithType: VcardCommonTools.TryParsePosixDate
 - uid: VisualCard.Parts
   name: VisualCard.Parts
   href: api/VisualCard.Parts.html
