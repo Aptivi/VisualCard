@@ -40,13 +40,13 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string[]? Values { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
-            new ExtraInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new ExtraInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             string.Join(VcardConstants._fieldDelimiter.ToString(), Values);
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             string[] split = value.Split(VcardConstants._argumentDelimiter);
 
@@ -57,7 +57,7 @@ namespace VisualCard.Parts.Implementations
 
             // Populate the fields
             string[] _values = split[1].Split(VcardConstants._fieldDelimiter);
-            ExtraInfo _extraInfo = new(altId, finalArgs, elementTypes, valueType, _extra, _values);
+            ExtraInfo _extraInfo = new(altId, finalArgs, elementTypes, valueType, group, _extra, _values);
             return _extraInfo;
         }
 
@@ -115,8 +115,8 @@ namespace VisualCard.Parts.Implementations
 
         internal ExtraInfo() { }
 
-        internal ExtraInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string keyName, string[] values) :
-            base(arguments, altId, elementTypes, valueType)
+        internal ExtraInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string group, string keyName, string[] values) :
+            base(arguments, altId, elementTypes, valueType, group)
         {
             KeyName = keyName;
             Values = values;

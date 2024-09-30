@@ -35,19 +35,19 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string? Geo { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
-            new GeoInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new GeoInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             Geo ?? "";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Get the value
             string _geoStr = Regex.Unescape(value);
 
             // Populate the fields
-            GeoInfo _geo = new(altId, finalArgs, elementTypes, valueType, _geoStr);
+            GeoInfo _geo = new(altId, finalArgs, elementTypes, valueType, group, _geoStr);
             return _geo;
         }
 
@@ -103,8 +103,8 @@ namespace VisualCard.Parts.Implementations
 
         internal GeoInfo() { }
 
-        internal GeoInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string geo) :
-            base(arguments, altId, elementTypes, valueType)
+        internal GeoInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string group, string geo) :
+            base(arguments, altId, elementTypes, valueType, group)
         {
             Geo = geo;
         }

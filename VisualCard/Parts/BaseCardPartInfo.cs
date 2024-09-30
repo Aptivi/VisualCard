@@ -53,6 +53,11 @@ namespace VisualCard.Parts
         public virtual string ValueType { get; internal set; } = "";
 
         /// <summary>
+        /// Property group
+        /// </summary>
+        public virtual string Group { get; internal set; } = "";
+
+        /// <summary>
         /// Is this part preferred?
         /// </summary>
         public bool IsPreferred =>
@@ -125,6 +130,7 @@ namespace VisualCard.Parts
                 source.ElementTypes.SequenceEqual(target.ElementTypes) &&
                 source.AltId == target.AltId &&
                 source.ValueType == target.ValueType &&
+                source.Group == target.Group &&
                 EqualsInternal(source, target)
             ;
         }
@@ -136,11 +142,12 @@ namespace VisualCard.Parts
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = 936749766;
+            int hashCode = 975087586;
             hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(Arguments);
             hashCode = hashCode * -1521134295 + AltId.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(ElementTypes);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ValueType);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Group);
             return hashCode;
         }
 
@@ -155,19 +162,20 @@ namespace VisualCard.Parts
         internal virtual bool EqualsInternal(BaseCardPartInfo source, BaseCardPartInfo target) =>
             true;
 
-        internal abstract BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion);
+        internal abstract BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion);
 
         internal abstract string ToStringVcardInternal(Version cardVersion);
 
         internal BaseCardPartInfo()
         { }
 
-        internal BaseCardPartInfo(string[] arguments, int altId, string[] elementTypes, string valueType)
+        internal BaseCardPartInfo(string[] arguments, int altId, string[] elementTypes, string valueType, string group)
         {
             Arguments = arguments;
             AltId = altId;
             ElementTypes = elementTypes;
             ValueType = valueType;
+            Group = group;
         }
     }
 }

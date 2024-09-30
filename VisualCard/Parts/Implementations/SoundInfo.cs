@@ -45,13 +45,13 @@ namespace VisualCard.Parts.Implementations
         public bool IsBlob =>
             VcardCommonTools.IsEncodingBlob(Arguments, SoundEncoded);
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
-            new SoundInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new SoundInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             SoundEncoded ?? "";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             bool vCard4 = cardVersion.Major >= 4;
 
@@ -78,7 +78,7 @@ namespace VisualCard.Parts.Implementations
             }
 
             // Populate the fields
-            SoundInfo _sound = new(altId, finalArgs, elementTypes, valueType, soundEncoding, value);
+            SoundInfo _sound = new(altId, finalArgs, elementTypes, valueType, group, soundEncoding, value);
             return _sound;
         }
 
@@ -143,8 +143,8 @@ namespace VisualCard.Parts.Implementations
 
         internal SoundInfo() { }
 
-        internal SoundInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string encoding, string soundEncoded) :
-            base(arguments, altId, elementTypes, valueType)
+        internal SoundInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string group, string encoding, string soundEncoded) :
+            base(arguments, altId, elementTypes, valueType, group)
         {
             Encoding = encoding;
             SoundEncoded = soundEncoded;

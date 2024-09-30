@@ -35,13 +35,13 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string? Url { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
-            new UrlInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new UrlInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             Url ?? "";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Try to parse the URL to ensure that it conforms the IETF RFC 1738: Uniform Resource Locators
             if (!Uri.TryCreate(value, UriKind.Absolute, out Uri uri))
@@ -49,7 +49,7 @@ namespace VisualCard.Parts.Implementations
             value = uri.ToString();
 
             // Populate the fields
-            UrlInfo _url = new(altId, finalArgs, elementTypes, valueType, value);
+            UrlInfo _url = new(altId, finalArgs, elementTypes, valueType, group, value);
             return _url;
         }
 
@@ -105,8 +105,8 @@ namespace VisualCard.Parts.Implementations
 
         internal UrlInfo() { }
 
-        internal UrlInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string url) :
-            base(arguments, altId, elementTypes, valueType)
+        internal UrlInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string group, string url) :
+            base(arguments, altId, elementTypes, valueType, group)
         {
             Url = url;
         }

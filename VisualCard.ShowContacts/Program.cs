@@ -93,71 +93,71 @@ namespace VisualCard.ShowContacts
                     // List names
                     foreach (var fullName in Contact.GetPartsArray<FullNameInfo>())
                     {
-                        TextWriterColor.Write("Name:                    {0}", fullName.FullName ?? "");
-                        TextWriterColor.Write("ALTID:                   {0}", fullName.AltId);
+                        TextWriterColor.Write("Name:                    {0} [G: {1}]", fullName.FullName ?? "", fullName.Group);
+                        TextWriterColor.Write("ALTID:                   {0} [G: {1}]", fullName.AltId, fullName.Group);
                     }
 
                     // List names
                     foreach (var name in Contact.GetPartsArray<NameInfo>())
                     {
-                        TextWriterColor.Write("First name:              {0}", name.ContactFirstName ?? "");
-                        TextWriterColor.Write("Last name:               {0}", name.ContactLastName ?? "");
-                        TextWriterColor.Write("ALTID:                   {0}", name.AltId);
+                        TextWriterColor.Write("First name:              {0} [G: {1}]", name.ContactFirstName ?? "", name.Group);
+                        TextWriterColor.Write("Last name:               {0} [G: {1}]", name.ContactLastName ?? "", name.Group);
+                        TextWriterColor.Write("ALTID:                   {0} [G: {1}]", name.AltId, name.Group);
                     }
 
                     // List titles
                     foreach (var title in Contact.GetPartsArray<TitleInfo>())
                     { 
-                        TextWriterColor.Write("Title or Job:            {0}", title.ContactTitle ?? "");
-                        TextWriterColor.Write("ALTID:                   {0}", title.AltId);
+                        TextWriterColor.Write("Title or Job:            {0} [G: {1}]", title.ContactTitle ?? "", title.Group);
+                        TextWriterColor.Write("ALTID:                   {0} [G: {1}]", title.AltId, title.Group);
                     }
 
                     // List addresses
                     foreach (var Address in Contact.GetPartsArray<AddressInfo>())
                     {
-                        TextWriterColor.Write("P.O. Box:                {0}", Address.PostOfficeBox ?? "");
-                        TextWriterColor.Write("Extended Address:        {0}", Address.ExtendedAddress ?? "");
-                        TextWriterColor.Write("Street Address:          {0}", Address.StreetAddress ?? "");
-                        TextWriterColor.Write("Region:                  {0}", Address.Region ?? "");
-                        TextWriterColor.Write("Locality:                {0}", Address.Locality ?? "");
-                        TextWriterColor.Write("Postal Code:             {0}", Address.PostalCode ?? "");
-                        TextWriterColor.Write("Country:                 {0}", Address.Country ?? "");
+                        TextWriterColor.Write("P.O. Box:                {0} [G: {1}]", Address.PostOfficeBox ?? "", Address.Group);
+                        TextWriterColor.Write("Extended Address:        {0} [G: {1}]", Address.ExtendedAddress ?? "", Address.Group);
+                        TextWriterColor.Write("Street Address:          {0} [G: {1}]", Address.StreetAddress ?? "", Address.Group);
+                        TextWriterColor.Write("Region:                  {0} [G: {1}]", Address.Region ?? "", Address.Group);
+                        TextWriterColor.Write("Locality:                {0} [G: {1}]", Address.Locality ?? "", Address.Group);
+                        TextWriterColor.Write("Postal Code:             {0} [G: {1}]", Address.PostalCode ?? "", Address.Group);
+                        TextWriterColor.Write("Country:                 {0} [G: {1}]", Address.Country ?? "", Address.Group);
                     }
 
                     // List e-mails
                     foreach (var Email in Contact.GetPartsArray<EmailInfo>())
                     {
-                        TextWriterColor.Write("Email address:           {0}", Email.ContactEmailAddress ?? "");
+                        TextWriterColor.Write("Email address:           {0} [G: {1}]", Email.ContactEmailAddress ?? "", Email.Group);
                     }
 
                     // List organizations
                     foreach (var Organization in Contact.GetPartsArray<OrganizationInfo>())
                     {
-                        TextWriterColor.Write("Organization Name:       {0}", Organization.Name ?? "");
-                        TextWriterColor.Write("Organization Unit:       {0}", Organization.Unit ?? "");
-                        TextWriterColor.Write("Organization Unit Role:  {0}", Organization.Role ?? "");
+                        TextWriterColor.Write("Organization Name:       {0} [G: {1}]", Organization.Name ?? "", Organization.Group);
+                        TextWriterColor.Write("Organization Unit:       {0} [G: {1}]", Organization.Unit ?? "", Organization.Group);
+                        TextWriterColor.Write("Organization Unit Role:  {0} [G: {1}]", Organization.Role ?? "", Organization.Group);
                     }
 
                     // List telephones
                     foreach (var Telephone in Contact.GetPartsArray<TelephoneInfo>())
                     {
-                        TextWriterColor.Write("Phone number:            {0}", Telephone.ContactPhoneNumber ?? "");
+                        TextWriterColor.Write("Phone number:            {0} [G: {1}]", Telephone.ContactPhoneNumber ?? "", Telephone.Group);
                     }
 
                     // List photos
                     foreach (var Photo in Contact.GetPartsArray<PhotoInfo>())
                     {
-                        TextWriterColor.Write("Photo encoding:          {0}", Photo.Encoding ?? "");
-                        TextWriterColor.Write("Photo value type:        {0}", string.Join(",", Photo.ElementTypes));
-                        TextWriterColor.Write("ALTID:                   {0}", Photo.AltId);
-                        TextWriterColor.Write("Photo data [blob: {0}]: \n{1}", true, Photo.IsBlob, Photo.PhotoEncoded ?? "");
+                        TextWriterColor.Write("Photo encoding:          {0} [G: {1}]", Photo.Encoding ?? "", Photo.Group);
+                        TextWriterColor.Write("Photo value type:        {0} [G: {1}]", string.Join(",", Photo.ElementTypes), Photo.Group);
+                        TextWriterColor.Write("ALTID:                   {0} [G: {1}]", Photo.AltId, Photo.Group);
+                        TextWriterColor.Write("Photo data [blob: {0}, group: {1}]: \n{2}", true, Photo.IsBlob, Photo.Group, Photo.PhotoEncoded ?? "");
                     }
 
                     // List roles
                     foreach (var Role in Contact.GetPartsArray<RoleInfo>())
                     {
-                        TextWriterColor.Write("Role:                    {0}", Role.ContactRole ?? "");
-                        TextWriterColor.Write("ALTID:                   {0}", Role.AltId);
+                        TextWriterColor.Write("Role:                    {0} [G: {1}]", Role.ContactRole ?? "", Role.Group);
+                        TextWriterColor.Write("ALTID:                   {0} [G: {1}]", Role.AltId, Role.Group);
                     }
 
                     // List remaining
@@ -167,15 +167,15 @@ namespace VisualCard.ShowContacts
                     var url = Contact.GetPartsArray<UrlInfo>();
                     var note = Contact.GetPartsArray<NoteInfo>();
                     if (birth.Length > 0)
-                        TextWriterColor.Write("Contact birthdate:       {0}", birth[0].BirthDate);
+                        TextWriterColor.Write("Contact birthdate:       {0} [G: {1}]", birth[0].BirthDate, birth[0].Group);
                     if (wedding.Length > 0)
-                        TextWriterColor.Write("Contact wedding date:    {0}", wedding[0].Anniversary);
+                        TextWriterColor.Write("Contact wedding date:    {0} [G: {1}]", wedding[0].Anniversary, wedding[0].Group);
                     if (gender.Length > 0)
-                        TextWriterColor.Write("Contact gender           {0} [{1}]", gender[0].Gender.ToString(), gender[0].GenderDescription ?? "");
+                        TextWriterColor.Write("Contact gender           {0} [{1}] [G: {2}]", gender[0].Gender.ToString(), gender[0].GenderDescription ?? "", gender[0].Group);
                     if (url.Length > 0)
-                        TextWriterColor.Write("Contact URL:             {0}", url[0].Url ?? "");
+                        TextWriterColor.Write("Contact URL:             {0} [G: {1}]", url[0].Url ?? "", url[0].Group);
                     if (note.Length > 0)
-                        TextWriterColor.Write("Contact Note:            {0}", note[0].Note ?? "");
+                        TextWriterColor.Write("Contact Note:            {0} [G: {1}]", note[0].Note ?? "", note[0].Group);
                     TextWriterColor.Write("Card kind:               {0}", Contact.CardKind);
 
                     // Print VCard

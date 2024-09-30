@@ -42,14 +42,14 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string? GenderDescription { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
-            new GenderInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new GenderInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             (Gender != Gender.Unspecified ? Gender.ToString()[0] : "") +
             (!string.IsNullOrEmpty(GenderDescription) ? $"{VcardConstants._fieldDelimiter}{GenderDescription}" : "");
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate field
             string genderString = value;
@@ -78,7 +78,7 @@ namespace VisualCard.Parts.Implementations
             };
 
             // Add the fetched information
-            GenderInfo _gender = new(-1, [], elementTypes, valueType, gender, genderDescription);
+            GenderInfo _gender = new(-1, [], elementTypes, valueType, group, gender, genderDescription);
             return _gender;
         }
 
@@ -136,8 +136,8 @@ namespace VisualCard.Parts.Implementations
 
         internal GenderInfo() { }
 
-        internal GenderInfo(int altId, string[] arguments, string[] elementTypes, string valueType, Gender gender, string genderDescription) :
-            base(arguments, altId, elementTypes, valueType)
+        internal GenderInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string group, Gender gender, string genderDescription) :
+            base(arguments, altId, elementTypes, valueType, group)
         {
             Gender = gender;
             GenderDescription = genderDescription;

@@ -38,16 +38,16 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string? ContactLang { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
-            new LangInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new LangInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             ContactLang ?? "";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate the fields
-            LangInfo _lang = new(altId, finalArgs, elementTypes, valueType, value);
+            LangInfo _lang = new(altId, finalArgs, elementTypes, valueType, group, value);
             return _lang;
         }
 
@@ -104,8 +104,8 @@ namespace VisualCard.Parts.Implementations
 
         internal LangInfo() { }
 
-        internal LangInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string contactLangCode) :
-            base(arguments, altId, elementTypes, valueType)
+        internal LangInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string group, string contactLangCode) :
+            base(arguments, altId, elementTypes, valueType, group)
         {
             ContactLang = contactLangCode;
         }

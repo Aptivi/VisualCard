@@ -63,8 +63,8 @@ namespace VisualCard.Parts.Comparers
         }
         
         internal static bool StringsEqual(
-            IDictionary<StringsEnum, string> source,
-            IDictionary<StringsEnum, string> target)
+            IDictionary<StringsEnum, (string, string)> source,
+            IDictionary<StringsEnum, (string, string)> target)
         {
             // Verify the dictionaries
             if (!VerifyDicts(source, target))
@@ -77,7 +77,7 @@ namespace VisualCard.Parts.Comparers
             // Now, test the equality
             bool equal = source.All(kvp =>
             {
-                bool exists = target.TryGetValue(kvp.Key, out string part);
+                bool exists = target.TryGetValue(kvp.Key, out var part);
                 bool partsEqual = kvp.Value == part;
                 return exists && partsEqual;
             });

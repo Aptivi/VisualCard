@@ -40,7 +40,7 @@ namespace VisualCard.Parts
         internal Card[] nestedCards = [];
         private readonly Version version;
         private readonly Dictionary<PartsArrayEnum, List<BaseCardPartInfo>> partsArray = [];
-        private readonly Dictionary<StringsEnum, string> strings = [];
+        private readonly Dictionary<StringsEnum, (string group, string value)> strings = [];
 
         /// <summary>
         /// The VCard version
@@ -58,13 +58,13 @@ namespace VisualCard.Parts
         /// Unique ID for this card
         /// </summary>
         public string UniqueId =>
-            GetString(StringsEnum.Uid);
+            GetString(StringsEnum.Uid).value;
 
         /// <summary>
         /// Card kind
         /// </summary>
         public string CardKind =>
-            GetString(StringsEnum.Kind);
+            GetString(StringsEnum.Kind).value;
 
         /// <summary>
         /// Gets a part array from a specified key
@@ -152,24 +152,24 @@ namespace VisualCard.Parts
         /// Gets a string from a specified key
         /// </summary>
         /// <param name="key">A key to use</param>
-        /// <returns>A value, or "individual" if the kind doesn't exist, or an empty string ("") if any other type either doesn't exist or the type is not supported by the card version</returns>
-        public string GetString(StringsEnum key)
+        /// <returns>A tuple that stores a group and a value, or "individual" if the kind doesn't exist, or an empty string ("") if any other type either doesn't exist or the type is not supported by the card version</returns>
+        public (string group, string value) GetString(StringsEnum key)
         {
             // Check for version support
             if (!VcardCommonTools.StringSupported(key, CardVersion))
-                return "";
+                return ("", "");
 
             // Get the fallback value
             string fallback = key == StringsEnum.Kind ? "individual" : "";
 
             // Check to see if the string has a value or not
-            bool hasValue = strings.TryGetValue(key, out string value);
+            bool hasValue = strings.TryGetValue(key, out var value);
             if (!hasValue)
-                return fallback;
+                return ("", fallback);
 
             // Now, verify that the string is not empty
-            hasValue = !string.IsNullOrEmpty(value);
-            return hasValue ? value : fallback;
+            hasValue = !string.IsNullOrEmpty(value.value);
+            return hasValue ? (value.group, value.value) : ("", fallback);
         }
 
         /// <summary>
@@ -190,7 +190,7 @@ namespace VisualCard.Parts
             foreach (StringsEnum stringEnum in stringEnums)
             {
                 // Get the string value
-                string stringValue = GetString(stringEnum);
+                var (group, stringValue) = GetString(stringEnum);
                 if (string.IsNullOrEmpty(stringValue))
                     continue;
 
@@ -200,6 +200,8 @@ namespace VisualCard.Parts
 
                 // Now, locate the prefix and assemble the line
                 string prefix = VcardParserTools.GetPrefixFromStringsEnum(stringEnum);
+                if (!string.IsNullOrEmpty(group))
+                    cardBuilder.Append($"{group}.");
                 cardBuilder.Append($"{prefix}{VcardConstants._argumentDelimiter}");
                 cardBuilder.AppendLine($"{VcardCommonTools.MakeStringBlock(stringValue, prefix.Length)}");
             }
@@ -226,6 +228,9 @@ namespace VisualCard.Parts
                     string partRepresentation = part.ToStringVcardInternal(version);
                     string partArguments = CardBuilderTools.BuildArguments(part, version, defaultType, defaultValue);
                     string[] partArgumentsLines = partArguments.SplitNewLines();
+                    string group = part.Group;
+                    if (!string.IsNullOrEmpty(group))
+                        cardBuilder.Append($"{group}.");
                     partBuilder.Append($"{prefix}");
                     partBuilder.Append($"{partArguments}");
                     partBuilder.Append($"{VcardCommonTools.MakeStringBlock(partRepresentation, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length)}");
@@ -296,7 +301,7 @@ namespace VisualCard.Parts
             int hashCode = 1365540608;
             hashCode = hashCode * -1521134295 + EqualityComparer<Card[]>.Default.GetHashCode(nestedCards);
             hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<PartsArrayEnum, List<BaseCardPartInfo>>>.Default.GetHashCode(partsArray);
-            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<StringsEnum, string>>.Default.GetHashCode(strings);
+            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<StringsEnum, (string group, string value)>>.Default.GetHashCode(strings);
             return hashCode;
         }
 
@@ -341,14 +346,14 @@ namespace VisualCard.Parts
             }
         }
 
-        internal void SetString(StringsEnum key, string value)
+        internal void SetString(StringsEnum key, string value, string group = "")
         {
             if (string.IsNullOrEmpty(value))
                 return;
 
             // If we don't have this key yet, add it.
             if (!strings.ContainsKey(key))
-                strings.Add(key, value);
+                strings.Add(key, (group, value));
             else
                 throw new InvalidOperationException($"Can't overwrite string {key}.");
         }

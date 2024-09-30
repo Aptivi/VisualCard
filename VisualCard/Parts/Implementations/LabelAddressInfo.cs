@@ -35,17 +35,17 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string? DeliveryLabel { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
-            new LabelAddressInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new LabelAddressInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             DeliveryLabel ?? "";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate the fields
             string _addressLabel = Regex.Unescape(value);
-            LabelAddressInfo _address = new(altId, finalArgs, elementTypes, valueType, _addressLabel);
+            LabelAddressInfo _address = new(altId, finalArgs, elementTypes, valueType, group, _addressLabel);
             return _address;
         }
 
@@ -101,8 +101,8 @@ namespace VisualCard.Parts.Implementations
 
         internal LabelAddressInfo() { }
 
-        internal LabelAddressInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string label) :
-            base(arguments, altId, elementTypes, valueType)
+        internal LabelAddressInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string group, string label) :
+            base(arguments, altId, elementTypes, valueType, group)
         {
             DeliveryLabel = label;
         }

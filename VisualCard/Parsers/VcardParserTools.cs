@@ -203,7 +203,7 @@ namespace VisualCard.Parsers
             return (PartsArrayEnum.IanaNames, PartCardinality.Any);
         }
 
-        internal static (PartType type, object enumeration, Type? enumType, Func<string, string[], int, string[], string, Version, BaseCardPartInfo>? fromStringFunc, string defaultType, string defaultValue, string[] allowedExtraTypes) GetPartType(string prefix) =>
+        internal static (PartType type, object enumeration, Type? enumType, Func<string, string[], int, string[], string, string, Version, BaseCardPartInfo>? fromStringFunc, string defaultType, string defaultValue, string[] allowedExtraTypes) GetPartType(string prefix) =>
             prefix switch
             {
                 VcardConstants._nameSpecifier => (PartType.PartsArray, PartsArrayEnum.Names, typeof(NameInfo), NameInfo.FromStringVcardStatic, "", "", []),

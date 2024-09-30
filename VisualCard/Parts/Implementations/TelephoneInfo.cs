@@ -35,17 +35,17 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string? ContactPhoneNumber { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
-            new TelephoneInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new TelephoneInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             ContactPhoneNumber ?? "";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate the fields
             string _telephoneNumber = Regex.Unescape(value);
-            TelephoneInfo _telephone = new(altId, finalArgs, elementTypes, valueType, _telephoneNumber);
+            TelephoneInfo _telephone = new(altId, finalArgs, elementTypes, valueType, group, _telephoneNumber);
             return _telephone;
         }
 
@@ -101,8 +101,8 @@ namespace VisualCard.Parts.Implementations
 
         internal TelephoneInfo() { }
 
-        internal TelephoneInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string contactPhoneNumber) :
-            base(arguments, altId, elementTypes, valueType)
+        internal TelephoneInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string group, string contactPhoneNumber) :
+            base(arguments, altId, elementTypes, valueType, group)
         {
             ContactPhoneNumber = contactPhoneNumber;
         }

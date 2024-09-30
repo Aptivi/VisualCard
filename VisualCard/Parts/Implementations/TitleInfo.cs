@@ -35,16 +35,16 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string? ContactTitle { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
-            new TitleInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new TitleInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             ContactTitle ?? "";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             string _title = Regex.Unescape(value);
-            TitleInfo _titleInfo = new(altId, finalArgs, elementTypes, valueType, _title);
+            TitleInfo _titleInfo = new(altId, finalArgs, elementTypes, valueType, group, _title);
             return _titleInfo;
         }
 
@@ -100,8 +100,8 @@ namespace VisualCard.Parts.Implementations
 
         internal TitleInfo() { }
 
-        internal TitleInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string contactTitle) :
-            base(arguments, altId, elementTypes, valueType)
+        internal TitleInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string group, string contactTitle) :
+            base(arguments, altId, elementTypes, valueType, group)
         {
             ContactTitle = contactTitle;
         }

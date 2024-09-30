@@ -16,6 +16,10 @@
       "commandName": "Project",
       "commandLineArgs": "TestFiles/fourVCard4.vcf"
     },
+    "vCard 4.0 test (Property grouping)": {
+        "commandName": "Project",
+        "commandLineArgs": "TestFiles/VCard4GroupProps.vcf"
+    },
     "vCard 5.0 test": {
       "commandName": "Project",
       "commandLineArgs": "TestFiles/fourVCard5.vcf"

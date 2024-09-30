@@ -35,19 +35,19 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string? FullName { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
-            new FullNameInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new FullNameInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             FullName ?? "";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Get the value
             string _fullNameStr = Regex.Unescape(value);
 
             // Populate the fields
-            FullNameInfo _fullName = new(altId, finalArgs, elementTypes, valueType, _fullNameStr);
+            FullNameInfo _fullName = new(altId, finalArgs, elementTypes, valueType, group, _fullNameStr);
             return _fullName;
         }
 
@@ -103,8 +103,8 @@ namespace VisualCard.Parts.Implementations
 
         internal FullNameInfo() { }
 
-        internal FullNameInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string fullName) :
-            base(arguments, altId, elementTypes, valueType)
+        internal FullNameInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string group, string fullName) :
+            base(arguments, altId, elementTypes, valueType, group)
         {
             FullName = fullName;
         }

@@ -36,19 +36,19 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string[]? Category { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
-            new CategoryInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new CategoryInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             $"{string.Join(VcardConstants._valueDelimiter.ToString(), Category)}";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate the fields
             var categories = Regex.Unescape(value).Split(',');
 
             // Add the fetched information
-            CategoryInfo _time = new(-1, [], elementTypes, valueType, categories);
+            CategoryInfo _time = new(-1, [], elementTypes, valueType, group, categories);
             return _time;
         }
 
@@ -104,8 +104,8 @@ namespace VisualCard.Parts.Implementations
 
         internal CategoryInfo() { }
 
-        internal CategoryInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string[] category) :
-            base(arguments, altId, elementTypes, valueType)
+        internal CategoryInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string group, string[] category) :
+            base(arguments, altId, elementTypes, valueType, group)
         {
             Category = category;
         }

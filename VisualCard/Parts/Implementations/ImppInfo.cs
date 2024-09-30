@@ -35,17 +35,17 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string? ContactIMPP { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
-            new ImppInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new ImppInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             ContactIMPP ?? "";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate the fields
             string _impp = Regex.Unescape(value);
-            ImppInfo _imppInstance = new(altId, finalArgs, elementTypes, valueType, _impp);
+            ImppInfo _imppInstance = new(altId, finalArgs, elementTypes, valueType, group, _impp);
             return _imppInstance;
         }
 
@@ -101,8 +101,8 @@ namespace VisualCard.Parts.Implementations
 
         internal ImppInfo() { }
 
-        internal ImppInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string contactImpp) :
-            base(arguments, altId, elementTypes, valueType)
+        internal ImppInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string group, string contactImpp) :
+            base(arguments, altId, elementTypes, valueType, group)
         {
             ContactIMPP = contactImpp;
         }

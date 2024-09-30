@@ -34,19 +34,19 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public DateTimeOffset BirthDate { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
-            new BirthDateInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new BirthDateInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             $"{VcardCommonTools.SavePosixDate(BirthDate, true)}";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate field
             DateTimeOffset bday = VcardCommonTools.ParsePosixDate(value);
 
             // Add the fetched information
-            BirthDateInfo _time = new(altId, finalArgs, elementTypes, valueType, bday);
+            BirthDateInfo _time = new(altId, finalArgs, elementTypes, valueType, group, bday);
             return _time;
         }
 
@@ -102,8 +102,8 @@ namespace VisualCard.Parts.Implementations
 
         internal BirthDateInfo() { }
 
-        internal BirthDateInfo(int altId, string[] arguments, string[] elementTypes, string valueType, DateTimeOffset birth) :
-            base(arguments, altId, elementTypes, valueType)
+        internal BirthDateInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string group, DateTimeOffset birth) :
+            base(arguments, altId, elementTypes, valueType, group)
         {
             BirthDate = birth;
         }

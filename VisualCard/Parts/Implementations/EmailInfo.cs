@@ -36,13 +36,13 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string? ContactEmailAddress { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
-            new EmailInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new EmailInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             ContactEmailAddress ?? "";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             MailAddress mail;
 
@@ -58,7 +58,7 @@ namespace VisualCard.Parts.Implementations
 
             // Populate the fields
             string _emailAddress = mail.Address;
-            EmailInfo _address = new(altId, finalArgs, elementTypes, valueType, _emailAddress);
+            EmailInfo _address = new(altId, finalArgs, elementTypes, valueType, group, _emailAddress);
             return _address;
         }
 
@@ -114,8 +114,8 @@ namespace VisualCard.Parts.Implementations
 
         internal EmailInfo() { }
 
-        internal EmailInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string contactEmailAddress) :
-            base(arguments, altId, elementTypes, valueType)
+        internal EmailInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string group, string contactEmailAddress) :
+            base(arguments, altId, elementTypes, valueType, group)
         {
             ContactEmailAddress = contactEmailAddress;
         }

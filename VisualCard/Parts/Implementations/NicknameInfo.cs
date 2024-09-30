@@ -35,17 +35,17 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string? ContactNickname { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
-            new NicknameInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new NicknameInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             ContactNickname ?? "";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate the fields
             string _nick = Regex.Unescape(value);
-            NicknameInfo _nickInstance = new(altId, finalArgs, elementTypes, valueType, _nick);
+            NicknameInfo _nickInstance = new(altId, finalArgs, elementTypes, valueType, group, _nick);
             return _nickInstance;
         }
 
@@ -101,8 +101,8 @@ namespace VisualCard.Parts.Implementations
 
         internal NicknameInfo() { }
 
-        internal NicknameInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string contactNickname) :
-            base(arguments, altId, elementTypes, valueType)
+        internal NicknameInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string group, string contactNickname) :
+            base(arguments, altId, elementTypes, valueType, group)
         {
             ContactNickname = contactNickname;
         }

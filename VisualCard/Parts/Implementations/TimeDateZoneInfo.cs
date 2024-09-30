@@ -35,19 +35,19 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string? TimeZone { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
-            new TimeDateZoneInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new TimeDateZoneInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             TimeZone ?? "";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Get the types and the number
             string _tzStr = Regex.Unescape(value);
 
             // Add the fetched information
-            TimeDateZoneInfo _timeZone = new(altId, finalArgs, elementTypes, valueType, _tzStr);
+            TimeDateZoneInfo _timeZone = new(altId, finalArgs, elementTypes, valueType, group, _tzStr);
             return _timeZone;
         }
 
@@ -103,8 +103,8 @@ namespace VisualCard.Parts.Implementations
 
         internal TimeDateZoneInfo() { }
 
-        internal TimeDateZoneInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string timeZone) :
-            base(arguments, altId, elementTypes, valueType)
+        internal TimeDateZoneInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string group, string timeZone) :
+            base(arguments, altId, elementTypes, valueType, group)
         {
             TimeZone = timeZone;
         }

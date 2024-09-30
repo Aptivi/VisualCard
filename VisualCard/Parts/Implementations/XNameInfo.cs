@@ -40,13 +40,13 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string[]? XValues { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
-            new XNameInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new XNameInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             string.Join(VcardConstants._fieldDelimiter.ToString(), XValues);
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             string xValue = value.Substring(VcardConstants._xSpecifier.Length);
             string[] splitX = xValue.Split(VcardConstants._argumentDelimiter);
@@ -58,7 +58,7 @@ namespace VisualCard.Parts.Implementations
 
             // Populate the fields
             string[] _xValues = splitX[1].Split(VcardConstants._fieldDelimiter);
-            XNameInfo _x = new(altId, finalArgs, elementTypes, valueType, _xName, _xValues);
+            XNameInfo _x = new(altId, finalArgs, elementTypes, valueType, group, _xName, _xValues);
             return _x;
         }
 
@@ -116,8 +116,8 @@ namespace VisualCard.Parts.Implementations
 
         internal XNameInfo() { }
 
-        internal XNameInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string xKeyName, string[] xValues) :
-            base(arguments, altId, elementTypes, valueType)
+        internal XNameInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string group, string xKeyName, string[] xValues) :
+            base(arguments, altId, elementTypes, valueType, group)
         {
             XKeyName = xKeyName;
             XValues = xValues;

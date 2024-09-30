@@ -45,13 +45,13 @@ namespace VisualCard.Parts.Implementations
         public bool IsBlob =>
             VcardCommonTools.IsEncodingBlob(Arguments, PhotoEncoded);
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
-            new PhotoInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new PhotoInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             PhotoEncoded ?? "";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             bool vCard4 = cardVersion.Major >= 4;
 
@@ -78,7 +78,7 @@ namespace VisualCard.Parts.Implementations
             }
 
             // Populate the fields
-            PhotoInfo _photo = new(altId, finalArgs, elementTypes, valueType, photoEncoding, value);
+            PhotoInfo _photo = new(altId, finalArgs, elementTypes, valueType, group, photoEncoding, value);
             return _photo;
         }
 
@@ -143,8 +143,8 @@ namespace VisualCard.Parts.Implementations
 
         internal PhotoInfo() { }
 
-        internal PhotoInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string encoding, string photoEncoded) :
-            base(arguments, altId, elementTypes, valueType)
+        internal PhotoInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string group, string encoding, string photoEncoded) :
+            base(arguments, altId, elementTypes, valueType, group)
         {
             Encoding = encoding;
             PhotoEncoded = photoEncoded;

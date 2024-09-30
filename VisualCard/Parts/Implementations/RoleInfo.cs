@@ -35,18 +35,18 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string? ContactRole { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
-            new RoleInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new RoleInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             ContactRole ?? "";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             string roleValue = Regex.Unescape(value);
 
             // Populate the fields
-            RoleInfo _role = new(altId, finalArgs, elementTypes, valueType, roleValue);
+            RoleInfo _role = new(altId, finalArgs, elementTypes, valueType, group, roleValue);
             return _role;
         }
 
@@ -102,8 +102,8 @@ namespace VisualCard.Parts.Implementations
 
         internal RoleInfo() { }
 
-        internal RoleInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string contactRole) :
-            base(arguments, altId, elementTypes, valueType)
+        internal RoleInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string group, string contactRole) :
+            base(arguments, altId, elementTypes, valueType, group)
         {
             ContactRole = contactRole;
         }

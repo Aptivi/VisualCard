@@ -45,13 +45,13 @@ namespace VisualCard.Parts.Implementations
         public bool IsBlob =>
             VcardCommonTools.IsEncodingBlob(Arguments, LogoEncoded);
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
-            new LogoInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new LogoInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             LogoEncoded ?? "";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             bool vCard4 = cardVersion.Major >= 4;
 
@@ -78,7 +78,7 @@ namespace VisualCard.Parts.Implementations
             }
 
             // Populate the fields
-            LogoInfo _logo = new(altId, finalArgs, elementTypes, valueType, logoEncoding, value);
+            LogoInfo _logo = new(altId, finalArgs, elementTypes, valueType, group, logoEncoding, value);
             return _logo;
         }
 
@@ -143,8 +143,8 @@ namespace VisualCard.Parts.Implementations
 
         internal LogoInfo() { }
 
-        internal LogoInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string encoding, string logoEncoded) :
-            base(arguments, altId, elementTypes, valueType)
+        internal LogoInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string group, string encoding, string logoEncoded) :
+            base(arguments, altId, elementTypes, valueType, group)
         {
             Encoding = encoding;
             LogoEncoded = logoEncoded;

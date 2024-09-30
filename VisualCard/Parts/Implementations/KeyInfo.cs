@@ -45,13 +45,13 @@ namespace VisualCard.Parts.Implementations
         public bool IsBlob =>
             VcardCommonTools.IsEncodingBlob(Arguments, KeyEncoded);
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
-            new KeyInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new KeyInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             KeyEncoded ?? "";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             bool vCard4 = cardVersion.Major >= 4;
 
@@ -78,7 +78,7 @@ namespace VisualCard.Parts.Implementations
             }
 
             // Populate the fields
-            KeyInfo _key = new(altId, finalArgs, elementTypes, valueType, keyEncoding, value);
+            KeyInfo _key = new(altId, finalArgs, elementTypes, valueType, group, keyEncoding, value);
             return _key;
         }
 
@@ -143,8 +143,8 @@ namespace VisualCard.Parts.Implementations
 
         internal KeyInfo() { }
 
-        internal KeyInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string encoding, string keyEncoded) :
-            base(arguments, altId, elementTypes, valueType)
+        internal KeyInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string group, string encoding, string keyEncoded) :
+            base(arguments, altId, elementTypes, valueType, group)
         {
             Encoding = encoding;
             KeyEncoded = keyEncoded;
