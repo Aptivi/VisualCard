@@ -2299,6 +2299,12 @@ references:
   commentId: F:VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.ExDate
   fullName: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.ExDate
   nameWithType: CalendarPartsArrayEnum.ExDate
+- uid: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.FreeBusy
+  name: FreeBusy
+  href: api/VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.html#VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_FreeBusy
+  commentId: F:VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.FreeBusy
+  fullName: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.FreeBusy
+  nameWithType: CalendarPartsArrayEnum.FreeBusy
 - uid: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.Geography
   name: Geography
   href: api/VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.html#VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_Geography
@@ -3517,6 +3523,110 @@ references:
   fullName.vb: VisualCard.Calendar.Parts.Implementations.ExtraInfo.<>
   nameWithType: ExtraInfo.operator !=
   nameWithType.vb: ExtraInfo.<>
+- uid: VisualCard.Calendar.Parts.Implementations.FreeBusy
+  name: VisualCard.Calendar.Parts.Implementations.FreeBusy
+  href: api/VisualCard.Calendar.Parts.Implementations.FreeBusy.html
+  commentId: N:VisualCard.Calendar.Parts.Implementations.FreeBusy
+  fullName: VisualCard.Calendar.Parts.Implementations.FreeBusy
+  nameWithType: VisualCard.Calendar.Parts.Implementations.FreeBusy
+- uid: VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo
+  name: CalendarFreeBusyInfo
+  href: api/VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.html
+  commentId: T:VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo
+  fullName: VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo
+  nameWithType: CalendarFreeBusyInfo
+- uid: VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.Equals(System.Object)
+  name: Equals(object)
+  href: api/VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.html#VisualCard_Calendar_Parts_Implementations_FreeBusy_CalendarFreeBusyInfo_Equals_System_Object_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.Equals(object)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.Equals(Object)
+  nameWithType: CalendarFreeBusyInfo.Equals(object)
+  nameWithType.vb: CalendarFreeBusyInfo.Equals(Object)
+- uid: VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.Equals(VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo)
+  name: Equals(CalendarFreeBusyInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.html#VisualCard_Calendar_Parts_Implementations_FreeBusy_CalendarFreeBusyInfo_Equals_VisualCard_Calendar_Parts_Implementations_FreeBusy_CalendarFreeBusyInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.Equals(VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.Equals(VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo)
+  nameWithType: CalendarFreeBusyInfo.Equals(CalendarFreeBusyInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.Equals(VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo,VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo)
+  name: Equals(CalendarFreeBusyInfo, CalendarFreeBusyInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.html#VisualCard_Calendar_Parts_Implementations_FreeBusy_CalendarFreeBusyInfo_Equals_VisualCard_Calendar_Parts_Implementations_FreeBusy_CalendarFreeBusyInfo_VisualCard_Calendar_Parts_Implementations_FreeBusy_CalendarFreeBusyInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.Equals(VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo,VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.Equals(VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo, VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo)
+  nameWithType: CalendarFreeBusyInfo.Equals(CalendarFreeBusyInfo, CalendarFreeBusyInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.html#VisualCard_Calendar_Parts_Implementations_FreeBusy_CalendarFreeBusyInfo_Equals_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.Equals
+  nameWithType: CalendarFreeBusyInfo.Equals
+- uid: VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.FreeBusy
+  name: FreeBusy
+  href: api/VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.html#VisualCard_Calendar_Parts_Implementations_FreeBusy_CalendarFreeBusyInfo_FreeBusy
+  commentId: P:VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.FreeBusy
+  fullName: VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.FreeBusy
+  nameWithType: CalendarFreeBusyInfo.FreeBusy
+- uid: VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.FreeBusy*
+  name: FreeBusy
+  href: api/VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.html#VisualCard_Calendar_Parts_Implementations_FreeBusy_CalendarFreeBusyInfo_FreeBusy_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.FreeBusy
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.FreeBusy
+  nameWithType: CalendarFreeBusyInfo.FreeBusy
+- uid: VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.html#VisualCard_Calendar_Parts_Implementations_FreeBusy_CalendarFreeBusyInfo_GetHashCode
+  commentId: M:VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.GetHashCode
+  fullName: VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.GetHashCode()
+  nameWithType: CalendarFreeBusyInfo.GetHashCode()
+- uid: VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.html#VisualCard_Calendar_Parts_Implementations_FreeBusy_CalendarFreeBusyInfo_GetHashCode_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.GetHashCode
+  nameWithType: CalendarFreeBusyInfo.GetHashCode
+- uid: VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.op_Equality(VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo,VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo)
+  name: operator ==(CalendarFreeBusyInfo, CalendarFreeBusyInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.html#VisualCard_Calendar_Parts_Implementations_FreeBusy_CalendarFreeBusyInfo_op_Equality_VisualCard_Calendar_Parts_Implementations_FreeBusy_CalendarFreeBusyInfo_VisualCard_Calendar_Parts_Implementations_FreeBusy_CalendarFreeBusyInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.op_Equality(VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo,VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo)
+  name.vb: =(CalendarFreeBusyInfo, CalendarFreeBusyInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.operator ==(VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo, VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.=(VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo, VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo)
+  nameWithType: CalendarFreeBusyInfo.operator ==(CalendarFreeBusyInfo, CalendarFreeBusyInfo)
+  nameWithType.vb: CalendarFreeBusyInfo.=(CalendarFreeBusyInfo, CalendarFreeBusyInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.op_Equality*
+  name: operator ==
+  href: api/VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.html#VisualCard_Calendar_Parts_Implementations_FreeBusy_CalendarFreeBusyInfo_op_Equality_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.op_Equality
+  isSpec: "True"
+  name.vb: =
+  fullName: VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.operator ==
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.=
+  nameWithType: CalendarFreeBusyInfo.operator ==
+  nameWithType.vb: CalendarFreeBusyInfo.=
+- uid: VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.op_Inequality(VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo,VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo)
+  name: operator !=(CalendarFreeBusyInfo, CalendarFreeBusyInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.html#VisualCard_Calendar_Parts_Implementations_FreeBusy_CalendarFreeBusyInfo_op_Inequality_VisualCard_Calendar_Parts_Implementations_FreeBusy_CalendarFreeBusyInfo_VisualCard_Calendar_Parts_Implementations_FreeBusy_CalendarFreeBusyInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.op_Inequality(VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo,VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo)
+  name.vb: <>(CalendarFreeBusyInfo, CalendarFreeBusyInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.operator !=(VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo, VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.<>(VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo, VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo)
+  nameWithType: CalendarFreeBusyInfo.operator !=(CalendarFreeBusyInfo, CalendarFreeBusyInfo)
+  nameWithType.vb: CalendarFreeBusyInfo.<>(CalendarFreeBusyInfo, CalendarFreeBusyInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.op_Inequality*
+  name: operator !=
+  href: api/VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.html#VisualCard_Calendar_Parts_Implementations_FreeBusy_CalendarFreeBusyInfo_op_Inequality_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.op_Inequality
+  isSpec: "True"
+  name.vb: <>
+  fullName: VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.operator !=
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.<>
+  nameWithType: CalendarFreeBusyInfo.operator !=
+  nameWithType.vb: CalendarFreeBusyInfo.<>
 - uid: VisualCard.Calendar.Parts.Implementations.GeoInfo
   name: GeoInfo
   href: api/VisualCard.Calendar.Parts.Implementations.GeoInfo.html
