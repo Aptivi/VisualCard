@@ -166,6 +166,7 @@ namespace VisualCard.Parsers
         /// <param name="duration">Duration specifier in the ISO-8601:2004 format</param>
         /// <param name="modern">Whether to disable parsing years and months or not</param>
         /// <param name="utc">Whether to use UTC</param>
+        /// <param name="source">Source date/time</param>
         /// <returns>A date/time offset instance and a time span instance from the duration specifier</returns>
         /// <exception cref="ArgumentException"></exception>
         public static (DateTimeOffset result, TimeSpan span) GetDurationSpan(string duration, bool modern = false, bool utc = true, DateTimeOffset? source = null)

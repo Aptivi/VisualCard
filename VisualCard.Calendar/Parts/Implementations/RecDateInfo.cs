@@ -36,7 +36,7 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// <summary>
         /// The recurrence date list
         /// </summary>
-        public DateTimeOffset[]? RecDates { get; }
+        public TimePeriod[]? RecDates { get; }
 
         internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
             new RecDateInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
@@ -48,20 +48,44 @@ namespace VisualCard.Calendar.Parts.Implementations
 
             var builder = new StringBuilder();
             if (cardVersion.Major == 1)
-                builder.Append(string.Join(";", RecDates.Select((dt) => VcardCommonTools.SavePosixDate(dt))));
+                builder.Append(string.Join(";", RecDates.Select((dt) => VcardCommonTools.SavePosixDate(dt.StartDate))));
             else
-                builder.Append(VcardCommonTools.SavePosixDate(RecDates[0]));
+            {
+                builder.Append(VcardCommonTools.SavePosixDate(RecDates[0].StartDate));
+                if (RecDates[0].StartDate != RecDates[0].EndDate)
+                    builder.Append("/" + VcardCommonTools.SavePosixDate(RecDates[0].EndDate));
+            }
             return builder.ToString();
         }
 
         internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Populate the fields
-            var recDateStrings =
-                cardVersion.Major == 1 ?
-                Regex.Unescape(value).Split(';') :
-                [Regex.Unescape(value)];
-            var recDates = recDateStrings.Select((date) => VcardCommonTools.ParsePosixDate(date)).ToArray();
+            TimePeriod[] recDates = [];
+            if (cardVersion.Major == 1)
+            {
+                var recDateStrings = Regex.Unescape(value).Split(';');
+                recDates = recDateStrings.Select((date) =>
+                {
+                    var parsedDate = VcardCommonTools.ParsePosixDate(date);
+                    return new TimePeriod(parsedDate, parsedDate);
+                }).ToArray();
+            }
+            else
+            {
+                // Check to see if it's a period
+                try
+                {
+                    var parsedPeriod = VcardCommonTools.GetTimePeriod(value);
+                    recDates = [parsedPeriod];
+                }
+                catch
+                {
+                    // Not a period. Continue using normal date and time
+                    var parsedDate = VcardCommonTools.ParsePosixDate(value);
+                    recDates = [new TimePeriod(parsedDate, parsedDate)];
+                }
+            }
 
             // Add the fetched information
             RecDateInfo _time = new([], elementTypes, valueType, recDates);
@@ -103,7 +127,7 @@ namespace VisualCard.Calendar.Parts.Implementations
         {
             int hashCode = 498518712;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<DateTimeOffset[]?>.Default.GetHashCode(RecDates);
+            hashCode = hashCode * -1521134295 + EqualityComparer<TimePeriod[]?>.Default.GetHashCode(RecDates);
             return hashCode;
         }
 
@@ -120,7 +144,7 @@ namespace VisualCard.Calendar.Parts.Implementations
 
         internal RecDateInfo() { }
 
-        internal RecDateInfo(string[] arguments, string[] elementTypes, string valueType, DateTimeOffset[] recDates) :
+        internal RecDateInfo(string[] arguments, string[] elementTypes, string valueType, TimePeriod[] recDates) :
             base(arguments, elementTypes, valueType)
         {
             RecDates = recDates;
