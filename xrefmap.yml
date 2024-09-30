@@ -75,34 +75,6 @@ references:
   commentId: T:VisualCard.Calendar.Exceptions.VCalendarParseException
   fullName: VisualCard.Calendar.Exceptions.VCalendarParseException
   nameWithType: VCalendarParseException
-- uid: VisualCard.Calendar.Parsers.Durations
-  name: VisualCard.Calendar.Parsers.Durations
-  href: api/VisualCard.Calendar.Parsers.Durations.html
-  commentId: N:VisualCard.Calendar.Parsers.Durations
-  fullName: VisualCard.Calendar.Parsers.Durations
-  nameWithType: VisualCard.Calendar.Parsers.Durations
-- uid: VisualCard.Calendar.Parsers.Durations.DurationTools
-  name: DurationTools
-  href: api/VisualCard.Calendar.Parsers.Durations.DurationTools.html
-  commentId: T:VisualCard.Calendar.Parsers.Durations.DurationTools
-  fullName: VisualCard.Calendar.Parsers.Durations.DurationTools
-  nameWithType: DurationTools
-- uid: VisualCard.Calendar.Parsers.Durations.DurationTools.GetDurationSpan(System.String,System.Boolean,System.Boolean)
-  name: GetDurationSpan(string, bool, bool)
-  href: api/VisualCard.Calendar.Parsers.Durations.DurationTools.html#VisualCard_Calendar_Parsers_Durations_DurationTools_GetDurationSpan_System_String_System_Boolean_System_Boolean_
-  commentId: M:VisualCard.Calendar.Parsers.Durations.DurationTools.GetDurationSpan(System.String,System.Boolean,System.Boolean)
-  name.vb: GetDurationSpan(String, Boolean, Boolean)
-  fullName: VisualCard.Calendar.Parsers.Durations.DurationTools.GetDurationSpan(string, bool, bool)
-  fullName.vb: VisualCard.Calendar.Parsers.Durations.DurationTools.GetDurationSpan(String, Boolean, Boolean)
-  nameWithType: DurationTools.GetDurationSpan(string, bool, bool)
-  nameWithType.vb: DurationTools.GetDurationSpan(String, Boolean, Boolean)
-- uid: VisualCard.Calendar.Parsers.Durations.DurationTools.GetDurationSpan*
-  name: GetDurationSpan
-  href: api/VisualCard.Calendar.Parsers.Durations.DurationTools.html#VisualCard_Calendar_Parsers_Durations_DurationTools_GetDurationSpan_
-  commentId: Overload:VisualCard.Calendar.Parsers.Durations.DurationTools.GetDurationSpan
-  isSpec: "True"
-  fullName: VisualCard.Calendar.Parsers.Durations.DurationTools.GetDurationSpan
-  nameWithType: DurationTools.GetDurationSpan
 - uid: VisualCard.Calendar.Parsers.Recurrence
   name: VisualCard.Calendar.Parsers.Recurrence
   href: api/VisualCard.Calendar.Parsers.Recurrence.html
@@ -5557,12 +5529,108 @@ references:
   commentId: N:VisualCard.Parsers
   fullName: VisualCard.Parsers
   nameWithType: VisualCard.Parsers
+- uid: VisualCard.Parsers.TimePeriod
+  name: TimePeriod
+  href: api/VisualCard.Parsers.TimePeriod.html
+  commentId: T:VisualCard.Parsers.TimePeriod
+  fullName: VisualCard.Parsers.TimePeriod
+  nameWithType: TimePeriod
+- uid: VisualCard.Parsers.TimePeriod.#ctor(System.DateTimeOffset,System.DateTimeOffset)
+  name: TimePeriod(DateTimeOffset, DateTimeOffset)
+  href: api/VisualCard.Parsers.TimePeriod.html#VisualCard_Parsers_TimePeriod__ctor_System_DateTimeOffset_System_DateTimeOffset_
+  commentId: M:VisualCard.Parsers.TimePeriod.#ctor(System.DateTimeOffset,System.DateTimeOffset)
+  name.vb: New(DateTimeOffset, DateTimeOffset)
+  fullName: VisualCard.Parsers.TimePeriod.TimePeriod(System.DateTimeOffset, System.DateTimeOffset)
+  fullName.vb: VisualCard.Parsers.TimePeriod.New(System.DateTimeOffset, System.DateTimeOffset)
+  nameWithType: TimePeriod.TimePeriod(DateTimeOffset, DateTimeOffset)
+  nameWithType.vb: TimePeriod.New(DateTimeOffset, DateTimeOffset)
+- uid: VisualCard.Parsers.TimePeriod.#ctor*
+  name: TimePeriod
+  href: api/VisualCard.Parsers.TimePeriod.html#VisualCard_Parsers_TimePeriod__ctor_
+  commentId: Overload:VisualCard.Parsers.TimePeriod.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: VisualCard.Parsers.TimePeriod.TimePeriod
+  fullName.vb: VisualCard.Parsers.TimePeriod.New
+  nameWithType: TimePeriod.TimePeriod
+  nameWithType.vb: TimePeriod.New
+- uid: VisualCard.Parsers.TimePeriod.Duration
+  name: Duration
+  href: api/VisualCard.Parsers.TimePeriod.html#VisualCard_Parsers_TimePeriod_Duration
+  commentId: P:VisualCard.Parsers.TimePeriod.Duration
+  fullName: VisualCard.Parsers.TimePeriod.Duration
+  nameWithType: TimePeriod.Duration
+- uid: VisualCard.Parsers.TimePeriod.Duration*
+  name: Duration
+  href: api/VisualCard.Parsers.TimePeriod.html#VisualCard_Parsers_TimePeriod_Duration_
+  commentId: Overload:VisualCard.Parsers.TimePeriod.Duration
+  isSpec: "True"
+  fullName: VisualCard.Parsers.TimePeriod.Duration
+  nameWithType: TimePeriod.Duration
+- uid: VisualCard.Parsers.TimePeriod.EndDate
+  name: EndDate
+  href: api/VisualCard.Parsers.TimePeriod.html#VisualCard_Parsers_TimePeriod_EndDate
+  commentId: P:VisualCard.Parsers.TimePeriod.EndDate
+  fullName: VisualCard.Parsers.TimePeriod.EndDate
+  nameWithType: TimePeriod.EndDate
+- uid: VisualCard.Parsers.TimePeriod.EndDate*
+  name: EndDate
+  href: api/VisualCard.Parsers.TimePeriod.html#VisualCard_Parsers_TimePeriod_EndDate_
+  commentId: Overload:VisualCard.Parsers.TimePeriod.EndDate
+  isSpec: "True"
+  fullName: VisualCard.Parsers.TimePeriod.EndDate
+  nameWithType: TimePeriod.EndDate
+- uid: VisualCard.Parsers.TimePeriod.StartDate
+  name: StartDate
+  href: api/VisualCard.Parsers.TimePeriod.html#VisualCard_Parsers_TimePeriod_StartDate
+  commentId: P:VisualCard.Parsers.TimePeriod.StartDate
+  fullName: VisualCard.Parsers.TimePeriod.StartDate
+  nameWithType: TimePeriod.StartDate
+- uid: VisualCard.Parsers.TimePeriod.StartDate*
+  name: StartDate
+  href: api/VisualCard.Parsers.TimePeriod.html#VisualCard_Parsers_TimePeriod_StartDate_
+  commentId: Overload:VisualCard.Parsers.TimePeriod.StartDate
+  isSpec: "True"
+  fullName: VisualCard.Parsers.TimePeriod.StartDate
+  nameWithType: TimePeriod.StartDate
 - uid: VisualCard.Parsers.VcardCommonTools
   name: VcardCommonTools
   href: api/VisualCard.Parsers.VcardCommonTools.html
   commentId: T:VisualCard.Parsers.VcardCommonTools
   fullName: VisualCard.Parsers.VcardCommonTools
   nameWithType: VcardCommonTools
+- uid: VisualCard.Parsers.VcardCommonTools.GetDurationSpan(System.String,System.Boolean,System.Boolean,System.Nullable{System.DateTimeOffset})
+  name: GetDurationSpan(string, bool, bool, DateTimeOffset?)
+  href: api/VisualCard.Parsers.VcardCommonTools.html#VisualCard_Parsers_VcardCommonTools_GetDurationSpan_System_String_System_Boolean_System_Boolean_System_Nullable_System_DateTimeOffset__
+  commentId: M:VisualCard.Parsers.VcardCommonTools.GetDurationSpan(System.String,System.Boolean,System.Boolean,System.Nullable{System.DateTimeOffset})
+  name.vb: GetDurationSpan(String, Boolean, Boolean, DateTimeOffset?)
+  fullName: VisualCard.Parsers.VcardCommonTools.GetDurationSpan(string, bool, bool, System.DateTimeOffset?)
+  fullName.vb: VisualCard.Parsers.VcardCommonTools.GetDurationSpan(String, Boolean, Boolean, System.DateTimeOffset?)
+  nameWithType: VcardCommonTools.GetDurationSpan(string, bool, bool, DateTimeOffset?)
+  nameWithType.vb: VcardCommonTools.GetDurationSpan(String, Boolean, Boolean, DateTimeOffset?)
+- uid: VisualCard.Parsers.VcardCommonTools.GetDurationSpan*
+  name: GetDurationSpan
+  href: api/VisualCard.Parsers.VcardCommonTools.html#VisualCard_Parsers_VcardCommonTools_GetDurationSpan_
+  commentId: Overload:VisualCard.Parsers.VcardCommonTools.GetDurationSpan
+  isSpec: "True"
+  fullName: VisualCard.Parsers.VcardCommonTools.GetDurationSpan
+  nameWithType: VcardCommonTools.GetDurationSpan
+- uid: VisualCard.Parsers.VcardCommonTools.GetTimePeriod(System.String)
+  name: GetTimePeriod(string)
+  href: api/VisualCard.Parsers.VcardCommonTools.html#VisualCard_Parsers_VcardCommonTools_GetTimePeriod_System_String_
+  commentId: M:VisualCard.Parsers.VcardCommonTools.GetTimePeriod(System.String)
+  name.vb: GetTimePeriod(String)
+  fullName: VisualCard.Parsers.VcardCommonTools.GetTimePeriod(string)
+  fullName.vb: VisualCard.Parsers.VcardCommonTools.GetTimePeriod(String)
+  nameWithType: VcardCommonTools.GetTimePeriod(string)
+  nameWithType.vb: VcardCommonTools.GetTimePeriod(String)
+- uid: VisualCard.Parsers.VcardCommonTools.GetTimePeriod*
+  name: GetTimePeriod
+  href: api/VisualCard.Parsers.VcardCommonTools.html#VisualCard_Parsers_VcardCommonTools_GetTimePeriod_
+  commentId: Overload:VisualCard.Parsers.VcardCommonTools.GetTimePeriod
+  isSpec: "True"
+  fullName: VisualCard.Parsers.VcardCommonTools.GetTimePeriod
+  nameWithType: VcardCommonTools.GetTimePeriod
 - uid: VisualCard.Parsers.VcardCommonTools.ParsePosixDate(System.String,System.Boolean)
   name: ParsePosixDate(string, bool)
   href: api/VisualCard.Parsers.VcardCommonTools.html#VisualCard_Parsers_VcardCommonTools_ParsePosixDate_System_String_System_Boolean_

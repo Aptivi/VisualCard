@@ -45,26 +45,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Calendar.Parsers.Durations.DurationTools.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Calendar.Parsers.Durations.DurationTools.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Calendar.Parsers.Durations.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Calendar.Parsers.Durations.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/VisualCard.Calendar.Parsers.Recurrence.RecurrenceParser.yml",
       "output": {
         ".html": {
@@ -609,6 +589,16 @@
       "output": {
         ".html": {
           "relative_path": "api/VisualCard.Exceptions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parsers.TimePeriod.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parsers.TimePeriod.html"
         }
       },
       "version": ""
