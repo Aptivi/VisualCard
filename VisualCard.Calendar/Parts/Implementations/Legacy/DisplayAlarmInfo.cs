@@ -50,6 +50,18 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
         /// </summary>
         public string? Display { get; }
 
+        /// <summary>
+        /// Snooze duration. Throws exception if there is no snooze time, so check accordingly.
+        /// </summary>
+        public TimeSpan SnoozeDuration =>
+            VcardCommonTools.GetDurationSpan(SnoozeTime ?? "").span;
+
+        /// <summary>
+        /// Snooze date/time. Throws exception if there is no snooze time, so check accordingly.
+        /// </summary>
+        public DateTimeOffset SnoozeIn =>
+            VcardCommonTools.GetDurationSpan(SnoozeTime ?? "").result;
+
         internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, string[] finalArgs, string[] elementTypes, string valueType, Version calendarVersion) =>
             new DisplayAlarmInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, calendarVersion);
 
