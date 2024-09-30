@@ -6027,6 +6027,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.BaseCardPartInfo.GetHashCode
   nameWithType: BaseCardPartInfo.GetHashCode
+- uid: VisualCard.Parts.BaseCardPartInfo.Group
+  name: Group
+  href: api/VisualCard.Parts.BaseCardPartInfo.html#VisualCard_Parts_BaseCardPartInfo_Group
+  commentId: P:VisualCard.Parts.BaseCardPartInfo.Group
+  fullName: VisualCard.Parts.BaseCardPartInfo.Group
+  nameWithType: BaseCardPartInfo.Group
+- uid: VisualCard.Parts.BaseCardPartInfo.Group*
+  name: Group
+  href: api/VisualCard.Parts.BaseCardPartInfo.html#VisualCard_Parts_BaseCardPartInfo_Group_
+  commentId: Overload:VisualCard.Parts.BaseCardPartInfo.Group
+  isSpec: "True"
+  fullName: VisualCard.Parts.BaseCardPartInfo.Group
+  nameWithType: BaseCardPartInfo.Group
 - uid: VisualCard.Parts.BaseCardPartInfo.HasType(System.String)
   name: HasType(string)
   href: api/VisualCard.Parts.BaseCardPartInfo.html#VisualCard_Parts_BaseCardPartInfo_HasType_System_String_
