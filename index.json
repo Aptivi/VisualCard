@@ -14,6 +14,16 @@
     "title": "Namespace VisualCard.Calendar.Exceptions | VisualCard API - Aptivi",
     "keywords": "Namespace VisualCard.Calendar.Exceptions Classes VCalendarParseException Exception of VCalendar parsing"
   },
+  "api/VisualCard.Calendar.Parsers.Durations.DurationTools.html": {
+    "href": "api/VisualCard.Calendar.Parsers.Durations.DurationTools.html",
+    "title": "Class DurationTools | VisualCard API - Aptivi",
+    "keywords": "Class DurationTools Duration management tools Inheritance object DurationTools Namespace: VisualCard.Calendar.Parsers.Durations Assembly: VisualCard.Calendar.dll Syntax public static class DurationTools Methods | Edit this page View Source GetDurationSpan(string, bool, bool) Gets the date/time offset from the duration specifier that is compliant with the ISO-8601:2004 specification Declaration public static (DateTimeOffset result, TimeSpan span) GetDurationSpan(string duration, bool modern = false, bool utc = true) Parameters Type Name Description string duration Duration specifier in the ISO-8601:2004 format bool modern Whether to disable parsing years and months or not bool utc Whether to use UTC Returns Type Description (DateTimeOffset result, TimeSpan span) A date/time offset instance and a time span instance from the duration specifier Exceptions Type Condition ArgumentException"
+  },
+  "api/VisualCard.Calendar.Parsers.Durations.html": {
+    "href": "api/VisualCard.Calendar.Parsers.Durations.html",
+    "title": "Namespace VisualCard.Calendar.Parsers.Durations | VisualCard API - Aptivi",
+    "keywords": "Namespace VisualCard.Calendar.Parsers.Durations Classes DurationTools Duration management tools"
+  },
   "api/VisualCard.Calendar.Parsers.Recurrence.RecurrenceParser.html": {
     "href": "api/VisualCard.Calendar.Parsers.Recurrence.RecurrenceParser.html",
     "title": "Class RecurrenceParser | VisualCard API - Aptivi",

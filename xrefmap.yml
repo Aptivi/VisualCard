@@ -75,6 +75,34 @@ references:
   commentId: T:VisualCard.Calendar.Exceptions.VCalendarParseException
   fullName: VisualCard.Calendar.Exceptions.VCalendarParseException
   nameWithType: VCalendarParseException
+- uid: VisualCard.Calendar.Parsers.Durations
+  name: VisualCard.Calendar.Parsers.Durations
+  href: api/VisualCard.Calendar.Parsers.Durations.html
+  commentId: N:VisualCard.Calendar.Parsers.Durations
+  fullName: VisualCard.Calendar.Parsers.Durations
+  nameWithType: VisualCard.Calendar.Parsers.Durations
+- uid: VisualCard.Calendar.Parsers.Durations.DurationTools
+  name: DurationTools
+  href: api/VisualCard.Calendar.Parsers.Durations.DurationTools.html
+  commentId: T:VisualCard.Calendar.Parsers.Durations.DurationTools
+  fullName: VisualCard.Calendar.Parsers.Durations.DurationTools
+  nameWithType: DurationTools
+- uid: VisualCard.Calendar.Parsers.Durations.DurationTools.GetDurationSpan(System.String,System.Boolean,System.Boolean)
+  name: GetDurationSpan(string, bool, bool)
+  href: api/VisualCard.Calendar.Parsers.Durations.DurationTools.html#VisualCard_Calendar_Parsers_Durations_DurationTools_GetDurationSpan_System_String_System_Boolean_System_Boolean_
+  commentId: M:VisualCard.Calendar.Parsers.Durations.DurationTools.GetDurationSpan(System.String,System.Boolean,System.Boolean)
+  name.vb: GetDurationSpan(String, Boolean, Boolean)
+  fullName: VisualCard.Calendar.Parsers.Durations.DurationTools.GetDurationSpan(string, bool, bool)
+  fullName.vb: VisualCard.Calendar.Parsers.Durations.DurationTools.GetDurationSpan(String, Boolean, Boolean)
+  nameWithType: DurationTools.GetDurationSpan(string, bool, bool)
+  nameWithType.vb: DurationTools.GetDurationSpan(String, Boolean, Boolean)
+- uid: VisualCard.Calendar.Parsers.Durations.DurationTools.GetDurationSpan*
+  name: GetDurationSpan
+  href: api/VisualCard.Calendar.Parsers.Durations.DurationTools.html#VisualCard_Calendar_Parsers_Durations_DurationTools_GetDurationSpan_
+  commentId: Overload:VisualCard.Calendar.Parsers.Durations.DurationTools.GetDurationSpan
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parsers.Durations.DurationTools.GetDurationSpan
+  nameWithType: DurationTools.GetDurationSpan
 - uid: VisualCard.Calendar.Parsers.Recurrence
   name: VisualCard.Calendar.Parsers.Recurrence
   href: api/VisualCard.Calendar.Parsers.Recurrence.html
