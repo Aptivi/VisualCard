@@ -19,8 +19,7 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shouldly;
-using VisualCard.Calendar.Parsers.Durations;
-using VisualCard.Calendar.Parsers.Recurrence;
+using VisualCard.Parsers;
 
 namespace VisualCard.Tests.Durations
 {
@@ -36,7 +35,7 @@ namespace VisualCard.Tests.Durations
         [DataRow("P7W")]
         public void ParseDurations(string rule)
         {
-            var span = DurationTools.GetDurationSpan(rule);
+            var span = VcardCommonTools.GetDurationSpan(rule);
             span.result.ShouldNotBe(new());
             span.span.ShouldNotBe(new());
         }
@@ -50,7 +49,7 @@ namespace VisualCard.Tests.Durations
         [DataRow("P7W")]
         public void ParseDurationsNoUtc(string rule)
         {
-            var span = DurationTools.GetDurationSpan(rule, utc: false);
+            var span = VcardCommonTools.GetDurationSpan(rule, utc: false);
             span.result.ShouldNotBe(new());
             span.span.ShouldNotBe(new());
         }
@@ -64,7 +63,7 @@ namespace VisualCard.Tests.Durations
         [DataRow("-P7W")]
         public void ParseNegativeDurations(string rule)
         {
-            var span = DurationTools.GetDurationSpan(rule);
+            var span = VcardCommonTools.GetDurationSpan(rule);
             span.result.ShouldNotBe(new());
             span.span.ShouldNotBe(new());
         }
@@ -78,7 +77,7 @@ namespace VisualCard.Tests.Durations
         [DataRow("-P7W")]
         public void ParseNegativeDurationsNoUtc(string rule)
         {
-            var span = DurationTools.GetDurationSpan(rule, utc: false);
+            var span = VcardCommonTools.GetDurationSpan(rule, utc: false);
             span.result.ShouldNotBe(new());
             span.span.ShouldNotBe(new());
         }
@@ -86,7 +85,7 @@ namespace VisualCard.Tests.Durations
         [TestMethod]
         public void ParseDuration()
         {
-            var span = DurationTools.GetDurationSpan("P2Y10M15DT10H30M20S");
+            var span = VcardCommonTools.GetDurationSpan("P2Y10M15DT10H30M20S");
 
             // We can't test against result because it's uninferrable due to CPU timings.
             span.result.ShouldNotBe(new());
@@ -100,7 +99,7 @@ namespace VisualCard.Tests.Durations
         [TestMethod]
         public void ParseNegativeDuration()
         {
-            var span = DurationTools.GetDurationSpan("-P2Y10M15DT10H30M20S");
+            var span = VcardCommonTools.GetDurationSpan("-P2Y10M15DT10H30M20S");
 
             // We can't test against result because it's uninferrable due to CPU timings.
             span.result.ShouldNotBe(new());

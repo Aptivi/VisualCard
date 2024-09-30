@@ -160,6 +160,128 @@ namespace VisualCard.Parsers
                 );
             return utcOffsetBuilder.ToString();
         }
+        /// <summary>
+        /// Gets the date/time offset from the duration specifier that is compliant with the ISO-8601:2004 specification
+        /// </summary>
+        /// <param name="duration">Duration specifier in the ISO-8601:2004 format</param>
+        /// <param name="modern">Whether to disable parsing years and months or not</param>
+        /// <param name="utc">Whether to use UTC</param>
+        /// <returns>A date/time offset instance and a time span instance from the duration specifier</returns>
+        /// <exception cref="ArgumentException"></exception>
+        public static (DateTimeOffset result, TimeSpan span) GetDurationSpan(string duration, bool modern = false, bool utc = true, DateTimeOffset? source = null)
+        {
+            // Sanity checks
+            duration = duration.Trim();
+            if (string.IsNullOrEmpty(duration))
+                throw new ArgumentException($"Duration is not provided");
+
+            // Check to see if we've been provided with a sign
+            bool isNegative = duration[0] == '-';
+            if (duration[0] == '+' || isNegative)
+                duration = duration.Substring(1);
+            if (duration[0] != 'P')
+                throw new ArgumentException($"Duration is invalid: {duration}");
+            duration = duration.Substring(1);
+
+            // Populate the date time offset accordingly
+            DateTimeOffset rightNow =
+                source is DateTimeOffset sourceDate ?
+                sourceDate :
+                (utc ? DateTimeOffset.UtcNow : DateTimeOffset.Now);
+            DateTimeOffset offset = rightNow;
+            bool inDate = true;
+            while (!string.IsNullOrEmpty(duration))
+            {
+                // Get the designator index
+                int designatorIndex;
+                for (designatorIndex = 0; designatorIndex < duration.Length - 1; designatorIndex++)
+                    if (!char.IsNumber(duration[designatorIndex]))
+                        break;
+
+                // Split the duration according to the designator index
+                string digits = duration.Substring(0, designatorIndex);
+                string type = duration.Substring(designatorIndex, 1);
+                int length = digits.Length + type.Length;
+
+                // Add according to type, but check first for the time designator
+                if (type == "T")
+                {
+                    duration = duration.Substring(length);
+                    inDate = false;
+                    continue;
+                }
+                if (!int.TryParse(digits, out int value))
+                    throw new ArgumentException($"Digits are not numeric: {digits}, {duration}");
+                value = isNegative ? -value : value;
+                switch (type)
+                {
+                    // Year and Month types are only supported in vCalendar 1.0
+                    case "Y":
+                        if (modern)
+                            throw new ArgumentException($"Year specifier is disabled in vCalendar 2.0, {duration}");
+                        offset = offset.AddYears(value);
+                        break;
+                    case "M":
+                        if (modern && inDate)
+                            throw new ArgumentException($"Month specifier is disabled in vCalendar 2.0, {duration}");
+                        if (inDate)
+                            offset = offset.AddMonths(value);
+                        else
+                            offset = offset.AddMinutes(value);
+                        break;
+
+                    // Supported in all vCalendars
+                    case "W":
+                        offset = offset.AddDays(value * 7);
+                        break;
+                    case "D":
+                        offset = offset.AddDays(value);
+                        break;
+                    case "H":
+                        offset = offset.AddHours(value);
+                        break;
+                    case "S":
+                        offset = offset.AddSeconds(value);
+                        break;
+                    default:
+                        throw new ArgumentException($"Type is invalid: {type}, {duration}");
+                }
+                duration = duration.Substring(length);
+            }
+
+            // Return the result
+            return (offset, offset - rightNow);
+        }
+
+        /// <summary>
+        /// Gets the time period that contains dates or date/duration combination that satisfy the ISO-8601:2004 specification
+        /// </summary>
+        /// <param name="period">Either a date/date format or a date/duration format that conform with the ISO-8601:2004 specification</param>
+        /// <returns>A <see cref="TimePeriod"/> instance that describes the time period</returns>
+        /// <exception cref="ArgumentException"></exception>
+        public static TimePeriod GetTimePeriod(string period)
+        {
+            // Sanity checks
+            period = period.Trim();
+            if (string.IsNullOrEmpty(period))
+                throw new ArgumentException("Time period is not specified");
+
+            // Parse the time period by splitting with the slash character to two string variables
+            string[] splits = period.Split('/');
+            if (splits.Length != 2)
+                throw new ArgumentException($"After splitting, got {splits.Length} instead of 2: {period}");
+            string startStr = splits[0];
+            string endStr = splits[1];
+
+            // Now, parse them
+            if (!TryParsePosixDate(startStr, out DateTimeOffset start))
+                throw new ArgumentException($"Invalid start date {startStr}: {period}");
+            if (!TryParsePosixDate(endStr, out DateTimeOffset end))
+                end = GetDurationSpan(endStr, source: start).result;
+
+            // Return a new object
+            return new TimePeriod(start, end);
+        }
 
         internal static string GetTypesString(string[] args, string @default, bool isSpecifierRequired = true)
         {
