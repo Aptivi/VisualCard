@@ -29,12 +29,14 @@ namespace VisualCard.Calendar.Parsers.Recurrence
     {
         // Frequency and interval
         internal RecurrenceRuleFrequency frequency;
-        internal int interval;
+        internal int interval = 1;
 
         // General
+        internal Version ruleVersion = new(1, 0);
         internal int duration = 2;
         internal DateTimeOffset endDate;
 
+        #region Version 1.0 rules
         // Time period (daily)
         internal List<(bool isEnd, TimeSpan time)> timePeriods = [];
 
@@ -48,5 +50,19 @@ namespace VisualCard.Calendar.Parsers.Recurrence
         // Yearly (in a month and in a day)
         internal List<(bool isEnd, int monthNum)> yearlyMonthNumbers = [];
         internal List<(bool isEnd, int dayNum)> yearlyDayNumbers = [];
+        #endregion
+
+        #region Version 2.0 rules
+        internal List<int> secondsList = [];
+        internal List<int> minutesList = [];
+        internal List<int> hoursList = [];
+        internal List<(bool negative, int weekNum, DayOfWeek time)> daysList = [];
+        internal List<(bool negative, int dayOfMonth)> daysOfMonthList = [];
+        internal List<(bool negative, int dayOfYear)> daysOfYearList = [];
+        internal List<(bool negative, int weekNum)> weeksList = [];
+        internal List<int> monthsList = [];
+        internal List<(bool negative, int position)> positionsList = [];
+        internal DayOfWeek weekStart = DayOfWeek.Sunday;
+        #endregion
     }
 }

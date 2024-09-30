@@ -41,13 +41,17 @@ namespace VisualCard.Calendar.Parsers.Recurrence
         /// </summary>
         Daily,
         /// <summary>
-        /// Weekly repetition (v1)
+        /// Weekly repetition (v1 and v2)
         /// </summary>
         Weekly,
         /// <summary>
-        /// Week number repetition (v2)
+        /// Monthly repetition (v2)
         /// </summary>
-        WeekNo,
+        Monthly,
+        /// <summary>
+        /// Yearly repetition (v2)
+        /// </summary>
+        Yearly,
         /// <summary>
         /// Monthly repetition based on a relative day (v1 and v2)
         /// </summary>
