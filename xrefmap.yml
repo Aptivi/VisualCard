@@ -3818,6 +3818,32 @@ references:
   isSpec: "True"
   fullName: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.RunTime
   nameWithType: AudioAlarmInfo.RunTime
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.SnoozeDuration
+  name: SnoozeDuration
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_AudioAlarmInfo_SnoozeDuration
+  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.SnoozeDuration
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.SnoozeDuration
+  nameWithType: AudioAlarmInfo.SnoozeDuration
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.SnoozeDuration*
+  name: SnoozeDuration
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_AudioAlarmInfo_SnoozeDuration_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.SnoozeDuration
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.SnoozeDuration
+  nameWithType: AudioAlarmInfo.SnoozeDuration
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.SnoozeIn
+  name: SnoozeIn
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_AudioAlarmInfo_SnoozeIn
+  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.SnoozeIn
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.SnoozeIn
+  nameWithType: AudioAlarmInfo.SnoozeIn
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.SnoozeIn*
+  name: SnoozeIn
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_AudioAlarmInfo_SnoozeIn_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.SnoozeIn
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.SnoozeIn
+  nameWithType: AudioAlarmInfo.SnoozeIn
 - uid: VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.SnoozeTime
   name: SnoozeTime
   href: api/VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_AudioAlarmInfo_SnoozeTime
@@ -4118,6 +4144,32 @@ references:
   isSpec: "True"
   fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.RunTime
   nameWithType: DisplayAlarmInfo.RunTime
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.SnoozeDuration
+  name: SnoozeDuration
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DisplayAlarmInfo_SnoozeDuration
+  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.SnoozeDuration
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.SnoozeDuration
+  nameWithType: DisplayAlarmInfo.SnoozeDuration
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.SnoozeDuration*
+  name: SnoozeDuration
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DisplayAlarmInfo_SnoozeDuration_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.SnoozeDuration
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.SnoozeDuration
+  nameWithType: DisplayAlarmInfo.SnoozeDuration
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.SnoozeIn
+  name: SnoozeIn
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DisplayAlarmInfo_SnoozeIn
+  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.SnoozeIn
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.SnoozeIn
+  nameWithType: DisplayAlarmInfo.SnoozeIn
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.SnoozeIn*
+  name: SnoozeIn
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DisplayAlarmInfo_SnoozeIn_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.SnoozeIn
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.SnoozeIn
+  nameWithType: DisplayAlarmInfo.SnoozeIn
 - uid: VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.SnoozeTime
   name: SnoozeTime
   href: api/VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_DisplayAlarmInfo_SnoozeTime
@@ -4268,6 +4320,32 @@ references:
   isSpec: "True"
   fullName: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.RunTime
   nameWithType: MailAlarmInfo.RunTime
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.SnoozeDuration
+  name: SnoozeDuration
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_MailAlarmInfo_SnoozeDuration
+  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.SnoozeDuration
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.SnoozeDuration
+  nameWithType: MailAlarmInfo.SnoozeDuration
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.SnoozeDuration*
+  name: SnoozeDuration
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_MailAlarmInfo_SnoozeDuration_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.SnoozeDuration
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.SnoozeDuration
+  nameWithType: MailAlarmInfo.SnoozeDuration
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.SnoozeIn
+  name: SnoozeIn
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_MailAlarmInfo_SnoozeIn
+  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.SnoozeIn
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.SnoozeIn
+  nameWithType: MailAlarmInfo.SnoozeIn
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.SnoozeIn*
+  name: SnoozeIn
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_MailAlarmInfo_SnoozeIn_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.SnoozeIn
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.SnoozeIn
+  nameWithType: MailAlarmInfo.SnoozeIn
 - uid: VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.SnoozeTime
   name: SnoozeTime
   href: api/VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_MailAlarmInfo_SnoozeTime
@@ -4405,6 +4483,32 @@ references:
   isSpec: "True"
   fullName: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.RunTime
   nameWithType: ProcedureAlarmInfo.RunTime
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.SnoozeDuration
+  name: SnoozeDuration
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_ProcedureAlarmInfo_SnoozeDuration
+  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.SnoozeDuration
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.SnoozeDuration
+  nameWithType: ProcedureAlarmInfo.SnoozeDuration
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.SnoozeDuration*
+  name: SnoozeDuration
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_ProcedureAlarmInfo_SnoozeDuration_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.SnoozeDuration
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.SnoozeDuration
+  nameWithType: ProcedureAlarmInfo.SnoozeDuration
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.SnoozeIn
+  name: SnoozeIn
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_ProcedureAlarmInfo_SnoozeIn
+  commentId: P:VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.SnoozeIn
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.SnoozeIn
+  nameWithType: ProcedureAlarmInfo.SnoozeIn
+- uid: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.SnoozeIn*
+  name: SnoozeIn
+  href: api/VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_ProcedureAlarmInfo_SnoozeIn_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.SnoozeIn
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.SnoozeIn
+  nameWithType: ProcedureAlarmInfo.SnoozeIn
 - uid: VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.SnoozeTime
   name: SnoozeTime
   href: api/VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.html#VisualCard_Calendar_Parts_Implementations_Legacy_ProcedureAlarmInfo_SnoozeTime
