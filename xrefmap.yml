@@ -2012,6 +2012,12 @@ references:
   commentId: F:VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.Description
   fullName: VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.Description
   nameWithType: CalendarStringsEnum.Description
+- uid: VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.ExRule
+  name: ExRule
+  href: api/VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.html#VisualCard_Calendar_Parts_Enums_CalendarStringsEnum_ExRule
+  commentId: F:VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.ExRule
+  fullName: VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.ExRule
+  nameWithType: CalendarStringsEnum.ExRule
 - uid: VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.Method
   name: Method
   href: api/VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.html#VisualCard_Calendar_Parts_Enums_CalendarStringsEnum_Method
