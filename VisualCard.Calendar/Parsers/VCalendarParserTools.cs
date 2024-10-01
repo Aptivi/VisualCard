@@ -54,6 +54,7 @@ namespace VisualCard.Calendar.Parsers
                 CalendarStringsEnum.TimeZoneUrl => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(CalendarTimeZone)),
                 CalendarStringsEnum.Recursion => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal), typeof(CalendarStandard), typeof(CalendarDaylight)),
                 CalendarStringsEnum.ExRule => calendarVersion.Major == 1 && TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo)),
+                CalendarStringsEnum.RecursionId => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal)),
                 _ =>
                     throw new InvalidOperationException("Invalid string enumeration type to get supported value"),
             };
@@ -122,6 +123,7 @@ namespace VisualCard.Calendar.Parsers
                 CalendarStringsEnum.TimeZoneUrl => VCalendarConstants._tzUrlSpecifier,
                 CalendarStringsEnum.Recursion => VCalendarConstants._recurseSpecifier,
                 CalendarStringsEnum.ExRule => VCalendarConstants._exRuleSpecifier,
+                CalendarStringsEnum.RecursionId => VCalendarConstants._recurIdSpecifier,
                 _ =>
                     throw new NotImplementedException($"String enumeration {stringsEnum} is not implemented.")
             };
@@ -275,6 +277,7 @@ namespace VisualCard.Calendar.Parsers
                 VCalendarConstants._tzUrlSpecifier => (PartType.Strings, CalendarStringsEnum.TimeZoneUrl, null, null, "", "", "uri", []),
                 VCalendarConstants._recurseSpecifier => (PartType.Strings, CalendarStringsEnum.Recursion, null, null, "", "", "recur", []),
                 VCalendarConstants._exRuleSpecifier => (PartType.Strings, CalendarStringsEnum.ExRule, null, null, "", "", "recur", []),
+                VCalendarConstants._recurIdSpecifier => (PartType.Strings, CalendarStringsEnum.RecursionId, null, null, "", "", "date-time", []),
                 VCalendarConstants._prioritySpecifier => (PartType.Integers, CalendarIntegersEnum.Priority, null, null, "", "", "integer", []),
                 VCalendarConstants._sequenceSpecifier => (PartType.Integers, CalendarIntegersEnum.Sequence, null, null, "", "", "integer", []),
                 VCalendarConstants._percentCompletionSpecifier => (PartType.Integers, CalendarIntegersEnum.PercentComplete, null, null, "", "", "integer", []),

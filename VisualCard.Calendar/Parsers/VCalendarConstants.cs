@@ -104,5 +104,6 @@ namespace VisualCard.Calendar.Parsers
         internal const string _tzNameSpecifier = "TZNAME";
         internal const string _percentCompletionSpecifier = "PERCENT-COMPLETION";
         internal const string _freeBusySpecifier = "FREEBUSY";
+        internal const string _recurIdSpecifier = "RECURRENCE-ID";
     }
 }
