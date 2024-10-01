@@ -5845,15 +5845,15 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parsers.VcardCommonTools.GetTimePeriod
   nameWithType: VcardCommonTools.GetTimePeriod
-- uid: VisualCard.Parsers.VcardCommonTools.ParsePosixDate(System.String,System.Boolean)
-  name: ParsePosixDate(string, bool)
-  href: api/VisualCard.Parsers.VcardCommonTools.html#VisualCard_Parsers_VcardCommonTools_ParsePosixDate_System_String_System_Boolean_
-  commentId: M:VisualCard.Parsers.VcardCommonTools.ParsePosixDate(System.String,System.Boolean)
-  name.vb: ParsePosixDate(String, Boolean)
-  fullName: VisualCard.Parsers.VcardCommonTools.ParsePosixDate(string, bool)
-  fullName.vb: VisualCard.Parsers.VcardCommonTools.ParsePosixDate(String, Boolean)
-  nameWithType: VcardCommonTools.ParsePosixDate(string, bool)
-  nameWithType.vb: VcardCommonTools.ParsePosixDate(String, Boolean)
+- uid: VisualCard.Parsers.VcardCommonTools.ParsePosixDate(System.String)
+  name: ParsePosixDate(string)
+  href: api/VisualCard.Parsers.VcardCommonTools.html#VisualCard_Parsers_VcardCommonTools_ParsePosixDate_System_String_
+  commentId: M:VisualCard.Parsers.VcardCommonTools.ParsePosixDate(System.String)
+  name.vb: ParsePosixDate(String)
+  fullName: VisualCard.Parsers.VcardCommonTools.ParsePosixDate(string)
+  fullName.vb: VisualCard.Parsers.VcardCommonTools.ParsePosixDate(String)
+  nameWithType: VcardCommonTools.ParsePosixDate(string)
+  nameWithType.vb: VcardCommonTools.ParsePosixDate(String)
 - uid: VisualCard.Parsers.VcardCommonTools.ParsePosixDate*
   name: ParsePosixDate
   href: api/VisualCard.Parsers.VcardCommonTools.html#VisualCard_Parsers_VcardCommonTools_ParsePosixDate_
@@ -5861,6 +5861,54 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parsers.VcardCommonTools.ParsePosixDate
   nameWithType: VcardCommonTools.ParsePosixDate
+- uid: VisualCard.Parsers.VcardCommonTools.ParsePosixDateTime(System.String)
+  name: ParsePosixDateTime(string)
+  href: api/VisualCard.Parsers.VcardCommonTools.html#VisualCard_Parsers_VcardCommonTools_ParsePosixDateTime_System_String_
+  commentId: M:VisualCard.Parsers.VcardCommonTools.ParsePosixDateTime(System.String)
+  name.vb: ParsePosixDateTime(String)
+  fullName: VisualCard.Parsers.VcardCommonTools.ParsePosixDateTime(string)
+  fullName.vb: VisualCard.Parsers.VcardCommonTools.ParsePosixDateTime(String)
+  nameWithType: VcardCommonTools.ParsePosixDateTime(string)
+  nameWithType.vb: VcardCommonTools.ParsePosixDateTime(String)
+- uid: VisualCard.Parsers.VcardCommonTools.ParsePosixDateTime*
+  name: ParsePosixDateTime
+  href: api/VisualCard.Parsers.VcardCommonTools.html#VisualCard_Parsers_VcardCommonTools_ParsePosixDateTime_
+  commentId: Overload:VisualCard.Parsers.VcardCommonTools.ParsePosixDateTime
+  isSpec: "True"
+  fullName: VisualCard.Parsers.VcardCommonTools.ParsePosixDateTime
+  nameWithType: VcardCommonTools.ParsePosixDateTime
+- uid: VisualCard.Parsers.VcardCommonTools.ParsePosixTime(System.String)
+  name: ParsePosixTime(string)
+  href: api/VisualCard.Parsers.VcardCommonTools.html#VisualCard_Parsers_VcardCommonTools_ParsePosixTime_System_String_
+  commentId: M:VisualCard.Parsers.VcardCommonTools.ParsePosixTime(System.String)
+  name.vb: ParsePosixTime(String)
+  fullName: VisualCard.Parsers.VcardCommonTools.ParsePosixTime(string)
+  fullName.vb: VisualCard.Parsers.VcardCommonTools.ParsePosixTime(String)
+  nameWithType: VcardCommonTools.ParsePosixTime(string)
+  nameWithType.vb: VcardCommonTools.ParsePosixTime(String)
+- uid: VisualCard.Parsers.VcardCommonTools.ParsePosixTime*
+  name: ParsePosixTime
+  href: api/VisualCard.Parsers.VcardCommonTools.html#VisualCard_Parsers_VcardCommonTools_ParsePosixTime_
+  commentId: Overload:VisualCard.Parsers.VcardCommonTools.ParsePosixTime
+  isSpec: "True"
+  fullName: VisualCard.Parsers.VcardCommonTools.ParsePosixTime
+  nameWithType: VcardCommonTools.ParsePosixTime
+- uid: VisualCard.Parsers.VcardCommonTools.ParsePosixTimestamp(System.String)
+  name: ParsePosixTimestamp(string)
+  href: api/VisualCard.Parsers.VcardCommonTools.html#VisualCard_Parsers_VcardCommonTools_ParsePosixTimestamp_System_String_
+  commentId: M:VisualCard.Parsers.VcardCommonTools.ParsePosixTimestamp(System.String)
+  name.vb: ParsePosixTimestamp(String)
+  fullName: VisualCard.Parsers.VcardCommonTools.ParsePosixTimestamp(string)
+  fullName.vb: VisualCard.Parsers.VcardCommonTools.ParsePosixTimestamp(String)
+  nameWithType: VcardCommonTools.ParsePosixTimestamp(string)
+  nameWithType.vb: VcardCommonTools.ParsePosixTimestamp(String)
+- uid: VisualCard.Parsers.VcardCommonTools.ParsePosixTimestamp*
+  name: ParsePosixTimestamp
+  href: api/VisualCard.Parsers.VcardCommonTools.html#VisualCard_Parsers_VcardCommonTools_ParsePosixTimestamp_
+  commentId: Overload:VisualCard.Parsers.VcardCommonTools.ParsePosixTimestamp
+  isSpec: "True"
+  fullName: VisualCard.Parsers.VcardCommonTools.ParsePosixTimestamp
+  nameWithType: VcardCommonTools.ParsePosixTimestamp
 - uid: VisualCard.Parsers.VcardCommonTools.ParseUtcOffset(System.String)
   name: ParseUtcOffset(string)
   href: api/VisualCard.Parsers.VcardCommonTools.html#VisualCard_Parsers_VcardCommonTools_ParseUtcOffset_System_String_
@@ -5906,15 +5954,15 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parsers.VcardCommonTools.SaveUtcOffset
   nameWithType: VcardCommonTools.SaveUtcOffset
-- uid: VisualCard.Parsers.VcardCommonTools.TryParsePosixDate(System.String,System.DateTimeOffset@,System.Boolean)
-  name: TryParsePosixDate(string, out DateTimeOffset, bool)
-  href: api/VisualCard.Parsers.VcardCommonTools.html#VisualCard_Parsers_VcardCommonTools_TryParsePosixDate_System_String_System_DateTimeOffset__System_Boolean_
-  commentId: M:VisualCard.Parsers.VcardCommonTools.TryParsePosixDate(System.String,System.DateTimeOffset@,System.Boolean)
-  name.vb: TryParsePosixDate(String, DateTimeOffset, Boolean)
-  fullName: VisualCard.Parsers.VcardCommonTools.TryParsePosixDate(string, out System.DateTimeOffset, bool)
-  fullName.vb: VisualCard.Parsers.VcardCommonTools.TryParsePosixDate(String, System.DateTimeOffset, Boolean)
-  nameWithType: VcardCommonTools.TryParsePosixDate(string, out DateTimeOffset, bool)
-  nameWithType.vb: VcardCommonTools.TryParsePosixDate(String, DateTimeOffset, Boolean)
+- uid: VisualCard.Parsers.VcardCommonTools.TryParsePosixDate(System.String,System.DateTimeOffset@)
+  name: TryParsePosixDate(string, out DateTimeOffset)
+  href: api/VisualCard.Parsers.VcardCommonTools.html#VisualCard_Parsers_VcardCommonTools_TryParsePosixDate_System_String_System_DateTimeOffset__
+  commentId: M:VisualCard.Parsers.VcardCommonTools.TryParsePosixDate(System.String,System.DateTimeOffset@)
+  name.vb: TryParsePosixDate(String, DateTimeOffset)
+  fullName: VisualCard.Parsers.VcardCommonTools.TryParsePosixDate(string, out System.DateTimeOffset)
+  fullName.vb: VisualCard.Parsers.VcardCommonTools.TryParsePosixDate(String, System.DateTimeOffset)
+  nameWithType: VcardCommonTools.TryParsePosixDate(string, out DateTimeOffset)
+  nameWithType.vb: VcardCommonTools.TryParsePosixDate(String, DateTimeOffset)
 - uid: VisualCard.Parsers.VcardCommonTools.TryParsePosixDate*
   name: TryParsePosixDate
   href: api/VisualCard.Parsers.VcardCommonTools.html#VisualCard_Parsers_VcardCommonTools_TryParsePosixDate_
@@ -5922,6 +5970,54 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parsers.VcardCommonTools.TryParsePosixDate
   nameWithType: VcardCommonTools.TryParsePosixDate
+- uid: VisualCard.Parsers.VcardCommonTools.TryParsePosixDateTime(System.String,System.DateTimeOffset@)
+  name: TryParsePosixDateTime(string, out DateTimeOffset)
+  href: api/VisualCard.Parsers.VcardCommonTools.html#VisualCard_Parsers_VcardCommonTools_TryParsePosixDateTime_System_String_System_DateTimeOffset__
+  commentId: M:VisualCard.Parsers.VcardCommonTools.TryParsePosixDateTime(System.String,System.DateTimeOffset@)
+  name.vb: TryParsePosixDateTime(String, DateTimeOffset)
+  fullName: VisualCard.Parsers.VcardCommonTools.TryParsePosixDateTime(string, out System.DateTimeOffset)
+  fullName.vb: VisualCard.Parsers.VcardCommonTools.TryParsePosixDateTime(String, System.DateTimeOffset)
+  nameWithType: VcardCommonTools.TryParsePosixDateTime(string, out DateTimeOffset)
+  nameWithType.vb: VcardCommonTools.TryParsePosixDateTime(String, DateTimeOffset)
+- uid: VisualCard.Parsers.VcardCommonTools.TryParsePosixDateTime*
+  name: TryParsePosixDateTime
+  href: api/VisualCard.Parsers.VcardCommonTools.html#VisualCard_Parsers_VcardCommonTools_TryParsePosixDateTime_
+  commentId: Overload:VisualCard.Parsers.VcardCommonTools.TryParsePosixDateTime
+  isSpec: "True"
+  fullName: VisualCard.Parsers.VcardCommonTools.TryParsePosixDateTime
+  nameWithType: VcardCommonTools.TryParsePosixDateTime
+- uid: VisualCard.Parsers.VcardCommonTools.TryParsePosixTime(System.String,System.DateTimeOffset@)
+  name: TryParsePosixTime(string, out DateTimeOffset)
+  href: api/VisualCard.Parsers.VcardCommonTools.html#VisualCard_Parsers_VcardCommonTools_TryParsePosixTime_System_String_System_DateTimeOffset__
+  commentId: M:VisualCard.Parsers.VcardCommonTools.TryParsePosixTime(System.String,System.DateTimeOffset@)
+  name.vb: TryParsePosixTime(String, DateTimeOffset)
+  fullName: VisualCard.Parsers.VcardCommonTools.TryParsePosixTime(string, out System.DateTimeOffset)
+  fullName.vb: VisualCard.Parsers.VcardCommonTools.TryParsePosixTime(String, System.DateTimeOffset)
+  nameWithType: VcardCommonTools.TryParsePosixTime(string, out DateTimeOffset)
+  nameWithType.vb: VcardCommonTools.TryParsePosixTime(String, DateTimeOffset)
+- uid: VisualCard.Parsers.VcardCommonTools.TryParsePosixTime*
+  name: TryParsePosixTime
+  href: api/VisualCard.Parsers.VcardCommonTools.html#VisualCard_Parsers_VcardCommonTools_TryParsePosixTime_
+  commentId: Overload:VisualCard.Parsers.VcardCommonTools.TryParsePosixTime
+  isSpec: "True"
+  fullName: VisualCard.Parsers.VcardCommonTools.TryParsePosixTime
+  nameWithType: VcardCommonTools.TryParsePosixTime
+- uid: VisualCard.Parsers.VcardCommonTools.TryParsePosixTimestamp(System.String,System.DateTimeOffset@)
+  name: TryParsePosixTimestamp(string, out DateTimeOffset)
+  href: api/VisualCard.Parsers.VcardCommonTools.html#VisualCard_Parsers_VcardCommonTools_TryParsePosixTimestamp_System_String_System_DateTimeOffset__
+  commentId: M:VisualCard.Parsers.VcardCommonTools.TryParsePosixTimestamp(System.String,System.DateTimeOffset@)
+  name.vb: TryParsePosixTimestamp(String, DateTimeOffset)
+  fullName: VisualCard.Parsers.VcardCommonTools.TryParsePosixTimestamp(string, out System.DateTimeOffset)
+  fullName.vb: VisualCard.Parsers.VcardCommonTools.TryParsePosixTimestamp(String, System.DateTimeOffset)
+  nameWithType: VcardCommonTools.TryParsePosixTimestamp(string, out DateTimeOffset)
+  nameWithType.vb: VcardCommonTools.TryParsePosixTimestamp(String, DateTimeOffset)
+- uid: VisualCard.Parsers.VcardCommonTools.TryParsePosixTimestamp*
+  name: TryParsePosixTimestamp
+  href: api/VisualCard.Parsers.VcardCommonTools.html#VisualCard_Parsers_VcardCommonTools_TryParsePosixTimestamp_
+  commentId: Overload:VisualCard.Parsers.VcardCommonTools.TryParsePosixTimestamp
+  isSpec: "True"
+  fullName: VisualCard.Parsers.VcardCommonTools.TryParsePosixTimestamp
+  nameWithType: VcardCommonTools.TryParsePosixTimestamp
 - uid: VisualCard.Parts
   name: VisualCard.Parts
   href: api/VisualCard.Parts.html
