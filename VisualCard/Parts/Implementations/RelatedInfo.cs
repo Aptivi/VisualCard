@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace VisualCard.Parts.Implementations
 {
@@ -43,13 +44,16 @@ namespace VisualCard.Parts.Implementations
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
-            // Try to parse the source to ensure that it conforms the IETF RFC 1738: Uniform Resource Locators
-            if (!Uri.TryCreate(value, UriKind.Absolute, out Uri uri))
-                throw new InvalidDataException($"source {value} is invalid");
-            value = uri.ToString();
-
             // Populate the fields
-            RelatedInfo _source = new(altId, finalArgs, elementTypes, valueType, group, value);
+            string _relationship = Regex.Unescape(value);
+            if (valueType.Equals("uri", StringComparison.OrdinalIgnoreCase))
+            {
+                // Try to parse the source to ensure that it conforms the IETF RFC 1738: Uniform Resource Locators
+                if (!Uri.TryCreate(_relationship, UriKind.Absolute, out Uri uri))
+                    throw new InvalidDataException($"source {_relationship} is invalid");
+                _relationship = uri.ToString();
+            }
+            RelatedInfo _source = new(altId, finalArgs, elementTypes, valueType, group, _relationship);
             return _source;
         }
 

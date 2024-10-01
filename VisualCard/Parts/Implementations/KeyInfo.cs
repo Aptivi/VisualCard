@@ -60,9 +60,12 @@ namespace VisualCard.Parts.Implementations
             if (vCard4)
             {
                 // We're on a vCard 4.0 contact that contains this information
-                if (!Uri.TryCreate(value, UriKind.Absolute, out Uri uri))
-                    throw new InvalidDataException($"URL {value} is invalid");
-                value = uri.ToString();
+                if (valueType.Equals("uri", StringComparison.OrdinalIgnoreCase))
+                {
+                    if (!Uri.TryCreate(value, UriKind.Absolute, out Uri uri))
+                        throw new InvalidDataException($"URL {value} is invalid");
+                    value = uri.ToString();
+                }
             }
             else
             {

@@ -20,6 +20,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Text.RegularExpressions;
 
 namespace VisualCard.Parts.Implementations
@@ -45,6 +46,13 @@ namespace VisualCard.Parts.Implementations
         {
             // Populate the fields
             string _telephoneNumber = Regex.Unescape(value);
+            if (valueType.Equals("uri", StringComparison.OrdinalIgnoreCase))
+            {
+                // Try to parse the source to ensure that it conforms the IETF RFC 1738: Uniform Resource Locators
+                if (!Uri.TryCreate(_telephoneNumber, UriKind.Absolute, out Uri uri))
+                    throw new InvalidDataException($"source {_telephoneNumber} is invalid");
+                _telephoneNumber = uri.ToString();
+            }
             TelephoneInfo _telephone = new(altId, finalArgs, elementTypes, valueType, group, _telephoneNumber);
             return _telephone;
         }
