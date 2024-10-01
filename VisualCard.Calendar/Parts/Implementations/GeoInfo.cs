@@ -42,12 +42,12 @@ namespace VisualCard.Calendar.Parts.Implementations
             new GeoInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, calendarVersion);
 
         internal override string ToStringVcalendarInternal(Version calendarVersion) =>
-            $"{Latitude}{(calendarVersion.Major == 1 ? ';' : ',')}{Longitude}";
+            $"{Latitude}{(calendarVersion.Major == 1 ? ',' : ';')}{Longitude}";
 
         internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, string[] finalArgs, string[] elementTypes, string valueType, Version calendarVersion)
         {
             // Get the value
-            string[] _geoSplit = value.Split(calendarVersion.Major == 1 ? ';' : ',');
+            string[] _geoSplit = value.Split(calendarVersion.Major == 1 ? ',' : ';');
             if (_geoSplit.Length != 2)
                 throw new ArgumentException($"When splitting geography, the split value is {_geoSplit.Length} instead of 2.");
             if (!double.TryParse(_geoSplit[0], out double lat))

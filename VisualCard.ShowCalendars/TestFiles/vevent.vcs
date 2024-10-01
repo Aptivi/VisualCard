@@ -16,5 +16,6 @@ DESCRIPTION:Networld+Interop Conference
  Atlanta\, Georgia
 POPULAR:True
 X-TRENDING:True
+GEO:37.24;-17.87
 END:VEVENT
 END:VCALENDAR

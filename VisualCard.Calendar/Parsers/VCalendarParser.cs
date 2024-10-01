@@ -169,7 +169,7 @@ namespace VisualCard.Calendar.Parsers
                     // Handle the part type
                     Type calendarType = subPart is not null ? subPart.GetType() : calendar.GetType();
                     string valueType = VcardCommonTools.GetFirstValue(splitArgs, defaultValueType, VCalendarConstants._valueArgumentSpecifier);
-                    string finalValue = VcardParserTools.ProcessStringValue(value, valueType);
+                    string finalValue = VcardParserTools.ProcessStringValue(value, valueType, calendarVersion.Major == 1 ? ';' : ',');
                     switch (type)
                     {
                         case PartType.Strings:

@@ -9,6 +9,7 @@ DTEND:19960401T083000Z
 SUMMARY:Steve's Proposal Review
 DESCRIPTION:Steve and John to review newest proposal material
 CLASS:PRIVATE
+GEO:37.24,-17.87
 END:VEVENT
 BEGIN:VTODO
 SUMMARY:John to pay for lunch
