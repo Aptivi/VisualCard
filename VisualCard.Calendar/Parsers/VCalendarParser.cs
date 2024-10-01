@@ -142,7 +142,8 @@ namespace VisualCard.Calendar.Parsers
                     // Get the part type
                     bool xNonstandard = prefix.StartsWith(VCalendarConstants._xSpecifier);
                     bool specifierRequired = CalendarVersion.Major >= 3;
-                    var (type, enumeration, classType, fromString, defaultType, defaultValue, defaultValueType, extraAllowedTypes) = VCalendarParserTools.GetPartType(xNonstandard ? VCalendarConstants._xSpecifier : prefix);
+                    Type calendarType = subPart is not null ? subPart.GetType() : calendar.GetType();
+                    var (type, enumeration, classType, fromString, defaultType, defaultValue, defaultValueType, extraAllowedTypes, allowedValues) = VCalendarParserTools.GetPartType(xNonstandard ? VCalendarConstants._xSpecifier : prefix, VCalendarParserTools.GetObjectTypeFromType(calendarType), CalendarVersion);
 
                     // Handle arguments
                     if (isWithType)
@@ -166,10 +167,24 @@ namespace VisualCard.Calendar.Parsers
                             throw new InvalidDataException($"Part info type {classType?.Name ?? "<null>"} doesn't support property type {elementTypeUpper} because the following types are supported: [{string.Join(", ", extraAllowedTypes)}]");
                     }
 
-                    // Handle the part type
-                    Type calendarType = subPart is not null ? subPart.GetType() : calendar.GetType();
+                    // Handle the part type, and extract the value
                     string valueType = VcardCommonTools.GetFirstValue(splitArgs, defaultValueType, VCalendarConstants._valueArgumentSpecifier);
                     string finalValue = VcardParserTools.ProcessStringValue(value, valueType, calendarVersion.Major == 1 ? ';' : ',');
+
+                    // Check for allowed values
+                    if (allowedValues.Length != 0)
+                    {
+                        bool found = false;
+                        foreach (string allowedValue in allowedValues)
+                        {
+                            if (finalValue == allowedValue)
+                                found = true;
+                        }
+                        if (!found)
+                            throw new InvalidDataException($"Value {finalValue} not in the list of allowed values [{string.Join(", ", allowedValues)}]");
+                    }
+
+                    // Process the value
                     switch (type)
                     {
                         case PartType.Strings:
@@ -324,7 +339,7 @@ namespace VisualCard.Calendar.Parsers
             where TComponent : Parts.Calendar
         {
             // Requirement checks
-            var (type, enumeration, enumType, _, _, _, _, _) = VCalendarParserTools.GetPartType(expectedFieldName);
+            var (type, enumeration, enumType, _, _, _, _, _, _) = VCalendarParserTools.GetPartType(expectedFieldName, VCalendarParserTools.GetObjectTypeFromComponent(component), CalendarVersion);
             bool exists = false;
             switch (type)
             {

@@ -129,7 +129,7 @@ namespace VisualCard.Calendar.Parts
             => !a.Equals(b);
 
         internal new void AddPartToArray(CalendarPartsArrayEnum key, BaseCalendarPartInfo value) =>
-            AddPartToArray(key, value, CalendarVersion, partsArray);
+            AddPartToArray(key, value, CalendarVersion, partsArray, VCalendarConstants._objectVStandardSpecifier);
 
         internal new void SetString(CalendarStringsEnum key, string value) =>
             SetString(key, value, strings);

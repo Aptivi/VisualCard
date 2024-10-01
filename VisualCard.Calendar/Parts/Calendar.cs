@@ -305,7 +305,7 @@ namespace VisualCard.Calendar.Parts
 
                 // Get the prefix
                 string prefix = VCalendarParserTools.GetPrefixFromPartsArrayEnum(partsArrayEnum);
-                var type = VCalendarParserTools.GetPartType(prefix);
+                var type = VCalendarParserTools.GetPartType(prefix, objectType, version);
                 string defaultType = type.defaultType;
                 string defaultValueType = type.defaultValueType;
 
@@ -438,16 +438,16 @@ namespace VisualCard.Calendar.Parts
             => !a.Equals(b);
 
         internal void AddPartToArray(CalendarPartsArrayEnum key, BaseCalendarPartInfo value) =>
-            AddPartToArray(key, value, version, partsArray);
+            AddPartToArray(key, value, version, partsArray, VCalendarConstants._objectVCalendarSpecifier);
 
-        internal void AddPartToArray(CalendarPartsArrayEnum key, BaseCalendarPartInfo value, Version version, Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray)
+        internal void AddPartToArray(CalendarPartsArrayEnum key, BaseCalendarPartInfo value, Version version, Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray, string objectType)
         {
             if (value is null)
                 return;
 
             // Get the appropriate type and check it
             string prefix = VCalendarParserTools.GetPrefixFromPartsArrayEnum(key);
-            var enumType = VCalendarParserTools.GetPartType(prefix).enumType;
+            var enumType = VCalendarParserTools.GetPartType(prefix, objectType, version).enumType;
             if (value.GetType() != enumType)
                 return;
 

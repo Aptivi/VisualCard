@@ -118,7 +118,7 @@ namespace VisualCard.Parsers
                     // Get the part type
                     bool xNonstandard = prefix.StartsWith(VcardConstants._xSpecifier);
                     bool specifierRequired = CardVersion.Major >= 3;
-                    var (type, enumeration, classType, fromString, defaultType, defaultValue, defaultValueType, extraAllowedTypes) = VcardParserTools.GetPartType(xNonstandard ? VcardConstants._xSpecifier : prefix);
+                    var (type, enumeration, classType, fromString, defaultType, defaultValue, defaultValueType, extraAllowedTypes, allowedValues) = VcardParserTools.GetPartType(xNonstandard ? VcardConstants._xSpecifier : prefix);
                     
                     // Handle arguments
                     if (isWithType)
@@ -179,6 +179,21 @@ namespace VisualCard.Parsers
                     // Handle the part type
                     string valueType = VcardCommonTools.GetFirstValue(splitArgs, defaultValueType, VcardConstants._valueArgumentSpecifier);
                     string finalValue = VcardParserTools.ProcessStringValue(value, valueType);
+
+                    // Check for allowed values
+                    if (allowedValues.Length != 0)
+                    {
+                        bool found = false;
+                        foreach (string allowedValue in allowedValues)
+                        {
+                            if (finalValue == allowedValue)
+                                found = true;
+                        }
+                        if (!found)
+                            throw new InvalidDataException($"Value {finalValue} not in the list of allowed values [{string.Join(", ", allowedValues)}]");
+                    }
+
+                    // Process the value
                     switch (type)
                     {
                         case PartType.Strings:
@@ -260,7 +275,7 @@ namespace VisualCard.Parsers
             // Requirement checks
             foreach (string expectedFieldName in expectedFields)
             {
-                var (type, enumeration, enumType, _, _, _, _, _) = VcardParserTools.GetPartType(expectedFieldName);
+                var (type, enumeration, enumType, _, _, _, _, _, _) = VcardParserTools.GetPartType(expectedFieldName);
                 switch (type)
                 {
                     case PartType.Strings:
