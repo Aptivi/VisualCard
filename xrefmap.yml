@@ -1796,6 +1796,12 @@ references:
   commentId: F:VisualCard.Calendar.Parts.Enums.CalendarIntegersEnum.Priority
   fullName: VisualCard.Calendar.Parts.Enums.CalendarIntegersEnum.Priority
   nameWithType: CalendarIntegersEnum.Priority
+- uid: VisualCard.Calendar.Parts.Enums.CalendarIntegersEnum.RecurrTimes
+  name: RecurrTimes
+  href: api/VisualCard.Calendar.Parts.Enums.CalendarIntegersEnum.html#VisualCard_Calendar_Parts_Enums_CalendarIntegersEnum_RecurrTimes
+  commentId: F:VisualCard.Calendar.Parts.Enums.CalendarIntegersEnum.RecurrTimes
+  fullName: VisualCard.Calendar.Parts.Enums.CalendarIntegersEnum.RecurrTimes
+  nameWithType: CalendarIntegersEnum.RecurrTimes
 - uid: VisualCard.Calendar.Parts.Enums.CalendarIntegersEnum.Repeat
   name: Repeat
   href: api/VisualCard.Calendar.Parts.Enums.CalendarIntegersEnum.html#VisualCard_Calendar_Parts_Enums_CalendarIntegersEnum_Repeat
@@ -1844,6 +1850,12 @@ references:
   commentId: F:VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.Comment
   fullName: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.Comment
   nameWithType: CalendarPartsArrayEnum.Comment
+- uid: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.Contact
+  name: Contact
+  href: api/VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.html#VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_Contact
+  commentId: F:VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.Contact
+  fullName: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.Contact
+  nameWithType: CalendarPartsArrayEnum.Contact
 - uid: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.DateCompleted
   name: DateCompleted
   href: api/VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.html#VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_DateCompleted
@@ -2078,6 +2090,12 @@ references:
   commentId: F:VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.Summary
   fullName: VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.Summary
   nameWithType: CalendarStringsEnum.Summary
+- uid: VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.TimeZone
+  name: TimeZone
+  href: api/VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.html#VisualCard_Calendar_Parts_Enums_CalendarStringsEnum_TimeZone
+  commentId: F:VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.TimeZone
+  fullName: VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.TimeZone
+  nameWithType: CalendarStringsEnum.TimeZone
 - uid: VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.TimeZoneId
   name: TimeZoneId
   href: api/VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.html#VisualCard_Calendar_Parts_Enums_CalendarStringsEnum_TimeZoneId
@@ -2108,6 +2126,12 @@ references:
   commentId: F:VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.Uid
   fullName: VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.Uid
   nameWithType: CalendarStringsEnum.Uid
+- uid: VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.Url
+  name: Url
+  href: api/VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.html#VisualCard_Calendar_Parts_Enums_CalendarStringsEnum_Url
+  commentId: F:VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.Url
+  fullName: VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.Url
+  nameWithType: CalendarStringsEnum.Url
 - uid: VisualCard.Calendar.Parts.Implementations
   name: VisualCard.Calendar.Parts.Implementations
   href: api/VisualCard.Calendar.Parts.Implementations.html
@@ -2447,6 +2471,104 @@ references:
   fullName.vb: VisualCard.Calendar.Parts.Implementations.CommentInfo.<>
   nameWithType: CommentInfo.operator !=
   nameWithType.vb: CommentInfo.<>
+- uid: VisualCard.Calendar.Parts.Implementations.ContactInfo
+  name: ContactInfo
+  href: api/VisualCard.Calendar.Parts.Implementations.ContactInfo.html
+  commentId: T:VisualCard.Calendar.Parts.Implementations.ContactInfo
+  fullName: VisualCard.Calendar.Parts.Implementations.ContactInfo
+  nameWithType: ContactInfo
+- uid: VisualCard.Calendar.Parts.Implementations.ContactInfo.Contact
+  name: Contact
+  href: api/VisualCard.Calendar.Parts.Implementations.ContactInfo.html#VisualCard_Calendar_Parts_Implementations_ContactInfo_Contact
+  commentId: P:VisualCard.Calendar.Parts.Implementations.ContactInfo.Contact
+  fullName: VisualCard.Calendar.Parts.Implementations.ContactInfo.Contact
+  nameWithType: ContactInfo.Contact
+- uid: VisualCard.Calendar.Parts.Implementations.ContactInfo.Contact*
+  name: Contact
+  href: api/VisualCard.Calendar.Parts.Implementations.ContactInfo.html#VisualCard_Calendar_Parts_Implementations_ContactInfo_Contact_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.ContactInfo.Contact
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.ContactInfo.Contact
+  nameWithType: ContactInfo.Contact
+- uid: VisualCard.Calendar.Parts.Implementations.ContactInfo.Equals(System.Object)
+  name: Equals(object)
+  href: api/VisualCard.Calendar.Parts.Implementations.ContactInfo.html#VisualCard_Calendar_Parts_Implementations_ContactInfo_Equals_System_Object_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.ContactInfo.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Calendar.Parts.Implementations.ContactInfo.Equals(object)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.ContactInfo.Equals(Object)
+  nameWithType: ContactInfo.Equals(object)
+  nameWithType.vb: ContactInfo.Equals(Object)
+- uid: VisualCard.Calendar.Parts.Implementations.ContactInfo.Equals(VisualCard.Calendar.Parts.Implementations.ContactInfo)
+  name: Equals(ContactInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.ContactInfo.html#VisualCard_Calendar_Parts_Implementations_ContactInfo_Equals_VisualCard_Calendar_Parts_Implementations_ContactInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.ContactInfo.Equals(VisualCard.Calendar.Parts.Implementations.ContactInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.ContactInfo.Equals(VisualCard.Calendar.Parts.Implementations.ContactInfo)
+  nameWithType: ContactInfo.Equals(ContactInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.ContactInfo.Equals(VisualCard.Calendar.Parts.Implementations.ContactInfo,VisualCard.Calendar.Parts.Implementations.ContactInfo)
+  name: Equals(ContactInfo, ContactInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.ContactInfo.html#VisualCard_Calendar_Parts_Implementations_ContactInfo_Equals_VisualCard_Calendar_Parts_Implementations_ContactInfo_VisualCard_Calendar_Parts_Implementations_ContactInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.ContactInfo.Equals(VisualCard.Calendar.Parts.Implementations.ContactInfo,VisualCard.Calendar.Parts.Implementations.ContactInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.ContactInfo.Equals(VisualCard.Calendar.Parts.Implementations.ContactInfo, VisualCard.Calendar.Parts.Implementations.ContactInfo)
+  nameWithType: ContactInfo.Equals(ContactInfo, ContactInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.ContactInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Calendar.Parts.Implementations.ContactInfo.html#VisualCard_Calendar_Parts_Implementations_ContactInfo_Equals_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.ContactInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.ContactInfo.Equals
+  nameWithType: ContactInfo.Equals
+- uid: VisualCard.Calendar.Parts.Implementations.ContactInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Calendar.Parts.Implementations.ContactInfo.html#VisualCard_Calendar_Parts_Implementations_ContactInfo_GetHashCode
+  commentId: M:VisualCard.Calendar.Parts.Implementations.ContactInfo.GetHashCode
+  fullName: VisualCard.Calendar.Parts.Implementations.ContactInfo.GetHashCode()
+  nameWithType: ContactInfo.GetHashCode()
+- uid: VisualCard.Calendar.Parts.Implementations.ContactInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Calendar.Parts.Implementations.ContactInfo.html#VisualCard_Calendar_Parts_Implementations_ContactInfo_GetHashCode_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.ContactInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.ContactInfo.GetHashCode
+  nameWithType: ContactInfo.GetHashCode
+- uid: VisualCard.Calendar.Parts.Implementations.ContactInfo.op_Equality(VisualCard.Calendar.Parts.Implementations.ContactInfo,VisualCard.Calendar.Parts.Implementations.ContactInfo)
+  name: operator ==(ContactInfo, ContactInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.ContactInfo.html#VisualCard_Calendar_Parts_Implementations_ContactInfo_op_Equality_VisualCard_Calendar_Parts_Implementations_ContactInfo_VisualCard_Calendar_Parts_Implementations_ContactInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.ContactInfo.op_Equality(VisualCard.Calendar.Parts.Implementations.ContactInfo,VisualCard.Calendar.Parts.Implementations.ContactInfo)
+  name.vb: =(ContactInfo, ContactInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.ContactInfo.operator ==(VisualCard.Calendar.Parts.Implementations.ContactInfo, VisualCard.Calendar.Parts.Implementations.ContactInfo)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.ContactInfo.=(VisualCard.Calendar.Parts.Implementations.ContactInfo, VisualCard.Calendar.Parts.Implementations.ContactInfo)
+  nameWithType: ContactInfo.operator ==(ContactInfo, ContactInfo)
+  nameWithType.vb: ContactInfo.=(ContactInfo, ContactInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.ContactInfo.op_Equality*
+  name: operator ==
+  href: api/VisualCard.Calendar.Parts.Implementations.ContactInfo.html#VisualCard_Calendar_Parts_Implementations_ContactInfo_op_Equality_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.ContactInfo.op_Equality
+  isSpec: "True"
+  name.vb: =
+  fullName: VisualCard.Calendar.Parts.Implementations.ContactInfo.operator ==
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.ContactInfo.=
+  nameWithType: ContactInfo.operator ==
+  nameWithType.vb: ContactInfo.=
+- uid: VisualCard.Calendar.Parts.Implementations.ContactInfo.op_Inequality(VisualCard.Calendar.Parts.Implementations.ContactInfo,VisualCard.Calendar.Parts.Implementations.ContactInfo)
+  name: operator !=(ContactInfo, ContactInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.ContactInfo.html#VisualCard_Calendar_Parts_Implementations_ContactInfo_op_Inequality_VisualCard_Calendar_Parts_Implementations_ContactInfo_VisualCard_Calendar_Parts_Implementations_ContactInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.ContactInfo.op_Inequality(VisualCard.Calendar.Parts.Implementations.ContactInfo,VisualCard.Calendar.Parts.Implementations.ContactInfo)
+  name.vb: <>(ContactInfo, ContactInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.ContactInfo.operator !=(VisualCard.Calendar.Parts.Implementations.ContactInfo, VisualCard.Calendar.Parts.Implementations.ContactInfo)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.ContactInfo.<>(VisualCard.Calendar.Parts.Implementations.ContactInfo, VisualCard.Calendar.Parts.Implementations.ContactInfo)
+  nameWithType: ContactInfo.operator !=(ContactInfo, ContactInfo)
+  nameWithType.vb: ContactInfo.<>(ContactInfo, ContactInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.ContactInfo.op_Inequality*
+  name: operator !=
+  href: api/VisualCard.Calendar.Parts.Implementations.ContactInfo.html#VisualCard_Calendar_Parts_Implementations_ContactInfo_op_Inequality_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.ContactInfo.op_Inequality
+  isSpec: "True"
+  name.vb: <>
+  fullName: VisualCard.Calendar.Parts.Implementations.ContactInfo.operator !=
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.ContactInfo.<>
+  nameWithType: ContactInfo.operator !=
+  nameWithType.vb: ContactInfo.<>
 - uid: VisualCard.Calendar.Parts.Implementations.DateCreatedInfo
   name: DateCreatedInfo
   href: api/VisualCard.Calendar.Parts.Implementations.DateCreatedInfo.html
