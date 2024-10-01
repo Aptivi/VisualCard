@@ -101,6 +101,7 @@ namespace VisualCard.Calendar.Parsers
                 CalendarPartsArrayEnum.RelatedTo => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal)),
                 CalendarPartsArrayEnum.LastModified => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal), typeof(CalendarTimeZone)),
                 CalendarPartsArrayEnum.FreeBusy => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(CalendarFreeBusy)),
+                CalendarPartsArrayEnum.RequestStatus => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal), typeof(CalendarFreeBusy)),
 
                 // Extensions are allowed
                 _ => true,
@@ -172,6 +173,7 @@ namespace VisualCard.Calendar.Parsers
                 CalendarPartsArrayEnum.RelatedTo => VCalendarConstants._relationshipSpecifier,
                 CalendarPartsArrayEnum.LastModified => VCalendarConstants._lastModSpecifier,
                 CalendarPartsArrayEnum.FreeBusy => VCalendarConstants._freeBusySpecifier,
+                CalendarPartsArrayEnum.RequestStatus => VCalendarConstants._requestStatusSpecifier,
 
                 // Extensions are allowed
                 CalendarPartsArrayEnum.NonstandardNames => VCalendarConstants._xSpecifier,
@@ -230,6 +232,8 @@ namespace VisualCard.Calendar.Parsers
                 return (CalendarPartsArrayEnum.LastModified, PartCardinality.MayBeOne);
             else if (partsArrayType == typeof(CalendarFreeBusyInfo))
                 return (CalendarPartsArrayEnum.FreeBusy, PartCardinality.Any);
+            else if (partsArrayType == typeof(RequestStatusInfo))
+                return (CalendarPartsArrayEnum.RequestStatus, PartCardinality.Any);
 
             // Extensions are allowed
             else if (partsArrayType == typeof(XNameInfo))
@@ -268,6 +272,7 @@ namespace VisualCard.Calendar.Parsers
                 VCalendarConstants._relationshipSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.RelatedTo, typeof(RelatedToInfo), RelatedToInfo.FromStringVcalendarStatic, "", "", "text", []),
                 VCalendarConstants._lastModSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.LastModified, typeof(LastModifiedInfo), LastModifiedInfo.FromStringVcalendarStatic, "", "", "date-time", []),
                 VCalendarConstants._freeBusySpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.FreeBusy, typeof(CalendarFreeBusyInfo), CalendarFreeBusyInfo.FromStringVcalendarStatic, "", "", "period", []),
+                VCalendarConstants._requestStatusSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.RequestStatus, typeof(RequestStatusInfo), RequestStatusInfo.FromStringVcalendarStatic, "", "", "text", []),
                 VCalendarConstants._productIdSpecifier => (PartType.Strings, CalendarStringsEnum.ProductId, null, null, "", "", "text", []),
                 VCalendarConstants._calScaleSpecifier => (PartType.Strings, CalendarStringsEnum.CalScale, null, null, "", "", "text", []),
                 VCalendarConstants._methodSpecifier => (PartType.Strings, CalendarStringsEnum.Method, null, null, "", "", "text", []),

@@ -17,5 +17,8 @@ DESCRIPTION:Networld+Interop Conference
 POPULAR:True
 X-TRENDING:True
 GEO:37.24;-17.87
+REQUEST-STATUS:4.1;Event conflict.  Date-time is busy.
+REQUEST-STATUS:3.7;Invalid calendar user;ORGANIZER:
+ mailto:jsmith@example.com
 END:VEVENT
 END:VCALENDAR

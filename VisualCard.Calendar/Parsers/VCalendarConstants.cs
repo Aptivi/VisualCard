@@ -107,5 +107,6 @@ namespace VisualCard.Calendar.Parsers
         internal const string _recurIdSpecifier = "RECURRENCE-ID";
         internal const string _repeatSpecifier = "REPEAT";
         internal const string _durationSpecifier = "DURATION";
+        internal const string _requestStatusSpecifier = "REQUEST-STATUS";
     }
 }
