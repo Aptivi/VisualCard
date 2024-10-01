@@ -46,7 +46,7 @@ namespace VisualCard.Parts.Implementations
             string revValue = value.Substring(VcardConstants._revSpecifier.Length + 1);
 
             // Populate the fields
-            DateTimeOffset rev = VcardCommonTools.ParsePosixDate(revValue);
+            DateTimeOffset rev = VcardCommonTools.ParsePosixDateTime(revValue);
 
             // Add the fetched information
             RevisionInfo _time = new(altId, finalArgs, elementTypes, valueType, group, rev);

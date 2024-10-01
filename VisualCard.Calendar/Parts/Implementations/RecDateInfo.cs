@@ -67,7 +67,7 @@ namespace VisualCard.Calendar.Parts.Implementations
                 var recDateStrings = Regex.Unescape(value).Split(';');
                 recDates = recDateStrings.Select((date) =>
                 {
-                    var parsedDate = VcardCommonTools.ParsePosixDate(date);
+                    var parsedDate = VcardCommonTools.ParsePosixDateTime(date);
                     return new TimePeriod(parsedDate, parsedDate);
                 }).ToArray();
             }
@@ -82,7 +82,7 @@ namespace VisualCard.Calendar.Parts.Implementations
                 catch
                 {
                     // Not a period. Continue using normal date and time
-                    var parsedDate = VcardCommonTools.ParsePosixDate(value);
+                    var parsedDate = VcardCommonTools.ParsePosixDateTime(value);
                     recDates = [new TimePeriod(parsedDate, parsedDate)];
                 }
             }

@@ -89,7 +89,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
             string note = split[4];
 
             // Process the run time and the repeat times
-            DateTimeOffset runTime = VcardCommonTools.ParsePosixDate(unprocessedRunTime);
+            DateTimeOffset runTime = VcardCommonTools.ParsePosixDateTime(unprocessedRunTime);
             int repeat = 0;
             if (!string.IsNullOrWhiteSpace(unprocessedRepeat) && !int.TryParse(unprocessedRepeat, out repeat))
                 throw new ArgumentException("Invalid repeat times");

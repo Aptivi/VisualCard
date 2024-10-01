@@ -89,8 +89,8 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
 
             // Process the UTC offset and start/end dates
             TimeSpan utcOffset = VcardCommonTools.ParseUtcOffset(unprocessedUtc);
-            DateTimeOffset startDate = VcardCommonTools.ParsePosixDate(unprocessedStart);
-            DateTimeOffset endDate = VcardCommonTools.ParsePosixDate(unprocessedEnd);
+            DateTimeOffset startDate = VcardCommonTools.ParsePosixDateTime(unprocessedStart);
+            DateTimeOffset endDate = VcardCommonTools.ParsePosixDateTime(unprocessedEnd);
 
             // Populate the fields
             DaylightInfo _geo = new(finalArgs, elementTypes, valueType, true, utcOffset, startDate, endDate, standard, daylight);

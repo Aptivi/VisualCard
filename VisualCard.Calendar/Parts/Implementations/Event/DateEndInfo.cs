@@ -43,7 +43,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
         internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Populate the fields
-            DateTimeOffset end = VcardCommonTools.ParsePosixDate(value);
+            DateTimeOffset end = VcardCommonTools.ParsePosixDateTime(value);
 
             // Add the fetched information
             DateEndInfo _time = new(finalArgs, elementTypes, valueType, end);

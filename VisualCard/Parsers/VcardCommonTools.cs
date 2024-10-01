@@ -35,6 +35,11 @@ namespace VisualCard.Parsers
         [
             @"yyyyMMdd",
             @"yyyy-MM-dd",
+            @"yyyyMM",
+            @"yyyy-MM",
+            @"yyyy",
+            @"--MMdd",
+            @"----dd",
             @"yyyyMMdd\THHmmss\Z",
             @"yyyyMMdd\THHmmss",
             @"yyyy-MM-dd\THH\:mm\:ss\Z",
@@ -45,6 +50,11 @@ namespace VisualCard.Parsers
         [
             @"yyyyMMdd",
             @"yyyy-MM-dd",
+            @"yyyyMM",
+            @"yyyy-MM",
+            @"yyyy",
+            @"--MMdd",
+            @"----dd",
         ];
 
         private static readonly string[] supportedTimeFormats =
@@ -54,40 +64,175 @@ namespace VisualCard.Parsers
             @"hh\:mm",
             @"hhmmss",
             @"hh\:mm\:ss",
+            @"-mmss",
+            @"--ss",
+            @"\Thh",
+            @"\Thhmm",
+            @"\Thh\:mm",
+            @"\Thhmmss",
+            @"\Thh\:mm\:ss",
+            @"\T-mmss",
+            @"\T--ss",
+            @"hh\Z",
+            @"hhmm\Z",
+            @"hh\:mm\Z",
+            @"hhmmss\Z",
+            @"hh\:mm\:ss\Z",
+            @"-mmss\Z",
+            @"--ss\Z",
+            @"\Thh\Z",
+            @"\Thhmm\Z",
+            @"\Thh\:mm\Z",
+            @"\Thhmmss\Z",
+            @"\Thh\:mm\:ss\Z",
+            @"\T-mmss\Z",
+            @"\T--ss\Z",
+            @"hhzz",
+            @"hhmmzz",
+            @"hh\:mmzz",
+            @"hhmmsszz",
+            @"hh\:mm\:sszz",
+            @"-mmsszz",
+            @"--sszz",
+            @"\Thhzz",
+            @"\Thhmmzz",
+            @"\Thh\:mmzz",
+            @"\Thhmmsszz",
+            @"\Thh\:mm\:sszz",
+            @"\T-mmsszz",
+            @"\T--sszz",
+            @"hhzzz",
+            @"hhmmzzz",
+            @"hh\:mmzzz",
+            @"hhmmsszzz",
+            @"hh\:mm\:sszzz",
+            @"-mmsszzz",
+            @"--sszzz",
+            @"\Thhzzz",
+            @"\Thhmmzzz",
+            @"\Thh\:mmzzz",
+            @"\Thhmmsszzz",
+            @"\Thh\:mm\:sszzz",
+            @"\T-mmsszzz",
+            @"\T--sszzz",
+        ];
+
+        private static readonly string[] supportedTimestampFormats =
+        [
+            @"yyyyMMdd\THHmmsszz",
+            @"yyyyMMdd\THHmmsszzz",
+            @"yyyyMMdd\THHmmss\Z",
+            @"yyyyMMdd\THHmmss",
+            @"yyyy-MM-dd\THH\:mm\:sszz",
+            @"yyyy-MM-dd\THH\:mm\:sszzz",
+            @"yyyy-MM-dd\THH\:mm\:ss\Z",
+            @"yyyy-MM-dd\THH\:mm\:ss",
         ];
 
         /// <summary>
         /// Parses the POSIX date formatted with the representation according to the vCard and vCalendar specifications
         /// </summary>
         /// <param name="posixDateRepresentation">Date representation in basic or extended format of ISO 8601</param>
-        /// <param name="dateOnly">Whether to accept only date</param>
         /// <returns>An instance of <see cref="DateTimeOffset"/> that matches the representation</returns>
         /// <exception cref="ArgumentException"></exception>
-        public static DateTimeOffset ParsePosixDate(string posixDateRepresentation, bool dateOnly = false)
-        {
-            // Check for sanity
-            if (string.IsNullOrEmpty(posixDateRepresentation))
-                throw new ArgumentException($"Date representation is not provided.");
-
-            // Now, check the representation
-            bool assumeUtc = posixDateRepresentation[posixDateRepresentation.Length - 1] == 'Z';
-            if (DateTimeOffset.TryParseExact(posixDateRepresentation, dateOnly ? supportedDateFormats : supportedDateTimeFormats, CultureInfo.InvariantCulture, assumeUtc ? DateTimeStyles.AssumeUniversal : DateTimeStyles.AssumeLocal, out var date))
-                return date;
-            throw new ArgumentException($"Can't parse date {posixDateRepresentation}");
-        }
+        public static DateTimeOffset ParsePosixDateTime(string posixDateRepresentation) =>
+            ParsePosixRepresentation(posixDateRepresentation, supportedDateTimeFormats);
 
         /// <summary>
         /// Tries to parse the POSIX date formatted with the representation according to the vCard and vCalendar specifications
         /// </summary>
         /// <param name="posixDateRepresentation">Date representation in basic or extended format of ISO 8601</param>
-        /// <param name="dateOnly">Whether to accept only date</param>
         /// <param name="date">[<see langword="out"/>] Date output parsed from the representation</param>
         /// <returns>True if parsed successfully; false otherwise.</returns>
-        public static bool TryParsePosixDate(string posixDateRepresentation, out DateTimeOffset date, bool dateOnly = false)
+        public static bool TryParsePosixDateTime(string posixDateRepresentation, out DateTimeOffset date)
         {
             try
             {
-                date = ParsePosixDate(posixDateRepresentation, dateOnly);
+                date = ParsePosixDateTime(posixDateRepresentation);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        
+        /// <summary>
+        /// Parses the POSIX date formatted with the representation according to the vCard and vCalendar specifications
+        /// </summary>
+        /// <param name="posixDateRepresentation">Date representation in basic or extended format of ISO 8601</param>
+        /// <returns>An instance of <see cref="DateTimeOffset"/> that matches the representation</returns>
+        /// <exception cref="ArgumentException"></exception>
+        public static DateTimeOffset ParsePosixDate(string posixDateRepresentation) =>
+            ParsePosixRepresentation(posixDateRepresentation, supportedDateFormats);
+
+        /// <summary>
+        /// Tries to parse the POSIX date formatted with the representation according to the vCard and vCalendar specifications
+        /// </summary>
+        /// <param name="posixDateRepresentation">Date representation in basic or extended format of ISO 8601</param>
+        /// <param name="date">[<see langword="out"/>] Date output parsed from the representation</param>
+        /// <returns>True if parsed successfully; false otherwise.</returns>
+        public static bool TryParsePosixDate(string posixDateRepresentation, out DateTimeOffset date)
+        {
+            try
+            {
+                date = ParsePosixDate(posixDateRepresentation);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        
+        /// <summary>
+        /// Parses the POSIX date formatted with the representation according to the vCard and vCalendar specifications
+        /// </summary>
+        /// <param name="posixDateRepresentation">Date representation in basic or extended format of ISO 8601</param>
+        /// <returns>An instance of <see cref="DateTimeOffset"/> that matches the representation</returns>
+        /// <exception cref="ArgumentException"></exception>
+        public static DateTimeOffset ParsePosixTime(string posixDateRepresentation) =>
+            ParsePosixRepresentation(posixDateRepresentation, supportedTimeFormats);
+
+        /// <summary>
+        /// Tries to parse the POSIX date formatted with the representation according to the vCard and vCalendar specifications
+        /// </summary>
+        /// <param name="posixDateRepresentation">Date representation in basic or extended format of ISO 8601</param>
+        /// <param name="date">[<see langword="out"/>] Date output parsed from the representation</param>
+        /// <returns>True if parsed successfully; false otherwise.</returns>
+        public static bool TryParsePosixTime(string posixDateRepresentation, out DateTimeOffset date)
+        {
+            try
+            {
+                date = ParsePosixTime(posixDateRepresentation);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Parses the POSIX date formatted with the representation according to the vCard and vCalendar specifications
+        /// </summary>
+        /// <param name="posixDateRepresentation">Date representation in basic or extended format of ISO 8601</param>
+        /// <returns>An instance of <see cref="DateTimeOffset"/> that matches the representation</returns>
+        /// <exception cref="ArgumentException"></exception>
+        public static DateTimeOffset ParsePosixTimestamp(string posixDateRepresentation) =>
+            ParsePosixRepresentation(posixDateRepresentation, supportedTimestampFormats);
+
+        /// <summary>
+        /// Tries to parse the POSIX date formatted with the representation according to the vCard and vCalendar specifications
+        /// </summary>
+        /// <param name="posixDateRepresentation">Date representation in basic or extended format of ISO 8601</param>
+        /// <param name="date">[<see langword="out"/>] Date output parsed from the representation</param>
+        /// <returns>True if parsed successfully; false otherwise.</returns>
+        public static bool TryParsePosixTimestamp(string posixDateRepresentation, out DateTimeOffset date)
+        {
+            try
+            {
+                date = ParsePosixTime(posixDateRepresentation);
                 return true;
             }
             catch
@@ -276,9 +421,9 @@ namespace VisualCard.Parsers
             string endStr = splits[1];
 
             // Now, parse them
-            if (!TryParsePosixDate(startStr, out DateTimeOffset start))
+            if (!TryParsePosixDateTime(startStr, out DateTimeOffset start))
                 throw new ArgumentException($"Invalid start date {startStr}: {period}");
-            if (!TryParsePosixDate(endStr, out DateTimeOffset end))
+            if (!TryParsePosixDateTime(endStr, out DateTimeOffset end))
                 end = GetDurationSpan(endStr, source: start).result;
 
             // Return a new object
@@ -429,6 +574,19 @@ namespace VisualCard.Parsers
             }
             else
                 throw new InvalidOperationException("Not a blob. You should somehow handle it.");
+        }
+
+        internal static DateTimeOffset ParsePosixRepresentation(string posixDateRepresentation, string[] formats)
+        {
+            // Check for sanity
+            if (string.IsNullOrEmpty(posixDateRepresentation))
+                throw new ArgumentException($"Date representation is not provided.");
+
+            // Now, check the representation
+            bool assumeUtc = posixDateRepresentation[posixDateRepresentation.Length - 1] == 'Z';
+            if (DateTimeOffset.TryParseExact(posixDateRepresentation, formats, CultureInfo.InvariantCulture, assumeUtc ? DateTimeStyles.AssumeUniversal : DateTimeStyles.AssumeLocal, out var date))
+                return date;
+            throw new ArgumentException($"Can't parse date {posixDateRepresentation}");
         }
     }
 }

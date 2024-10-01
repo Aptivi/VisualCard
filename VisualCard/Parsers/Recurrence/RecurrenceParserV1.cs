@@ -140,7 +140,7 @@ namespace VisualCard.Parsers.Recurrence
                 }
 
                 // Is this designator an optional enddate?
-                if (VcardCommonTools.TryParsePosixDate(filtered, out DateTimeOffset endDate) && i == designators.Length - 1)
+                if (VcardCommonTools.TryParsePosixDateTime(filtered, out DateTimeOffset endDate) && i == designators.Length - 1)
                 {
                     // Check to see if this rule is the only rule
                     if (rules.Count == 0)

@@ -43,7 +43,7 @@ namespace VisualCard.Parts.Implementations
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate field
-            DateTimeOffset bday = VcardCommonTools.ParsePosixDate(value);
+            DateTimeOffset bday = VcardCommonTools.ParsePosixDateTime(value);
 
             // Add the fetched information
             BirthDateInfo _time = new(altId, finalArgs, elementTypes, valueType, group, bday);

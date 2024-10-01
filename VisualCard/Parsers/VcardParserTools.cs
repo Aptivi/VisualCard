@@ -272,29 +272,28 @@ namespace VisualCard.Parsers
                     break;
                 case "DATE":
                     // Check the date
-                    if (!VcardCommonTools.TryParsePosixDate(finalValue, out _, true))
+                    if (!VcardCommonTools.TryParsePosixDate(finalValue, out _))
                         throw new InvalidDataException($"Date {finalValue} is invalid");
                     break;
                 case "TIME":
                     // Check the time
-                    // TODO: Implement TryParsePosixDate with time only support
-                    if (!VcardCommonTools.TryParsePosixDate(finalValue, out _))
+                    if (!VcardCommonTools.TryParsePosixTime(finalValue, out _))
                         throw new InvalidDataException($"Time {finalValue} is invalid");
                     break;
                 case "DATE-TIME":
                     // Check the date and time
-                    if (!VcardCommonTools.TryParsePosixDate(finalValue, out _))
+                    if (!VcardCommonTools.TryParsePosixDateTime(finalValue, out _))
                         throw new InvalidDataException($"Date and time {finalValue} is invalid");
                     break;
                 case "DATE-AND-OR-TIME":
                     // Check the date and/or time
-                    if (!VcardCommonTools.TryParsePosixDate(finalValue, out _))
+                    if (!VcardCommonTools.TryParsePosixDateTime(finalValue, out _) &&
+                        !VcardCommonTools.TryParsePosixTime(finalValue, out _))
                         throw new InvalidDataException($"Date and/or time {finalValue} is invalid");
                     break;
                 case "TIMESTAMP":
                     // Check the timestamp
-                    // TODO: Implement TryParsePosixDate with timestamp support
-                    if (!VcardCommonTools.TryParsePosixDate(finalValue, out _))
+                    if (!VcardCommonTools.TryParsePosixTimestamp(finalValue, out _))
                         throw new InvalidDataException($"Timestamp {finalValue} is invalid");
                     break;
                 case "BOOLEAN":

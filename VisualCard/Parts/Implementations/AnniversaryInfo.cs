@@ -43,7 +43,7 @@ namespace VisualCard.Parts.Implementations
         internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate the fields
-            DateTimeOffset anniversary = VcardCommonTools.ParsePosixDate(value);
+            DateTimeOffset anniversary = VcardCommonTools.ParsePosixDateTime(value);
 
             // Add the fetched information
             AnniversaryInfo _time = new(-1, [], [], valueType, group, anniversary);
