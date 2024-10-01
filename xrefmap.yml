@@ -1970,6 +1970,12 @@ references:
   commentId: F:VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.RelatedTo
   fullName: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.RelatedTo
   nameWithType: CalendarPartsArrayEnum.RelatedTo
+- uid: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.RequestStatus
+  name: RequestStatus
+  href: api/VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.html#VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_RequestStatus
+  commentId: F:VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.RequestStatus
+  fullName: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.RequestStatus
+  nameWithType: CalendarPartsArrayEnum.RequestStatus
 - uid: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.Resources
   name: Resources
   href: api/VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.html#VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_Resources
@@ -4711,6 +4717,130 @@ references:
   fullName.vb: VisualCard.Calendar.Parts.Implementations.RelatedToInfo.<>
   nameWithType: RelatedToInfo.operator !=
   nameWithType.vb: RelatedToInfo.<>
+- uid: VisualCard.Calendar.Parts.Implementations.RequestStatusInfo
+  name: RequestStatusInfo
+  href: api/VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.html
+  commentId: T:VisualCard.Calendar.Parts.Implementations.RequestStatusInfo
+  fullName: VisualCard.Calendar.Parts.Implementations.RequestStatusInfo
+  nameWithType: RequestStatusInfo
+- uid: VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.Equals(System.Object)
+  name: Equals(object)
+  href: api/VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.html#VisualCard_Calendar_Parts_Implementations_RequestStatusInfo_Equals_System_Object_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.Equals(object)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.Equals(Object)
+  nameWithType: RequestStatusInfo.Equals(object)
+  nameWithType.vb: RequestStatusInfo.Equals(Object)
+- uid: VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.Equals(VisualCard.Calendar.Parts.Implementations.RequestStatusInfo)
+  name: Equals(RequestStatusInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.html#VisualCard_Calendar_Parts_Implementations_RequestStatusInfo_Equals_VisualCard_Calendar_Parts_Implementations_RequestStatusInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.Equals(VisualCard.Calendar.Parts.Implementations.RequestStatusInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.Equals(VisualCard.Calendar.Parts.Implementations.RequestStatusInfo)
+  nameWithType: RequestStatusInfo.Equals(RequestStatusInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.Equals(VisualCard.Calendar.Parts.Implementations.RequestStatusInfo,VisualCard.Calendar.Parts.Implementations.RequestStatusInfo)
+  name: Equals(RequestStatusInfo, RequestStatusInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.html#VisualCard_Calendar_Parts_Implementations_RequestStatusInfo_Equals_VisualCard_Calendar_Parts_Implementations_RequestStatusInfo_VisualCard_Calendar_Parts_Implementations_RequestStatusInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.Equals(VisualCard.Calendar.Parts.Implementations.RequestStatusInfo,VisualCard.Calendar.Parts.Implementations.RequestStatusInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.Equals(VisualCard.Calendar.Parts.Implementations.RequestStatusInfo, VisualCard.Calendar.Parts.Implementations.RequestStatusInfo)
+  nameWithType: RequestStatusInfo.Equals(RequestStatusInfo, RequestStatusInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.html#VisualCard_Calendar_Parts_Implementations_RequestStatusInfo_Equals_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.Equals
+  nameWithType: RequestStatusInfo.Equals
+- uid: VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.html#VisualCard_Calendar_Parts_Implementations_RequestStatusInfo_GetHashCode
+  commentId: M:VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.GetHashCode
+  fullName: VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.GetHashCode()
+  nameWithType: RequestStatusInfo.GetHashCode()
+- uid: VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.html#VisualCard_Calendar_Parts_Implementations_RequestStatusInfo_GetHashCode_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.GetHashCode
+  nameWithType: RequestStatusInfo.GetHashCode
+- uid: VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.RequestStatus
+  name: RequestStatus
+  href: api/VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.html#VisualCard_Calendar_Parts_Implementations_RequestStatusInfo_RequestStatus
+  commentId: P:VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.RequestStatus
+  fullName: VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.RequestStatus
+  nameWithType: RequestStatusInfo.RequestStatus
+- uid: VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.RequestStatus*
+  name: RequestStatus
+  href: api/VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.html#VisualCard_Calendar_Parts_Implementations_RequestStatusInfo_RequestStatus_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.RequestStatus
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.RequestStatus
+  nameWithType: RequestStatusInfo.RequestStatus
+- uid: VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.RequestStatusDesc
+  name: RequestStatusDesc
+  href: api/VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.html#VisualCard_Calendar_Parts_Implementations_RequestStatusInfo_RequestStatusDesc
+  commentId: P:VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.RequestStatusDesc
+  fullName: VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.RequestStatusDesc
+  nameWithType: RequestStatusInfo.RequestStatusDesc
+- uid: VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.RequestStatusDesc*
+  name: RequestStatusDesc
+  href: api/VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.html#VisualCard_Calendar_Parts_Implementations_RequestStatusInfo_RequestStatusDesc_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.RequestStatusDesc
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.RequestStatusDesc
+  nameWithType: RequestStatusInfo.RequestStatusDesc
+- uid: VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.RequestStatusExtData
+  name: RequestStatusExtData
+  href: api/VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.html#VisualCard_Calendar_Parts_Implementations_RequestStatusInfo_RequestStatusExtData
+  commentId: P:VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.RequestStatusExtData
+  fullName: VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.RequestStatusExtData
+  nameWithType: RequestStatusInfo.RequestStatusExtData
+- uid: VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.RequestStatusExtData*
+  name: RequestStatusExtData
+  href: api/VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.html#VisualCard_Calendar_Parts_Implementations_RequestStatusInfo_RequestStatusExtData_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.RequestStatusExtData
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.RequestStatusExtData
+  nameWithType: RequestStatusInfo.RequestStatusExtData
+- uid: VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.op_Equality(VisualCard.Calendar.Parts.Implementations.RequestStatusInfo,VisualCard.Calendar.Parts.Implementations.RequestStatusInfo)
+  name: operator ==(RequestStatusInfo, RequestStatusInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.html#VisualCard_Calendar_Parts_Implementations_RequestStatusInfo_op_Equality_VisualCard_Calendar_Parts_Implementations_RequestStatusInfo_VisualCard_Calendar_Parts_Implementations_RequestStatusInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.op_Equality(VisualCard.Calendar.Parts.Implementations.RequestStatusInfo,VisualCard.Calendar.Parts.Implementations.RequestStatusInfo)
+  name.vb: =(RequestStatusInfo, RequestStatusInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.operator ==(VisualCard.Calendar.Parts.Implementations.RequestStatusInfo, VisualCard.Calendar.Parts.Implementations.RequestStatusInfo)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.=(VisualCard.Calendar.Parts.Implementations.RequestStatusInfo, VisualCard.Calendar.Parts.Implementations.RequestStatusInfo)
+  nameWithType: RequestStatusInfo.operator ==(RequestStatusInfo, RequestStatusInfo)
+  nameWithType.vb: RequestStatusInfo.=(RequestStatusInfo, RequestStatusInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.op_Equality*
+  name: operator ==
+  href: api/VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.html#VisualCard_Calendar_Parts_Implementations_RequestStatusInfo_op_Equality_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.op_Equality
+  isSpec: "True"
+  name.vb: =
+  fullName: VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.operator ==
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.=
+  nameWithType: RequestStatusInfo.operator ==
+  nameWithType.vb: RequestStatusInfo.=
+- uid: VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.op_Inequality(VisualCard.Calendar.Parts.Implementations.RequestStatusInfo,VisualCard.Calendar.Parts.Implementations.RequestStatusInfo)
+  name: operator !=(RequestStatusInfo, RequestStatusInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.html#VisualCard_Calendar_Parts_Implementations_RequestStatusInfo_op_Inequality_VisualCard_Calendar_Parts_Implementations_RequestStatusInfo_VisualCard_Calendar_Parts_Implementations_RequestStatusInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.op_Inequality(VisualCard.Calendar.Parts.Implementations.RequestStatusInfo,VisualCard.Calendar.Parts.Implementations.RequestStatusInfo)
+  name.vb: <>(RequestStatusInfo, RequestStatusInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.operator !=(VisualCard.Calendar.Parts.Implementations.RequestStatusInfo, VisualCard.Calendar.Parts.Implementations.RequestStatusInfo)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.<>(VisualCard.Calendar.Parts.Implementations.RequestStatusInfo, VisualCard.Calendar.Parts.Implementations.RequestStatusInfo)
+  nameWithType: RequestStatusInfo.operator !=(RequestStatusInfo, RequestStatusInfo)
+  nameWithType.vb: RequestStatusInfo.<>(RequestStatusInfo, RequestStatusInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.op_Inequality*
+  name: operator !=
+  href: api/VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.html#VisualCard_Calendar_Parts_Implementations_RequestStatusInfo_op_Inequality_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.op_Inequality
+  isSpec: "True"
+  name.vb: <>
+  fullName: VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.operator !=
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.<>
+  nameWithType: RequestStatusInfo.operator !=
+  nameWithType.vb: RequestStatusInfo.<>
 - uid: VisualCard.Calendar.Parts.Implementations.ResourcesInfo
   name: ResourcesInfo
   href: api/VisualCard.Calendar.Parts.Implementations.ResourcesInfo.html
