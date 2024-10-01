@@ -118,7 +118,7 @@ namespace VisualCard.Parsers
                     // Get the part type
                     bool xNonstandard = prefix.StartsWith(VcardConstants._xSpecifier);
                     bool specifierRequired = CardVersion.Major >= 3;
-                    var (type, enumeration, classType, fromString, defaultType, defaultValue, extraAllowedTypes) = VcardParserTools.GetPartType(xNonstandard ? VcardConstants._xSpecifier : prefix);
+                    var (type, enumeration, classType, fromString, defaultType, defaultValue, defaultValueType, extraAllowedTypes) = VcardParserTools.GetPartType(xNonstandard ? VcardConstants._xSpecifier : prefix);
                     
                     // Handle arguments
                     if (isWithType)
@@ -177,7 +177,7 @@ namespace VisualCard.Parsers
                     }
 
                     // Handle the part type
-                    string values = VcardCommonTools.GetValuesString(splitArgs, defaultValue, VcardConstants._valueArgumentSpecifier);
+                    string valueType = VcardCommonTools.GetFirstValue(splitArgs, defaultValueType, VcardConstants._valueArgumentSpecifier);
                     switch (type)
                     {
                         case PartType.Strings:
@@ -185,12 +185,12 @@ namespace VisualCard.Parsers
                                 StringsEnum stringType = (StringsEnum)enumeration;
 
                                 // Get the final value
-                                string finalValue = VcardParserTools.ProcessStringValue(value, values, stringType);
+                                string finalValue = VcardParserTools.ProcessStringValue(value, valueType);
 
                                 // Let VisualCard know that we've explicitly specified a kind.
                                 if (stringType == StringsEnum.Kind)
                                 {
-                                    kind = finalValue;
+                                    kind = string.IsNullOrEmpty(finalValue) ? "individual" : finalValue;
                                     card.kindExplicitlySpecified = true;
                                 }
 
@@ -210,7 +210,7 @@ namespace VisualCard.Parsers
 
                                 // Now, get the part info
                                 string finalValue = partsArrayType is PartsArrayEnum.NonstandardNames or PartsArrayEnum.IanaNames ? _value : value;
-                                var partInfo = fromString(finalValue, [.. finalArgs], altId, elementTypes, group, values, CardVersion);
+                                var partInfo = fromString(finalValue, [.. finalArgs], altId, elementTypes, group, valueType, CardVersion);
 
                                 // Set the array for real
                                 card.AddPartToArray(partsArrayType, partInfo);
@@ -260,7 +260,7 @@ namespace VisualCard.Parsers
             // Requirement checks
             foreach (string expectedFieldName in expectedFields)
             {
-                var (type, enumeration, enumType, _, _, _, _) = VcardParserTools.GetPartType(expectedFieldName);
+                var (type, enumeration, enumType, _, _, _, _, _) = VcardParserTools.GetPartType(expectedFieldName);
                 switch (type)
                 {
                     case PartType.Strings:

@@ -334,6 +334,20 @@ namespace VisualCard.Parsers
         internal static string[] GetValues(string[] args, string @default, string argSpecifier) =>
             GetValuesString(args, @default, argSpecifier).Split([VcardConstants._valueDelimiter], StringSplitOptions.RemoveEmptyEntries);
 
+        internal static string GetFirstValue(string[] args, string @default, string argSpecifier)
+        {
+            // We're given an array of split arguments of an element delimited by the colon, such as: "...TYPE=home..."
+            // Filter list of arguments with the arguments that start with the specified specifier (key)
+            var argFromSpecifier = args.Where((arg) => arg.StartsWith(argSpecifier));
+
+            // Attempt to get the value from the key
+            string argString =
+                    argFromSpecifier.Count() > 0 ?
+                    argFromSpecifier.Select((arg) => arg.Substring(argSpecifier.Length)).First() :
+                    @default;
+            return argString;
+        }
+
         internal static bool StringSupported(StringsEnum stringsEnum, Version cardVersion) =>
             stringsEnum switch
             {
