@@ -20,7 +20,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shouldly;
 using System;
-using VisualCard.Calendar.Parsers.Recurrence;
 using VisualCard.Parsers.Recurrence;
 
 namespace VisualCard.Tests.Recurrence
