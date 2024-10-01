@@ -402,13 +402,12 @@ namespace VisualCard.Calendar.Parsers
         {
             if (subpart is null)
                 return;
+            bool nestable = true;
             switch (part.GetType().Name)
             {
                 case nameof(Parts.Calendar):
                     switch (subpart.GetType().Name)
                     {
-                        case nameof(Parts.Calendar):
-                            throw new ArgumentException("Can't nest calendar inside calendar");
                         case nameof(CalendarEvent):
                             part.events.Add((CalendarEvent)subpart);
                             break;
@@ -424,203 +423,53 @@ namespace VisualCard.Calendar.Parsers
                         case nameof(CalendarTimeZone):
                             part.timeZones.Add((CalendarTimeZone)subpart);
                             break;
-                        case nameof(CalendarStandard):
-                            throw new ArgumentException("Can't nest standard time info inside calendar");
-                        case nameof(CalendarDaylight):
-                            throw new ArgumentException("Can't nest daylight time info inside calendar");
-                        case nameof(CalendarAlarm):
-                            throw new ArgumentException("Can't nest alarm inside calendar");
+                        default:
+                            nestable = false;
+                            break;
                     }
                     break;
                 case nameof(CalendarEvent):
                     switch (subpart.GetType().Name)
                     {
-                        case nameof(Parts.Calendar):
-                            throw new ArgumentException("Can't nest calendar inside event");
-                        case nameof(CalendarEvent):
-                            throw new ArgumentException("Can't nest event inside event");
-                        case nameof(CalendarTodo):
-                            throw new ArgumentException("Can't nest to-do inside event");
-                        case nameof(CalendarJournal):
-                            throw new ArgumentException("Can't nest journal inside event");
-                        case nameof(CalendarFreeBusy):
-                            throw new ArgumentException("Can't nest free/busy inside event");
-                        case nameof(CalendarTimeZone):
-                            throw new ArgumentException("Can't nest time zone info inside event");
-                        case nameof(CalendarStandard):
-                            throw new ArgumentException("Can't nest standard time info inside event");
-                        case nameof(CalendarDaylight):
-                            throw new ArgumentException("Can't nest daylight time info inside event");
                         case nameof(CalendarAlarm):
                             ((CalendarEvent)part).alarms.Add((CalendarAlarm)subpart);
+                            break;
+                        default:
+                            nestable = false;
                             break;
                     }
                     break;
                 case nameof(CalendarTodo):
                     switch (subpart.GetType().Name)
                     {
-                        case nameof(Parts.Calendar):
-                            throw new ArgumentException("Can't nest calendar inside to-do");
-                        case nameof(CalendarEvent):
-                            throw new ArgumentException("Can't nest event inside to-do");
-                        case nameof(CalendarTodo):
-                            throw new ArgumentException("Can't nest to-do inside to-do");
-                        case nameof(CalendarJournal):
-                            throw new ArgumentException("Can't nest journal inside to-do");
-                        case nameof(CalendarFreeBusy):
-                            throw new ArgumentException("Can't nest free/busy inside to-do");
-                        case nameof(CalendarTimeZone):
-                            throw new ArgumentException("Can't nest time zone info inside to-do");
-                        case nameof(CalendarStandard):
-                            throw new ArgumentException("Can't nest standard time info inside to-do");
-                        case nameof(CalendarDaylight):
-                            throw new ArgumentException("Can't nest daylight time info inside to-do");
                         case nameof(CalendarAlarm):
                             ((CalendarTodo)part).alarms.Add((CalendarAlarm)subpart);
                             break;
-                    }
-                    break;
-                case nameof(CalendarJournal):
-                    switch (subpart.GetType().Name)
-                    {
-                        case nameof(Parts.Calendar):
-                            throw new ArgumentException("Can't nest calendar inside journal");
-                        case nameof(CalendarEvent):
-                            throw new ArgumentException("Can't nest event inside journal");
-                        case nameof(CalendarTodo):
-                            throw new ArgumentException("Can't nest to-do inside journal");
-                        case nameof(CalendarJournal):
-                            throw new ArgumentException("Can't nest journal inside journal");
-                        case nameof(CalendarFreeBusy):
-                            throw new ArgumentException("Can't nest free/busy inside journal");
-                        case nameof(CalendarTimeZone):
-                            throw new ArgumentException("Can't nest time zone info inside journal");
-                        case nameof(CalendarStandard):
-                            throw new ArgumentException("Can't nest standard time info inside journal");
-                        case nameof(CalendarDaylight):
-                            throw new ArgumentException("Can't nest daylight time info inside journal");
-                        case nameof(CalendarAlarm):
-                            throw new ArgumentException("Can't nest alarm info inside journal");
-                    }
-                    break;
-                case nameof(CalendarFreeBusy):
-                    switch (subpart.GetType().Name)
-                    {
-                        case nameof(Parts.Calendar):
-                            throw new ArgumentException("Can't nest calendar inside free/busy info");
-                        case nameof(CalendarEvent):
-                            throw new ArgumentException("Can't nest event inside free/busy info");
-                        case nameof(CalendarTodo):
-                            throw new ArgumentException("Can't nest to-do inside free/busy info");
-                        case nameof(CalendarJournal):
-                            throw new ArgumentException("Can't nest journal inside free/busy info");
-                        case nameof(CalendarFreeBusy):
-                            throw new ArgumentException("Can't nest free/busy inside free/busy info");
-                        case nameof(CalendarTimeZone):
-                            throw new ArgumentException("Can't nest time zone info inside free/busy info");
-                        case nameof(CalendarStandard):
-                            throw new ArgumentException("Can't nest standard time info inside free/busy info");
-                        case nameof(CalendarDaylight):
-                            throw new ArgumentException("Can't nest daylight time info inside free/busy info");
-                        case nameof(CalendarAlarm):
-                            throw new ArgumentException("Can't nest alarm info inside free/busy info");
+                        default:
+                            nestable = false;
+                            break;
                     }
                     break;
                 case nameof(CalendarTimeZone):
                     switch (subpart.GetType().Name)
                     {
-                        case nameof(Parts.Calendar):
-                            throw new ArgumentException("Can't nest calendar inside time zone");
-                        case nameof(CalendarEvent):
-                            throw new ArgumentException("Can't nest event inside time zone");
-                        case nameof(CalendarTodo):
-                            throw new ArgumentException("Can't nest to-do inside time zone");
-                        case nameof(CalendarJournal):
-                            throw new ArgumentException("Can't nest journal inside time zone");
-                        case nameof(CalendarFreeBusy):
-                            throw new ArgumentException("Can't nest free/busy inside time zone");
-                        case nameof(CalendarTimeZone):
-                            throw new ArgumentException("Can't nest time zone info inside time zone");
                         case nameof(CalendarStandard):
                             ((CalendarTimeZone)part).standards.Add((CalendarStandard)subpart);
                             break;
                         case nameof(CalendarDaylight):
                             ((CalendarTimeZone)part).daylights.Add((CalendarDaylight)subpart);
                             break;
-                        case nameof(CalendarAlarm):
-                            throw new ArgumentException("Can't nest alarm info inside time zone");
+                        default:
+                            nestable = false;
+                            break;
                     }
                     break;
-                case nameof(CalendarStandard):
-                    switch (subpart.GetType().Name)
-                    {
-                        case nameof(Parts.Calendar):
-                            throw new ArgumentException("Can't nest calendar inside standard time info");
-                        case nameof(CalendarEvent):
-                            throw new ArgumentException("Can't nest event inside standard time info");
-                        case nameof(CalendarTodo):
-                            throw new ArgumentException("Can't nest to-do inside standard time info");
-                        case nameof(CalendarJournal):
-                            throw new ArgumentException("Can't nest journal inside standard time info");
-                        case nameof(CalendarFreeBusy):
-                            throw new ArgumentException("Can't nest free/busy inside standard time info");
-                        case nameof(CalendarTimeZone):
-                            throw new ArgumentException("Can't nest time zone info inside standard time info");
-                        case nameof(CalendarStandard):
-                            throw new ArgumentException("Can't nest standard time info inside standard time info");
-                        case nameof(CalendarDaylight):
-                            throw new ArgumentException("Can't nest daylight time info inside standard time info");
-                        case nameof(CalendarAlarm):
-                            throw new ArgumentException("Can't nest alarm info inside standard time info");
-                    }
-                    break;
-                case nameof(CalendarDaylight):
-                    switch (subpart.GetType().Name)
-                    {
-                        case nameof(Parts.Calendar):
-                            throw new ArgumentException("Can't nest calendar inside daylight time info");
-                        case nameof(CalendarEvent):
-                            throw new ArgumentException("Can't nest event inside daylight time info");
-                        case nameof(CalendarTodo):
-                            throw new ArgumentException("Can't nest to-do inside daylight time info");
-                        case nameof(CalendarJournal):
-                            throw new ArgumentException("Can't nest journal inside daylight time info");
-                        case nameof(CalendarFreeBusy):
-                            throw new ArgumentException("Can't nest free/busy inside daylight time info");
-                        case nameof(CalendarTimeZone):
-                            throw new ArgumentException("Can't nest time zone info inside daylight time info");
-                        case nameof(CalendarStandard):
-                            throw new ArgumentException("Can't nest standard time info inside daylight time info");
-                        case nameof(CalendarDaylight):
-                            throw new ArgumentException("Can't nest daylight time info inside daylight time info");
-                        case nameof(CalendarAlarm):
-                            throw new ArgumentException("Can't nest alarm info inside daylight time info");
-                    }
-                    break;
-                case nameof(CalendarAlarm):
-                    switch (subpart.GetType().Name)
-                    {
-                        case nameof(Parts.Calendar):
-                            throw new ArgumentException("Can't nest calendar inside alarm info");
-                        case nameof(CalendarEvent):
-                            throw new ArgumentException("Can't nest event inside alarm info");
-                        case nameof(CalendarTodo):
-                            throw new ArgumentException("Can't nest to-do inside alarm info");
-                        case nameof(CalendarJournal):
-                            throw new ArgumentException("Can't nest journal inside alarm info");
-                        case nameof(CalendarFreeBusy):
-                            throw new ArgumentException("Can't nest free/busy inside alarm info");
-                        case nameof(CalendarTimeZone):
-                            throw new ArgumentException("Can't nest time zone info inside alarm info");
-                        case nameof(CalendarStandard):
-                            throw new ArgumentException("Can't nest standard time info inside alarm info");
-                        case nameof(CalendarDaylight):
-                            throw new ArgumentException("Can't nest daylight time info inside alarm info");
-                        case nameof(CalendarAlarm):
-                            throw new ArgumentException("Can't nest alarm info inside alarm info");
-                    }
+                default:
+                    nestable = false;
                     break;
             }
+            if (!nestable)
+                throw new ArgumentException($"Can't place {subpart.GetType().Name} inside {part.GetType().Name}");
         }
 
         internal VCalendarParser(string[] calendarContent, Version calendarVersion)
