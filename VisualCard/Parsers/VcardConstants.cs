@@ -92,5 +92,7 @@ namespace VisualCard.Parsers
 
         // Available in vCard 4.0
         internal const string _memberSpecifier = "MEMBER";
+        internal const string _relatedSpecifier = "RELATED";
+        internal const string _clientPidMapSpecifier = "CLIENTPIDMAP";
     }
 }

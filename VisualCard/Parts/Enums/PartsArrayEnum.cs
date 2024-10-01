@@ -157,6 +157,14 @@ namespace VisualCard.Parts.Enums
         /// </summary>
         Member,
         /// <summary>
+        /// The related member URI
+        /// </summary>
+        Related,
+        /// <summary>
+        /// Client PID map
+        /// </summary>
+        ClientPidMap,
+        /// <summary>
         /// The contact's extended IANA options (usually starts with SOMETHING:Value1;Value2...)
         /// </summary>
         IanaNames = int.MaxValue - 2,
