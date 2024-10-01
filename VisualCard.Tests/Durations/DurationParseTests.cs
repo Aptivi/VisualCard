@@ -87,10 +87,9 @@ namespace VisualCard.Tests.Durations
         {
             var span = VcardCommonTools.GetDurationSpan("P2Y10M15DT10H30M20S");
 
-            // We can't test against result because it's uninferrable due to CPU timings.
+            // We can't test against result and days because it's uninferrable due to CPU timings.
             span.result.ShouldNotBe(new());
             span.span.ShouldNotBe(new());
-            span.span.Days.ShouldBe(1048);
             span.span.Hours.ShouldBe(10);
             span.span.Minutes.ShouldBe(30);
             span.span.Seconds.ShouldBe(20);
@@ -101,10 +100,9 @@ namespace VisualCard.Tests.Durations
         {
             var span = VcardCommonTools.GetDurationSpan("-P2Y10M15DT10H30M20S");
 
-            // We can't test against result because it's uninferrable due to CPU timings.
+            // We can't test against result and days because it's uninferrable due to CPU timings.
             span.result.ShouldNotBe(new());
             span.span.ShouldNotBe(new());
-            span.span.Days.ShouldBe(-1050);
             span.span.Hours.ShouldBe(-10);
             span.span.Minutes.ShouldBe(-30);
             span.span.Seconds.ShouldBe(-20);
