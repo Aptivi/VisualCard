@@ -156,7 +156,7 @@ namespace VisualCard.Parts
         public (string group, string value) GetString(StringsEnum key)
         {
             // Check for version support
-            if (!VcardCommonTools.StringSupported(key, CardVersion))
+            if (!VcardParserTools.StringSupported(key, CardVersion))
                 return ("", "");
 
             // Get the fallback value

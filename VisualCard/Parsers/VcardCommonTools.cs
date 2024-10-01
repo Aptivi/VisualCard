@@ -494,21 +494,6 @@ namespace VisualCard.Parsers
             return argString;
         }
 
-        internal static bool StringSupported(StringsEnum stringsEnum, Version cardVersion) =>
-            stringsEnum switch
-            {
-                StringsEnum.Kind => cardVersion.Major >= 4,
-                StringsEnum.Mailer => cardVersion.Major != 4,
-                StringsEnum.ProductId => cardVersion.Major >= 3,
-                StringsEnum.SortString => cardVersion.Major == 3 || cardVersion.Major == 5,
-                StringsEnum.AccessClassification => cardVersion.Major != 2 || cardVersion.Major != 4,
-                StringsEnum.Uid => cardVersion.Major <= 4,
-                StringsEnum.SourceName => cardVersion.Major == 3,
-                StringsEnum.Profile => cardVersion.Major == 3,
-                _ =>
-                    throw new InvalidOperationException("Invalid string enumeration type to get supported value"),
-            };
-
         internal static string MakeStringBlock(string target, int firstLength)
         {
             const int maxChars = 74;
