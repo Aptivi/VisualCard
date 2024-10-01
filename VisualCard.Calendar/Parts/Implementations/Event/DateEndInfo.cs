@@ -37,16 +37,27 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
         internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
             new DateEndInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
 
-        internal override string ToStringVcalendarInternal(Version cardVersion) =>
-            $"{VcardCommonTools.SavePosixDate(DateEnd)}";
+        internal override string ToStringVcalendarInternal(Version cardVersion)
+        {
+            string type = ValueType ?? "";
+            string value =
+                type.Equals("date", StringComparison.OrdinalIgnoreCase) ?
+                VcardCommonTools.SavePosixDate(DateEnd, true) :
+                VcardCommonTools.SavePosixDate(DateEnd);
+            return value;
+        }
 
         internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Populate the fields
-            DateTimeOffset end = VcardCommonTools.ParsePosixDateTime(value);
+            string type = valueType ?? "";
+            DateTimeOffset end =
+                type.Equals("date", StringComparison.OrdinalIgnoreCase) ?
+                VcardCommonTools.ParsePosixDate(value) :
+                VcardCommonTools.ParsePosixDateTime(value);
 
             // Add the fetched information
-            DateEndInfo _time = new(finalArgs, elementTypes, valueType, end);
+            DateEndInfo _time = new(finalArgs, elementTypes, valueType ?? "", end);
             return _time;
         }
 

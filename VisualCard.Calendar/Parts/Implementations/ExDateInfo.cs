@@ -20,7 +20,9 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Text.RegularExpressions;
+using VisualCard.Parsers;
 
 namespace VisualCard.Calendar.Parts.Implementations
 {
@@ -33,21 +35,35 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// <summary>
         /// The excluded date list
         /// </summary>
-        public string[]? ExDates { get; }
+        public DateTimeOffset[]? ExDates { get; }
 
         internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
             new ExDateInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
 
-        internal override string ToStringVcalendarInternal(Version cardVersion) =>
-            $"{string.Join(cardVersion.Major == 1 ? ";" : ",", ExDates)}";
+        internal override string ToStringVcalendarInternal(Version cardVersion)
+        {
+            string type = ValueType ?? "";
+            bool justDate = type.Equals("date", StringComparison.OrdinalIgnoreCase);
+            return $"{string.Join(cardVersion.Major == 1 ? ";" : ",", ExDates.Select((dt) => VcardCommonTools.SavePosixDate(dt, justDate)))}";
+        }
 
         internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Populate the fields
+            string type = valueType ?? "";
             var exDates = Regex.Unescape(value).Split(cardVersion.Major == 1 ? ';' : ',');
+            List<DateTimeOffset> dates = [];
+            foreach (var exDate in exDates)
+            {
+                DateTimeOffset date =
+                    type.Equals("date", StringComparison.OrdinalIgnoreCase) ?
+                    VcardCommonTools.ParsePosixDate(exDate) :
+                    VcardCommonTools.ParsePosixDateTime(exDate);
+                dates.Add(date);
+            }
 
             // Add the fetched information
-            ExDateInfo _time = new([], elementTypes, valueType, exDates);
+            ExDateInfo _time = new([], elementTypes, valueType ?? "", [.. dates]);
             return _time;
         }
 
@@ -84,9 +100,9 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = 498518712;
+            int hashCode = 1289504723;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]?>.Default.GetHashCode(ExDates);
+            hashCode = hashCode * -1521134295 + EqualityComparer<DateTimeOffset[]?>.Default.GetHashCode(ExDates);
             return hashCode;
         }
 
@@ -103,7 +119,7 @@ namespace VisualCard.Calendar.Parts.Implementations
 
         internal ExDateInfo() { }
 
-        internal ExDateInfo(string[] arguments, string[] elementTypes, string valueType, string[] exDates) :
+        internal ExDateInfo(string[] arguments, string[] elementTypes, string valueType, DateTimeOffset[] exDates) :
             base(arguments, elementTypes, valueType)
         {
             ExDates = exDates;
