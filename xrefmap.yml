@@ -2042,6 +2042,12 @@ references:
   commentId: F:VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.Recursion
   fullName: VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.Recursion
   nameWithType: CalendarStringsEnum.Recursion
+- uid: VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.RecursionId
+  name: RecursionId
+  href: api/VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.html#VisualCard_Calendar_Parts_Enums_CalendarStringsEnum_RecursionId
+  commentId: F:VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.RecursionId
+  fullName: VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.RecursionId
+  nameWithType: CalendarStringsEnum.RecursionId
 - uid: VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.Status
   name: Status
   href: api/VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.html#VisualCard_Calendar_Parts_Enums_CalendarStringsEnum_Status
