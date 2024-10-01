@@ -93,6 +93,7 @@ namespace VisualCard.Calendar.Parsers
         internal const string _dAlarmSpecifier = "DALARM";
         internal const string _mAlarmSpecifier = "MALARM";
         internal const string _pAlarmSpecifier = "PALARM";
+        internal const string _exRuleSpecifier = "EXRULE";
 
         // Available in vCalendar 2.0
         internal const string _dateStampSpecifier = "DTSTAMP";

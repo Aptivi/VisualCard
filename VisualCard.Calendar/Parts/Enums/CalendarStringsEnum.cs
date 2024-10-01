@@ -84,5 +84,9 @@ namespace VisualCard.Calendar.Parts.Enums
         /// Calendar recursion (event, todo, journal, or standard/daylight timezone components)
         /// </summary>
         Recursion,
+        /// <summary>
+        /// Calendar recursion rule for exclusions (event or todo)
+        /// </summary>
+        ExRule,
     }
 }
