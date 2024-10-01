@@ -3,6 +3,7 @@ VERSION:2.1
 N:ViceCity;EoflaOE;;;
 FN:EoflaOE ViceCity
 X-ANDROID-CUSTOM:vnd.android.cursor.item/nickname;AptiviCEO;;;;;;;;;;;;;;
+PHOTO;VALUE=uri:http://www.example.com/pub/photos/jqpublic.gif
 PHOTO;ENCODING=BASE64;PNG:iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAA
  AXNSR0IArs4c6QAAAARzQklUCAgICHwIZIgAACAASURBVHichX1ps2XJVd3K4Yx3eEMNXa2eh
  CSEaIxtZAMy2EQYGySDQ8YjAeFgCGGHA4fxX/D/8xd/tMETGix1V9Ub7nDuPUNm+sMeTp77qi

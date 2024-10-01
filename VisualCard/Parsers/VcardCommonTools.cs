@@ -75,6 +75,7 @@ namespace VisualCard.Parsers
                 return date;
             throw new ArgumentException($"Can't parse date {posixDateRepresentation}");
         }
+
         /// <summary>
         /// Tries to parse the POSIX date formatted with the representation according to the vCard and vCalendar specifications
         /// </summary>

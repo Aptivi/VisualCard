@@ -21,7 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace VisualCard.Calendar.Parsers.Recurrence
+namespace VisualCard.Parsers.Recurrence
 {
     /// <summary>
     /// Recurrence rule instance

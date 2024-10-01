@@ -21,8 +21,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using VisualCard.Parsers;
+using VisualCard.Parsers.Recurrence;
 
-namespace VisualCard.Calendar.Parsers.Recurrence
+namespace VisualCard.Parsers.Recurrence
 {
     /// <summary>
     /// Recurrence rule parser

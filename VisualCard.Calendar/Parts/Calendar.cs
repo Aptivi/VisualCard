@@ -307,14 +307,14 @@ namespace VisualCard.Calendar.Parts
                 string prefix = VCalendarParserTools.GetPrefixFromPartsArrayEnum(partsArrayEnum);
                 var type = VCalendarParserTools.GetPartType(prefix);
                 string defaultType = type.defaultType;
-                string defaultValue = type.defaultValue;
+                string defaultValueType = type.defaultValueType;
 
                 // Now, assemble the line
                 foreach (var part in array)
                 {
                     var partBuilder = new StringBuilder();
                     string partRepresentation = part.ToStringVcalendarInternal(version);
-                    string partArguments = CalendarBuilderTools.BuildArguments(part, defaultType, defaultValue);
+                    string partArguments = CalendarBuilderTools.BuildArguments(part, defaultType, defaultValueType);
                     string[] partArgumentsLines = partArguments.SplitNewLines();
                     partBuilder.Append($"{prefix}");
                     partBuilder.Append($"{partArguments}");

@@ -219,14 +219,14 @@ namespace VisualCard.Parts
                 string prefix = VcardParserTools.GetPrefixFromPartsArrayEnum(partsArrayEnum);
                 var type = VcardParserTools.GetPartType(prefix);
                 string defaultType = type.defaultType;
-                string defaultValue = type.defaultValue;
+                string defaultValueType = type.defaultValueType;
 
                 // Now, assemble the line
                 foreach (var part in array)
                 {
                     var partBuilder = new StringBuilder();
                     string partRepresentation = part.ToStringVcardInternal(version);
-                    string partArguments = CardBuilderTools.BuildArguments(part, version, defaultType, defaultValue);
+                    string partArguments = CardBuilderTools.BuildArguments(part, version, defaultType, defaultValueType);
                     string[] partArgumentsLines = partArguments.SplitNewLines();
                     string group = part.Group;
                     if (!string.IsNullOrEmpty(group))

@@ -168,7 +168,8 @@ namespace VisualCard.Calendar.Parsers
 
                     // Handle the part type
                     Type calendarType = subPart is not null ? subPart.GetType() : calendar.GetType();
-                    string valueType = VcardCommonTools.GetFirstValue(splitArgs, defaultValue, VCalendarConstants._valueArgumentSpecifier);
+                    string valueType = VcardCommonTools.GetFirstValue(splitArgs, defaultValueType, VCalendarConstants._valueArgumentSpecifier);
+                    string finalValue = VcardParserTools.ProcessStringValue(value, valueType);
                     switch (type)
                     {
                         case PartType.Strings:
@@ -177,9 +178,6 @@ namespace VisualCard.Calendar.Parsers
                                 bool supported = VCalendarParserTools.StringSupported(stringType, CalendarVersion, calendarType);
                                 if (!supported)
                                     continue;
-
-                                // Get the final value
-                                string finalValue = VcardParserTools.ProcessStringValue(value, valueType);
 
                                 // Set the string for real
                                 if (subPart is not null)
@@ -196,13 +194,13 @@ namespace VisualCard.Calendar.Parsers
                                     continue;
 
                                 // Get the final value
-                                double finalValue = VcardParserTools.ProcessIntegerValue(value, valueType);
+                                double finalDouble = double.Parse(finalValue);
 
                                 // Set the integer for real
                                 if (subPart is not null)
-                                    subPart.SetInteger(integerType, finalValue);
+                                    subPart.SetInteger(integerType, finalDouble);
                                 else
-                                    calendar.SetInteger(integerType, finalValue);
+                                    calendar.SetInteger(integerType, finalDouble);
                             }
                             break;
                         case PartType.PartsArray:
@@ -216,7 +214,7 @@ namespace VisualCard.Calendar.Parsers
                                     continue;
 
                                 // Now, get the part info
-                                string finalValue = partsArrayType is CalendarPartsArrayEnum.IanaNames or CalendarPartsArrayEnum.NonstandardNames ? _value : value;
+                                finalValue = partsArrayType is CalendarPartsArrayEnum.IanaNames or CalendarPartsArrayEnum.NonstandardNames ? _value : value;
                                 var partInfo = fromString(finalValue, [.. finalArgs], elementTypes, valueType, CalendarVersion);
 
                                 // Set the array for real

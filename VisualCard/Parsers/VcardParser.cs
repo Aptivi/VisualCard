@@ -178,14 +178,12 @@ namespace VisualCard.Parsers
 
                     // Handle the part type
                     string valueType = VcardCommonTools.GetFirstValue(splitArgs, defaultValueType, VcardConstants._valueArgumentSpecifier);
+                    string finalValue = VcardParserTools.ProcessStringValue(value, valueType);
                     switch (type)
                     {
                         case PartType.Strings:
                             {
                                 StringsEnum stringType = (StringsEnum)enumeration;
-
-                                // Get the final value
-                                string finalValue = VcardParserTools.ProcessStringValue(value, valueType);
 
                                 // Let VisualCard know that we've explicitly specified a kind.
                                 if (stringType == StringsEnum.Kind)
@@ -209,7 +207,7 @@ namespace VisualCard.Parsers
                                     continue;
 
                                 // Now, get the part info
-                                string finalValue = partsArrayType is PartsArrayEnum.NonstandardNames or PartsArrayEnum.IanaNames ? _value : value;
+                                finalValue = partsArrayType is PartsArrayEnum.NonstandardNames or PartsArrayEnum.IanaNames ? _value : value;
                                 var partInfo = fromString(finalValue, [.. finalArgs], altId, elementTypes, group, valueType, CardVersion);
 
                                 // Set the array for real
