@@ -7011,12 +7011,24 @@ references:
   commentId: F:VisualCard.Parts.Enums.StringsEnum.ProductId
   fullName: VisualCard.Parts.Enums.StringsEnum.ProductId
   nameWithType: StringsEnum.ProductId
+- uid: VisualCard.Parts.Enums.StringsEnum.Profile
+  name: Profile
+  href: api/VisualCard.Parts.Enums.StringsEnum.html#VisualCard_Parts_Enums_StringsEnum_Profile
+  commentId: F:VisualCard.Parts.Enums.StringsEnum.Profile
+  fullName: VisualCard.Parts.Enums.StringsEnum.Profile
+  nameWithType: StringsEnum.Profile
 - uid: VisualCard.Parts.Enums.StringsEnum.SortString
   name: SortString
   href: api/VisualCard.Parts.Enums.StringsEnum.html#VisualCard_Parts_Enums_StringsEnum_SortString
   commentId: F:VisualCard.Parts.Enums.StringsEnum.SortString
   fullName: VisualCard.Parts.Enums.StringsEnum.SortString
   nameWithType: StringsEnum.SortString
+- uid: VisualCard.Parts.Enums.StringsEnum.SourceName
+  name: SourceName
+  href: api/VisualCard.Parts.Enums.StringsEnum.html#VisualCard_Parts_Enums_StringsEnum_SourceName
+  commentId: F:VisualCard.Parts.Enums.StringsEnum.SourceName
+  fullName: VisualCard.Parts.Enums.StringsEnum.SourceName
+  nameWithType: StringsEnum.SourceName
 - uid: VisualCard.Parts.Enums.StringsEnum.Uid
   name: Uid
   href: api/VisualCard.Parts.Enums.StringsEnum.html#VisualCard_Parts_Enums_StringsEnum_Uid
