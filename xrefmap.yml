@@ -1796,6 +1796,12 @@ references:
   commentId: F:VisualCard.Calendar.Parts.Enums.CalendarIntegersEnum.Priority
   fullName: VisualCard.Calendar.Parts.Enums.CalendarIntegersEnum.Priority
   nameWithType: CalendarIntegersEnum.Priority
+- uid: VisualCard.Calendar.Parts.Enums.CalendarIntegersEnum.Repeat
+  name: Repeat
+  href: api/VisualCard.Calendar.Parts.Enums.CalendarIntegersEnum.html#VisualCard_Calendar_Parts_Enums_CalendarIntegersEnum_Repeat
+  commentId: F:VisualCard.Calendar.Parts.Enums.CalendarIntegersEnum.Repeat
+  fullName: VisualCard.Calendar.Parts.Enums.CalendarIntegersEnum.Repeat
+  nameWithType: CalendarIntegersEnum.Repeat
 - uid: VisualCard.Calendar.Parts.Enums.CalendarIntegersEnum.Sequence
   name: Sequence
   href: api/VisualCard.Calendar.Parts.Enums.CalendarIntegersEnum.html#VisualCard_Calendar_Parts_Enums_CalendarIntegersEnum_Sequence
@@ -1892,6 +1898,12 @@ references:
   commentId: F:VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.DueDate
   fullName: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.DueDate
   nameWithType: CalendarPartsArrayEnum.DueDate
+- uid: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.Duration
+  name: Duration
+  href: api/VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.html#VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_Duration
+  commentId: F:VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.Duration
+  fullName: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.Duration
+  nameWithType: CalendarPartsArrayEnum.Duration
 - uid: VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.ExDate
   name: ExDate
   href: api/VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.html#VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_ExDate
@@ -2527,6 +2539,130 @@ references:
   fullName.vb: VisualCard.Calendar.Parts.Implementations.DateCreatedInfo.<>
   nameWithType: DateCreatedInfo.operator !=
   nameWithType.vb: DateCreatedInfo.<>
+- uid: VisualCard.Calendar.Parts.Implementations.DurationInfo
+  name: DurationInfo
+  href: api/VisualCard.Calendar.Parts.Implementations.DurationInfo.html
+  commentId: T:VisualCard.Calendar.Parts.Implementations.DurationInfo
+  fullName: VisualCard.Calendar.Parts.Implementations.DurationInfo
+  nameWithType: DurationInfo
+- uid: VisualCard.Calendar.Parts.Implementations.DurationInfo.Duration
+  name: Duration
+  href: api/VisualCard.Calendar.Parts.Implementations.DurationInfo.html#VisualCard_Calendar_Parts_Implementations_DurationInfo_Duration
+  commentId: P:VisualCard.Calendar.Parts.Implementations.DurationInfo.Duration
+  fullName: VisualCard.Calendar.Parts.Implementations.DurationInfo.Duration
+  nameWithType: DurationInfo.Duration
+- uid: VisualCard.Calendar.Parts.Implementations.DurationInfo.Duration*
+  name: Duration
+  href: api/VisualCard.Calendar.Parts.Implementations.DurationInfo.html#VisualCard_Calendar_Parts_Implementations_DurationInfo_Duration_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.DurationInfo.Duration
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.DurationInfo.Duration
+  nameWithType: DurationInfo.Duration
+- uid: VisualCard.Calendar.Parts.Implementations.DurationInfo.DurationResult
+  name: DurationResult
+  href: api/VisualCard.Calendar.Parts.Implementations.DurationInfo.html#VisualCard_Calendar_Parts_Implementations_DurationInfo_DurationResult
+  commentId: P:VisualCard.Calendar.Parts.Implementations.DurationInfo.DurationResult
+  fullName: VisualCard.Calendar.Parts.Implementations.DurationInfo.DurationResult
+  nameWithType: DurationInfo.DurationResult
+- uid: VisualCard.Calendar.Parts.Implementations.DurationInfo.DurationResult*
+  name: DurationResult
+  href: api/VisualCard.Calendar.Parts.Implementations.DurationInfo.html#VisualCard_Calendar_Parts_Implementations_DurationInfo_DurationResult_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.DurationInfo.DurationResult
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.DurationInfo.DurationResult
+  nameWithType: DurationInfo.DurationResult
+- uid: VisualCard.Calendar.Parts.Implementations.DurationInfo.DurationSpan
+  name: DurationSpan
+  href: api/VisualCard.Calendar.Parts.Implementations.DurationInfo.html#VisualCard_Calendar_Parts_Implementations_DurationInfo_DurationSpan
+  commentId: P:VisualCard.Calendar.Parts.Implementations.DurationInfo.DurationSpan
+  fullName: VisualCard.Calendar.Parts.Implementations.DurationInfo.DurationSpan
+  nameWithType: DurationInfo.DurationSpan
+- uid: VisualCard.Calendar.Parts.Implementations.DurationInfo.DurationSpan*
+  name: DurationSpan
+  href: api/VisualCard.Calendar.Parts.Implementations.DurationInfo.html#VisualCard_Calendar_Parts_Implementations_DurationInfo_DurationSpan_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.DurationInfo.DurationSpan
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.DurationInfo.DurationSpan
+  nameWithType: DurationInfo.DurationSpan
+- uid: VisualCard.Calendar.Parts.Implementations.DurationInfo.Equals(System.Object)
+  name: Equals(object)
+  href: api/VisualCard.Calendar.Parts.Implementations.DurationInfo.html#VisualCard_Calendar_Parts_Implementations_DurationInfo_Equals_System_Object_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.DurationInfo.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Calendar.Parts.Implementations.DurationInfo.Equals(object)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.DurationInfo.Equals(Object)
+  nameWithType: DurationInfo.Equals(object)
+  nameWithType.vb: DurationInfo.Equals(Object)
+- uid: VisualCard.Calendar.Parts.Implementations.DurationInfo.Equals(VisualCard.Calendar.Parts.Implementations.DurationInfo)
+  name: Equals(DurationInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.DurationInfo.html#VisualCard_Calendar_Parts_Implementations_DurationInfo_Equals_VisualCard_Calendar_Parts_Implementations_DurationInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.DurationInfo.Equals(VisualCard.Calendar.Parts.Implementations.DurationInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.DurationInfo.Equals(VisualCard.Calendar.Parts.Implementations.DurationInfo)
+  nameWithType: DurationInfo.Equals(DurationInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.DurationInfo.Equals(VisualCard.Calendar.Parts.Implementations.DurationInfo,VisualCard.Calendar.Parts.Implementations.DurationInfo)
+  name: Equals(DurationInfo, DurationInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.DurationInfo.html#VisualCard_Calendar_Parts_Implementations_DurationInfo_Equals_VisualCard_Calendar_Parts_Implementations_DurationInfo_VisualCard_Calendar_Parts_Implementations_DurationInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.DurationInfo.Equals(VisualCard.Calendar.Parts.Implementations.DurationInfo,VisualCard.Calendar.Parts.Implementations.DurationInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.DurationInfo.Equals(VisualCard.Calendar.Parts.Implementations.DurationInfo, VisualCard.Calendar.Parts.Implementations.DurationInfo)
+  nameWithType: DurationInfo.Equals(DurationInfo, DurationInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.DurationInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Calendar.Parts.Implementations.DurationInfo.html#VisualCard_Calendar_Parts_Implementations_DurationInfo_Equals_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.DurationInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.DurationInfo.Equals
+  nameWithType: DurationInfo.Equals
+- uid: VisualCard.Calendar.Parts.Implementations.DurationInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Calendar.Parts.Implementations.DurationInfo.html#VisualCard_Calendar_Parts_Implementations_DurationInfo_GetHashCode
+  commentId: M:VisualCard.Calendar.Parts.Implementations.DurationInfo.GetHashCode
+  fullName: VisualCard.Calendar.Parts.Implementations.DurationInfo.GetHashCode()
+  nameWithType: DurationInfo.GetHashCode()
+- uid: VisualCard.Calendar.Parts.Implementations.DurationInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Calendar.Parts.Implementations.DurationInfo.html#VisualCard_Calendar_Parts_Implementations_DurationInfo_GetHashCode_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.DurationInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Implementations.DurationInfo.GetHashCode
+  nameWithType: DurationInfo.GetHashCode
+- uid: VisualCard.Calendar.Parts.Implementations.DurationInfo.op_Equality(VisualCard.Calendar.Parts.Implementations.DurationInfo,VisualCard.Calendar.Parts.Implementations.DurationInfo)
+  name: operator ==(DurationInfo, DurationInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.DurationInfo.html#VisualCard_Calendar_Parts_Implementations_DurationInfo_op_Equality_VisualCard_Calendar_Parts_Implementations_DurationInfo_VisualCard_Calendar_Parts_Implementations_DurationInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.DurationInfo.op_Equality(VisualCard.Calendar.Parts.Implementations.DurationInfo,VisualCard.Calendar.Parts.Implementations.DurationInfo)
+  name.vb: =(DurationInfo, DurationInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.DurationInfo.operator ==(VisualCard.Calendar.Parts.Implementations.DurationInfo, VisualCard.Calendar.Parts.Implementations.DurationInfo)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.DurationInfo.=(VisualCard.Calendar.Parts.Implementations.DurationInfo, VisualCard.Calendar.Parts.Implementations.DurationInfo)
+  nameWithType: DurationInfo.operator ==(DurationInfo, DurationInfo)
+  nameWithType.vb: DurationInfo.=(DurationInfo, DurationInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.DurationInfo.op_Equality*
+  name: operator ==
+  href: api/VisualCard.Calendar.Parts.Implementations.DurationInfo.html#VisualCard_Calendar_Parts_Implementations_DurationInfo_op_Equality_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.DurationInfo.op_Equality
+  isSpec: "True"
+  name.vb: =
+  fullName: VisualCard.Calendar.Parts.Implementations.DurationInfo.operator ==
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.DurationInfo.=
+  nameWithType: DurationInfo.operator ==
+  nameWithType.vb: DurationInfo.=
+- uid: VisualCard.Calendar.Parts.Implementations.DurationInfo.op_Inequality(VisualCard.Calendar.Parts.Implementations.DurationInfo,VisualCard.Calendar.Parts.Implementations.DurationInfo)
+  name: operator !=(DurationInfo, DurationInfo)
+  href: api/VisualCard.Calendar.Parts.Implementations.DurationInfo.html#VisualCard_Calendar_Parts_Implementations_DurationInfo_op_Inequality_VisualCard_Calendar_Parts_Implementations_DurationInfo_VisualCard_Calendar_Parts_Implementations_DurationInfo_
+  commentId: M:VisualCard.Calendar.Parts.Implementations.DurationInfo.op_Inequality(VisualCard.Calendar.Parts.Implementations.DurationInfo,VisualCard.Calendar.Parts.Implementations.DurationInfo)
+  name.vb: <>(DurationInfo, DurationInfo)
+  fullName: VisualCard.Calendar.Parts.Implementations.DurationInfo.operator !=(VisualCard.Calendar.Parts.Implementations.DurationInfo, VisualCard.Calendar.Parts.Implementations.DurationInfo)
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.DurationInfo.<>(VisualCard.Calendar.Parts.Implementations.DurationInfo, VisualCard.Calendar.Parts.Implementations.DurationInfo)
+  nameWithType: DurationInfo.operator !=(DurationInfo, DurationInfo)
+  nameWithType.vb: DurationInfo.<>(DurationInfo, DurationInfo)
+- uid: VisualCard.Calendar.Parts.Implementations.DurationInfo.op_Inequality*
+  name: operator !=
+  href: api/VisualCard.Calendar.Parts.Implementations.DurationInfo.html#VisualCard_Calendar_Parts_Implementations_DurationInfo_op_Inequality_
+  commentId: Overload:VisualCard.Calendar.Parts.Implementations.DurationInfo.op_Inequality
+  isSpec: "True"
+  name.vb: <>
+  fullName: VisualCard.Calendar.Parts.Implementations.DurationInfo.operator !=
+  fullName.vb: VisualCard.Calendar.Parts.Implementations.DurationInfo.<>
+  nameWithType: DurationInfo.operator !=
+  nameWithType.vb: DurationInfo.<>
 - uid: VisualCard.Calendar.Parts.Implementations.Event
   name: VisualCard.Calendar.Parts.Implementations.Event
   href: api/VisualCard.Calendar.Parts.Implementations.Event.html

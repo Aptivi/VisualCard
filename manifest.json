@@ -225,6 +225,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.DurationInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.DurationInfo.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.Event.CategoriesInfo.yml",
       "output": {
         ".html": {
