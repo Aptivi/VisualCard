@@ -36,5 +36,9 @@ namespace VisualCard.Calendar.Parts.Enums
         /// To-do percent completion
         /// </summary>
         PercentComplete,
+        /// <summary>
+        /// Alarm repetition rate
+        /// </summary>
+        Repeat,
     }
 }

@@ -65,6 +65,7 @@ namespace VisualCard.Calendar.Parsers
                 CalendarIntegersEnum.Priority => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo)),
                 CalendarIntegersEnum.Sequence => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal)),
                 CalendarIntegersEnum.PercentComplete => TypeMatch(componentType, typeof(CalendarTodo)),
+                CalendarIntegersEnum.Repeat => TypeMatch(componentType, typeof(CalendarAlarm)),
                 _ =>
                     throw new InvalidOperationException("Invalid integer enumeration type to get supported value"),
             };
@@ -83,6 +84,7 @@ namespace VisualCard.Calendar.Parsers
                 CalendarPartsArrayEnum.DateCreatedAlt => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo)),
                 CalendarPartsArrayEnum.DateStart => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarFreeBusy), typeof(CalendarStandard), typeof(CalendarDaylight)),
                 CalendarPartsArrayEnum.DateEnd => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarFreeBusy)),
+                CalendarPartsArrayEnum.Duration => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarAlarm)),
                 CalendarPartsArrayEnum.DateCompleted => TypeMatch(componentType, typeof(CalendarTodo)),
                 CalendarPartsArrayEnum.DueDate => TypeMatch(componentType, typeof(CalendarTodo)),
                 CalendarPartsArrayEnum.DateStamp => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal), typeof(CalendarFreeBusy)),
@@ -134,6 +136,7 @@ namespace VisualCard.Calendar.Parsers
                 CalendarIntegersEnum.Priority => VCalendarConstants._prioritySpecifier,
                 CalendarIntegersEnum.Sequence => VCalendarConstants._sequenceSpecifier,
                 CalendarIntegersEnum.PercentComplete => VCalendarConstants._percentCompletionSpecifier,
+                CalendarIntegersEnum.Repeat => VCalendarConstants._repeatSpecifier,
                 _ =>
                     throw new NotImplementedException($"Integer enumeration {integersEnum} is not implemented.")
             };
@@ -152,6 +155,7 @@ namespace VisualCard.Calendar.Parsers
                 CalendarPartsArrayEnum.DateCreatedAlt => VCalendarConstants._created1Specifier,
                 CalendarPartsArrayEnum.DateStart => VCalendarConstants._dateStartSpecifier,
                 CalendarPartsArrayEnum.DateEnd => VCalendarConstants._dateEndSpecifier,
+                CalendarPartsArrayEnum.Duration => VCalendarConstants._durationSpecifier,
                 CalendarPartsArrayEnum.DateCompleted => VCalendarConstants._dateCompletedSpecifier,
                 CalendarPartsArrayEnum.DueDate => VCalendarConstants._dueDateSpecifier,
                 CalendarPartsArrayEnum.DateStamp => VCalendarConstants._dateStampSpecifier,
@@ -200,6 +204,8 @@ namespace VisualCard.Calendar.Parsers
                 return (CalendarPartsArrayEnum.DateStart, PartCardinality.ShouldBeOne);
             else if (partsArrayType == typeof(DateEndInfo))
                 return (CalendarPartsArrayEnum.DateEnd, PartCardinality.MayBeOne);
+            else if (partsArrayType == typeof(DurationInfo))
+                return (CalendarPartsArrayEnum.Duration, PartCardinality.MayBeOne);
             else if (partsArrayType == typeof(DateCompletedInfo))
                 return (CalendarPartsArrayEnum.DateCompleted, PartCardinality.MayBeOne);
             else if (partsArrayType == typeof(DueDateInfo))
@@ -245,6 +251,7 @@ namespace VisualCard.Calendar.Parsers
                 VCalendarConstants._created1Specifier => (PartType.PartsArray, CalendarPartsArrayEnum.DateCreatedAlt, typeof(DateCreatedInfo), DateCreatedInfo.FromStringVcalendarStatic, "", "", "date-time", []),
                 VCalendarConstants._dateStartSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DateStart, typeof(DateStartInfo), DateStartInfo.FromStringVcalendarStatic, "", "", "date-time", []),
                 VCalendarConstants._dateEndSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DateEnd, typeof(DateEndInfo), DateEndInfo.FromStringVcalendarStatic, "", "", "date-time", []),
+                VCalendarConstants._durationSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.Duration, typeof(DurationInfo), DurationInfo.FromStringVcalendarStatic, "", "", "duration", []),
                 VCalendarConstants._dateCompletedSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DateCompleted, typeof(DateCompletedInfo), DateCompletedInfo.FromStringVcalendarStatic, "", "", "date-time", []),
                 VCalendarConstants._dueDateSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DueDate, typeof(DueDateInfo), DueDateInfo.FromStringVcalendarStatic, "", "", "date-time", []),
                 VCalendarConstants._dateStampSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DateStamp, typeof(DateStampInfo), DateStampInfo.FromStringVcalendarStatic, "", "", "date-time", []),
@@ -281,6 +288,7 @@ namespace VisualCard.Calendar.Parsers
                 VCalendarConstants._prioritySpecifier => (PartType.Integers, CalendarIntegersEnum.Priority, null, null, "", "", "integer", []),
                 VCalendarConstants._sequenceSpecifier => (PartType.Integers, CalendarIntegersEnum.Sequence, null, null, "", "", "integer", []),
                 VCalendarConstants._percentCompletionSpecifier => (PartType.Integers, CalendarIntegersEnum.PercentComplete, null, null, "", "", "integer", []),
+                VCalendarConstants._repeatSpecifier => (PartType.Integers, CalendarIntegersEnum.Repeat, null, null, "", "", "integer", []),
 
                 // Extensions are allowed
                 VCalendarConstants._xSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.NonstandardNames, typeof(XNameInfo), XNameInfo.FromStringVcalendarStatic, "", "", "", []),

@@ -133,6 +133,10 @@ namespace VisualCard.Calendar.Parts.Enums
         /// </summary>
         FreeBusy,
         /// <summary>
+        /// Duration (event, todo, or alarm)
+        /// </summary>
+        Duration,
+        /// <summary>
         /// The calendar's extended IANA options (usually starts with SOMETHING:Value1;Value2...) (event, todo, journal, free/busy, or alarm)
         /// </summary>
         IanaNames = int.MaxValue - 2,

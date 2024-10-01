@@ -377,7 +377,16 @@ namespace VisualCard.Calendar.Parsers
                     if (!ValidateComponent(ref expectedMailAlarmFields, out string[] actualMailAlarmFields, alarmInfo))
                         throw new InvalidDataException($"The following keys [{string.Join(", ", expectedMailAlarmFields)}] are required in the mail alarm representation. Got [{string.Join(", ", actualMailAlarmFields)}].");
                     break;
-            }    
+            }
+
+            // Check to see if there is a repeat property
+            int repeat = (int)alarmInfo.GetInteger(CalendarIntegersEnum.Repeat);
+            string[] expectedRepeatedAlarmFields = [VCalendarConstants._durationSpecifier];
+            if (repeat >= 1)
+            {
+                if (!ValidateComponent(ref expectedRepeatedAlarmFields, out string[] actualRepeatedAlarmFields, alarmInfo))
+                    throw new InvalidDataException($"The following keys [{string.Join(", ", expectedRepeatedAlarmFields)}] are required in the repeated alarm representation. Got [{string.Join(", ", actualRepeatedAlarmFields)}].");
+            }
         }
 
         private Parts.Calendar GetCalendarInheritedInstance(string type)
