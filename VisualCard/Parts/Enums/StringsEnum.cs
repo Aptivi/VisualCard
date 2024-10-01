@@ -48,5 +48,13 @@ namespace VisualCard.Parts.Enums
         /// The contact's unique ID
         /// </summary>
         Uid,
+        /// <summary>
+        /// Name of the vCard corresponding to the source
+        /// </summary>
+        SourceName,
+        /// <summary>
+        /// Profile. Either empty or, if specified, vCard
+        /// </summary>
+        Profile,
     }
 }

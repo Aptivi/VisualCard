@@ -90,6 +90,10 @@ namespace VisualCard.Parsers
         internal const string _altIdArgumentSpecifier = "ALTID=";
         internal const string _prefArgumentSpecifier = "PREF=";
 
+        // Available in vCard 3.0
+        internal const string _srcNameSpecifier = "NAME";
+        internal const string _profileSpecifier = "PROFILE";
+
         // Available in vCard 4.0
         internal const string _memberSpecifier = "MEMBER";
         internal const string _relatedSpecifier = "RELATED";

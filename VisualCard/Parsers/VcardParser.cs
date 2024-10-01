@@ -191,6 +191,8 @@ namespace VisualCard.Parsers
                                     kind = string.IsNullOrEmpty(finalValue) ? "individual" : finalValue;
                                     card.kindExplicitlySpecified = true;
                                 }
+                                else if (stringType == StringsEnum.Profile && !finalValue.Equals("vcard", StringComparison.OrdinalIgnoreCase))
+                                    throw new InvalidDataException("Profile must be \"vCard\"");
 
                                 // Set the string for real
                                 card.SetString(stringType, finalValue, group);

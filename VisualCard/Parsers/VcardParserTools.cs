@@ -81,6 +81,8 @@ namespace VisualCard.Parsers
                 StringsEnum.ProductId => VcardConstants._productIdSpecifier,
                 StringsEnum.SortString => VcardConstants._sortStringSpecifier,
                 StringsEnum.Uid => VcardConstants._uidSpecifier,
+                StringsEnum.SourceName => VcardConstants._srcNameSpecifier,
+                StringsEnum.Profile => VcardConstants._profileSpecifier,
                 _ =>
                     throw new NotImplementedException($"String enumeration {stringsEnum} is not implemented.")
             };
@@ -256,6 +258,8 @@ namespace VisualCard.Parsers
                 VcardConstants._sortStringSpecifier => (PartType.Strings, StringsEnum.SortString, null, null, "", "", "text", []),
                 VcardConstants._classSpecifier => (PartType.Strings, StringsEnum.AccessClassification, null, null, "", "", "text", []),
                 VcardConstants._uidSpecifier => (PartType.Strings, StringsEnum.Uid, null, null, "", "", "text", []),
+                VcardConstants._srcNameSpecifier => (PartType.Strings, StringsEnum.SourceName, null, null, "", "", "text", []),
+                VcardConstants._profileSpecifier => (PartType.Strings, StringsEnum.Profile, null, null, "", "", "text", []),
 
                 // Extensions are allowed
                 VcardConstants._xSpecifier => (PartType.PartsArray, PartsArrayEnum.NonstandardNames, typeof(XNameInfo), XNameInfo.FromStringVcardStatic, "", "", "", []),

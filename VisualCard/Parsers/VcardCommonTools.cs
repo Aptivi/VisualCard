@@ -503,6 +503,8 @@ namespace VisualCard.Parsers
                 StringsEnum.SortString => cardVersion.Major == 3 || cardVersion.Major == 5,
                 StringsEnum.AccessClassification => cardVersion.Major != 2 || cardVersion.Major != 4,
                 StringsEnum.Uid => cardVersion.Major <= 4,
+                StringsEnum.SourceName => cardVersion.Major == 3,
+                StringsEnum.Profile => cardVersion.Major == 3,
                 _ =>
                     throw new InvalidOperationException("Invalid string enumeration type to get supported value"),
             };
