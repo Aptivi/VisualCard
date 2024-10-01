@@ -55,17 +55,20 @@ namespace VisualCard.Calendar.Parsers
                 CalendarStringsEnum.Recursion => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal), typeof(CalendarStandard), typeof(CalendarDaylight)),
                 CalendarStringsEnum.ExRule => calendarVersion.Major == 1 && TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo)),
                 CalendarStringsEnum.RecursionId => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal)),
+                CalendarStringsEnum.Url => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal), typeof(CalendarFreeBusy)),
+                CalendarStringsEnum.TimeZone => TypeMatch(componentType, typeof(Parts.Calendar)),
                 _ =>
                     throw new InvalidOperationException("Invalid string enumeration type to get supported value"),
             };
         
-        internal static bool IntegerSupported(CalendarIntegersEnum integersEnum, Type componentType) =>
+        internal static bool IntegerSupported(CalendarIntegersEnum integersEnum, Version calendarVersion, Type componentType) =>
             integersEnum switch
             {
                 CalendarIntegersEnum.Priority => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo)),
                 CalendarIntegersEnum.Sequence => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal)),
                 CalendarIntegersEnum.PercentComplete => TypeMatch(componentType, typeof(CalendarTodo)),
                 CalendarIntegersEnum.Repeat => TypeMatch(componentType, typeof(CalendarAlarm)),
+                CalendarIntegersEnum.RecurrTimes => calendarVersion.Major == 1 && TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo)),
                 _ =>
                     throw new InvalidOperationException("Invalid integer enumeration type to get supported value"),
             };
@@ -102,6 +105,7 @@ namespace VisualCard.Calendar.Parsers
                 CalendarPartsArrayEnum.LastModified => TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal), typeof(CalendarTimeZone)),
                 CalendarPartsArrayEnum.FreeBusy => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(CalendarFreeBusy)),
                 CalendarPartsArrayEnum.RequestStatus => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal), typeof(CalendarFreeBusy)),
+                CalendarPartsArrayEnum.Contact => calendarVersion.Major == 2 && TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo), typeof(CalendarJournal), typeof(CalendarFreeBusy)),
 
                 // Extensions are allowed
                 _ => true,
@@ -127,6 +131,8 @@ namespace VisualCard.Calendar.Parsers
                 CalendarStringsEnum.Recursion => VCalendarConstants._recurseSpecifier,
                 CalendarStringsEnum.ExRule => VCalendarConstants._exRuleSpecifier,
                 CalendarStringsEnum.RecursionId => VCalendarConstants._recurIdSpecifier,
+                CalendarStringsEnum.Url => VCalendarConstants._urlSpecifier,
+                CalendarStringsEnum.TimeZone => VCalendarConstants._tzSpecifier,
                 _ =>
                     throw new NotImplementedException($"String enumeration {stringsEnum} is not implemented.")
             };
@@ -138,6 +144,7 @@ namespace VisualCard.Calendar.Parsers
                 CalendarIntegersEnum.Sequence => VCalendarConstants._sequenceSpecifier,
                 CalendarIntegersEnum.PercentComplete => VCalendarConstants._percentCompletionSpecifier,
                 CalendarIntegersEnum.Repeat => VCalendarConstants._repeatSpecifier,
+                CalendarIntegersEnum.RecurrTimes => VCalendarConstants._rNumSpecifier,
                 _ =>
                     throw new NotImplementedException($"Integer enumeration {integersEnum} is not implemented.")
             };
@@ -174,6 +181,7 @@ namespace VisualCard.Calendar.Parsers
                 CalendarPartsArrayEnum.LastModified => VCalendarConstants._lastModSpecifier,
                 CalendarPartsArrayEnum.FreeBusy => VCalendarConstants._freeBusySpecifier,
                 CalendarPartsArrayEnum.RequestStatus => VCalendarConstants._requestStatusSpecifier,
+                CalendarPartsArrayEnum.Contact => VCalendarConstants._contactSpecifier,
 
                 // Extensions are allowed
                 CalendarPartsArrayEnum.NonstandardNames => VCalendarConstants._xSpecifier,
@@ -234,6 +242,8 @@ namespace VisualCard.Calendar.Parsers
                 return (CalendarPartsArrayEnum.FreeBusy, PartCardinality.Any);
             else if (partsArrayType == typeof(RequestStatusInfo))
                 return (CalendarPartsArrayEnum.RequestStatus, PartCardinality.Any);
+            else if (partsArrayType == typeof(ContactInfo))
+                return (CalendarPartsArrayEnum.Contact, PartCardinality.Any);
 
             // Extensions are allowed
             else if (partsArrayType == typeof(XNameInfo))
@@ -273,6 +283,7 @@ namespace VisualCard.Calendar.Parsers
                 VCalendarConstants._lastModSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.LastModified, typeof(LastModifiedInfo), LastModifiedInfo.FromStringVcalendarStatic, "", "", "date-time", []),
                 VCalendarConstants._freeBusySpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.FreeBusy, typeof(CalendarFreeBusyInfo), CalendarFreeBusyInfo.FromStringVcalendarStatic, "", "", "period", []),
                 VCalendarConstants._requestStatusSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.RequestStatus, typeof(RequestStatusInfo), RequestStatusInfo.FromStringVcalendarStatic, "", "", "text", []),
+                VCalendarConstants._contactSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.Contact, typeof(ContactInfo), ContactInfo.FromStringVcalendarStatic, "", "", "text", []),
                 VCalendarConstants._productIdSpecifier => (PartType.Strings, CalendarStringsEnum.ProductId, null, null, "", "", "text", []),
                 VCalendarConstants._calScaleSpecifier => (PartType.Strings, CalendarStringsEnum.CalScale, null, null, "", "", "text", []),
                 VCalendarConstants._methodSpecifier => (PartType.Strings, CalendarStringsEnum.Method, null, null, "", "", "text", []),
@@ -290,10 +301,13 @@ namespace VisualCard.Calendar.Parsers
                 VCalendarConstants._recurseSpecifier => (PartType.Strings, CalendarStringsEnum.Recursion, null, null, "", "", "recur", []),
                 VCalendarConstants._exRuleSpecifier => (PartType.Strings, CalendarStringsEnum.ExRule, null, null, "", "", "recur", []),
                 VCalendarConstants._recurIdSpecifier => (PartType.Strings, CalendarStringsEnum.RecursionId, null, null, "", "", "date-time", []),
+                VCalendarConstants._urlSpecifier => (PartType.Strings, CalendarStringsEnum.Url, null, null, "", "", "uri", []),
+                VCalendarConstants._tzSpecifier => (PartType.Strings, CalendarStringsEnum.TimeZone, null, null, "", "", "tz-offset", []),
                 VCalendarConstants._prioritySpecifier => (PartType.Integers, CalendarIntegersEnum.Priority, null, null, "", "", "integer", []),
                 VCalendarConstants._sequenceSpecifier => (PartType.Integers, CalendarIntegersEnum.Sequence, null, null, "", "", "integer", []),
                 VCalendarConstants._percentCompletionSpecifier => (PartType.Integers, CalendarIntegersEnum.PercentComplete, null, null, "", "", "integer", []),
                 VCalendarConstants._repeatSpecifier => (PartType.Integers, CalendarIntegersEnum.Repeat, null, null, "", "", "integer", []),
+                VCalendarConstants._rNumSpecifier => (PartType.Integers, CalendarIntegersEnum.RecurrTimes, null, null, "", "", "integer", []),
 
                 // Extensions are allowed
                 VCalendarConstants._xSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.NonstandardNames, typeof(XNameInfo), XNameInfo.FromStringVcalendarStatic, "", "", "", []),

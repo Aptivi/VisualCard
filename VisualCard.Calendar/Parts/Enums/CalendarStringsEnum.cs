@@ -92,5 +92,13 @@ namespace VisualCard.Calendar.Parts.Enums
         /// Calendar recursion ID (event, todo, or journal)
         /// </summary>
         RecursionId,
+        /// <summary>
+        /// Calendar source URL (event, todo, journal, or free/busy)
+        /// </summary>
+        Url,
+        /// <summary>
+        /// Calendar time zone (root)
+        /// </summary>
+        TimeZone,
     }
 }

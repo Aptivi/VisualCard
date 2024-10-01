@@ -40,5 +40,9 @@ namespace VisualCard.Calendar.Parts.Enums
         /// Alarm repetition rate
         /// </summary>
         Repeat,
+        /// <summary>
+        /// Recurrence times
+        /// </summary>
+        RecurrTimes,
     }
 }

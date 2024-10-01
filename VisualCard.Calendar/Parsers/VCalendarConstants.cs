@@ -82,6 +82,7 @@ namespace VisualCard.Calendar.Parsers
         internal const string _relationshipSpecifier = "RELATED-TO";
         internal const string _lastModSpecifier = "LAST-MODIFIED";
         internal const string _prioritySpecifier = "PRIORITY";
+        internal const string _urlSpecifier = "URL";
         internal const string _xSpecifier = "X-";
         internal const string _typeArgumentSpecifier = "TYPE=";
         internal const string _valueArgumentSpecifier = "VALUE=";
@@ -94,6 +95,8 @@ namespace VisualCard.Calendar.Parsers
         internal const string _mAlarmSpecifier = "MALARM";
         internal const string _pAlarmSpecifier = "PALARM";
         internal const string _exRuleSpecifier = "EXRULE";
+        internal const string _tzSpecifier = "TZ";
+        internal const string _rNumSpecifier = "RNUM";
 
         // Available in vCalendar 2.0
         internal const string _dateStampSpecifier = "DTSTAMP";
@@ -108,5 +111,6 @@ namespace VisualCard.Calendar.Parsers
         internal const string _repeatSpecifier = "REPEAT";
         internal const string _durationSpecifier = "DURATION";
         internal const string _requestStatusSpecifier = "REQUEST-STATUS";
+        internal const string _contactSpecifier = "CONTACT";
     }
 }

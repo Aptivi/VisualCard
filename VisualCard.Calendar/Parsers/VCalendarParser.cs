@@ -189,7 +189,7 @@ namespace VisualCard.Calendar.Parsers
                         case PartType.Integers:
                             {
                                 CalendarIntegersEnum integerType = (CalendarIntegersEnum)enumeration;
-                                bool supported = VCalendarParserTools.IntegerSupported(integerType, calendarType);
+                                bool supported = VCalendarParserTools.IntegerSupported(integerType, CalendarVersion, calendarType);
                                 if (!supported)
                                     continue;
 

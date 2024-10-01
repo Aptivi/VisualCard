@@ -141,6 +141,10 @@ namespace VisualCard.Calendar.Parts.Enums
         /// </summary>
         RequestStatus,
         /// <summary>
+        /// Contact information (event, todo, journal, or free/busy)
+        /// </summary>
+        Contact,
+        /// <summary>
         /// The calendar's extended IANA options (usually starts with SOMETHING:Value1;Value2...) (event, todo, journal, free/busy, or alarm)
         /// </summary>
         IanaNames = int.MaxValue - 2,
