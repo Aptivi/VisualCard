@@ -6523,6 +6523,12 @@ references:
   commentId: F:VisualCard.Parts.Enums.PartsArrayEnum.Categories
   fullName: VisualCard.Parts.Enums.PartsArrayEnum.Categories
   nameWithType: PartsArrayEnum.Categories
+- uid: VisualCard.Parts.Enums.PartsArrayEnum.ClientPidMap
+  name: ClientPidMap
+  href: api/VisualCard.Parts.Enums.PartsArrayEnum.html#VisualCard_Parts_Enums_PartsArrayEnum_ClientPidMap
+  commentId: F:VisualCard.Parts.Enums.PartsArrayEnum.ClientPidMap
+  fullName: VisualCard.Parts.Enums.PartsArrayEnum.ClientPidMap
+  nameWithType: PartsArrayEnum.ClientPidMap
 - uid: VisualCard.Parts.Enums.PartsArrayEnum.ContactUri
   name: ContactUri
   href: api/VisualCard.Parts.Enums.PartsArrayEnum.html#VisualCard_Parts_Enums_PartsArrayEnum_ContactUri
@@ -6637,6 +6643,12 @@ references:
   commentId: F:VisualCard.Parts.Enums.PartsArrayEnum.Photos
   fullName: VisualCard.Parts.Enums.PartsArrayEnum.Photos
   nameWithType: PartsArrayEnum.Photos
+- uid: VisualCard.Parts.Enums.PartsArrayEnum.Related
+  name: Related
+  href: api/VisualCard.Parts.Enums.PartsArrayEnum.html#VisualCard_Parts_Enums_PartsArrayEnum_Related
+  commentId: F:VisualCard.Parts.Enums.PartsArrayEnum.Related
+  fullName: VisualCard.Parts.Enums.PartsArrayEnum.Related
+  nameWithType: PartsArrayEnum.Related
 - uid: VisualCard.Parts.Enums.PartsArrayEnum.Revision
   name: Revision
   href: api/VisualCard.Parts.Enums.PartsArrayEnum.html#VisualCard_Parts_Enums_PartsArrayEnum_Revision
@@ -7503,6 +7515,117 @@ references:
   fullName.vb: VisualCard.Parts.Implementations.CategoryInfo.<>
   nameWithType: CategoryInfo.operator !=
   nameWithType.vb: CategoryInfo.<>
+- uid: VisualCard.Parts.Implementations.ClientPidMapInfo
+  name: ClientPidMapInfo
+  href: api/VisualCard.Parts.Implementations.ClientPidMapInfo.html
+  commentId: T:VisualCard.Parts.Implementations.ClientPidMapInfo
+  fullName: VisualCard.Parts.Implementations.ClientPidMapInfo
+  nameWithType: ClientPidMapInfo
+- uid: VisualCard.Parts.Implementations.ClientPidMapInfo.Equals(System.Object)
+  name: Equals(object)
+  href: api/VisualCard.Parts.Implementations.ClientPidMapInfo.html#VisualCard_Parts_Implementations_ClientPidMapInfo_Equals_System_Object_
+  commentId: M:VisualCard.Parts.Implementations.ClientPidMapInfo.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Parts.Implementations.ClientPidMapInfo.Equals(object)
+  fullName.vb: VisualCard.Parts.Implementations.ClientPidMapInfo.Equals(Object)
+  nameWithType: ClientPidMapInfo.Equals(object)
+  nameWithType.vb: ClientPidMapInfo.Equals(Object)
+- uid: VisualCard.Parts.Implementations.ClientPidMapInfo.Equals(VisualCard.Parts.Implementations.ClientPidMapInfo)
+  name: Equals(ClientPidMapInfo)
+  href: api/VisualCard.Parts.Implementations.ClientPidMapInfo.html#VisualCard_Parts_Implementations_ClientPidMapInfo_Equals_VisualCard_Parts_Implementations_ClientPidMapInfo_
+  commentId: M:VisualCard.Parts.Implementations.ClientPidMapInfo.Equals(VisualCard.Parts.Implementations.ClientPidMapInfo)
+  fullName: VisualCard.Parts.Implementations.ClientPidMapInfo.Equals(VisualCard.Parts.Implementations.ClientPidMapInfo)
+  nameWithType: ClientPidMapInfo.Equals(ClientPidMapInfo)
+- uid: VisualCard.Parts.Implementations.ClientPidMapInfo.Equals(VisualCard.Parts.Implementations.ClientPidMapInfo,VisualCard.Parts.Implementations.ClientPidMapInfo)
+  name: Equals(ClientPidMapInfo, ClientPidMapInfo)
+  href: api/VisualCard.Parts.Implementations.ClientPidMapInfo.html#VisualCard_Parts_Implementations_ClientPidMapInfo_Equals_VisualCard_Parts_Implementations_ClientPidMapInfo_VisualCard_Parts_Implementations_ClientPidMapInfo_
+  commentId: M:VisualCard.Parts.Implementations.ClientPidMapInfo.Equals(VisualCard.Parts.Implementations.ClientPidMapInfo,VisualCard.Parts.Implementations.ClientPidMapInfo)
+  fullName: VisualCard.Parts.Implementations.ClientPidMapInfo.Equals(VisualCard.Parts.Implementations.ClientPidMapInfo, VisualCard.Parts.Implementations.ClientPidMapInfo)
+  nameWithType: ClientPidMapInfo.Equals(ClientPidMapInfo, ClientPidMapInfo)
+- uid: VisualCard.Parts.Implementations.ClientPidMapInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Parts.Implementations.ClientPidMapInfo.html#VisualCard_Parts_Implementations_ClientPidMapInfo_Equals_
+  commentId: Overload:VisualCard.Parts.Implementations.ClientPidMapInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.ClientPidMapInfo.Equals
+  nameWithType: ClientPidMapInfo.Equals
+- uid: VisualCard.Parts.Implementations.ClientPidMapInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Parts.Implementations.ClientPidMapInfo.html#VisualCard_Parts_Implementations_ClientPidMapInfo_GetHashCode
+  commentId: M:VisualCard.Parts.Implementations.ClientPidMapInfo.GetHashCode
+  fullName: VisualCard.Parts.Implementations.ClientPidMapInfo.GetHashCode()
+  nameWithType: ClientPidMapInfo.GetHashCode()
+- uid: VisualCard.Parts.Implementations.ClientPidMapInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Parts.Implementations.ClientPidMapInfo.html#VisualCard_Parts_Implementations_ClientPidMapInfo_GetHashCode_
+  commentId: Overload:VisualCard.Parts.Implementations.ClientPidMapInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.ClientPidMapInfo.GetHashCode
+  nameWithType: ClientPidMapInfo.GetHashCode
+- uid: VisualCard.Parts.Implementations.ClientPidMapInfo.PidNum
+  name: PidNum
+  href: api/VisualCard.Parts.Implementations.ClientPidMapInfo.html#VisualCard_Parts_Implementations_ClientPidMapInfo_PidNum
+  commentId: P:VisualCard.Parts.Implementations.ClientPidMapInfo.PidNum
+  fullName: VisualCard.Parts.Implementations.ClientPidMapInfo.PidNum
+  nameWithType: ClientPidMapInfo.PidNum
+- uid: VisualCard.Parts.Implementations.ClientPidMapInfo.PidNum*
+  name: PidNum
+  href: api/VisualCard.Parts.Implementations.ClientPidMapInfo.html#VisualCard_Parts_Implementations_ClientPidMapInfo_PidNum_
+  commentId: Overload:VisualCard.Parts.Implementations.ClientPidMapInfo.PidNum
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.ClientPidMapInfo.PidNum
+  nameWithType: ClientPidMapInfo.PidNum
+- uid: VisualCard.Parts.Implementations.ClientPidMapInfo.PidUri
+  name: PidUri
+  href: api/VisualCard.Parts.Implementations.ClientPidMapInfo.html#VisualCard_Parts_Implementations_ClientPidMapInfo_PidUri
+  commentId: P:VisualCard.Parts.Implementations.ClientPidMapInfo.PidUri
+  fullName: VisualCard.Parts.Implementations.ClientPidMapInfo.PidUri
+  nameWithType: ClientPidMapInfo.PidUri
+- uid: VisualCard.Parts.Implementations.ClientPidMapInfo.PidUri*
+  name: PidUri
+  href: api/VisualCard.Parts.Implementations.ClientPidMapInfo.html#VisualCard_Parts_Implementations_ClientPidMapInfo_PidUri_
+  commentId: Overload:VisualCard.Parts.Implementations.ClientPidMapInfo.PidUri
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.ClientPidMapInfo.PidUri
+  nameWithType: ClientPidMapInfo.PidUri
+- uid: VisualCard.Parts.Implementations.ClientPidMapInfo.op_Equality(VisualCard.Parts.Implementations.ClientPidMapInfo,VisualCard.Parts.Implementations.ClientPidMapInfo)
+  name: operator ==(ClientPidMapInfo, ClientPidMapInfo)
+  href: api/VisualCard.Parts.Implementations.ClientPidMapInfo.html#VisualCard_Parts_Implementations_ClientPidMapInfo_op_Equality_VisualCard_Parts_Implementations_ClientPidMapInfo_VisualCard_Parts_Implementations_ClientPidMapInfo_
+  commentId: M:VisualCard.Parts.Implementations.ClientPidMapInfo.op_Equality(VisualCard.Parts.Implementations.ClientPidMapInfo,VisualCard.Parts.Implementations.ClientPidMapInfo)
+  name.vb: =(ClientPidMapInfo, ClientPidMapInfo)
+  fullName: VisualCard.Parts.Implementations.ClientPidMapInfo.operator ==(VisualCard.Parts.Implementations.ClientPidMapInfo, VisualCard.Parts.Implementations.ClientPidMapInfo)
+  fullName.vb: VisualCard.Parts.Implementations.ClientPidMapInfo.=(VisualCard.Parts.Implementations.ClientPidMapInfo, VisualCard.Parts.Implementations.ClientPidMapInfo)
+  nameWithType: ClientPidMapInfo.operator ==(ClientPidMapInfo, ClientPidMapInfo)
+  nameWithType.vb: ClientPidMapInfo.=(ClientPidMapInfo, ClientPidMapInfo)
+- uid: VisualCard.Parts.Implementations.ClientPidMapInfo.op_Equality*
+  name: operator ==
+  href: api/VisualCard.Parts.Implementations.ClientPidMapInfo.html#VisualCard_Parts_Implementations_ClientPidMapInfo_op_Equality_
+  commentId: Overload:VisualCard.Parts.Implementations.ClientPidMapInfo.op_Equality
+  isSpec: "True"
+  name.vb: =
+  fullName: VisualCard.Parts.Implementations.ClientPidMapInfo.operator ==
+  fullName.vb: VisualCard.Parts.Implementations.ClientPidMapInfo.=
+  nameWithType: ClientPidMapInfo.operator ==
+  nameWithType.vb: ClientPidMapInfo.=
+- uid: VisualCard.Parts.Implementations.ClientPidMapInfo.op_Inequality(VisualCard.Parts.Implementations.ClientPidMapInfo,VisualCard.Parts.Implementations.ClientPidMapInfo)
+  name: operator !=(ClientPidMapInfo, ClientPidMapInfo)
+  href: api/VisualCard.Parts.Implementations.ClientPidMapInfo.html#VisualCard_Parts_Implementations_ClientPidMapInfo_op_Inequality_VisualCard_Parts_Implementations_ClientPidMapInfo_VisualCard_Parts_Implementations_ClientPidMapInfo_
+  commentId: M:VisualCard.Parts.Implementations.ClientPidMapInfo.op_Inequality(VisualCard.Parts.Implementations.ClientPidMapInfo,VisualCard.Parts.Implementations.ClientPidMapInfo)
+  name.vb: <>(ClientPidMapInfo, ClientPidMapInfo)
+  fullName: VisualCard.Parts.Implementations.ClientPidMapInfo.operator !=(VisualCard.Parts.Implementations.ClientPidMapInfo, VisualCard.Parts.Implementations.ClientPidMapInfo)
+  fullName.vb: VisualCard.Parts.Implementations.ClientPidMapInfo.<>(VisualCard.Parts.Implementations.ClientPidMapInfo, VisualCard.Parts.Implementations.ClientPidMapInfo)
+  nameWithType: ClientPidMapInfo.operator !=(ClientPidMapInfo, ClientPidMapInfo)
+  nameWithType.vb: ClientPidMapInfo.<>(ClientPidMapInfo, ClientPidMapInfo)
+- uid: VisualCard.Parts.Implementations.ClientPidMapInfo.op_Inequality*
+  name: operator !=
+  href: api/VisualCard.Parts.Implementations.ClientPidMapInfo.html#VisualCard_Parts_Implementations_ClientPidMapInfo_op_Inequality_
+  commentId: Overload:VisualCard.Parts.Implementations.ClientPidMapInfo.op_Inequality
+  isSpec: "True"
+  name.vb: <>
+  fullName: VisualCard.Parts.Implementations.ClientPidMapInfo.operator !=
+  fullName.vb: VisualCard.Parts.Implementations.ClientPidMapInfo.<>
+  nameWithType: ClientPidMapInfo.operator !=
+  nameWithType.vb: ClientPidMapInfo.<>
 - uid: VisualCard.Parts.Implementations.ContactUriInfo
   name: ContactUriInfo
   href: api/VisualCard.Parts.Implementations.ContactUriInfo.html
@@ -9501,6 +9624,104 @@ references:
   fullName.vb: VisualCard.Parts.Implementations.PhotoInfo.<>
   nameWithType: PhotoInfo.operator !=
   nameWithType.vb: PhotoInfo.<>
+- uid: VisualCard.Parts.Implementations.RelatedInfo
+  name: RelatedInfo
+  href: api/VisualCard.Parts.Implementations.RelatedInfo.html
+  commentId: T:VisualCard.Parts.Implementations.RelatedInfo
+  fullName: VisualCard.Parts.Implementations.RelatedInfo
+  nameWithType: RelatedInfo
+- uid: VisualCard.Parts.Implementations.RelatedInfo.Equals(System.Object)
+  name: Equals(object)
+  href: api/VisualCard.Parts.Implementations.RelatedInfo.html#VisualCard_Parts_Implementations_RelatedInfo_Equals_System_Object_
+  commentId: M:VisualCard.Parts.Implementations.RelatedInfo.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Parts.Implementations.RelatedInfo.Equals(object)
+  fullName.vb: VisualCard.Parts.Implementations.RelatedInfo.Equals(Object)
+  nameWithType: RelatedInfo.Equals(object)
+  nameWithType.vb: RelatedInfo.Equals(Object)
+- uid: VisualCard.Parts.Implementations.RelatedInfo.Equals(VisualCard.Parts.Implementations.RelatedInfo)
+  name: Equals(RelatedInfo)
+  href: api/VisualCard.Parts.Implementations.RelatedInfo.html#VisualCard_Parts_Implementations_RelatedInfo_Equals_VisualCard_Parts_Implementations_RelatedInfo_
+  commentId: M:VisualCard.Parts.Implementations.RelatedInfo.Equals(VisualCard.Parts.Implementations.RelatedInfo)
+  fullName: VisualCard.Parts.Implementations.RelatedInfo.Equals(VisualCard.Parts.Implementations.RelatedInfo)
+  nameWithType: RelatedInfo.Equals(RelatedInfo)
+- uid: VisualCard.Parts.Implementations.RelatedInfo.Equals(VisualCard.Parts.Implementations.RelatedInfo,VisualCard.Parts.Implementations.RelatedInfo)
+  name: Equals(RelatedInfo, RelatedInfo)
+  href: api/VisualCard.Parts.Implementations.RelatedInfo.html#VisualCard_Parts_Implementations_RelatedInfo_Equals_VisualCard_Parts_Implementations_RelatedInfo_VisualCard_Parts_Implementations_RelatedInfo_
+  commentId: M:VisualCard.Parts.Implementations.RelatedInfo.Equals(VisualCard.Parts.Implementations.RelatedInfo,VisualCard.Parts.Implementations.RelatedInfo)
+  fullName: VisualCard.Parts.Implementations.RelatedInfo.Equals(VisualCard.Parts.Implementations.RelatedInfo, VisualCard.Parts.Implementations.RelatedInfo)
+  nameWithType: RelatedInfo.Equals(RelatedInfo, RelatedInfo)
+- uid: VisualCard.Parts.Implementations.RelatedInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Parts.Implementations.RelatedInfo.html#VisualCard_Parts_Implementations_RelatedInfo_Equals_
+  commentId: Overload:VisualCard.Parts.Implementations.RelatedInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.RelatedInfo.Equals
+  nameWithType: RelatedInfo.Equals
+- uid: VisualCard.Parts.Implementations.RelatedInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Parts.Implementations.RelatedInfo.html#VisualCard_Parts_Implementations_RelatedInfo_GetHashCode
+  commentId: M:VisualCard.Parts.Implementations.RelatedInfo.GetHashCode
+  fullName: VisualCard.Parts.Implementations.RelatedInfo.GetHashCode()
+  nameWithType: RelatedInfo.GetHashCode()
+- uid: VisualCard.Parts.Implementations.RelatedInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Parts.Implementations.RelatedInfo.html#VisualCard_Parts_Implementations_RelatedInfo_GetHashCode_
+  commentId: Overload:VisualCard.Parts.Implementations.RelatedInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.RelatedInfo.GetHashCode
+  nameWithType: RelatedInfo.GetHashCode
+- uid: VisualCard.Parts.Implementations.RelatedInfo.RelatedUri
+  name: RelatedUri
+  href: api/VisualCard.Parts.Implementations.RelatedInfo.html#VisualCard_Parts_Implementations_RelatedInfo_RelatedUri
+  commentId: P:VisualCard.Parts.Implementations.RelatedInfo.RelatedUri
+  fullName: VisualCard.Parts.Implementations.RelatedInfo.RelatedUri
+  nameWithType: RelatedInfo.RelatedUri
+- uid: VisualCard.Parts.Implementations.RelatedInfo.RelatedUri*
+  name: RelatedUri
+  href: api/VisualCard.Parts.Implementations.RelatedInfo.html#VisualCard_Parts_Implementations_RelatedInfo_RelatedUri_
+  commentId: Overload:VisualCard.Parts.Implementations.RelatedInfo.RelatedUri
+  isSpec: "True"
+  fullName: VisualCard.Parts.Implementations.RelatedInfo.RelatedUri
+  nameWithType: RelatedInfo.RelatedUri
+- uid: VisualCard.Parts.Implementations.RelatedInfo.op_Equality(VisualCard.Parts.Implementations.RelatedInfo,VisualCard.Parts.Implementations.RelatedInfo)
+  name: operator ==(RelatedInfo, RelatedInfo)
+  href: api/VisualCard.Parts.Implementations.RelatedInfo.html#VisualCard_Parts_Implementations_RelatedInfo_op_Equality_VisualCard_Parts_Implementations_RelatedInfo_VisualCard_Parts_Implementations_RelatedInfo_
+  commentId: M:VisualCard.Parts.Implementations.RelatedInfo.op_Equality(VisualCard.Parts.Implementations.RelatedInfo,VisualCard.Parts.Implementations.RelatedInfo)
+  name.vb: =(RelatedInfo, RelatedInfo)
+  fullName: VisualCard.Parts.Implementations.RelatedInfo.operator ==(VisualCard.Parts.Implementations.RelatedInfo, VisualCard.Parts.Implementations.RelatedInfo)
+  fullName.vb: VisualCard.Parts.Implementations.RelatedInfo.=(VisualCard.Parts.Implementations.RelatedInfo, VisualCard.Parts.Implementations.RelatedInfo)
+  nameWithType: RelatedInfo.operator ==(RelatedInfo, RelatedInfo)
+  nameWithType.vb: RelatedInfo.=(RelatedInfo, RelatedInfo)
+- uid: VisualCard.Parts.Implementations.RelatedInfo.op_Equality*
+  name: operator ==
+  href: api/VisualCard.Parts.Implementations.RelatedInfo.html#VisualCard_Parts_Implementations_RelatedInfo_op_Equality_
+  commentId: Overload:VisualCard.Parts.Implementations.RelatedInfo.op_Equality
+  isSpec: "True"
+  name.vb: =
+  fullName: VisualCard.Parts.Implementations.RelatedInfo.operator ==
+  fullName.vb: VisualCard.Parts.Implementations.RelatedInfo.=
+  nameWithType: RelatedInfo.operator ==
+  nameWithType.vb: RelatedInfo.=
+- uid: VisualCard.Parts.Implementations.RelatedInfo.op_Inequality(VisualCard.Parts.Implementations.RelatedInfo,VisualCard.Parts.Implementations.RelatedInfo)
+  name: operator !=(RelatedInfo, RelatedInfo)
+  href: api/VisualCard.Parts.Implementations.RelatedInfo.html#VisualCard_Parts_Implementations_RelatedInfo_op_Inequality_VisualCard_Parts_Implementations_RelatedInfo_VisualCard_Parts_Implementations_RelatedInfo_
+  commentId: M:VisualCard.Parts.Implementations.RelatedInfo.op_Inequality(VisualCard.Parts.Implementations.RelatedInfo,VisualCard.Parts.Implementations.RelatedInfo)
+  name.vb: <>(RelatedInfo, RelatedInfo)
+  fullName: VisualCard.Parts.Implementations.RelatedInfo.operator !=(VisualCard.Parts.Implementations.RelatedInfo, VisualCard.Parts.Implementations.RelatedInfo)
+  fullName.vb: VisualCard.Parts.Implementations.RelatedInfo.<>(VisualCard.Parts.Implementations.RelatedInfo, VisualCard.Parts.Implementations.RelatedInfo)
+  nameWithType: RelatedInfo.operator !=(RelatedInfo, RelatedInfo)
+  nameWithType.vb: RelatedInfo.<>(RelatedInfo, RelatedInfo)
+- uid: VisualCard.Parts.Implementations.RelatedInfo.op_Inequality*
+  name: operator !=
+  href: api/VisualCard.Parts.Implementations.RelatedInfo.html#VisualCard_Parts_Implementations_RelatedInfo_op_Inequality_
+  commentId: Overload:VisualCard.Parts.Implementations.RelatedInfo.op_Inequality
+  isSpec: "True"
+  name.vb: <>
+  fullName: VisualCard.Parts.Implementations.RelatedInfo.operator !=
+  fullName.vb: VisualCard.Parts.Implementations.RelatedInfo.<>
+  nameWithType: RelatedInfo.operator !=
+  nameWithType.vb: RelatedInfo.<>
 - uid: VisualCard.Parts.Implementations.RevisionInfo
   name: RevisionInfo
   href: api/VisualCard.Parts.Implementations.RevisionInfo.html

@@ -775,6 +775,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.ClientPidMapInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.Implementations.ClientPidMapInfo.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/VisualCard.Parts.Implementations.ContactUriInfo.yml",
       "output": {
         ".html": {
@@ -949,6 +959,16 @@
       "output": {
         ".html": {
           "relative_path": "api/VisualCard.Parts.Implementations.PhotoInfo.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.RelatedInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.Implementations.RelatedInfo.html"
         }
       },
       "version": ""
