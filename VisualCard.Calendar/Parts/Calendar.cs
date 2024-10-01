@@ -46,7 +46,7 @@ namespace VisualCard.Calendar.Parts
         private readonly Version version;
         private readonly Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray = [];
         private readonly Dictionary<CalendarStringsEnum, string> strings = [];
-        private readonly Dictionary<CalendarIntegersEnum, int> integers = [];
+        private readonly Dictionary<CalendarIntegersEnum, double> integers = [];
 
         /// <summary>
         /// The vCalendar version
@@ -230,10 +230,10 @@ namespace VisualCard.Calendar.Parts
         /// </summary>
         /// <param name="key">A key to use</param>
         /// <returns>A value or -1 if any other type either doesn't exist or the type is not supported by the card version</returns>
-        public int GetInteger(CalendarIntegersEnum key) =>
+        public double GetInteger(CalendarIntegersEnum key) =>
             GetInteger(key, integers);
 
-        internal int GetInteger(CalendarIntegersEnum key, Dictionary<CalendarIntegersEnum, int> integers)
+        internal double GetInteger(CalendarIntegersEnum key, Dictionary<CalendarIntegersEnum, double> integers)
         {
             // Check for version support
             if (!VCalendarParserTools.IntegerSupported(key, GetType()))
@@ -243,7 +243,7 @@ namespace VisualCard.Calendar.Parts
             int fallback = -1;
 
             // Check to see if the integer has a value or not
-            bool hasValue = integers.TryGetValue(key, out int value);
+            bool hasValue = integers.TryGetValue(key, out double value);
             if (!hasValue)
                 return fallback;
             return value;
@@ -255,7 +255,7 @@ namespace VisualCard.Calendar.Parts
         public string SaveToString() =>
             SaveToString(version, partsArray, strings, integers, VCalendarConstants._objectVCalendarSpecifier);
 
-        internal string SaveToString(Version version, Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray, Dictionary<CalendarStringsEnum, string> strings, Dictionary<CalendarIntegersEnum, int> integers, string objectType)
+        internal string SaveToString(Version version, Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray, Dictionary<CalendarStringsEnum, string> strings, Dictionary<CalendarIntegersEnum, double> integers, string objectType)
         {
             // Initialize the card builder
             var cardBuilder = new StringBuilder();
@@ -285,7 +285,7 @@ namespace VisualCard.Calendar.Parts
             foreach (CalendarIntegersEnum integerEnum in integerEnums)
             {
                 // Get the integer value
-                int integerValue = GetInteger(integerEnum, integers);
+                double integerValue = GetInteger(integerEnum, integers);
                 if (integerValue == -1)
                     continue;
 
@@ -425,7 +425,7 @@ namespace VisualCard.Calendar.Parts
             hashCode = hashCode * -1521134295 + EqualityComparer<List<CalendarTimeZone>>.Default.GetHashCode(timeZones);
             hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>>>.Default.GetHashCode(partsArray);
             hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarStringsEnum, string>>.Default.GetHashCode(strings);
-            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarIntegersEnum, int>>.Default.GetHashCode(integers);
+            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarIntegersEnum, double>>.Default.GetHashCode(integers);
             return hashCode;
         }
 
@@ -482,10 +482,10 @@ namespace VisualCard.Calendar.Parts
                 throw new InvalidOperationException($"Can't overwrite string {key}.");
         }
 
-        internal void SetInteger(CalendarIntegersEnum key, int value) =>
+        internal void SetInteger(CalendarIntegersEnum key, double value) =>
             SetInteger(key, value, integers);
 
-        internal void SetInteger(CalendarIntegersEnum key, int value, Dictionary<CalendarIntegersEnum, int> integers)
+        internal void SetInteger(CalendarIntegersEnum key, double value, Dictionary<CalendarIntegersEnum, double> integers)
         {
             if (value == -1)
                 return;

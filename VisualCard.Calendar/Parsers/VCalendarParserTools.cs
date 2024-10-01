@@ -227,161 +227,59 @@ namespace VisualCard.Calendar.Parsers
             return (CalendarPartsArrayEnum.IanaNames, PartCardinality.Any);
         }
 
-        internal static (PartType type, object enumeration, Type? enumType, Func<string, string[], string[], string, Version, BaseCalendarPartInfo>? fromStringFunc, string defaultType, string defaultValue, string[] allowedExtraTypes) GetPartType(string prefix) =>
+        internal static (PartType type, object enumeration, Type? enumType, Func<string, string[], string[], string, Version, BaseCalendarPartInfo>? fromStringFunc, string defaultType, string defaultValue, string defaultValueType, string[] allowedExtraTypes) GetPartType(string prefix) =>
             prefix switch
             {
-                VCalendarConstants._attachSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.Attach, typeof(AttachInfo), AttachInfo.FromStringVcalendarStatic, "", "", []),
-                VCalendarConstants._categoriesSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.Categories, typeof(CategoriesInfo), CategoriesInfo.FromStringVcalendarStatic, "", "", []),
-                VCalendarConstants._commentSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.Comment, typeof(CommentInfo), CommentInfo.FromStringVcalendarStatic, "", "", []),
-                VCalendarConstants._geoSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.Geography, typeof(GeoInfo), GeoInfo.FromStringVcalendarStatic, "", "", []),
-                VCalendarConstants._locationSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.Location, typeof(LocationInfo), LocationInfo.FromStringVcalendarStatic, "", "", []),
-                VCalendarConstants._resourcesSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.Resources, typeof(ResourcesInfo), ResourcesInfo.FromStringVcalendarStatic, "", "", []),
-                VCalendarConstants._attendeeSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.Attendee, typeof(AttendeeInfo), AttendeeInfo.FromStringVcalendarStatic, "", "", ["VCARD"]),
-                VCalendarConstants._createdSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DateCreated, typeof(DateCreatedInfo), DateCreatedInfo.FromStringVcalendarStatic, "", "", []),
-                VCalendarConstants._created1Specifier => (PartType.PartsArray, CalendarPartsArrayEnum.DateCreatedAlt, typeof(DateCreatedInfo), DateCreatedInfo.FromStringVcalendarStatic, "", "", []),
-                VCalendarConstants._dateStartSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DateStart, typeof(DateStartInfo), DateStartInfo.FromStringVcalendarStatic, "", "", []),
-                VCalendarConstants._dateEndSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DateEnd, typeof(DateEndInfo), DateEndInfo.FromStringVcalendarStatic, "", "", []),
-                VCalendarConstants._dateCompletedSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DateCompleted, typeof(DateCompletedInfo), DateCompletedInfo.FromStringVcalendarStatic, "", "", []),
-                VCalendarConstants._dueDateSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DueDate, typeof(DueDateInfo), DueDateInfo.FromStringVcalendarStatic, "", "", []),
-                VCalendarConstants._dateStampSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DateStamp, typeof(DateStampInfo), DateStampInfo.FromStringVcalendarStatic, "", "", []),
-                VCalendarConstants._tzNameSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.TimeZoneName, typeof(TimeZoneNameInfo), TimeZoneNameInfo.FromStringVcalendarStatic, "", "", []),
-                VCalendarConstants._tzOffsetFromSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.TimeZoneOffsetFrom, typeof(TimeZoneOffsetFromInfo), TimeZoneOffsetFromInfo.FromStringVcalendarStatic, "", "", []),
-                VCalendarConstants._tzOffsetToSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.TimeZoneOffsetTo, typeof(TimeZoneOffsetToInfo), TimeZoneOffsetToInfo.FromStringVcalendarStatic, "", "", []),
-                VCalendarConstants._recDateSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.RecDate, typeof(RecDateInfo), RecDateInfo.FromStringVcalendarStatic, "", "", []),
-                VCalendarConstants._exDateSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.ExDate, typeof(ExDateInfo), ExDateInfo.FromStringVcalendarStatic, "", "", []),
-                VCalendarConstants._daylightSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.Daylight, typeof(DaylightInfo), DaylightInfo.FromStringVcalendarStatic, "", "", []),
-                VCalendarConstants._aAlarmSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.AudioAlarm, typeof(AudioAlarmInfo), AudioAlarmInfo.FromStringVcalendarStatic, "PCM", "", ["PCM", "WAVE", "AIFF"]),
-                VCalendarConstants._dAlarmSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DisplayAlarm, typeof(DisplayAlarmInfo), DisplayAlarmInfo.FromStringVcalendarStatic, "", "", []),
-                VCalendarConstants._mAlarmSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.MailAlarm, typeof(MailAlarmInfo), MailAlarmInfo.FromStringVcalendarStatic, "", "", []),
-                VCalendarConstants._pAlarmSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.ProcedureAlarm, typeof(ProcedureAlarmInfo), ProcedureAlarmInfo.FromStringVcalendarStatic, "", "", []),
-                VCalendarConstants._relationshipSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.RelatedTo, typeof(RelatedToInfo), RelatedToInfo.FromStringVcalendarStatic, "", "", []),
-                VCalendarConstants._lastModSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.LastModified, typeof(LastModifiedInfo), LastModifiedInfo.FromStringVcalendarStatic, "", "", []),
-                VCalendarConstants._freeBusySpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.FreeBusy, typeof(CalendarFreeBusyInfo), CalendarFreeBusyInfo.FromStringVcalendarStatic, "", "", []),
-                VCalendarConstants._productIdSpecifier => (PartType.Strings, CalendarStringsEnum.ProductId, null, null, "", "", []),
-                VCalendarConstants._calScaleSpecifier => (PartType.Strings, CalendarStringsEnum.CalScale, null, null, "", "", []),
-                VCalendarConstants._methodSpecifier => (PartType.Strings, CalendarStringsEnum.Method, null, null, "", "", []),
-                VCalendarConstants._classSpecifier => (PartType.Strings, CalendarStringsEnum.Class, null, null, "", "", []),
-                VCalendarConstants._uidSpecifier => (PartType.Strings, CalendarStringsEnum.Uid, null, null, "", "", []),
-                VCalendarConstants._organizerSpecifier => (PartType.Strings, CalendarStringsEnum.Organizer, null, null, "", "", []),
-                VCalendarConstants._statusSpecifier => (PartType.Strings, CalendarStringsEnum.Status, null, null, "", "", []),
-                VCalendarConstants._summarySpecifier => (PartType.Strings, CalendarStringsEnum.Summary, null, null, "", "", []),
-                VCalendarConstants._descriptionSpecifier => (PartType.Strings, CalendarStringsEnum.Description, null, null, "", "", []),
-                VCalendarConstants._transparencySpecifier => (PartType.Strings, CalendarStringsEnum.Transparency, null, null, "", "", []),
-                VCalendarConstants._actionSpecifier => (PartType.Strings, CalendarStringsEnum.Action, null, null, "", "", []),
-                VCalendarConstants._triggerSpecifier => (PartType.Strings, CalendarStringsEnum.Trigger, null, null, "", "", []),
-                VCalendarConstants._tzidSpecifier => (PartType.Strings, CalendarStringsEnum.TimeZoneId, null, null, "", "", []),
-                VCalendarConstants._tzUrlSpecifier => (PartType.Strings, CalendarStringsEnum.TimeZoneUrl, null, null, "", "", []),
-                VCalendarConstants._recurseSpecifier => (PartType.Strings, CalendarStringsEnum.Recursion, null, null, "", "", []),
-                VCalendarConstants._prioritySpecifier => (PartType.Integers, CalendarIntegersEnum.Priority, null, null, "", "", []),
-                VCalendarConstants._sequenceSpecifier => (PartType.Integers, CalendarIntegersEnum.Sequence, null, null, "", "", []),
-                VCalendarConstants._percentCompletionSpecifier => (PartType.Integers, CalendarIntegersEnum.PercentComplete, null, null, "", "", []),
+                VCalendarConstants._attachSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.Attach, typeof(AttachInfo), AttachInfo.FromStringVcalendarStatic, "", "", "", []),
+                VCalendarConstants._categoriesSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.Categories, typeof(CategoriesInfo), CategoriesInfo.FromStringVcalendarStatic, "", "", "", []),
+                VCalendarConstants._commentSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.Comment, typeof(CommentInfo), CommentInfo.FromStringVcalendarStatic, "", "", "", []),
+                VCalendarConstants._geoSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.Geography, typeof(GeoInfo), GeoInfo.FromStringVcalendarStatic, "", "", "", []),
+                VCalendarConstants._locationSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.Location, typeof(LocationInfo), LocationInfo.FromStringVcalendarStatic, "", "", "", []),
+                VCalendarConstants._resourcesSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.Resources, typeof(ResourcesInfo), ResourcesInfo.FromStringVcalendarStatic, "", "", "", []),
+                VCalendarConstants._attendeeSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.Attendee, typeof(AttendeeInfo), AttendeeInfo.FromStringVcalendarStatic, "", "", "", ["VCARD"]),
+                VCalendarConstants._createdSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DateCreated, typeof(DateCreatedInfo), DateCreatedInfo.FromStringVcalendarStatic, "", "", "", []),
+                VCalendarConstants._created1Specifier => (PartType.PartsArray, CalendarPartsArrayEnum.DateCreatedAlt, typeof(DateCreatedInfo), DateCreatedInfo.FromStringVcalendarStatic, "", "", "", []),
+                VCalendarConstants._dateStartSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DateStart, typeof(DateStartInfo), DateStartInfo.FromStringVcalendarStatic, "", "", "", []),
+                VCalendarConstants._dateEndSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DateEnd, typeof(DateEndInfo), DateEndInfo.FromStringVcalendarStatic, "", "", "", []),
+                VCalendarConstants._dateCompletedSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DateCompleted, typeof(DateCompletedInfo), DateCompletedInfo.FromStringVcalendarStatic, "", "", "", []),
+                VCalendarConstants._dueDateSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DueDate, typeof(DueDateInfo), DueDateInfo.FromStringVcalendarStatic, "", "", "", []),
+                VCalendarConstants._dateStampSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DateStamp, typeof(DateStampInfo), DateStampInfo.FromStringVcalendarStatic, "", "", "", []),
+                VCalendarConstants._tzNameSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.TimeZoneName, typeof(TimeZoneNameInfo), TimeZoneNameInfo.FromStringVcalendarStatic, "", "", "", []),
+                VCalendarConstants._tzOffsetFromSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.TimeZoneOffsetFrom, typeof(TimeZoneOffsetFromInfo), TimeZoneOffsetFromInfo.FromStringVcalendarStatic, "", "", "", []),
+                VCalendarConstants._tzOffsetToSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.TimeZoneOffsetTo, typeof(TimeZoneOffsetToInfo), TimeZoneOffsetToInfo.FromStringVcalendarStatic, "", "", "", []),
+                VCalendarConstants._recDateSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.RecDate, typeof(RecDateInfo), RecDateInfo.FromStringVcalendarStatic, "", "", "", []),
+                VCalendarConstants._exDateSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.ExDate, typeof(ExDateInfo), ExDateInfo.FromStringVcalendarStatic, "", "", "", []),
+                VCalendarConstants._daylightSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.Daylight, typeof(DaylightInfo), DaylightInfo.FromStringVcalendarStatic, "", "", "", []),
+                VCalendarConstants._aAlarmSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.AudioAlarm, typeof(AudioAlarmInfo), AudioAlarmInfo.FromStringVcalendarStatic, "PCM", "", "", ["PCM", "WAVE", "AIFF"]),
+                VCalendarConstants._dAlarmSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.DisplayAlarm, typeof(DisplayAlarmInfo), DisplayAlarmInfo.FromStringVcalendarStatic, "", "", "", []),
+                VCalendarConstants._mAlarmSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.MailAlarm, typeof(MailAlarmInfo), MailAlarmInfo.FromStringVcalendarStatic, "", "", "", []),
+                VCalendarConstants._pAlarmSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.ProcedureAlarm, typeof(ProcedureAlarmInfo), ProcedureAlarmInfo.FromStringVcalendarStatic, "", "", "", []),
+                VCalendarConstants._relationshipSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.RelatedTo, typeof(RelatedToInfo), RelatedToInfo.FromStringVcalendarStatic, "", "", "", []),
+                VCalendarConstants._lastModSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.LastModified, typeof(LastModifiedInfo), LastModifiedInfo.FromStringVcalendarStatic, "", "", "", []),
+                VCalendarConstants._freeBusySpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.FreeBusy, typeof(CalendarFreeBusyInfo), CalendarFreeBusyInfo.FromStringVcalendarStatic, "", "", "", []),
+                VCalendarConstants._productIdSpecifier => (PartType.Strings, CalendarStringsEnum.ProductId, null, null, "", "", "", []),
+                VCalendarConstants._calScaleSpecifier => (PartType.Strings, CalendarStringsEnum.CalScale, null, null, "", "", "", []),
+                VCalendarConstants._methodSpecifier => (PartType.Strings, CalendarStringsEnum.Method, null, null, "", "", "", []),
+                VCalendarConstants._classSpecifier => (PartType.Strings, CalendarStringsEnum.Class, null, null, "", "", "", []),
+                VCalendarConstants._uidSpecifier => (PartType.Strings, CalendarStringsEnum.Uid, null, null, "", "", "", []),
+                VCalendarConstants._organizerSpecifier => (PartType.Strings, CalendarStringsEnum.Organizer, null, null, "", "", "", []),
+                VCalendarConstants._statusSpecifier => (PartType.Strings, CalendarStringsEnum.Status, null, null, "", "", "", []),
+                VCalendarConstants._summarySpecifier => (PartType.Strings, CalendarStringsEnum.Summary, null, null, "", "", "", []),
+                VCalendarConstants._descriptionSpecifier => (PartType.Strings, CalendarStringsEnum.Description, null, null, "", "", "", []),
+                VCalendarConstants._transparencySpecifier => (PartType.Strings, CalendarStringsEnum.Transparency, null, null, "", "", "", []),
+                VCalendarConstants._actionSpecifier => (PartType.Strings, CalendarStringsEnum.Action, null, null, "", "", "", []),
+                VCalendarConstants._triggerSpecifier => (PartType.Strings, CalendarStringsEnum.Trigger, null, null, "", "", "", []),
+                VCalendarConstants._tzidSpecifier => (PartType.Strings, CalendarStringsEnum.TimeZoneId, null, null, "", "", "", []),
+                VCalendarConstants._tzUrlSpecifier => (PartType.Strings, CalendarStringsEnum.TimeZoneUrl, null, null, "", "", "", []),
+                VCalendarConstants._recurseSpecifier => (PartType.Strings, CalendarStringsEnum.Recursion, null, null, "", "", "", []),
+                VCalendarConstants._prioritySpecifier => (PartType.Integers, CalendarIntegersEnum.Priority, null, null, "", "", "", []),
+                VCalendarConstants._sequenceSpecifier => (PartType.Integers, CalendarIntegersEnum.Sequence, null, null, "", "", "", []),
+                VCalendarConstants._percentCompletionSpecifier => (PartType.Integers, CalendarIntegersEnum.PercentComplete, null, null, "", "", "", []),
 
                 // Extensions are allowed
-                VCalendarConstants._xSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.NonstandardNames, typeof(XNameInfo), XNameInfo.FromStringVcalendarStatic, "", "", []),
-                _ => (PartType.PartsArray, CalendarPartsArrayEnum.IanaNames, typeof(ExtraInfo), ExtraInfo.FromStringVcalendarStatic, "", "", []),
+                VCalendarConstants._xSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.NonstandardNames, typeof(XNameInfo), XNameInfo.FromStringVcalendarStatic, "", "", "", []),
+                _ => (PartType.PartsArray, CalendarPartsArrayEnum.IanaNames, typeof(ExtraInfo), ExtraInfo.FromStringVcalendarStatic, "", "", "", []),
             };
-
-        internal static string ProcessStringValue(string value, string values, CalendarStringsEnum stringType, Type calendarType, Version calendarVersion)
-        {
-            string[] allowedStatuses =
-                calendarType == typeof(CalendarEvent) && calendarVersion.Major == 2 ? ["TENTATIVE", "CONFIRMED", "CANCELLED"] :
-                calendarType == typeof(CalendarEvent) && calendarVersion.Major == 1 ? ["NEEDS ACTION", "SENT", "TENTATIVE", "CONFIRMED", "DECLINED", "DELEGATED"] :
-                calendarType == typeof(CalendarTodo) && calendarVersion.Major == 2 ? ["NEEDS-ACTION", "COMPLETED", "IN-PROCESS", "CANCELLED"] :
-                calendarType == typeof(CalendarTodo) && calendarVersion.Major == 1 ? ["NEEDS ACTION", "SENT", "ACCEPTED", "COMPLETED", "DECLINED", "DELEGATED"] :
-                calendarType == typeof(CalendarJournal) ? ["DRAFT", "FINAL", "CANCELLED"] :
-                [];
-
-            // Now, handle each type individually
-            string finalValue;
-            switch (stringType)
-            {
-                case CalendarStringsEnum.ProductId:
-                case CalendarStringsEnum.Organizer:
-                case CalendarStringsEnum.Summary:
-                case CalendarStringsEnum.Description:
-                case CalendarStringsEnum.CalScale:
-                case CalendarStringsEnum.Method:
-                case CalendarStringsEnum.Class:
-                case CalendarStringsEnum.Trigger:
-                case CalendarStringsEnum.TimeZoneId:
-                case CalendarStringsEnum.Recursion:
-                    // Unescape the value
-                    finalValue = Regex.Unescape(value);
-                    break;
-                case CalendarStringsEnum.Action:
-                    // Unescape the value
-                    finalValue = Regex.Unescape(value);
-                    if (finalValue != "AUDIO" && finalValue != "DISPLAY" && finalValue != "EMAIL")
-                        throw new ArgumentException($"Invalid action {finalValue}");
-                    break;
-                case CalendarStringsEnum.Status:
-                    // Unescape the value
-                    finalValue = Regex.Unescape(value);
-                    if (!allowedStatuses.Contains(finalValue))
-                        throw new ArgumentException($"Invalid status {finalValue}");
-                    break;
-                case CalendarStringsEnum.Transparency:
-                    // Unescape the value
-                    finalValue = Regex.Unescape(value);
-                    if (calendarVersion.Major == 1 && !int.TryParse(finalValue, out _))
-                        throw new ArgumentException($"Invalid transparency number {finalValue}");
-                    else if (calendarVersion.Major == 2 && finalValue != "TRANSPARENT" && finalValue != "OPAQUE")
-                        throw new ArgumentException($"Invalid transparency {finalValue}");
-                    break;
-                case CalendarStringsEnum.Uid:
-                    // Unescape the value
-                    finalValue = Regex.Unescape(value);
-                    if (!Uri.TryCreate(finalValue, UriKind.Absolute, out Uri uri) && values.Equals("uri", StringComparison.OrdinalIgnoreCase))
-                        throw new InvalidDataException($"URL {finalValue} is invalid");
-                    finalValue = uri is not null ? uri.ToString() : finalValue;
-                    break;
-                case CalendarStringsEnum.TimeZoneUrl:
-                    // Unescape the value
-                    finalValue = Regex.Unescape(value);
-                    if (!Uri.TryCreate(finalValue, UriKind.Absolute, out Uri zoneUri))
-                        throw new InvalidDataException($"Time zone URL {finalValue} is invalid");
-                    finalValue = zoneUri.ToString();
-                    break;
-                default:
-                    throw new InvalidDataException($"The string enum type {stringType} is invalid. Are you sure that you've specified the correct type in your vCalendar representation?");
-            }
-
-            // Return the result
-            return finalValue;
-        }
-
-        internal static int ProcessIntegerValue(string value, CalendarIntegersEnum integerType)
-        {
-            // Now, handle each type individually
-            int primaryValue = int.Parse(value);
-            int finalValue;
-            switch (integerType)
-            {
-                case CalendarIntegersEnum.Priority:
-                    // Check the range
-                    if (primaryValue < 0 || primaryValue > 9)
-                        throw new ArgumentOutOfRangeException(nameof(primaryValue), primaryValue, "Priority may not be less than zero or greater than 9");
-                    finalValue = primaryValue;
-                    break;
-                case CalendarIntegersEnum.Sequence:
-                    // Check the range
-                    if (primaryValue < 0)
-                        throw new ArgumentOutOfRangeException(nameof(primaryValue), primaryValue, "Sequence may not be less than zero");
-                    finalValue = primaryValue;
-                    break;
-                case CalendarIntegersEnum.PercentComplete:
-                    // Check the range
-                    if (primaryValue < 0 || primaryValue > 100)
-                        throw new ArgumentOutOfRangeException(nameof(primaryValue), primaryValue, "Percent completion may not be less than zero or greater than 100");
-                    finalValue = primaryValue;
-                    break;
-                default:
-                    throw new InvalidDataException($"The integer enum type {integerType} is invalid. Are you sure that you've specified the correct type in your vCalendar representation?");
-            }
-
-            // Return the result
-            return finalValue;
-        }
 
         private static bool TypeMatch(Type componentType, params Type[] expectedTypes) =>
             expectedTypes.Contains(componentType);

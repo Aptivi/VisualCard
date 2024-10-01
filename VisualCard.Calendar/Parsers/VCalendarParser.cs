@@ -142,7 +142,7 @@ namespace VisualCard.Calendar.Parsers
                     // Get the part type
                     bool xNonstandard = prefix.StartsWith(VCalendarConstants._xSpecifier);
                     bool specifierRequired = CalendarVersion.Major >= 3;
-                    var (type, enumeration, classType, fromString, defaultType, defaultValue, extraAllowedTypes) = VCalendarParserTools.GetPartType(xNonstandard ? VCalendarConstants._xSpecifier : prefix);
+                    var (type, enumeration, classType, fromString, defaultType, defaultValue, defaultValueType, extraAllowedTypes) = VCalendarParserTools.GetPartType(xNonstandard ? VCalendarConstants._xSpecifier : prefix);
 
                     // Handle arguments
                     if (isWithType)
@@ -168,7 +168,7 @@ namespace VisualCard.Calendar.Parsers
 
                     // Handle the part type
                     Type calendarType = subPart is not null ? subPart.GetType() : calendar.GetType();
-                    string values = VcardCommonTools.GetValuesString(splitArgs, defaultValue, VCalendarConstants._valueArgumentSpecifier);
+                    string valueType = VcardCommonTools.GetFirstValue(splitArgs, defaultValue, VCalendarConstants._valueArgumentSpecifier);
                     switch (type)
                     {
                         case PartType.Strings:
@@ -179,7 +179,7 @@ namespace VisualCard.Calendar.Parsers
                                     continue;
 
                                 // Get the final value
-                                string finalValue = VCalendarParserTools.ProcessStringValue(value, values, stringType, calendarType, CalendarVersion);
+                                string finalValue = VcardParserTools.ProcessStringValue(value, valueType);
 
                                 // Set the string for real
                                 if (subPart is not null)
@@ -196,7 +196,7 @@ namespace VisualCard.Calendar.Parsers
                                     continue;
 
                                 // Get the final value
-                                int finalValue = VCalendarParserTools.ProcessIntegerValue(value, integerType);
+                                double finalValue = VcardParserTools.ProcessIntegerValue(value, valueType);
 
                                 // Set the integer for real
                                 if (subPart is not null)
@@ -217,7 +217,7 @@ namespace VisualCard.Calendar.Parsers
 
                                 // Now, get the part info
                                 string finalValue = partsArrayType is CalendarPartsArrayEnum.IanaNames or CalendarPartsArrayEnum.NonstandardNames ? _value : value;
-                                var partInfo = fromString(finalValue, [.. finalArgs], elementTypes, values, CalendarVersion);
+                                var partInfo = fromString(finalValue, [.. finalArgs], elementTypes, valueType, CalendarVersion);
 
                                 // Set the array for real
                                 if (subPart is not null)
@@ -326,7 +326,7 @@ namespace VisualCard.Calendar.Parsers
             where TComponent : Parts.Calendar
         {
             // Requirement checks
-            var (type, enumeration, enumType, _, _, _, _) = VCalendarParserTools.GetPartType(expectedFieldName);
+            var (type, enumeration, enumType, _, _, _, _, _) = VCalendarParserTools.GetPartType(expectedFieldName);
             bool exists = false;
             switch (type)
             {
@@ -346,7 +346,7 @@ namespace VisualCard.Calendar.Parsers
                     break;
                 case PartType.Integers:
                     {
-                        int value = component.GetInteger((CalendarIntegersEnum)enumeration);
+                        double value = component.GetInteger((CalendarIntegersEnum)enumeration);
                         exists = value != -1;
                     }
                     break;

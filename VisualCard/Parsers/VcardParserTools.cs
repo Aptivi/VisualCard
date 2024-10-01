@@ -257,11 +257,6 @@ namespace VisualCard.Parsers
             string finalValue;
             switch (valueType.ToUpper())
             {
-                case "":
-                case "TEXT":
-                    // Unescape the value
-                    finalValue = Regex.Unescape(value);
-                    break;
                 case "URI":
                     // Unescape the value
                     finalValue = Regex.Unescape(value);
@@ -270,8 +265,24 @@ namespace VisualCard.Parsers
                     finalValue = uri is not null ? uri.ToString() : finalValue;
                     break;
                 default:
-                    throw new InvalidDataException($"The string value type {valueType} is invalid. Are you sure that you've specified the correct type in your vCard representation?");
+                    // Unescape the value
+                    finalValue = Regex.Unescape(value);
+                    break;
             }
+
+            // Return the result
+            return finalValue;
+        }
+
+        internal static double ProcessIntegerValue(string value, string valueType)
+        {
+            // Now, handle each type individually
+            double primaryValue = double.Parse(value);
+            var finalValue = valueType switch
+            {
+                "INTEGER" => (int)primaryValue,
+                _ => primaryValue,
+            };
 
             // Return the result
             return finalValue;

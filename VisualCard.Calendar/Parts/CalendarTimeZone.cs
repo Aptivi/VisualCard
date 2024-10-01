@@ -36,7 +36,7 @@ namespace VisualCard.Calendar.Parts
         internal readonly List<CalendarDaylight> daylights = [];
         private readonly Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray = [];
         private readonly Dictionary<CalendarStringsEnum, string> strings = [];
-        private readonly Dictionary<CalendarIntegersEnum, int> integers = [];
+        private readonly Dictionary<CalendarIntegersEnum, double> integers = [];
 
         /// <summary>
         /// Standard time list
@@ -134,7 +134,7 @@ namespace VisualCard.Calendar.Parts
             hashCode = hashCode * -1521134295 + EqualityComparer<List<CalendarDaylight>>.Default.GetHashCode(daylights);
             hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>>>.Default.GetHashCode(partsArray);
             hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarStringsEnum, string>>.Default.GetHashCode(strings);
-            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarIntegersEnum, int>>.Default.GetHashCode(integers);
+            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarIntegersEnum, double>>.Default.GetHashCode(integers);
             return hashCode;
         }
 
@@ -152,7 +152,7 @@ namespace VisualCard.Calendar.Parts
         internal new void SetString(CalendarStringsEnum key, string value) =>
             SetString(key, value, strings);
 
-        internal new void SetInteger(CalendarIntegersEnum key, int value) =>
+        internal new void SetInteger(CalendarIntegersEnum key, double value) =>
             SetInteger(key, value, integers);
 
         internal CalendarTimeZone(Version version) :
