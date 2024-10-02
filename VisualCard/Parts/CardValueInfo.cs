@@ -28,7 +28,7 @@ namespace VisualCard.Parts
     /// <summary>
     /// Card value information
     /// </summary>
-    [DebuggerDisplay("Card value | ALTID: {AltId}, TYPE: {ElementTypes}, VALUE: {ValueType}")]
+    [DebuggerDisplay("Card value [{Value}] | ALTID: {AltId}, TYPE: [{string.Join(\", \", ElementTypes)}], VALUE: {ValueType}")]
     public class CardValueInfo<TValue> : IEquatable<CardValueInfo<TValue>>
     {
         /// <summary>

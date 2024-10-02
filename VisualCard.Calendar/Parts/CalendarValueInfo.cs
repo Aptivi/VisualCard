@@ -28,7 +28,7 @@ namespace VisualCard.Calendar.Parts
     /// <summary>
     /// Calendar value information
     /// </summary>
-    [DebuggerDisplay("Calendar value | TYPE: {ElementTypes}, VALUE: {ValueType}")]
+    [DebuggerDisplay("Calendar value [{Value}] | TYPE: [{string.Join(\", \", ElementTypes)}], VALUE: {ValueType}")]
     public class CalendarValueInfo<TValue> : IEquatable<CalendarValueInfo<TValue>>
     {
         /// <summary>
