@@ -19,6 +19,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using Textify.General;
@@ -28,6 +29,7 @@ namespace VisualCard.Parsers.Arguments
     /// <summary>
     /// Argument info for properties
     /// </summary>
+    [DebuggerDisplay("{Key} = [{string.Split(\", \", AllValues)}]")]
     public class ArgumentInfo : IEquatable<ArgumentInfo>
     {
         private readonly string key = "";
