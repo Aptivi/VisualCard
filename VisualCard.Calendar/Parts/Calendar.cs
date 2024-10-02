@@ -552,7 +552,7 @@ namespace VisualCard.Calendar.Parts
 
         internal virtual void AddInteger(CalendarIntegersEnum key, CalendarValueInfo<double> value, Dictionary<CalendarIntegersEnum, List<CalendarValueInfo<double>>> integers)
         {
-            if (value is null || value.Value == -1)
+            if (value is null || value.Value < 0)
                 return;
 
             // If we don't have this key yet, add it.

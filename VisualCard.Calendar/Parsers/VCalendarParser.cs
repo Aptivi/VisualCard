@@ -287,6 +287,14 @@ namespace VisualCard.Calendar.Parsers
                     throw new InvalidDataException($"The following keys [{string.Join(", ", expectedEventFields)}] are required in the event representation. Got [{string.Join(", ", actualEventFields)}].");
                 foreach (var alarmInfo in eventInfo.Alarms)
                     ValidateAlarm(alarmInfo);
+
+                // Check the priority
+                var priorities = eventInfo.GetInteger(CalendarIntegersEnum.PercentComplete);
+                foreach (var priority in priorities)
+                {
+                    if (priority.Value < 0 || priority.Value > 9)
+                        throw new ArgumentOutOfRangeException(nameof(CalendarIntegersEnum.PercentComplete), priority.Value, "Percent completion may not be less than zero or greater than 100");
+                }
             }
             foreach (var todoInfo in calendar.Todos)
             {
@@ -294,6 +302,22 @@ namespace VisualCard.Calendar.Parsers
                     throw new InvalidDataException($"The following keys [{string.Join(", ", expectedTodoFields)}] are required in the todo representation. Got [{string.Join(", ", actualTodoFields)}].");
                 foreach (var alarmInfo in todoInfo.Alarms)
                     ValidateAlarm(alarmInfo);
+
+                // Check the percentage
+                var percentages = todoInfo.GetInteger(CalendarIntegersEnum.PercentComplete);
+                foreach (var percentage in percentages)
+                {
+                    if (percentage.Value < 0 || percentage.Value > 100)
+                        throw new ArgumentOutOfRangeException(nameof(CalendarIntegersEnum.PercentComplete), percentage.Value, "Percent completion may not be less than zero or greater than 100");
+                }
+
+                // Check the priority
+                var priorities = todoInfo.GetInteger(CalendarIntegersEnum.PercentComplete);
+                foreach (var priority in priorities)
+                {
+                    if (priority.Value < 0 || priority.Value > 9)
+                        throw new ArgumentOutOfRangeException(nameof(CalendarIntegersEnum.PercentComplete), priority.Value, "Percent completion may not be less than zero or greater than 100");
+                }
             }
 
             // Continue if we have a calendar with version 2.0
