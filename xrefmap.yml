@@ -358,6 +358,12 @@ references:
   commentId: M:VisualCard.Calendar.Parts.Calendar.GetPartsArray(System.Type,VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum)
   fullName: VisualCard.Calendar.Parts.Calendar.GetPartsArray(System.Type, VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum)
   nameWithType: Calendar.GetPartsArray(Type, CalendarPartsArrayEnum)
+- uid: VisualCard.Calendar.Parts.Calendar.GetPartsArray(VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum)
+  name: GetPartsArray(CalendarPartsArrayEnum)
+  href: api/VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_GetPartsArray_VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_
+  commentId: M:VisualCard.Calendar.Parts.Calendar.GetPartsArray(VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum)
+  fullName: VisualCard.Calendar.Parts.Calendar.GetPartsArray(VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum)
+  nameWithType: Calendar.GetPartsArray(CalendarPartsArrayEnum)
 - uid: VisualCard.Calendar.Parts.Calendar.GetPartsArray*
   name: GetPartsArray
   href: api/VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_GetPartsArray_
@@ -601,6 +607,12 @@ references:
   isSpec: "True"
   fullName: VisualCard.Calendar.Parts.CalendarAlarm.GetInteger
   nameWithType: CalendarAlarm.GetInteger
+- uid: VisualCard.Calendar.Parts.CalendarAlarm.GetPartsArray(VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum)
+  name: GetPartsArray(CalendarPartsArrayEnum)
+  href: api/VisualCard.Calendar.Parts.CalendarAlarm.html#VisualCard_Calendar_Parts_CalendarAlarm_GetPartsArray_VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_
+  commentId: M:VisualCard.Calendar.Parts.CalendarAlarm.GetPartsArray(VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum)
+  fullName: VisualCard.Calendar.Parts.CalendarAlarm.GetPartsArray(VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum)
+  nameWithType: CalendarAlarm.GetPartsArray(CalendarPartsArrayEnum)
 - uid: VisualCard.Calendar.Parts.CalendarAlarm.GetPartsArray*
   name: GetPartsArray
   href: api/VisualCard.Calendar.Parts.CalendarAlarm.html#VisualCard_Calendar_Parts_CalendarAlarm_GetPartsArray_
@@ -763,6 +775,12 @@ references:
   isSpec: "True"
   fullName: VisualCard.Calendar.Parts.CalendarDaylight.GetInteger
   nameWithType: CalendarDaylight.GetInteger
+- uid: VisualCard.Calendar.Parts.CalendarDaylight.GetPartsArray(VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum)
+  name: GetPartsArray(CalendarPartsArrayEnum)
+  href: api/VisualCard.Calendar.Parts.CalendarDaylight.html#VisualCard_Calendar_Parts_CalendarDaylight_GetPartsArray_VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_
+  commentId: M:VisualCard.Calendar.Parts.CalendarDaylight.GetPartsArray(VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum)
+  fullName: VisualCard.Calendar.Parts.CalendarDaylight.GetPartsArray(VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum)
+  nameWithType: CalendarDaylight.GetPartsArray(CalendarPartsArrayEnum)
 - uid: VisualCard.Calendar.Parts.CalendarDaylight.GetPartsArray*
   name: GetPartsArray
   href: api/VisualCard.Calendar.Parts.CalendarDaylight.html#VisualCard_Calendar_Parts_CalendarDaylight_GetPartsArray_
@@ -938,6 +956,12 @@ references:
   isSpec: "True"
   fullName: VisualCard.Calendar.Parts.CalendarEvent.GetInteger
   nameWithType: CalendarEvent.GetInteger
+- uid: VisualCard.Calendar.Parts.CalendarEvent.GetPartsArray(VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum)
+  name: GetPartsArray(CalendarPartsArrayEnum)
+  href: api/VisualCard.Calendar.Parts.CalendarEvent.html#VisualCard_Calendar_Parts_CalendarEvent_GetPartsArray_VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_
+  commentId: M:VisualCard.Calendar.Parts.CalendarEvent.GetPartsArray(VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum)
+  fullName: VisualCard.Calendar.Parts.CalendarEvent.GetPartsArray(VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum)
+  nameWithType: CalendarEvent.GetPartsArray(CalendarPartsArrayEnum)
 - uid: VisualCard.Calendar.Parts.CalendarEvent.GetPartsArray*
   name: GetPartsArray
   href: api/VisualCard.Calendar.Parts.CalendarEvent.html#VisualCard_Calendar_Parts_CalendarEvent_GetPartsArray_
@@ -1100,6 +1124,12 @@ references:
   isSpec: "True"
   fullName: VisualCard.Calendar.Parts.CalendarFreeBusy.GetInteger
   nameWithType: CalendarFreeBusy.GetInteger
+- uid: VisualCard.Calendar.Parts.CalendarFreeBusy.GetPartsArray(VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum)
+  name: GetPartsArray(CalendarPartsArrayEnum)
+  href: api/VisualCard.Calendar.Parts.CalendarFreeBusy.html#VisualCard_Calendar_Parts_CalendarFreeBusy_GetPartsArray_VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_
+  commentId: M:VisualCard.Calendar.Parts.CalendarFreeBusy.GetPartsArray(VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum)
+  fullName: VisualCard.Calendar.Parts.CalendarFreeBusy.GetPartsArray(VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum)
+  nameWithType: CalendarFreeBusy.GetPartsArray(CalendarPartsArrayEnum)
 - uid: VisualCard.Calendar.Parts.CalendarFreeBusy.GetPartsArray*
   name: GetPartsArray
   href: api/VisualCard.Calendar.Parts.CalendarFreeBusy.html#VisualCard_Calendar_Parts_CalendarFreeBusy_GetPartsArray_
@@ -1262,6 +1292,12 @@ references:
   isSpec: "True"
   fullName: VisualCard.Calendar.Parts.CalendarJournal.GetInteger
   nameWithType: CalendarJournal.GetInteger
+- uid: VisualCard.Calendar.Parts.CalendarJournal.GetPartsArray(VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum)
+  name: GetPartsArray(CalendarPartsArrayEnum)
+  href: api/VisualCard.Calendar.Parts.CalendarJournal.html#VisualCard_Calendar_Parts_CalendarJournal_GetPartsArray_VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_
+  commentId: M:VisualCard.Calendar.Parts.CalendarJournal.GetPartsArray(VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum)
+  fullName: VisualCard.Calendar.Parts.CalendarJournal.GetPartsArray(VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum)
+  nameWithType: CalendarJournal.GetPartsArray(CalendarPartsArrayEnum)
 - uid: VisualCard.Calendar.Parts.CalendarJournal.GetPartsArray*
   name: GetPartsArray
   href: api/VisualCard.Calendar.Parts.CalendarJournal.html#VisualCard_Calendar_Parts_CalendarJournal_GetPartsArray_
@@ -1437,6 +1473,12 @@ references:
   isSpec: "True"
   fullName: VisualCard.Calendar.Parts.CalendarOtherComponent.GetInteger
   nameWithType: CalendarOtherComponent.GetInteger
+- uid: VisualCard.Calendar.Parts.CalendarOtherComponent.GetPartsArray(VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum)
+  name: GetPartsArray(CalendarPartsArrayEnum)
+  href: api/VisualCard.Calendar.Parts.CalendarOtherComponent.html#VisualCard_Calendar_Parts_CalendarOtherComponent_GetPartsArray_VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_
+  commentId: M:VisualCard.Calendar.Parts.CalendarOtherComponent.GetPartsArray(VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum)
+  fullName: VisualCard.Calendar.Parts.CalendarOtherComponent.GetPartsArray(VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum)
+  nameWithType: CalendarOtherComponent.GetPartsArray(CalendarPartsArrayEnum)
 - uid: VisualCard.Calendar.Parts.CalendarOtherComponent.GetPartsArray*
   name: GetPartsArray
   href: api/VisualCard.Calendar.Parts.CalendarOtherComponent.html#VisualCard_Calendar_Parts_CalendarOtherComponent_GetPartsArray_
@@ -1599,6 +1641,12 @@ references:
   isSpec: "True"
   fullName: VisualCard.Calendar.Parts.CalendarStandard.GetInteger
   nameWithType: CalendarStandard.GetInteger
+- uid: VisualCard.Calendar.Parts.CalendarStandard.GetPartsArray(VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum)
+  name: GetPartsArray(CalendarPartsArrayEnum)
+  href: api/VisualCard.Calendar.Parts.CalendarStandard.html#VisualCard_Calendar_Parts_CalendarStandard_GetPartsArray_VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_
+  commentId: M:VisualCard.Calendar.Parts.CalendarStandard.GetPartsArray(VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum)
+  fullName: VisualCard.Calendar.Parts.CalendarStandard.GetPartsArray(VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum)
+  nameWithType: CalendarStandard.GetPartsArray(CalendarPartsArrayEnum)
 - uid: VisualCard.Calendar.Parts.CalendarStandard.GetPartsArray*
   name: GetPartsArray
   href: api/VisualCard.Calendar.Parts.CalendarStandard.html#VisualCard_Calendar_Parts_CalendarStandard_GetPartsArray_
@@ -1774,6 +1822,12 @@ references:
   isSpec: "True"
   fullName: VisualCard.Calendar.Parts.CalendarTimeZone.GetInteger
   nameWithType: CalendarTimeZone.GetInteger
+- uid: VisualCard.Calendar.Parts.CalendarTimeZone.GetPartsArray(VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum)
+  name: GetPartsArray(CalendarPartsArrayEnum)
+  href: api/VisualCard.Calendar.Parts.CalendarTimeZone.html#VisualCard_Calendar_Parts_CalendarTimeZone_GetPartsArray_VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_
+  commentId: M:VisualCard.Calendar.Parts.CalendarTimeZone.GetPartsArray(VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum)
+  fullName: VisualCard.Calendar.Parts.CalendarTimeZone.GetPartsArray(VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum)
+  nameWithType: CalendarTimeZone.GetPartsArray(CalendarPartsArrayEnum)
 - uid: VisualCard.Calendar.Parts.CalendarTimeZone.GetPartsArray*
   name: GetPartsArray
   href: api/VisualCard.Calendar.Parts.CalendarTimeZone.html#VisualCard_Calendar_Parts_CalendarTimeZone_GetPartsArray_
@@ -1962,6 +2016,12 @@ references:
   isSpec: "True"
   fullName: VisualCard.Calendar.Parts.CalendarTodo.GetInteger
   nameWithType: CalendarTodo.GetInteger
+- uid: VisualCard.Calendar.Parts.CalendarTodo.GetPartsArray(VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum)
+  name: GetPartsArray(CalendarPartsArrayEnum)
+  href: api/VisualCard.Calendar.Parts.CalendarTodo.html#VisualCard_Calendar_Parts_CalendarTodo_GetPartsArray_VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_
+  commentId: M:VisualCard.Calendar.Parts.CalendarTodo.GetPartsArray(VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum)
+  fullName: VisualCard.Calendar.Parts.CalendarTodo.GetPartsArray(VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum)
+  nameWithType: CalendarTodo.GetPartsArray(CalendarPartsArrayEnum)
 - uid: VisualCard.Calendar.Parts.CalendarTodo.GetPartsArray*
   name: GetPartsArray
   href: api/VisualCard.Calendar.Parts.CalendarTodo.html#VisualCard_Calendar_Parts_CalendarTodo_GetPartsArray_
