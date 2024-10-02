@@ -185,7 +185,7 @@ namespace VisualCard.Parsers
 
                     // Handle the part type
                     string valueType = VcardCommonTools.GetFirstValue(splitArgs, defaultValueType, VcardConstants._valueArgumentSpecifier);
-                    string finalValue = VcardParserTools.ProcessStringValue(value, valueType);
+                    string finalValue = VcardCommonTools.ProcessStringValue(value, valueType);
 
                     // Check for allowed values
                     if (allowedValues.Length != 0)

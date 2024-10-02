@@ -181,7 +181,7 @@ namespace VisualCard.Calendar.Parsers
 
                     // Handle the part type, and extract the value
                     string valueType = VcardCommonTools.GetFirstValue(splitArgs, defaultValueType, VcardConstants._valueArgumentSpecifier);
-                    string finalValue = VcardParserTools.ProcessStringValue(value, valueType, calendarVersion.Major == 1 ? ';' : ',');
+                    string finalValue = VcardCommonTools.ProcessStringValue(value, valueType, calendarVersion.Major == 1 ? ';' : ',');
 
                     // Check for allowed values
                     if (allowedValues.Length != 0)
