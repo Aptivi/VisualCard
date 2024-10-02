@@ -89,6 +89,17 @@ namespace VisualCard.ShowCalendars
                     TextWriterColor.Write("Calendar UUID:       {0}", Calendar.UniqueId);
                     TextWriterColor.Write("Calendar events:     {0} event(s)", Calendar.Events.Length);
 
+                    // List events
+                    foreach (var eventInfo in Calendar.Events)
+                    {
+                        var summaries = eventInfo.GetString(CalendarStringsEnum.Summary);
+                        var descriptions = eventInfo.GetString(CalendarStringsEnum.Description);
+                        if (summaries.Length > 0)
+                            TextWriterColor.Write("Event summary:       {0}", summaries[0]);
+                        if (descriptions.Length > 0)
+                            TextWriterColor.Write("Event description:   {0}", descriptions[0]);
+                    }
+
                     // Print VCalendar
                     string raw = Calendar.SaveToString();
                     TextWriterColor.WriteColor(
