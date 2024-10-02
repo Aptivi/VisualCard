@@ -23,6 +23,7 @@ using System.Diagnostics;
 using System.IO;
 using VisualCard.Calendar.Parsers;
 using VisualCard.Parsers;
+using VisualCard.Parsers.Arguments;
 
 namespace VisualCard.Calendar.Parts.Implementations
 {
@@ -46,13 +47,13 @@ namespace VisualCard.Calendar.Parts.Implementations
         public bool IsBlob =>
             VcardCommonTools.IsEncodingBlob(Arguments, AttachEncoded);
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, string[] finalArgs, string[] elementTypes, string valueType, Version calendarVersion) =>
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version calendarVersion) =>
             new AttachInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, calendarVersion);
 
         internal override string ToStringVcalendarInternal(Version calendarVersion) =>
             AttachEncoded ?? "";
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, string[] finalArgs, string[] elementTypes, string valueType, Version calendarVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version calendarVersion)
         {
             // Check to see if the value is prepended by the ENCODING= argument
             string attachEncoding = VcardCommonTools.GetValuesString(finalArgs, "b", VCalendarConstants._encodingArgumentSpecifier);
@@ -130,7 +131,7 @@ namespace VisualCard.Calendar.Parts.Implementations
 
         internal AttachInfo() { }
 
-        internal AttachInfo(string[] arguments, string[] elementTypes, string valueType, string encoding, string attachEncoded) :
+        internal AttachInfo(ArgumentInfo[] arguments, string[] elementTypes, string valueType, string encoding, string attachEncoded) :
             base(arguments, elementTypes, valueType)
         {
             Encoding = encoding;

@@ -22,6 +22,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using VisualCard.Parsers.Arguments;
 using VisualCard.Parts.Enums;
 
 namespace VisualCard.Parsers
@@ -463,21 +464,22 @@ namespace VisualCard.Parsers
         internal static string[] GetTypes(string[] args, string @default, bool isSpecifierRequired = true) =>
             GetTypesString(args, @default, isSpecifierRequired).Split([VcardConstants._valueDelimiter], StringSplitOptions.RemoveEmptyEntries);
 
-        internal static string GetValuesString(string[] args, string @default, string argSpecifier)
+        internal static string GetValuesString(ArgumentInfo[] args, string @default, string argSpecifier)
         {
             // We're given an array of split arguments of an element delimited by the colon, such as: "...TYPE=home..."
             // Filter list of arguments with the arguments that start with the specified specifier (key)
-            var argFromSpecifier = args.Where((arg) => arg.StartsWith(argSpecifier));
+            string finalSpecifierName = argSpecifier.EndsWith("=") ? argSpecifier.Substring(0, argSpecifier.Length - 1) : argSpecifier;
+            var argFromSpecifier = args.Where((arg) => arg.Key.Equals(finalSpecifierName, StringComparison.OrdinalIgnoreCase));
 
             // Attempt to get the value from the key
             string argString =
-                    argFromSpecifier.Count() > 0 ?
-                    string.Join(VcardConstants._valueDelimiter.ToString(), argFromSpecifier.Select((arg) => arg.Substring(argSpecifier.Length))) :
-                    @default;
+                argFromSpecifier.Count() > 0 ?
+                string.Join(VcardConstants._valueDelimiter.ToString(), argFromSpecifier.Select((arg) => arg.Value)) :
+                @default;
             return argString;
         }
 
-        internal static string[] GetValues(string[] args, string @default, string argSpecifier) =>
+        internal static string[] GetValues(ArgumentInfo[] args, string @default, string argSpecifier) =>
             GetValuesString(args, @default, argSpecifier).Split([VcardConstants._valueDelimiter], StringSplitOptions.RemoveEmptyEntries);
 
         internal static string GetFirstValue(string[] args, string @default, string argSpecifier)
@@ -521,7 +523,7 @@ namespace VisualCard.Parsers
             return block.ToString();
         }
 
-        internal static bool IsEncodingBlob(string[]? args, string? keyEncoded)
+        internal static bool IsEncodingBlob(ArgumentInfo[]? args, string? keyEncoded)
         {
             args ??= [];
             string encoding = GetValuesString(args, "b", VcardConstants._encodingArgumentSpecifier);
@@ -538,7 +540,7 @@ namespace VisualCard.Parsers
                 encoding.Equals("BLOB", StringComparison.OrdinalIgnoreCase);
         }
 
-        internal static Stream GetBlobData(string[]? args, string? keyEncoded)
+        internal static Stream GetBlobData(ArgumentInfo[]? args, string? keyEncoded)
         {
             args ??= [];
             if (IsEncodingBlob(args, keyEncoded))

@@ -20,6 +20,7 @@
 using System;
 using System.Diagnostics;
 using VisualCard.Parsers;
+using VisualCard.Parsers.Arguments;
 
 namespace VisualCard.Calendar.Parts.Implementations.Todo
 {
@@ -34,13 +35,13 @@ namespace VisualCard.Calendar.Parts.Implementations.Todo
         /// </summary>
         public DateTimeOffset DateCompleted { get; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
             new DateCompletedInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion) =>
             $"{VcardCommonTools.SavePosixDate(DateCompleted)}";
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Populate the fields
             DateTimeOffset completed = VcardCommonTools.ParsePosixDateTime(value);
@@ -102,7 +103,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Todo
 
         internal DateCompletedInfo() { }
 
-        internal DateCompletedInfo(string[] arguments, string[] elementTypes, string valueType, DateTimeOffset rev) :
+        internal DateCompletedInfo(ArgumentInfo[] arguments, string[] elementTypes, string valueType, DateTimeOffset rev) :
             base(arguments, elementTypes, valueType)
         {
             DateCompleted = rev;

@@ -20,6 +20,7 @@
 using System;
 using System.Diagnostics;
 using VisualCard.Parsers;
+using VisualCard.Parsers.Arguments;
 
 namespace VisualCard.Calendar.Parts.Implementations.Event
 {
@@ -34,7 +35,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
         /// </summary>
         public DateTimeOffset DateStart { get; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
             new DateStartInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion)
@@ -47,7 +48,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
             return value;
         }
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Populate the fields
             string type = valueType ?? "";
@@ -113,7 +114,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
 
         internal DateStartInfo() { }
 
-        internal DateStartInfo(string[] arguments, string[] elementTypes, string valueType, DateTimeOffset rev) :
+        internal DateStartInfo(ArgumentInfo[] arguments, string[] elementTypes, string valueType, DateTimeOffset rev) :
             base(arguments, elementTypes, valueType)
         {
             DateStart = rev;

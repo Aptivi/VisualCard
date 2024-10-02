@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using VisualCard.Parsers.Arguments;
 
 namespace VisualCard.Calendar.Parts.Implementations
 {
@@ -35,13 +36,13 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// </summary>
         public string? Location { get; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
             new LocationInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion) =>
             Location ?? "";
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Populate the fields
             var location = Regex.Unescape(value);
@@ -103,7 +104,7 @@ namespace VisualCard.Calendar.Parts.Implementations
 
         internal LocationInfo() { }
 
-        internal LocationInfo(string[] arguments, string[] elementTypes, string valueType, string location) :
+        internal LocationInfo(ArgumentInfo[] arguments, string[] elementTypes, string valueType, string location) :
             base(arguments, elementTypes, valueType)
         {
             Location = location;

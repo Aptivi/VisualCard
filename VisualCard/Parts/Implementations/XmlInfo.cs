@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Xml;
+using VisualCard.Parsers.Arguments;
 
 namespace VisualCard.Parts.Implementations
 {
@@ -40,13 +41,13 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string? XmlString { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
             new XmlInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             XmlString ?? "";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Check to see if the XML document is valid or not
             string finalXml =
@@ -117,7 +118,7 @@ namespace VisualCard.Parts.Implementations
 
         internal XmlInfo() { }
 
-        internal XmlInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string group, XmlDocument xml, string xmlString) :
+        internal XmlInfo(int altId, ArgumentInfo[] arguments, string[] elementTypes, string valueType, string group, XmlDocument xml, string xmlString) :
             base(arguments, altId, elementTypes, valueType, group)
         {
             Xml = xml;

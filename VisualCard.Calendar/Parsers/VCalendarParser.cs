@@ -29,6 +29,7 @@ using VisualCard.Calendar.Parts.Enums;
 using VisualCard.Calendar.Exceptions;
 using VisualCard.Parts.Enums;
 using VisualCard.Parsers;
+using VisualCard.Parsers.Arguments;
 
 namespace VisualCard.Calendar.Parsers
 {
@@ -112,7 +113,7 @@ namespace VisualCard.Calendar.Parsers
                     string[] splitArgs = args.Split([VCalendarConstants._fieldDelimiter], StringSplitOptions.RemoveEmptyEntries);
                     string[] splitValues = value.Split([VCalendarConstants._fieldDelimiter], StringSplitOptions.RemoveEmptyEntries);
                     bool isWithType = splitArgs.Length > 0;
-                    List<string> finalArgs = [];
+                    List<ArgumentInfo> finalArgs = [];
 
                     // Check to see if we have a BEGIN or an END prefix
                     if (prefix == VCalendarConstants._beginSpecifier)
@@ -149,13 +150,19 @@ namespace VisualCard.Calendar.Parsers
                     if (isWithType)
                     {
                         // Finalize the arguments
-                        finalArgs.AddRange(splitArgs.Except(
+                        var argsStr = splitArgs.Except(
                             splitArgs.Where((arg) =>
                                 arg.StartsWith(VCalendarConstants._valueArgumentSpecifier) ||
                                 arg.StartsWith(VCalendarConstants._typeArgumentSpecifier) ||
                                 CalendarVersion.Major == 2 && !arg.Contains(VCalendarConstants._argumentValueDelimiter)
                             )
-                        ));
+                        );
+                        foreach (string arg in argsStr)
+                        {
+                            string keyStr = arg.Substring(0, arg.IndexOf(VCalendarConstants._argumentValueDelimiter));
+                            string valueStr = arg.RemovePrefix($"{keyStr}{VCalendarConstants._argumentValueDelimiter}");
+                            finalArgs.Add(new(keyStr, valueStr));
+                        }
                     }
 
                     // Check the type for allowed types

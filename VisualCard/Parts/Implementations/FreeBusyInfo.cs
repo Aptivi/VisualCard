@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using VisualCard.Parsers.Arguments;
 
 namespace VisualCard.Parts.Implementations
 {
@@ -35,13 +36,13 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string? FreeBusy { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
             new FreeBusyInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             FreeBusy ?? "";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Try to parse the source to ensure that it conforms the IETF RFC 1738: Uniform Resource Locators
             if (!Uri.TryCreate(value, UriKind.Absolute, out Uri uri))
@@ -105,7 +106,7 @@ namespace VisualCard.Parts.Implementations
 
         internal FreeBusyInfo() { }
 
-        internal FreeBusyInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string group, string source) :
+        internal FreeBusyInfo(int altId, ArgumentInfo[] arguments, string[] elementTypes, string valueType, string group, string source) :
             base(arguments, altId, elementTypes, valueType, group)
         {
             FreeBusy = source;

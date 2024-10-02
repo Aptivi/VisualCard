@@ -24,6 +24,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using VisualCard.Parsers;
+using VisualCard.Parsers.Arguments;
 
 namespace VisualCard.Calendar.Parts.Implementations.FreeBusy
 {
@@ -38,7 +39,7 @@ namespace VisualCard.Calendar.Parts.Implementations.FreeBusy
         /// </summary>
         public TimePeriod? FreeBusy { get; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
             new CalendarFreeBusyInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion)
@@ -51,7 +52,7 @@ namespace VisualCard.Calendar.Parts.Implementations.FreeBusy
             return builder.ToString();
         }
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Populate the fields
             var freeBusy = VcardCommonTools.GetTimePeriod(value);
@@ -113,7 +114,7 @@ namespace VisualCard.Calendar.Parts.Implementations.FreeBusy
 
         internal CalendarFreeBusyInfo() { }
 
-        internal CalendarFreeBusyInfo(string[] arguments, string[] elementTypes, string valueType, TimePeriod freeBusy) :
+        internal CalendarFreeBusyInfo(ArgumentInfo[] arguments, string[] elementTypes, string valueType, TimePeriod freeBusy) :
             base(arguments, elementTypes, valueType)
         {
             FreeBusy = freeBusy;

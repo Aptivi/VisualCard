@@ -19,6 +19,7 @@
 
 using System;
 using System.Diagnostics;
+using VisualCard.Parsers.Arguments;
 
 namespace VisualCard.Calendar.Parts.Implementations
 {
@@ -38,13 +39,13 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// </summary>
         public double Longitude { get; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, string[] finalArgs, string[] elementTypes, string valueType, Version calendarVersion) =>
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version calendarVersion) =>
             new GeoInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, calendarVersion);
 
         internal override string ToStringVcalendarInternal(Version calendarVersion) =>
             $"{Latitude}{(calendarVersion.Major == 1 ? ',' : ';')}{Longitude}";
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, string[] finalArgs, string[] elementTypes, string valueType, Version calendarVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version calendarVersion)
         {
             // Get the value
             string[] _geoSplit = value.Split(calendarVersion.Major == 1 ? ',' : ';');
@@ -114,7 +115,7 @@ namespace VisualCard.Calendar.Parts.Implementations
 
         internal GeoInfo() { }
 
-        internal GeoInfo(string[] arguments, string[] elementTypes, string valueType, double lat, double lon) :
+        internal GeoInfo(ArgumentInfo[] arguments, string[] elementTypes, string valueType, double lat, double lon) :
             base(arguments, elementTypes, valueType)
         {
             Latitude = lat;

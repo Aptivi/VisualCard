@@ -24,6 +24,7 @@ using System.IO;
 using System.Linq;
 using VisualCard.Parsers;
 using VisualCard.Parts.Implementations.Tools;
+using VisualCard.Parsers.Arguments;
 
 namespace VisualCard.Parts.Implementations
 {
@@ -42,14 +43,14 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string? GenderDescription { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
             new GenderInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             (Gender != Gender.Unspecified ? Gender.ToString()[0] : "") +
             (!string.IsNullOrEmpty(GenderDescription) ? $"{VcardConstants._fieldDelimiter}{GenderDescription}" : "");
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate field
             string genderString = value;
@@ -136,7 +137,7 @@ namespace VisualCard.Parts.Implementations
 
         internal GenderInfo() { }
 
-        internal GenderInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string group, Gender gender, string genderDescription) :
+        internal GenderInfo(int altId, ArgumentInfo[] arguments, string[] elementTypes, string valueType, string group, Gender gender, string genderDescription) :
             base(arguments, altId, elementTypes, valueType, group)
         {
             Gender = gender;

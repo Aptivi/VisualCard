@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using VisualCard.Calendar.Parsers;
+using VisualCard.Parsers.Arguments;
 
 namespace VisualCard.Calendar.Parts.Implementations
 {
@@ -40,13 +41,13 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// </summary>
         public string[]? Values { get; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
             new ExtraInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion) =>
             string.Join(VCalendarConstants._fieldDelimiter.ToString(), Values);
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
         {
             string[] split = value.Split(VCalendarConstants._argumentDelimiter);
 
@@ -115,7 +116,7 @@ namespace VisualCard.Calendar.Parts.Implementations
 
         internal ExtraInfo() { }
 
-        internal ExtraInfo(string[] arguments, string[] elementTypes, string valueType, string keyName, string[] values) :
+        internal ExtraInfo(ArgumentInfo[] arguments, string[] elementTypes, string valueType, string keyName, string[] values) :
             base(arguments, elementTypes, valueType)
         {
             KeyName = keyName;

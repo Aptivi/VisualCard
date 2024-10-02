@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using VisualCard.Parsers;
+using VisualCard.Parsers.Arguments;
 
 namespace VisualCard.Parts.Implementations
 {
@@ -40,13 +41,13 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string[]? XValues { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
             new XNameInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             string.Join(VcardConstants._fieldDelimiter.ToString(), XValues);
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             string xValue = value.Substring(VcardConstants._xSpecifier.Length);
             string[] splitX = xValue.Split(VcardConstants._argumentDelimiter);
@@ -116,7 +117,7 @@ namespace VisualCard.Parts.Implementations
 
         internal XNameInfo() { }
 
-        internal XNameInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string group, string xKeyName, string[] xValues) :
+        internal XNameInfo(int altId, ArgumentInfo[] arguments, string[] elementTypes, string valueType, string group, string xKeyName, string[] xValues) :
             base(arguments, altId, elementTypes, valueType, group)
         {
             XKeyName = xKeyName;

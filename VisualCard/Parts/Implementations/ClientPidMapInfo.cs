@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using Textify.General;
+using VisualCard.Parsers.Arguments;
 
 namespace VisualCard.Parts.Implementations
 {
@@ -41,13 +42,13 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string? PidUri { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
             new ClientPidMapInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             $"{PidNum};{PidUri ?? ""}";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Split the client PID map info
             if (!value.Contains(";"))
@@ -121,7 +122,7 @@ namespace VisualCard.Parts.Implementations
 
         internal ClientPidMapInfo() { }
 
-        internal ClientPidMapInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string group, int pidNum, string pidUri) :
+        internal ClientPidMapInfo(int altId, ArgumentInfo[] arguments, string[] elementTypes, string valueType, string group, int pidNum, string pidUri) :
             base(arguments, altId, elementTypes, valueType, group)
         {
             PidNum = pidNum;

@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using VisualCard.Parsers;
+using VisualCard.Parsers.Arguments;
 
 namespace VisualCard.Calendar.Parts.Implementations.Legacy
 {
@@ -62,7 +63,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
         public DateTimeOffset SnoozeIn =>
             VcardCommonTools.GetDurationSpan(SnoozeTime ?? "").result;
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, string[] finalArgs, string[] elementTypes, string valueType, Version calendarVersion) =>
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version calendarVersion) =>
             new AudioAlarmInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, calendarVersion);
 
         internal override string ToStringVcalendarInternal(Version calendarVersion)
@@ -71,7 +72,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
             return $"{posixRunTime};{SnoozeTime};{RepeatCount};{AudioResource}";
         }
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, string[] finalArgs, string[] elementTypes, string valueType, Version calendarVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version calendarVersion)
         {
             // Get the values
             string[] split = value.Split(';');
@@ -151,7 +152,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
 
         internal AudioAlarmInfo() { }
 
-        internal AudioAlarmInfo(string[] arguments, string[] elementTypes, string valueType, DateTimeOffset runTime, string snoozeTime, int repeat, string audioResource) :
+        internal AudioAlarmInfo(ArgumentInfo[] arguments, string[] elementTypes, string valueType, DateTimeOffset runTime, string snoozeTime, int repeat, string audioResource) :
             base(arguments, elementTypes, valueType)
         {
             RunTime = runTime;

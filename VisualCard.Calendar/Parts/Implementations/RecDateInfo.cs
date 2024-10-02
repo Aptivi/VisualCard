@@ -24,6 +24,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using VisualCard.Parsers;
+using VisualCard.Parsers.Arguments;
 
 namespace VisualCard.Calendar.Parts.Implementations
 {
@@ -38,7 +39,7 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// </summary>
         public TimePeriod[]? RecDates { get; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
             new RecDateInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion)
@@ -59,7 +60,7 @@ namespace VisualCard.Calendar.Parts.Implementations
             return builder.ToString();
         }
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Populate the fields
             TimePeriod[] recDates = [];
@@ -152,7 +153,7 @@ namespace VisualCard.Calendar.Parts.Implementations
 
         internal RecDateInfo() { }
 
-        internal RecDateInfo(string[] arguments, string[] elementTypes, string valueType, TimePeriod[] recDates) :
+        internal RecDateInfo(ArgumentInfo[] arguments, string[] elementTypes, string valueType, TimePeriod[] recDates) :
             base(arguments, elementTypes, valueType)
         {
             RecDates = recDates;

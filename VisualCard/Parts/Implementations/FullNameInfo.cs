@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using VisualCard.Parsers.Arguments;
 
 namespace VisualCard.Parts.Implementations
 {
@@ -35,13 +36,13 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string? FullName { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
             new FullNameInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             FullName ?? "";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Get the value
             string _fullNameStr = Regex.Unescape(value);
@@ -103,7 +104,7 @@ namespace VisualCard.Parts.Implementations
 
         internal FullNameInfo() { }
 
-        internal FullNameInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string group, string fullName) :
+        internal FullNameInfo(int altId, ArgumentInfo[] arguments, string[] elementTypes, string valueType, string group, string fullName) :
             base(arguments, altId, elementTypes, valueType, group)
         {
             FullName = fullName;

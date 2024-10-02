@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using VisualCard.Parsers;
+using VisualCard.Parsers.Arguments;
 
 namespace VisualCard.Parts.Implementations
 {
@@ -40,13 +41,13 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string[]? Values { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
             new ExtraInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             string.Join(VcardConstants._fieldDelimiter.ToString(), Values);
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             string[] split = value.Split(VcardConstants._argumentDelimiter);
 
@@ -115,7 +116,7 @@ namespace VisualCard.Parts.Implementations
 
         internal ExtraInfo() { }
 
-        internal ExtraInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string group, string keyName, string[] values) :
+        internal ExtraInfo(int altId, ArgumentInfo[] arguments, string[] elementTypes, string valueType, string group, string keyName, string[] values) :
             base(arguments, altId, elementTypes, valueType, group)
         {
             KeyName = keyName;

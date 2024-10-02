@@ -24,6 +24,7 @@ using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using Textify.General;
+using VisualCard.Parsers.Arguments;
 
 namespace VisualCard.Parts.Implementations
 {
@@ -38,7 +39,7 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public Card[]? AgentCards { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
             new AgentInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion)
@@ -56,7 +57,7 @@ namespace VisualCard.Parts.Implementations
             return agents.ToString();
         }
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Check the provided agent
             if (string.IsNullOrEmpty(value))
@@ -123,7 +124,7 @@ namespace VisualCard.Parts.Implementations
             base()
         { }
 
-        internal AgentInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string group, Card[] agentCard) :
+        internal AgentInfo(int altId, ArgumentInfo[] arguments, string[] elementTypes, string valueType, string group, Card[] agentCard) :
             base(arguments, altId, elementTypes, valueType, group)
         {
             AgentCards = agentCard;

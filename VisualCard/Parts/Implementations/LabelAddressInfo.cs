@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using VisualCard.Parsers.Arguments;
 
 namespace VisualCard.Parts.Implementations
 {
@@ -35,13 +36,13 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string? DeliveryLabel { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
             new LabelAddressInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             DeliveryLabel ?? "";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate the fields
             string _addressLabel = Regex.Unescape(value);
@@ -101,7 +102,7 @@ namespace VisualCard.Parts.Implementations
 
         internal LabelAddressInfo() { }
 
-        internal LabelAddressInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string group, string label) :
+        internal LabelAddressInfo(int altId, ArgumentInfo[] arguments, string[] elementTypes, string valueType, string group, string label) :
             base(arguments, altId, elementTypes, valueType, group)
         {
             DeliveryLabel = label;

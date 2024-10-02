@@ -24,6 +24,7 @@ using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using Textify.General;
+using VisualCard.Parsers.Arguments;
 
 namespace VisualCard.Calendar.Parts.Implementations
 {
@@ -48,7 +49,7 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// </summary>
         public string? RequestStatusExtData { get; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
             new RequestStatusInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion)
@@ -70,7 +71,7 @@ namespace VisualCard.Calendar.Parts.Implementations
             return statusBuilder.ToString();
         }
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Get the request and split it with the semicolon two times
             var requestStatus = Regex.Unescape(value);
@@ -158,7 +159,7 @@ namespace VisualCard.Calendar.Parts.Implementations
 
         internal RequestStatusInfo() { }
 
-        internal RequestStatusInfo(string[] arguments, string[] elementTypes, string valueType, (int, int, int) requestStatus, string statusDesc, string statusExtData) :
+        internal RequestStatusInfo(ArgumentInfo[] arguments, string[] elementTypes, string valueType, (int, int, int) requestStatus, string statusDesc, string statusExtData) :
             base(arguments, elementTypes, valueType)
         {
             RequestStatus = requestStatus;

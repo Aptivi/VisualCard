@@ -23,6 +23,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using VisualCard.Parsers;
+using VisualCard.Parsers.Arguments;
 
 namespace VisualCard.Parts
 {
@@ -35,7 +36,7 @@ namespace VisualCard.Parts
         /// <summary>
         /// Final arguments
         /// </summary>
-        public virtual string[] Arguments { get; internal set; } = [];
+        public virtual ArgumentInfo[] Arguments { get; internal set; } = [];
 
         /// <summary>
         /// Alternative ID. Zero if unspecified.
@@ -62,31 +63,6 @@ namespace VisualCard.Parts
         /// </summary>
         public bool IsPreferred =>
             HasType("PREF");
-
-        /// <summary>
-        /// Arguments in key/value pair format
-        /// </summary>
-        public ReadOnlyDictionary<string, string> ArgumentValues
-        {
-            get
-            {
-                // Check to see if we have an empty list of arguments
-                Dictionary<string, string> values = [];
-                if (Arguments is null || Arguments.Length == 0)
-                    return new(values);
-
-                // Now, separate a key from a value
-                foreach (var arg in Arguments)
-                {
-                    string key = arg.Substring(0, arg.IndexOf(VcardConstants._argumentValueDelimiter));
-                    string value = arg.Substring(arg.IndexOf(VcardConstants._argumentValueDelimiter) + 1);
-                    values.Add(key, value);
-                }
-
-                // Now, return a read-only dictionary
-                return new(values);
-            }
-        }
 
         /// <summary>
         /// Checks to see if this part has a specific type
@@ -143,7 +119,7 @@ namespace VisualCard.Parts
         public override int GetHashCode()
         {
             int hashCode = 975087586;
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(Arguments);
+            hashCode = hashCode * -1521134295 + EqualityComparer<ArgumentInfo[]>.Default.GetHashCode(Arguments);
             hashCode = hashCode * -1521134295 + AltId.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(ElementTypes);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ValueType);
@@ -162,14 +138,14 @@ namespace VisualCard.Parts
         internal virtual bool EqualsInternal(BaseCardPartInfo source, BaseCardPartInfo target) =>
             true;
 
-        internal abstract BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion);
+        internal abstract BaseCardPartInfo FromStringVcardInternal(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion);
 
         internal abstract string ToStringVcardInternal(Version cardVersion);
 
         internal BaseCardPartInfo()
         { }
 
-        internal BaseCardPartInfo(string[] arguments, int altId, string[] elementTypes, string valueType, string group)
+        internal BaseCardPartInfo(ArgumentInfo[] arguments, int altId, string[] elementTypes, string valueType, string group)
         {
             Arguments = arguments;
             AltId = altId;

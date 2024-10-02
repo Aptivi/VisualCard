@@ -20,6 +20,7 @@
 using System;
 using System.Diagnostics;
 using VisualCard.Parsers;
+using VisualCard.Parsers.Arguments;
 
 namespace VisualCard.Parts.Implementations
 {
@@ -34,13 +35,13 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public DateTimeOffset Revision { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
             new RevisionInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             $"{VcardCommonTools.SavePosixDate(Revision)}";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Get the value
             string revValue = value.Substring(VcardConstants._revSpecifier.Length + 1);
@@ -105,7 +106,7 @@ namespace VisualCard.Parts.Implementations
 
         internal RevisionInfo() { }
 
-        internal RevisionInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string group, DateTimeOffset rev) :
+        internal RevisionInfo(int altId, ArgumentInfo[] arguments, string[] elementTypes, string valueType, string group, DateTimeOffset rev) :
             base(arguments, altId, elementTypes, valueType, group)
         {
             Revision = rev;

@@ -20,6 +20,7 @@
 using System;
 using System.Diagnostics;
 using VisualCard.Parsers;
+using VisualCard.Parsers.Arguments;
 
 namespace VisualCard.Calendar.Parts.Implementations.TimeZone
 {
@@ -34,13 +35,13 @@ namespace VisualCard.Calendar.Parts.Implementations.TimeZone
         /// </summary>
         public TimeSpan Offset { get; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
             new TimeZoneOffsetFromInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion) =>
             $"{VcardCommonTools.SaveUtcOffset(Offset)}";
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Populate the fields
             TimeSpan start = VcardCommonTools.ParseUtcOffset(value);
@@ -102,7 +103,7 @@ namespace VisualCard.Calendar.Parts.Implementations.TimeZone
 
         internal TimeZoneOffsetFromInfo() { }
 
-        internal TimeZoneOffsetFromInfo(string[] arguments, string[] elementTypes, string valueType, TimeSpan rev) :
+        internal TimeZoneOffsetFromInfo(ArgumentInfo[] arguments, string[] elementTypes, string valueType, TimeSpan rev) :
             base(arguments, elementTypes, valueType)
         {
             Offset = rev;

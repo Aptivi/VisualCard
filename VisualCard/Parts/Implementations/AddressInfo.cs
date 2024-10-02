@@ -23,6 +23,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text.RegularExpressions;
 using VisualCard.Parsers;
+using VisualCard.Parsers.Arguments;
 
 namespace VisualCard.Parts.Implementations
 {
@@ -61,7 +62,7 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string? Country { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
             new AddressInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
@@ -73,7 +74,7 @@ namespace VisualCard.Parts.Implementations
             $"{PostalCode}{VcardConstants._fieldDelimiter}" +
             $"{Country}";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Get the value
             string[] splitAdr = value.Split(VcardConstants._fieldDelimiter);
@@ -161,7 +162,7 @@ namespace VisualCard.Parts.Implementations
             base()
         { }
 
-        internal AddressInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string group, string postOfficeBox, string extendedAddress, string streetAddress, string locality, string region, string postalCode, string country) :
+        internal AddressInfo(int altId, ArgumentInfo[] arguments, string[] elementTypes, string valueType, string group, string postOfficeBox, string extendedAddress, string streetAddress, string locality, string region, string postalCode, string country) :
             base(arguments, altId, elementTypes, valueType, group)
         {
             PostOfficeBox = postOfficeBox;

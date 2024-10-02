@@ -93,7 +93,9 @@ namespace VisualCard.Parts
             // Finally, install the remaining arguments if they exist and contain keys and values
             if (installArguments)
             {
-                string[] finalArguments = partInfo.Arguments.Where((arg) => arg.Contains(VcardConstants._argumentValueDelimiter)).ToArray();
+                string[] finalArguments = partInfo.Arguments
+                    .Where((arg) => !string.IsNullOrWhiteSpace(arg.Value))
+                    .Select((arg) => $"{arg.Key}={(arg.CaseSensitive ? $"\"{arg.Value}\"" : arg.Value)}").ToArray();
                 argumentsBuilder.Append(string.Join(VcardConstants._fieldDelimiter.ToString(), finalArguments));
             }
 

@@ -23,6 +23,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using VisualCard.Calendar.Parsers;
+using VisualCard.Parsers.Arguments;
 
 namespace VisualCard.Calendar.Parts
 {
@@ -35,7 +36,7 @@ namespace VisualCard.Calendar.Parts
         /// <summary>
         /// Final arguments
         /// </summary>
-        public virtual string[]? Arguments { get; internal set; }
+        public virtual ArgumentInfo[]? Arguments { get; internal set; }
 
         /// <summary>
         /// Card element type (home, work, ...)
@@ -52,31 +53,6 @@ namespace VisualCard.Calendar.Parts
         /// </summary>
         public bool IsPreferred =>
             HasType("PREF");
-
-        /// <summary>
-        /// Arguments in key/value pair format
-        /// </summary>
-        public ReadOnlyDictionary<string, string> ArgumentValues
-        {
-            get
-            {
-                // Check to see if we have an empty list of arguments
-                Dictionary<string, string> values = [];
-                if (Arguments is null || Arguments.Length == 0)
-                    return new(values);
-
-                // Now, separate a key from a value
-                foreach (var arg in Arguments)
-                {
-                    string key = arg.Substring(0, arg.IndexOf(VCalendarConstants._argumentValueDelimiter));
-                    string value = arg.Substring(arg.IndexOf(VCalendarConstants._argumentValueDelimiter) + 1);
-                    values.Add(key, value);
-                }
-
-                // Now, return a read-only dictionary
-                return new(values);
-            }
-        }
 
         /// <summary>
         /// Checks to see if this part has a specific type
@@ -133,7 +109,7 @@ namespace VisualCard.Calendar.Parts
         public override int GetHashCode()
         {
             int hashCode = -452519667;
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]?>.Default.GetHashCode(Arguments);
+            hashCode = hashCode * -1521134295 + EqualityComparer<ArgumentInfo[]?>.Default.GetHashCode(Arguments);
             hashCode = hashCode * -1521134295 + EqualityComparer<string[]?>.Default.GetHashCode(ElementTypes);
             hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(ValueType);
             return hashCode;
@@ -150,14 +126,14 @@ namespace VisualCard.Calendar.Parts
         internal virtual bool EqualsInternal(BaseCalendarPartInfo source, BaseCalendarPartInfo target) =>
             true;
 
-        internal abstract BaseCalendarPartInfo FromStringVcalendarInternal(string value, string[] finalArgs, string[] elementTypes, string valueType, Version calendarVersion);
+        internal abstract BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version calendarVersion);
 
         internal abstract string ToStringVcalendarInternal(Version calendarVersion);
 
         internal BaseCalendarPartInfo()
         { }
 
-        internal BaseCalendarPartInfo(string[] arguments, string[] elementTypes, string valueType)
+        internal BaseCalendarPartInfo(ArgumentInfo[] arguments, string[] elementTypes, string valueType)
         {
             Arguments = arguments;
             ElementTypes = elementTypes;

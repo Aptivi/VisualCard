@@ -25,6 +25,7 @@ using System.Linq;
 using System.Text;
 using Textify.General;
 using VisualCard.Exceptions;
+using VisualCard.Parsers.Arguments;
 using VisualCard.Parts;
 using VisualCard.Parts.Enums;
 using VisualCard.Parts.Implementations;
@@ -108,7 +109,7 @@ namespace VisualCard.Parsers
                     string[] splitArgs = args.Split([VcardConstants._fieldDelimiter], StringSplitOptions.RemoveEmptyEntries);
                     string[] splitValues = value.Split([VcardConstants._fieldDelimiter], StringSplitOptions.RemoveEmptyEntries);
                     bool isWithType = splitArgs.Length > 0;
-                    List<string> finalArgs = [];
+                    List<ArgumentInfo> finalArgs = [];
                     int altId = -1;
 
                     // Extract the group name
@@ -157,14 +158,20 @@ namespace VisualCard.Parsers
                         }
 
                         // Finalize the arguments
-                        finalArgs.AddRange(splitArgs.Except(
+                        var argsStr = splitArgs.Except(
                             splitArgs.Where((arg) =>
                                 arg.StartsWith(VcardConstants._altIdArgumentSpecifier) ||
                                 arg.StartsWith(VcardConstants._valueArgumentSpecifier) ||
                                 arg.StartsWith(VcardConstants._typeArgumentSpecifier) ||
                                 (CardVersion.Major == 2 && !arg.Contains(VcardConstants._argumentValueDelimiter))
                             )
-                        ));
+                        );
+                        foreach (string arg in argsStr)
+                        {
+                            string keyStr = arg.Substring(0, arg.IndexOf(VcardConstants._argumentValueDelimiter));
+                            string valueStr = arg.RemovePrefix($"{keyStr}{VcardConstants._argumentValueDelimiter}");
+                            finalArgs.Add(new(keyStr, valueStr));
+                        }
                     }
 
                     // Check the type for allowed types

@@ -20,6 +20,7 @@
 using System;
 using System.Diagnostics;
 using VisualCard.Parsers;
+using VisualCard.Parsers.Arguments;
 
 namespace VisualCard.Calendar.Parts.Implementations.Todo
 {
@@ -34,7 +35,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Todo
         /// </summary>
         public DateTimeOffset DueDate { get; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
             new DueDateInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion)
@@ -47,7 +48,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Todo
             return value;
         }
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Populate the fields
             string type = valueType ?? "";
@@ -113,7 +114,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Todo
 
         internal DueDateInfo() { }
 
-        internal DueDateInfo(string[] arguments, string[] elementTypes, string valueType, DateTimeOffset rev) :
+        internal DueDateInfo(ArgumentInfo[] arguments, string[] elementTypes, string valueType, DateTimeOffset rev) :
             base(arguments, elementTypes, valueType)
         {
             DueDate = rev;

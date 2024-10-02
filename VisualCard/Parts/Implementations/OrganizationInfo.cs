@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using VisualCard.Parsers;
+using VisualCard.Parsers.Arguments;
 
 namespace VisualCard.Parts.Implementations
 {
@@ -44,7 +45,7 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string? Role { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
             new OrganizationInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
@@ -52,7 +53,7 @@ namespace VisualCard.Parts.Implementations
             $"{Unit}{VcardConstants._fieldDelimiter}" +
             $"{Role}";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             string[] splitOrg = value.Split(VcardConstants._fieldDelimiter);
 
@@ -120,7 +121,7 @@ namespace VisualCard.Parts.Implementations
 
         internal OrganizationInfo() { }
 
-        internal OrganizationInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string group, string name, string unit, string role) :
+        internal OrganizationInfo(int altId, ArgumentInfo[] arguments, string[] elementTypes, string valueType, string group, string name, string unit, string role) :
             base(arguments, altId, elementTypes, valueType, group)
         {
             Name = name;

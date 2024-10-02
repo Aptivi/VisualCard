@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using VisualCard.Parsers;
+using VisualCard.Parsers.Arguments;
 
 namespace VisualCard.Calendar.Parts.Implementations.Legacy
 {
@@ -62,7 +63,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
         public DateTimeOffset SnoozeIn =>
             VcardCommonTools.GetDurationSpan(SnoozeTime ?? "").result;
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, string[] finalArgs, string[] elementTypes, string valueType, Version calendarVersion) =>
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version calendarVersion) =>
             new DisplayAlarmInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, calendarVersion);
 
         internal override string ToStringVcalendarInternal(Version calendarVersion)
@@ -71,7 +72,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
             return $"{posixRunTime};{SnoozeTime};{RepeatCount};{Display}";
         }
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, string[] finalArgs, string[] elementTypes, string valueType, Version calendarVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version calendarVersion)
         {
             // Get the values
             string[] split = value.Split(';');
@@ -151,7 +152,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
 
         internal DisplayAlarmInfo() { }
 
-        internal DisplayAlarmInfo(string[] arguments, string[] elementTypes, string valueType, DateTimeOffset runTime, string snoozeTime, int repeat, string display) :
+        internal DisplayAlarmInfo(ArgumentInfo[] arguments, string[] elementTypes, string valueType, DateTimeOffset runTime, string snoozeTime, int repeat, string display) :
             base(arguments, elementTypes, valueType)
         {
             RunTime = runTime;

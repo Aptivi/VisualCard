@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using VisualCard.Parsers.Arguments;
 
 namespace VisualCard.Parts.Implementations
 {
@@ -35,13 +36,13 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string? ContactIMPP { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
             new ImppInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             ContactIMPP ?? "";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate the fields
             string _impp = Regex.Unescape(value);
@@ -101,7 +102,7 @@ namespace VisualCard.Parts.Implementations
 
         internal ImppInfo() { }
 
-        internal ImppInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string group, string contactImpp) :
+        internal ImppInfo(int altId, ArgumentInfo[] arguments, string[] elementTypes, string valueType, string group, string contactImpp) :
             base(arguments, altId, elementTypes, valueType, group)
         {
             ContactIMPP = contactImpp;

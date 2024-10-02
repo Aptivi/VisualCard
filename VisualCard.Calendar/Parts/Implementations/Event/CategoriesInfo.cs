@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using VisualCard.Parsers.Arguments;
 
 namespace VisualCard.Calendar.Parts.Implementations.Event
 {
@@ -35,13 +36,13 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
         /// </summary>
         public string[]? Categories { get; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
             new CategoriesInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion) =>
             $"{string.Join(cardVersion.Major == 1 ? ";" : ",", Categories)}";
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Populate the fields
             var categories = Regex.Unescape(value).Split(cardVersion.Major == 1 ? ';' : ',');
@@ -103,7 +104,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
 
         internal CategoriesInfo() { }
 
-        internal CategoriesInfo(string[] arguments, string[] elementTypes, string valueType, string[] categories) :
+        internal CategoriesInfo(ArgumentInfo[] arguments, string[] elementTypes, string valueType, string[] categories) :
             base(arguments, elementTypes, valueType)
         {
             Categories = categories;

@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using VisualCard.Parsers;
+using VisualCard.Parsers.Arguments;
 
 namespace VisualCard.Parts.Implementations
 {
@@ -36,13 +37,13 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string[]? Category { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
             new CategoryInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             $"{string.Join(VcardConstants._valueDelimiter.ToString(), Category)}";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate the fields
             var categories = Regex.Unescape(value).Split(',');
@@ -104,7 +105,7 @@ namespace VisualCard.Parts.Implementations
 
         internal CategoryInfo() { }
 
-        internal CategoryInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string group, string[] category) :
+        internal CategoryInfo(int altId, ArgumentInfo[] arguments, string[] elementTypes, string valueType, string group, string[] category) :
             base(arguments, altId, elementTypes, valueType, group)
         {
             Category = category;

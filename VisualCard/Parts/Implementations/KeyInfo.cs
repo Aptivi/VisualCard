@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using VisualCard.Parsers;
+using VisualCard.Parsers.Arguments;
 
 namespace VisualCard.Parts.Implementations
 {
@@ -45,13 +46,13 @@ namespace VisualCard.Parts.Implementations
         public bool IsBlob =>
             VcardCommonTools.IsEncodingBlob(Arguments, KeyEncoded);
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
             new KeyInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             KeyEncoded ?? "";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             bool vCard4 = cardVersion.Major >= 4;
 
@@ -146,7 +147,7 @@ namespace VisualCard.Parts.Implementations
 
         internal KeyInfo() { }
 
-        internal KeyInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string group, string encoding, string keyEncoded) :
+        internal KeyInfo(int altId, ArgumentInfo[] arguments, string[] elementTypes, string valueType, string group, string encoding, string keyEncoded) :
             base(arguments, altId, elementTypes, valueType, group)
         {
             Encoding = encoding;

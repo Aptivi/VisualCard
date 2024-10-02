@@ -24,6 +24,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using VisualCard.Parsers;
+using VisualCard.Parsers.Arguments;
 
 namespace VisualCard.Parts.Implementations
 {
@@ -54,7 +55,7 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string[]? Suffixes { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
             new NameInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion)
@@ -70,7 +71,7 @@ namespace VisualCard.Parts.Implementations
                 $"{suffixesStr}";
         }
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, string[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             string[] splitName = value.Split(VcardConstants._fieldDelimiter);
             if (splitName.Length < 2)
@@ -146,7 +147,7 @@ namespace VisualCard.Parts.Implementations
 
         internal NameInfo() { }
 
-        internal NameInfo(int altId, string[] arguments, string[] elementTypes, string valueType, string group, string contactFirstName, string contactLastName, string[] altNames, string[] prefixes, string[] suffixes) :
+        internal NameInfo(int altId, ArgumentInfo[] arguments, string[] elementTypes, string valueType, string group, string contactFirstName, string contactLastName, string[] altNames, string[] prefixes, string[] suffixes) :
             base(arguments, altId, elementTypes, valueType, group)
         {
             ContactFirstName = contactFirstName;

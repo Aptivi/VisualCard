@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using VisualCard.Parsers.Arguments;
 
 namespace VisualCard.Calendar.Parts.Implementations
 {
@@ -35,13 +36,13 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// </summary>
         public string? Contact { get; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
             new ContactInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion) =>
             Contact ?? "";
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Populate the fields
             var contact = Regex.Unescape(value);
@@ -103,7 +104,7 @@ namespace VisualCard.Calendar.Parts.Implementations
 
         internal ContactInfo() { }
 
-        internal ContactInfo(string[] arguments, string[] elementTypes, string valueType, string contact) :
+        internal ContactInfo(ArgumentInfo[] arguments, string[] elementTypes, string valueType, string contact) :
             base(arguments, elementTypes, valueType)
         {
             Contact = contact;

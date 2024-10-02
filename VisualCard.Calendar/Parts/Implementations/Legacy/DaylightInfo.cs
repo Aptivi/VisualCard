@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using VisualCard.Parsers;
+using VisualCard.Parsers.Arguments;
 
 namespace VisualCard.Calendar.Parts.Implementations.Legacy
 {
@@ -60,7 +61,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
         /// </summary>
         public string? DaylightDesignation { get; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, string[] finalArgs, string[] elementTypes, string valueType, Version calendarVersion) =>
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version calendarVersion) =>
             new DaylightInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, calendarVersion);
 
         internal override string ToStringVcalendarInternal(Version calendarVersion)
@@ -73,7 +74,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
             return $"TRUE;{posixUtc};{posixStart};{posixEnd};{StandardDesignation};{DaylightDesignation}";
         }
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, string[] finalArgs, string[] elementTypes, string valueType, Version calendarVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version calendarVersion)
         {
             // Get the values
             string[] split = value.Split(';');
@@ -159,7 +160,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
 
         internal DaylightInfo() { }
 
-        internal DaylightInfo(string[] arguments, string[] elementTypes, string valueType, bool flag, TimeSpan utcOffset, DateTimeOffset daylightStart, DateTimeOffset daylightEnd, string standardDesignation, string daylightDesignation) :
+        internal DaylightInfo(ArgumentInfo[] arguments, string[] elementTypes, string valueType, bool flag, TimeSpan utcOffset, DateTimeOffset daylightStart, DateTimeOffset daylightEnd, string standardDesignation, string daylightDesignation) :
             base(arguments, elementTypes, valueType)
         {
             Flag = flag;

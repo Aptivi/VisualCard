@@ -31,7 +31,7 @@ namespace VisualCard.Calendar.Parts
         {
             // Filter the list of types and values first
             string valueType = partInfo.ValueType ?? "";
-            string[] valueArguments = partInfo.Arguments ?? [];
+            var valueArguments = partInfo.Arguments ?? [];
             string[] finalElementTypes = partInfo.ElementTypes.Where((type) => !type.Equals(defaultType, StringComparison.OrdinalIgnoreCase)).ToArray();
             string finalValue = valueType.Equals(defaultValue, StringComparison.OrdinalIgnoreCase) ? "" : valueType;
 
@@ -80,7 +80,9 @@ namespace VisualCard.Calendar.Parts
             // Finally, install the remaining arguments if they exist and contain keys and values
             if (installArguments)
             {
-                string[] finalArguments = valueArguments.Where((arg) => arg.Contains(VCalendarConstants._argumentValueDelimiter)).ToArray();
+                string[] finalArguments = partInfo.Arguments
+                    .Where((arg) => !string.IsNullOrWhiteSpace(arg.Value))
+                    .Select((arg) => $"{arg.Key}={(arg.CaseSensitive ? $"\"{arg.Value}\"" : arg.Value)}").ToArray();
                 argumentsBuilder.Append(string.Join(VCalendarConstants._fieldDelimiter.ToString(), finalArguments));
             }
 

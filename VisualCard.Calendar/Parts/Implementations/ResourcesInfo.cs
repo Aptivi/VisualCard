@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using VisualCard.Calendar.Parsers;
+using VisualCard.Parsers.Arguments;
 
 namespace VisualCard.Calendar.Parts.Implementations
 {
@@ -36,13 +37,13 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// </summary>
         public string[]? Resources { get; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
             new ResourcesInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion) =>
             $"{string.Join(VCalendarConstants._valueDelimiter.ToString(), Resources)}";
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, string[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Populate the fields
             var resources = Regex.Unescape(value).Split(cardVersion.Major == 1 ? ';' : ',');
@@ -104,7 +105,7 @@ namespace VisualCard.Calendar.Parts.Implementations
 
         internal ResourcesInfo() { }
 
-        internal ResourcesInfo(string[] arguments, string[] elementTypes, string valueType, string[] resources) :
+        internal ResourcesInfo(ArgumentInfo[] arguments, string[] elementTypes, string valueType, string[] resources) :
             base(arguments, elementTypes, valueType)
         {
             Resources = resources;
