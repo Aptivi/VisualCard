@@ -28,6 +28,9 @@ namespace VisualCard.Parsers
     internal class VcardParserTools
     {
         internal static bool StringSupported(StringsEnum stringsEnum, Version cardVersion, string kind) =>
+            StringSupported(stringsEnum, cardVersion, VcardCommonTools.GetKindEnum(kind));
+
+        internal static bool StringSupported(StringsEnum stringsEnum, Version cardVersion, CardKind kind) =>
             stringsEnum switch
             {
                 StringsEnum.Kind => cardVersion.Major >= 4,
@@ -56,7 +59,7 @@ namespace VisualCard.Parsers
                 StringsEnum.CalendarUrl => cardVersion.Major >= 4,
                 StringsEnum.CalendarSchedulingRequestUrl => cardVersion.Major >= 4,
                 StringsEnum.ContactUri => cardVersion.Major >= 4,
-                StringsEnum.Member => kind == "group" && cardVersion.Major == 4,
+                StringsEnum.Member => kind == CardKind.Group && cardVersion.Major == 4,
                 StringsEnum.Related => cardVersion.Major == 4,
                 StringsEnum.Expertise => cardVersion.Major >= 4,
                 StringsEnum.Hobby => cardVersion.Major >= 4,

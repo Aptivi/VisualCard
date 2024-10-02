@@ -61,10 +61,16 @@ namespace VisualCard.Parts
             GetString(StringsEnum.Uid).Length > 0 ? GetString(StringsEnum.Uid)[0].Value : "";
 
         /// <summary>
+        /// Card kind string
+        /// </summary>
+        public string CardKindStr =>
+            strings.ContainsKey(StringsEnum.Kind) && strings[StringsEnum.Kind].Count > 0 ? strings[StringsEnum.Kind][0].Value : "individual";
+
+        /// <summary>
         /// Card kind
         /// </summary>
-        public string CardKind =>
-            strings.ContainsKey(StringsEnum.Kind) && strings[StringsEnum.Kind].Count > 0 ? strings[StringsEnum.Kind][0].Value : "individual";
+        public CardKind CardKind =>
+            VcardCommonTools.GetKindEnum(CardKindStr);
 
         /// <summary>
         /// Gets a part array from a specified key

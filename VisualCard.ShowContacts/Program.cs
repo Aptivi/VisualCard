@@ -176,7 +176,7 @@ namespace VisualCard.ShowContacts
                         TextWriterColor.Write("Contact URL:             {0} [G: {1}]", url[0].Value, url[0].Group);
                     if (note.Length > 0)
                         TextWriterColor.Write("Contact Note:            {0} [G: {1}]", note[0].Value, note[0].Group);
-                    TextWriterColor.Write("Card kind:               {0}", Contact.CardKind);
+                    TextWriterColor.Write("Card kind:               {0} [{1}]", Contact.CardKind, Contact.CardKindStr);
 
                     // Print VCard
                     string raw = Contact.SaveToString();

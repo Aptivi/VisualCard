@@ -25,6 +25,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using VisualCard.Parsers.Arguments;
 using VisualCard.Parsers.Recurrence;
+using VisualCard.Parts.Enums;
 
 namespace VisualCard.Parsers
 {
@@ -668,5 +669,15 @@ namespace VisualCard.Parsers
             // Return the result
             return finalValue;
         }
+
+        internal static CardKind GetKindEnum(string kind) =>
+            kind.ToLower() switch
+            {
+                "individual" => CardKind.Individual,
+                "group" => CardKind.Group,
+                "organization" => CardKind.Organization,
+                "location" => CardKind.Location,
+                _ => CardKind.Others,
+            };
     }
 }

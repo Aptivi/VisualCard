@@ -40,7 +40,7 @@ namespace VisualCard.Parsers
     {
         internal Card[] nestedCards = [];
         private readonly Version cardVersion = new();
-        private readonly string[] cardContent = [];
+        private string[] cardContent = [];
 
         /// <summary>
         /// VCard card content
@@ -65,6 +65,14 @@ namespace VisualCard.Parsers
 
             // Make a new vCard
             var card = new Card(CardVersion);
+
+            // Move kind to the top
+            if (CardVersion.Major >= 4)
+            {
+                string kindLine = CardContent.SingleOrDefault((line) => line.ToUpper().StartsWith(VcardConstants._kindSpecifier));
+                if (!string.IsNullOrEmpty(kindLine))
+                    cardContent = [kindLine, .. cardContent.Where((line) => line != kindLine).ToArray()];
+            }
 
             // Iterate through all the lines
             bool constructing = false;
