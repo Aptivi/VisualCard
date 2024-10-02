@@ -79,14 +79,16 @@ namespace VisualCard
 
             // Parse the lines of the card file
             string CardLine;
-            StringBuilder CardContent = new();
             Version CardVersion = new();
             List<Card> nestedCards = [];
+            List<(int, string)> lines = [];
             bool nested = false;
             bool versionDirect = false;
+            int lineNumber = 0;
             while (!stream.EndOfStream)
             {
                 bool append = false;
+                lineNumber++;
 
                 // Skip empty lines
                 CardLine = stream.ReadLine();
@@ -125,7 +127,7 @@ namespace VisualCard
                     continue;
                 }
                 if (append)
-                    CardContent.Append(CardLine);
+                    lines.Add((lineNumber, CardLine));
 
                 // All VCards must begin with BEGIN:VCARD
                 if (!CardLine.EqualsNoCase(VcardConstants._beginText) && !BeginSpotted)
@@ -170,22 +172,18 @@ namespace VisualCard
                     nested = false;
 
                     // Make a new parser instance
-                    string content = CardContent.ToString();
-                    string[] contentLines = content.SplitNewLines();
-                    VcardParser CardParser = new(contentLines, CardVersion)
+                    VcardParser CardParser = new([.. lines], CardVersion)
                     {
                         nestedCards = [.. nestedCards]
                     };
                     FinalParsers.Add(CardParser);
 
                     // Clear the content in case we want to make a second contact
-                    CardContent.Clear();
+                    lines.Clear();
                     nestedCards.Clear();
                     BeginSpotted = false;
                     versionDirect = false;
                 }
-                else if (append)
-                    CardContent.AppendLine();
             }
 
             // Close the stream to avoid stuck file handle

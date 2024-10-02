@@ -40,12 +40,12 @@ namespace VisualCard.Calendar.Parsers
     internal class VCalendarParser
     {
         private readonly Version calendarVersion = new();
-        private readonly string[] calendarContent = [];
+        private readonly (int, string)[] calendarContent = [];
 
         /// <summary>
         /// vCalendar calendar content
         /// </summary>
-        public string[] CalendarContent =>
+        public (int, string)[] CalendarContent =>
             calendarContent;
         /// <summary>
         /// vCalendar calendar version
@@ -73,8 +73,9 @@ namespace VisualCard.Calendar.Parsers
             for (int i = 0; i < CalendarContent.Length; i++)
             {
                 // Get line
-                string _value = CalendarContent[i];
-                int lineNumber = i + 1;
+                var content = CalendarContent[i];
+                string _value = content.Item2;
+                int lineNumber = content.Item1;
                 if (string.IsNullOrEmpty(_value))
                     continue;
 
@@ -84,7 +85,7 @@ namespace VisualCard.Calendar.Parsers
                     subPart = begins[begins.Count - 1].Item2;
 
                 // First, check to see if we need to construct blocks
-                string secondLine = i + 1 < CalendarContent.Length ? CalendarContent[i + 1] : "";
+                string secondLine = i + 1 < CalendarContent.Length ? CalendarContent[i + 1].Item2 : "";
                 bool firstConstructedLine = !_value.StartsWith(VcardConstants._spaceBreak) && !_value.StartsWith(VcardConstants._tabBreak);
                 constructing = secondLine.StartsWithAnyOf([VcardConstants._spaceBreak, VcardConstants._tabBreak]);
                 secondLine = secondLine.Length > 1 ? secondLine.Substring(1) : "";
@@ -540,7 +541,7 @@ namespace VisualCard.Calendar.Parsers
                 throw new ArgumentException($"Can't place {subpart.GetType().Name} inside {part.GetType().Name}");
         }
 
-        internal VCalendarParser(string[] calendarContent, Version calendarVersion)
+        internal VCalendarParser((int, string)[] calendarContent, Version calendarVersion)
         {
             this.calendarContent = calendarContent;
             this.calendarVersion = calendarVersion;

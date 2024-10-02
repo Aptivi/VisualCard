@@ -79,11 +79,13 @@ namespace VisualCard.Calendar
 
             // Parse the lines of the calendar file
             string CalendarLine;
-            StringBuilder CalendarContent = new();
+            List<(int, string)> lines = [];
             Version CalendarVersion = new();
+            int lineNumber = 0;
             while (!stream.EndOfStream)
             {
                 bool append = false;
+                lineNumber++;
 
                 // Skip empty lines
                 CalendarLine = stream.ReadLine();
@@ -97,7 +99,7 @@ namespace VisualCard.Calendar
                          !CalendarLine.EqualsNoCase(VCalendarConstants._endText))
                     append = true;
                 if (append)
-                    CalendarContent.Append(CalendarLine);
+                    lines.Add((lineNumber, CalendarLine));
 
                 // All vCalendars must begin with BEGIN:VCALENDAR
                 if (!CalendarLine.EqualsNoCase(VCalendarConstants._beginText) && !BeginSpotted)
@@ -130,17 +132,13 @@ namespace VisualCard.Calendar
                     EndSpotted = true;
 
                     // Make a new parser instance
-                    string content = CalendarContent.ToString();
-                    string[] contentLines = content.SplitNewLines();
-                    VCalendarParser CalendarParser = new(contentLines, CalendarVersion);
+                    VCalendarParser CalendarParser = new([.. lines], CalendarVersion);
                     FinalParsers.Add(CalendarParser);
 
                     // Clear the content in case we want to make a second contact
-                    CalendarContent.Clear();
+                    lines.Clear();
                     BeginSpotted = false;
                 }
-                else if (append)
-                    CalendarContent.AppendLine();
             }
 
             // Close the stream to avoid stuck file handle

@@ -40,12 +40,12 @@ namespace VisualCard.Parsers
     {
         internal Card[] nestedCards = [];
         private readonly Version cardVersion = new();
-        private string[] cardContent = [];
+        private (int, string)[] cardContent = [];
 
         /// <summary>
         /// VCard card content
         /// </summary>
-        public string[] CardContent =>
+        public (int, string)[] CardContent =>
             cardContent;
         /// <summary>
         /// VCard card version
@@ -69,9 +69,9 @@ namespace VisualCard.Parsers
             // Move kind to the top
             if (CardVersion.Major >= 4)
             {
-                string kindLine = CardContent.SingleOrDefault((line) => line.ToUpper().StartsWith(VcardConstants._kindSpecifier));
-                if (!string.IsNullOrEmpty(kindLine))
-                    cardContent = [kindLine, .. cardContent.Where((line) => line != kindLine).ToArray()];
+                var kindLine = CardContent.SingleOrDefault((line) => line.Item2.ToUpper().StartsWith(VcardConstants._kindSpecifier));
+                if (!string.IsNullOrEmpty(kindLine.Item2))
+                    cardContent = [kindLine, .. cardContent.Where((line) => line.Item2 != kindLine.Item2).ToArray()];
             }
 
             // Iterate through all the lines
@@ -82,13 +82,14 @@ namespace VisualCard.Parsers
             for (int i = 0; i < CardContent.Length; i++)
             {
                 // Get line
-                string _value = CardContent[i];
-                int lineNumber = i + 1;
+                var content = CardContent[i];
+                string _value = content.Item2;
+                int lineNumber = content.Item1;
                 if (string.IsNullOrEmpty(_value))
                     continue;
 
                 // First, check to see if we need to construct blocks
-                string secondLine = i + 1 < CardContent.Length ? CardContent[i + 1] : "";
+                string secondLine = i + 1 < CardContent.Length ? CardContent[i + 1].Item2 : "";
                 bool firstConstructedLine = !_value.StartsWith(VcardConstants._spaceBreak) && !_value.StartsWith(VcardConstants._tabBreak);
                 constructing = secondLine.StartsWithAnyOf([VcardConstants._spaceBreak, VcardConstants._tabBreak]);
                 secondLine = secondLine.Length > 1 ? secondLine.Substring(1) : "";
@@ -321,7 +322,7 @@ namespace VisualCard.Parsers
             return actualFields.SequenceEqual(expectedFields);
         }
 
-        internal VcardParser(string[] cardContent, Version cardVersion)
+        internal VcardParser((int, string)[] cardContent, Version cardVersion)
         {
             this.cardContent = cardContent;
             this.cardVersion = cardVersion;
