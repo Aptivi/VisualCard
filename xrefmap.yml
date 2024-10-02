@@ -7140,6 +7140,243 @@ references:
   fullName.vb: VisualCard.Parts.Card.<>
   nameWithType: Card.operator !=
   nameWithType.vb: Card.<>
+- uid: VisualCard.Parts.CardValueInfo`1
+  name: CardValueInfo<TValue>
+  href: api/VisualCard.Parts.CardValueInfo-1.html
+  commentId: T:VisualCard.Parts.CardValueInfo`1
+  name.vb: CardValueInfo(Of TValue)
+  fullName: VisualCard.Parts.CardValueInfo<TValue>
+  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue)
+  nameWithType: CardValueInfo<TValue>
+  nameWithType.vb: CardValueInfo(Of TValue)
+- uid: VisualCard.Parts.CardValueInfo`1.AltId
+  name: AltId
+  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_AltId
+  commentId: P:VisualCard.Parts.CardValueInfo`1.AltId
+  fullName: VisualCard.Parts.CardValueInfo<TValue>.AltId
+  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).AltId
+  nameWithType: CardValueInfo<TValue>.AltId
+  nameWithType.vb: CardValueInfo(Of TValue).AltId
+- uid: VisualCard.Parts.CardValueInfo`1.AltId*
+  name: AltId
+  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_AltId_
+  commentId: Overload:VisualCard.Parts.CardValueInfo`1.AltId
+  isSpec: "True"
+  fullName: VisualCard.Parts.CardValueInfo<TValue>.AltId
+  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).AltId
+  nameWithType: CardValueInfo<TValue>.AltId
+  nameWithType.vb: CardValueInfo(Of TValue).AltId
+- uid: VisualCard.Parts.CardValueInfo`1.Arguments
+  name: Arguments
+  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_Arguments
+  commentId: P:VisualCard.Parts.CardValueInfo`1.Arguments
+  fullName: VisualCard.Parts.CardValueInfo<TValue>.Arguments
+  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).Arguments
+  nameWithType: CardValueInfo<TValue>.Arguments
+  nameWithType.vb: CardValueInfo(Of TValue).Arguments
+- uid: VisualCard.Parts.CardValueInfo`1.Arguments*
+  name: Arguments
+  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_Arguments_
+  commentId: Overload:VisualCard.Parts.CardValueInfo`1.Arguments
+  isSpec: "True"
+  fullName: VisualCard.Parts.CardValueInfo<TValue>.Arguments
+  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).Arguments
+  nameWithType: CardValueInfo<TValue>.Arguments
+  nameWithType.vb: CardValueInfo(Of TValue).Arguments
+- uid: VisualCard.Parts.CardValueInfo`1.ElementTypes
+  name: ElementTypes
+  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_ElementTypes
+  commentId: P:VisualCard.Parts.CardValueInfo`1.ElementTypes
+  fullName: VisualCard.Parts.CardValueInfo<TValue>.ElementTypes
+  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).ElementTypes
+  nameWithType: CardValueInfo<TValue>.ElementTypes
+  nameWithType.vb: CardValueInfo(Of TValue).ElementTypes
+- uid: VisualCard.Parts.CardValueInfo`1.ElementTypes*
+  name: ElementTypes
+  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_ElementTypes_
+  commentId: Overload:VisualCard.Parts.CardValueInfo`1.ElementTypes
+  isSpec: "True"
+  fullName: VisualCard.Parts.CardValueInfo<TValue>.ElementTypes
+  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).ElementTypes
+  nameWithType: CardValueInfo<TValue>.ElementTypes
+  nameWithType.vb: CardValueInfo(Of TValue).ElementTypes
+- uid: VisualCard.Parts.CardValueInfo`1.Equals(System.Object)
+  name: Equals(object)
+  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_Equals_System_Object_
+  commentId: M:VisualCard.Parts.CardValueInfo`1.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Parts.CardValueInfo<TValue>.Equals(object)
+  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).Equals(Object)
+  nameWithType: CardValueInfo<TValue>.Equals(object)
+  nameWithType.vb: CardValueInfo(Of TValue).Equals(Object)
+- uid: VisualCard.Parts.CardValueInfo`1.Equals(VisualCard.Parts.CardValueInfo{`0})
+  name: Equals(CardValueInfo<TValue>)
+  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_Equals_VisualCard_Parts_CardValueInfo__0__
+  commentId: M:VisualCard.Parts.CardValueInfo`1.Equals(VisualCard.Parts.CardValueInfo{`0})
+  name.vb: Equals(CardValueInfo(Of TValue))
+  fullName: VisualCard.Parts.CardValueInfo<TValue>.Equals(VisualCard.Parts.CardValueInfo<TValue>)
+  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).Equals(VisualCard.Parts.CardValueInfo(Of TValue))
+  nameWithType: CardValueInfo<TValue>.Equals(CardValueInfo<TValue>)
+  nameWithType.vb: CardValueInfo(Of TValue).Equals(CardValueInfo(Of TValue))
+- uid: VisualCard.Parts.CardValueInfo`1.Equals(VisualCard.Parts.CardValueInfo{`0},VisualCard.Parts.CardValueInfo{`0})
+  name: Equals(CardValueInfo<TValue>, CardValueInfo<TValue>)
+  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_Equals_VisualCard_Parts_CardValueInfo__0__VisualCard_Parts_CardValueInfo__0__
+  commentId: M:VisualCard.Parts.CardValueInfo`1.Equals(VisualCard.Parts.CardValueInfo{`0},VisualCard.Parts.CardValueInfo{`0})
+  name.vb: Equals(CardValueInfo(Of TValue), CardValueInfo(Of TValue))
+  fullName: VisualCard.Parts.CardValueInfo<TValue>.Equals(VisualCard.Parts.CardValueInfo<TValue>, VisualCard.Parts.CardValueInfo<TValue>)
+  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).Equals(VisualCard.Parts.CardValueInfo(Of TValue), VisualCard.Parts.CardValueInfo(Of TValue))
+  nameWithType: CardValueInfo<TValue>.Equals(CardValueInfo<TValue>, CardValueInfo<TValue>)
+  nameWithType.vb: CardValueInfo(Of TValue).Equals(CardValueInfo(Of TValue), CardValueInfo(Of TValue))
+- uid: VisualCard.Parts.CardValueInfo`1.Equals*
+  name: Equals
+  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_Equals_
+  commentId: Overload:VisualCard.Parts.CardValueInfo`1.Equals
+  isSpec: "True"
+  fullName: VisualCard.Parts.CardValueInfo<TValue>.Equals
+  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).Equals
+  nameWithType: CardValueInfo<TValue>.Equals
+  nameWithType.vb: CardValueInfo(Of TValue).Equals
+- uid: VisualCard.Parts.CardValueInfo`1.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_GetHashCode
+  commentId: M:VisualCard.Parts.CardValueInfo`1.GetHashCode
+  fullName: VisualCard.Parts.CardValueInfo<TValue>.GetHashCode()
+  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).GetHashCode()
+  nameWithType: CardValueInfo<TValue>.GetHashCode()
+  nameWithType.vb: CardValueInfo(Of TValue).GetHashCode()
+- uid: VisualCard.Parts.CardValueInfo`1.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_GetHashCode_
+  commentId: Overload:VisualCard.Parts.CardValueInfo`1.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Parts.CardValueInfo<TValue>.GetHashCode
+  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).GetHashCode
+  nameWithType: CardValueInfo<TValue>.GetHashCode
+  nameWithType.vb: CardValueInfo(Of TValue).GetHashCode
+- uid: VisualCard.Parts.CardValueInfo`1.Group
+  name: Group
+  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_Group
+  commentId: P:VisualCard.Parts.CardValueInfo`1.Group
+  fullName: VisualCard.Parts.CardValueInfo<TValue>.Group
+  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).Group
+  nameWithType: CardValueInfo<TValue>.Group
+  nameWithType.vb: CardValueInfo(Of TValue).Group
+- uid: VisualCard.Parts.CardValueInfo`1.Group*
+  name: Group
+  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_Group_
+  commentId: Overload:VisualCard.Parts.CardValueInfo`1.Group
+  isSpec: "True"
+  fullName: VisualCard.Parts.CardValueInfo<TValue>.Group
+  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).Group
+  nameWithType: CardValueInfo<TValue>.Group
+  nameWithType.vb: CardValueInfo(Of TValue).Group
+- uid: VisualCard.Parts.CardValueInfo`1.HasType(System.String)
+  name: HasType(string)
+  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_HasType_System_String_
+  commentId: M:VisualCard.Parts.CardValueInfo`1.HasType(System.String)
+  name.vb: HasType(String)
+  fullName: VisualCard.Parts.CardValueInfo<TValue>.HasType(string)
+  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).HasType(String)
+  nameWithType: CardValueInfo<TValue>.HasType(string)
+  nameWithType.vb: CardValueInfo(Of TValue).HasType(String)
+- uid: VisualCard.Parts.CardValueInfo`1.HasType*
+  name: HasType
+  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_HasType_
+  commentId: Overload:VisualCard.Parts.CardValueInfo`1.HasType
+  isSpec: "True"
+  fullName: VisualCard.Parts.CardValueInfo<TValue>.HasType
+  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).HasType
+  nameWithType: CardValueInfo<TValue>.HasType
+  nameWithType.vb: CardValueInfo(Of TValue).HasType
+- uid: VisualCard.Parts.CardValueInfo`1.IsPreferred
+  name: IsPreferred
+  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_IsPreferred
+  commentId: P:VisualCard.Parts.CardValueInfo`1.IsPreferred
+  fullName: VisualCard.Parts.CardValueInfo<TValue>.IsPreferred
+  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).IsPreferred
+  nameWithType: CardValueInfo<TValue>.IsPreferred
+  nameWithType.vb: CardValueInfo(Of TValue).IsPreferred
+- uid: VisualCard.Parts.CardValueInfo`1.IsPreferred*
+  name: IsPreferred
+  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_IsPreferred_
+  commentId: Overload:VisualCard.Parts.CardValueInfo`1.IsPreferred
+  isSpec: "True"
+  fullName: VisualCard.Parts.CardValueInfo<TValue>.IsPreferred
+  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).IsPreferred
+  nameWithType: CardValueInfo<TValue>.IsPreferred
+  nameWithType.vb: CardValueInfo(Of TValue).IsPreferred
+- uid: VisualCard.Parts.CardValueInfo`1.Value
+  name: Value
+  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_Value
+  commentId: P:VisualCard.Parts.CardValueInfo`1.Value
+  fullName: VisualCard.Parts.CardValueInfo<TValue>.Value
+  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).Value
+  nameWithType: CardValueInfo<TValue>.Value
+  nameWithType.vb: CardValueInfo(Of TValue).Value
+- uid: VisualCard.Parts.CardValueInfo`1.Value*
+  name: Value
+  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_Value_
+  commentId: Overload:VisualCard.Parts.CardValueInfo`1.Value
+  isSpec: "True"
+  fullName: VisualCard.Parts.CardValueInfo<TValue>.Value
+  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).Value
+  nameWithType: CardValueInfo<TValue>.Value
+  nameWithType.vb: CardValueInfo(Of TValue).Value
+- uid: VisualCard.Parts.CardValueInfo`1.ValueType
+  name: ValueType
+  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_ValueType
+  commentId: P:VisualCard.Parts.CardValueInfo`1.ValueType
+  fullName: VisualCard.Parts.CardValueInfo<TValue>.ValueType
+  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).ValueType
+  nameWithType: CardValueInfo<TValue>.ValueType
+  nameWithType.vb: CardValueInfo(Of TValue).ValueType
+- uid: VisualCard.Parts.CardValueInfo`1.ValueType*
+  name: ValueType
+  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_ValueType_
+  commentId: Overload:VisualCard.Parts.CardValueInfo`1.ValueType
+  isSpec: "True"
+  fullName: VisualCard.Parts.CardValueInfo<TValue>.ValueType
+  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).ValueType
+  nameWithType: CardValueInfo<TValue>.ValueType
+  nameWithType.vb: CardValueInfo(Of TValue).ValueType
+- uid: VisualCard.Parts.CardValueInfo`1.op_Equality(VisualCard.Parts.CardValueInfo{`0},VisualCard.Parts.CardValueInfo{`0})
+  name: operator ==(CardValueInfo<TValue>, CardValueInfo<TValue>)
+  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_op_Equality_VisualCard_Parts_CardValueInfo__0__VisualCard_Parts_CardValueInfo__0__
+  commentId: M:VisualCard.Parts.CardValueInfo`1.op_Equality(VisualCard.Parts.CardValueInfo{`0},VisualCard.Parts.CardValueInfo{`0})
+  name.vb: =(CardValueInfo(Of TValue), CardValueInfo(Of TValue))
+  fullName: VisualCard.Parts.CardValueInfo<TValue>.operator ==(VisualCard.Parts.CardValueInfo<TValue>, VisualCard.Parts.CardValueInfo<TValue>)
+  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).=(VisualCard.Parts.CardValueInfo(Of TValue), VisualCard.Parts.CardValueInfo(Of TValue))
+  nameWithType: CardValueInfo<TValue>.operator ==(CardValueInfo<TValue>, CardValueInfo<TValue>)
+  nameWithType.vb: CardValueInfo(Of TValue).=(CardValueInfo(Of TValue), CardValueInfo(Of TValue))
+- uid: VisualCard.Parts.CardValueInfo`1.op_Equality*
+  name: operator ==
+  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_op_Equality_
+  commentId: Overload:VisualCard.Parts.CardValueInfo`1.op_Equality
+  isSpec: "True"
+  name.vb: =
+  fullName: VisualCard.Parts.CardValueInfo<TValue>.operator ==
+  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).=
+  nameWithType: CardValueInfo<TValue>.operator ==
+  nameWithType.vb: CardValueInfo(Of TValue).=
+- uid: VisualCard.Parts.CardValueInfo`1.op_Inequality(VisualCard.Parts.CardValueInfo{`0},VisualCard.Parts.CardValueInfo{`0})
+  name: operator !=(CardValueInfo<TValue>, CardValueInfo<TValue>)
+  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_op_Inequality_VisualCard_Parts_CardValueInfo__0__VisualCard_Parts_CardValueInfo__0__
+  commentId: M:VisualCard.Parts.CardValueInfo`1.op_Inequality(VisualCard.Parts.CardValueInfo{`0},VisualCard.Parts.CardValueInfo{`0})
+  name.vb: <>(CardValueInfo(Of TValue), CardValueInfo(Of TValue))
+  fullName: VisualCard.Parts.CardValueInfo<TValue>.operator !=(VisualCard.Parts.CardValueInfo<TValue>, VisualCard.Parts.CardValueInfo<TValue>)
+  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).<>(VisualCard.Parts.CardValueInfo(Of TValue), VisualCard.Parts.CardValueInfo(Of TValue))
+  nameWithType: CardValueInfo<TValue>.operator !=(CardValueInfo<TValue>, CardValueInfo<TValue>)
+  nameWithType.vb: CardValueInfo(Of TValue).<>(CardValueInfo(Of TValue), CardValueInfo(Of TValue))
+- uid: VisualCard.Parts.CardValueInfo`1.op_Inequality*
+  name: operator !=
+  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_op_Inequality_
+  commentId: Overload:VisualCard.Parts.CardValueInfo`1.op_Inequality
+  isSpec: "True"
+  name.vb: <>
+  fullName: VisualCard.Parts.CardValueInfo<TValue>.operator !=
+  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).<>
+  nameWithType: CardValueInfo<TValue>.operator !=
+  nameWithType.vb: CardValueInfo(Of TValue).<>
 - uid: VisualCard.Parts.Enums
   name: VisualCard.Parts.Enums
   href: api/VisualCard.Parts.Enums.html
