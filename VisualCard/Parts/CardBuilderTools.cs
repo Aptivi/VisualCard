@@ -57,6 +57,7 @@ namespace VisualCard.Parts
             bool installArguments = arguments.Length > 0;
             bool installElementTypes = finalElementTypes.Length > 0;
             bool installValueType = !string.IsNullOrEmpty(finalValue);
+            bool goOn = true;
 
             // First, install the AltId parameter if it exists
             if (installAltId)
@@ -64,44 +65,35 @@ namespace VisualCard.Parts
                 argumentsBuilder.Append(VcardConstants._altIdArgumentSpecifier + altId);
                 noSemicolon = !installArguments && !installElementTypes && !installValueType;
                 if (noSemicolon)
-                {
-                    argumentsBuilder.Append(VcardConstants._argumentDelimiter.ToString());
-                    return argumentsBuilder.ToString();
-                }
+                    goOn = false;
                 else
                     argumentsBuilder.Append(VcardConstants._fieldDelimiter.ToString());
             }
 
             // Then, install the element types parameter if it exists
-            if (installElementTypes)
+            if (installElementTypes && goOn)
             {
                 argumentsBuilder.Append(VcardConstants._typeArgumentSpecifier + string.Join(",", finalElementTypes));
                 noSemicolon = !installArguments && !installValueType;
                 if (noSemicolon)
-                {
-                    argumentsBuilder.Append(VcardConstants._argumentDelimiter.ToString());
-                    return argumentsBuilder.ToString();
-                }
+                    goOn = false;
                 else
                     argumentsBuilder.Append(VcardConstants._fieldDelimiter.ToString());
             }
 
             // Then, install the value type parameter if it exists
-            if (installValueType)
+            if (installValueType && goOn)
             {
                 argumentsBuilder.Append(VcardConstants._valueArgumentSpecifier + string.Join(",", finalValue));
                 noSemicolon = !installArguments;
                 if (noSemicolon)
-                {
-                    argumentsBuilder.Append(VcardConstants._argumentDelimiter.ToString());
-                    return argumentsBuilder.ToString();
-                }
+                    goOn = false;
                 else
                     argumentsBuilder.Append(VcardConstants._fieldDelimiter.ToString());
             }
 
             // Finally, install the remaining arguments if they exist and contain keys and values
-            if (installArguments)
+            if (installArguments && goOn)
             {
                 List<string> finalArguments = [];
                 foreach (var arg in arguments)
@@ -111,7 +103,7 @@ namespace VisualCard.Parts
 
             // We've reached the end.
             argumentsBuilder.Append(VcardConstants._argumentDelimiter.ToString());
-            return argumentsBuilder.ToString();
+            return VcardCommonTools.MakeStringBlock(argumentsBuilder.ToString());
         }
     }
 }

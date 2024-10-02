@@ -505,10 +505,10 @@ namespace VisualCard.Parsers
             return argString;
         }
 
-        internal static string MakeStringBlock(string target, int firstLength)
+        internal static string MakeStringBlock(string target, int firstLength = 0)
         {
             const int maxChars = 74;
-            int maxCharsFirst = maxChars - firstLength + 1;
+            int maxCharsFirst = maxChars - firstLength;
 
             // Construct the block
             StringBuilder block = new();
@@ -516,17 +516,17 @@ namespace VisualCard.Parsers
             int processed = 0;
             for (int currCharNum = 0; currCharNum < target.Length; currCharNum++)
             {
+                if (processed >= selectedMax || target[currCharNum] == '\n')
+                {
+                    // Append a new line because we reached the maximum limit
+                    selectedMax = maxChars - 1;
+                    processed = 0;
+                    block.Append("\n ");
+                }
                 if (target[currCharNum] != '\n' && target[currCharNum] != '\r')
                 {
                     block.Append(target[currCharNum]);
                     processed++;
-                }
-                if (processed >= selectedMax || target[currCharNum] == '\n')
-                {
-                    // Append a new line because we reached the maximum limit
-                    selectedMax = maxChars;
-                    processed = 0;
-                    block.Append("\n ");
                 }
             }
             return block.ToString();
