@@ -87,19 +87,6 @@ references:
   commentId: T:VisualCard.Calendar.Parts.BaseCalendarPartInfo
   fullName: VisualCard.Calendar.Parts.BaseCalendarPartInfo
   nameWithType: BaseCalendarPartInfo
-- uid: VisualCard.Calendar.Parts.BaseCalendarPartInfo.ArgumentValues
-  name: ArgumentValues
-  href: api/VisualCard.Calendar.Parts.BaseCalendarPartInfo.html#VisualCard_Calendar_Parts_BaseCalendarPartInfo_ArgumentValues
-  commentId: P:VisualCard.Calendar.Parts.BaseCalendarPartInfo.ArgumentValues
-  fullName: VisualCard.Calendar.Parts.BaseCalendarPartInfo.ArgumentValues
-  nameWithType: BaseCalendarPartInfo.ArgumentValues
-- uid: VisualCard.Calendar.Parts.BaseCalendarPartInfo.ArgumentValues*
-  name: ArgumentValues
-  href: api/VisualCard.Calendar.Parts.BaseCalendarPartInfo.html#VisualCard_Calendar_Parts_BaseCalendarPartInfo_ArgumentValues_
-  commentId: Overload:VisualCard.Calendar.Parts.BaseCalendarPartInfo.ArgumentValues
-  isSpec: "True"
-  fullName: VisualCard.Calendar.Parts.BaseCalendarPartInfo.ArgumentValues
-  nameWithType: BaseCalendarPartInfo.ArgumentValues
 - uid: VisualCard.Calendar.Parts.BaseCalendarPartInfo.Arguments
   name: Arguments
   href: api/VisualCard.Calendar.Parts.BaseCalendarPartInfo.html#VisualCard_Calendar_Parts_BaseCalendarPartInfo_Arguments
@@ -5742,6 +5729,152 @@ references:
   commentId: N:VisualCard.Parsers
   fullName: VisualCard.Parsers
   nameWithType: VisualCard.Parsers
+- uid: VisualCard.Parsers.Arguments
+  name: VisualCard.Parsers.Arguments
+  href: api/VisualCard.Parsers.Arguments.html
+  commentId: N:VisualCard.Parsers.Arguments
+  fullName: VisualCard.Parsers.Arguments
+  nameWithType: VisualCard.Parsers.Arguments
+- uid: VisualCard.Parsers.Arguments.ArgumentInfo
+  name: ArgumentInfo
+  href: api/VisualCard.Parsers.Arguments.ArgumentInfo.html
+  commentId: T:VisualCard.Parsers.Arguments.ArgumentInfo
+  fullName: VisualCard.Parsers.Arguments.ArgumentInfo
+  nameWithType: ArgumentInfo
+- uid: VisualCard.Parsers.Arguments.ArgumentInfo.CaseSensitive
+  name: CaseSensitive
+  href: api/VisualCard.Parsers.Arguments.ArgumentInfo.html#VisualCard_Parsers_Arguments_ArgumentInfo_CaseSensitive
+  commentId: P:VisualCard.Parsers.Arguments.ArgumentInfo.CaseSensitive
+  fullName: VisualCard.Parsers.Arguments.ArgumentInfo.CaseSensitive
+  nameWithType: ArgumentInfo.CaseSensitive
+- uid: VisualCard.Parsers.Arguments.ArgumentInfo.CaseSensitive*
+  name: CaseSensitive
+  href: api/VisualCard.Parsers.Arguments.ArgumentInfo.html#VisualCard_Parsers_Arguments_ArgumentInfo_CaseSensitive_
+  commentId: Overload:VisualCard.Parsers.Arguments.ArgumentInfo.CaseSensitive
+  isSpec: "True"
+  fullName: VisualCard.Parsers.Arguments.ArgumentInfo.CaseSensitive
+  nameWithType: ArgumentInfo.CaseSensitive
+- uid: VisualCard.Parsers.Arguments.ArgumentInfo.Equals(System.Object)
+  name: Equals(object)
+  href: api/VisualCard.Parsers.Arguments.ArgumentInfo.html#VisualCard_Parsers_Arguments_ArgumentInfo_Equals_System_Object_
+  commentId: M:VisualCard.Parsers.Arguments.ArgumentInfo.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Parsers.Arguments.ArgumentInfo.Equals(object)
+  fullName.vb: VisualCard.Parsers.Arguments.ArgumentInfo.Equals(Object)
+  nameWithType: ArgumentInfo.Equals(object)
+  nameWithType.vb: ArgumentInfo.Equals(Object)
+- uid: VisualCard.Parsers.Arguments.ArgumentInfo.Equals(VisualCard.Parsers.Arguments.ArgumentInfo)
+  name: Equals(ArgumentInfo)
+  href: api/VisualCard.Parsers.Arguments.ArgumentInfo.html#VisualCard_Parsers_Arguments_ArgumentInfo_Equals_VisualCard_Parsers_Arguments_ArgumentInfo_
+  commentId: M:VisualCard.Parsers.Arguments.ArgumentInfo.Equals(VisualCard.Parsers.Arguments.ArgumentInfo)
+  fullName: VisualCard.Parsers.Arguments.ArgumentInfo.Equals(VisualCard.Parsers.Arguments.ArgumentInfo)
+  nameWithType: ArgumentInfo.Equals(ArgumentInfo)
+- uid: VisualCard.Parsers.Arguments.ArgumentInfo.Equals(VisualCard.Parsers.Arguments.ArgumentInfo,VisualCard.Parsers.Arguments.ArgumentInfo)
+  name: Equals(ArgumentInfo, ArgumentInfo)
+  href: api/VisualCard.Parsers.Arguments.ArgumentInfo.html#VisualCard_Parsers_Arguments_ArgumentInfo_Equals_VisualCard_Parsers_Arguments_ArgumentInfo_VisualCard_Parsers_Arguments_ArgumentInfo_
+  commentId: M:VisualCard.Parsers.Arguments.ArgumentInfo.Equals(VisualCard.Parsers.Arguments.ArgumentInfo,VisualCard.Parsers.Arguments.ArgumentInfo)
+  fullName: VisualCard.Parsers.Arguments.ArgumentInfo.Equals(VisualCard.Parsers.Arguments.ArgumentInfo, VisualCard.Parsers.Arguments.ArgumentInfo)
+  nameWithType: ArgumentInfo.Equals(ArgumentInfo, ArgumentInfo)
+- uid: VisualCard.Parsers.Arguments.ArgumentInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Parsers.Arguments.ArgumentInfo.html#VisualCard_Parsers_Arguments_ArgumentInfo_Equals_
+  commentId: Overload:VisualCard.Parsers.Arguments.ArgumentInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Parsers.Arguments.ArgumentInfo.Equals
+  nameWithType: ArgumentInfo.Equals
+- uid: VisualCard.Parsers.Arguments.ArgumentInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Parsers.Arguments.ArgumentInfo.html#VisualCard_Parsers_Arguments_ArgumentInfo_GetHashCode
+  commentId: M:VisualCard.Parsers.Arguments.ArgumentInfo.GetHashCode
+  fullName: VisualCard.Parsers.Arguments.ArgumentInfo.GetHashCode()
+  nameWithType: ArgumentInfo.GetHashCode()
+- uid: VisualCard.Parsers.Arguments.ArgumentInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Parsers.Arguments.ArgumentInfo.html#VisualCard_Parsers_Arguments_ArgumentInfo_GetHashCode_
+  commentId: Overload:VisualCard.Parsers.Arguments.ArgumentInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Parsers.Arguments.ArgumentInfo.GetHashCode
+  nameWithType: ArgumentInfo.GetHashCode
+- uid: VisualCard.Parsers.Arguments.ArgumentInfo.Key
+  name: Key
+  href: api/VisualCard.Parsers.Arguments.ArgumentInfo.html#VisualCard_Parsers_Arguments_ArgumentInfo_Key
+  commentId: P:VisualCard.Parsers.Arguments.ArgumentInfo.Key
+  fullName: VisualCard.Parsers.Arguments.ArgumentInfo.Key
+  nameWithType: ArgumentInfo.Key
+- uid: VisualCard.Parsers.Arguments.ArgumentInfo.Key*
+  name: Key
+  href: api/VisualCard.Parsers.Arguments.ArgumentInfo.html#VisualCard_Parsers_Arguments_ArgumentInfo_Key_
+  commentId: Overload:VisualCard.Parsers.Arguments.ArgumentInfo.Key
+  isSpec: "True"
+  fullName: VisualCard.Parsers.Arguments.ArgumentInfo.Key
+  nameWithType: ArgumentInfo.Key
+- uid: VisualCard.Parsers.Arguments.ArgumentInfo.MatchValue(System.String)
+  name: MatchValue(string)
+  href: api/VisualCard.Parsers.Arguments.ArgumentInfo.html#VisualCard_Parsers_Arguments_ArgumentInfo_MatchValue_System_String_
+  commentId: M:VisualCard.Parsers.Arguments.ArgumentInfo.MatchValue(System.String)
+  name.vb: MatchValue(String)
+  fullName: VisualCard.Parsers.Arguments.ArgumentInfo.MatchValue(string)
+  fullName.vb: VisualCard.Parsers.Arguments.ArgumentInfo.MatchValue(String)
+  nameWithType: ArgumentInfo.MatchValue(string)
+  nameWithType.vb: ArgumentInfo.MatchValue(String)
+- uid: VisualCard.Parsers.Arguments.ArgumentInfo.MatchValue*
+  name: MatchValue
+  href: api/VisualCard.Parsers.Arguments.ArgumentInfo.html#VisualCard_Parsers_Arguments_ArgumentInfo_MatchValue_
+  commentId: Overload:VisualCard.Parsers.Arguments.ArgumentInfo.MatchValue
+  isSpec: "True"
+  fullName: VisualCard.Parsers.Arguments.ArgumentInfo.MatchValue
+  nameWithType: ArgumentInfo.MatchValue
+- uid: VisualCard.Parsers.Arguments.ArgumentInfo.Value
+  name: Value
+  href: api/VisualCard.Parsers.Arguments.ArgumentInfo.html#VisualCard_Parsers_Arguments_ArgumentInfo_Value
+  commentId: P:VisualCard.Parsers.Arguments.ArgumentInfo.Value
+  fullName: VisualCard.Parsers.Arguments.ArgumentInfo.Value
+  nameWithType: ArgumentInfo.Value
+- uid: VisualCard.Parsers.Arguments.ArgumentInfo.Value*
+  name: Value
+  href: api/VisualCard.Parsers.Arguments.ArgumentInfo.html#VisualCard_Parsers_Arguments_ArgumentInfo_Value_
+  commentId: Overload:VisualCard.Parsers.Arguments.ArgumentInfo.Value
+  isSpec: "True"
+  fullName: VisualCard.Parsers.Arguments.ArgumentInfo.Value
+  nameWithType: ArgumentInfo.Value
+- uid: VisualCard.Parsers.Arguments.ArgumentInfo.op_Equality(VisualCard.Parsers.Arguments.ArgumentInfo,VisualCard.Parsers.Arguments.ArgumentInfo)
+  name: operator ==(ArgumentInfo, ArgumentInfo)
+  href: api/VisualCard.Parsers.Arguments.ArgumentInfo.html#VisualCard_Parsers_Arguments_ArgumentInfo_op_Equality_VisualCard_Parsers_Arguments_ArgumentInfo_VisualCard_Parsers_Arguments_ArgumentInfo_
+  commentId: M:VisualCard.Parsers.Arguments.ArgumentInfo.op_Equality(VisualCard.Parsers.Arguments.ArgumentInfo,VisualCard.Parsers.Arguments.ArgumentInfo)
+  name.vb: =(ArgumentInfo, ArgumentInfo)
+  fullName: VisualCard.Parsers.Arguments.ArgumentInfo.operator ==(VisualCard.Parsers.Arguments.ArgumentInfo, VisualCard.Parsers.Arguments.ArgumentInfo)
+  fullName.vb: VisualCard.Parsers.Arguments.ArgumentInfo.=(VisualCard.Parsers.Arguments.ArgumentInfo, VisualCard.Parsers.Arguments.ArgumentInfo)
+  nameWithType: ArgumentInfo.operator ==(ArgumentInfo, ArgumentInfo)
+  nameWithType.vb: ArgumentInfo.=(ArgumentInfo, ArgumentInfo)
+- uid: VisualCard.Parsers.Arguments.ArgumentInfo.op_Equality*
+  name: operator ==
+  href: api/VisualCard.Parsers.Arguments.ArgumentInfo.html#VisualCard_Parsers_Arguments_ArgumentInfo_op_Equality_
+  commentId: Overload:VisualCard.Parsers.Arguments.ArgumentInfo.op_Equality
+  isSpec: "True"
+  name.vb: =
+  fullName: VisualCard.Parsers.Arguments.ArgumentInfo.operator ==
+  fullName.vb: VisualCard.Parsers.Arguments.ArgumentInfo.=
+  nameWithType: ArgumentInfo.operator ==
+  nameWithType.vb: ArgumentInfo.=
+- uid: VisualCard.Parsers.Arguments.ArgumentInfo.op_Inequality(VisualCard.Parsers.Arguments.ArgumentInfo,VisualCard.Parsers.Arguments.ArgumentInfo)
+  name: operator !=(ArgumentInfo, ArgumentInfo)
+  href: api/VisualCard.Parsers.Arguments.ArgumentInfo.html#VisualCard_Parsers_Arguments_ArgumentInfo_op_Inequality_VisualCard_Parsers_Arguments_ArgumentInfo_VisualCard_Parsers_Arguments_ArgumentInfo_
+  commentId: M:VisualCard.Parsers.Arguments.ArgumentInfo.op_Inequality(VisualCard.Parsers.Arguments.ArgumentInfo,VisualCard.Parsers.Arguments.ArgumentInfo)
+  name.vb: <>(ArgumentInfo, ArgumentInfo)
+  fullName: VisualCard.Parsers.Arguments.ArgumentInfo.operator !=(VisualCard.Parsers.Arguments.ArgumentInfo, VisualCard.Parsers.Arguments.ArgumentInfo)
+  fullName.vb: VisualCard.Parsers.Arguments.ArgumentInfo.<>(VisualCard.Parsers.Arguments.ArgumentInfo, VisualCard.Parsers.Arguments.ArgumentInfo)
+  nameWithType: ArgumentInfo.operator !=(ArgumentInfo, ArgumentInfo)
+  nameWithType.vb: ArgumentInfo.<>(ArgumentInfo, ArgumentInfo)
+- uid: VisualCard.Parsers.Arguments.ArgumentInfo.op_Inequality*
+  name: operator !=
+  href: api/VisualCard.Parsers.Arguments.ArgumentInfo.html#VisualCard_Parsers_Arguments_ArgumentInfo_op_Inequality_
+  commentId: Overload:VisualCard.Parsers.Arguments.ArgumentInfo.op_Inequality
+  isSpec: "True"
+  name.vb: <>
+  fullName: VisualCard.Parsers.Arguments.ArgumentInfo.operator !=
+  fullName.vb: VisualCard.Parsers.Arguments.ArgumentInfo.<>
+  nameWithType: ArgumentInfo.operator !=
+  nameWithType.vb: ArgumentInfo.<>
 - uid: VisualCard.Parsers.Recurrence
   name: VisualCard.Parsers.Recurrence
   href: api/VisualCard.Parsers.Recurrence.html
@@ -6443,19 +6576,6 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.BaseCardPartInfo.AltId
   nameWithType: BaseCardPartInfo.AltId
-- uid: VisualCard.Parts.BaseCardPartInfo.ArgumentValues
-  name: ArgumentValues
-  href: api/VisualCard.Parts.BaseCardPartInfo.html#VisualCard_Parts_BaseCardPartInfo_ArgumentValues
-  commentId: P:VisualCard.Parts.BaseCardPartInfo.ArgumentValues
-  fullName: VisualCard.Parts.BaseCardPartInfo.ArgumentValues
-  nameWithType: BaseCardPartInfo.ArgumentValues
-- uid: VisualCard.Parts.BaseCardPartInfo.ArgumentValues*
-  name: ArgumentValues
-  href: api/VisualCard.Parts.BaseCardPartInfo.html#VisualCard_Parts_BaseCardPartInfo_ArgumentValues_
-  commentId: Overload:VisualCard.Parts.BaseCardPartInfo.ArgumentValues
-  isSpec: "True"
-  fullName: VisualCard.Parts.BaseCardPartInfo.ArgumentValues
-  nameWithType: BaseCardPartInfo.ArgumentValues
 - uid: VisualCard.Parts.BaseCardPartInfo.Arguments
   name: Arguments
   href: api/VisualCard.Parts.BaseCardPartInfo.html#VisualCard_Parts_BaseCardPartInfo_Arguments
