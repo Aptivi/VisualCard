@@ -18,6 +18,7 @@
 //
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using VisualCard.Calendar.Parsers;
@@ -80,9 +81,9 @@ namespace VisualCard.Calendar.Parts
             // Finally, install the remaining arguments if they exist and contain keys and values
             if (installArguments)
             {
-                string[] finalArguments = partInfo.Arguments
-                    .Where((arg) => !string.IsNullOrWhiteSpace(arg.Value))
-                    .Select((arg) => $"{arg.Key}={(arg.CaseSensitive ? $"\"{arg.Value}\"" : arg.Value)}").ToArray();
+                List<string> finalArguments = [];
+                foreach (var arg in valueArguments)
+                    finalArguments.Add(arg.BuildArguments());
                 argumentsBuilder.Append(string.Join(VCalendarConstants._fieldDelimiter.ToString(), finalArguments));
             }
 

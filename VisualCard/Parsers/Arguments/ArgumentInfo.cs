@@ -19,6 +19,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using Textify.General;
 
 namespace VisualCard.Parsers.Arguments
@@ -29,8 +31,7 @@ namespace VisualCard.Parsers.Arguments
     public class ArgumentInfo : IEquatable<ArgumentInfo>
     {
         private readonly string key = "";
-        private readonly string value = "";
-        private readonly bool caseSensitive;
+        private readonly (bool caseSensitive, string value)[] values = [];
 
         /// <summary>
         /// Argument key name
@@ -39,26 +40,51 @@ namespace VisualCard.Parsers.Arguments
             key;
 
         /// <summary>
-        /// Argument value (without double quotes)
+        /// Argument values (without double quotes) and their case sensitivity indicators
         /// </summary>
-        public string Value =>
-            value;
+        public (bool caseSensitive, string value)[] Values =>
+            values;
 
         /// <summary>
-        /// Whether the value is case sensitive
+        /// Argument values (without double quotes)
         /// </summary>
-        public bool CaseSensitive =>
-            caseSensitive;
+        public string[] AllValues =>
+            Values.Select((tuple) => tuple.value).ToArray();
 
         /// <summary>
         /// Matches the argument value
         /// </summary>
         /// <param name="value">Value to match</param>
-        /// <returns>True if they equal (case sensitive if <see cref="CaseSensitive"/> is true; case insensitive if otherwise); false otherwise.</returns>
-        public bool MatchValue(string value) =>
-            CaseSensitive ?
-            value == Value :
-            Value.Equals(value, StringComparison.OrdinalIgnoreCase);
+        /// <returns>True if they equal (case sensitive if the value's case sensitivity is true; case insensitive if otherwise); false otherwise.</returns>
+        public bool MatchValue(string value)
+        {
+            bool equals = false;
+            foreach ((bool caseSensitive, string targetValue) in Values)
+            {
+                equals =
+                    caseSensitive ?
+                    targetValue == value :
+                    targetValue.EqualsNoCase(value);
+                if (equals)
+                    break;
+            }
+            return equals;
+        }
+
+        internal string BuildArguments()
+        {
+            var argBuilder = new StringBuilder();
+            string key = Key;
+            argBuilder.Append($"{key}=");
+            for (int i = 0; i < Values.Length; i++)
+            {
+                (bool caseSensitive, string value) value = Values[i];
+                argBuilder.Append($"{(value.caseSensitive ? $"\"{value.value}\"" : value.value)}");
+                if (i < Values.Length - 1)
+                    argBuilder.Append(VcardConstants._valueDelimiter);
+            }
+            return argBuilder.ToString();
+        }
 
         /// <inheritdoc/>
         public override bool Equals(object obj) =>
@@ -87,16 +113,16 @@ namespace VisualCard.Parsers.Arguments
             // Check all the properties
             return
                 source.Key.Equals(source.Key, StringComparison.OrdinalIgnoreCase) &&
-                source.MatchValue(target.Value)
+                target.Values.Any((tuple) => source.MatchValue(tuple.value))
             ;
         }
 
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = 206514262;
+            int hashCode = -933998265;
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Key);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Value);
+            hashCode = hashCode * -1521134295 + EqualityComparer<(bool caseSensitive, string value)[]>.Default.GetHashCode(Values);
             return hashCode;
         }
 
@@ -110,13 +136,24 @@ namespace VisualCard.Parsers.Arguments
 
         internal ArgumentInfo(string key, string value)
         {
-            this.key = key;
-            this.value = value;
-            if (value.GetEnclosedDoubleQuotesType() == EnclosedDoubleQuotesType.DoubleQuotes)
+            // First, split the values and check for quotes
+            string[] valuesArray = value.SplitEncloseDoubleQuotesNoRelease(',');
+            var values = new (bool caseSensitive, string value)[valuesArray.Length];
+            for (int i = 0; i < valuesArray.Length; i++)
             {
-                caseSensitive = true;
-                this.value = this.value.ReleaseDoubleQuotes();
+                string valueArray = valuesArray[i];
+                if (valueArray.GetEnclosedDoubleQuotesType() == EnclosedDoubleQuotesType.DoubleQuotes)
+                {
+                    values[i].caseSensitive = true;
+                    values[i].value = valueArray.ReleaseDoubleQuotes();
+                }
+                else
+                    values[i].value = valueArray;
             }
+
+            // Install the key and the values
+            this.key = key;
+            this.values = values;
         }
     }
 }

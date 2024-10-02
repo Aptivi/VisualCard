@@ -18,6 +18,7 @@
 //
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using VisualCard.Parsers;
@@ -93,9 +94,9 @@ namespace VisualCard.Parts
             // Finally, install the remaining arguments if they exist and contain keys and values
             if (installArguments)
             {
-                string[] finalArguments = partInfo.Arguments
-                    .Where((arg) => !string.IsNullOrWhiteSpace(arg.Value))
-                    .Select((arg) => $"{arg.Key}={(arg.CaseSensitive ? $"\"{arg.Value}\"" : arg.Value)}").ToArray();
+                List<string> finalArguments = [];
+                foreach (var arg in partInfo.Arguments)
+                    finalArguments.Add(arg.BuildArguments());
                 argumentsBuilder.Append(string.Join(VcardConstants._fieldDelimiter.ToString(), finalArguments));
             }
 

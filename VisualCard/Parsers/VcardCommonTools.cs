@@ -474,7 +474,7 @@ namespace VisualCard.Parsers
             // Attempt to get the value from the key
             string argString =
                 argFromSpecifier.Count() > 0 ?
-                string.Join(VcardConstants._valueDelimiter.ToString(), argFromSpecifier.Select((arg) => arg.Value)) :
+                string.Join(VcardConstants._valueDelimiter.ToString(), argFromSpecifier.Select((arg) => arg.AllValues)) :
                 @default;
             return argString;
         }
