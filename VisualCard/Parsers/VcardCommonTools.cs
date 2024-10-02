@@ -18,6 +18,7 @@
 //
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -473,10 +474,16 @@ namespace VisualCard.Parsers
             string finalSpecifierName = argSpecifier.EndsWith("=") ? argSpecifier.Substring(0, argSpecifier.Length - 1) : argSpecifier;
             var argFromSpecifier = args.Where((arg) => arg.Key.Equals(finalSpecifierName, StringComparison.OrdinalIgnoreCase));
 
+            // Flatten the strings
+            var stringArrays = argFromSpecifier.Select((arg) => arg.AllValues);
+            List<string> flattened = [];
+            foreach (var stringArray in stringArrays)
+                flattened.AddRange(stringArray);
+
             // Attempt to get the value from the key
             string argString =
-                argFromSpecifier.Count() > 0 ?
-                string.Join(VcardConstants._valueDelimiter.ToString(), argFromSpecifier.Select((arg) => arg.AllValues)) :
+                flattened.Count() > 0 ?
+                string.Join(VcardConstants._valueDelimiter.ToString(), flattened) :
                 @default;
             return argString;
         }
