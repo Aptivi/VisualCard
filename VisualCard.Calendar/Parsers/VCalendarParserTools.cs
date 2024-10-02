@@ -326,9 +326,9 @@ namespace VisualCard.Calendar.Parsers
 
         internal static string GetObjectTypeFromComponent<TComponent>(TComponent component)
             where TComponent : Parts.Calendar =>
-            GetObjectTypeFromType(component.GetType());
+            GetObjectTypeFromType(component.GetType(), component is CalendarOtherComponent other ? other.ComponentName : "");
 
-        internal static string GetObjectTypeFromType(Type type) =>
+        internal static string GetObjectTypeFromType(Type type, string specifier = "") =>
             type.Name switch
             {
                 nameof(Parts.Calendar) => VCalendarConstants._objectVCalendarSpecifier,
@@ -340,6 +340,7 @@ namespace VisualCard.Calendar.Parsers
                 nameof(CalendarStandard) => VCalendarConstants._objectVStandardSpecifier,
                 nameof(CalendarDaylight) => VCalendarConstants._objectVDaylightSpecifier,
                 nameof(CalendarAlarm) => VCalendarConstants._objectVAlarmSpecifier,
+                nameof(CalendarOtherComponent) => specifier,
                 _ => throw new InvalidDataException("Type is not a valid component"),
             };
 

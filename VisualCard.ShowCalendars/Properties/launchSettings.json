@@ -24,6 +24,10 @@
       "commandName": "Project",
       "commandLineArgs": "TestFiles/vcalendarEventTz.ics"
     },
+    "vCalendar 2.0 test - event with other component": {
+      "commandName": "Project",
+      "commandLineArgs": "TestFiles/veventothercomp.vcs"
+    },
     "vCalendar 1.0 test": {
       "commandName": "Project",
       "commandLineArgs": "TestFiles/vevent1.vcs"

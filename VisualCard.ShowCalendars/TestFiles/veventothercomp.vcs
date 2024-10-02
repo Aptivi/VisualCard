@@ -1,0 +1,27 @@
+BEGIN:VCALENDAR
+PRODID:-//xyz Corp//NONSGML PDA Calendar Version 1.0//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+DTSTAMP:1996-07-04T12:00:00
+UID:uid1@example.com
+ORGANIZER:mailto:jsmith@example.com
+DTSTART:1996-09-18T14:30:00
+DTEND:1996-09-20T22:00:00
+STATUS:CONFIRMED
+CATEGORIES:CONFERENCE
+SUMMARY:Networld+Interop Conference
+DESCRIPTION:Networld+Interop Conference
+  and Exhibit\nAtlanta World Congress Center\n
+ Atlanta\, Georgia
+POPULAR:True
+X-TRENDING:True
+GEO:37.24;-17.87
+REQUEST-STATUS:4.1;Event conflict.  Date-time is busy.
+REQUEST-STATUS:3.7;Invalid calendar user;ORGANIZER:
+ mailto:jsmith@example.com
+END:VEVENT
+BEGIN:X-COMPONENT
+X-NAME:Event
+END:X-COMPONENT
+END:VCALENDAR

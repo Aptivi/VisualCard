@@ -43,6 +43,7 @@ namespace VisualCard.Calendar.Parts
         internal readonly List<CalendarJournal> journals = [];
         internal readonly List<CalendarFreeBusy> freeBusyList = [];
         internal readonly List<CalendarTimeZone> timeZones = [];
+        internal readonly List<CalendarOtherComponent> others = [];
         private readonly Version version;
         private readonly Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray = [];
         private readonly Dictionary<CalendarStringsEnum, string> strings = [];
@@ -89,6 +90,12 @@ namespace VisualCard.Calendar.Parts
         /// </summary>
         public CalendarTimeZone[] TimeZones =>
             [.. timeZones];
+
+        /// <summary>
+        /// Other component list
+        /// </summary>
+        public CalendarOtherComponent[] Others =>
+            [.. others];
 
         /// <summary>
         /// Gets a part array from a specified key
@@ -336,6 +343,8 @@ namespace VisualCard.Calendar.Parts
                     cardBuilder.Append(calendarFreeBusy.SaveToString(version, calendarFreeBusy.partsArray, calendarFreeBusy.strings, calendarFreeBusy.integers, VCalendarConstants._objectVFreeBusySpecifier));
                 foreach (var calendarTimeZone in timeZones)
                     cardBuilder.Append(calendarTimeZone.SaveToString(version, calendarTimeZone.partsArray, calendarTimeZone.strings, calendarTimeZone.integers, VCalendarConstants._objectVTimeZoneSpecifier));
+                foreach (var calendarOther in others)
+                    cardBuilder.Append(calendarOther.SaveToString(version, calendarOther.partsArray, calendarOther.strings, calendarOther.integers, calendarOther.ComponentName));
             }
             else if (objectType == VCalendarConstants._objectVEventSpecifier)
             {
@@ -410,19 +419,21 @@ namespace VisualCard.Calendar.Parts
                 PartComparison.CompareCalendarComponents(source.todos, target.todos) &&
                 PartComparison.CompareCalendarComponents(source.journals, target.journals) &&
                 PartComparison.CompareCalendarComponents(source.freeBusyList, target.freeBusyList) &&
-                PartComparison.CompareCalendarComponents(source.timeZones, target.timeZones)
+                PartComparison.CompareCalendarComponents(source.timeZones, target.timeZones) &&
+                PartComparison.CompareCalendarComponents(source.others, target.others)
             ;
         }
 
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = -1266621595;
+            int hashCode = 797403623;
             hashCode = hashCode * -1521134295 + EqualityComparer<List<CalendarEvent>>.Default.GetHashCode(events);
             hashCode = hashCode * -1521134295 + EqualityComparer<List<CalendarTodo>>.Default.GetHashCode(todos);
             hashCode = hashCode * -1521134295 + EqualityComparer<List<CalendarJournal>>.Default.GetHashCode(journals);
             hashCode = hashCode * -1521134295 + EqualityComparer<List<CalendarFreeBusy>>.Default.GetHashCode(freeBusyList);
             hashCode = hashCode * -1521134295 + EqualityComparer<List<CalendarTimeZone>>.Default.GetHashCode(timeZones);
+            hashCode = hashCode * -1521134295 + EqualityComparer<List<CalendarOtherComponent>>.Default.GetHashCode(others);
             hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>>>.Default.GetHashCode(partsArray);
             hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarStringsEnum, string>>.Default.GetHashCode(strings);
             hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarIntegersEnum, double>>.Default.GetHashCode(integers);

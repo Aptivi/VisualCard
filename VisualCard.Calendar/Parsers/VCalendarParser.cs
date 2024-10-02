@@ -424,7 +424,10 @@ namespace VisualCard.Calendar.Parsers
                 VCalendarConstants._objectVStandardSpecifier => new CalendarStandard(CalendarVersion),
                 VCalendarConstants._objectVDaylightSpecifier => new CalendarDaylight(CalendarVersion),
                 VCalendarConstants._objectVAlarmSpecifier => new CalendarAlarm(CalendarVersion),
-                _ => throw new ArgumentException($"Invalid type {type}"),
+                _ =>
+                    CalendarVersion.Major == 2 ?
+                    new CalendarOtherComponent(CalendarVersion, type) :
+                    throw new ArgumentException($"Invalid type {type}"),
             };
         }
 
@@ -452,6 +455,9 @@ namespace VisualCard.Calendar.Parsers
                             break;
                         case nameof(CalendarTimeZone):
                             part.timeZones.Add((CalendarTimeZone)subpart);
+                            break;
+                        case nameof(CalendarOtherComponent):
+                            part.others.Add((CalendarOtherComponent)subpart);
                             break;
                         default:
                             nestable = false;
