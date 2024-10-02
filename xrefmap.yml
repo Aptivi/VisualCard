@@ -6628,6 +6628,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Card.CardKind
   nameWithType: Card.CardKind
+- uid: VisualCard.Parts.Card.CardKindStr
+  name: CardKindStr
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_CardKindStr
+  commentId: P:VisualCard.Parts.Card.CardKindStr
+  fullName: VisualCard.Parts.Card.CardKindStr
+  nameWithType: Card.CardKindStr
+- uid: VisualCard.Parts.Card.CardKindStr*
+  name: CardKindStr
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_CardKindStr_
+  commentId: Overload:VisualCard.Parts.Card.CardKindStr
+  isSpec: "True"
+  fullName: VisualCard.Parts.Card.CardKindStr
+  nameWithType: Card.CardKindStr
 - uid: VisualCard.Parts.Card.CardVersion
   name: CardVersion
   href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_CardVersion
@@ -7081,6 +7094,42 @@ references:
   commentId: N:VisualCard.Parts.Enums
   fullName: VisualCard.Parts.Enums
   nameWithType: VisualCard.Parts.Enums
+- uid: VisualCard.Parts.Enums.CardKind
+  name: CardKind
+  href: api/VisualCard.Parts.Enums.CardKind.html
+  commentId: T:VisualCard.Parts.Enums.CardKind
+  fullName: VisualCard.Parts.Enums.CardKind
+  nameWithType: CardKind
+- uid: VisualCard.Parts.Enums.CardKind.Group
+  name: Group
+  href: api/VisualCard.Parts.Enums.CardKind.html#VisualCard_Parts_Enums_CardKind_Group
+  commentId: F:VisualCard.Parts.Enums.CardKind.Group
+  fullName: VisualCard.Parts.Enums.CardKind.Group
+  nameWithType: CardKind.Group
+- uid: VisualCard.Parts.Enums.CardKind.Individual
+  name: Individual
+  href: api/VisualCard.Parts.Enums.CardKind.html#VisualCard_Parts_Enums_CardKind_Individual
+  commentId: F:VisualCard.Parts.Enums.CardKind.Individual
+  fullName: VisualCard.Parts.Enums.CardKind.Individual
+  nameWithType: CardKind.Individual
+- uid: VisualCard.Parts.Enums.CardKind.Location
+  name: Location
+  href: api/VisualCard.Parts.Enums.CardKind.html#VisualCard_Parts_Enums_CardKind_Location
+  commentId: F:VisualCard.Parts.Enums.CardKind.Location
+  fullName: VisualCard.Parts.Enums.CardKind.Location
+  nameWithType: CardKind.Location
+- uid: VisualCard.Parts.Enums.CardKind.Organization
+  name: Organization
+  href: api/VisualCard.Parts.Enums.CardKind.html#VisualCard_Parts_Enums_CardKind_Organization
+  commentId: F:VisualCard.Parts.Enums.CardKind.Organization
+  fullName: VisualCard.Parts.Enums.CardKind.Organization
+  nameWithType: CardKind.Organization
+- uid: VisualCard.Parts.Enums.CardKind.Others
+  name: Others
+  href: api/VisualCard.Parts.Enums.CardKind.html#VisualCard_Parts_Enums_CardKind_Others
+  commentId: F:VisualCard.Parts.Enums.CardKind.Others
+  fullName: VisualCard.Parts.Enums.CardKind.Others
+  nameWithType: CardKind.Others
 - uid: VisualCard.Parts.Enums.PartType
   name: PartType
   href: api/VisualCard.Parts.Enums.PartType.html
