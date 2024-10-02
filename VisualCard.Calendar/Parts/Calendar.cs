@@ -535,7 +535,16 @@ namespace VisualCard.Calendar.Parts
             if (!strings.ContainsKey(key))
                 strings.Add(key, [value]);
             else
+            {
+                // We need to check the cardinality.
+                var cardinality = VCalendarParserTools.GetStringsEnumFromType(key);
+                bool onlyOne =
+                    cardinality == PartCardinality.ShouldBeOne ||
+                    cardinality == PartCardinality.MayBeOne;
+                if (onlyOne)
+                    throw new InvalidOperationException($"Can't add part array {key}, because cardinality is {cardinality}.");
                 strings[key].Add(value);
+            }
         }
 
         internal virtual void AddInteger(CalendarIntegersEnum key, CalendarValueInfo<double> value) =>
@@ -550,7 +559,16 @@ namespace VisualCard.Calendar.Parts
             if (!integers.ContainsKey(key))
                 integers.Add(key, [value]);
             else
+            {
+                // We need to check the cardinality.
+                var cardinality = VCalendarParserTools.GetIntegersEnumFromType(key);
+                bool onlyOne =
+                    cardinality == PartCardinality.ShouldBeOne ||
+                    cardinality == PartCardinality.MayBeOne;
+                if (onlyOne)
+                    throw new InvalidOperationException($"Can't add part array {key}, because cardinality is {cardinality}.");
                 integers[key].Add(value);
+            }
         }
 
         internal Calendar(Version version) =>

@@ -373,7 +373,22 @@ namespace VisualCard.Parts
             if (!strings.ContainsKey(key))
                 strings.Add(key, [value]);
             else
+            {
+                // We need to check the cardinality.
+                var cardinality = VcardParserTools.GetStringsEnumFromType(key, CardVersion);
+                int actualAltId = strings[key][0].AltId;
+                bool onlyOne =
+                    cardinality == PartCardinality.ShouldBeOne ||
+                    cardinality == PartCardinality.MayBeOne;
+                bool onlyOneNoAltId =
+                    cardinality == PartCardinality.ShouldBeOneNoAltId ||
+                    cardinality == PartCardinality.MayBeOneNoAltId;
+                if (onlyOne && actualAltId != value.AltId)
+                    throw new InvalidOperationException($"Can't overwrite string {key} with AltID {value.AltId}, because cardinality is {cardinality} and expected AltID is {actualAltId}.");
+                if (onlyOneNoAltId)
+                    throw new InvalidOperationException($"Can never overwrite string {key} with AltID {value.AltId}, because cardinality is {cardinality}, even though the expected AltID is {actualAltId}.");
                 strings[key].Add(value);
+            }
         }
 
         internal Card(Version version) =>
