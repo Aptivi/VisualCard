@@ -215,50 +215,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.AttendeeInfo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.AttendeeInfo.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.CommentInfo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.CommentInfo.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.ContactInfo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.ContactInfo.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.DateCreatedInfo.yml",
       "output": {
         ".html": {
           "relative_path": "api/VisualCard.Calendar.Parts.Implementations.DateCreatedInfo.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.DurationInfo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.DurationInfo.html"
         }
       },
       "version": ""
@@ -435,30 +395,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.LocationInfo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.LocationInfo.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.RecDateInfo.yml",
       "output": {
         ".html": {
           "relative_path": "api/VisualCard.Calendar.Parts.Implementations.RecDateInfo.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.RelatedToInfo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.RelatedToInfo.html"
         }
       },
       "version": ""
@@ -479,16 +419,6 @@
       "output": {
         ".html": {
           "relative_path": "api/VisualCard.Calendar.Parts.Implementations.ResourcesInfo.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneNameInfo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneNameInfo.html"
         }
       },
       "version": ""
@@ -825,26 +755,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Parts.Implementations.CalendarSchedulingRequestUrlInfo.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parts.Implementations.CalendarUrlInfo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Parts.Implementations.CalendarUrlInfo.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/VisualCard.Parts.Implementations.CategoryInfo.yml",
       "output": {
         ".html": {
@@ -865,50 +775,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parts.Implementations.ContactUriInfo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Parts.Implementations.ContactUriInfo.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parts.Implementations.EmailInfo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Parts.Implementations.EmailInfo.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/VisualCard.Parts.Implementations.ExtraInfo.yml",
       "output": {
         ".html": {
           "relative_path": "api/VisualCard.Parts.Implementations.ExtraInfo.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parts.Implementations.FreeBusyInfo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Parts.Implementations.FreeBusyInfo.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parts.Implementations.FullNameInfo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Parts.Implementations.FullNameInfo.html"
         }
       },
       "version": ""
@@ -925,50 +795,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parts.Implementations.GeoInfo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Parts.Implementations.GeoInfo.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parts.Implementations.ImppInfo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Parts.Implementations.ImppInfo.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/VisualCard.Parts.Implementations.KeyInfo.yml",
       "output": {
         ".html": {
           "relative_path": "api/VisualCard.Parts.Implementations.KeyInfo.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parts.Implementations.LabelAddressInfo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Parts.Implementations.LabelAddressInfo.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parts.Implementations.LangInfo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Parts.Implementations.LangInfo.html"
         }
       },
       "version": ""
@@ -985,40 +815,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parts.Implementations.MemberInfo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Parts.Implementations.MemberInfo.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/VisualCard.Parts.Implementations.NameInfo.yml",
       "output": {
         ".html": {
           "relative_path": "api/VisualCard.Parts.Implementations.NameInfo.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parts.Implementations.NicknameInfo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Parts.Implementations.NicknameInfo.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parts.Implementations.NoteInfo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Parts.Implementations.NoteInfo.html"
         }
       },
       "version": ""
@@ -1045,16 +845,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parts.Implementations.RelatedInfo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Parts.Implementations.RelatedInfo.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/VisualCard.Parts.Implementations.RevisionInfo.yml",
       "output": {
         ".html": {
@@ -1065,60 +855,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parts.Implementations.RoleInfo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Parts.Implementations.RoleInfo.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/VisualCard.Parts.Implementations.SoundInfo.yml",
       "output": {
         ".html": {
           "relative_path": "api/VisualCard.Parts.Implementations.SoundInfo.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parts.Implementations.SourceInfo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Parts.Implementations.SourceInfo.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parts.Implementations.TelephoneInfo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Parts.Implementations.TelephoneInfo.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parts.Implementations.TimeDateZoneInfo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Parts.Implementations.TimeDateZoneInfo.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parts.Implementations.TitleInfo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Parts.Implementations.TitleInfo.html"
         }
       },
       "version": ""
@@ -1139,16 +879,6 @@
       "output": {
         ".html": {
           "relative_path": "api/VisualCard.Parts.Implementations.Tools.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/VisualCard.Parts.Implementations.UrlInfo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/VisualCard.Parts.Implementations.UrlInfo.html"
         }
       },
       "version": ""
