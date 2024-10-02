@@ -46,13 +46,13 @@ namespace VisualCard.Calendar.Parts.Implementations
         public bool IsBlob =>
             VcardCommonTools.IsEncodingBlob(Arguments, AttachEncoded);
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version calendarVersion) =>
-            new AttachInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, calendarVersion);
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version calendarVersion) =>
+            new AttachInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, group, valueType, calendarVersion);
 
         internal override string ToStringVcalendarInternal(Version calendarVersion) =>
             AttachEncoded ?? "";
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version calendarVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version calendarVersion)
         {
             // Check to see if the value is prepended by the ENCODING= argument
             string attachEncoding = VcardCommonTools.GetValuesString(finalArgs, "b", VcardConstants._encodingArgumentSpecifier);
@@ -65,7 +65,7 @@ namespace VisualCard.Calendar.Parts.Implementations
             }
 
             // Populate the fields
-            AttachInfo _attach = new(finalArgs, elementTypes, valueType, attachEncoding, value);
+            AttachInfo _attach = new(finalArgs, elementTypes, group, valueType, attachEncoding, value);
             return _attach;
         }
 
@@ -130,8 +130,8 @@ namespace VisualCard.Calendar.Parts.Implementations
 
         internal AttachInfo() { }
 
-        internal AttachInfo(ArgumentInfo[] arguments, string[] elementTypes, string valueType, string encoding, string attachEncoded) :
-            base(arguments, elementTypes, valueType)
+        internal AttachInfo(ArgumentInfo[] arguments, string[] elementTypes, string group, string valueType, string encoding, string attachEncoded) :
+            base(arguments, elementTypes, group, valueType)
         {
             Encoding = encoding;
             AttachEncoded = attachEncoded;

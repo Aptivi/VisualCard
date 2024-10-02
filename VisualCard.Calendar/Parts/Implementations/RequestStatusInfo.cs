@@ -49,8 +49,8 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// </summary>
         public string? RequestStatusExtData { get; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
-            new RequestStatusInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new RequestStatusInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion)
         {
@@ -71,7 +71,7 @@ namespace VisualCard.Calendar.Parts.Implementations
             return statusBuilder.ToString();
         }
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Get the request and split it with the semicolon two times
             var requestStatus = Regex.Unescape(value);
@@ -101,7 +101,7 @@ namespace VisualCard.Calendar.Parts.Implementations
             string statusExtData = pair.Contains(";") ? pair.RemovePrefix($"{statusDesc};") : "";
 
             // Add the fetched information
-            RequestStatusInfo _time = new([], elementTypes, valueType, statusTuple, statusDesc, statusExtData);
+            RequestStatusInfo _time = new([], elementTypes, group, valueType, statusTuple, statusDesc, statusExtData);
             return _time;
         }
 
@@ -159,8 +159,8 @@ namespace VisualCard.Calendar.Parts.Implementations
 
         internal RequestStatusInfo() { }
 
-        internal RequestStatusInfo(ArgumentInfo[] arguments, string[] elementTypes, string valueType, (int, int, int) requestStatus, string statusDesc, string statusExtData) :
-            base(arguments, elementTypes, valueType)
+        internal RequestStatusInfo(ArgumentInfo[] arguments, string[] elementTypes, string group, string valueType, (int, int, int) requestStatus, string statusDesc, string statusExtData) :
+            base(arguments, elementTypes, group, valueType)
         {
             RequestStatus = requestStatus;
             RequestStatusDesc = statusDesc;

@@ -115,6 +115,10 @@ namespace VisualCard.Calendar.Parsers
                     bool isWithType = splitArgs.Length > 0;
                     List<ArgumentInfo> finalArgs = [];
 
+                    // Extract the group name
+                    string group = prefix.Contains(".") ? prefix.Substring(0, prefix.IndexOf(".")) : "";
+                    prefix = prefix.RemovePrefix($"{group}.");
+
                     // Check to see if we have a BEGIN or an END prefix
                     if (prefix == VcardConstants._beginSpecifier)
                     {
@@ -203,10 +207,11 @@ namespace VisualCard.Calendar.Parsers
                                     continue;
 
                                 // Set the string for real
+                                var stringValueInfo = new CalendarValueInfo<string>([.. finalArgs], elementTypes, group, valueType, finalValue);
                                 if (subPart is not null)
-                                    subPart.SetString(stringType, finalValue);
+                                    subPart.SetString(stringType, stringValueInfo);
                                 else
-                                    calendar.SetString(stringType, finalValue);
+                                    calendar.SetString(stringType, stringValueInfo);
                             }
                             break;
                         case PartType.Integers:
@@ -220,10 +225,11 @@ namespace VisualCard.Calendar.Parsers
                                 double finalDouble = double.Parse(finalValue);
 
                                 // Set the integer for real
+                                var stringValueInfo = new CalendarValueInfo<double>([.. finalArgs], elementTypes, group, valueType, finalDouble);
                                 if (subPart is not null)
-                                    subPart.SetInteger(integerType, finalDouble);
+                                    subPart.SetInteger(integerType, stringValueInfo);
                                 else
-                                    calendar.SetInteger(integerType, finalDouble);
+                                    calendar.SetInteger(integerType, stringValueInfo);
                             }
                             break;
                         case PartType.PartsArray:
@@ -238,7 +244,7 @@ namespace VisualCard.Calendar.Parsers
 
                                 // Now, get the part info
                                 finalValue = partsArrayType is CalendarPartsArrayEnum.IanaNames or CalendarPartsArrayEnum.NonstandardNames ? _value : value;
-                                var partInfo = fromString(finalValue, [.. finalArgs], elementTypes, valueType, CalendarVersion);
+                                var partInfo = fromString(finalValue, [.. finalArgs], elementTypes, group, valueType, CalendarVersion);
 
                                 // Set the array for real
                                 if (subPart is not null)
@@ -353,7 +359,7 @@ namespace VisualCard.Calendar.Parsers
             {
                 case PartType.Strings:
                     {
-                        string value = component.GetString((CalendarStringsEnum)enumeration);
+                        string value = component.GetString((CalendarStringsEnum)enumeration)?.Value ?? "";
                         exists = !string.IsNullOrEmpty(value);
                     }
                     break;
@@ -367,7 +373,7 @@ namespace VisualCard.Calendar.Parsers
                     break;
                 case PartType.Integers:
                     {
-                        double value = component.GetInteger((CalendarIntegersEnum)enumeration);
+                        double value = component.GetInteger((CalendarIntegersEnum)enumeration)?.Value ?? -1;
                         exists = value != -1;
                     }
                     break;
@@ -385,7 +391,7 @@ namespace VisualCard.Calendar.Parsers
             string[] expectedAudioAlarmFields = [VCalendarConstants._attachSpecifier];
             string[] expectedDisplayAlarmFields = [VCalendarConstants._descriptionSpecifier];
             string[] expectedMailAlarmFields = [VCalendarConstants._descriptionSpecifier, VCalendarConstants._summarySpecifier, VCalendarConstants._attendeeSpecifier];
-            string type = alarmInfo.GetString(CalendarStringsEnum.Action);
+            string type = alarmInfo.GetString(CalendarStringsEnum.Action)?.Value ?? "";
             switch (type)
             {
                 case "AUDIO":
@@ -403,7 +409,7 @@ namespace VisualCard.Calendar.Parsers
             }
 
             // Check to see if there is a repeat property
-            int repeat = (int)alarmInfo.GetInteger(CalendarIntegersEnum.Repeat);
+            int repeat = (int)(alarmInfo.GetInteger(CalendarIntegersEnum.Repeat)?.Value ?? -1);
             string[] expectedRepeatedAlarmFields = [VCalendarConstants._durationSpecifier];
             if (repeat >= 1)
             {

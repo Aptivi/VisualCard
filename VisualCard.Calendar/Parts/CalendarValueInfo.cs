@@ -23,13 +23,13 @@ using System.Diagnostics;
 using System.Linq;
 using VisualCard.Parsers.Arguments;
 
-namespace VisualCard.Parts
+namespace VisualCard.Calendar.Parts
 {
     /// <summary>
-    /// Card value information
+    /// Calendar value information
     /// </summary>
-    [DebuggerDisplay("Card value | ALTID: {AltId}, TYPE: {ElementTypes}, VALUE: {ValueType}")]
-    public class CardValueInfo<TValue> : IEquatable<CardValueInfo<TValue>>
+    [DebuggerDisplay("Calendar value | TYPE: {ElementTypes}, VALUE: {ValueType}")]
+    public class CalendarValueInfo<TValue> : IEquatable<CalendarValueInfo<TValue>>
     {
         /// <summary>
         /// Final arguments
@@ -37,12 +37,7 @@ namespace VisualCard.Parts
         public virtual ArgumentInfo[] Arguments { get; internal set; } = [];
 
         /// <summary>
-        /// Alternative ID. Zero if unspecified.
-        /// </summary>
-        public virtual int AltId { get; internal set; }
-
-        /// <summary>
-        /// Card element type (home, work, ...)
+        /// Calendar element type (home, work, ...)
         /// </summary>
         public virtual string[] ElementTypes { get; internal set; } = [];
 
@@ -86,18 +81,18 @@ namespace VisualCard.Parts
         /// <summary>
         /// Checks to see if both the parts are equal
         /// </summary>
-        /// <param name="other">The target <see cref="CardValueInfo{TValue}"/> instance to check to see if they equal</param>
+        /// <param name="other">The target <see cref="CalendarValueInfo{TValue}"/> instance to check to see if they equal</param>
         /// <returns>True if all the part elements are equal. Otherwise, false.</returns>
-        public bool Equals(CardValueInfo<TValue> other) =>
+        public bool Equals(CalendarValueInfo<TValue> other) =>
             Equals(this, other);
 
         /// <summary>
         /// Checks to see if both the parts are equal
         /// </summary>
-        /// <param name="source">The source <see cref="CardValueInfo{TValue}"/> instance to check to see if they equal</param>
-        /// <param name="target">The target <see cref="CardValueInfo{TValue}"/> instance to check to see if they equal</param>
+        /// <param name="source">The source <see cref="CalendarValueInfo{TValue}"/> instance to check to see if they equal</param>
+        /// <param name="target">The target <see cref="CalendarValueInfo{TValue}"/> instance to check to see if they equal</param>
         /// <returns>True if all the part elements are equal. Otherwise, false.</returns>
-        public bool Equals(CardValueInfo<TValue> source, CardValueInfo<TValue> target)
+        public bool Equals(CalendarValueInfo<TValue> source, CalendarValueInfo<TValue> target)
         {
             // We can't perform this operation on null.
             if (source is null || target is null)
@@ -107,7 +102,6 @@ namespace VisualCard.Parts
             return
                 source.Arguments.SequenceEqual(target.Arguments) &&
                 source.ElementTypes.SequenceEqual(target.ElementTypes) &&
-                source.AltId == target.AltId &&
                 source.ValueType == target.ValueType &&
                 source.Group == target.Group &&
                 EqualsInternal(source, target)
@@ -116,14 +110,13 @@ namespace VisualCard.Parts
 
         /// <inheritdoc/>
         public override bool Equals(object obj) =>
-            Equals((CardValueInfo<TValue>)obj);
+            Equals((CalendarValueInfo<TValue>)obj);
 
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = -1241979236;
+            int hashCode = -1427366701;
             hashCode = hashCode * -1521134295 + EqualityComparer<ArgumentInfo[]>.Default.GetHashCode(Arguments);
-            hashCode = hashCode * -1521134295 + AltId.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(ElementTypes);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ValueType);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Group);
@@ -132,20 +125,19 @@ namespace VisualCard.Parts
         }
 
         /// <inheritdoc/>
-        public static bool operator ==(CardValueInfo<TValue> left, CardValueInfo<TValue> right) =>
+        public static bool operator ==(CalendarValueInfo<TValue> left, CalendarValueInfo<TValue> right) =>
             left.Equals(right);
 
         /// <inheritdoc/>
-        public static bool operator !=(CardValueInfo<TValue> left, CardValueInfo<TValue> right) =>
+        public static bool operator !=(CalendarValueInfo<TValue> left, CalendarValueInfo<TValue> right) =>
             !(left == right);
 
-        internal virtual bool EqualsInternal(CardValueInfo<TValue> source, CardValueInfo<TValue> target) =>
+        internal virtual bool EqualsInternal(CalendarValueInfo<TValue> source, CalendarValueInfo<TValue> target) =>
             true;
 
-        internal CardValueInfo(ArgumentInfo[] arguments, int altId, string[] elementTypes, string valueType, string group, TValue? value)
+        internal CalendarValueInfo(ArgumentInfo[] arguments, string[] elementTypes, string group, string valueType, TValue? value)
         {
             Arguments = arguments;
-            AltId = altId;
             ElementTypes = elementTypes;
             ValueType = valueType;
             Group = group;

@@ -34,8 +34,8 @@ namespace VisualCard.Calendar.Parts
     {
         internal readonly List<CalendarAlarm> alarms = [];
         private readonly Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray = [];
-        private readonly Dictionary<CalendarStringsEnum, string> strings = [];
-        private readonly Dictionary<CalendarIntegersEnum, double> integers = [];
+        private readonly Dictionary<CalendarStringsEnum, CalendarValueInfo<string>> strings = [];
+        private readonly Dictionary<CalendarIntegersEnum, CalendarValueInfo<double>> integers = [];
 
         /// <summary>
         /// Alarm list
@@ -68,9 +68,17 @@ namespace VisualCard.Calendar.Parts
         /// Gets a string from a specified key
         /// </summary>
         /// <param name="key">A key to use</param>
-        /// <returns>A value, or "individual" if the kind doesn't exist, or an empty string ("") if any other type either doesn't exist or the type is not supported by the card version</returns>
-        public new string GetString(CalendarStringsEnum key) =>
+        /// <returns>A value or null if any other type either doesn't exist or the type is not supported by the card version</returns>
+        public new CalendarValueInfo<string>? GetString(CalendarStringsEnum key) =>
             GetString(key, CalendarVersion, strings);
+
+        /// <summary>
+        /// Gets a integer from a specified key
+        /// </summary>
+        /// <param name="key">A key to use</param>
+        /// <returns>A value or null if any other type either doesn't exist or the type is not supported by the card version</returns>
+        public new CalendarValueInfo<double>? GetInteger(CalendarIntegersEnum key) =>
+            GetInteger(key, CalendarVersion, integers);
 
         /// <summary>
         /// Saves this parsed card to the string
@@ -124,8 +132,8 @@ namespace VisualCard.Calendar.Parts
             hashCode = hashCode * -1521134295 + base.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<List<CalendarAlarm>>.Default.GetHashCode(alarms);
             hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>>>.Default.GetHashCode(partsArray);
-            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarStringsEnum, string>>.Default.GetHashCode(strings);
-            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarIntegersEnum, double>>.Default.GetHashCode(integers);
+            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarStringsEnum, CalendarValueInfo<string>>>.Default.GetHashCode(strings);
+            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarIntegersEnum, CalendarValueInfo<double>>>.Default.GetHashCode(integers);
             return hashCode;
         }
 
@@ -140,10 +148,10 @@ namespace VisualCard.Calendar.Parts
         internal new void AddPartToArray(CalendarPartsArrayEnum key, BaseCalendarPartInfo value) =>
             AddPartToArray(key, value, CalendarVersion, partsArray, VCalendarConstants._objectVTodoSpecifier);
 
-        internal new void SetString(CalendarStringsEnum key, string value) =>
+        internal new void SetString(CalendarStringsEnum key, CalendarValueInfo<string> value) =>
             SetString(key, value, strings);
 
-        internal new void SetInteger(CalendarIntegersEnum key, double value) =>
+        internal new void SetInteger(CalendarIntegersEnum key, CalendarValueInfo<double> value) =>
             SetInteger(key, value, integers);
 
         internal CalendarTodo(Version version) :

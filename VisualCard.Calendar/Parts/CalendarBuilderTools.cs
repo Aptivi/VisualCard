@@ -18,78 +18,22 @@
 //
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using VisualCard.Calendar.Parts.Implementations;
-using VisualCard.Parsers;
+using VisualCard.Parts;
 
 namespace VisualCard.Calendar.Parts
 {
     internal static class CalendarBuilderTools
     {
-        internal static string BuildArguments(BaseCalendarPartInfo partInfo, string defaultType, string defaultValue)
+        internal static string BuildArguments(BaseCalendarPartInfo partInfo, Version cardVersion, string defaultType, string defaultValue)
         {
-            // Filter the list of types and values first
-            string valueType = partInfo.ValueType ?? "";
-            var valueArguments = partInfo.Arguments ?? [];
-            string[] finalElementTypes = partInfo.ElementTypes.Where((type) => !type.Equals(defaultType, StringComparison.OrdinalIgnoreCase)).ToArray();
-            string finalValue = valueType.Equals(defaultValue, StringComparison.OrdinalIgnoreCase) ? "" : valueType;
-
-            // Check to see if we've been provided arguments
-            bool noSemicolon = valueArguments.Length == 0 && finalElementTypes.Length == 0 && string.IsNullOrEmpty(finalValue);
             string extraKeyName =
                 (partInfo is XNameInfo xName ? xName.XKeyName :
                  partInfo is ExtraInfo exName ? exName.KeyName : "") ?? "";
-            if (noSemicolon)
-                return extraKeyName + VcardConstants._argumentDelimiter.ToString();
-
-            // Now, initialize the argument builder
-            StringBuilder argumentsBuilder = new(extraKeyName + VcardConstants._fieldDelimiter.ToString());
-            bool installArguments = valueArguments.Length > 0;
-            bool installElementTypes = finalElementTypes.Length > 0;
-            bool installValueType = !string.IsNullOrEmpty(finalValue);
-
-            // Install the element types parameter if it exists
-            if (installElementTypes)
-            {
-                argumentsBuilder.Append(VcardConstants._typeArgumentSpecifier + string.Join(",", finalElementTypes));
-                noSemicolon = !installArguments && !installValueType;
-                if (noSemicolon)
-                {
-                    argumentsBuilder.Append(VcardConstants._argumentDelimiter.ToString());
-                    return argumentsBuilder.ToString();
-                }
-                else
-                    argumentsBuilder.Append(VcardConstants._fieldDelimiter.ToString());
-            }
-
-            // Then, install the value type parameter if it exists
-            if (installValueType)
-            {
-                argumentsBuilder.Append(VcardConstants._valueArgumentSpecifier + string.Join(",", finalValue));
-                noSemicolon = !installArguments;
-                if (noSemicolon)
-                {
-                    argumentsBuilder.Append(VcardConstants._argumentDelimiter.ToString());
-                    return argumentsBuilder.ToString();
-                }
-                else
-                    argumentsBuilder.Append(VcardConstants._fieldDelimiter.ToString());
-            }
-
-            // Finally, install the remaining arguments if they exist and contain keys and values
-            if (installArguments)
-            {
-                List<string> finalArguments = [];
-                foreach (var arg in valueArguments)
-                    finalArguments.Add(arg.BuildArguments());
-                argumentsBuilder.Append(string.Join(VcardConstants._fieldDelimiter.ToString(), finalArguments));
-            }
-
-            // We've reached the end.
-            argumentsBuilder.Append(VcardConstants._argumentDelimiter.ToString());
-            return argumentsBuilder.ToString();
+            return CardBuilderTools.BuildArguments(partInfo.ElementTypes, partInfo.ValueType, -1, partInfo.Arguments, extraKeyName, cardVersion, defaultType, defaultValue);
         }
+
+        internal static string BuildArguments<TValue>(CalendarValueInfo<TValue> partInfo, Version cardVersion, string defaultType, string defaultValue) =>
+            CardBuilderTools.BuildArguments(partInfo.ElementTypes, partInfo.ValueType, -1, partInfo.Arguments, "", cardVersion, defaultType, defaultValue);
     }
 }

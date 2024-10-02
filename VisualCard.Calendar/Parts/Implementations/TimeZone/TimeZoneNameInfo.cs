@@ -36,19 +36,19 @@ namespace VisualCard.Calendar.Parts.Implementations.TimeZone
         /// </summary>
         public string? TimeZoneName { get; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
-            new TimeZoneNameInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new TimeZoneNameInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion) =>
             TimeZoneName ?? "";
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate the fields
             var timezonename = Regex.Unescape(value);
 
             // Add the fetched information
-            TimeZoneNameInfo _time = new([], elementTypes, valueType, timezonename);
+            TimeZoneNameInfo _time = new([], elementTypes, group, valueType, timezonename);
             return _time;
         }
 
@@ -104,8 +104,8 @@ namespace VisualCard.Calendar.Parts.Implementations.TimeZone
 
         internal TimeZoneNameInfo() { }
 
-        internal TimeZoneNameInfo(ArgumentInfo[] arguments, string[] elementTypes, string valueType, string timezonename) :
-            base(arguments, elementTypes, valueType)
+        internal TimeZoneNameInfo(ArgumentInfo[] arguments, string[] elementTypes, string group, string valueType, string timezonename) :
+            base(arguments, elementTypes, group, valueType)
         {
             TimeZoneName = timezonename;
         }

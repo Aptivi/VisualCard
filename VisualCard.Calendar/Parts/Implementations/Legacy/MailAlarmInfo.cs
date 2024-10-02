@@ -68,8 +68,8 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
         public DateTimeOffset SnoozeIn =>
             VcardCommonTools.GetDurationSpan(SnoozeTime ?? "").result;
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version calendarVersion) =>
-            new MailAlarmInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, calendarVersion);
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version calendarVersion) =>
+            new MailAlarmInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, group, valueType, calendarVersion);
 
         internal override string ToStringVcalendarInternal(Version calendarVersion)
         {
@@ -77,7 +77,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
             return $"{posixRunTime};{SnoozeTime};{RepeatCount};{Address};{Note}";
         }
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version calendarVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version calendarVersion)
         {
             // Get the values
             string[] split = value.Split(';');
@@ -96,7 +96,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
                 throw new ArgumentException("Invalid repeat times");
 
             // Populate the fields
-            MailAlarmInfo info = new(finalArgs, elementTypes, valueType, runTime, snoozeTime, repeat, address, note);
+            MailAlarmInfo info = new(finalArgs, elementTypes, group, valueType, runTime, snoozeTime, repeat, address, note);
             return info;
         }
 
@@ -160,8 +160,8 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
 
         internal MailAlarmInfo() { }
 
-        internal MailAlarmInfo(ArgumentInfo[] arguments, string[] elementTypes, string valueType, DateTimeOffset runTime, string snoozeTime, int repeat, string address, string note) :
-            base(arguments, elementTypes, valueType)
+        internal MailAlarmInfo(ArgumentInfo[] arguments, string[] elementTypes, string group, string valueType, DateTimeOffset runTime, string snoozeTime, int repeat, string address, string note) :
+            base(arguments, elementTypes, group, valueType)
         {
             RunTime = runTime;
             SnoozeTime = snoozeTime;

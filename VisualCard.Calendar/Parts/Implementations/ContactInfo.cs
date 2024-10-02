@@ -36,19 +36,19 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// </summary>
         public string? Contact { get; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
-            new ContactInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new ContactInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion) =>
             Contact ?? "";
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate the fields
             var contact = Regex.Unescape(value);
 
             // Add the fetched information
-            ContactInfo _time = new([], elementTypes, valueType, contact);
+            ContactInfo _time = new([], elementTypes, group, valueType, contact);
             return _time;
         }
 
@@ -104,8 +104,8 @@ namespace VisualCard.Calendar.Parts.Implementations
 
         internal ContactInfo() { }
 
-        internal ContactInfo(ArgumentInfo[] arguments, string[] elementTypes, string valueType, string contact) :
-            base(arguments, elementTypes, valueType)
+        internal ContactInfo(ArgumentInfo[] arguments, string[] elementTypes, string group, string valueType, string contact) :
+            base(arguments, elementTypes, group, valueType)
         {
             Contact = contact;
         }

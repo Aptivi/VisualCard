@@ -49,19 +49,19 @@ namespace VisualCard.Calendar.Parts.Implementations
         public DateTimeOffset DurationResult =>
             VcardCommonTools.GetDurationSpan(Duration ?? "").result;
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
-            new DurationInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new DurationInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion) =>
             Duration ?? "";
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate the fields
             string duration = Regex.Unescape(value);
 
             // Add the fetched information
-            DurationInfo _time = new(finalArgs, elementTypes, valueType, duration);
+            DurationInfo _time = new(finalArgs, elementTypes, group, valueType, duration);
             return _time;
         }
 
@@ -117,8 +117,8 @@ namespace VisualCard.Calendar.Parts.Implementations
 
         internal DurationInfo() { }
 
-        internal DurationInfo(ArgumentInfo[] arguments, string[] elementTypes, string valueType, string duration) :
-            base(arguments, elementTypes, valueType)
+        internal DurationInfo(ArgumentInfo[] arguments, string[] elementTypes, string group, string valueType, string duration) :
+            base(arguments, elementTypes, group, valueType)
         {
             Duration = duration;
         }

@@ -46,8 +46,8 @@ namespace VisualCard.Calendar.Parts
         internal readonly List<CalendarOtherComponent> others = [];
         private readonly Version version;
         private readonly Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray = [];
-        private readonly Dictionary<CalendarStringsEnum, string> strings = [];
-        private readonly Dictionary<CalendarIntegersEnum, double> integers = [];
+        private readonly Dictionary<CalendarStringsEnum, CalendarValueInfo<string>> strings = [];
+        private readonly Dictionary<CalendarIntegersEnum, CalendarValueInfo<double>> integers = [];
 
         /// <summary>
         /// The vCalendar version
@@ -59,7 +59,7 @@ namespace VisualCard.Calendar.Parts
         /// Unique ID for this card
         /// </summary>
         public string UniqueId =>
-            GetString(CalendarStringsEnum.Uid);
+            GetString(CalendarStringsEnum.Uid)?.Value ?? "";
 
         /// <summary>
         /// Event list
@@ -209,50 +209,52 @@ namespace VisualCard.Calendar.Parts
         /// Gets a string from a specified key
         /// </summary>
         /// <param name="key">A key to use</param>
-        /// <returns>A value, or "individual" if the kind doesn't exist, or an empty string ("") if any other type either doesn't exist or the type is not supported by the card version</returns>
-        public string GetString(CalendarStringsEnum key) =>
+        /// <returns>A value or null if any other type either doesn't exist or the type is not supported by the card version</returns>
+        public CalendarValueInfo<string>? GetString(CalendarStringsEnum key) =>
             GetString(key, version, strings);
 
-        internal string GetString(CalendarStringsEnum key, Version version, Dictionary<CalendarStringsEnum, string> strings)
+        internal CalendarValueInfo<string>? GetString(CalendarStringsEnum key, Version version, Dictionary<CalendarStringsEnum, CalendarValueInfo<string>> strings)
         {
             // Check for version support
             if (!VCalendarParserTools.StringSupported(key, version, GetType()))
-                return "";
+                return null;
 
             // Get the fallback value
             string fallback = "";
+            var valueInfo = new CalendarValueInfo<string>([], [], "", "", fallback);
 
             // Check to see if the string has a value or not
-            bool hasValue = strings.TryGetValue(key, out string value);
+            bool hasValue = strings.TryGetValue(key, out var value);
             if (!hasValue)
-                return fallback;
+                return valueInfo;
 
             // Now, verify that the string is not empty
-            hasValue = !string.IsNullOrEmpty(value);
-            return hasValue ? value : fallback;
+            hasValue = !string.IsNullOrEmpty(value.Value);
+            return hasValue ? value : valueInfo;
         }
 
         /// <summary>
         /// Gets a integer from a specified key
         /// </summary>
         /// <param name="key">A key to use</param>
-        /// <returns>A value or -1 if any other type either doesn't exist or the type is not supported by the card version</returns>
-        public double GetInteger(CalendarIntegersEnum key) =>
+        /// <returns>A value or null if any other type either doesn't exist or the type is not supported by the card version</returns>
+        public CalendarValueInfo<double>? GetInteger(CalendarIntegersEnum key) =>
             GetInteger(key, version, integers);
 
-        internal double GetInteger(CalendarIntegersEnum key, Version version, Dictionary<CalendarIntegersEnum, double> integers)
+        internal CalendarValueInfo<double>? GetInteger(CalendarIntegersEnum key, Version version, Dictionary<CalendarIntegersEnum, CalendarValueInfo<double>> integers)
         {
             // Check for version support
             if (!VCalendarParserTools.IntegerSupported(key, version, GetType()))
-                return -1;
+                return null;
 
             // Get the fallback value
             int fallback = -1;
+            var valueInfo = new CalendarValueInfo<double>([], [], "", "", fallback);
 
             // Check to see if the integer has a value or not
-            bool hasValue = integers.TryGetValue(key, out double value);
+            bool hasValue = integers.TryGetValue(key, out var value);
             if (!hasValue)
-                return fallback;
+                return valueInfo;
             return value;
         }
 
@@ -262,7 +264,7 @@ namespace VisualCard.Calendar.Parts
         public string SaveToString() =>
             SaveToString(version, partsArray, strings, integers, VCalendarConstants._objectVCalendarSpecifier);
 
-        internal string SaveToString(Version version, Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray, Dictionary<CalendarStringsEnum, string> strings, Dictionary<CalendarIntegersEnum, double> integers, string objectType)
+        internal string SaveToString(Version version, Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray, Dictionary<CalendarStringsEnum, CalendarValueInfo<string>> strings, Dictionary<CalendarIntegersEnum, CalendarValueInfo<double>> integers, string objectType)
         {
             // Initialize the card builder
             var cardBuilder = new StringBuilder();
@@ -277,28 +279,55 @@ namespace VisualCard.Calendar.Parts
             foreach (CalendarStringsEnum stringEnum in stringEnums)
             {
                 // Get the string value
-                string stringValue = GetString(stringEnum, version, strings);
-                if (string.IsNullOrEmpty(stringValue))
+                var stringInfo = GetString(stringEnum, version, strings);
+                if (stringInfo is null || string.IsNullOrEmpty(stringInfo.Value))
                     continue;
 
-                // Now, locate the prefix and assemble the line
+                // Get the prefix
                 string prefix = VCalendarParserTools.GetPrefixFromStringsEnum(stringEnum);
-                cardBuilder.Append($"{prefix}{VcardConstants._argumentDelimiter}");
-                cardBuilder.AppendLine($"{VcardCommonTools.MakeStringBlock(stringValue, prefix.Length)}");
+                var type = VCalendarParserTools.GetPartType(prefix, objectType, version);
+                string defaultType = type.defaultType;
+                string defaultValueType = type.defaultValueType;
+
+                // Now, locate the prefix and assemble the line
+                var partBuilder = new StringBuilder();
+                string partArguments = CalendarBuilderTools.BuildArguments(stringInfo, version, defaultType, defaultValueType);
+                string[] partArgumentsLines = partArguments.SplitNewLines();
+                string group = stringInfo.Group;
+                if (!string.IsNullOrEmpty(group))
+                    cardBuilder.Append($"{group}.");
+                partBuilder.Append($"{prefix}");
+                partBuilder.Append($"{partArguments}");
+                partBuilder.Append($"{VcardCommonTools.MakeStringBlock(stringInfo.Value, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length)}");
+                cardBuilder.AppendLine($"{partBuilder}");
             }
 
             // Then, enumerate all the integers
             CalendarIntegersEnum[] integerEnums = (CalendarIntegersEnum[])Enum.GetValues(typeof(CalendarIntegersEnum));
             foreach (CalendarIntegersEnum integerEnum in integerEnums)
             {
-                // Get the integer value
-                double integerValue = GetInteger(integerEnum, version, integers);
-                if (integerValue == -1)
+                // Get the string value
+                var integerInfo = GetInteger(integerEnum, version, integers);
+                if (integerInfo is null || integerInfo.Value == -1)
                     continue;
 
-                // Now, locate the prefix and assemble the line
+                // Get the prefix
                 string prefix = VCalendarParserTools.GetPrefixFromIntegersEnum(integerEnum);
-                cardBuilder.AppendLine($"{prefix}{VcardConstants._argumentDelimiter}{integerValue}");
+                var type = VCalendarParserTools.GetPartType(prefix, objectType, version);
+                string defaultType = type.defaultType;
+                string defaultValueType = type.defaultValueType;
+
+                // Now, locate the prefix and assemble the line
+                var partBuilder = new StringBuilder();
+                string partArguments = CalendarBuilderTools.BuildArguments(integerInfo, version, defaultType, defaultValueType);
+                string[] partArgumentsLines = partArguments.SplitNewLines();
+                string group = integerInfo.Group;
+                if (!string.IsNullOrEmpty(group))
+                    cardBuilder.Append($"{group}.");
+                partBuilder.Append($"{prefix}");
+                partBuilder.Append($"{partArguments}");
+                partBuilder.Append($"{VcardCommonTools.MakeStringBlock($"{integerInfo.Value}", partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length)}");
+                cardBuilder.AppendLine($"{partBuilder}");
             }
 
             // Then, enumerate all the arrays
@@ -321,8 +350,11 @@ namespace VisualCard.Calendar.Parts
                 {
                     var partBuilder = new StringBuilder();
                     string partRepresentation = part.ToStringVcalendarInternal(version);
-                    string partArguments = CalendarBuilderTools.BuildArguments(part, defaultType, defaultValueType);
+                    string partArguments = CalendarBuilderTools.BuildArguments(part, version, defaultType, defaultValueType);
                     string[] partArgumentsLines = partArguments.SplitNewLines();
+                    string group = part.Group;
+                    if (!string.IsNullOrEmpty(group))
+                        cardBuilder.Append($"{group}.");
                     partBuilder.Append($"{prefix}");
                     partBuilder.Append($"{partArguments}");
                     partBuilder.Append($"{VcardCommonTools.MakeStringBlock(partRepresentation, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length)}");
@@ -435,8 +467,8 @@ namespace VisualCard.Calendar.Parts
             hashCode = hashCode * -1521134295 + EqualityComparer<List<CalendarTimeZone>>.Default.GetHashCode(timeZones);
             hashCode = hashCode * -1521134295 + EqualityComparer<List<CalendarOtherComponent>>.Default.GetHashCode(others);
             hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>>>.Default.GetHashCode(partsArray);
-            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarStringsEnum, string>>.Default.GetHashCode(strings);
-            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarIntegersEnum, double>>.Default.GetHashCode(integers);
+            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarStringsEnum, CalendarValueInfo<string>>>.Default.GetHashCode(strings);
+            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarIntegersEnum, CalendarValueInfo<double>>>.Default.GetHashCode(integers);
             return hashCode;
         }
 
@@ -478,12 +510,12 @@ namespace VisualCard.Calendar.Parts
             }
         }
 
-        internal void SetString(CalendarStringsEnum key, string value) =>
+        internal void SetString(CalendarStringsEnum key, CalendarValueInfo<string> value) =>
             SetString(key, value, strings);
 
-        internal void SetString(CalendarStringsEnum key, string value, Dictionary<CalendarStringsEnum, string> strings)
+        internal void SetString(CalendarStringsEnum key, CalendarValueInfo<string> value, Dictionary<CalendarStringsEnum, CalendarValueInfo<string>> strings)
         {
-            if (string.IsNullOrEmpty(value))
+            if (value is null || string.IsNullOrEmpty(value.Value))
                 return;
 
             // If we don't have this key yet, add it.
@@ -493,12 +525,12 @@ namespace VisualCard.Calendar.Parts
                 throw new InvalidOperationException($"Can't overwrite string {key}.");
         }
 
-        internal void SetInteger(CalendarIntegersEnum key, double value) =>
+        internal void SetInteger(CalendarIntegersEnum key, CalendarValueInfo<double> value) =>
             SetInteger(key, value, integers);
 
-        internal void SetInteger(CalendarIntegersEnum key, double value, Dictionary<CalendarIntegersEnum, double> integers)
+        internal void SetInteger(CalendarIntegersEnum key, CalendarValueInfo<double> value, Dictionary<CalendarIntegersEnum, CalendarValueInfo<double>> integers)
         {
-            if (value == -1)
+            if (value is null || value.Value == -1)
                 return;
 
             // If we don't have this key yet, add it.

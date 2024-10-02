@@ -35,19 +35,19 @@ namespace VisualCard.Calendar.Parts.Implementations.TimeZone
         /// </summary>
         public TimeSpan Offset { get; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
-            new TimeZoneOffsetFromInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new TimeZoneOffsetFromInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion) =>
             $"{VcardCommonTools.SaveUtcOffset(Offset)}";
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate the fields
             TimeSpan start = VcardCommonTools.ParseUtcOffset(value);
 
             // Add the fetched information
-            TimeZoneOffsetFromInfo _time = new(finalArgs, elementTypes, valueType, start);
+            TimeZoneOffsetFromInfo _time = new(finalArgs, elementTypes, group, valueType, start);
             return _time;
         }
 
@@ -103,8 +103,8 @@ namespace VisualCard.Calendar.Parts.Implementations.TimeZone
 
         internal TimeZoneOffsetFromInfo() { }
 
-        internal TimeZoneOffsetFromInfo(ArgumentInfo[] arguments, string[] elementTypes, string valueType, TimeSpan rev) :
-            base(arguments, elementTypes, valueType)
+        internal TimeZoneOffsetFromInfo(ArgumentInfo[] arguments, string[] elementTypes, string group, string valueType, TimeSpan rev) :
+            base(arguments, elementTypes, group, valueType)
         {
             Offset = rev;
         }

@@ -34,17 +34,22 @@ namespace VisualCard.Calendar.Parts
         /// <summary>
         /// Final arguments
         /// </summary>
-        public virtual ArgumentInfo[]? Arguments { get; internal set; }
+        public virtual ArgumentInfo[] Arguments { get; internal set; } = [];
 
         /// <summary>
         /// Card element type (home, work, ...)
         /// </summary>
-        public virtual string[]? ElementTypes { get; internal set; }
+        public virtual string[] ElementTypes { get; internal set; } = [];
 
         /// <summary>
         /// Value type (usually set by VALUE=)
         /// </summary>
-        public virtual string? ValueType { get; internal set; }
+        public virtual string ValueType { get; internal set; } = "";
+
+        /// <summary>
+        /// Property group
+        /// </summary>
+        public virtual string Group { get; internal set; } = "";
 
         /// <summary>
         /// Is this part preferred?
@@ -95,6 +100,7 @@ namespace VisualCard.Calendar.Parts
                 source.Arguments.SequenceEqual(target.Arguments) &&
                 source.ElementTypes.SequenceEqual(target.ElementTypes) &&
                 source.ValueType == target.ValueType &&
+                source.Group == target.Group &&
                 EqualsInternal(source, target)
             ;
         }
@@ -106,10 +112,11 @@ namespace VisualCard.Calendar.Parts
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = -452519667;
-            hashCode = hashCode * -1521134295 + EqualityComparer<ArgumentInfo[]?>.Default.GetHashCode(Arguments);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]?>.Default.GetHashCode(ElementTypes);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(ValueType);
+            int hashCode = -1053170623;
+            hashCode = hashCode * -1521134295 + EqualityComparer<ArgumentInfo[]>.Default.GetHashCode(Arguments);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(ElementTypes);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ValueType);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Group);
             return hashCode;
         }
 
@@ -124,18 +131,19 @@ namespace VisualCard.Calendar.Parts
         internal virtual bool EqualsInternal(BaseCalendarPartInfo source, BaseCalendarPartInfo target) =>
             true;
 
-        internal abstract BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version calendarVersion);
+        internal abstract BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version calendarVersion);
 
         internal abstract string ToStringVcalendarInternal(Version calendarVersion);
 
         internal BaseCalendarPartInfo()
         { }
 
-        internal BaseCalendarPartInfo(ArgumentInfo[] arguments, string[] elementTypes, string valueType)
+        internal BaseCalendarPartInfo(ArgumentInfo[] arguments, string[] elementTypes, string group, string valueType)
         {
             Arguments = arguments;
             ElementTypes = elementTypes;
             ValueType = valueType;
+            Group = group;
         }
     }
 }

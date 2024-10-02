@@ -63,8 +63,8 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
         public DateTimeOffset SnoozeIn =>
             VcardCommonTools.GetDurationSpan(SnoozeTime ?? "").result;
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version calendarVersion) =>
-            new DisplayAlarmInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, calendarVersion);
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version calendarVersion) =>
+            new DisplayAlarmInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, group, valueType, calendarVersion);
 
         internal override string ToStringVcalendarInternal(Version calendarVersion)
         {
@@ -72,7 +72,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
             return $"{posixRunTime};{SnoozeTime};{RepeatCount};{Display}";
         }
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version calendarVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version calendarVersion)
         {
             // Get the values
             string[] split = value.Split(';');
@@ -90,7 +90,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
                 throw new ArgumentException("Invalid repeat times");
 
             // Populate the fields
-            DisplayAlarmInfo info = new(finalArgs, elementTypes, valueType, runTime, snoozeTime, repeat, display);
+            DisplayAlarmInfo info = new(finalArgs, elementTypes, group, valueType, runTime, snoozeTime, repeat, display);
             return info;
         }
 
@@ -152,8 +152,8 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
 
         internal DisplayAlarmInfo() { }
 
-        internal DisplayAlarmInfo(ArgumentInfo[] arguments, string[] elementTypes, string valueType, DateTimeOffset runTime, string snoozeTime, int repeat, string display) :
-            base(arguments, elementTypes, valueType)
+        internal DisplayAlarmInfo(ArgumentInfo[] arguments, string[] elementTypes, string group, string valueType, DateTimeOffset runTime, string snoozeTime, int repeat, string display) :
+            base(arguments, elementTypes, group, valueType)
         {
             RunTime = runTime;
             SnoozeTime = snoozeTime;

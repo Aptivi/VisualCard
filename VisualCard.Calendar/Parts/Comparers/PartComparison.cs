@@ -63,8 +63,8 @@ namespace VisualCard.Calendar.Parts.Comparers
         }
 
         internal static bool StringsEqual(
-            IDictionary<CalendarStringsEnum, string> source,
-            IDictionary<CalendarStringsEnum, string> target)
+            IDictionary<CalendarStringsEnum, CalendarValueInfo<string>> source,
+            IDictionary<CalendarStringsEnum, CalendarValueInfo<string>> target)
         {
             // Verify the dictionaries
             if (!VerifyDicts(source, target))
@@ -77,7 +77,7 @@ namespace VisualCard.Calendar.Parts.Comparers
             // Now, test the equality
             bool equal = source.All(kvp =>
             {
-                bool exists = target.TryGetValue(kvp.Key, out string part);
+                bool exists = target.TryGetValue(kvp.Key, out var part);
                 bool partsEqual = kvp.Value == part;
                 return exists && partsEqual;
             });
@@ -85,8 +85,8 @@ namespace VisualCard.Calendar.Parts.Comparers
         }
 
         internal static bool IntegersEqual(
-            IDictionary<CalendarIntegersEnum, double> source,
-            IDictionary<CalendarIntegersEnum, double> target)
+            IDictionary<CalendarIntegersEnum, CalendarValueInfo<double>> source,
+            IDictionary<CalendarIntegersEnum, CalendarValueInfo<double>> target)
         {
             // Verify the dictionaries
             if (!VerifyDicts(source, target))
@@ -99,7 +99,7 @@ namespace VisualCard.Calendar.Parts.Comparers
             // Now, test the equality
             bool equal = source.All(kvp =>
             {
-                bool exists = target.TryGetValue(kvp.Key, out double part);
+                bool exists = target.TryGetValue(kvp.Key, out var part);
                 bool partsEqual = kvp.Value == part;
                 return exists && partsEqual;
             });

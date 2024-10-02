@@ -35,19 +35,19 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// </summary>
         public DateTimeOffset LastModified { get; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
-            new LastModifiedInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new LastModifiedInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion) =>
             $"{VcardCommonTools.SavePosixDate(LastModified)}";
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate the fields
             DateTimeOffset created = VcardCommonTools.ParsePosixDateTime(value);
 
             // Add the fetched information
-            LastModifiedInfo _time = new(finalArgs, elementTypes, valueType, created);
+            LastModifiedInfo _time = new(finalArgs, elementTypes, group, valueType, created);
             return _time;
         }
 
@@ -103,8 +103,8 @@ namespace VisualCard.Calendar.Parts.Implementations
 
         internal LastModifiedInfo() { }
 
-        internal LastModifiedInfo(ArgumentInfo[] arguments, string[] elementTypes, string valueType, DateTimeOffset rev) :
-            base(arguments, elementTypes, valueType)
+        internal LastModifiedInfo(ArgumentInfo[] arguments, string[] elementTypes, string group, string valueType, DateTimeOffset rev) :
+            base(arguments, elementTypes, group, valueType)
         {
             LastModified = rev;
         }

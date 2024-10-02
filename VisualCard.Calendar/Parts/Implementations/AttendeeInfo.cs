@@ -36,19 +36,19 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// </summary>
         public string? Attendee { get; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
-            new AttendeeInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new AttendeeInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion) =>
             Attendee ?? "";
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate the fields
             var attendee = Regex.Unescape(value);
 
             // Add the fetched information
-            AttendeeInfo _time = new([], elementTypes, valueType, attendee);
+            AttendeeInfo _time = new([], elementTypes, group, valueType, attendee);
             return _time;
         }
 
@@ -104,8 +104,8 @@ namespace VisualCard.Calendar.Parts.Implementations
 
         internal AttendeeInfo() { }
 
-        internal AttendeeInfo(ArgumentInfo[] arguments, string[] elementTypes, string valueType, string attendee) :
-            base(arguments, elementTypes, valueType)
+        internal AttendeeInfo(ArgumentInfo[] arguments, string[] elementTypes, string group, string valueType, string attendee) :
+            base(arguments, elementTypes, group, valueType)
         {
             Attendee = attendee;
         }

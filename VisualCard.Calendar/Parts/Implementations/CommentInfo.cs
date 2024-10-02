@@ -36,19 +36,19 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// </summary>
         public string? Comment { get; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
-            new CommentInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new CommentInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion) =>
             Comment ?? "";
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate the fields
             var comment = Regex.Unescape(value);
 
             // Add the fetched information
-            CommentInfo _time = new([], elementTypes, valueType, comment);
+            CommentInfo _time = new([], elementTypes, group, valueType, comment);
             return _time;
         }
 
@@ -104,8 +104,8 @@ namespace VisualCard.Calendar.Parts.Implementations
 
         internal CommentInfo() { }
 
-        internal CommentInfo(ArgumentInfo[] arguments, string[] elementTypes, string valueType, string comment) :
-            base(arguments, elementTypes, valueType)
+        internal CommentInfo(ArgumentInfo[] arguments, string[] elementTypes, string group, string valueType, string comment) :
+            base(arguments, elementTypes, group, valueType)
         {
             Comment = comment;
         }

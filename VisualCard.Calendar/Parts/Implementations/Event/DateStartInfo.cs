@@ -35,8 +35,8 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
         /// </summary>
         public DateTimeOffset DateStart { get; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
-            new DateStartInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new DateStartInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion)
         {
@@ -48,7 +48,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
             return value;
         }
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate the fields
             string type = valueType ?? "";
@@ -58,7 +58,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
                 VcardCommonTools.ParsePosixDateTime(value);
 
             // Add the fetched information
-            DateStartInfo _time = new(finalArgs, elementTypes, valueType ?? "", start);
+            DateStartInfo _time = new(finalArgs, elementTypes, group, valueType ?? "", start);
             return _time;
         }
 
@@ -114,8 +114,8 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
 
         internal DateStartInfo() { }
 
-        internal DateStartInfo(ArgumentInfo[] arguments, string[] elementTypes, string valueType, DateTimeOffset rev) :
-            base(arguments, elementTypes, valueType)
+        internal DateStartInfo(ArgumentInfo[] arguments, string[] elementTypes, string group, string valueType, DateTimeOffset rev) :
+            base(arguments, elementTypes, group, valueType)
         {
             DateStart = rev;
         }

@@ -37,8 +37,8 @@ namespace VisualCard.Calendar.Parts.Implementations.FreeBusy
         /// </summary>
         public TimePeriod? FreeBusy { get; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
-            new CalendarFreeBusyInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new CalendarFreeBusyInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion)
         {
@@ -50,13 +50,13 @@ namespace VisualCard.Calendar.Parts.Implementations.FreeBusy
             return builder.ToString();
         }
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate the fields
             var freeBusy = VcardCommonTools.GetTimePeriod(value);
 
             // Add the fetched information
-            CalendarFreeBusyInfo _time = new([], elementTypes, valueType, freeBusy);
+            CalendarFreeBusyInfo _time = new([], elementTypes, group, valueType, freeBusy);
             return _time;
         }
 
@@ -112,8 +112,8 @@ namespace VisualCard.Calendar.Parts.Implementations.FreeBusy
 
         internal CalendarFreeBusyInfo() { }
 
-        internal CalendarFreeBusyInfo(ArgumentInfo[] arguments, string[] elementTypes, string valueType, TimePeriod freeBusy) :
-            base(arguments, elementTypes, valueType)
+        internal CalendarFreeBusyInfo(ArgumentInfo[] arguments, string[] elementTypes, string group, string valueType, TimePeriod freeBusy) :
+            base(arguments, elementTypes, group, valueType)
         {
             FreeBusy = freeBusy;
         }

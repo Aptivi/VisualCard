@@ -37,19 +37,19 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// </summary>
         public string[]? Resources { get; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion) =>
-            new ResourcesInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new ResourcesInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion) =>
             $"{string.Join(VcardConstants._valueDelimiter.ToString(), Resources)}";
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate the fields
             var resources = Regex.Unescape(value).Split(cardVersion.Major == 1 ? ';' : ',');
 
             // Add the fetched information
-            ResourcesInfo _time = new([], elementTypes, valueType, resources);
+            ResourcesInfo _time = new([], elementTypes, group, valueType, resources);
             return _time;
         }
 
@@ -105,8 +105,8 @@ namespace VisualCard.Calendar.Parts.Implementations
 
         internal ResourcesInfo() { }
 
-        internal ResourcesInfo(ArgumentInfo[] arguments, string[] elementTypes, string valueType, string[] resources) :
-            base(arguments, elementTypes, valueType)
+        internal ResourcesInfo(ArgumentInfo[] arguments, string[] elementTypes, string group, string valueType, string[] resources) :
+            base(arguments, elementTypes, group, valueType)
         {
             Resources = resources;
         }

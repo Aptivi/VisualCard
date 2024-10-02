@@ -252,7 +252,7 @@ namespace VisualCard.Calendar.Parsers
             return (CalendarPartsArrayEnum.IanaNames, PartCardinality.Any);
         }
 
-        internal static (PartType type, object enumeration, Type? enumType, Func<string, ArgumentInfo[], string[], string, Version, BaseCalendarPartInfo>? fromStringFunc, string defaultType, string defaultValue, string defaultValueType, string[] allowedExtraTypes, string[] allowedValues) GetPartType(string prefix, string objectType, Version calendarVersion)
+        internal static (PartType type, object enumeration, Type? enumType, Func<string, ArgumentInfo[], string[], string, string, Version, BaseCalendarPartInfo>? fromStringFunc, string defaultType, string defaultValue, string defaultValueType, string[] allowedExtraTypes, string[] allowedValues) GetPartType(string prefix, string objectType, Version calendarVersion)
         {
             string[] allowedStatuses =
                 objectType == VCalendarConstants._objectVEventSpecifier && calendarVersion.Major == 2 ? ["TENTATIVE", "CONFIRMED", "CANCELLED"] :
