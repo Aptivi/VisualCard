@@ -56,7 +56,7 @@ namespace VisualCard.Calendar.Parts.Implementations
         internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version calendarVersion)
         {
             // Check to see if the value is prepended by the ENCODING= argument
-            string attachEncoding = VcardCommonTools.GetValuesString(finalArgs, "b", VCalendarConstants._encodingArgumentSpecifier);
+            string attachEncoding = VcardCommonTools.GetValuesString(finalArgs, "b", VcardConstants._encodingArgumentSpecifier);
             if (!VcardCommonTools.IsEncodingBlob(finalArgs, value))
             {
                 // Since we don't need embedded attachs, we need to check a URL.

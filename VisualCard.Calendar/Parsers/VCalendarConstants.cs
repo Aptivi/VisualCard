@@ -17,16 +17,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+using VisualCard.Parsers;
+
 namespace VisualCard.Calendar.Parsers
 {
     internal static class VCalendarConstants
     {
         // Mandatory for each vCalendar
-        internal const string _beginText = _beginSpecifier + ":" + _objectVCalendarSpecifier;
-        internal const string _endText = _endSpecifier + ":" + _objectVCalendarSpecifier;
-        internal const string _beginSpecifier = "BEGIN";
-        internal const string _endSpecifier = "END";
-        internal const string _versionSpecifier = "VERSION";
+        internal const string _beginText = VcardConstants._beginSpecifier + ":" + _objectVCalendarSpecifier;
+        internal const string _endText = VcardConstants._endSpecifier + ":" + _objectVCalendarSpecifier;
 
         // Object specifiers
         internal const string _objectVCalendarSpecifier = "VCALENDAR";
@@ -41,15 +40,7 @@ namespace VisualCard.Calendar.Parsers
         internal const string _objectVDaylightSpecifier = "DAYLIGHT";
         internal const string _objectVAlarmSpecifier = "VALARM";
 
-        // Misc vCalendar constants
-        internal const string _spaceBreak = " ";
-        internal const string _tabBreak = "\x0009";
-
         // Available in vCalendar 1.0 and 2.0
-        internal const char _fieldDelimiter = ';';
-        internal const char _valueDelimiter = ',';
-        internal const char _argumentDelimiter = ':';
-        internal const char _argumentValueDelimiter = '=';
         internal const string _productIdSpecifier = "PRODID";
         internal const string _uidSpecifier = "UID";
         internal const string _dateStartSpecifier = "DTSTART";
@@ -83,10 +74,6 @@ namespace VisualCard.Calendar.Parsers
         internal const string _lastModSpecifier = "LAST-MODIFIED";
         internal const string _prioritySpecifier = "PRIORITY";
         internal const string _urlSpecifier = "URL";
-        internal const string _xSpecifier = "X-";
-        internal const string _typeArgumentSpecifier = "TYPE=";
-        internal const string _valueArgumentSpecifier = "VALUE=";
-        internal const string _encodingArgumentSpecifier = "ENCODING=";
 
         // Available in vCalendar 1.0
         internal const string _daylightSpecifier = "DAYLIGHT";

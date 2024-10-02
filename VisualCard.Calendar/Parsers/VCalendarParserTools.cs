@@ -31,6 +31,7 @@ using System.Text.RegularExpressions;
 using System.IO;
 using VisualCard.Calendar.Parts.Implementations.FreeBusy;
 using VisualCard.Parsers.Arguments;
+using VisualCard.Parsers;
 
 namespace VisualCard.Calendar.Parsers
 {
@@ -185,7 +186,7 @@ namespace VisualCard.Calendar.Parsers
                 CalendarPartsArrayEnum.Contact => VCalendarConstants._contactSpecifier,
 
                 // Extensions are allowed
-                CalendarPartsArrayEnum.NonstandardNames => VCalendarConstants._xSpecifier,
+                CalendarPartsArrayEnum.NonstandardNames => VcardConstants._xSpecifier,
                 _ => ""
             };
 
@@ -319,7 +320,7 @@ namespace VisualCard.Calendar.Parsers
                 VCalendarConstants._rNumSpecifier => (PartType.Integers, CalendarIntegersEnum.RecurrTimes, null, null, "", "", "integer", [], []),
 
                 // Extensions are allowed
-                VCalendarConstants._xSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.NonstandardNames, typeof(XNameInfo), XNameInfo.FromStringVcalendarStatic, "", "", "", [], []),
+                VcardConstants._xSpecifier => (PartType.PartsArray, CalendarPartsArrayEnum.NonstandardNames, typeof(XNameInfo), XNameInfo.FromStringVcalendarStatic, "", "", "", [], []),
                 _ => (PartType.PartsArray, CalendarPartsArrayEnum.IanaNames, typeof(ExtraInfo), ExtraInfo.FromStringVcalendarStatic, "", "", "", [], []),
             };
         }

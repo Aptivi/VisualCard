@@ -22,9 +22,14 @@ namespace VisualCard.Parsers
     internal static class VcardConstants
     {
         // Mandatory for each vCard
-        internal const string _beginText = "BEGIN:VCARD";
-        internal const string _endText = "END:VCARD";
+        internal const string _beginText = _beginSpecifier + ":" + _objectVCardSpecifier;
+        internal const string _endText = _endSpecifier + ":" + _objectVCardSpecifier;
+        internal const string _beginSpecifier = "BEGIN";
+        internal const string _endSpecifier = "END";
         internal const string _versionSpecifier = "VERSION";
+
+        // Object specifiers
+        internal const string _objectVCardSpecifier = "VCARD";
 
         // Misc vCard constants
         internal const string _spaceBreak = " ";

@@ -85,8 +85,8 @@ namespace VisualCard.Calendar.Parsers
 
                 // First, check to see if we need to construct blocks
                 string secondLine = i + 1 < CalendarContent.Length ? CalendarContent[i + 1] : "";
-                bool firstConstructedLine = !_value.StartsWith(VCalendarConstants._spaceBreak) && !_value.StartsWith(VCalendarConstants._tabBreak);
-                constructing = secondLine.StartsWithAnyOf([VCalendarConstants._spaceBreak, VCalendarConstants._tabBreak]);
+                bool firstConstructedLine = !_value.StartsWith(VcardConstants._spaceBreak) && !_value.StartsWith(VcardConstants._tabBreak);
+                constructing = secondLine.StartsWithAnyOf([VcardConstants._spaceBreak, VcardConstants._tabBreak]);
                 secondLine = secondLine.Length > 1 ? secondLine.Substring(1) : "";
                 if (constructing)
                 {
@@ -104,25 +104,25 @@ namespace VisualCard.Calendar.Parsers
                 try
                 {
                     // Now, parse a line
-                    if (!_value.Contains(VCalendarConstants._argumentDelimiter))
+                    if (!_value.Contains(VcardConstants._argumentDelimiter))
                         throw new ArgumentException("The line must contain an argument delimiter.");
-                    string value = _value.Substring(_value.IndexOf(VCalendarConstants._argumentDelimiter) + 1);
-                    string prefixWithArgs = _value.Substring(0, _value.IndexOf(VCalendarConstants._argumentDelimiter));
+                    string value = _value.Substring(_value.IndexOf(VcardConstants._argumentDelimiter) + 1);
+                    string prefixWithArgs = _value.Substring(0, _value.IndexOf(VcardConstants._argumentDelimiter));
                     string prefix = (prefixWithArgs.Contains(';') ? prefixWithArgs.Substring(0, prefixWithArgs.IndexOf(';')) : prefixWithArgs).ToUpper();
                     string args = prefixWithArgs.Contains(';') ? prefixWithArgs.Substring(prefix.Length + 1) : "";
-                    string[] splitArgs = args.Split([VCalendarConstants._fieldDelimiter], StringSplitOptions.RemoveEmptyEntries);
-                    string[] splitValues = value.Split([VCalendarConstants._fieldDelimiter], StringSplitOptions.RemoveEmptyEntries);
+                    string[] splitArgs = args.Split([VcardConstants._fieldDelimiter], StringSplitOptions.RemoveEmptyEntries);
+                    string[] splitValues = value.Split([VcardConstants._fieldDelimiter], StringSplitOptions.RemoveEmptyEntries);
                     bool isWithType = splitArgs.Length > 0;
                     List<ArgumentInfo> finalArgs = [];
 
                     // Check to see if we have a BEGIN or an END prefix
-                    if (prefix == VCalendarConstants._beginSpecifier)
+                    if (prefix == VcardConstants._beginSpecifier)
                     {
                         string finalType = value.ToUpper();
                         begins.Add((finalType, GetCalendarInheritedInstance(finalType)));
                         continue;
                     }
-                    else if (prefix == VCalendarConstants._endSpecifier)
+                    else if (prefix == VcardConstants._endSpecifier)
                     {
                         string expectedType = begins[begins.Count - 1].Item1;
                         if (value == expectedType)
@@ -142,10 +142,10 @@ namespace VisualCard.Calendar.Parsers
                     }
 
                     // Get the part type
-                    bool xNonstandard = prefix.StartsWith(VCalendarConstants._xSpecifier);
+                    bool xNonstandard = prefix.StartsWith(VcardConstants._xSpecifier);
                     bool specifierRequired = CalendarVersion.Major >= 3;
                     Type calendarType = subPart is not null ? subPart.GetType() : calendar.GetType();
-                    var (type, enumeration, classType, fromString, defaultType, defaultValue, defaultValueType, extraAllowedTypes, allowedValues) = VCalendarParserTools.GetPartType(xNonstandard ? VCalendarConstants._xSpecifier : prefix, VCalendarParserTools.GetObjectTypeFromType(calendarType), CalendarVersion);
+                    var (type, enumeration, classType, fromString, defaultType, defaultValue, defaultValueType, extraAllowedTypes, allowedValues) = VCalendarParserTools.GetPartType(xNonstandard ? VcardConstants._xSpecifier : prefix, VCalendarParserTools.GetObjectTypeFromType(calendarType), CalendarVersion);
 
                     // Handle arguments
                     if (isWithType)
@@ -153,15 +153,15 @@ namespace VisualCard.Calendar.Parsers
                         // Finalize the arguments
                         var argsStr = splitArgs.Except(
                             splitArgs.Where((arg) =>
-                                arg.StartsWith(VCalendarConstants._valueArgumentSpecifier) ||
-                                arg.StartsWith(VCalendarConstants._typeArgumentSpecifier) ||
-                                CalendarVersion.Major == 2 && !arg.Contains(VCalendarConstants._argumentValueDelimiter)
+                                arg.StartsWith(VcardConstants._valueArgumentSpecifier) ||
+                                arg.StartsWith(VcardConstants._typeArgumentSpecifier) ||
+                                CalendarVersion.Major == 2 && !arg.Contains(VcardConstants._argumentValueDelimiter)
                             )
                         );
                         foreach (string arg in argsStr)
                         {
-                            string keyStr = arg.Substring(0, arg.IndexOf(VCalendarConstants._argumentValueDelimiter));
-                            string valueStr = arg.RemovePrefix($"{keyStr}{VCalendarConstants._argumentValueDelimiter}");
+                            string keyStr = arg.Substring(0, arg.IndexOf(VcardConstants._argumentValueDelimiter));
+                            string valueStr = arg.RemovePrefix($"{keyStr}{VcardConstants._argumentValueDelimiter}");
                             finalArgs.Add(new(keyStr, valueStr));
                         }
                     }
@@ -176,7 +176,7 @@ namespace VisualCard.Calendar.Parsers
                     }
 
                     // Handle the part type, and extract the value
-                    string valueType = VcardCommonTools.GetFirstValue(splitArgs, defaultValueType, VCalendarConstants._valueArgumentSpecifier);
+                    string valueType = VcardCommonTools.GetFirstValue(splitArgs, defaultValueType, VcardConstants._valueArgumentSpecifier);
                     string finalValue = VcardParserTools.ProcessStringValue(value, valueType, calendarVersion.Major == 1 ? ';' : ',');
 
                     // Check for allowed values

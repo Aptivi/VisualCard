@@ -268,9 +268,9 @@ namespace VisualCard.Calendar.Parts
             var cardBuilder = new StringBuilder();
 
             // First, write the header
-            cardBuilder.AppendLine($"{VCalendarConstants._beginSpecifier}:{objectType}");
+            cardBuilder.AppendLine($"{VcardConstants._beginSpecifier}:{objectType}");
             if (objectType == VCalendarConstants._objectVCalendarSpecifier)
-                cardBuilder.AppendLine($"{VCalendarConstants._versionSpecifier}:{version}");
+                cardBuilder.AppendLine($"{VcardConstants._versionSpecifier}:{version}");
 
             // Then, enumerate all the strings
             CalendarStringsEnum[] stringEnums = (CalendarStringsEnum[])Enum.GetValues(typeof(CalendarStringsEnum));
@@ -283,7 +283,7 @@ namespace VisualCard.Calendar.Parts
 
                 // Now, locate the prefix and assemble the line
                 string prefix = VCalendarParserTools.GetPrefixFromStringsEnum(stringEnum);
-                cardBuilder.Append($"{prefix}{VCalendarConstants._argumentDelimiter}");
+                cardBuilder.Append($"{prefix}{VcardConstants._argumentDelimiter}");
                 cardBuilder.AppendLine($"{VcardCommonTools.MakeStringBlock(stringValue, prefix.Length)}");
             }
 
@@ -298,7 +298,7 @@ namespace VisualCard.Calendar.Parts
 
                 // Now, locate the prefix and assemble the line
                 string prefix = VCalendarParserTools.GetPrefixFromIntegersEnum(integerEnum);
-                cardBuilder.AppendLine($"{prefix}{VCalendarConstants._argumentDelimiter}{integerValue}");
+                cardBuilder.AppendLine($"{prefix}{VcardConstants._argumentDelimiter}{integerValue}");
             }
 
             // Then, enumerate all the arrays
@@ -365,7 +365,7 @@ namespace VisualCard.Calendar.Parts
             }
 
             // End the card and return it
-            cardBuilder.AppendLine($"{VCalendarConstants._endSpecifier}:{objectType}");
+            cardBuilder.AppendLine($"{VcardConstants._endSpecifier}:{objectType}");
             return cardBuilder.ToString();
         }
 

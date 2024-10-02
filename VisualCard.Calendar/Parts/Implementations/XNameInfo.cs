@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using VisualCard.Calendar.Parsers;
+using VisualCard.Parsers;
 using VisualCard.Parsers.Arguments;
 
 namespace VisualCard.Calendar.Parts.Implementations
@@ -45,20 +46,20 @@ namespace VisualCard.Calendar.Parts.Implementations
             new XNameInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion) =>
-            string.Join(VCalendarConstants._fieldDelimiter.ToString(), XValues);
+            string.Join(VcardConstants._fieldDelimiter.ToString(), XValues);
 
         internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string valueType, Version cardVersion)
         {
-            string xValue = value.Substring(VCalendarConstants._xSpecifier.Length);
-            string[] splitX = xValue.Split(VCalendarConstants._argumentDelimiter);
+            string xValue = value.Substring(VcardConstants._xSpecifier.Length);
+            string[] splitX = xValue.Split(VcardConstants._argumentDelimiter);
 
             // Populate the name
-            string _xName = splitX[0].Contains(VCalendarConstants._fieldDelimiter.ToString()) ?
-                            splitX[0].Substring(0, splitX[0].IndexOf(VCalendarConstants._fieldDelimiter)) :
+            string _xName = splitX[0].Contains(VcardConstants._fieldDelimiter.ToString()) ?
+                            splitX[0].Substring(0, splitX[0].IndexOf(VcardConstants._fieldDelimiter)) :
                             splitX[0];
 
             // Populate the fields
-            string[] _xValues = splitX[1].Split(VCalendarConstants._fieldDelimiter);
+            string[] _xValues = splitX[1].Split(VcardConstants._fieldDelimiter);
             XNameInfo _x = new(finalArgs, elementTypes, valueType, _xName, _xValues);
             return _x;
         }

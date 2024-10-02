@@ -23,6 +23,7 @@ using System.Text;
 using System;
 using Textify.General;
 using VisualCard.Calendar.Parsers;
+using VisualCard.Parsers;
 
 namespace VisualCard.Calendar
 {
@@ -92,7 +93,7 @@ namespace VisualCard.Calendar
                         continue;
                 }
                 else if (!CalendarLine.EqualsNoCase(VCalendarConstants._beginText) &&
-                         !CalendarLine.ToUpper().StartsWith(VCalendarConstants._versionSpecifier) &&
+                         !CalendarLine.ToUpper().StartsWith(VcardConstants._versionSpecifier) &&
                          !CalendarLine.EqualsNoCase(VCalendarConstants._endText))
                     append = true;
                 if (append)
@@ -111,12 +112,12 @@ namespace VisualCard.Calendar
 
                 // Now that the beginning of the calendar tag is spotted, parse the version as we need to know how to select the appropriate parser.
                 // All vCalendars are required to have their own version directly after the BEGIN:VCALENDAR tag
-                if (CalendarLine.ToUpper().StartsWith(VCalendarConstants._versionSpecifier) &&
-                    !CalendarLine.EqualsNoCase($"{VCalendarConstants._versionSpecifier}:1.0") &&
-                    !CalendarLine.EqualsNoCase($"{VCalendarConstants._versionSpecifier}:2.0") &&
+                if (CalendarLine.ToUpper().StartsWith(VcardConstants._versionSpecifier) &&
+                    !CalendarLine.EqualsNoCase($"{VcardConstants._versionSpecifier}:1.0") &&
+                    !CalendarLine.EqualsNoCase($"{VcardConstants._versionSpecifier}:2.0") &&
                     !VersionSpotted)
                     throw new InvalidDataException($"This has an invalid vCalendar version {CalendarLine}.");
-                else if (!VersionSpotted && CalendarLine.ToUpper().StartsWith(VCalendarConstants._versionSpecifier))
+                else if (!VersionSpotted && CalendarLine.ToUpper().StartsWith(VcardConstants._versionSpecifier))
                 {
                     VersionSpotted = true;
                     CalendarVersion = new(CalendarLine.Substring(8));

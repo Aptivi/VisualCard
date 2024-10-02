@@ -23,6 +23,7 @@ using System.Linq;
 using System.Text;
 using VisualCard.Calendar.Parsers;
 using VisualCard.Calendar.Parts.Implementations;
+using VisualCard.Parsers;
 
 namespace VisualCard.Calendar.Parts
 {
@@ -42,10 +43,10 @@ namespace VisualCard.Calendar.Parts
                 (partInfo is XNameInfo xName ? xName.XKeyName :
                  partInfo is ExtraInfo exName ? exName.KeyName : "") ?? "";
             if (noSemicolon)
-                return extraKeyName + VCalendarConstants._argumentDelimiter.ToString();
+                return extraKeyName + VcardConstants._argumentDelimiter.ToString();
 
             // Now, initialize the argument builder
-            StringBuilder argumentsBuilder = new(extraKeyName + VCalendarConstants._fieldDelimiter.ToString());
+            StringBuilder argumentsBuilder = new(extraKeyName + VcardConstants._fieldDelimiter.ToString());
             bool installArguments = valueArguments.Length > 0;
             bool installElementTypes = finalElementTypes.Length > 0;
             bool installValueType = !string.IsNullOrEmpty(finalValue);
@@ -53,29 +54,29 @@ namespace VisualCard.Calendar.Parts
             // Install the element types parameter if it exists
             if (installElementTypes)
             {
-                argumentsBuilder.Append(VCalendarConstants._typeArgumentSpecifier + string.Join(",", finalElementTypes));
+                argumentsBuilder.Append(VcardConstants._typeArgumentSpecifier + string.Join(",", finalElementTypes));
                 noSemicolon = !installArguments && !installValueType;
                 if (noSemicolon)
                 {
-                    argumentsBuilder.Append(VCalendarConstants._argumentDelimiter.ToString());
+                    argumentsBuilder.Append(VcardConstants._argumentDelimiter.ToString());
                     return argumentsBuilder.ToString();
                 }
                 else
-                    argumentsBuilder.Append(VCalendarConstants._fieldDelimiter.ToString());
+                    argumentsBuilder.Append(VcardConstants._fieldDelimiter.ToString());
             }
 
             // Then, install the value type parameter if it exists
             if (installValueType)
             {
-                argumentsBuilder.Append(VCalendarConstants._valueArgumentSpecifier + string.Join(",", finalValue));
+                argumentsBuilder.Append(VcardConstants._valueArgumentSpecifier + string.Join(",", finalValue));
                 noSemicolon = !installArguments;
                 if (noSemicolon)
                 {
-                    argumentsBuilder.Append(VCalendarConstants._argumentDelimiter.ToString());
+                    argumentsBuilder.Append(VcardConstants._argumentDelimiter.ToString());
                     return argumentsBuilder.ToString();
                 }
                 else
-                    argumentsBuilder.Append(VCalendarConstants._fieldDelimiter.ToString());
+                    argumentsBuilder.Append(VcardConstants._fieldDelimiter.ToString());
             }
 
             // Finally, install the remaining arguments if they exist and contain keys and values
@@ -84,11 +85,11 @@ namespace VisualCard.Calendar.Parts
                 List<string> finalArguments = [];
                 foreach (var arg in valueArguments)
                     finalArguments.Add(arg.BuildArguments());
-                argumentsBuilder.Append(string.Join(VCalendarConstants._fieldDelimiter.ToString(), finalArguments));
+                argumentsBuilder.Append(string.Join(VcardConstants._fieldDelimiter.ToString(), finalArguments));
             }
 
             // We've reached the end.
-            argumentsBuilder.Append(VCalendarConstants._argumentDelimiter.ToString());
+            argumentsBuilder.Append(VcardConstants._argumentDelimiter.ToString());
             return argumentsBuilder.ToString();
         }
     }
