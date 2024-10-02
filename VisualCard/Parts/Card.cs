@@ -64,7 +64,7 @@ namespace VisualCard.Parts
         /// Card kind
         /// </summary>
         public string CardKind =>
-            GetString(StringsEnum.Kind).Length > 0 ? GetString(StringsEnum.Kind)[0].Value : "individual";
+            strings.ContainsKey(StringsEnum.Kind) && strings[StringsEnum.Kind].Count > 0 ? strings[StringsEnum.Kind][0].Value : "individual";
 
         /// <summary>
         /// Gets a part array from a specified key
@@ -120,7 +120,7 @@ namespace VisualCard.Parts
                 throw new InvalidOperationException($"Base type is not BaseCardPartInfo [{partType.BaseType.Name}] and the part type is [{partType.Name}] that doesn't represent card part.");
 
             // Check for version support
-            if (!VcardParserTools.EnumArrayTypeSupported(key, CardVersion, CardKind))
+            if (!VcardParserTools.EnumArrayTypeSupported(key, CardVersion))
                 return [];
 
             // Get the parts enumeration according to the type
@@ -156,7 +156,7 @@ namespace VisualCard.Parts
         public CardValueInfo<string>[] GetString(StringsEnum key)
         {
             // Check for version support
-            if (!VcardParserTools.StringSupported(key, CardVersion))
+            if (!VcardParserTools.StringSupported(key, CardVersion, CardKind))
                 return [];
 
             // Get the fallback value

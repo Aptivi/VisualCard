@@ -206,7 +206,7 @@ namespace VisualCard.Parsers
                         case PartType.Strings:
                             {
                                 StringsEnum stringType = (StringsEnum)enumeration;
-                                bool supported = VcardParserTools.StringSupported(stringType, CardVersion);
+                                bool supported = VcardParserTools.StringSupported(stringType, CardVersion, kind);
                                 if (!supported)
                                     continue;
 
@@ -227,7 +227,7 @@ namespace VisualCard.Parsers
                         case PartType.PartsArray:
                             {
                                 PartsArrayEnum partsArrayType = (PartsArrayEnum)enumeration;
-                                bool supported = VcardParserTools.EnumArrayTypeSupported(partsArrayType, CardVersion, kind);
+                                bool supported = VcardParserTools.EnumArrayTypeSupported(partsArrayType, CardVersion);
                                 if (!supported)
                                     continue;
                                 if (fromString is null)
@@ -264,10 +264,9 @@ namespace VisualCard.Parsers
             // Track the required fields
             List<string> expectedFieldList = [];
             var nameCardinality = VcardParserTools.GetPartsArrayEnumFromType(typeof(NameInfo), CardVersion).Item2;
-            var fullNameCardinality = VcardParserTools.GetPartsArrayEnumFromType(typeof(FullNameInfo), CardVersion).Item2;
             if (nameCardinality == PartCardinality.ShouldBeOne)
                 expectedFieldList.Add(VcardConstants._nameSpecifier);
-            if (fullNameCardinality == PartCardinality.AtLeastOne)
+            if (CardVersion.Major >= 3)
                 expectedFieldList.Add(VcardConstants._fullNameSpecifier);
 
             // Now, check for requirements

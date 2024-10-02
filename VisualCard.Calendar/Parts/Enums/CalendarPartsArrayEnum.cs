@@ -33,25 +33,13 @@ namespace VisualCard.Calendar.Parts.Enums
         /// </summary>
         Categories,
         /// <summary>
-        /// Calendar comments (event, to-do, journal, or free/busy + daylight/standard)
-        /// </summary>
-        Comment,
-        /// <summary>
         /// Calendar geographic location (event or to-do)
         /// </summary>
         Geography,
         /// <summary>
-        /// Calendar location (event or to-do)
-        /// </summary>
-        Location,
-        /// <summary>
         /// Calendar resources (event or to-do)
         /// </summary>
         Resources,
-        /// <summary>
-        /// Calendar attendees (event, todo, journal, free/busy, or alarm)
-        /// </summary>
-        Attendee,
         /// <summary>
         /// Calendar date of creation (event, todo, or journal)
         /// </summary>
@@ -72,10 +60,6 @@ namespace VisualCard.Calendar.Parts.Enums
         /// Date stamp (event, todo, journal, or free/busy)
         /// </summary>
         DateStamp,
-        /// <summary>
-        /// Time zone name
-        /// </summary>
-        TimeZoneName,
         /// <summary>
         /// Recurrence date and time (event, todo, journal, or standard/daylight timezone components)
         /// </summary>
@@ -121,10 +105,6 @@ namespace VisualCard.Calendar.Parts.Enums
         /// </summary>
         ProcedureAlarm,
         /// <summary>
-        /// The calendar's relationship (event, todo, or journal)
-        /// </summary>
-        RelatedTo,
-        /// <summary>
         /// The calendar's relationship (event, todo, journal, or time zone)
         /// </summary>
         LastModified,
@@ -133,17 +113,9 @@ namespace VisualCard.Calendar.Parts.Enums
         /// </summary>
         FreeBusy,
         /// <summary>
-        /// Duration (event, todo, or alarm)
-        /// </summary>
-        Duration,
-        /// <summary>
         /// Request status (event, todo, journal, or free/busy)
         /// </summary>
         RequestStatus,
-        /// <summary>
-        /// Contact information (event, todo, journal, or free/busy)
-        /// </summary>
-        Contact,
         /// <summary>
         /// The calendar's extended IANA options (usually starts with SOMETHING:Value1;Value2...) (event, todo, journal, free/busy, or alarm)
         /// </summary>

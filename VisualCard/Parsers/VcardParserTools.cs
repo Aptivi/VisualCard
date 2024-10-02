@@ -30,7 +30,7 @@ namespace VisualCard.Parsers
 {
     internal class VcardParserTools
     {
-        internal static bool StringSupported(StringsEnum stringsEnum, Version cardVersion) =>
+        internal static bool StringSupported(StringsEnum stringsEnum, Version cardVersion, string kind) =>
             stringsEnum switch
             {
                 StringsEnum.Kind => cardVersion.Major >= 4,
@@ -41,47 +41,47 @@ namespace VisualCard.Parsers
                 StringsEnum.Uid => cardVersion.Major <= 4,
                 StringsEnum.SourceName => cardVersion.Major == 3,
                 StringsEnum.Profile => cardVersion.Major == 3,
+                StringsEnum.Telephones => true,
+                StringsEnum.Mails => true,
+                StringsEnum.Titles => true,
+                StringsEnum.Roles => true,
+                StringsEnum.TimeZone => true,
+                StringsEnum.Geo => true,
+                StringsEnum.FullName => true,
+                StringsEnum.Url => true,
+                StringsEnum.Notes => true,
+                StringsEnum.Source => true,
+                StringsEnum.Impps => cardVersion.Major >= 3,
+                StringsEnum.Nicknames => cardVersion.Major >= 3,
+                StringsEnum.Labels => cardVersion.Major != 4,
+                StringsEnum.Langs => cardVersion.Major >= 4,
+                StringsEnum.FreeBusyUrl => cardVersion.Major >= 4,
+                StringsEnum.CalendarUrl => cardVersion.Major >= 4,
+                StringsEnum.CalendarSchedulingRequestUrl => cardVersion.Major >= 4,
+                StringsEnum.ContactUri => cardVersion.Major >= 4,
+                StringsEnum.Member => kind == "group" && cardVersion.Major == 4,
+                StringsEnum.Related => cardVersion.Major == 4,
                 _ =>
                     throw new InvalidOperationException("Invalid string enumeration type to get supported value"),
             };
 
-        internal static bool EnumArrayTypeSupported(PartsArrayEnum partsArrayEnum, Version cardVersion, string kind) =>
+        internal static bool EnumArrayTypeSupported(PartsArrayEnum partsArrayEnum, Version cardVersion) =>
             partsArrayEnum switch
             {
                 PartsArrayEnum.Names => true,
-                PartsArrayEnum.Telephones => true,
                 PartsArrayEnum.Addresses => true,
-                PartsArrayEnum.Mails => true,
                 PartsArrayEnum.Organizations => true,
-                PartsArrayEnum.Titles => true,
                 PartsArrayEnum.Photos => true,
-                PartsArrayEnum.Roles => true,
                 PartsArrayEnum.Logos => true,
-                PartsArrayEnum.TimeZone => true,
-                PartsArrayEnum.Geo => true,
                 PartsArrayEnum.Sounds => true,
                 PartsArrayEnum.Categories => true,
                 PartsArrayEnum.Key => true,
                 PartsArrayEnum.Revision => true,
                 PartsArrayEnum.Birthdate => true,
-                PartsArrayEnum.FullName => true,
-                PartsArrayEnum.Url => true,
-                PartsArrayEnum.Notes => true,
-                PartsArrayEnum.Source => true,
-                PartsArrayEnum.Impps => cardVersion.Major >= 3,
-                PartsArrayEnum.Nicknames => cardVersion.Major >= 3,
-                PartsArrayEnum.Labels => cardVersion.Major != 4,
                 PartsArrayEnum.Agents => cardVersion.Major != 4,
-                PartsArrayEnum.Langs => cardVersion.Major >= 4,
                 PartsArrayEnum.Xml => cardVersion.Major == 4,
                 PartsArrayEnum.Anniversary => cardVersion.Major >= 4,
                 PartsArrayEnum.Gender => cardVersion.Major >= 4,
-                PartsArrayEnum.FreeBusyUrl => cardVersion.Major >= 4,
-                PartsArrayEnum.CalendarUrl => cardVersion.Major >= 4,
-                PartsArrayEnum.CalendarSchedulingRequestUrl => cardVersion.Major >= 4,
-                PartsArrayEnum.ContactUri => cardVersion.Major >= 4,
-                PartsArrayEnum.Member => kind == "group" && cardVersion.Major == 4,
-                PartsArrayEnum.Related => cardVersion.Major == 4,
                 PartsArrayEnum.ClientPidMap => cardVersion.Major == 4,
 
                 // Extensions are allowed
@@ -99,6 +99,26 @@ namespace VisualCard.Parsers
                 StringsEnum.Uid => VcardConstants._uidSpecifier,
                 StringsEnum.SourceName => VcardConstants._srcNameSpecifier,
                 StringsEnum.Profile => VcardConstants._profileSpecifier,
+                StringsEnum.Telephones => VcardConstants._telephoneSpecifier,
+                StringsEnum.Labels => VcardConstants._labelSpecifier,
+                StringsEnum.Mails => VcardConstants._emailSpecifier,
+                StringsEnum.Titles => VcardConstants._titleSpecifier,
+                StringsEnum.Nicknames => VcardConstants._nicknameSpecifier,
+                StringsEnum.Roles => VcardConstants._roleSpecifier,
+                StringsEnum.TimeZone => VcardConstants._timeZoneSpecifier,
+                StringsEnum.Geo => VcardConstants._geoSpecifier,
+                StringsEnum.Impps => VcardConstants._imppSpecifier,
+                StringsEnum.Langs => VcardConstants._langSpecifier,
+                StringsEnum.CalendarSchedulingRequestUrl => VcardConstants._caladrUriSpecifier,
+                StringsEnum.CalendarUrl => VcardConstants._calUriSpecifier,
+                StringsEnum.FreeBusyUrl => VcardConstants._fbUrlSpecifier,
+                StringsEnum.FullName => VcardConstants._fullNameSpecifier,
+                StringsEnum.Notes => VcardConstants._noteSpecifier,
+                StringsEnum.Source => VcardConstants._sourceSpecifier,
+                StringsEnum.Url => VcardConstants._urlSpecifier,
+                StringsEnum.ContactUri => VcardConstants._contactUriSpecifier,
+                StringsEnum.Member => VcardConstants._memberSpecifier,
+                StringsEnum.Related => VcardConstants._relatedSpecifier,
                 _ =>
                     throw new NotImplementedException($"String enumeration {stringsEnum} is not implemented.")
             };
@@ -107,45 +127,54 @@ namespace VisualCard.Parsers
             partsArrayEnum switch
             {
                 PartsArrayEnum.Names => VcardConstants._nameSpecifier,
-                PartsArrayEnum.Telephones => VcardConstants._telephoneSpecifier,
                 PartsArrayEnum.Addresses => VcardConstants._addressSpecifier,
-                PartsArrayEnum.Labels => VcardConstants._labelSpecifier,
                 PartsArrayEnum.Agents => VcardConstants._agentSpecifier,
-                PartsArrayEnum.Mails => VcardConstants._emailSpecifier,
                 PartsArrayEnum.Organizations => VcardConstants._orgSpecifier,
-                PartsArrayEnum.Titles => VcardConstants._titleSpecifier,
                 PartsArrayEnum.Photos => VcardConstants._photoSpecifier,
-                PartsArrayEnum.Nicknames => VcardConstants._nicknameSpecifier,
-                PartsArrayEnum.Roles => VcardConstants._roleSpecifier,
                 PartsArrayEnum.Logos => VcardConstants._logoSpecifier,
-                PartsArrayEnum.TimeZone => VcardConstants._timeZoneSpecifier,
-                PartsArrayEnum.Geo => VcardConstants._geoSpecifier,
                 PartsArrayEnum.Sounds => VcardConstants._soundSpecifier,
-                PartsArrayEnum.Impps => VcardConstants._imppSpecifier,
                 PartsArrayEnum.Categories => VcardConstants._categoriesSpecifier,
-                PartsArrayEnum.Langs => VcardConstants._langSpecifier,
                 PartsArrayEnum.Xml => VcardConstants._xmlSpecifier,
                 PartsArrayEnum.Key => VcardConstants._keySpecifier,
                 PartsArrayEnum.Birthdate => VcardConstants._birthSpecifier,
                 PartsArrayEnum.Revision => VcardConstants._revSpecifier,
                 PartsArrayEnum.Anniversary => VcardConstants._anniversarySpecifier,
                 PartsArrayEnum.Gender => VcardConstants._genderSpecifier,
-                PartsArrayEnum.CalendarSchedulingRequestUrl => VcardConstants._caladrUriSpecifier,
-                PartsArrayEnum.CalendarUrl => VcardConstants._calUriSpecifier,
-                PartsArrayEnum.FreeBusyUrl => VcardConstants._fbUrlSpecifier,
-                PartsArrayEnum.FullName => VcardConstants._fullNameSpecifier,
-                PartsArrayEnum.Notes => VcardConstants._noteSpecifier,
-                PartsArrayEnum.Source => VcardConstants._sourceSpecifier,
-                PartsArrayEnum.Url => VcardConstants._urlSpecifier,
-                PartsArrayEnum.ContactUri => VcardConstants._contactUriSpecifier,
-                PartsArrayEnum.Member => VcardConstants._memberSpecifier,
-                PartsArrayEnum.Related => VcardConstants._relatedSpecifier,
                 PartsArrayEnum.ClientPidMap => VcardConstants._clientPidMapSpecifier,
 
                 // Extensions are allowed
                 PartsArrayEnum.NonstandardNames => VcardConstants._xSpecifier,
                 _ => ""
             };
+
+        internal static PartCardinality GetStringsEnumFromType(StringsEnum strings, Version cardVersion)
+        {
+            // Now, iterate through every type
+            return strings switch
+            {
+                StringsEnum.Telephones => PartCardinality.Any,
+                StringsEnum.Labels => PartCardinality.Any,
+                StringsEnum.Mails => PartCardinality.Any,
+                StringsEnum.Titles => PartCardinality.Any,
+                StringsEnum.Nicknames => PartCardinality.Any,
+                StringsEnum.Roles => PartCardinality.Any,
+                StringsEnum.TimeZone => PartCardinality.Any,
+                StringsEnum.Geo => PartCardinality.Any,
+                StringsEnum.Impps => PartCardinality.Any,
+                StringsEnum.Langs => PartCardinality.Any,
+                StringsEnum.FullName => cardVersion.Major >= 3 ? PartCardinality.AtLeastOne : PartCardinality.Any,
+                StringsEnum.Url => PartCardinality.Any,
+                StringsEnum.Notes => PartCardinality.Any,
+                StringsEnum.Source => PartCardinality.Any,
+                StringsEnum.FreeBusyUrl => PartCardinality.Any,
+                StringsEnum.CalendarUrl => PartCardinality.Any,
+                StringsEnum.CalendarSchedulingRequestUrl => PartCardinality.Any,
+                StringsEnum.ContactUri => PartCardinality.Any,
+                StringsEnum.Member => PartCardinality.Any,
+                StringsEnum.Related => PartCardinality.Any,
+                _ => throw new ArgumentException($"There is no string enum info for {strings}"),
+            };
+        }
 
         internal static (PartsArrayEnum, PartCardinality) GetPartsArrayEnumFromType(Type? partsArrayType, Version cardVersion)
         {
@@ -155,40 +184,20 @@ namespace VisualCard.Parsers
             // Now, iterate through every type
             if (partsArrayType == typeof(NameInfo))
                 return (PartsArrayEnum.Names, cardVersion.Major == 4 ? PartCardinality.MayBeOne : PartCardinality.ShouldBeOne);
-            else if (partsArrayType == typeof(TelephoneInfo))
-                return (PartsArrayEnum.Telephones, PartCardinality.Any);
             else if (partsArrayType == typeof(AddressInfo))
                 return (PartsArrayEnum.Addresses, PartCardinality.Any);
-            else if (partsArrayType == typeof(LabelAddressInfo))
-                return (PartsArrayEnum.Labels, PartCardinality.Any);
             else if (partsArrayType == typeof(AgentInfo))
                 return (PartsArrayEnum.Agents, PartCardinality.Any);
-            else if (partsArrayType == typeof(EmailInfo))
-                return (PartsArrayEnum.Mails, PartCardinality.Any);
             else if (partsArrayType == typeof(OrganizationInfo))
                 return (PartsArrayEnum.Organizations, PartCardinality.Any);
-            else if (partsArrayType == typeof(TitleInfo))
-                return (PartsArrayEnum.Titles, PartCardinality.Any);
             else if (partsArrayType == typeof(PhotoInfo))
                 return (PartsArrayEnum.Photos, PartCardinality.Any);
-            else if (partsArrayType == typeof(NicknameInfo))
-                return (PartsArrayEnum.Nicknames, PartCardinality.Any);
-            else if (partsArrayType == typeof(RoleInfo))
-                return (PartsArrayEnum.Roles, PartCardinality.Any);
             else if (partsArrayType == typeof(LogoInfo))
                 return (PartsArrayEnum.Logos, PartCardinality.Any);
-            else if (partsArrayType == typeof(TimeDateZoneInfo))
-                return (PartsArrayEnum.TimeZone, PartCardinality.Any);
-            else if (partsArrayType == typeof(GeoInfo))
-                return (PartsArrayEnum.Geo, PartCardinality.Any);
             else if (partsArrayType == typeof(SoundInfo))
                 return (PartsArrayEnum.Sounds, PartCardinality.Any);
-            else if (partsArrayType == typeof(ImppInfo))
-                return (PartsArrayEnum.Impps, PartCardinality.Any);
             else if (partsArrayType == typeof(CategoryInfo))
                 return (PartsArrayEnum.Categories, PartCardinality.Any);
-            else if (partsArrayType == typeof(LangInfo))
-                return (PartsArrayEnum.Langs, PartCardinality.Any);
             else if (partsArrayType == typeof(XmlInfo))
                 return (PartsArrayEnum.Xml, PartCardinality.Any);
             else if (partsArrayType == typeof(KeyInfo))
@@ -201,26 +210,6 @@ namespace VisualCard.Parsers
                 return (PartsArrayEnum.Anniversary, PartCardinality.MayBeOne);
             else if (partsArrayType == typeof(GenderInfo))
                 return (PartsArrayEnum.Gender, PartCardinality.MayBeOneNoAltId);
-            else if (partsArrayType == typeof(FullNameInfo))
-                return (PartsArrayEnum.FullName, cardVersion.Major >= 3 ? PartCardinality.AtLeastOne : PartCardinality.Any);
-            else if (partsArrayType == typeof(UrlInfo))
-                return (PartsArrayEnum.Url, PartCardinality.Any);
-            else if (partsArrayType == typeof(NoteInfo))
-                return (PartsArrayEnum.Notes, PartCardinality.Any);
-            else if (partsArrayType == typeof(SourceInfo))
-                return (PartsArrayEnum.Source, PartCardinality.Any);
-            else if (partsArrayType == typeof(FreeBusyInfo))
-                return (PartsArrayEnum.FreeBusyUrl, PartCardinality.Any);
-            else if (partsArrayType == typeof(CalendarUrlInfo))
-                return (PartsArrayEnum.CalendarUrl, PartCardinality.Any);
-            else if (partsArrayType == typeof(CalendarSchedulingRequestUrlInfo))
-                return (PartsArrayEnum.CalendarSchedulingRequestUrl, PartCardinality.Any);
-            else if (partsArrayType == typeof(ContactUriInfo))
-                return (PartsArrayEnum.ContactUri, PartCardinality.Any);
-            else if (partsArrayType == typeof(MemberInfo))
-                return (PartsArrayEnum.Member, PartCardinality.Any);
-            else if (partsArrayType == typeof(RelatedInfo))
-                return (PartsArrayEnum.Related, PartCardinality.Any);
             else if (partsArrayType == typeof(ClientPidMapInfo))
                 return (PartsArrayEnum.ClientPidMap, PartCardinality.Any);
 
@@ -234,39 +223,19 @@ namespace VisualCard.Parsers
             prefix switch
             {
                 VcardConstants._nameSpecifier => (PartType.PartsArray, PartsArrayEnum.Names, typeof(NameInfo), NameInfo.FromStringVcardStatic, "", "", "text", [], []),
-                VcardConstants._telephoneSpecifier => (PartType.PartsArray, PartsArrayEnum.Telephones, typeof(TelephoneInfo), TelephoneInfo.FromStringVcardStatic, "CELL", "", "text", ["TEXT", "VOICE", "FAX", "CELL", "VIDEO", "PAGER", "TEXTPHONE", "ISDN", "CAR", "MODEM", "BBS", "MSG", "PREF", "TLX", "MMS"], []),
                 VcardConstants._addressSpecifier => (PartType.PartsArray, PartsArrayEnum.Addresses, typeof(AddressInfo), AddressInfo.FromStringVcardStatic, "HOME", "", "text", ["DOM", "INTL", "PARCEL", "POSTAL"], []),
-                VcardConstants._labelSpecifier => (PartType.PartsArray, PartsArrayEnum.Labels, typeof(LabelAddressInfo), LabelAddressInfo.FromStringVcardStatic, "HOME", "", "text", ["DOM", "INTL", "PARCEL", "POSTAL"], []),
                 VcardConstants._agentSpecifier => (PartType.PartsArray, PartsArrayEnum.Agents, typeof(AgentInfo), AgentInfo.FromStringVcardStatic, "", "", "inline", [], []),
-                VcardConstants._emailSpecifier => (PartType.PartsArray, PartsArrayEnum.Mails, typeof(EmailInfo), EmailInfo.FromStringVcardStatic, "HOME", "", "text", ["AOL", "APPLELINK", "ATTMAIL", "CIS", "EWORLD", "INTERNET", "IBMMAIL", "MCIMAIL", "POWERSHARE", "PRODIGY", "TLX", "X400", "CELL"], []),
                 VcardConstants._orgSpecifier => (PartType.PartsArray, PartsArrayEnum.Organizations, typeof(OrganizationInfo), OrganizationInfo.FromStringVcardStatic, "WORK", "", "text", [], []),
-                VcardConstants._titleSpecifier => (PartType.PartsArray, PartsArrayEnum.Titles, typeof(TitleInfo), TitleInfo.FromStringVcardStatic, "", "", "text", [], []),
                 VcardConstants._photoSpecifier => (PartType.PartsArray, PartsArrayEnum.Photos, typeof(PhotoInfo), PhotoInfo.FromStringVcardStatic, "JPEG", "", "inline", ["JPG", "GIF", "CGM", "WMF", "BMP", "MET", "PMB", "DIB", "PICT", "TIFF", "PS", "PDF", "JPEG", "MPEG", "MPEG2", "AVI", "QTIME", "PNG", "WEBP"], []),
-                VcardConstants._nicknameSpecifier => (PartType.PartsArray, PartsArrayEnum.Nicknames, typeof(NicknameInfo), NicknameInfo.FromStringVcardStatic, "HOME", "", "text", [], []),
-                VcardConstants._roleSpecifier => (PartType.PartsArray, PartsArrayEnum.Roles, typeof(RoleInfo), RoleInfo.FromStringVcardStatic, "", "", "text", [], []),
                 VcardConstants._logoSpecifier => (PartType.PartsArray, PartsArrayEnum.Logos, typeof(LogoInfo), LogoInfo.FromStringVcardStatic, "JPEG", "", "inline", ["JPG", "GIF", "CGM", "WMF", "BMP", "MET", "PMB", "DIB", "PICT", "TIFF", "PS", "PDF", "JPEG", "MPEG", "MPEG2", "AVI", "QTIME", "PNG", "WEBP"], []),
-                VcardConstants._timeZoneSpecifier => (PartType.PartsArray, PartsArrayEnum.TimeZone, typeof(TimeDateZoneInfo), TimeDateZoneInfo.FromStringVcardStatic, "", "", "utc-offset", [], []),
-                VcardConstants._geoSpecifier => (PartType.PartsArray, PartsArrayEnum.Geo, typeof(GeoInfo), GeoInfo.FromStringVcardStatic, "", "", "text", [], []),
                 VcardConstants._soundSpecifier => (PartType.PartsArray, PartsArrayEnum.Sounds, typeof(SoundInfo), SoundInfo.FromStringVcardStatic, "MP3", "", "inline", ["MP3", "WAVE", "PCM", "AIFF", "AAC"], []),
-                VcardConstants._imppSpecifier => (PartType.PartsArray, PartsArrayEnum.Impps, typeof(ImppInfo), ImppInfo.FromStringVcardStatic, "SIP", "", "uri", ["SIP"], []),
                 VcardConstants._categoriesSpecifier => (PartType.PartsArray, PartsArrayEnum.Categories, typeof(CategoryInfo), CategoryInfo.FromStringVcardStatic, "", "", "text", [], []),
-                VcardConstants._langSpecifier => (PartType.PartsArray, PartsArrayEnum.Langs, typeof(LangInfo), LangInfo.FromStringVcardStatic, "HOME", "", "language-tag", [], []),
                 VcardConstants._xmlSpecifier => (PartType.PartsArray, PartsArrayEnum.Xml, typeof(XmlInfo), XmlInfo.FromStringVcardStatic, "", "", "text", [], []),
                 VcardConstants._keySpecifier => (PartType.PartsArray, PartsArrayEnum.Key, typeof(KeyInfo), KeyInfo.FromStringVcardStatic, "", "", "text", [], []),
                 VcardConstants._revSpecifier => (PartType.PartsArray, PartsArrayEnum.Revision, typeof(RevisionInfo), RevisionInfo.FromStringVcardStatic, "", "", "timestamp", [], []),
                 VcardConstants._birthSpecifier => (PartType.PartsArray, PartsArrayEnum.Birthdate, typeof(BirthDateInfo), BirthDateInfo.FromStringVcardStatic, "", "", "date-and-or-time", [], []),
                 VcardConstants._anniversarySpecifier => (PartType.PartsArray, PartsArrayEnum.Anniversary, typeof(AnniversaryInfo), AnniversaryInfo.FromStringVcardStatic, "", "", "date-and-or-time", [], []),
                 VcardConstants._genderSpecifier => (PartType.PartsArray, PartsArrayEnum.Gender, typeof(GenderInfo), GenderInfo.FromStringVcardStatic, "", "", "text", [], []),
-                VcardConstants._fullNameSpecifier => (PartType.PartsArray, PartsArrayEnum.FullName, typeof(FullNameInfo), FullNameInfo.FromStringVcardStatic, "", "", "text", [], []),
-                VcardConstants._urlSpecifier => (PartType.PartsArray, PartsArrayEnum.Url, typeof(UrlInfo), UrlInfo.FromStringVcardStatic, "", "", "uri", [], []),
-                VcardConstants._noteSpecifier => (PartType.PartsArray, PartsArrayEnum.Notes, typeof(NoteInfo), NoteInfo.FromStringVcardStatic, "", "", "text", [], []),
-                VcardConstants._sourceSpecifier => (PartType.PartsArray, PartsArrayEnum.Source, typeof(SourceInfo), SourceInfo.FromStringVcardStatic, "", "", "uri", [], []),
-                VcardConstants._fbUrlSpecifier => (PartType.PartsArray, PartsArrayEnum.FreeBusyUrl, typeof(FreeBusyInfo), FreeBusyInfo.FromStringVcardStatic, "", "", "uri", [], []),
-                VcardConstants._calUriSpecifier => (PartType.PartsArray, PartsArrayEnum.CalendarUrl, typeof(CalendarUrlInfo), CalendarUrlInfo.FromStringVcardStatic, "", "", "uri", [], []),
-                VcardConstants._caladrUriSpecifier => (PartType.PartsArray, PartsArrayEnum.CalendarSchedulingRequestUrl, typeof(CalendarSchedulingRequestUrlInfo), CalendarSchedulingRequestUrlInfo.FromStringVcardStatic, "", "", "uri", [], []),
-                VcardConstants._contactUriSpecifier => (PartType.PartsArray, PartsArrayEnum.ContactUri, typeof(ContactUriInfo), ContactUriInfo.FromStringVcardStatic, "", "", "uri", [], []),
-                VcardConstants._memberSpecifier => (PartType.PartsArray, PartsArrayEnum.Member, typeof(MemberInfo), MemberInfo.FromStringVcardStatic, "", "", "uri", [], []),
-                VcardConstants._relatedSpecifier => (PartType.PartsArray, PartsArrayEnum.Related, typeof(RelatedInfo), RelatedInfo.FromStringVcardStatic, "", "", "uri", [], []),
                 VcardConstants._clientPidMapSpecifier => (PartType.PartsArray, PartsArrayEnum.ClientPidMap, typeof(ClientPidMapInfo), ClientPidMapInfo.FromStringVcardStatic, "", "", "text", [], []),
                 VcardConstants._kindSpecifier => (PartType.Strings, StringsEnum.Kind, null, null, "", "", "text", [], []),
                 VcardConstants._mailerSpecifier => (PartType.Strings, StringsEnum.Mailer, null, null, "", "", "text", [], []),
@@ -276,6 +245,26 @@ namespace VisualCard.Parsers
                 VcardConstants._uidSpecifier => (PartType.Strings, StringsEnum.Uid, null, null, "", "", "text", [], []),
                 VcardConstants._srcNameSpecifier => (PartType.Strings, StringsEnum.SourceName, null, null, "", "", "text", [], []),
                 VcardConstants._profileSpecifier => (PartType.Strings, StringsEnum.Profile, null, null, "", "", "text", [], []),
+                VcardConstants._telephoneSpecifier => (PartType.Strings, StringsEnum.Telephones, null, null, "CELL", "", "text", ["TEXT", "VOICE", "FAX", "CELL", "VIDEO", "PAGER", "TEXTPHONE", "ISDN", "CAR", "MODEM", "BBS", "MSG", "PREF", "TLX", "MMS"], []),
+                VcardConstants._labelSpecifier => (PartType.Strings, StringsEnum.Labels, null, null, "HOME", "", "text", ["DOM", "INTL", "PARCEL", "POSTAL"], []),
+                VcardConstants._emailSpecifier => (PartType.Strings, StringsEnum.Mails, null, null, "HOME", "", "text", ["AOL", "APPLELINK", "ATTMAIL", "CIS", "EWORLD", "INTERNET", "IBMMAIL", "MCIMAIL", "POWERSHARE", "PRODIGY", "TLX", "X400", "CELL"], []),
+                VcardConstants._titleSpecifier => (PartType.Strings, StringsEnum.Titles, null, null, "", "", "text", [], []),
+                VcardConstants._nicknameSpecifier => (PartType.Strings, StringsEnum.Nicknames, null, null, "HOME", "", "text", [], []),
+                VcardConstants._roleSpecifier => (PartType.Strings, StringsEnum.Roles, null, null, "", "", "text", [], []),
+                VcardConstants._timeZoneSpecifier => (PartType.Strings, StringsEnum.TimeZone, null, null, "", "", "utc-offset", [], []),
+                VcardConstants._geoSpecifier => (PartType.Strings, StringsEnum.Geo, null, null, "", "", "text", [], []),
+                VcardConstants._imppSpecifier => (PartType.Strings, StringsEnum.Impps, null, null, "SIP", "", "uri", ["SIP"], []),
+                VcardConstants._langSpecifier => (PartType.Strings, StringsEnum.Langs, null, null, "HOME", "", "language-tag", [], []),
+                VcardConstants._fullNameSpecifier => (PartType.Strings, StringsEnum.FullName, null, null, "", "", "text", [], []),
+                VcardConstants._urlSpecifier => (PartType.Strings, StringsEnum.Url, null, null, "", "", "uri", [], []),
+                VcardConstants._noteSpecifier => (PartType.Strings, StringsEnum.Notes, null, null, "", "", "text", [], []),
+                VcardConstants._sourceSpecifier => (PartType.Strings, StringsEnum.Source, null, null, "", "", "uri", [], []),
+                VcardConstants._fbUrlSpecifier => (PartType.Strings, StringsEnum.FreeBusyUrl, null, null, "", "", "uri", [], []),
+                VcardConstants._calUriSpecifier => (PartType.Strings, StringsEnum.CalendarUrl, null, null, "", "", "uri", [], []),
+                VcardConstants._caladrUriSpecifier => (PartType.Strings, StringsEnum.CalendarSchedulingRequestUrl, null, null, "", "", "uri", [], []),
+                VcardConstants._contactUriSpecifier => (PartType.Strings, StringsEnum.ContactUri, null, null, "", "", "uri", [], []),
+                VcardConstants._memberSpecifier => (PartType.Strings, StringsEnum.Member, null, null, "", "", "uri", [], []),
+                VcardConstants._relatedSpecifier => (PartType.Strings, StringsEnum.Related, null, null, "", "", "uri", [], []),
 
                 // Extensions are allowed
                 VcardConstants._xSpecifier => (PartType.PartsArray, PartsArrayEnum.NonstandardNames, typeof(XNameInfo), XNameInfo.FromStringVcardStatic, "", "", "", [], []),

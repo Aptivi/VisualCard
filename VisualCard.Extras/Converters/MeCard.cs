@@ -25,6 +25,7 @@ using VisualCard.Parts;
 using VisualCard.Parts.Implementations;
 using System.Linq;
 using System.Collections.Generic;
+using VisualCard.Parts.Enums;
 
 namespace VisualCard.Extras.Converters
 {
@@ -152,15 +153,15 @@ namespace VisualCard.Extras.Converters
 
             // Now, get all the values in the below order
             var names = card.GetPartsArray<NameInfo>();
-            var fullNames = card.GetPartsArray<FullNameInfo>();
+            var fullNames = card.GetString(StringsEnum.FullName);
             var xNames = card.GetPartsArray<XNameInfo>();
-            var telephones = card.GetPartsArray<TelephoneInfo>();
-            var emails = card.GetPartsArray<EmailInfo>();
-            var notes = card.GetPartsArray<NoteInfo>();
+            var telephones = card.GetString(StringsEnum.Telephones);
+            var emails = card.GetString(StringsEnum.Mails);
+            var notes = card.GetString(StringsEnum.Notes);
             var birthdays = card.GetPartsArray<BirthDateInfo>();
             var addresses = card.GetPartsArray<AddressInfo>();
-            var urls = card.GetPartsArray<UrlInfo>();
-            var nicknames = card.GetPartsArray<NicknameInfo>();
+            var urls = card.GetString(StringsEnum.Url);
+            var nicknames = card.GetString(StringsEnum.Nicknames);
 
             // Check them for existence
             bool hasNames = names.Length > 0;
@@ -191,7 +192,7 @@ namespace VisualCard.Extras.Converters
             else if (hasFullName)
             {
                 StringBuilder builder = new();
-                var fullName = fullNames[0].FullName ?? "";
+                var fullName = fullNames[0].Value;
                 string[] splitFullName = fullName.Split([" "], StringSplitOptions.RemoveEmptyEntries);
                 builder.Append(_meCardNameSpecifier + _meCardArgumentDelimiter);
                 builder.Append(string.Join(_meCardValueDelimiter.ToString(), splitFullName));
@@ -210,7 +211,7 @@ namespace VisualCard.Extras.Converters
                 StringBuilder builder = new();
                 var telephone = telephones.First((tel) => !tel.HasType("video"));
                 builder.Append(_meCardTelephoneSpecifier + _meCardArgumentDelimiter);
-                builder.Append(telephone.ContactPhoneNumber);
+                builder.Append(telephone.Value);
                 properties.Add(builder.ToString());
             }
             if (hasVideophone)
@@ -218,7 +219,7 @@ namespace VisualCard.Extras.Converters
                 StringBuilder builder = new();
                 var videophone = telephones.First((tel) => tel.HasType("video"));
                 builder.Append(_meCardVideophoneSpecifier + _meCardArgumentDelimiter);
-                builder.Append(videophone.ContactPhoneNumber);
+                builder.Append(videophone.Value);
                 properties.Add(builder.ToString());
             }
             if (hasEmails)
@@ -226,7 +227,7 @@ namespace VisualCard.Extras.Converters
                 StringBuilder builder = new();
                 var email = emails[0];
                 builder.Append(_meCardEmailSpecifier + _meCardArgumentDelimiter);
-                builder.Append(email.ContactEmailAddress);
+                builder.Append(email.Value);
                 properties.Add(builder.ToString());
             }
             if (hasNote)
@@ -234,7 +235,7 @@ namespace VisualCard.Extras.Converters
                 StringBuilder builder = new();
                 var note = notes[0];
                 builder.Append(_meCardNoteSpecifier + _meCardArgumentDelimiter);
-                builder.Append(note.Note);
+                builder.Append(note.Value);
                 properties.Add(builder.ToString());
             }
             if (hasBirthday)
@@ -264,7 +265,7 @@ namespace VisualCard.Extras.Converters
                 StringBuilder builder = new();
                 var url = urls[0];
                 builder.Append(_meCardUrlSpecifier + _meCardArgumentDelimiter);
-                builder.Append(url.Url);
+                builder.Append(url.Value);
                 properties.Add(builder.ToString());
             }
             if (hasNicknames)
@@ -272,7 +273,7 @@ namespace VisualCard.Extras.Converters
                 StringBuilder builder = new();
                 var nickname = nicknames[0];
                 builder.Append(_meCardNicknameSpecifier + _meCardArgumentDelimiter);
-                builder.Append(nickname.ContactNickname);
+                builder.Append(nickname.Value);
                 properties.Add(builder.ToString());
             }
 

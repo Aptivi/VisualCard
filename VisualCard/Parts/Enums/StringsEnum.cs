@@ -56,5 +56,85 @@ namespace VisualCard.Parts.Enums
         /// Profile. Either empty or, if specified, vCard
         /// </summary>
         Profile,
+        /// <summary>
+        /// The contact's telephones
+        /// </summary>
+        Telephones,
+        /// <summary>
+        /// The contact's delivery address labels
+        /// </summary>
+        Labels,
+        /// <summary>
+        /// The contact's e-mails
+        /// </summary>
+        Mails,
+        /// <summary>
+        /// The contact's titles
+        /// </summary>
+        Titles,
+        /// <summary>
+        /// The contact's nicknames
+        /// </summary>
+        Nicknames,
+        /// <summary>
+        /// The contact's roles
+        /// </summary>
+        Roles,
+        /// <summary>
+        /// The contact's time zones
+        /// </summary>
+        TimeZone,
+        /// <summary>
+        /// The contact's geographical coordinates in (lat;long)
+        /// </summary>
+        Geo,
+        /// <summary>
+        /// The contact's IMPP information
+        /// </summary>
+        Impps,
+        /// <summary>
+        /// The contact's language list
+        /// </summary>
+        Langs,
+        /// <summary>
+        /// The contact's full name
+        /// </summary>
+        FullName,
+        /// <summary>
+        /// The contact's URL
+        /// </summary>
+        Url,
+        /// <summary>
+        /// The contact's notes
+        /// </summary>
+        Notes,
+        /// <summary>
+        /// The contact's card source
+        /// </summary>
+        Source,
+        /// <summary>
+        /// The contact's free/busy indicator URL
+        /// </summary>
+        FreeBusyUrl,
+        /// <summary>
+        /// The contact's calendar URL
+        /// </summary>
+        CalendarUrl,
+        /// <summary>
+        /// The contact's calendar scheduling request URL
+        /// </summary>
+        CalendarSchedulingRequestUrl,
+        /// <summary>
+        /// The contact's contact URI
+        /// </summary>
+        ContactUri,
+        /// <summary>
+        /// The group member URI
+        /// </summary>
+        Member,
+        /// <summary>
+        /// The related member URI
+        /// </summary>
+        Related,
     }
 }

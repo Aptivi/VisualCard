@@ -46,8 +46,8 @@ namespace VisualCard.Tests
             """
             BEGIN:VCARD
             VERSION:3.0
-            N:Hood;Rick;;;
             FN:Rick Hood
+            N:Hood;Rick;;;
             END:VCARD
 
             """
@@ -141,12 +141,12 @@ namespace VisualCard.Tests
             """
             BEGIN:VCARD
             VERSION:3.0
-            N:Sanders;John;;;
             TEL:495-522-3560
-            ADR:;;Los Angeles;;;;USA
             EMAIL:john.s@acme.co
             FN:John Sanders
             NOTE:Note test for VisualCard
+            N:Sanders;John;;;
+            ADR:;;Los Angeles;;;;USA
             END:VCARD
 
             """
@@ -156,13 +156,13 @@ namespace VisualCard.Tests
             """
             BEGIN:VCARD
             VERSION:3.0
-            N:Sanders;John;;;
             TEL:495-522-3560
             TEL;TYPE=VIDEO:495-522-3550
-            ADR:;;Los Angeles;;;;USA
             EMAIL:john.s@acme.co
             FN:John Sanders
             NOTE:Note test for VisualCard
+            N:Sanders;John;;;
+            ADR:;;Los Angeles;;;;USA
             X-VISUALCARD-KANA:Saunders;John
             END:VCARD
 

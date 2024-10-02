@@ -26,6 +26,7 @@ using VisualCard.Extras.Converters;
 using VisualCard.Parts;
 using VisualCard.Parts.Implementations;
 using VisualCard.Extras.Misc;
+using VisualCard.Parts.Enums;
 
 namespace VisualCard.ShowContacts
 {
@@ -90,9 +91,9 @@ namespace VisualCard.ShowContacts
                     TextWriterColor.WriteColor("----------------------------", ConsoleColors.Green);
 
                     // List names
-                    foreach (var fullName in Contact.GetPartsArray<FullNameInfo>())
+                    foreach (var fullName in Contact.GetString(StringsEnum.FullName))
                     {
-                        TextWriterColor.Write("Name:                    {0} [G: {1}]", fullName.FullName ?? "", fullName.Group);
+                        TextWriterColor.Write("Name:                    {0} [G: {1}]", fullName.Value, fullName.Group);
                         TextWriterColor.Write("ALTID:                   {0} [G: {1}]", fullName.AltId, fullName.Group);
                     }
 
@@ -105,9 +106,9 @@ namespace VisualCard.ShowContacts
                     }
 
                     // List titles
-                    foreach (var title in Contact.GetPartsArray<TitleInfo>())
+                    foreach (var title in Contact.GetString(StringsEnum.Titles))
                     { 
-                        TextWriterColor.Write("Title or Job:            {0} [G: {1}]", title.ContactTitle ?? "", title.Group);
+                        TextWriterColor.Write("Title or Job:            {0} [G: {1}]", title.Value, title.Group);
                         TextWriterColor.Write("ALTID:                   {0} [G: {1}]", title.AltId, title.Group);
                     }
 
@@ -124,9 +125,9 @@ namespace VisualCard.ShowContacts
                     }
 
                     // List e-mails
-                    foreach (var Email in Contact.GetPartsArray<EmailInfo>())
+                    foreach (var Email in Contact.GetString(StringsEnum.Mails))
                     {
-                        TextWriterColor.Write("Email address:           {0} [G: {1}]", Email.ContactEmailAddress ?? "", Email.Group);
+                        TextWriterColor.Write("Email address:           {0} [G: {1}]", Email.Value, Email.Group);
                     }
 
                     // List organizations
@@ -138,9 +139,9 @@ namespace VisualCard.ShowContacts
                     }
 
                     // List telephones
-                    foreach (var Telephone in Contact.GetPartsArray<TelephoneInfo>())
+                    foreach (var Telephone in Contact.GetString(StringsEnum.Telephones))
                     {
-                        TextWriterColor.Write("Phone number:            {0} [G: {1}]", Telephone.ContactPhoneNumber ?? "", Telephone.Group);
+                        TextWriterColor.Write("Phone number:            {0} [G: {1}]", Telephone.Value, Telephone.Group);
                     }
 
                     // List photos
@@ -153,9 +154,9 @@ namespace VisualCard.ShowContacts
                     }
 
                     // List roles
-                    foreach (var Role in Contact.GetPartsArray<RoleInfo>())
+                    foreach (var Role in Contact.GetString(StringsEnum.Roles))
                     {
-                        TextWriterColor.Write("Role:                    {0} [G: {1}]", Role.ContactRole ?? "", Role.Group);
+                        TextWriterColor.Write("Role:                    {0} [G: {1}]", Role.Value, Role.Group);
                         TextWriterColor.Write("ALTID:                   {0} [G: {1}]", Role.AltId, Role.Group);
                     }
 
@@ -163,8 +164,8 @@ namespace VisualCard.ShowContacts
                     var birth = Contact.GetPartsArray<BirthDateInfo>();
                     var wedding = Contact.GetPartsArray<AnniversaryInfo>();
                     var gender = Contact.GetPartsArray<GenderInfo>();
-                    var url = Contact.GetPartsArray<UrlInfo>();
-                    var note = Contact.GetPartsArray<NoteInfo>();
+                    var url = Contact.GetString(StringsEnum.Url);
+                    var note = Contact.GetString(StringsEnum.Notes);
                     if (birth.Length > 0)
                         TextWriterColor.Write("Contact birthdate:       {0} [G: {1}]", birth[0].BirthDate, birth[0].Group);
                     if (wedding.Length > 0)
@@ -172,9 +173,9 @@ namespace VisualCard.ShowContacts
                     if (gender.Length > 0)
                         TextWriterColor.Write("Contact gender           {0} [{1}] [G: {2}]", gender[0].Gender.ToString(), gender[0].GenderDescription ?? "", gender[0].Group);
                     if (url.Length > 0)
-                        TextWriterColor.Write("Contact URL:             {0} [G: {1}]", url[0].Url ?? "", url[0].Group);
+                        TextWriterColor.Write("Contact URL:             {0} [G: {1}]", url[0].Value, url[0].Group);
                     if (note.Length > 0)
-                        TextWriterColor.Write("Contact Note:            {0} [G: {1}]", note[0].Note ?? "", note[0].Group);
+                        TextWriterColor.Write("Contact Note:            {0} [G: {1}]", note[0].Value, note[0].Group);
                     TextWriterColor.Write("Card kind:               {0}", Contact.CardKind);
 
                     // Print VCard

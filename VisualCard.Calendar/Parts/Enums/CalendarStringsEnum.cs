@@ -100,5 +100,33 @@ namespace VisualCard.Calendar.Parts.Enums
         /// Calendar time zone (root)
         /// </summary>
         TimeZone,
+        /// <summary>
+        /// Calendar comments (event, to-do, journal, or free/busy + daylight/standard)
+        /// </summary>
+        Comment,
+        /// <summary>
+        /// Calendar location (event or to-do)
+        /// </summary>
+        Location,
+        /// <summary>
+        /// Calendar attendees (event, todo, journal, free/busy, or alarm)
+        /// </summary>
+        Attendee,
+        /// <summary>
+        /// Time zone name
+        /// </summary>
+        TimeZoneName,
+        /// <summary>
+        /// The calendar's relationship (event, todo, or journal)
+        /// </summary>
+        RelatedTo,
+        /// <summary>
+        /// Contact information (event, todo, journal, or free/busy)
+        /// </summary>
+        Contact,
+        /// <summary>
+        /// Duration (event, todo, or alarm)
+        /// </summary>
+        Duration,
     }
 }

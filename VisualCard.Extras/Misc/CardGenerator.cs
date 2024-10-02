@@ -114,11 +114,11 @@ namespace VisualCard.Extras.Misc
                 // Now, convert generated parts to actual VisualCard parts
                 var card = new Card(new(2, 1));
                 card.AddPartToArray(PartsArrayEnum.Names, new NameInfo(0, [], [], "", "", firstName, lastName, [], [], []));
-                card.AddPartToArray(PartsArrayEnum.FullName, new FullNameInfo(0, [], [], "", "", $"{firstName} {lastName}"));
+                card.AddString(StringsEnum.FullName, new([], 0, [], "", "", $"{firstName} {lastName}"));
                 foreach (var telephone in telephones)
-                    card.AddPartToArray(PartsArrayEnum.Telephones, new TelephoneInfo(0, [], [telephone.Key], "", "", telephone.Value));
+                    card.AddString(StringsEnum.Telephones, new([], 0, [telephone.Key], "", "", telephone.Value));
                 foreach (var email in emails)
-                    card.AddPartToArray(PartsArrayEnum.Mails, new EmailInfo(0, [], [email.Key], "", "", email.Value));
+                    card.AddString(StringsEnum.Mails, new([], 0, [email.Key], "", "", email.Value));
                 string cardString = card.ToString();
 
                 // Verify the generated card and add it to the list of cards
