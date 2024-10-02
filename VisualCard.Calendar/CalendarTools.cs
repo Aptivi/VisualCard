@@ -91,15 +91,15 @@ namespace VisualCard.Calendar
                     if (!stream.EndOfStream)
                         continue;
                 }
-                else if (CalendarLine != VCalendarConstants._beginText &&
-                         !CalendarLine.StartsWith(VCalendarConstants._versionSpecifier) &&
-                         CalendarLine != VCalendarConstants._endText)
+                else if (!CalendarLine.EqualsNoCase(VCalendarConstants._beginText) &&
+                         !CalendarLine.ToUpper().StartsWith(VCalendarConstants._versionSpecifier) &&
+                         !CalendarLine.EqualsNoCase(VCalendarConstants._endText))
                     append = true;
                 if (append)
                     CalendarContent.Append(CalendarLine);
 
                 // All vCalendars must begin with BEGIN:VCALENDAR
-                if (CalendarLine != VCalendarConstants._beginText && !BeginSpotted)
+                if (!CalendarLine.EqualsNoCase(VCalendarConstants._beginText) && !BeginSpotted)
                     throw new InvalidDataException($"This is not a valid vCalendar file.");
                 else if (!BeginSpotted)
                 {
@@ -111,12 +111,12 @@ namespace VisualCard.Calendar
 
                 // Now that the beginning of the calendar tag is spotted, parse the version as we need to know how to select the appropriate parser.
                 // All vCalendars are required to have their own version directly after the BEGIN:VCALENDAR tag
-                if (CalendarLine.StartsWith(VCalendarConstants._versionSpecifier) &&
-                    CalendarLine != $"{VCalendarConstants._versionSpecifier}:1.0" &&
-                    CalendarLine != $"{VCalendarConstants._versionSpecifier}:2.0" &&
+                if (CalendarLine.ToUpper().StartsWith(VCalendarConstants._versionSpecifier) &&
+                    !CalendarLine.EqualsNoCase($"{VCalendarConstants._versionSpecifier}:1.0") &&
+                    !CalendarLine.EqualsNoCase($"{VCalendarConstants._versionSpecifier}:2.0") &&
                     !VersionSpotted)
                     throw new InvalidDataException($"This has an invalid vCalendar version {CalendarLine}.");
-                else if (!VersionSpotted && CalendarLine.StartsWith(VCalendarConstants._versionSpecifier))
+                else if (!VersionSpotted && CalendarLine.ToUpper().StartsWith(VCalendarConstants._versionSpecifier))
                 {
                     VersionSpotted = true;
                     CalendarVersion = new(CalendarLine.Substring(8));
@@ -124,7 +124,7 @@ namespace VisualCard.Calendar
                 }
 
                 // If the ending tag is spotted, reset everything.
-                if (CalendarLine == VCalendarConstants._endText && !EndSpotted)
+                if (CalendarLine.EqualsNoCase(VCalendarConstants._endText) && !EndSpotted)
                 {
                     EndSpotted = true;
 

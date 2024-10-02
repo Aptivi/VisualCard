@@ -108,7 +108,7 @@ namespace VisualCard.Calendar.Parsers
                         throw new ArgumentException("The line must contain an argument delimiter.");
                     string value = _value.Substring(_value.IndexOf(VCalendarConstants._argumentDelimiter) + 1);
                     string prefixWithArgs = _value.Substring(0, _value.IndexOf(VCalendarConstants._argumentDelimiter));
-                    string prefix = prefixWithArgs.Contains(';') ? prefixWithArgs.Substring(0, prefixWithArgs.IndexOf(';')) : prefixWithArgs;
+                    string prefix = (prefixWithArgs.Contains(';') ? prefixWithArgs.Substring(0, prefixWithArgs.IndexOf(';')) : prefixWithArgs).ToUpper();
                     string args = prefixWithArgs.Contains(';') ? prefixWithArgs.Substring(prefix.Length + 1) : "";
                     string[] splitArgs = args.Split([VCalendarConstants._fieldDelimiter], StringSplitOptions.RemoveEmptyEntries);
                     string[] splitValues = value.Split([VCalendarConstants._fieldDelimiter], StringSplitOptions.RemoveEmptyEntries);
@@ -118,7 +118,8 @@ namespace VisualCard.Calendar.Parsers
                     // Check to see if we have a BEGIN or an END prefix
                     if (prefix == VCalendarConstants._beginSpecifier)
                     {
-                        begins.Add((value, GetCalendarInheritedInstance(value)));
+                        string finalType = value.ToUpper();
+                        begins.Add((finalType, GetCalendarInheritedInstance(finalType)));
                         continue;
                     }
                     else if (prefix == VCalendarConstants._endSpecifier)

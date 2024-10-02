@@ -95,23 +95,23 @@ namespace VisualCard
                     if (!stream.EndOfStream)
                         continue;
                 }
-                else if (CardLine != VcardConstants._beginText &&
-                         !CardLine.StartsWith(VcardConstants._versionSpecifier) &&
-                         CardLine != VcardConstants._endText)
+                else if (!CardLine.EqualsNoCase(VcardConstants._beginText) &&
+                         !CardLine.ToUpper().StartsWith(VcardConstants._versionSpecifier) &&
+                         !CardLine.EqualsNoCase(VcardConstants._endText))
                     append = true;
-                else if (CardLine == VcardConstants._beginText && nested)
+                else if (CardLine.EqualsNoCase(VcardConstants._beginText) && nested)
                 {
                     // We have a nested card!
                     StringBuilder nestedBuilder = new();
                     int nestLevel = 1;
                     nestedBuilder.AppendLine(CardLine);
-                    while (CardLine != VcardConstants._endText)
+                    while (!CardLine.EqualsNoCase(VcardConstants._endText))
                     {
                         CardLine = stream.ReadLine();
                         nestedBuilder.AppendLine(CardLine);
-                        if (CardLine == VcardConstants._beginText)
+                        if (CardLine.EqualsNoCase(VcardConstants._beginText))
                             nestLevel++;
-                        else if (CardLine == VcardConstants._endText && nestLevel > 1)
+                        else if (CardLine.EqualsNoCase(VcardConstants._endText) && nestLevel > 1)
                         {
                             nestLevel--;
                             CardLine = "";
@@ -128,7 +128,7 @@ namespace VisualCard
                     CardContent.Append(CardLine);
 
                 // All VCards must begin with BEGIN:VCARD
-                if (CardLine != VcardConstants._beginText && !BeginSpotted)
+                if (!CardLine.EqualsNoCase(VcardConstants._beginText) && !BeginSpotted)
                     throw new InvalidDataException($"This is not a valid VCard contact file.");
                 else if (!BeginSpotted)
                 {
@@ -143,14 +143,14 @@ namespace VisualCard
                 // Now that the beginning of the card tag is spotted, parse the version as we need to know how to select the appropriate parser.
                 // vCard 4.0 and 5.0 cards are required to have their own version directly after the BEGIN:VCARD tag, but vCard 3.0 and 2.1 may
                 // or may not place VERSION directly after the BEGIN:VCARD tag.
-                if (CardLine.StartsWith(VcardConstants._versionSpecifier) &&
-                    CardLine != $"{VcardConstants._versionSpecifier}:2.1" &&
-                    CardLine != $"{VcardConstants._versionSpecifier}:3.0" &&
-                    CardLine != $"{VcardConstants._versionSpecifier}:4.0" &&
-                    CardLine != $"{VcardConstants._versionSpecifier}:5.0" &&
+                if (CardLine.ToUpper().StartsWith(VcardConstants._versionSpecifier) &&
+                    !CardLine.EqualsNoCase($"{VcardConstants._versionSpecifier}:2.1") &&
+                    !CardLine.EqualsNoCase($"{VcardConstants._versionSpecifier}:3.0") &&
+                    !CardLine.EqualsNoCase($"{VcardConstants._versionSpecifier}:4.0") &&
+                    !CardLine.EqualsNoCase($"{VcardConstants._versionSpecifier}:5.0") &&
                     !VersionSpotted)
                     throw new InvalidDataException($"This has an invalid VCard version {CardLine}.");
-                else if (!VersionSpotted && CardLine.StartsWith(VcardConstants._versionSpecifier))
+                else if (!VersionSpotted && CardLine.ToUpper().StartsWith(VcardConstants._versionSpecifier))
                 {
                     VersionSpotted = true;
                     CardVersion = new(CardLine.Substring(8));
@@ -164,7 +164,7 @@ namespace VisualCard
                     versionDirect = false;
 
                 // If the ending tag is spotted, reset everything.
-                if (CardLine == VcardConstants._endText && !EndSpotted)
+                if (CardLine.EqualsNoCase(VcardConstants._endText) && !EndSpotted)
                 {
                     EndSpotted = true;
                     nested = false;
