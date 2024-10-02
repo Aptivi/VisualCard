@@ -7243,6 +7243,12 @@ references:
   commentId: F:VisualCard.Parts.Enums.StringsEnum.ContactUri
   fullName: VisualCard.Parts.Enums.StringsEnum.ContactUri
   nameWithType: StringsEnum.ContactUri
+- uid: VisualCard.Parts.Enums.StringsEnum.Expertise
+  name: Expertise
+  href: api/VisualCard.Parts.Enums.StringsEnum.html#VisualCard_Parts_Enums_StringsEnum_Expertise
+  commentId: F:VisualCard.Parts.Enums.StringsEnum.Expertise
+  fullName: VisualCard.Parts.Enums.StringsEnum.Expertise
+  nameWithType: StringsEnum.Expertise
 - uid: VisualCard.Parts.Enums.StringsEnum.FreeBusyUrl
   name: FreeBusyUrl
   href: api/VisualCard.Parts.Enums.StringsEnum.html#VisualCard_Parts_Enums_StringsEnum_FreeBusyUrl
@@ -7261,12 +7267,24 @@ references:
   commentId: F:VisualCard.Parts.Enums.StringsEnum.Geo
   fullName: VisualCard.Parts.Enums.StringsEnum.Geo
   nameWithType: StringsEnum.Geo
+- uid: VisualCard.Parts.Enums.StringsEnum.Hobby
+  name: Hobby
+  href: api/VisualCard.Parts.Enums.StringsEnum.html#VisualCard_Parts_Enums_StringsEnum_Hobby
+  commentId: F:VisualCard.Parts.Enums.StringsEnum.Hobby
+  fullName: VisualCard.Parts.Enums.StringsEnum.Hobby
+  nameWithType: StringsEnum.Hobby
 - uid: VisualCard.Parts.Enums.StringsEnum.Impps
   name: Impps
   href: api/VisualCard.Parts.Enums.StringsEnum.html#VisualCard_Parts_Enums_StringsEnum_Impps
   commentId: F:VisualCard.Parts.Enums.StringsEnum.Impps
   fullName: VisualCard.Parts.Enums.StringsEnum.Impps
   nameWithType: StringsEnum.Impps
+- uid: VisualCard.Parts.Enums.StringsEnum.Interest
+  name: Interest
+  href: api/VisualCard.Parts.Enums.StringsEnum.html#VisualCard_Parts_Enums_StringsEnum_Interest
+  commentId: F:VisualCard.Parts.Enums.StringsEnum.Interest
+  fullName: VisualCard.Parts.Enums.StringsEnum.Interest
+  nameWithType: StringsEnum.Interest
 - uid: VisualCard.Parts.Enums.StringsEnum.Kind
   name: Kind
   href: api/VisualCard.Parts.Enums.StringsEnum.html#VisualCard_Parts_Enums_StringsEnum_Kind
@@ -7315,6 +7333,12 @@ references:
   commentId: F:VisualCard.Parts.Enums.StringsEnum.Notes
   fullName: VisualCard.Parts.Enums.StringsEnum.Notes
   nameWithType: StringsEnum.Notes
+- uid: VisualCard.Parts.Enums.StringsEnum.OrgDirectory
+  name: OrgDirectory
+  href: api/VisualCard.Parts.Enums.StringsEnum.html#VisualCard_Parts_Enums_StringsEnum_OrgDirectory
+  commentId: F:VisualCard.Parts.Enums.StringsEnum.OrgDirectory
+  fullName: VisualCard.Parts.Enums.StringsEnum.OrgDirectory
+  nameWithType: StringsEnum.OrgDirectory
 - uid: VisualCard.Parts.Enums.StringsEnum.ProductId
   name: ProductId
   href: api/VisualCard.Parts.Enums.StringsEnum.html#VisualCard_Parts_Enums_StringsEnum_ProductId
