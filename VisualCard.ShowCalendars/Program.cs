@@ -95,9 +95,9 @@ namespace VisualCard.ShowCalendars
                         var summaries = eventInfo.GetString(CalendarStringsEnum.Summary);
                         var descriptions = eventInfo.GetString(CalendarStringsEnum.Description);
                         if (summaries.Length > 0)
-                            TextWriterColor.Write("Event summary:       {0}", summaries[0]);
+                            TextWriterColor.Write("Event summary:       {0}", summaries[0].Value);
                         if (descriptions.Length > 0)
-                            TextWriterColor.Write("Event description:   {0}", descriptions[0]);
+                            TextWriterColor.Write("Event description:   {0}", descriptions[0].Value);
                     }
 
                     // Print VCalendar

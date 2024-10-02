@@ -367,7 +367,7 @@ namespace VisualCard.Calendar.Parsers
                     {
                         if (enumType is null)
                             return false;
-                        var values = component.GetPartsArray(enumType, (CalendarPartsArrayEnum)enumeration);
+                        var values = component.GetPartsArray((CalendarPartsArrayEnum)enumeration);
                         exists = values.Length > 0;
                     }
                     break;

@@ -40,7 +40,7 @@ namespace VisualCard.Calendar.Parts
         /// Gets a part array from a specified key
         /// </summary>
         /// <returns>An array of values or an empty part array []</returns>
-        public new TPart[] GetPartsArray<TPart>() where TPart : BaseCalendarPartInfo
+        public override TPart[] GetPartsArray<TPart>()
         {
             // Get the parts enumeration according to the type
             var key = VCalendarParserTools.GetPartsArrayEnumFromType(typeof(TPart), CalendarVersion);
@@ -54,15 +54,29 @@ namespace VisualCard.Calendar.Parts
         /// </summary>
         /// <param name="key">A key to use</param>
         /// <returns>An array of values or an empty part array []</returns>
-        public new TPart[] GetPartsArray<TPart>(CalendarPartsArrayEnum key) where TPart : BaseCalendarPartInfo =>
+        public override TPart[] GetPartsArray<TPart>(CalendarPartsArrayEnum key) =>
             GetPartsArray<TPart>(key, CalendarVersion, partsArray);
+
+        /// <summary>
+        /// Gets a part array from a specified key
+        /// </summary>
+        /// <param name="key">A key to use</param>
+        /// <returns>An array of values or an empty part array []</returns>
+        public override BaseCalendarPartInfo[] GetPartsArray(CalendarPartsArrayEnum key)
+        {
+            string prefix = VCalendarParserTools.GetPrefixFromPartsArrayEnum(key);
+            var (_, _, enumType, _, _, _, _, _, _) = VCalendarParserTools.GetPartType(prefix, "", CalendarVersion);
+            if (enumType is null)
+                throw new ArgumentException($"Enumeration type is not found for {key}");
+            return GetPartsArray(enumType, key, CalendarVersion, partsArray);
+        }
 
         /// <summary>
         /// Gets a string from a specified key
         /// </summary>
         /// <param name="key">A key to use</param>
         /// <returns>A value or null if any other type either doesn't exist or the type is not supported by the card version</returns>
-        public new CalendarValueInfo<string>[] GetString(CalendarStringsEnum key) =>
+        public override CalendarValueInfo<string>[] GetString(CalendarStringsEnum key) =>
             GetString(key, CalendarVersion, strings);
 
         /// <summary>
@@ -70,13 +84,13 @@ namespace VisualCard.Calendar.Parts
         /// </summary>
         /// <param name="key">A key to use</param>
         /// <returns>A value or null if any other type either doesn't exist or the type is not supported by the card version</returns>
-        public new CalendarValueInfo<double>[] GetInteger(CalendarIntegersEnum key) =>
+        public override CalendarValueInfo<double>[] GetInteger(CalendarIntegersEnum key) =>
             GetInteger(key, CalendarVersion, integers);
 
         /// <summary>
         /// Saves this parsed card to the string
         /// </summary>
-        public new string SaveToString() =>
+        public override string SaveToString() =>
             SaveToString(CalendarVersion, partsArray, strings, integers, VCalendarConstants._objectVAlarmSpecifier);
 
         /// <summary>
@@ -136,13 +150,13 @@ namespace VisualCard.Calendar.Parts
         public static bool operator !=(CalendarAlarm a, CalendarAlarm b)
             => !a.Equals(b);
 
-        internal new void AddPartToArray(CalendarPartsArrayEnum key, BaseCalendarPartInfo value) =>
+        internal override void AddPartToArray(CalendarPartsArrayEnum key, BaseCalendarPartInfo value) =>
             AddPartToArray(key, value, CalendarVersion, partsArray, VCalendarConstants._objectVAlarmSpecifier);
 
-        internal new void AddString(CalendarStringsEnum key, CalendarValueInfo<string> value) =>
+        internal override void AddString(CalendarStringsEnum key, CalendarValueInfo<string> value) =>
             AddString(key, value, strings);
 
-        internal new void AddInteger(CalendarIntegersEnum key, CalendarValueInfo<double> value) =>
+        internal override void AddInteger(CalendarIntegersEnum key, CalendarValueInfo<double> value) =>
             AddInteger(key, value, integers);
 
         internal CalendarAlarm(Version version) :
