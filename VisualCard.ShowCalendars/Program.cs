@@ -79,11 +79,13 @@ namespace VisualCard.ShowCalendars
                     // List essentials
                     var starts = Calendar.GetPartsArray<DateStartInfo>();
                     var ends = Calendar.GetPartsArray<DateEndInfo>();
+                    var ids = Calendar.GetString(CalendarStringsEnum.ProductId);
                     if (starts.Length > 0)
                         TextWriterColor.Write("Calendar start date: {0}", starts[0].DateStart);
                     if (ends.Length > 0)
                         TextWriterColor.Write("Calendar end date:   {0}", ends[0].DateEnd);
-                    TextWriterColor.Write("Calendar product ID: {0}", Calendar.GetString(CalendarStringsEnum.ProductId)?.Value ?? "");
+                    if (ids.Length > 0)
+                        TextWriterColor.Write("Calendar product ID: {0}", ids[0].Value);
                     TextWriterColor.Write("Calendar UUID:       {0}", Calendar.UniqueId);
                     TextWriterColor.Write("Calendar events:     {0} event(s)", Calendar.Events.Length);
 

@@ -33,8 +33,8 @@ namespace VisualCard.Calendar.Parts
     public class CalendarFreeBusy : Calendar, IEquatable<CalendarFreeBusy>
     {
         private readonly Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray = [];
-        private readonly Dictionary<CalendarStringsEnum, CalendarValueInfo<string>> strings = [];
-        private readonly Dictionary<CalendarIntegersEnum, CalendarValueInfo<double>> integers = [];
+        private readonly Dictionary<CalendarStringsEnum, List<CalendarValueInfo<string>>> strings = [];
+        private readonly Dictionary<CalendarIntegersEnum, List<CalendarValueInfo<double>>> integers = [];
 
         /// <summary>
         /// Gets a part array from a specified key
@@ -62,7 +62,7 @@ namespace VisualCard.Calendar.Parts
         /// </summary>
         /// <param name="key">A key to use</param>
         /// <returns>A value or null if any other type either doesn't exist or the type is not supported by the card version</returns>
-        public new CalendarValueInfo<string>? GetString(CalendarStringsEnum key) =>
+        public new CalendarValueInfo<string>[] GetString(CalendarStringsEnum key) =>
             GetString(key, CalendarVersion, strings);
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace VisualCard.Calendar.Parts
         /// </summary>
         /// <param name="key">A key to use</param>
         /// <returns>A value or null if any other type either doesn't exist or the type is not supported by the card version</returns>
-        public new CalendarValueInfo<double>? GetInteger(CalendarIntegersEnum key) =>
+        public new CalendarValueInfo<double>[] GetInteger(CalendarIntegersEnum key) =>
             GetInteger(key, CalendarVersion, integers);
 
         /// <summary>
@@ -123,8 +123,8 @@ namespace VisualCard.Calendar.Parts
             int hashCode = 1333672311;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>>>.Default.GetHashCode(partsArray);
-            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarStringsEnum, CalendarValueInfo<string>>>.Default.GetHashCode(strings);
-            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarIntegersEnum, CalendarValueInfo<double>>>.Default.GetHashCode(integers);
+            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarStringsEnum, List<CalendarValueInfo<string>>>>.Default.GetHashCode(strings);
+            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarIntegersEnum, List<CalendarValueInfo<double>>>>.Default.GetHashCode(integers);
             return hashCode;
         }
 
@@ -139,11 +139,11 @@ namespace VisualCard.Calendar.Parts
         internal new void AddPartToArray(CalendarPartsArrayEnum key, BaseCalendarPartInfo value) =>
             AddPartToArray(key, value, CalendarVersion, partsArray, VCalendarConstants._objectVFreeBusySpecifier);
 
-        internal new void SetString(CalendarStringsEnum key, CalendarValueInfo<string> value) =>
-            SetString(key, value, strings);
+        internal new void AddString(CalendarStringsEnum key, CalendarValueInfo<string> value) =>
+            AddString(key, value, strings);
 
-        internal new void SetInteger(CalendarIntegersEnum key, CalendarValueInfo<double> value) =>
-            SetInteger(key, value, integers);
+        internal new void AddInteger(CalendarIntegersEnum key, CalendarValueInfo<double> value) =>
+            AddInteger(key, value, integers);
 
         internal CalendarFreeBusy(Version version) :
             base(version)

@@ -209,9 +209,9 @@ namespace VisualCard.Calendar.Parsers
                                 // Set the string for real
                                 var stringValueInfo = new CalendarValueInfo<string>([.. finalArgs], elementTypes, group, valueType, finalValue);
                                 if (subPart is not null)
-                                    subPart.SetString(stringType, stringValueInfo);
+                                    subPart.AddString(stringType, stringValueInfo);
                                 else
-                                    calendar.SetString(stringType, stringValueInfo);
+                                    calendar.AddString(stringType, stringValueInfo);
                             }
                             break;
                         case PartType.Integers:
@@ -227,9 +227,9 @@ namespace VisualCard.Calendar.Parsers
                                 // Set the integer for real
                                 var stringValueInfo = new CalendarValueInfo<double>([.. finalArgs], elementTypes, group, valueType, finalDouble);
                                 if (subPart is not null)
-                                    subPart.SetInteger(integerType, stringValueInfo);
+                                    subPart.AddInteger(integerType, stringValueInfo);
                                 else
-                                    calendar.SetInteger(integerType, stringValueInfo);
+                                    calendar.AddInteger(integerType, stringValueInfo);
                             }
                             break;
                         case PartType.PartsArray:
@@ -359,8 +359,8 @@ namespace VisualCard.Calendar.Parsers
             {
                 case PartType.Strings:
                     {
-                        string value = component.GetString((CalendarStringsEnum)enumeration)?.Value ?? "";
-                        exists = !string.IsNullOrEmpty(value);
+                        var values = component.GetString((CalendarStringsEnum)enumeration);
+                        exists = values.Length > 0;
                     }
                     break;
                 case PartType.PartsArray:
@@ -373,8 +373,8 @@ namespace VisualCard.Calendar.Parsers
                     break;
                 case PartType.Integers:
                     {
-                        double value = component.GetInteger((CalendarIntegersEnum)enumeration)?.Value ?? -1;
-                        exists = value != -1;
+                        var values = component.GetInteger((CalendarIntegersEnum)enumeration);
+                        exists = values.Length > 0;
                     }
                     break;
             }
@@ -391,7 +391,8 @@ namespace VisualCard.Calendar.Parsers
             string[] expectedAudioAlarmFields = [VCalendarConstants._attachSpecifier];
             string[] expectedDisplayAlarmFields = [VCalendarConstants._descriptionSpecifier];
             string[] expectedMailAlarmFields = [VCalendarConstants._descriptionSpecifier, VCalendarConstants._summarySpecifier, VCalendarConstants._attendeeSpecifier];
-            string type = alarmInfo.GetString(CalendarStringsEnum.Action)?.Value ?? "";
+            var actionList = alarmInfo.GetString(CalendarStringsEnum.Action);
+            string type = actionList.Length > 0 ? actionList[0].Value : "";
             switch (type)
             {
                 case "AUDIO":
@@ -409,7 +410,8 @@ namespace VisualCard.Calendar.Parsers
             }
 
             // Check to see if there is a repeat property
-            int repeat = (int)(alarmInfo.GetInteger(CalendarIntegersEnum.Repeat)?.Value ?? -1);
+            var repeatList = alarmInfo.GetInteger(CalendarIntegersEnum.Repeat);
+            int repeat = (int)(repeatList.Length > 0 ? repeatList[0].Value : -1);
             string[] expectedRepeatedAlarmFields = [VCalendarConstants._durationSpecifier];
             if (repeat >= 1)
             {

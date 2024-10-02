@@ -221,7 +221,7 @@ namespace VisualCard.Parsers
 
                                 // Set the string for real
                                 var stringValueInfo = new CardValueInfo<string>([.. finalArgs], altId, elementTypes, valueType, group, finalValue);
-                                card.SetString(stringType, stringValueInfo);
+                                card.AddString(stringType, stringValueInfo);
                             }
                             break;
                         case PartType.PartsArray:
@@ -290,8 +290,8 @@ namespace VisualCard.Parsers
                 {
                     case PartType.Strings:
                         {
-                            string value = component.GetString((StringsEnum)enumeration)?.Value ?? "";
-                            bool exists = !string.IsNullOrEmpty(value);
+                            var values = component.GetString((StringsEnum)enumeration);
+                            bool exists = values.Length > 0;
                             if (exists)
                                 actualFieldList.Add(expectedFieldName);
                         }

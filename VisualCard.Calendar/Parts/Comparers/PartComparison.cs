@@ -63,8 +63,8 @@ namespace VisualCard.Calendar.Parts.Comparers
         }
 
         internal static bool StringsEqual(
-            IDictionary<CalendarStringsEnum, CalendarValueInfo<string>> source,
-            IDictionary<CalendarStringsEnum, CalendarValueInfo<string>> target)
+            IDictionary<CalendarStringsEnum, List<CalendarValueInfo<string>>> source,
+            IDictionary<CalendarStringsEnum, List<CalendarValueInfo<string>>> target)
         {
             // Verify the dictionaries
             if (!VerifyDicts(source, target))
@@ -77,16 +77,31 @@ namespace VisualCard.Calendar.Parts.Comparers
             // Now, test the equality
             bool equal = source.All(kvp =>
             {
-                bool exists = target.TryGetValue(kvp.Key, out var part);
-                bool partsEqual = kvp.Value == part;
-                return exists && partsEqual;
+                bool exists = target.TryGetValue(kvp.Key, out var parts);
+                if (!exists)
+                    return false;
+
+                // Verify the lists
+                if (!VerifyLists(kvp.Value, parts))
+                    return false;
+
+                // Now, compare between two parts
+                List<bool> results = [];
+                for (int i = 0; i < parts.Count; i++)
+                {
+                    CalendarValueInfo<string> sourcePart = kvp.Value[i];
+                    CalendarValueInfo<string> targetPart = parts[i];
+                    bool equals = sourcePart == targetPart;
+                    results.Add(equals);
+                }
+                return !results.Contains(false);
             });
             return equal;
         }
 
         internal static bool IntegersEqual(
-            IDictionary<CalendarIntegersEnum, CalendarValueInfo<double>> source,
-            IDictionary<CalendarIntegersEnum, CalendarValueInfo<double>> target)
+            IDictionary<CalendarIntegersEnum, List<CalendarValueInfo<double>>> source,
+            IDictionary<CalendarIntegersEnum, List<CalendarValueInfo<double>>> target)
         {
             // Verify the dictionaries
             if (!VerifyDicts(source, target))
@@ -99,9 +114,24 @@ namespace VisualCard.Calendar.Parts.Comparers
             // Now, test the equality
             bool equal = source.All(kvp =>
             {
-                bool exists = target.TryGetValue(kvp.Key, out var part);
-                bool partsEqual = kvp.Value == part;
-                return exists && partsEqual;
+                bool exists = target.TryGetValue(kvp.Key, out var parts);
+                if (!exists)
+                    return false;
+
+                // Verify the lists
+                if (!VerifyLists(kvp.Value, parts))
+                    return false;
+
+                // Now, compare between two parts
+                List<bool> results = [];
+                for (int i = 0; i < parts.Count; i++)
+                {
+                    CalendarValueInfo<double> sourcePart = kvp.Value[i];
+                    CalendarValueInfo<double> targetPart = parts[i];
+                    bool equals = sourcePart == targetPart;
+                    results.Add(equals);
+                }
+                return !results.Contains(false);
             });
             return equal;
         }
