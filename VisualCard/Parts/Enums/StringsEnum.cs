@@ -136,5 +136,21 @@ namespace VisualCard.Parts.Enums
         /// The related member URI
         /// </summary>
         Related,
+        /// <summary>
+        /// Contact's field of expertise
+        /// </summary>
+        Expertise,
+        /// <summary>
+        /// Contact's hobby
+        /// </summary>
+        Hobby,
+        /// <summary>
+        /// Contact's interest
+        /// </summary>
+        Interest,
+        /// <summary>
+        /// Contact organization directory
+        /// </summary>
+        OrgDirectory,
     }
 }

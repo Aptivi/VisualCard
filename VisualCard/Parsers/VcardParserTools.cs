@@ -61,6 +61,10 @@ namespace VisualCard.Parsers
                 StringsEnum.ContactUri => cardVersion.Major >= 4,
                 StringsEnum.Member => kind == "group" && cardVersion.Major == 4,
                 StringsEnum.Related => cardVersion.Major == 4,
+                StringsEnum.Expertise => cardVersion.Major >= 4,
+                StringsEnum.Hobby => cardVersion.Major >= 4,
+                StringsEnum.Interest => cardVersion.Major >= 4,
+                StringsEnum.OrgDirectory => cardVersion.Major >= 4,
                 _ =>
                     throw new InvalidOperationException("Invalid string enumeration type to get supported value"),
             };
@@ -119,6 +123,10 @@ namespace VisualCard.Parsers
                 StringsEnum.ContactUri => VcardConstants._contactUriSpecifier,
                 StringsEnum.Member => VcardConstants._memberSpecifier,
                 StringsEnum.Related => VcardConstants._relatedSpecifier,
+                StringsEnum.Expertise => VcardConstants._expertiseSpecifier,
+                StringsEnum.Hobby => VcardConstants._hobbySpecifier,
+                StringsEnum.Interest => VcardConstants._interestSpecifier,
+                StringsEnum.OrgDirectory => VcardConstants._orgDirectorySpecifier,
                 _ =>
                     throw new NotImplementedException($"String enumeration {stringsEnum} is not implemented.")
             };
@@ -172,6 +180,10 @@ namespace VisualCard.Parsers
                 StringsEnum.ContactUri => PartCardinality.Any,
                 StringsEnum.Member => PartCardinality.Any,
                 StringsEnum.Related => PartCardinality.Any,
+                StringsEnum.Expertise => PartCardinality.Any,
+                StringsEnum.Hobby => PartCardinality.Any,
+                StringsEnum.Interest => PartCardinality.Any,
+                StringsEnum.OrgDirectory => PartCardinality.Any,
                 _ => throw new ArgumentException($"There is no string enum info for {strings}"),
             };
         }
@@ -265,6 +277,10 @@ namespace VisualCard.Parsers
                 VcardConstants._contactUriSpecifier => (PartType.Strings, StringsEnum.ContactUri, null, null, "", "", "uri", [], []),
                 VcardConstants._memberSpecifier => (PartType.Strings, StringsEnum.Member, null, null, "", "", "uri", [], []),
                 VcardConstants._relatedSpecifier => (PartType.Strings, StringsEnum.Related, null, null, "", "", "uri", [], []),
+                VcardConstants._expertiseSpecifier => (PartType.Strings, StringsEnum.Expertise, null, null, "", "", "text", [], []),
+                VcardConstants._hobbySpecifier => (PartType.Strings, StringsEnum.Hobby, null, null, "", "", "text", [], []),
+                VcardConstants._interestSpecifier => (PartType.Strings, StringsEnum.Interest, null, null, "", "", "text", [], []),
+                VcardConstants._orgDirectorySpecifier => (PartType.Strings, StringsEnum.OrgDirectory, null, null, "", "", "uri", [], []),
 
                 // Extensions are allowed
                 VcardConstants._xSpecifier => (PartType.PartsArray, PartsArrayEnum.NonstandardNames, typeof(XNameInfo), XNameInfo.FromStringVcardStatic, "", "", "", [], []),

@@ -103,5 +103,9 @@ namespace VisualCard.Parsers
         internal const string _memberSpecifier = "MEMBER";
         internal const string _relatedSpecifier = "RELATED";
         internal const string _clientPidMapSpecifier = "CLIENTPIDMAP";
+        internal const string _expertiseSpecifier = "EXPERTISE";
+        internal const string _hobbySpecifier = "HOBBY";
+        internal const string _interestSpecifier = "INTEREST";
+        internal const string _orgDirectorySpecifier = "ORG-DIRECTORY";
     }
 }
