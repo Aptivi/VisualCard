@@ -23,7 +23,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using VisualCard.Parsers.Arguments;
-using VisualCard.Parts.Enums;
 
 namespace VisualCard.Parsers
 {

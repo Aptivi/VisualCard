@@ -24,7 +24,6 @@ using Terminaux.Colors.Data;
 using Terminaux.Writer.ConsoleWriters;
 using VisualCard.Extras.Converters;
 using VisualCard.Parts;
-using VisualCard.Parts.Enums;
 using VisualCard.Parts.Implementations;
 using VisualCard.Extras.Misc;
 

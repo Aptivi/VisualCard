@@ -21,7 +21,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using VisualCard.Calendar.Parsers;
 using VisualCard.Parsers;
 using VisualCard.Parsers.Arguments;
 
