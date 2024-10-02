@@ -40,7 +40,7 @@ namespace VisualCard.Parts
         internal Card[] nestedCards = [];
         private readonly Version version;
         private readonly Dictionary<PartsArrayEnum, List<BaseCardPartInfo>> partsArray = [];
-        private readonly Dictionary<StringsEnum, (string group, string value)> strings = [];
+        private readonly Dictionary<StringsEnum, CardValueInfo<string>> strings = [];
 
         /// <summary>
         /// The VCard version
@@ -58,13 +58,13 @@ namespace VisualCard.Parts
         /// Unique ID for this card
         /// </summary>
         public string UniqueId =>
-            GetString(StringsEnum.Uid).value;
+            GetString(StringsEnum.Uid)?.Value ?? "";
 
         /// <summary>
         /// Card kind
         /// </summary>
         public string CardKind =>
-            GetString(StringsEnum.Kind).value;
+            GetString(StringsEnum.Kind)?.Value ?? "individual";
 
         /// <summary>
         /// Gets a part array from a specified key
@@ -152,24 +152,25 @@ namespace VisualCard.Parts
         /// Gets a string from a specified key
         /// </summary>
         /// <param name="key">A key to use</param>
-        /// <returns>A tuple that stores a group and a value, or "individual" if the kind doesn't exist, or an empty string ("") if any other type either doesn't exist or the type is not supported by the card version</returns>
-        public (string group, string value) GetString(StringsEnum key)
+        /// <returns>A tuple that stores a group and a value, or "individual" if the kind doesn't exist, or null if any other type either doesn't exist or the type is not supported by the card version</returns>
+        public CardValueInfo<string>? GetString(StringsEnum key)
         {
             // Check for version support
             if (!VcardParserTools.StringSupported(key, CardVersion))
-                return ("", "");
+                return null;
 
             // Get the fallback value
             string fallback = key == StringsEnum.Kind ? "individual" : "";
+            var valueInfo = new CardValueInfo<string>([], -1, [], "", "", fallback);
 
             // Check to see if the string has a value or not
             bool hasValue = strings.TryGetValue(key, out var value);
             if (!hasValue)
-                return ("", fallback);
+                return valueInfo;
 
             // Now, verify that the string is not empty
-            hasValue = !string.IsNullOrEmpty(value.value);
-            return hasValue ? (value.group, value.value) : ("", fallback);
+            hasValue = !string.IsNullOrEmpty(value.Value);
+            return hasValue ? value : valueInfo;
         }
 
         /// <summary>
@@ -190,20 +191,31 @@ namespace VisualCard.Parts
             foreach (StringsEnum stringEnum in stringEnums)
             {
                 // Get the string value
-                var (group, stringValue) = GetString(stringEnum);
-                if (string.IsNullOrEmpty(stringValue))
+                var stringInfo = GetString(stringEnum);
+                if (stringInfo is null || string.IsNullOrEmpty(stringInfo.Value))
                     continue;
 
                 // Check to see if kind is specified
                 if (!kindExplicitlySpecified && stringEnum == StringsEnum.Kind)
                     continue;
 
-                // Now, locate the prefix and assemble the line
+                // Get the prefix
                 string prefix = VcardParserTools.GetPrefixFromStringsEnum(stringEnum);
+                var type = VcardParserTools.GetPartType(prefix);
+                string defaultType = type.defaultType;
+                string defaultValueType = type.defaultValueType;
+
+                // Now, locate the prefix and assemble the line
+                var partBuilder = new StringBuilder();
+                string partArguments = CardBuilderTools.BuildArguments(stringInfo, version, defaultType, defaultValueType);
+                string[] partArgumentsLines = partArguments.SplitNewLines();
+                string group = stringInfo.Group;
                 if (!string.IsNullOrEmpty(group))
                     cardBuilder.Append($"{group}.");
-                cardBuilder.Append($"{prefix}{VcardConstants._argumentDelimiter}");
-                cardBuilder.AppendLine($"{VcardCommonTools.MakeStringBlock(stringValue, prefix.Length)}");
+                partBuilder.Append($"{prefix}");
+                partBuilder.Append($"{partArguments}");
+                partBuilder.Append($"{VcardCommonTools.MakeStringBlock(stringInfo.Value, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length)}");
+                cardBuilder.AppendLine($"{partBuilder}");
             }
 
             // Then, enumerate all the arrays
@@ -301,7 +313,7 @@ namespace VisualCard.Parts
             int hashCode = 1365540608;
             hashCode = hashCode * -1521134295 + EqualityComparer<Card[]>.Default.GetHashCode(nestedCards);
             hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<PartsArrayEnum, List<BaseCardPartInfo>>>.Default.GetHashCode(partsArray);
-            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<StringsEnum, (string group, string value)>>.Default.GetHashCode(strings);
+            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<StringsEnum, CardValueInfo<string>>>.Default.GetHashCode(strings);
             return hashCode;
         }
 
@@ -346,14 +358,14 @@ namespace VisualCard.Parts
             }
         }
 
-        internal void SetString(StringsEnum key, string value, string group = "")
+        internal void SetString(StringsEnum key, CardValueInfo<string> value)
         {
-            if (string.IsNullOrEmpty(value))
+            if (value is null || string.IsNullOrEmpty(value.Value))
                 return;
 
             // If we don't have this key yet, add it.
             if (!strings.ContainsKey(key))
-                strings.Add(key, (group, value));
+                strings.Add(key, value);
             else
                 throw new InvalidOperationException($"Can't overwrite string {key}.");
         }

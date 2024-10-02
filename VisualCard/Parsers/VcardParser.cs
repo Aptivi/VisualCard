@@ -206,6 +206,9 @@ namespace VisualCard.Parsers
                         case PartType.Strings:
                             {
                                 StringsEnum stringType = (StringsEnum)enumeration;
+                                bool supported = VcardParserTools.StringSupported(stringType, CardVersion);
+                                if (!supported)
+                                    continue;
 
                                 // Let VisualCard know that we've explicitly specified a kind.
                                 if (stringType == StringsEnum.Kind)
@@ -217,13 +220,13 @@ namespace VisualCard.Parsers
                                     throw new InvalidDataException("Profile must be \"vCard\"");
 
                                 // Set the string for real
-                                card.SetString(stringType, finalValue, group);
+                                var stringValueInfo = new CardValueInfo<string>([.. finalArgs], altId, elementTypes, valueType, group, finalValue);
+                                card.SetString(stringType, stringValueInfo);
                             }
                             break;
                         case PartType.PartsArray:
                             {
                                 PartsArrayEnum partsArrayType = (PartsArrayEnum)enumeration;
-                                Type? partsArrayClass = classType;
                                 bool supported = VcardParserTools.EnumArrayTypeSupported(partsArrayType, CardVersion, kind);
                                 if (!supported)
                                     continue;
@@ -287,7 +290,7 @@ namespace VisualCard.Parsers
                 {
                     case PartType.Strings:
                         {
-                            string value = component.GetString((StringsEnum)enumeration).value;
+                            string value = component.GetString((StringsEnum)enumeration)?.Value ?? "";
                             bool exists = !string.IsNullOrEmpty(value);
                             if (exists)
                                 actualFieldList.Add(expectedFieldName);

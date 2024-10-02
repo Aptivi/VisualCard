@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using VisualCard.Parsers;
+using VisualCard.Parsers.Arguments;
 using VisualCard.Parts.Implementations;
 
 namespace VisualCard.Parts
@@ -30,29 +31,37 @@ namespace VisualCard.Parts
     {
         internal static string BuildArguments(BaseCardPartInfo partInfo, Version cardVersion, string defaultType, string defaultValue)
         {
-            // Filter the list of types and values first
-            string[] finalElementTypes = partInfo.ElementTypes.Where((type) => !type.Equals(defaultType, StringComparison.OrdinalIgnoreCase)).ToArray();
-            string finalValue = partInfo.ValueType.Equals(defaultValue, StringComparison.OrdinalIgnoreCase) ? "" : partInfo.ValueType;
-
-            // Check to see if we've been provided arguments
-            bool installAltId = partInfo.AltId >= 0 && partInfo.Arguments.Length > 0 && cardVersion.Major >= 4;
-            bool noSemicolon = partInfo.AltId < 0 && partInfo.Arguments.Length == 0 && finalElementTypes.Length == 0 && string.IsNullOrEmpty(finalValue);
             string extraKeyName =
                 (partInfo is XNameInfo xName ? xName.XKeyName :
                  partInfo is ExtraInfo exName ? exName.KeyName : "") ?? "";
+            return BuildArguments(partInfo.ElementTypes, partInfo.ValueType, partInfo.AltId, partInfo.Arguments, extraKeyName, cardVersion, defaultType, defaultValue);
+        }
+
+        internal static string BuildArguments<TValue>(CardValueInfo<TValue> partInfo, Version cardVersion, string defaultType, string defaultValue) =>
+            BuildArguments(partInfo.ElementTypes, partInfo.ValueType, partInfo.AltId, partInfo.Arguments, "", cardVersion, defaultType, defaultValue);
+
+        internal static string BuildArguments(string[] elementTypes, string valueType, int altId, ArgumentInfo[] arguments, string extraKeyName, Version cardVersion, string defaultType, string defaultValue)
+        {
+            // Filter the list of types and values first
+            string[] finalElementTypes = elementTypes.Where((type) => !type.Equals(defaultType, StringComparison.OrdinalIgnoreCase)).ToArray();
+            string finalValue = valueType.Equals(defaultValue, StringComparison.OrdinalIgnoreCase) ? "" : valueType;
+
+            // Check to see if we've been provided arguments
+            bool installAltId = altId >= 0 && arguments.Length > 0 && cardVersion.Major >= 4;
+            bool noSemicolon = altId < 0 && arguments.Length == 0 && finalElementTypes.Length == 0 && string.IsNullOrEmpty(finalValue);
             if (noSemicolon)
                 return extraKeyName + VcardConstants._argumentDelimiter.ToString();
 
             // Now, initialize the argument builder
             StringBuilder argumentsBuilder = new(extraKeyName + VcardConstants._fieldDelimiter.ToString());
-            bool installArguments = partInfo.Arguments.Length > 0;
+            bool installArguments = arguments.Length > 0;
             bool installElementTypes = finalElementTypes.Length > 0;
             bool installValueType = !string.IsNullOrEmpty(finalValue);
 
             // First, install the AltId parameter if it exists
             if (installAltId)
             {
-                argumentsBuilder.Append(VcardConstants._altIdArgumentSpecifier + partInfo.AltId);
+                argumentsBuilder.Append(VcardConstants._altIdArgumentSpecifier + altId);
                 noSemicolon = !installArguments && !installElementTypes && !installValueType;
                 if (noSemicolon)
                 {
@@ -95,7 +104,7 @@ namespace VisualCard.Parts
             if (installArguments)
             {
                 List<string> finalArguments = [];
-                foreach (var arg in partInfo.Arguments)
+                foreach (var arg in arguments)
                     finalArguments.Add(arg.BuildArguments());
                 argumentsBuilder.Append(string.Join(VcardConstants._fieldDelimiter.ToString(), finalArguments));
             }
