@@ -38,6 +38,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Nettify" Version="1.5.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\VisualCard\VisualCard.csproj" />
   </ItemGroup>
 
