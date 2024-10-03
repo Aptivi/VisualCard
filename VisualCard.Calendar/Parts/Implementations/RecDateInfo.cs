@@ -76,13 +76,12 @@ namespace VisualCard.Calendar.Parts.Implementations
             else
             {
                 // Check to see if it's a period
-                string type = valueType ?? "";
-                if (type.Equals("period", StringComparison.OrdinalIgnoreCase))
+                if (valueType.Equals("period", StringComparison.OrdinalIgnoreCase))
                 {
                     var parsedPeriod = VcardCommonTools.GetTimePeriod(value);
                     recDates = [parsedPeriod];
                 }
-                else if (type.Equals("date", StringComparison.OrdinalIgnoreCase))
+                else if (valueType.Equals("date", StringComparison.OrdinalIgnoreCase))
                 {
                     // Not a period. Use date
                     var parsedDate = VcardCommonTools.ParsePosixDate(value);
@@ -97,7 +96,7 @@ namespace VisualCard.Calendar.Parts.Implementations
             }
 
             // Add the fetched information
-            RecDateInfo _time = new([], elementTypes, group, valueType ?? "", recDates);
+            RecDateInfo _time = new([], elementTypes, group, valueType, recDates);
             return _time;
         }
 

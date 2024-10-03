@@ -51,20 +51,19 @@ namespace VisualCard.Calendar.Parts.Implementations
         internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate the fields
-            string type = valueType ?? "";
             var exDates = Regex.Unescape(value).Split(cardVersion.Major == 1 ? ';' : ',');
             List<DateTimeOffset> dates = [];
             foreach (var exDate in exDates)
             {
                 DateTimeOffset date =
-                    type.Equals("date", StringComparison.OrdinalIgnoreCase) ?
+                    valueType.Equals("date", StringComparison.OrdinalIgnoreCase) ?
                     VcardCommonTools.ParsePosixDate(exDate) :
                     VcardCommonTools.ParsePosixDateTime(exDate);
                 dates.Add(date);
             }
 
             // Add the fetched information
-            ExDateInfo _time = new([], elementTypes, group, valueType ?? "", [.. dates]);
+            ExDateInfo _time = new([], elementTypes, group, valueType, [.. dates]);
             return _time;
         }
 
