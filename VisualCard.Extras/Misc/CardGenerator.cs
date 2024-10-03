@@ -20,7 +20,9 @@
 using Nettify.MailAddress;
 using System;
 using System.Collections.Generic;
+using System.Text;
 using Textify.Data.NameGen;
+using VisualCard.Parsers;
 using VisualCard.Parts;
 using VisualCard.Parts.Enums;
 using VisualCard.Parts.Implementations;
@@ -72,6 +74,8 @@ namespace VisualCard.Extras.Misc
             string[] mailHosts = IspTools.KnownIspHosts;
             List<Card> cardList = [];
 
+            // Build this number of cards
+            StringBuilder builder = new();
             for (int i = 0; i < cards; i++)
             {
                 // Get first and last names from the card index
@@ -80,24 +84,27 @@ namespace VisualCard.Extras.Misc
                 if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName))
                     continue;
 
+                // Add the begin header and the name indicators
+                builder.AppendLine(VcardConstants._beginText);
+                builder.AppendLine(VcardConstants._fullNameSpecifier + $":{firstName} {lastName}");
+                builder.AppendLine(VcardConstants._nameSpecifier + $":{lastName};{firstName}");
+
                 // Now, generate random telephone numbers and e-mail addresses
                 bool generateTelephone = rng.NextDouble() < 0.3;
                 bool generateEmail = rng.NextDouble() < 0.3;
-                Dictionary<string, string> telephones = [];
-                Dictionary<string, string> emails = [];
                 if (generateTelephone)
                 {
                     bool generateWorkTelephone = rng.NextDouble() < 0.25;
                     int firstPart = rng.Next(1000);
                     int secondPart = rng.Next(1000);
                     int thirdPart = rng.Next(10000);
-                    telephones.Add("HOME", $"{firstPart:D3}-{secondPart:D3}-{thirdPart:D4}");
+                    builder.AppendLine(VcardConstants._telephoneSpecifier + $";TYPE=HOME:{firstPart:D3}-{secondPart:D3}-{thirdPart:D4}");
                     if (generateWorkTelephone)
                     {
                         firstPart = rng.Next(1000);
                         secondPart = rng.Next(1000);
                         thirdPart = rng.Next(10000);
-                        telephones.Add("WORK", $"{firstPart:D3}-{secondPart:D3}-{thirdPart:D4}");
+                        builder.AppendLine(VcardConstants._telephoneSpecifier + $";TYPE=WORK:{firstPart:D3}-{secondPart:D3}-{thirdPart:D4}");
                     }
                 }
                 if (generateEmail)
@@ -108,20 +115,15 @@ namespace VisualCard.Extras.Misc
                     string lastNameNormalized = lastName.ToLower().Replace(" ", "-");
                     string emailName = firstNameLong ? firstNameNormalized + "." + char.ToLower(lastName[0]) : char.ToLower(firstName[0]) + "." + lastNameNormalized;
                     string mailHost = mailHosts[rng.Next(mailHosts.Length)];
-                    emails.Add("HOME", $"{emailName}@{mailHost}");
+                    builder.AppendLine(VcardConstants._emailSpecifier + $";TYPE=HOME:{emailName}@{mailHost}");
                     if (generateWorkEmail)
-                        emails.Add("WORK", $"{emailName}@{lastNameNormalized}.com");
+                        builder.AppendLine(VcardConstants._emailSpecifier + $";TYPE=WORK:{emailName}@{lastNameNormalized}.com");
                 }
 
-                // Now, convert generated parts to actual VisualCard parts
-                var card = new Card(new(2, 1));
-                card.AddPartToArray(PartsArrayEnum.Names, new NameInfo(0, [], [], "", "", firstName, lastName, [], [], []));
-                card.AddString(StringsEnum.FullName, new([], 0, [], "", "", $"{firstName} {lastName}"));
-                foreach (var telephone in telephones)
-                    card.AddString(StringsEnum.Telephones, new([], 0, [telephone.Key], "", "", telephone.Value));
-                foreach (var email in emails)
-                    card.AddString(StringsEnum.Mails, new([], 0, [email.Key], "", "", email.Value));
-                string cardString = card.ToString();
+                // Add the end header
+                builder.AppendLine(VcardConstants._endText);
+                string cardString = builder.ToString();
+                builder.Clear();
 
                 // Verify the generated card and add it to the list of cards
                 var finalCard = CardTools.GetCardsFromString(cardString)[0];
