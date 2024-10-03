@@ -29,7 +29,7 @@ namespace VisualCard.Parsers.Arguments
     /// <summary>
     /// Argument info for properties
     /// </summary>
-    [DebuggerDisplay("{Key} = [{string.Split(\", \", AllValues)}]")]
+    [DebuggerDisplay("{Key} = [{string.Join(\", \", AllValues)}]")]
     public class ArgumentInfo : IEquatable<ArgumentInfo>
     {
         private readonly string key = "";

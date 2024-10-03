@@ -18,7 +18,7 @@
 //
 
 using System;
-using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Textify.General;
 
@@ -27,6 +27,7 @@ namespace VisualCard.Parsers.Arguments
     /// <summary>
     /// Property info class
     /// </summary>
+    [DebuggerDisplay("Property: {Arguments.Length} args, {Prefix} [G: {Group}] = {Value}")]
     public class PropertyInfo
     {
         private string rawValue = "";
