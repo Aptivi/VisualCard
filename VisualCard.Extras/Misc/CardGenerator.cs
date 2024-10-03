@@ -42,10 +42,12 @@ namespace VisualCard.Extras.Misc
         /// <param name="surnamePrefix">Prefix of the last name</param>
         /// <param name="surnameSuffix">Suffix of the last name</param>
         /// <param name="nameGender">Name gender type</param>
+        /// <param name="min">Minimum number of cards</param>
+        /// <param name="max">Maximum number of cards</param>
         /// <returns>A list of generated cards (by default, it generates up to 100 cards.)</returns>
-        public static Card[] GenerateCards(string namePrefix = "", string nameSuffix = "", string surnamePrefix = "", string surnameSuffix = "", NameGenderType nameGender = NameGenderType.Unified)
+        public static Card[] GenerateCards(string namePrefix = "", string nameSuffix = "", string surnamePrefix = "", string surnameSuffix = "", NameGenderType nameGender = NameGenderType.Unified, int min = 1, int max = 100)
         {
-            int cardNumbers = rng.Next(1, 101);
+            int cardNumbers = rng.Next(min, max + 1);
             return GenerateCards(cardNumbers, namePrefix, nameSuffix, surnamePrefix, surnameSuffix, nameGender);
         }
 
