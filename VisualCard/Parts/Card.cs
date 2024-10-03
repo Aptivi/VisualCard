@@ -196,8 +196,7 @@ namespace VisualCard.Parts
             cardBuilder.AppendLine($"{VcardConstants._versionSpecifier}:{version}");
 
             // Then, enumerate all the strings
-            StringsEnum[] stringEnums = (StringsEnum[])Enum.GetValues(typeof(StringsEnum));
-            foreach (StringsEnum stringEnum in stringEnums)
+            foreach (StringsEnum stringEnum in strings.Keys)
             {
                 // Get the string values
                 var array = GetString(stringEnum);
@@ -231,8 +230,7 @@ namespace VisualCard.Parts
             }
 
             // Then, enumerate all the arrays
-            PartsArrayEnum[] partsArrayEnums = (PartsArrayEnum[])Enum.GetValues(typeof(PartsArrayEnum));
-            foreach (PartsArrayEnum partsArrayEnum in partsArrayEnums)
+            foreach (PartsArrayEnum partsArrayEnum in partsArray.Keys)
             {
                 // Get the array value
                 var array = GetPartsArray<BaseCardPartInfo>(partsArrayEnum);

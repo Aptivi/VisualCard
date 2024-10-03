@@ -282,8 +282,7 @@ namespace VisualCard.Calendar.Parts
                 cardBuilder.AppendLine($"{VcardConstants._versionSpecifier}:{version}");
 
             // Then, enumerate all the strings
-            CalendarStringsEnum[] stringEnums = (CalendarStringsEnum[])Enum.GetValues(typeof(CalendarStringsEnum));
-            foreach (CalendarStringsEnum stringEnum in stringEnums)
+            foreach (CalendarStringsEnum stringEnum in strings.Keys)
             {
                 // Get the string values
                 var array = GetString(stringEnum, version, strings);
@@ -313,8 +312,7 @@ namespace VisualCard.Calendar.Parts
             }
 
             // Then, enumerate all the integers
-            CalendarIntegersEnum[] integerEnums = (CalendarIntegersEnum[])Enum.GetValues(typeof(CalendarIntegersEnum));
-            foreach (CalendarIntegersEnum integerEnum in integerEnums)
+            foreach (CalendarIntegersEnum integerEnum in integers.Keys)
             {
                 // Get the string value
                 var array = GetInteger(integerEnum, version, integers);
@@ -344,8 +342,7 @@ namespace VisualCard.Calendar.Parts
             }
 
             // Then, enumerate all the arrays
-            CalendarPartsArrayEnum[] partsArrayEnums = (CalendarPartsArrayEnum[])Enum.GetValues(typeof(CalendarPartsArrayEnum));
-            foreach (CalendarPartsArrayEnum partsArrayEnum in partsArrayEnums)
+            foreach (CalendarPartsArrayEnum partsArrayEnum in partsArray.Keys)
             {
                 // Get the array value
                 var array = GetPartsArray<BaseCalendarPartInfo>(partsArrayEnum, version, partsArray);
