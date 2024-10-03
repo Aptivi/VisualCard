@@ -106,33 +106,20 @@ namespace VisualCard.Calendar.Parsers
 
                 try
                 {
-                    // Now, parse a line
-                    if (!_value.Contains(VcardConstants._argumentDelimiter))
-                        throw new ArgumentException("The line must contain an argument delimiter.");
-                    string value = _value.Substring(_value.IndexOf(VcardConstants._argumentDelimiter) + 1);
-                    string prefixWithArgs = _value.Substring(0, _value.IndexOf(VcardConstants._argumentDelimiter));
-                    string prefix = (prefixWithArgs.Contains(';') ? prefixWithArgs.Substring(0, prefixWithArgs.IndexOf(';')) : prefixWithArgs).ToUpper();
-                    string args = prefixWithArgs.Contains(';') ? prefixWithArgs.Substring(prefix.Length + 1) : "";
-                    string[] splitArgs = args.Split([VcardConstants._fieldDelimiter], StringSplitOptions.RemoveEmptyEntries);
-                    string[] splitValues = value.Split([VcardConstants._fieldDelimiter], StringSplitOptions.RemoveEmptyEntries);
-                    bool isWithType = splitArgs.Length > 0;
-                    List<ArgumentInfo> finalArgs = [];
-
-                    // Extract the group name
-                    string group = prefix.Contains(".") ? prefix.Substring(0, prefix.IndexOf(".")) : "";
-                    prefix = prefix.RemovePrefix($"{group}.");
+                    // Now, parse a property
+                    var info = new PropertyInfo(_value, CalendarVersion);
 
                     // Check to see if we have a BEGIN or an END prefix
-                    if (prefix == VcardConstants._beginSpecifier)
+                    if (info.Prefix == VcardConstants._beginSpecifier)
                     {
-                        string finalType = value.ToUpper();
+                        string finalType = info.Value.ToUpper();
                         begins.Add((finalType, GetCalendarInheritedInstance(finalType)));
                         continue;
                     }
-                    else if (prefix == VcardConstants._endSpecifier)
+                    else if (info.Prefix == VcardConstants._endSpecifier)
                     {
                         string expectedType = begins[begins.Count - 1].Item1;
-                        if (value == expectedType)
+                        if (info.Value == expectedType)
                         {
                             if (begins.Count == 1)
                                 SaveLastSubPart(subPart, ref calendar);
@@ -144,37 +131,16 @@ namespace VisualCard.Calendar.Parsers
                             begins.RemoveAt(begins.Count - 1);
                         }
                         else
-                            throw new ArgumentException($"Ending mismatch: Expected {expectedType} vs. actual {value}");
+                            throw new ArgumentException($"Ending mismatch: Expected {expectedType} vs. actual {info.Value}");
                         continue;
                     }
 
-                    // Get the part type
-                    bool xNonstandard = prefix.StartsWith(VcardConstants._xSpecifier);
-                    bool specifierRequired = CalendarVersion.Major >= 3;
+                    // Get the type and its properties
                     Type calendarType = subPart is not null ? subPart.GetType() : calendar.GetType();
-                    var (type, enumeration, classType, fromString, defaultType, defaultValue, defaultValueType, extraAllowedTypes, allowedValues) = VCalendarParserTools.GetPartType(xNonstandard ? VcardConstants._xSpecifier : prefix, VCalendarParserTools.GetObjectTypeFromType(calendarType), CalendarVersion);
-
-                    // Handle arguments
-                    if (isWithType)
-                    {
-                        // Finalize the arguments
-                        var argsStr = splitArgs.Except(
-                            splitArgs.Where((arg) =>
-                                arg.StartsWith(VcardConstants._valueArgumentSpecifier) ||
-                                arg.StartsWith(VcardConstants._typeArgumentSpecifier) ||
-                                CalendarVersion.Major == 2 && !arg.Contains(VcardConstants._argumentValueDelimiter)
-                            )
-                        );
-                        foreach (string arg in argsStr)
-                        {
-                            string keyStr = arg.Substring(0, arg.IndexOf(VcardConstants._argumentValueDelimiter));
-                            string valueStr = arg.RemovePrefix($"{keyStr}{VcardConstants._argumentValueDelimiter}");
-                            finalArgs.Add(new(keyStr, valueStr));
-                        }
-                    }
+                    var (type, enumeration, classType, fromString, defaultType, defaultValue, defaultValueType, extraAllowedTypes, allowedValues) = VCalendarParserTools.GetPartType(info.Prefix, VCalendarParserTools.GetObjectTypeFromType(calendarType), CalendarVersion);
 
                     // Check the type for allowed types
-                    string[] elementTypes = VcardCommonTools.GetTypes(splitArgs, defaultType, specifierRequired);
+                    string[] elementTypes = VcardCommonTools.GetTypes(info.ArgumentsFiltered, defaultType);
                     foreach (string elementType in elementTypes)
                     {
                         string elementTypeUpper = elementType.ToUpper();
@@ -183,8 +149,8 @@ namespace VisualCard.Calendar.Parsers
                     }
 
                     // Handle the part type, and extract the value
-                    string valueType = VcardCommonTools.GetFirstValue(splitArgs, defaultValueType, VcardConstants._valueArgumentSpecifier);
-                    string finalValue = VcardCommonTools.ProcessStringValue(value, valueType, calendarVersion.Major == 1 ? ';' : ',');
+                    string valueType = VcardCommonTools.GetFirstValue(info.ArgumentsFiltered, defaultValueType, VcardConstants._valueArgumentSpecifier);
+                    string finalValue = VcardCommonTools.ProcessStringValue(info.Value, valueType, calendarVersion.Major == 1 ? ';' : ',');
 
                     // Check for allowed values
                     if (allowedValues.Length != 0)
@@ -210,7 +176,7 @@ namespace VisualCard.Calendar.Parsers
                                     continue;
 
                                 // Set the string for real
-                                var stringValueInfo = new CalendarValueInfo<string>([.. finalArgs], elementTypes, group, valueType, finalValue);
+                                var stringValueInfo = new CalendarValueInfo<string>(info.ArgumentsFiltered, elementTypes, info.Group, valueType, finalValue);
                                 if (subPart is not null)
                                     subPart.AddString(stringType, stringValueInfo);
                                 else
@@ -228,7 +194,7 @@ namespace VisualCard.Calendar.Parsers
                                 double finalDouble = double.Parse(finalValue);
 
                                 // Set the integer for real
-                                var stringValueInfo = new CalendarValueInfo<double>([.. finalArgs], elementTypes, group, valueType, finalDouble);
+                                var stringValueInfo = new CalendarValueInfo<double>(info.ArgumentsFiltered, elementTypes, info.Group, valueType, finalDouble);
                                 if (subPart is not null)
                                     subPart.AddInteger(integerType, stringValueInfo);
                                 else
@@ -246,8 +212,8 @@ namespace VisualCard.Calendar.Parsers
                                     continue;
 
                                 // Now, get the part info
-                                finalValue = partsArrayType is CalendarPartsArrayEnum.IanaNames or CalendarPartsArrayEnum.NonstandardNames ? _value : value;
-                                var partInfo = fromString(finalValue, [.. finalArgs], elementTypes, group, valueType, CalendarVersion);
+                                finalValue = partsArrayType is CalendarPartsArrayEnum.IanaNames or CalendarPartsArrayEnum.NonstandardNames ? _value : info.Value;
+                                var partInfo = fromString(finalValue, info.ArgumentsFiltered, elementTypes, info.Group, valueType, CalendarVersion);
 
                                 // Set the array for real
                                 if (subPart is not null)

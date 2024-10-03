@@ -218,7 +218,7 @@ namespace VisualCard.Parts
                 foreach (var part in array)
                 {
                     var partBuilder = new StringBuilder();
-                    string partArguments = CardBuilderTools.BuildArguments(part, version, defaultType, defaultValueType);
+                    string partArguments = CardBuilderTools.BuildArguments(part, defaultType, defaultValueType);
                     string[] partArgumentsLines = partArguments.SplitNewLines();
                     string group = part.Group;
                     if (!string.IsNullOrEmpty(group))
@@ -250,7 +250,7 @@ namespace VisualCard.Parts
                 {
                     var partBuilder = new StringBuilder();
                     string partRepresentation = part.ToStringVcardInternal(version);
-                    string partArguments = CardBuilderTools.BuildArguments(part, version, defaultType, defaultValueType);
+                    string partArguments = CardBuilderTools.BuildArguments(part, defaultType, defaultValueType);
                     string[] partArgumentsLines = partArguments.SplitNewLines();
                     string group = part.Group;
                     if (!string.IsNullOrEmpty(group))

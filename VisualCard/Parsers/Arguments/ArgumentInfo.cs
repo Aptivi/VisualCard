@@ -138,7 +138,7 @@ namespace VisualCard.Parsers.Arguments
 
         internal ArgumentInfo(string kvp)
         {
-            if (!kvp.Contains(VcardConstants._argumentValueDelimiter))
+            if (kvp.Contains(VcardConstants._argumentValueDelimiter))
             {
                 string keyStr = kvp.Substring(0, kvp.IndexOf(VcardConstants._argumentValueDelimiter));
                 string valueStr = kvp.RemovePrefix($"{keyStr}{VcardConstants._argumentValueDelimiter}");

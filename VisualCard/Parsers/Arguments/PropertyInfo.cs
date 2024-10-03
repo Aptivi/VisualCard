@@ -33,7 +33,7 @@ namespace VisualCard.Parsers.Arguments
         private string prefix = "";
         private string group = "";
         private ArgumentInfo[] arguments = [];
-        private Version version;
+        private readonly Version version;
 
         /// <summary>
         /// Raw value

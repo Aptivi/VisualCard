@@ -25,15 +25,15 @@ namespace VisualCard.Calendar.Parts
 {
     internal static class CalendarBuilderTools
     {
-        internal static string BuildArguments(BaseCalendarPartInfo partInfo, Version cardVersion, string defaultType, string defaultValue)
+        internal static string BuildArguments(BaseCalendarPartInfo partInfo, string defaultType, string defaultValue)
         {
             string extraKeyName =
                 (partInfo is XNameInfo xName ? xName.XKeyName :
                  partInfo is ExtraInfo exName ? exName.KeyName : "") ?? "";
-            return CardBuilderTools.BuildArguments(partInfo.ElementTypes, partInfo.ValueType, -1, partInfo.Arguments, extraKeyName, cardVersion, defaultType, defaultValue);
+            return CardBuilderTools.BuildArguments(partInfo.ElementTypes, partInfo.ValueType, partInfo.Arguments, extraKeyName, defaultType, defaultValue);
         }
 
-        internal static string BuildArguments<TValue>(CalendarValueInfo<TValue> partInfo, Version cardVersion, string defaultType, string defaultValue) =>
-            CardBuilderTools.BuildArguments(partInfo.ElementTypes, partInfo.ValueType, -1, partInfo.Arguments, "", cardVersion, defaultType, defaultValue);
+        internal static string BuildArguments<TValue>(CalendarValueInfo<TValue> partInfo, string defaultType, string defaultValue) =>
+            CardBuilderTools.BuildArguments(partInfo.ElementTypes, partInfo.ValueType, partInfo.Arguments, "", defaultType, defaultValue);
     }
 }

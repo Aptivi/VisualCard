@@ -300,7 +300,7 @@ namespace VisualCard.Calendar.Parts
                 foreach (var part in array)
                 {
                     var partBuilder = new StringBuilder();
-                    string partArguments = CalendarBuilderTools.BuildArguments(part, version, defaultType, defaultValueType);
+                    string partArguments = CalendarBuilderTools.BuildArguments(part, defaultType, defaultValueType);
                     string[] partArgumentsLines = partArguments.SplitNewLines();
                     string group = part.Group;
                     if (!string.IsNullOrEmpty(group))
@@ -331,7 +331,7 @@ namespace VisualCard.Calendar.Parts
                 foreach (var part in array)
                 {
                     var partBuilder = new StringBuilder();
-                    string partArguments = CalendarBuilderTools.BuildArguments(part, version, defaultType, defaultValueType);
+                    string partArguments = CalendarBuilderTools.BuildArguments(part, defaultType, defaultValueType);
                     string[] partArgumentsLines = partArguments.SplitNewLines();
                     string group = part.Group;
                     if (!string.IsNullOrEmpty(group))
@@ -363,7 +363,7 @@ namespace VisualCard.Calendar.Parts
                 {
                     var partBuilder = new StringBuilder();
                     string partRepresentation = part.ToStringVcalendarInternal(version);
-                    string partArguments = CalendarBuilderTools.BuildArguments(part, version, defaultType, defaultValueType);
+                    string partArguments = CalendarBuilderTools.BuildArguments(part, defaultType, defaultValueType);
                     string[] partArgumentsLines = partArguments.SplitNewLines();
                     string group = part.Group;
                     if (!string.IsNullOrEmpty(group))

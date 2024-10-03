@@ -442,7 +442,7 @@ namespace VisualCard.Parsers
             var ArgType = args.Where((arg) => arg.Key == VcardConstants._typeArgumentSpecifier || string.IsNullOrEmpty(arg.Key)).ToArray();
 
             // Trying to specify type without TYPE= is illegal according to RFC2426 in vCard 3.0 and 4.0
-            if (ArgType.Length > 0 && ArgType[0].Key == VcardConstants._typeArgumentSpecifier && isSpecifierRequired)
+            if (ArgType.Length > 0 && string.IsNullOrEmpty(ArgType[0].Key) && isSpecifierRequired)
                 throw new InvalidDataException("Type must be prepended with TYPE=");
 
             // Flatten the strings
@@ -454,7 +454,7 @@ namespace VisualCard.Parsers
             // Get the type from the split argument
             string Type =
                 ArgType.Length > 0 ?
-                string.Join(VcardConstants._valueDelimiter.ToString(), flattened.Select((arg) => arg.Substring(VcardConstants._typeArgumentSpecifier.Length))) :
+                string.Join(VcardConstants._valueDelimiter.ToString(), flattened) :
                 @default;
 
             // Return the type
