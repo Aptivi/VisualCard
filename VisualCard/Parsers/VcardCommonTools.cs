@@ -703,7 +703,7 @@ namespace VisualCard.Parsers
         internal static string ConstructBlocks((int, string)[] cardContent, ref int i)
         {
             StringBuilder valueBuilder = new();
-            bool constructing = false;
+            bool constructing;
             int idx;
             for (idx = i; idx < cardContent.Length; idx++)
             {

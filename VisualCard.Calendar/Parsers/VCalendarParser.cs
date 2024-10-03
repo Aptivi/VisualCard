@@ -22,8 +22,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
-using Textify.General;
 using VisualCard.Calendar.Parts;
 using VisualCard.Calendar.Parts.Enums;
 using VisualCard.Calendar.Exceptions;
