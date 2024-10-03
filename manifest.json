@@ -565,6 +565,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parsers.Arguments.PropertyInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parsers.Arguments.PropertyInfo.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/VisualCard.Parsers.Arguments.yml",
       "output": {
         ".html": {
