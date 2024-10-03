@@ -195,6 +195,11 @@ namespace VisualCard.Parsers
             string[] expectedFields = [.. expectedFieldList];
             if (!ValidateComponent(ref expectedFields, out string[] actualFields, card))
                 throw new InvalidDataException($"The following keys [{string.Join(", ", expectedFields)}] are required. Got [{string.Join(", ", actualFields)}].");
+
+            // Check for organization vCards that may not have MEMBER properties
+            string[] forbiddenOrgFields = [VcardConstants._memberSpecifier];
+            if (card.CardKind != CardKind.Group && ValidateComponent(ref forbiddenOrgFields, out _, card))
+                throw new InvalidDataException($"{card.CardKind} vCards are forbidden from having MEMBER properties.");
         }
 
         private bool ValidateComponent<TComponent>(ref string[] expectedFields, out string[] actualFields, TComponent component)
