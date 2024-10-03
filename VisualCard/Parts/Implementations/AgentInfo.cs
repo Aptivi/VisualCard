@@ -64,7 +64,7 @@ namespace VisualCard.Parts.Implementations
                 throw new InvalidDataException("Agent information must specify exactly one value (agent vCard contents that have their lines delimited by \\n)");
 
             // Populate the fields
-            string _agentVcard = Regex.Unescape(value).Replace("\\n", "\n");
+            string _agentVcard = Regex.Unescape(value).Replace("\\n", "\n").Replace("\\N", "\n");
             var _agentVcardParsers = CardTools.GetCardsFromString(_agentVcard);
             AgentInfo _agent = new(altId, finalArgs, elementTypes, valueType, group, _agentVcardParsers);
             return _agent;
