@@ -22,6 +22,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using Textify.General;
 using VisualCard.Parsers;
 using VisualCard.Parts;
 
@@ -667,31 +668,11 @@ namespace VisualCard.Extras.Converters
                             // | d15: Encoded photo
                             // ---> will get converted to VCard line:
                             //      PHOTO;ENCODING=BLOB;JPEG:d15
-                            const string _photoSpecifierWithType = "PHOTO;";
+                            const string _photoSpecifierWithType = "PHOTO;ENCODING=BLOB;TYPE=JPEG:";
                             const int maxChars = 74;
-                            const int maxCharsFirst = 48;
-
-                            // Unquote the encoded photo
-                            d15 = d15.Substring(d15.IndexOf("'") + 1);
-                            d15 = d15.Substring(0, d15.IndexOf("'"));
-
-                            // Construct the photo block
-                            StringBuilder photoBlock = new();
-                            int selectedMax = maxCharsFirst;
-                            int processed = 0;
-                            for (int currCharNum = 0; currCharNum < d15.Length; currCharNum++)
-                            {
-                                photoBlock.Append(d15[currCharNum]);
-                                processed++;
-                                if (processed >= selectedMax)
-                                {
-                                    // Append a new line because we reached the maximum limit
-                                    selectedMax = maxChars;
-                                    processed = 0;
-                                    photoBlock.Append("\n ");
-                                }
-                            }
-                            masterContactBuilder.AppendLine($"{_photoSpecifierWithType}ENCODING=BLOB;TYPE=JPEG:{photoBlock}");
+                            d15 = d15.StartsWith("X") ? d15.Substring(1) : d15;
+                            d15 = VcardCommonTools.MakeStringBlock(d15.ReleaseDoubleQuotes(), maxChars - _photoSpecifierWithType.Length);
+                            masterContactBuilder.AppendLine($"{_photoSpecifierWithType}{d15}");
                             break;
                     }
 
