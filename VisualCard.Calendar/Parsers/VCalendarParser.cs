@@ -123,7 +123,11 @@ namespace VisualCard.Calendar.Parsers
                     {
                         string elementTypeUpper = elementType.ToUpper();
                         if (!extraAllowedTypes.Contains(elementTypeUpper) && !elementTypeUpper.StartsWith("X-"))
+                        {
+                            if (type == PartType.PartsArray && ((CalendarPartsArrayEnum)enumeration == CalendarPartsArrayEnum.IanaNames || (CalendarPartsArrayEnum)enumeration == CalendarPartsArrayEnum.NonstandardNames))
+                                continue;
                             throw new InvalidDataException($"Part info type {classType?.Name ?? "<null>"} doesn't support property type {elementTypeUpper} because the following types are supported: [{string.Join(", ", extraAllowedTypes)}]");
+                        }
                     }
 
                     // Handle the part type, and extract the value
