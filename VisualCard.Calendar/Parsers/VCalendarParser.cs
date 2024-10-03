@@ -30,6 +30,8 @@ using VisualCard.Calendar.Exceptions;
 using VisualCard.Parts.Enums;
 using VisualCard.Parsers;
 using VisualCard.Parsers.Arguments;
+using VisualCard.Calendar.Parts.Implementations.Event;
+using VisualCard.Calendar.Parts.Implementations.Todo;
 
 namespace VisualCard.Calendar.Parsers
 {
@@ -300,6 +302,12 @@ namespace VisualCard.Calendar.Parsers
                     if (priority.Value < 0 || priority.Value > 9)
                         throw new ArgumentOutOfRangeException(nameof(CalendarIntegersEnum.PercentComplete), priority.Value, "Percent completion may not be less than zero or greater than 100");
                 }
+
+                // Check for conflicts
+                var dtends = eventInfo.GetPartsArray<DateEndInfo>();
+                var durations = eventInfo.GetString(CalendarStringsEnum.Duration);
+                if (dtends.Length > 0 && durations.Length > 0)
+                    throw new InvalidDataException("Date end and duration conflict found.");
             }
             foreach (var todoInfo in calendar.Todos)
             {
@@ -323,6 +331,15 @@ namespace VisualCard.Calendar.Parsers
                     if (priority.Value < 0 || priority.Value > 9)
                         throw new ArgumentOutOfRangeException(nameof(CalendarIntegersEnum.PercentComplete), priority.Value, "Percent completion may not be less than zero or greater than 100");
                 }
+
+                // Check for conflicts
+                var dtstarts = todoInfo.GetPartsArray<DateStartInfo>();
+                var dues = todoInfo.GetPartsArray<DueDateInfo>();
+                var durations = todoInfo.GetString(CalendarStringsEnum.Duration);
+                if (dues.Length > 0 && durations.Length > 0)
+                    throw new InvalidDataException("Due date and duration conflict found.");
+                if (durations.Length > 0 && dtstarts.Length == 0)
+                    throw new InvalidDataException("There is no date start to add to the duration.");
             }
 
             // Continue if we have a calendar with version 2.0
@@ -347,6 +364,12 @@ namespace VisualCard.Calendar.Parsers
             {
                 if (!ValidateComponent(ref expectedTimeZoneFields, out string[] actualTimeZoneFields, timezoneInfo))
                     throw new InvalidDataException($"The following keys [{string.Join(", ", expectedTimeZoneFields)}] are required in the timezone representation. Got [{string.Join(", ", actualTimeZoneFields)}].");
+
+                // Check for standard and/or daylight
+                if (timezoneInfo.StandardTimeList.Length == 0 && timezoneInfo.DaylightTimeList.Length == 0)
+                    throw new InvalidDataException("One of the standard/daylight components is required.");
+
+                // Verify the standard and/or daylight components
                 foreach (var standardInfo in timezoneInfo.StandardTimeList)
                 {
                     if (!ValidateComponent(ref expectedStandardFields, out string[] actualStandardFields, standardInfo))
