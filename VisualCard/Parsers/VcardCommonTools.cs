@@ -592,88 +592,101 @@ namespace VisualCard.Parsers
             // Now, handle each type individually
             string finalValue;
             finalValue = Regex.Unescape(value);
-            foreach (string finalValuePart in finalValue.Split(split))
+            var splitValues = finalValue.Split(split);
+            bool valid = false;
+            List<Exception> errors = [];
+            foreach (string finalValuePart in splitValues)
             {
-                switch (valueType.ToUpper())
+                try
                 {
-                    case "URI":
-                    case "URL":
-                        // Check the URI
-                        if (!Uri.TryCreate(finalValue, UriKind.Absolute, out Uri uri))
-                            throw new InvalidDataException($"URL {finalValue} is invalid");
-                        finalValue = uri is not null ? uri.ToString() : finalValue;
-                        break;
-                    case "UTC-OFFSET":
-                        // Check the UTC offset
-                        VcardCommonTools.ParseUtcOffset(finalValue);
-                        break;
-                    case "DATE":
-                        // Check the date
-                        if (!VcardCommonTools.TryParsePosixDate(finalValue, out _))
-                            throw new InvalidDataException($"Date {finalValue} is invalid");
-                        break;
-                    case "TIME":
-                        // Check the time
-                        if (!VcardCommonTools.TryParsePosixTime(finalValue, out _))
-                            throw new InvalidDataException($"Time {finalValue} is invalid");
-                        break;
-                    case "DATE-TIME":
-                        // Check the date and time
-                        if (!VcardCommonTools.TryParsePosixDateTime(finalValue, out _))
-                            throw new InvalidDataException($"Date and time {finalValue} is invalid");
-                        break;
-                    case "DATE-AND-OR-TIME":
-                        // Check the date and/or time
-                        if (!VcardCommonTools.TryParsePosixDateTime(finalValue, out _) &&
-                            !VcardCommonTools.TryParsePosixTime(finalValue, out _))
-                            throw new InvalidDataException($"Date and/or time {finalValue} is invalid");
-                        break;
-                    case "TIMESTAMP":
-                        // Check the timestamp
-                        if (!VcardCommonTools.TryParsePosixTimestamp(finalValue, out _))
-                            throw new InvalidDataException($"Timestamp {finalValue} is invalid");
-                        break;
-                    case "BOOLEAN":
-                        // Check the boolean
-                        if (!finalValue.Equals("true", StringComparison.OrdinalIgnoreCase) &&
-                            !finalValue.Equals("false", StringComparison.OrdinalIgnoreCase))
-                            throw new InvalidDataException($"Boolean {finalValue} is invalid");
-                        break;
-                    case "INTEGER":
-                        // Check the integer
-                        if (!int.TryParse(finalValue, out _))
-                            throw new InvalidDataException($"Integer {finalValue} is invalid");
-                        break;
-                    case "FLOAT":
-                        // Check the float
-                        string[] floatParts = finalValuePart.Split(split == ';' ? ',' : ';');
-                        foreach (var floatPart in floatParts)
-                            if (!double.TryParse(floatPart, out _))
-                                throw new InvalidDataException($"Float {floatPart} in {finalValue} is invalid");
-                        break;
-                    case "DURATION":
-                        // Check the duration
-                        VcardCommonTools.GetDurationSpan(finalValue);
-                        break;
-                    case "PERIOD":
-                        // Check the period
-                        VcardCommonTools.GetTimePeriod(finalValue);
-                        break;
-                    case "RECUR":
-                        // Check the recursion rules
-                        try
-                        {
-                            RecurrenceParser.ParseRuleV1(finalValue);
-                        }
-                        catch
-                        {
-                            RecurrenceParser.ParseRuleV2(finalValue);
-                        }
-                        break;
+                    switch (valueType.ToUpper())
+                    {
+                        case "URI":
+                        case "URL":
+                            // Check the URI
+                            if (!Uri.TryCreate(finalValuePart, UriKind.Absolute, out Uri uri))
+                                throw new InvalidDataException($"URL {finalValuePart} is invalid");
+                            break;
+                        case "UTC-OFFSET":
+                            // Check the UTC offset
+                            VcardCommonTools.ParseUtcOffset(finalValuePart);
+                            break;
+                        case "DATE":
+                            // Check the date
+                            if (!VcardCommonTools.TryParsePosixDate(finalValuePart, out _))
+                                throw new InvalidDataException($"Date {finalValuePart} is invalid");
+                            break;
+                        case "TIME":
+                            // Check the time
+                            if (!VcardCommonTools.TryParsePosixTime(finalValuePart, out _))
+                                throw new InvalidDataException($"Time {finalValuePart} is invalid");
+                            break;
+                        case "DATE-TIME":
+                            // Check the date and time
+                            if (!VcardCommonTools.TryParsePosixDateTime(finalValuePart, out _))
+                                throw new InvalidDataException($"Date and time {finalValuePart} is invalid");
+                            break;
+                        case "DATE-AND-OR-TIME":
+                            // Check the date and/or time
+                            if (!VcardCommonTools.TryParsePosixDateTime(finalValuePart, out _) &&
+                                !VcardCommonTools.TryParsePosixTime(finalValuePart, out _))
+                                throw new InvalidDataException($"Date and/or time {finalValuePart} is invalid");
+                            break;
+                        case "TIMESTAMP":
+                            // Check the timestamp
+                            if (!VcardCommonTools.TryParsePosixTimestamp(finalValuePart, out _))
+                                throw new InvalidDataException($"Timestamp {finalValuePart} is invalid");
+                            break;
+                        case "BOOLEAN":
+                            // Check the boolean
+                            if (!finalValuePart.Equals("true", StringComparison.OrdinalIgnoreCase) &&
+                                !finalValuePart.Equals("false", StringComparison.OrdinalIgnoreCase))
+                                throw new InvalidDataException($"Boolean {finalValuePart} is invalid");
+                            break;
+                        case "INTEGER":
+                            // Check the integer
+                            if (!int.TryParse(finalValuePart, out _))
+                                throw new InvalidDataException($"Integer {finalValuePart} is invalid");
+                            break;
+                        case "FLOAT":
+                            // Check the float
+                            string[] floatParts = finalValuePart.Split(split == ';' ? ',' : ';');
+                            foreach (var floatPart in floatParts)
+                                if (!double.TryParse(floatPart, out _))
+                                    throw new InvalidDataException($"Float {floatPart} in {finalValuePart} is invalid");
+                            break;
+                        case "DURATION":
+                            // Check the duration
+                            VcardCommonTools.GetDurationSpan(finalValuePart);
+                            break;
+                        case "PERIOD":
+                            // Check the period
+                            VcardCommonTools.GetTimePeriod(finalValuePart);
+                            break;
+                        case "RECUR":
+                            // Check the recursion rules
+                            try
+                            {
+                                RecurrenceParser.ParseRuleV1(finalValuePart);
+                            }
+                            catch
+                            {
+                                RecurrenceParser.ParseRuleV2(finalValuePart);
+                            }
+                            break;
+                    }
+                    valid = true;
+                }
+                catch (Exception e)
+                {
+                    errors.Add(e);
+                    continue;
                 }
             }
 
             // Return the result
+            if (!valid)
+                throw new InvalidDataException($"String value {value} for {valueType} is invalid.\n\n  - {string.Join("\n  - ", errors.Select((ex) => ex.Message))}");
             return finalValue;
         }
 
