@@ -152,7 +152,7 @@ namespace VisualCard.Parsers
 
                     // Check the type for allowed types
                     bool specifierRequired = CardVersion.Major >= 3;
-                    string[] elementTypes = VcardCommonTools.GetTypes(info.ArgumentsFiltered, defaultType, specifierRequired);
+                    string[] elementTypes = VcardCommonTools.GetTypes(info.Arguments, defaultType, specifierRequired);
                     foreach (string elementType in elementTypes)
                     {
                         string elementTypeUpper = elementType.ToUpper();
@@ -161,7 +161,7 @@ namespace VisualCard.Parsers
                     }
 
                     // Handle the part type
-                    string valueType = VcardCommonTools.GetFirstValue(info.ArgumentsFiltered, defaultValueType, VcardConstants._valueArgumentSpecifier);
+                    string valueType = VcardCommonTools.GetFirstValue(info.Arguments, defaultValueType, VcardConstants._valueArgumentSpecifier);
                     string finalValue = VcardCommonTools.ProcessStringValue(info.Value, valueType);
 
                     // Check for allowed values
@@ -197,7 +197,7 @@ namespace VisualCard.Parsers
                                     throw new InvalidDataException("Profile must be \"vCard\"");
 
                                 // Set the string for real
-                                var stringValueInfo = new CardValueInfo<string>(info.ArgumentsFiltered, altId, elementTypes, valueType, info.Group, finalValue);
+                                var stringValueInfo = new CardValueInfo<string>(info.Arguments, altId, elementTypes, valueType, info.Group, finalValue);
                                 card.AddString(stringType, stringValueInfo);
                             }
                             break;
@@ -212,7 +212,7 @@ namespace VisualCard.Parsers
 
                                 // Now, get the part info
                                 finalValue = partsArrayType is PartsArrayEnum.NonstandardNames or PartsArrayEnum.IanaNames ? _value : info.Value;
-                                var partInfo = fromString(finalValue, info.ArgumentsFiltered, altId, elementTypes, info.Group, valueType, CardVersion);
+                                var partInfo = fromString(finalValue, info.Arguments, altId, elementTypes, info.Group, valueType, CardVersion);
 
                                 // Set the array for real
                                 card.AddPartToArray(partsArrayType, partInfo);

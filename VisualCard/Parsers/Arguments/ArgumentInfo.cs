@@ -77,7 +77,8 @@ namespace VisualCard.Parsers.Arguments
         {
             var argBuilder = new StringBuilder();
             string key = Key;
-            argBuilder.Append($"{key}=");
+            if (!string.IsNullOrEmpty(key))
+                argBuilder.Append($"{key}=");
             for (int i = 0; i < Values.Length; i++)
             {
                 (bool caseSensitive, string value) value = Values[i];

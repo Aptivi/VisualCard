@@ -71,22 +71,6 @@ namespace VisualCard.Parsers.Arguments
             set => arguments = value;
         }
 
-        /// <summary>
-        /// Argument info instances. It doesn't include AltId, type, and value
-        /// </summary>
-        public ArgumentInfo[] ArgumentsFiltered
-        {
-            get
-            {
-                var args = Arguments.Where((arg) =>
-                    (arg.Key != VcardConstants._altIdArgumentSpecifier &&
-                     arg.Key != VcardConstants._valueArgumentSpecifier &&
-                     arg.Key != VcardConstants._typeArgumentSpecifier) ||
-                    (version.Major == 2 && string.IsNullOrEmpty(arg.Key)));
-                return Arguments.Except(args).ToArray();
-            }
-        }
-
         internal PropertyInfo(string line, Version version)
         {
             // Now, parse this value

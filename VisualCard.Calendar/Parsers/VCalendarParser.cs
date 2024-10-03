@@ -140,7 +140,7 @@ namespace VisualCard.Calendar.Parsers
                     var (type, enumeration, classType, fromString, defaultType, defaultValue, defaultValueType, extraAllowedTypes, allowedValues) = VCalendarParserTools.GetPartType(info.Prefix, VCalendarParserTools.GetObjectTypeFromType(calendarType), CalendarVersion);
 
                     // Check the type for allowed types
-                    string[] elementTypes = VcardCommonTools.GetTypes(info.ArgumentsFiltered, defaultType);
+                    string[] elementTypes = VcardCommonTools.GetTypes(info.Arguments, defaultType);
                     foreach (string elementType in elementTypes)
                     {
                         string elementTypeUpper = elementType.ToUpper();
@@ -149,7 +149,7 @@ namespace VisualCard.Calendar.Parsers
                     }
 
                     // Handle the part type, and extract the value
-                    string valueType = VcardCommonTools.GetFirstValue(info.ArgumentsFiltered, defaultValueType, VcardConstants._valueArgumentSpecifier);
+                    string valueType = VcardCommonTools.GetFirstValue(info.Arguments, defaultValueType, VcardConstants._valueArgumentSpecifier);
                     string finalValue = VcardCommonTools.ProcessStringValue(info.Value, valueType, calendarVersion.Major == 1 ? ';' : ',');
 
                     // Check for allowed values
@@ -176,7 +176,7 @@ namespace VisualCard.Calendar.Parsers
                                     continue;
 
                                 // Set the string for real
-                                var stringValueInfo = new CalendarValueInfo<string>(info.ArgumentsFiltered, elementTypes, info.Group, valueType, finalValue);
+                                var stringValueInfo = new CalendarValueInfo<string>(info.Arguments, elementTypes, info.Group, valueType, finalValue);
                                 if (subPart is not null)
                                     subPart.AddString(stringType, stringValueInfo);
                                 else
@@ -194,7 +194,7 @@ namespace VisualCard.Calendar.Parsers
                                 double finalDouble = double.Parse(finalValue);
 
                                 // Set the integer for real
-                                var stringValueInfo = new CalendarValueInfo<double>(info.ArgumentsFiltered, elementTypes, info.Group, valueType, finalDouble);
+                                var stringValueInfo = new CalendarValueInfo<double>(info.Arguments, elementTypes, info.Group, valueType, finalDouble);
                                 if (subPart is not null)
                                     subPart.AddInteger(integerType, stringValueInfo);
                                 else
@@ -213,7 +213,7 @@ namespace VisualCard.Calendar.Parsers
 
                                 // Now, get the part info
                                 finalValue = partsArrayType is CalendarPartsArrayEnum.IanaNames or CalendarPartsArrayEnum.NonstandardNames ? _value : info.Value;
-                                var partInfo = fromString(finalValue, info.ArgumentsFiltered, elementTypes, info.Group, valueType, CalendarVersion);
+                                var partInfo = fromString(finalValue, info.Arguments, elementTypes, info.Group, valueType, CalendarVersion);
 
                                 // Set the array for real
                                 if (subPart is not null)
