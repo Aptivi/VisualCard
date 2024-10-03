@@ -108,7 +108,7 @@ namespace VisualCard.Extras.Converters
                         string prefix =
                             $"{VcardConstants._telephoneSpecifier}" +
                             $"{VcardConstants._fieldDelimiter}" +
-                            $"{VcardConstants._typeArgumentSpecifier}VIDEO{VcardConstants._argumentDelimiter}";
+                            $"{VcardConstants._typeArgumentSpecifier}=VIDEO{VcardConstants._argumentDelimiter}";
                         values[i] = prefix + values[i].Substring(7);
                     }
                 }
