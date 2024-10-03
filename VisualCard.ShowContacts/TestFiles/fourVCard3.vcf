@@ -9,6 +9,9 @@ TEL;TYPE=cell:495-522-3560
 EMAIL;TYPE=home:john.s@acme.co
 ADR;TYPE=home:;;Los Angeles, USA;;;;
 ORG:Acme Co.
+AGENT:BEGIN:VCARD\nVERSION:5.0\nFN:Joe Friday\nTEL:+1-919-555-7878\nTITLE:
+ Area Administrator, Assistant\nEMAIL;TYPE=INTERNET:jfriday@host.com\nN:Fri
+ day;Joe;;;\nEND:VCARD\n
 TITLE:Product Manager
 NOTE:Note test for VisualCard
 X-AIM:john.s

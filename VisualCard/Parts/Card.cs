@@ -251,11 +251,15 @@ namespace VisualCard.Parts
                     string partArguments = CardBuilderTools.BuildArguments(part, defaultType, defaultValueType);
                     string[] partArgumentsLines = partArguments.SplitNewLines();
                     string group = part.Group;
+
+                    // Special treatment for vCard 2.1's AGENT property: add the AGENT vcard line by line
+                    if (partsArrayEnum == PartsArrayEnum.Agents && version.Major == 2)
+                        partRepresentation = "\n" + string.Join("\n", partRepresentation.Split(["\\n", "\\N"], StringSplitOptions.None));
                     if (!string.IsNullOrEmpty(group))
                         cardBuilder.Append($"{group}.");
                     partBuilder.Append($"{prefix}");
                     partBuilder.Append($"{partArguments}");
-                    partBuilder.Append($"{VcardCommonTools.MakeStringBlock(partRepresentation, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length)}");
+                    partBuilder.Append($"{VcardCommonTools.MakeStringBlock(partRepresentation, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length, !(partsArrayEnum == PartsArrayEnum.Agents && version.Major == 2))}");
                     cardBuilder.AppendLine($"{partBuilder}");
                 }
             }

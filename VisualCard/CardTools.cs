@@ -85,6 +85,7 @@ namespace VisualCard
             List<(int, string)> lines = [];
             bool nested = false;
             bool versionDirect = false;
+            bool isAgent = false;
             int lineNumber = 0;
             while (!stream.EndOfStream)
             {
@@ -114,11 +115,11 @@ namespace VisualCard
                     if (!stream.EndOfStream)
                         continue;
                 }
-                else if (!prefix.EqualsNoCase(VcardConstants._beginSpecifier) &&
+                else if ((!prefix.EqualsNoCase(VcardConstants._beginSpecifier) &&
                          !prefix.EqualsNoCase(VcardConstants._versionSpecifier) &&
-                         !prefix.EqualsNoCase(VcardConstants._endSpecifier))
+                         !prefix.EqualsNoCase(VcardConstants._endSpecifier)) || isAgent)
                     append = true;
-                else if (prefix.EqualsNoCase(VcardConstants._beginSpecifier) && nested)
+                else if (prefix.EqualsNoCase(VcardConstants._beginSpecifier) && nested && !isAgent)
                 {
                     // We have a nested card!
                     StringBuilder nestedBuilder = new();
@@ -143,7 +144,18 @@ namespace VisualCard
                     continue;
                 }
                 if (append)
-                    lines.Add((lineNumber, CardLine));
+                    lines.Add((lineNumber, isAgent ? (CardLine.StartsWith(" ") ? CardLine : $" {CardLine}\\n") : CardLine));
+
+                // Check for agent property
+                if (prefix == VcardConstants._agentSpecifier && string.IsNullOrEmpty(value))
+                    isAgent = true;
+                else if (prefix == VcardConstants._endSpecifier && isAgent)
+                {
+                    isAgent = false;
+                    continue;
+                }
+                else if (isAgent)
+                    continue;
 
                 // All VCards must begin with BEGIN:VCARD
                 if (!prefix.EqualsNoCase(VcardConstants._beginSpecifier) && !value.EqualsNoCase(VcardConstants._objectVCardSpecifier) && !BeginSpotted)
