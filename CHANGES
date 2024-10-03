@@ -1,11 +1,20 @@
-VisualCard has now reached to a certain extent where we're ready to say that almost all properties have been implemented! The next version that will be in development is v3.0.
+VisualCard has become refreshed! We've made it more flexible and more efficient than before so that you can build the most powerful calendaring, scheduling, and contact management applications!
 
 ### Changes
 
 This release contains a variety of changes, including, but not limited to:
 
-- `[+]` Added more calendar properties
-- `[+]` Added type support for calendars
+- `[+]` Added more vCard and vCalendar properties (100% of them!)
+- `[+]` Added recurrence parser
+- `[+]` Added duration, date/time, and UTC offset parsers
+- `[+]` Added property grouping support
+- `[+]` Added value info, property info, and argument info instances
+- `[+]` Added support for more than one string and integer
+- `[*]` Moved extra tools to VisualCard.Extras
+- `[*]` Massive improvements to vCard and vCalendar parsers
+- `[*]` Property names are now case-insensitive
+- `[*]` Mass migrated several text-based arrays to strings
+- `[*]` General improvements and bug fixes
 
 Review the commit history if you want to get a deep insight about the changes.
 
