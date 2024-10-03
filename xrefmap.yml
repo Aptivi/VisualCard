@@ -5767,19 +5767,6 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parsers.Arguments.PropertyInfo.Arguments
   nameWithType: PropertyInfo.Arguments
-- uid: VisualCard.Parsers.Arguments.PropertyInfo.ArgumentsFiltered
-  name: ArgumentsFiltered
-  href: api/VisualCard.Parsers.Arguments.PropertyInfo.html#VisualCard_Parsers_Arguments_PropertyInfo_ArgumentsFiltered
-  commentId: P:VisualCard.Parsers.Arguments.PropertyInfo.ArgumentsFiltered
-  fullName: VisualCard.Parsers.Arguments.PropertyInfo.ArgumentsFiltered
-  nameWithType: PropertyInfo.ArgumentsFiltered
-- uid: VisualCard.Parsers.Arguments.PropertyInfo.ArgumentsFiltered*
-  name: ArgumentsFiltered
-  href: api/VisualCard.Parsers.Arguments.PropertyInfo.html#VisualCard_Parsers_Arguments_PropertyInfo_ArgumentsFiltered_
-  commentId: Overload:VisualCard.Parsers.Arguments.PropertyInfo.ArgumentsFiltered
-  isSpec: "True"
-  fullName: VisualCard.Parsers.Arguments.PropertyInfo.ArgumentsFiltered
-  nameWithType: PropertyInfo.ArgumentsFiltered
 - uid: VisualCard.Parsers.Arguments.PropertyInfo.Group
   name: Group
   href: api/VisualCard.Parsers.Arguments.PropertyInfo.html#VisualCard_Parsers_Arguments_PropertyInfo_Group
