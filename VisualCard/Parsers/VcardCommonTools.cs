@@ -494,10 +494,12 @@ namespace VisualCard.Parsers
             // We're given an array of split arguments of an element delimited by the colon, such as: "...TYPE=home..."
             // Filter list of arguments with the arguments that start with the specified specifier (key)
             var argFromSpecifier = args.SingleOrDefault((arg) => arg.Key == argSpecifier);
+            if (argFromSpecifier is null)
+                return @default;
 
             // Attempt to get the value from the key
             string argString =
-                argFromSpecifier is not null ?
+                argFromSpecifier.Values.FirstOrDefault() != default ?
                 argFromSpecifier.Values.First().value :
                 @default;
             return argString;
