@@ -282,6 +282,10 @@ namespace VisualCard.Calendar.Parsers
                 calendar.CalendarVersion.Major == 2 ?
                 [VCalendarConstants._uidSpecifier, VCalendarConstants._dateStampSpecifier] : [];
             string[] expectedTodoFields = expectedEventFields;
+            expectedEventFields =
+                calendar.CalendarVersion.Major == 2 && calendar.GetString(CalendarStringsEnum.Method).Length == 0 ?
+                [VCalendarConstants._dateStartSpecifier, .. expectedEventFields] :
+                expectedEventFields;
             foreach (var eventInfo in calendar.events)
             {
                 if (!ValidateComponent(ref expectedEventFields, out string[] actualEventFields, eventInfo))
