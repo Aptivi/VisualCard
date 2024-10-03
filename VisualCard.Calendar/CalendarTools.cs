@@ -24,6 +24,7 @@ using System;
 using Textify.General;
 using VisualCard.Calendar.Parsers;
 using VisualCard.Parsers;
+using VisualCard.Parsers.Arguments;
 
 namespace VisualCard.Calendar
 {
@@ -89,20 +90,39 @@ namespace VisualCard.Calendar
 
                 // Skip empty lines
                 CalendarLine = stream.ReadLine();
+
+                // Get the property info
+                string prefix = "";
+                string value;
+                try
+                {
+                    var prop = new PropertyInfo(CalendarLine, new());
+                    prefix = prop.Prefix;
+                    value = prop.Value;
+                }
+                catch
+                {
+                    value = CalendarLine;
+                }
+
+                // Process the line for begin, version, and end specifiers
                 if (string.IsNullOrEmpty(CalendarLine))
                 {
                     if (!stream.EndOfStream)
                         continue;
                 }
-                else if (!CalendarLine.EqualsNoCase(VCalendarConstants._beginText) &&
-                         !CalendarLine.ToUpper().StartsWith(VcardConstants._versionSpecifier) &&
-                         !CalendarLine.EqualsNoCase(VCalendarConstants._endText))
+                else if ((!prefix.EqualsNoCase(VcardConstants._beginSpecifier) &&
+                          !prefix.EqualsNoCase(VcardConstants._versionSpecifier) &&
+                          !prefix.EqualsNoCase(VcardConstants._endSpecifier)) ||
+                        ((prefix.EqualsNoCase(VcardConstants._beginSpecifier) ||
+                          prefix.EqualsNoCase(VcardConstants._endSpecifier)) &&
+                         !value.EqualsNoCase(VCalendarConstants._objectVCalendarSpecifier)))
                     append = true;
                 if (append)
                     lines.Add((lineNumber, CalendarLine));
 
                 // All vCalendars must begin with BEGIN:VCALENDAR
-                if (!CalendarLine.EqualsNoCase(VCalendarConstants._beginText) && !BeginSpotted)
+                if (!prefix.EqualsNoCase(VcardConstants._beginSpecifier) && !value.EqualsNoCase(VCalendarConstants._objectVCalendarSpecifier) && !BeginSpotted)
                     throw new InvalidDataException($"This is not a valid vCalendar file.");
                 else if (!BeginSpotted)
                 {
@@ -114,20 +134,19 @@ namespace VisualCard.Calendar
 
                 // Now that the beginning of the calendar tag is spotted, parse the version as we need to know how to select the appropriate parser.
                 // All vCalendars are required to have their own version directly after the BEGIN:VCALENDAR tag
-                if (CalendarLine.ToUpper().StartsWith(VcardConstants._versionSpecifier) &&
-                    !CalendarLine.EqualsNoCase($"{VcardConstants._versionSpecifier}:1.0") &&
-                    !CalendarLine.EqualsNoCase($"{VcardConstants._versionSpecifier}:2.0") &&
+                if (prefix.EqualsNoCase(VcardConstants._versionSpecifier) &&
+                    !value.EqualsNoCase("1.0") && !value.EqualsNoCase("2.0") &&
                     !VersionSpotted)
                     throw new InvalidDataException($"This has an invalid vCalendar version {CalendarLine}.");
-                else if (!VersionSpotted && CalendarLine.ToUpper().StartsWith(VcardConstants._versionSpecifier))
+                else if (!VersionSpotted && prefix.EqualsNoCase(VcardConstants._versionSpecifier))
                 {
                     VersionSpotted = true;
-                    CalendarVersion = new(CalendarLine.Substring(8));
+                    CalendarVersion = new(value);
                     continue;
                 }
 
                 // If the ending tag is spotted, reset everything.
-                if (CalendarLine.EqualsNoCase(VCalendarConstants._endText) && !EndSpotted)
+                if (prefix.EqualsNoCase(VcardConstants._endSpecifier) && value.EqualsNoCase(VCalendarConstants._objectVCalendarSpecifier) && !EndSpotted)
                 {
                     EndSpotted = true;
 

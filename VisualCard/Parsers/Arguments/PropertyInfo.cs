@@ -76,8 +76,9 @@ namespace VisualCard.Parsers.Arguments
             // Now, parse this value
             if (!line.Contains($"{VcardConstants._argumentDelimiter}"))
                 throw new ArgumentException("The line must contain an argument delimiter.");
-            string value = line.Substring(line.IndexOf(VcardConstants._argumentDelimiter) + 1);
-            string prefixWithArgs = line.Substring(0, line.IndexOf(VcardConstants._argumentDelimiter));
+            line = line.Trim();
+            string value = line.Substring(line.IndexOf(VcardConstants._argumentDelimiter) + 1).Trim();
+            string prefixWithArgs = line.Substring(0, line.IndexOf(VcardConstants._argumentDelimiter)).Trim();
             string prefix = (prefixWithArgs.Contains($"{VcardConstants._fieldDelimiter}") ? prefixWithArgs.Substring(0, prefixWithArgs.IndexOf($"{VcardConstants._fieldDelimiter}")) : prefixWithArgs).ToUpper();
             string args = prefixWithArgs.Contains($"{VcardConstants._fieldDelimiter}") ? prefixWithArgs.Substring(prefix.Length + 1) : "";
             string[] splitArgs = args.Split([VcardConstants._fieldDelimiter], StringSplitOptions.RemoveEmptyEntries);
