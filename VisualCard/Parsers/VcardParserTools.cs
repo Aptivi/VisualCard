@@ -160,6 +160,14 @@ namespace VisualCard.Parsers
             // Now, iterate through every type
             return strings switch
             {
+                StringsEnum.AccessClassification => PartCardinality.MayBeOneNoAltId,
+                StringsEnum.Kind => PartCardinality.MayBeOneNoAltId,
+                StringsEnum.Mailer => PartCardinality.MayBeOneNoAltId,
+                StringsEnum.ProductId => PartCardinality.MayBeOneNoAltId,
+                StringsEnum.SortString => PartCardinality.MayBeOneNoAltId,
+                StringsEnum.Uid => PartCardinality.MayBeOneNoAltId,
+                StringsEnum.SourceName => PartCardinality.Any,
+                StringsEnum.Profile => PartCardinality.MayBeOneNoAltId,
                 StringsEnum.Telephones => PartCardinality.Any,
                 StringsEnum.Labels => PartCardinality.Any,
                 StringsEnum.Mails => PartCardinality.Any,

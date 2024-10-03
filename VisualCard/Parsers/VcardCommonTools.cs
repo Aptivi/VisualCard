@@ -732,5 +732,47 @@ namespace VisualCard.Parsers
             i = idx;
             return valueBuilder.ToString();
         }
+
+        internal static int GetAltIdFromArgs(Version version, ArgumentInfo[] arguments, Type? classType, PartType type, object enumeration)
+        {
+            int altId = -1;
+            if (arguments.Length > 0)
+            {
+                // If we have more than one argument, check for ALTID
+                if (version.Major >= 4)
+                {
+                    var cardinality =
+                        type == PartType.Strings ? VcardParserTools.GetStringsEnumFromType((StringsEnum)enumeration, version) :
+                        VcardParserTools.GetPartsArrayEnumFromType(classType, version).Item2;
+                    bool supportsAltId =
+                        cardinality != PartCardinality.MayBeOneNoAltId && cardinality != PartCardinality.ShouldBeOneNoAltId &&
+                        cardinality != PartCardinality.AtLeastOneNoAltId && cardinality != PartCardinality.AnyNoAltId;
+                    var altIdArg = arguments.SingleOrDefault((arg) => arg.Key == VcardConstants._altIdArgumentSpecifier);
+                    if (supportsAltId)
+                    {
+                        // The type supports ALTID.
+                        if (arguments[0].Key == VcardConstants._altIdArgumentSpecifier)
+                        {
+                            // We need ALTID to be numeric
+                            if (!int.TryParse(altIdArg.Values[0].value, out altId))
+                                throw new InvalidDataException("ALTID must be numeric");
+
+                            // We need ALTID to be positive
+                            if (altId < 0)
+                                throw new InvalidDataException("ALTID must be positive");
+
+                            // Here, we require arguments for ALTID
+                            if (arguments.Length <= 1)
+                                throw new InvalidDataException("ALTID must have one or more arguments to specify why this instance is an alternative");
+                        }
+                        else if (altIdArg is not null)
+                            throw new InvalidDataException("ALTID must be exactly in the first position of the argument, because arguments that follow it are required to be specified");
+                    }
+                    else if (altIdArg is not null)
+                        throw new InvalidDataException($"ALTID must not be specified in the {enumeration} type that expects a cardinality of {cardinality}.");
+                }
+            }
+            return altId;
+        }
     }
 }

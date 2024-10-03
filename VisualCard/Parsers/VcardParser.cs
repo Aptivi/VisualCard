@@ -92,43 +92,8 @@ namespace VisualCard.Parsers
                     var info = new PropertyInfo(_value);
                     var (type, enumeration, classType, fromString, defaultType, defaultValue, defaultValueType, extraAllowedTypes, allowedValues) = VcardParserTools.GetPartType(info.Prefix);
                     
-                    // Handle arguments
-                    int altId = -1;
-                    if (info.Arguments.Length > 0)
-                    {
-                        // If we have more than one argument, check for ALTID
-                        if (CardVersion.Major >= 4 && type == PartType.PartsArray)
-                        {
-                            var tuple = VcardParserTools.GetPartsArrayEnumFromType(classType, CardVersion);
-                            var cardinality = tuple.Item2;
-                            bool supportsAltId =
-                                cardinality != PartCardinality.MayBeOneNoAltId && cardinality != PartCardinality.ShouldBeOneNoAltId &&
-                                cardinality != PartCardinality.AtLeastOneNoAltId && cardinality != PartCardinality.AnyNoAltId;
-                            var altIdArg = info.Arguments.SingleOrDefault((arg) => arg.Key == VcardConstants._altIdArgumentSpecifier);
-                            if (supportsAltId)
-                            {
-                                // The type supports ALTID.
-                                if (info.Arguments[0].Key == VcardConstants._altIdArgumentSpecifier)
-                                {
-                                    // We need ALTID to be numeric
-                                    if (!int.TryParse(altIdArg.Values[0].value, out altId))
-                                        throw new InvalidDataException("ALTID must be numeric");
-
-                                    // We need ALTID to be positive
-                                    if (altId < 0)
-                                        throw new InvalidDataException("ALTID must be positive");
-
-                                    // Here, we require arguments for ALTID
-                                    if (info.Arguments.Length <= 1)
-                                        throw new InvalidDataException("ALTID must have one or more arguments to specify why this instance is an alternative");
-                                }
-                                else if (altIdArg is not null)
-                                    throw new InvalidDataException("ALTID must be exactly in the first position of the argument, because arguments that follow it are required to be specified");
-                            }
-                            else if (altIdArg is not null)
-                                throw new InvalidDataException($"ALTID must not be specified in the {tuple.Item1} type that expects a cardinality of {cardinality}.");
-                        }
-                    }
+                    // Handle AltID
+                    int altId = VcardCommonTools.GetAltIdFromArgs(CardVersion, info.Arguments, classType, type, enumeration);
 
                     // Check the type for allowed types
                     bool specifierRequired = CardVersion.Major >= 3;
