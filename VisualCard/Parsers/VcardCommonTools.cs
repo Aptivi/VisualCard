@@ -434,37 +434,34 @@ namespace VisualCard.Parsers
             return new TimePeriod(start, end);
         }
 
-        internal static string GetTypesString(string[] args, string @default, bool isSpecifierRequired = true)
+        internal static string GetTypesString(ArgumentInfo[] args, string @default, bool isSpecifierRequired = true)
         {
             // We're given an array of split arguments of an element delimited by the colon, such as: "...TYPE=home..."
             // Filter list of arguments with the arguments that start with the type argument specifier, or, if specifier is not required,
             // that doesn't have an equals sign
-            var ArgType = args.Where((arg) => arg.StartsWith(VcardConstants._typeArgumentSpecifier) || !arg.Contains("=")).ToArray();
+            var ArgType = args.Where((arg) => arg.Key == VcardConstants._typeArgumentSpecifier || string.IsNullOrEmpty(arg.Key)).ToArray();
 
             // Trying to specify type without TYPE= is illegal according to RFC2426 in vCard 3.0 and 4.0
-            if (ArgType.Count() > 0 && !ArgType[0].StartsWith(VcardConstants._typeArgumentSpecifier) && isSpecifierRequired)
+            if (ArgType.Length > 0 && ArgType[0].Key == VcardConstants._typeArgumentSpecifier && isSpecifierRequired)
                 throw new InvalidDataException("Type must be prepended with TYPE=");
 
+            // Flatten the strings
+            var stringArrays = ArgType.Select((arg) => arg.AllValues);
+            List<string> flattened = [];
+            foreach (var stringArray in stringArrays)
+                flattened.AddRange(stringArray);
+
             // Get the type from the split argument
-            string Type = "";
-            if (isSpecifierRequired)
-                // Attempt to get the value from the key strictly
-                Type =
-                    ArgType.Count() > 0 ?
-                    string.Join(VcardConstants._valueDelimiter.ToString(), ArgType.Select((arg) => arg.Substring(VcardConstants._typeArgumentSpecifier.Length))) :
-                    @default;
-            else
-                // Attempt to get the value from the key
-                Type =
-                    ArgType.Count() > 0 ?
-                    string.Join(VcardConstants._valueDelimiter.ToString(), ArgType.Select((arg) => arg.StartsWith(VcardConstants._typeArgumentSpecifier) ? arg.Substring(VcardConstants._typeArgumentSpecifier.Length) : arg)) :
-                    @default;
+            string Type =
+                ArgType.Length > 0 ?
+                string.Join(VcardConstants._valueDelimiter.ToString(), flattened.Select((arg) => arg.Substring(VcardConstants._typeArgumentSpecifier.Length))) :
+                @default;
 
             // Return the type
             return Type;
         }
 
-        internal static string[] GetTypes(string[] args, string @default, bool isSpecifierRequired = true) =>
+        internal static string[] GetTypes(ArgumentInfo[] args, string @default, bool isSpecifierRequired = true) =>
             GetTypesString(args, @default, isSpecifierRequired).Split([VcardConstants._valueDelimiter], StringSplitOptions.RemoveEmptyEntries);
 
         internal static string GetValuesString(ArgumentInfo[] args, string @default, string argSpecifier)
@@ -491,17 +488,17 @@ namespace VisualCard.Parsers
         internal static string[] GetValues(ArgumentInfo[] args, string @default, string argSpecifier) =>
             GetValuesString(args, @default, argSpecifier).Split([VcardConstants._valueDelimiter], StringSplitOptions.RemoveEmptyEntries);
 
-        internal static string GetFirstValue(string[] args, string @default, string argSpecifier)
+        internal static string GetFirstValue(ArgumentInfo[] args, string @default, string argSpecifier)
         {
             // We're given an array of split arguments of an element delimited by the colon, such as: "...TYPE=home..."
             // Filter list of arguments with the arguments that start with the specified specifier (key)
-            var argFromSpecifier = args.Where((arg) => arg.StartsWith(argSpecifier));
+            var argFromSpecifier = args.SingleOrDefault((arg) => arg.Key == argSpecifier);
 
             // Attempt to get the value from the key
             string argString =
-                    argFromSpecifier.Count() > 0 ?
-                    argFromSpecifier.Select((arg) => arg.Substring(argSpecifier.Length)).First() :
-                    @default;
+                argFromSpecifier is not null ?
+                argFromSpecifier.Values.First().value :
+                @default;
             return argString;
         }
 

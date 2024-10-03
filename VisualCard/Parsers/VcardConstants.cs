@@ -67,9 +67,9 @@ namespace VisualCard.Parsers
         internal const string _categoriesSpecifier = "CATEGORIES";
         internal const string _keySpecifier = "KEY";
         internal const string _xSpecifier = "X-";
-        internal const string _typeArgumentSpecifier = "TYPE=";
-        internal const string _valueArgumentSpecifier = "VALUE=";
-        internal const string _encodingArgumentSpecifier = "ENCODING=";
+        internal const string _typeArgumentSpecifier = "TYPE";
+        internal const string _valueArgumentSpecifier = "VALUE";
+        internal const string _encodingArgumentSpecifier = "ENCODING";
 
         // Available in vCard 2.1, 3.0, and 4.0
         internal const string _uidSpecifier = "UID";
@@ -92,8 +92,7 @@ namespace VisualCard.Parsers
         internal const string _genderSpecifier = "GENDER";
         internal const string _langSpecifier = "LANG";
         internal const string _contactUriSpecifier = "CONTACT-URI";
-        internal const string _altIdArgumentSpecifier = "ALTID=";
-        internal const string _prefArgumentSpecifier = "PREF=";
+        internal const string _altIdArgumentSpecifier = "ALTID";
 
         // Available in vCard 3.0
         internal const string _srcNameSpecifier = "NAME";

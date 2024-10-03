@@ -108,30 +108,13 @@ namespace VisualCard.Parsers
 
                 try
                 {
-                    // Now, parse a line
-                    if (!_value.Contains(VcardConstants._argumentDelimiter))
-                        throw new ArgumentException("The line must contain an argument delimiter.");
-                    string value = _value.Substring(_value.IndexOf(VcardConstants._argumentDelimiter) + 1);
-                    string prefixWithArgs = _value.Substring(0, _value.IndexOf(VcardConstants._argumentDelimiter));
-                    string prefix = (prefixWithArgs.Contains(';') ? prefixWithArgs.Substring(0, prefixWithArgs.IndexOf(';')) : prefixWithArgs).ToUpper();
-                    string args = prefixWithArgs.Contains(';') ? prefixWithArgs.Substring(prefix.Length + 1) : "";
-                    string[] splitArgs = args.Split([VcardConstants._fieldDelimiter], StringSplitOptions.RemoveEmptyEntries);
-                    string[] splitValues = value.Split([VcardConstants._fieldDelimiter], StringSplitOptions.RemoveEmptyEntries);
-                    bool isWithType = splitArgs.Length > 0;
-                    List<ArgumentInfo> finalArgs = [];
-                    int altId = -1;
-
-                    // Extract the group name
-                    string group = prefix.Contains(".") ? prefix.Substring(0, prefix.IndexOf(".")) : "";
-                    prefix = prefix.RemovePrefix($"{group}.");
-
-                    // Get the part type
-                    bool xNonstandard = prefix.StartsWith(VcardConstants._xSpecifier);
-                    bool specifierRequired = CardVersion.Major >= 3;
-                    var (type, enumeration, classType, fromString, defaultType, defaultValue, defaultValueType, extraAllowedTypes, allowedValues) = VcardParserTools.GetPartType(xNonstandard ? VcardConstants._xSpecifier : prefix);
+                    // Now, parse a property
+                    var info = new PropertyInfo(_value, CardVersion);
+                    var (type, enumeration, classType, fromString, defaultType, defaultValue, defaultValueType, extraAllowedTypes, allowedValues) = VcardParserTools.GetPartType(info.Prefix);
                     
                     // Handle arguments
-                    if (isWithType)
+                    int altId = -1;
+                    if (info.Arguments.Length > 0)
                     {
                         // If we have more than one argument, check for ALTID
                         if (CardVersion.Major >= 4 && type == PartType.PartsArray)
@@ -141,14 +124,14 @@ namespace VisualCard.Parsers
                             bool supportsAltId =
                                 cardinality != PartCardinality.MayBeOneNoAltId && cardinality != PartCardinality.ShouldBeOneNoAltId &&
                                 cardinality != PartCardinality.AtLeastOneNoAltId && cardinality != PartCardinality.AnyNoAltId;
-                            bool altIdSpotted = splitArgs.Any((arg) => arg.StartsWith(VcardConstants._altIdArgumentSpecifier));
+                            var altIdArg = info.Arguments.SingleOrDefault((arg) => arg.Key == VcardConstants._altIdArgumentSpecifier);
                             if (supportsAltId)
                             {
                                 // The type supports ALTID.
-                                if (splitArgs[0].StartsWith(VcardConstants._altIdArgumentSpecifier))
+                                if (info.Arguments[0].Key == VcardConstants._altIdArgumentSpecifier)
                                 {
                                     // We need ALTID to be numeric
-                                    if (!int.TryParse(splitArgs[0].Substring(VcardConstants._altIdArgumentSpecifier.Length), out altId))
+                                    if (!int.TryParse(altIdArg.Values[0].value, out altId))
                                         throw new InvalidDataException("ALTID must be numeric");
 
                                     // We need ALTID to be positive
@@ -156,35 +139,20 @@ namespace VisualCard.Parsers
                                         throw new InvalidDataException("ALTID must be positive");
 
                                     // Here, we require arguments for ALTID
-                                    if (splitArgs.Length <= 1)
+                                    if (info.Arguments.Length <= 1)
                                         throw new InvalidDataException("ALTID must have one or more arguments to specify why this instance is an alternative");
                                 }
-                                else if (altIdSpotted)
+                                else if (altIdArg is not null)
                                     throw new InvalidDataException("ALTID must be exactly in the first position of the argument, because arguments that follow it are required to be specified");
                             }
-                            else if (altIdSpotted)
+                            else if (altIdArg is not null)
                                 throw new InvalidDataException($"ALTID must not be specified in the {tuple.Item1} type that expects a cardinality of {cardinality}.");
-                        }
-
-                        // Finalize the arguments
-                        var argsStr = splitArgs.Except(
-                            splitArgs.Where((arg) =>
-                                arg.StartsWith(VcardConstants._altIdArgumentSpecifier) ||
-                                arg.StartsWith(VcardConstants._valueArgumentSpecifier) ||
-                                arg.StartsWith(VcardConstants._typeArgumentSpecifier) ||
-                                (CardVersion.Major == 2 && !arg.Contains(VcardConstants._argumentValueDelimiter))
-                            )
-                        );
-                        foreach (string arg in argsStr)
-                        {
-                            string keyStr = arg.Substring(0, arg.IndexOf(VcardConstants._argumentValueDelimiter));
-                            string valueStr = arg.RemovePrefix($"{keyStr}{VcardConstants._argumentValueDelimiter}");
-                            finalArgs.Add(new(keyStr, valueStr));
                         }
                     }
 
                     // Check the type for allowed types
-                    string[] elementTypes = VcardCommonTools.GetTypes(splitArgs, defaultType, specifierRequired);
+                    bool specifierRequired = CardVersion.Major >= 3;
+                    string[] elementTypes = VcardCommonTools.GetTypes(info.ArgumentsFiltered, defaultType, specifierRequired);
                     foreach (string elementType in elementTypes)
                     {
                         string elementTypeUpper = elementType.ToUpper();
@@ -193,8 +161,8 @@ namespace VisualCard.Parsers
                     }
 
                     // Handle the part type
-                    string valueType = VcardCommonTools.GetFirstValue(splitArgs, defaultValueType, VcardConstants._valueArgumentSpecifier);
-                    string finalValue = VcardCommonTools.ProcessStringValue(value, valueType);
+                    string valueType = VcardCommonTools.GetFirstValue(info.ArgumentsFiltered, defaultValueType, VcardConstants._valueArgumentSpecifier);
+                    string finalValue = VcardCommonTools.ProcessStringValue(info.Value, valueType);
 
                     // Check for allowed values
                     if (allowedValues.Length != 0)
@@ -229,7 +197,7 @@ namespace VisualCard.Parsers
                                     throw new InvalidDataException("Profile must be \"vCard\"");
 
                                 // Set the string for real
-                                var stringValueInfo = new CardValueInfo<string>([.. finalArgs], altId, elementTypes, valueType, group, finalValue);
+                                var stringValueInfo = new CardValueInfo<string>(info.ArgumentsFiltered, altId, elementTypes, valueType, info.Group, finalValue);
                                 card.AddString(stringType, stringValueInfo);
                             }
                             break;
@@ -243,8 +211,8 @@ namespace VisualCard.Parsers
                                     continue;
 
                                 // Now, get the part info
-                                finalValue = partsArrayType is PartsArrayEnum.NonstandardNames or PartsArrayEnum.IanaNames ? _value : value;
-                                var partInfo = fromString(finalValue, [.. finalArgs], altId, elementTypes, group, valueType, CardVersion);
+                                finalValue = partsArrayType is PartsArrayEnum.NonstandardNames or PartsArrayEnum.IanaNames ? _value : info.Value;
+                                var partInfo = fromString(finalValue, info.ArgumentsFiltered, altId, elementTypes, info.Group, valueType, CardVersion);
 
                                 // Set the array for real
                                 card.AddPartToArray(partsArrayType, partInfo);
