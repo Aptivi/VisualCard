@@ -609,32 +609,32 @@ namespace VisualCard.Parsers
                             break;
                         case "UTC-OFFSET":
                             // Check the UTC offset
-                            VcardCommonTools.ParseUtcOffset(finalValuePart);
+                            ParseUtcOffset(finalValuePart);
                             break;
                         case "DATE":
                             // Check the date
-                            if (!VcardCommonTools.TryParsePosixDate(finalValuePart, out _))
+                            if (!TryParsePosixDate(finalValuePart, out _))
                                 throw new InvalidDataException($"Date {finalValuePart} is invalid");
                             break;
                         case "TIME":
                             // Check the time
-                            if (!VcardCommonTools.TryParsePosixTime(finalValuePart, out _))
+                            if (!TryParsePosixTime(finalValuePart, out _))
                                 throw new InvalidDataException($"Time {finalValuePart} is invalid");
                             break;
                         case "DATE-TIME":
                             // Check the date and time
-                            if (!VcardCommonTools.TryParsePosixDateTime(finalValuePart, out _))
+                            if (!TryParsePosixDateTime(finalValuePart, out _))
                                 throw new InvalidDataException($"Date and time {finalValuePart} is invalid");
                             break;
                         case "DATE-AND-OR-TIME":
                             // Check the date and/or time
-                            if (!VcardCommonTools.TryParsePosixDateTime(finalValuePart, out _) &&
-                                !VcardCommonTools.TryParsePosixTime(finalValuePart, out _))
+                            if (!TryParsePosixDateTime(finalValuePart, out _) &&
+                                !TryParsePosixTime(finalValuePart, out _))
                                 throw new InvalidDataException($"Date and/or time {finalValuePart} is invalid");
                             break;
                         case "TIMESTAMP":
                             // Check the timestamp
-                            if (!VcardCommonTools.TryParsePosixTimestamp(finalValuePart, out _))
+                            if (!TryParsePosixTimestamp(finalValuePart, out _))
                                 throw new InvalidDataException($"Timestamp {finalValuePart} is invalid");
                             break;
                         case "BOOLEAN":
@@ -657,11 +657,11 @@ namespace VisualCard.Parsers
                             break;
                         case "DURATION":
                             // Check the duration
-                            VcardCommonTools.GetDurationSpan(finalValuePart);
+                            GetDurationSpan(finalValuePart);
                             break;
                         case "PERIOD":
                             // Check the period
-                            VcardCommonTools.GetTimePeriod(finalValuePart);
+                            GetTimePeriod(finalValuePart);
                             break;
                         case "RECUR":
                             // Check the recursion rules
