@@ -86,6 +86,7 @@ namespace VisualCard.Extras.Misc
 
                 // Add the begin header and the name indicators
                 builder.AppendLine(VcardConstants._beginText);
+                builder.AppendLine(VcardConstants._versionSpecifier + ":2.1");
                 builder.AppendLine(VcardConstants._fullNameSpecifier + $":{firstName} {lastName}");
                 builder.AppendLine(VcardConstants._nameSpecifier + $":{lastName};{firstName}");
 
