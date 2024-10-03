@@ -111,10 +111,7 @@ namespace VisualCard
 
                 // Process the line for begin, version, and end specifiers
                 if (string.IsNullOrEmpty(CardLine))
-                {
-                    if (!stream.EndOfStream)
-                        continue;
-                }
+                    continue;
                 else if ((!prefix.EqualsNoCase(VcardConstants._beginSpecifier) &&
                          !prefix.EqualsNoCase(VcardConstants._versionSpecifier) &&
                          !prefix.EqualsNoCase(VcardConstants._endSpecifier)) || isAgent)
