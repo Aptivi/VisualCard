@@ -24,6 +24,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using Textify.General;
 using VisualCard.Parsers.Arguments;
 using VisualCard.Parsers.Recurrence;
 using VisualCard.Parts.Enums;
@@ -696,5 +697,38 @@ namespace VisualCard.Parsers
                 "location" => CardKind.Location,
                 _ => CardKind.Others,
             };
+
+        internal static string ConstructBlocks((int, string)[] cardContent, ref int i)
+        {
+            StringBuilder valueBuilder = new();
+            bool constructing = false;
+            int idx;
+            for (idx = i; idx < cardContent.Length; idx++)
+            {
+                // Get line
+                var content = cardContent[idx];
+                string _value = content.Item2;
+                if (string.IsNullOrEmpty(_value))
+                    continue;
+
+                // First, check to see if we need to construct blocks
+                string secondLine = idx + 1 < cardContent.Length ? cardContent[idx + 1].Item2 : "";
+                bool firstConstructedLine = !_value.StartsWith(VcardConstants._spaceBreak) && !_value.StartsWith(VcardConstants._tabBreak);
+                constructing = secondLine.StartsWithAnyOf([VcardConstants._spaceBreak, VcardConstants._tabBreak]);
+                secondLine = secondLine.Length > 1 ? secondLine.Substring(1) : "";
+                if (constructing)
+                {
+                    if (firstConstructedLine)
+                        valueBuilder.Append(_value);
+                    valueBuilder.Append(secondLine);
+                    continue;
+                }
+                else if (firstConstructedLine && !constructing)
+                    valueBuilder.Append(_value);
+                break;
+            }
+            i = idx;
+            return valueBuilder.ToString();
+        }
     }
 }

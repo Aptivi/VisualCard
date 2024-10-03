@@ -143,8 +143,8 @@ namespace VisualCard.Tests
             VERSION:3.0
             TEL:495-522-3560
             EMAIL:john.s@acme.co
-            FN:John Sanders
             NOTE:Note test for VisualCard
+            FN:John Sanders
             N:Sanders;John;;;
             ADR:;;Los Angeles;;;;USA
             END:VCARD
@@ -159,11 +159,11 @@ namespace VisualCard.Tests
             TEL:495-522-3560
             TEL;TYPE=VIDEO:495-522-3550
             EMAIL:john.s@acme.co
-            FN:John Sanders
             NOTE:Note test for VisualCard
+            FN:John Sanders
             N:Sanders;John;;;
-            ADR:;;Los Angeles;;;;USA
             X-VISUALCARD-KANA:Saunders;John
+            ADR:;;Los Angeles;;;;USA
             END:VCARD
 
             """

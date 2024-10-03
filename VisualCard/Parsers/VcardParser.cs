@@ -75,7 +75,6 @@ namespace VisualCard.Parsers
             }
 
             // Iterate through all the lines
-            bool constructing = false;
             StringBuilder valueBuilder = new();
             string[] allowedTypes = ["HOME", "WORK", "PREF"];
             string kind = "individual";
@@ -83,28 +82,10 @@ namespace VisualCard.Parsers
             {
                 // Get line
                 var content = CardContent[i];
-                string _value = content.Item2;
+                string _value = VcardCommonTools.ConstructBlocks(CardContent, ref i);
                 int lineNumber = content.Item1;
                 if (string.IsNullOrEmpty(_value))
                     continue;
-
-                // First, check to see if we need to construct blocks
-                string secondLine = i + 1 < CardContent.Length ? CardContent[i + 1].Item2 : "";
-                bool firstConstructedLine = !_value.StartsWith(VcardConstants._spaceBreak) && !_value.StartsWith(VcardConstants._tabBreak);
-                constructing = secondLine.StartsWithAnyOf([VcardConstants._spaceBreak, VcardConstants._tabBreak]);
-                secondLine = secondLine.Length > 1 ? secondLine.Substring(1) : "";
-                if (constructing)
-                {
-                    if (firstConstructedLine)
-                        valueBuilder.Append(_value);
-                    valueBuilder.Append(secondLine);
-                    continue;
-                }
-                else if (!firstConstructedLine)
-                {
-                    _value = valueBuilder.ToString();
-                    valueBuilder.Clear();
-                }
 
                 try
                 {
