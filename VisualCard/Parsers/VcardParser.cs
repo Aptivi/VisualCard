@@ -90,7 +90,7 @@ namespace VisualCard.Parsers
                 try
                 {
                     // Now, parse a property
-                    var info = new PropertyInfo(_value, CardVersion);
+                    var info = new PropertyInfo(_value);
                     var (type, enumeration, classType, fromString, defaultType, defaultValue, defaultValueType, extraAllowedTypes, allowedValues) = VcardParserTools.GetPartType(info.Prefix);
                     
                     // Handle arguments

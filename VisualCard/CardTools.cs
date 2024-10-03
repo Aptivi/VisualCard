@@ -99,7 +99,7 @@ namespace VisualCard
                 string value;
                 try
                 {
-                    var prop = new PropertyInfo(CardLine, new());
+                    var prop = new PropertyInfo(CardLine);
                     prefix = prop.Prefix;
                     value = prop.Value;
                 }

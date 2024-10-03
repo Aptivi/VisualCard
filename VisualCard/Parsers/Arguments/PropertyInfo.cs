@@ -34,7 +34,6 @@ namespace VisualCard.Parsers.Arguments
         private string prefix = "";
         private string group = "";
         private ArgumentInfo[] arguments = [];
-        private readonly Version version;
 
         /// <summary>
         /// Raw value
@@ -72,7 +71,7 @@ namespace VisualCard.Parsers.Arguments
             set => arguments = value;
         }
 
-        internal PropertyInfo(string line, Version version)
+        internal PropertyInfo(string line)
         {
             // Now, parse this value
             if (!line.Contains($"{VcardConstants._argumentDelimiter}"))
@@ -98,7 +97,6 @@ namespace VisualCard.Parsers.Arguments
             Prefix = prefix;
             Arguments = finalArgs;
             Group = group;
-            this.version = version;
         }
     }
 }

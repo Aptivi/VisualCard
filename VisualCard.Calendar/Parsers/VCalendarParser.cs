@@ -87,7 +87,7 @@ namespace VisualCard.Calendar.Parsers
                 try
                 {
                     // Now, parse a property
-                    var info = new PropertyInfo(_value, CalendarVersion);
+                    var info = new PropertyInfo(_value);
 
                     // Check to see if we have a BEGIN or an END prefix
                     if (info.Prefix == VcardConstants._beginSpecifier)

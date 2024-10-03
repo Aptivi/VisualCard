@@ -96,7 +96,7 @@ namespace VisualCard.Calendar
                 string value;
                 try
                 {
-                    var prop = new PropertyInfo(CalendarLine, new());
+                    var prop = new PropertyInfo(CalendarLine);
                     prefix = prop.Prefix;
                     value = prop.Value;
                 }
