@@ -156,7 +156,7 @@ namespace VisualCard
 
                 // All VCards must begin with BEGIN:VCARD
                 if (!prefix.EqualsNoCase(VcardConstants._beginSpecifier) && !value.EqualsNoCase(VcardConstants._objectVCardSpecifier) && !BeginSpotted)
-                    throw new InvalidDataException($"This is not a valid VCard contact file.");
+                    throw new InvalidDataException("This is not a valid vCard contact file.");
                 else if (!BeginSpotted)
                 {
                     BeginSpotted = true;
@@ -174,7 +174,7 @@ namespace VisualCard
                     !value.EqualsNoCase("2.1") && !value.EqualsNoCase("3.0") &&
                     !value.EqualsNoCase("4.0") && !value.EqualsNoCase("5.0") &&
                     !VersionSpotted)
-                    throw new InvalidDataException($"This has an invalid VCard version {CardLine}.");
+                    throw new InvalidDataException($"This card has an invalid VCard version {CardLine}.");
                 else if (!VersionSpotted && prefix.EqualsNoCase(VcardConstants._versionSpecifier))
                 {
                     VersionSpotted = true;

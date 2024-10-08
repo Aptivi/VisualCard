@@ -120,7 +120,7 @@ namespace VisualCard.Calendar
 
                 // All vCalendars must begin with BEGIN:VCALENDAR
                 if (!prefix.EqualsNoCase(VcardConstants._beginSpecifier) && !value.EqualsNoCase(VCalendarConstants._objectVCalendarSpecifier) && !BeginSpotted)
-                    throw new InvalidDataException($"This is not a valid vCalendar file.");
+                    throw new InvalidDataException("This is not a valid vCalendar file.");
                 else if (!BeginSpotted)
                 {
                     BeginSpotted = true;
@@ -134,7 +134,7 @@ namespace VisualCard.Calendar
                 if (prefix.EqualsNoCase(VcardConstants._versionSpecifier) &&
                     !value.EqualsNoCase("1.0") && !value.EqualsNoCase("2.0") &&
                     !VersionSpotted)
-                    throw new InvalidDataException($"This has an invalid vCalendar version {CalendarLine}.");
+                    throw new InvalidDataException($"This calendar has an invalid vCalendar version {CalendarLine}.");
                 else if (!VersionSpotted && prefix.EqualsNoCase(VcardConstants._versionSpecifier))
                 {
                     VersionSpotted = true;
