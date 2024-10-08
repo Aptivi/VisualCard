@@ -19,6 +19,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -96,6 +97,24 @@ namespace VisualCard.Calendar.Parts
         /// </summary>
         public CalendarOtherComponent[] Others =>
             [.. others];
+
+        /// <summary>
+        /// Part array list in a dictionary (for enumeration operations)
+        /// </summary>
+        public virtual ReadOnlyDictionary<CalendarPartsArrayEnum, ReadOnlyCollection<BaseCalendarPartInfo>> PartsArray =>
+            new(partsArray.ToDictionary((kvp) => kvp.Key, (kvp) => kvp.Value.AsReadOnly()));
+
+        /// <summary>
+        /// String list in a dictionary (for enumeration operations)
+        /// </summary>
+        public virtual ReadOnlyDictionary<CalendarStringsEnum, ReadOnlyCollection<CalendarValueInfo<string>>> Strings =>
+            new(strings.ToDictionary((kvp) => kvp.Key, (kvp) => kvp.Value.AsReadOnly()));
+
+        /// <summary>
+        /// Integer list in a dictionary (for enumeration operations)
+        /// </summary>
+        public virtual ReadOnlyDictionary<CalendarIntegersEnum, ReadOnlyCollection<CalendarValueInfo<double>>> Integers =>
+            new(integers.ToDictionary((kvp) => kvp.Key, (kvp) => kvp.Value.AsReadOnly()));
 
         /// <summary>
         /// Gets a part array from a specified key

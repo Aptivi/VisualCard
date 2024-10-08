@@ -19,6 +19,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -71,6 +72,18 @@ namespace VisualCard.Parts
         /// </summary>
         public CardKind CardKind =>
             VcardCommonTools.GetKindEnum(CardKindStr);
+
+        /// <summary>
+        /// Part array list in a dictionary (for enumeration operations)
+        /// </summary>
+        public ReadOnlyDictionary<PartsArrayEnum, ReadOnlyCollection<BaseCardPartInfo>> PartsArray =>
+            new(partsArray.ToDictionary((kvp) => kvp.Key, (kvp) => kvp.Value.AsReadOnly()));
+
+        /// <summary>
+        /// String list in a dictionary (for enumeration operations)
+        /// </summary>
+        public ReadOnlyDictionary<StringsEnum, ReadOnlyCollection<CardValueInfo<string>>> Strings =>
+            new(strings.ToDictionary((kvp) => kvp.Key, (kvp) => kvp.Value.AsReadOnly()));
 
         /// <summary>
         /// Gets a part array from a specified key

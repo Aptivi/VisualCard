@@ -19,7 +19,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using VisualCard.Calendar.Parsers;
 using VisualCard.Calendar.Parts.Comparers;
 using VisualCard.Calendar.Parts.Enums;
@@ -35,6 +37,24 @@ namespace VisualCard.Calendar.Parts
         private readonly Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray = [];
         private readonly Dictionary<CalendarStringsEnum, List<CalendarValueInfo<string>>> strings = [];
         private readonly Dictionary<CalendarIntegersEnum, List<CalendarValueInfo<double>>> integers = [];
+
+        /// <summary>
+        /// Part array list in a dictionary (for enumeration operations)
+        /// </summary>
+        public override ReadOnlyDictionary<CalendarPartsArrayEnum, ReadOnlyCollection<BaseCalendarPartInfo>> PartsArray =>
+            new(partsArray.ToDictionary((kvp) => kvp.Key, (kvp) => kvp.Value.AsReadOnly()));
+
+        /// <summary>
+        /// String list in a dictionary (for enumeration operations)
+        /// </summary>
+        public override ReadOnlyDictionary<CalendarStringsEnum, ReadOnlyCollection<CalendarValueInfo<string>>> Strings =>
+            new(strings.ToDictionary((kvp) => kvp.Key, (kvp) => kvp.Value.AsReadOnly()));
+
+        /// <summary>
+        /// Integer list in a dictionary (for enumeration operations)
+        /// </summary>
+        public override ReadOnlyDictionary<CalendarIntegersEnum, ReadOnlyCollection<CalendarValueInfo<double>>> Integers =>
+            new(integers.ToDictionary((kvp) => kvp.Key, (kvp) => kvp.Value.AsReadOnly()));
 
         /// <summary>
         /// Gets a part array from a specified key
