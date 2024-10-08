@@ -32,46 +32,34 @@ namespace VisualCard.Parsers.Arguments
     [DebuggerDisplay("Property: {Arguments.Length} args, {Prefix} [G: {Group}] = {Value}")]
     public class PropertyInfo : IEquatable<PropertyInfo?>
     {
-        private string rawValue = "";
-        private string prefix = "";
-        private string group = "";
-        private ArgumentInfo[] arguments = [];
+        private readonly string rawValue = "";
+        private readonly string prefix = "";
+        private readonly string group = "";
+        private readonly ArgumentInfo[] arguments = [];
 
         /// <summary>
         /// Raw value
         /// </summary>
-        public string Value
-        {
-            get => rawValue;
-            set => rawValue = value;
-        }
+        public string Value =>
+            rawValue;
 
         /// <summary>
         /// Property prefix
         /// </summary>
-        public string Prefix
-        {
-            get => prefix;
-            set => prefix = value;
-        }
+        public string Prefix =>
+            prefix;
 
         /// <summary>
         /// Property group
         /// </summary>
-        public string Group
-        {
-            get => group;
-            set => group = value;
-        }
+        public string Group =>
+            group;
 
         /// <summary>
         /// Argument info instances. It includes AltId, type, and value
         /// </summary>
-        public ArgumentInfo[] Arguments
-        {
-            get => arguments;
-            set => arguments = value;
-        }
+        public ArgumentInfo[] Arguments =>
+            arguments;
 
         /// <summary>
         /// Checks to see if both the property info instances are equal
@@ -145,10 +133,10 @@ namespace VisualCard.Parsers.Arguments
             prefix = xNonstandard ? VcardConstants._xSpecifier : prefix;
 
             // Install values
-            Value = value;
-            Prefix = prefix;
-            Arguments = finalArgs;
-            Group = group;
+            this.rawValue = value;
+            this.prefix = prefix;
+            this.arguments = finalArgs;
+            this.group = group;
         }
     }
 }
