@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using VisualCard.Parsers.Arguments;
+using VisualCard.Parts.Comparers;
 
 namespace VisualCard.Parts
 {
@@ -32,9 +33,9 @@ namespace VisualCard.Parts
     public abstract class BaseCardPartInfo : IEquatable<BaseCardPartInfo>
     {
         /// <summary>
-        /// Final arguments
+        /// Property information containing details about this property that this class instance was created from
         /// </summary>
-        public virtual ArgumentInfo[] Arguments { get; internal set; } = [];
+        public virtual PropertyInfo? Property { get; internal set; }
 
         /// <summary>
         /// Alternative ID. Zero if unspecified.
@@ -100,7 +101,7 @@ namespace VisualCard.Parts
 
             // Check all the properties
             return
-                source.Arguments.SequenceEqual(target.Arguments) &&
+                source.Property == target.Property &&
                 source.ElementTypes.SequenceEqual(target.ElementTypes) &&
                 source.AltId == target.AltId &&
                 source.ValueType == target.ValueType &&
@@ -116,8 +117,8 @@ namespace VisualCard.Parts
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = 975087586;
-            hashCode = hashCode * -1521134295 + EqualityComparer<ArgumentInfo[]>.Default.GetHashCode(Arguments);
+            int hashCode = 516898731;
+            hashCode = hashCode * -1521134295 + EqualityComparer<PropertyInfo?>.Default.GetHashCode(Property);
             hashCode = hashCode * -1521134295 + AltId.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(ElementTypes);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ValueType);
@@ -136,16 +137,16 @@ namespace VisualCard.Parts
         internal virtual bool EqualsInternal(BaseCardPartInfo source, BaseCardPartInfo target) =>
             true;
 
-        internal abstract BaseCardPartInfo FromStringVcardInternal(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion);
+        internal abstract BaseCardPartInfo FromStringVcardInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion);
 
         internal abstract string ToStringVcardInternal(Version cardVersion);
 
         internal BaseCardPartInfo()
         { }
 
-        internal BaseCardPartInfo(ArgumentInfo[] arguments, int altId, string[] elementTypes, string valueType, string group)
+        internal BaseCardPartInfo(PropertyInfo? property, int altId, string[] elementTypes, string valueType, string group)
         {
-            Arguments = arguments;
+            Property = property;
             AltId = altId;
             ElementTypes = elementTypes;
             ValueType = valueType;

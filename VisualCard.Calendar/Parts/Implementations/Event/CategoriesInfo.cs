@@ -36,19 +36,19 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
         /// </summary>
         public string[]? Categories { get; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            new CategoriesInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, group, valueType, cardVersion);
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new CategoriesInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion) =>
             $"{string.Join(cardVersion.Major == 1 ? ";" : ",", Categories)}";
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate the fields
             var categories = Regex.Unescape(value).Split(cardVersion.Major == 1 ? ';' : ',');
 
             // Add the fetched information
-            CategoriesInfo _time = new([], elementTypes, group, valueType, categories);
+            CategoriesInfo _time = new(property, elementTypes, group, valueType, categories);
             return _time;
         }
 
@@ -104,8 +104,8 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
 
         internal CategoriesInfo() { }
 
-        internal CategoriesInfo(ArgumentInfo[] arguments, string[] elementTypes, string group, string valueType, string[] categories) :
-            base(arguments, elementTypes, group, valueType)
+        internal CategoriesInfo(PropertyInfo? property, string[] elementTypes, string group, string valueType, string[] categories) :
+            base(property, elementTypes, group, valueType)
         {
             Categories = categories;
         }

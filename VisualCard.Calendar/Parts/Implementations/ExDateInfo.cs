@@ -38,8 +38,8 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// </summary>
         public DateTimeOffset[]? ExDates { get; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            new ExDateInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, group, valueType, cardVersion);
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new ExDateInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion)
         {
@@ -48,7 +48,7 @@ namespace VisualCard.Calendar.Parts.Implementations
             return $"{string.Join(cardVersion.Major == 1 ? ";" : ",", ExDates.Select((dt) => VcardCommonTools.SavePosixDate(dt, justDate)))}";
         }
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate the fields
             var exDates = Regex.Unescape(value).Split(cardVersion.Major == 1 ? ';' : ',');
@@ -63,7 +63,7 @@ namespace VisualCard.Calendar.Parts.Implementations
             }
 
             // Add the fetched information
-            ExDateInfo _time = new([], elementTypes, group, valueType, [.. dates]);
+            ExDateInfo _time = new(property, elementTypes, group, valueType, [.. dates]);
             return _time;
         }
 
@@ -119,8 +119,8 @@ namespace VisualCard.Calendar.Parts.Implementations
 
         internal ExDateInfo() { }
 
-        internal ExDateInfo(ArgumentInfo[] arguments, string[] elementTypes, string group, string valueType, DateTimeOffset[] exDates) :
-            base(arguments, elementTypes, group, valueType)
+        internal ExDateInfo(PropertyInfo? property, string[] elementTypes, string group, string valueType, DateTimeOffset[] exDates) :
+            base(property, elementTypes, group, valueType)
         {
             ExDates = exDates;
         }

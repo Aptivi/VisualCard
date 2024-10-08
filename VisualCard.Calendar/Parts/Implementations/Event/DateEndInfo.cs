@@ -35,8 +35,8 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
         /// </summary>
         public DateTimeOffset DateEnd { get; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            new DateEndInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, group, valueType, cardVersion);
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new DateEndInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion)
         {
@@ -48,7 +48,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
             return value;
         }
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate the fields
             DateTimeOffset end =
@@ -57,7 +57,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
                 VcardCommonTools.ParsePosixDateTime(value);
 
             // Add the fetched information
-            DateEndInfo _time = new(finalArgs, elementTypes, group, valueType, end);
+            DateEndInfo _time = new(property, elementTypes, group, valueType, end);
             return _time;
         }
 
@@ -113,8 +113,8 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
 
         internal DateEndInfo() { }
 
-        internal DateEndInfo(ArgumentInfo[] arguments, string[] elementTypes, string group, string valueType, DateTimeOffset rev) :
-            base(arguments, elementTypes, group, valueType)
+        internal DateEndInfo(PropertyInfo? property, string[] elementTypes, string group, string valueType, DateTimeOffset rev) :
+            base(property, elementTypes, group, valueType)
         {
             DateEnd = rev;
         }

@@ -99,6 +99,26 @@ namespace VisualCard.Parts.Comparers
             return equal;
         }
 
+        internal static bool CompareLists<TValue>(
+            IList<TValue> source,
+            IList<TValue> target)
+        {
+            // Verify the lists
+            if (!VerifyLists(source, target))
+                return false;
+
+            // Now, compare between two parts
+            List<bool> results = [];
+            for (int i = 0; i < target.Count; i++)
+            {
+                TValue sourcePart = source[i];
+                TValue targetPart = target[i];
+                bool equals = sourcePart?.Equals(targetPart) ?? false;
+                results.Add(equals);
+            }
+            return !results.Contains(false);
+        }
+
         private static bool VerifyLists<TValue>(
             IList<TValue> source,
             IList<TValue> target)

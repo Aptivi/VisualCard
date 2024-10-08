@@ -158,7 +158,7 @@ namespace VisualCard.Calendar.Parsers
                                     continue;
 
                                 // Set the string for real
-                                var stringValueInfo = new CalendarValueInfo<string>(info.Arguments, elementTypes, info.Group, valueType, finalValue);
+                                var stringValueInfo = new CalendarValueInfo<string>(info, elementTypes, info.Group, valueType, finalValue);
                                 if (subPart is not null)
                                     subPart.AddString(stringType, stringValueInfo);
                                 else
@@ -176,7 +176,7 @@ namespace VisualCard.Calendar.Parsers
                                 double finalDouble = double.Parse(finalValue);
 
                                 // Set the integer for real
-                                var stringValueInfo = new CalendarValueInfo<double>(info.Arguments, elementTypes, info.Group, valueType, finalDouble);
+                                var stringValueInfo = new CalendarValueInfo<double>(info, elementTypes, info.Group, valueType, finalDouble);
                                 if (subPart is not null)
                                     subPart.AddInteger(integerType, stringValueInfo);
                                 else
@@ -195,7 +195,7 @@ namespace VisualCard.Calendar.Parsers
 
                                 // Now, get the part info
                                 finalValue = partsArrayType is CalendarPartsArrayEnum.IanaNames or CalendarPartsArrayEnum.NonstandardNames ? _value : info.Value;
-                                var partInfo = fromString(finalValue, info.Arguments, elementTypes, info.Group, valueType, CalendarVersion);
+                                var partInfo = fromString(finalValue, info, elementTypes, info.Group, valueType, CalendarVersion);
 
                                 // Set the array for real
                                 if (subPart is not null)

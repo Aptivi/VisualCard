@@ -34,7 +34,7 @@ namespace VisualCard.Calendar.Parts
         /// <summary>
         /// Final arguments
         /// </summary>
-        public virtual ArgumentInfo[] Arguments { get; internal set; } = [];
+        public virtual PropertyInfo? Property { get; internal set; }
 
         /// <summary>
         /// Card element type (home, work, ...)
@@ -97,7 +97,7 @@ namespace VisualCard.Calendar.Parts
 
             // Check all the properties
             return
-                source.Arguments.SequenceEqual(target.Arguments) &&
+                source.Property == target.Property &&
                 source.ElementTypes.SequenceEqual(target.ElementTypes) &&
                 source.ValueType == target.ValueType &&
                 source.Group == target.Group &&
@@ -112,8 +112,8 @@ namespace VisualCard.Calendar.Parts
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = -1053170623;
-            hashCode = hashCode * -1521134295 + EqualityComparer<ArgumentInfo[]>.Default.GetHashCode(Arguments);
+            int hashCode = -1432369694;
+            hashCode = hashCode * -1521134295 + EqualityComparer<PropertyInfo?>.Default.GetHashCode(Property);
             hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(ElementTypes);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ValueType);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Group);
@@ -131,16 +131,16 @@ namespace VisualCard.Calendar.Parts
         internal virtual bool EqualsInternal(BaseCalendarPartInfo source, BaseCalendarPartInfo target) =>
             true;
 
-        internal abstract BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version calendarVersion);
+        internal abstract BaseCalendarPartInfo FromStringVcalendarInternal(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version calendarVersion);
 
         internal abstract string ToStringVcalendarInternal(Version calendarVersion);
 
         internal BaseCalendarPartInfo()
         { }
 
-        internal BaseCalendarPartInfo(ArgumentInfo[] arguments, string[] elementTypes, string group, string valueType)
+        internal BaseCalendarPartInfo(PropertyInfo? property, string[] elementTypes, string group, string valueType)
         {
-            Arguments = arguments;
+            Property = property;
             ElementTypes = elementTypes;
             ValueType = valueType;
             Group = group;

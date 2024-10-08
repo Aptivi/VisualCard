@@ -44,19 +44,21 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// Whether this attach is a blob or not
         /// </summary>
         public bool IsBlob =>
-            VcardCommonTools.IsEncodingBlob(Arguments, AttachEncoded);
+            VcardCommonTools.IsEncodingBlob(Property?.Arguments ?? [], AttachEncoded);
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version calendarVersion) =>
-            new AttachInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, group, valueType, calendarVersion);
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version calendarVersion) =>
+            new AttachInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, calendarVersion);
 
         internal override string ToStringVcalendarInternal(Version calendarVersion) =>
             AttachEncoded ?? "";
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version calendarVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version calendarVersion)
         {
+            var arguments = property?.Arguments ?? [];
+
             // Check to see if the value is prepended by the ENCODING= argument
-            string attachEncoding = VcardCommonTools.GetValuesString(finalArgs, "b", VcardConstants._encodingArgumentSpecifier);
-            if (!VcardCommonTools.IsEncodingBlob(finalArgs, value))
+            string attachEncoding = VcardCommonTools.GetValuesString(arguments, "b", VcardConstants._encodingArgumentSpecifier);
+            if (!VcardCommonTools.IsEncodingBlob(arguments, value))
             {
                 // Since we don't need embedded attachs, we need to check a URL.
                 if (!Uri.TryCreate(value, UriKind.Absolute, out Uri uri))
@@ -65,7 +67,7 @@ namespace VisualCard.Calendar.Parts.Implementations
             }
 
             // Populate the fields
-            AttachInfo _attach = new(finalArgs, elementTypes, group, valueType, attachEncoding, value);
+            AttachInfo _attach = new(property, elementTypes, group, valueType, attachEncoding, value);
             return _attach;
         }
 
@@ -74,7 +76,7 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// </summary>
         /// <returns>A stream that contains image data</returns>
         public Stream GetStream() =>
-            VcardCommonTools.GetBlobData(Arguments, AttachEncoded);
+            VcardCommonTools.GetBlobData(Property?.Arguments ?? [], AttachEncoded);
 
         /// <inheritdoc/>
         public override bool Equals(object obj) =>
@@ -130,8 +132,8 @@ namespace VisualCard.Calendar.Parts.Implementations
 
         internal AttachInfo() { }
 
-        internal AttachInfo(ArgumentInfo[] arguments, string[] elementTypes, string group, string valueType, string encoding, string attachEncoded) :
-            base(arguments, elementTypes, group, valueType)
+        internal AttachInfo(PropertyInfo? property, string[] elementTypes, string group, string valueType, string encoding, string attachEncoded) :
+            base(property, elementTypes, group, valueType)
         {
             Encoding = encoding;
             AttachEncoded = attachEncoded;

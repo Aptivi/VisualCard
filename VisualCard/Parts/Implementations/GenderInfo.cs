@@ -43,14 +43,14 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string? GenderDescription { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            new GenderInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new GenderInfo().FromStringVcardInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             (Gender != Gender.Unspecified ? Gender.ToString()[0] : "") +
             (!string.IsNullOrEmpty(GenderDescription) ? $"{VcardConstants._fieldDelimiter}{GenderDescription}" : "");
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate field
             string genderString = value;
@@ -79,7 +79,7 @@ namespace VisualCard.Parts.Implementations
             };
 
             // Add the fetched information
-            GenderInfo _gender = new(-1, [], elementTypes, valueType, group, gender, genderDescription);
+            GenderInfo _gender = new(-1, property, elementTypes, valueType, group, gender, genderDescription);
             return _gender;
         }
 
@@ -137,8 +137,8 @@ namespace VisualCard.Parts.Implementations
 
         internal GenderInfo() { }
 
-        internal GenderInfo(int altId, ArgumentInfo[] arguments, string[] elementTypes, string valueType, string group, Gender gender, string genderDescription) :
-            base(arguments, altId, elementTypes, valueType, group)
+        internal GenderInfo(int altId, PropertyInfo? property, string[] elementTypes, string valueType, string group, Gender gender, string genderDescription) :
+            base(property, altId, elementTypes, valueType, group)
         {
             Gender = gender;
             GenderDescription = genderDescription;

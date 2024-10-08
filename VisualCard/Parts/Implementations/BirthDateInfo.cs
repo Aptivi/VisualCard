@@ -35,19 +35,19 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public DateTimeOffset BirthDate { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            new BirthDateInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new BirthDateInfo().FromStringVcardInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             $"{VcardCommonTools.SavePosixDate(BirthDate, true)}";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate field
             DateTimeOffset bday = VcardCommonTools.ParsePosixDateTime(value);
 
             // Add the fetched information
-            BirthDateInfo _time = new(altId, finalArgs, elementTypes, valueType, group, bday);
+            BirthDateInfo _time = new(altId, property, elementTypes, valueType, group, bday);
             return _time;
         }
 
@@ -103,8 +103,8 @@ namespace VisualCard.Parts.Implementations
 
         internal BirthDateInfo() { }
 
-        internal BirthDateInfo(int altId, ArgumentInfo[] arguments, string[] elementTypes, string valueType, string group, DateTimeOffset birth) :
-            base(arguments, altId, elementTypes, valueType, group)
+        internal BirthDateInfo(int altId, PropertyInfo? property, string[] elementTypes, string valueType, string group, DateTimeOffset birth) :
+            base(property, altId, elementTypes, valueType, group)
         {
             BirthDate = birth;
         }

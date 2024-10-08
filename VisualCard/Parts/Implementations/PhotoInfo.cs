@@ -44,17 +44,18 @@ namespace VisualCard.Parts.Implementations
         /// Whether this photo is a blob or not
         /// </summary>
         public bool IsBlob =>
-            VcardCommonTools.IsEncodingBlob(Arguments, PhotoEncoded);
+            VcardCommonTools.IsEncodingBlob(Property?.Arguments ?? [], PhotoEncoded);
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            new PhotoInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new PhotoInfo().FromStringVcardInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             PhotoEncoded ?? "";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             bool vCard4 = cardVersion.Major >= 4;
+            var arguments = property?.Arguments ?? [];
 
             // Check to see if the value is prepended by the ENCODING= argument
             string photoEncoding = "";
@@ -68,8 +69,8 @@ namespace VisualCard.Parts.Implementations
             else
             {
                 // vCard 3.0 handles this in a different way
-                photoEncoding = VcardCommonTools.GetValuesString(finalArgs, "b", VcardConstants._encodingArgumentSpecifier);
-                if (!VcardCommonTools.IsEncodingBlob(finalArgs, value))
+                photoEncoding = VcardCommonTools.GetValuesString(arguments, "b", VcardConstants._encodingArgumentSpecifier);
+                if (!VcardCommonTools.IsEncodingBlob(arguments, value))
                 {
                     // Since we don't need embedded photos, we need to check a URL.
                     if (!Uri.TryCreate(value, UriKind.Absolute, out Uri uri))
@@ -79,7 +80,7 @@ namespace VisualCard.Parts.Implementations
             }
 
             // Populate the fields
-            PhotoInfo _photo = new(altId, finalArgs, elementTypes, valueType, group, photoEncoding, value);
+            PhotoInfo _photo = new(altId, property, elementTypes, valueType, group, photoEncoding, value);
             return _photo;
         }
 
@@ -88,7 +89,7 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         /// <returns>A stream that contains image data</returns>
         public Stream GetStream() =>
-            VcardCommonTools.GetBlobData(Arguments, PhotoEncoded);
+            VcardCommonTools.GetBlobData(Property?.Arguments ?? [], PhotoEncoded);
 
         /// <inheritdoc/>
         public override bool Equals(object obj) =>
@@ -144,8 +145,8 @@ namespace VisualCard.Parts.Implementations
 
         internal PhotoInfo() { }
 
-        internal PhotoInfo(int altId, ArgumentInfo[] arguments, string[] elementTypes, string valueType, string group, string encoding, string photoEncoded) :
-            base(arguments, altId, elementTypes, valueType, group)
+        internal PhotoInfo(int altId, PropertyInfo? property, string[] elementTypes, string valueType, string group, string encoding, string photoEncoded) :
+            base(property, altId, elementTypes, valueType, group)
         {
             Encoding = encoding;
             PhotoEncoded = photoEncoded;

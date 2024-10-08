@@ -34,7 +34,7 @@ namespace VisualCard.Calendar.Parts
         /// <summary>
         /// Final arguments
         /// </summary>
-        public virtual ArgumentInfo[] Arguments { get; internal set; } = [];
+        public virtual PropertyInfo? Property { get; internal set; }
 
         /// <summary>
         /// Calendar element type (home, work, ...)
@@ -100,7 +100,7 @@ namespace VisualCard.Calendar.Parts
 
             // Check all the properties
             return
-                source.Arguments.SequenceEqual(target.Arguments) &&
+                source.Property == target.Property &&
                 source.ElementTypes.SequenceEqual(target.ElementTypes) &&
                 source.ValueType == target.ValueType &&
                 source.Group == target.Group &&
@@ -115,8 +115,8 @@ namespace VisualCard.Calendar.Parts
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = -1427366701;
-            hashCode = hashCode * -1521134295 + EqualityComparer<ArgumentInfo[]>.Default.GetHashCode(Arguments);
+            int hashCode = -1885555556;
+            hashCode = hashCode * -1521134295 + EqualityComparer<PropertyInfo?>.Default.GetHashCode(Property);
             hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(ElementTypes);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ValueType);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Group);
@@ -135,9 +135,9 @@ namespace VisualCard.Calendar.Parts
         internal virtual bool EqualsInternal(CalendarValueInfo<TValue> source, CalendarValueInfo<TValue> target) =>
             true;
 
-        internal CalendarValueInfo(ArgumentInfo[] arguments, string[] elementTypes, string group, string valueType, TValue? value)
+        internal CalendarValueInfo(PropertyInfo? property, string[] elementTypes, string group, string valueType, TValue? value)
         {
-            Arguments = arguments;
+            Property = property;
             ElementTypes = elementTypes;
             ValueType = valueType;
             Group = group;

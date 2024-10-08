@@ -35,19 +35,19 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
         /// </summary>
         public DateTimeOffset DateStamp { get; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            new DateStampInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, group, valueType, cardVersion);
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new DateStampInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion) =>
             $"{VcardCommonTools.SavePosixDate(DateStamp)}";
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate the fields
             DateTimeOffset stamp = VcardCommonTools.ParsePosixDateTime(value);
 
             // Add the fetched information
-            DateStampInfo _time = new(finalArgs, elementTypes, group, valueType, stamp);
+            DateStampInfo _time = new(property, elementTypes, group, valueType, stamp);
             return _time;
         }
 
@@ -103,8 +103,8 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
 
         internal DateStampInfo() { }
 
-        internal DateStampInfo(ArgumentInfo[] arguments, string[] elementTypes, string group, string valueType, DateTimeOffset rev) :
-            base(arguments, elementTypes, group, valueType)
+        internal DateStampInfo(PropertyInfo? property, string[] elementTypes, string group, string valueType, DateTimeOffset rev) :
+            base(property, elementTypes, group, valueType)
         {
             DateStamp = rev;
         }

@@ -32,9 +32,9 @@ namespace VisualCard.Parts
     public class CardValueInfo<TValue> : IEquatable<CardValueInfo<TValue>>
     {
         /// <summary>
-        /// Final arguments
+        /// Property information containing details about this property that this class instance was created from
         /// </summary>
-        public virtual ArgumentInfo[] Arguments { get; internal set; } = [];
+        public virtual PropertyInfo? Property { get; internal set; }
 
         /// <summary>
         /// Alternative ID. Zero if unspecified.
@@ -105,7 +105,7 @@ namespace VisualCard.Parts
 
             // Check all the properties
             return
-                source.Arguments.SequenceEqual(target.Arguments) &&
+                source.Property == target.Property &&
                 source.ElementTypes.SequenceEqual(target.ElementTypes) &&
                 source.AltId == target.AltId &&
                 source.ValueType == target.ValueType &&
@@ -121,8 +121,8 @@ namespace VisualCard.Parts
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = -1241979236;
-            hashCode = hashCode * -1521134295 + EqualityComparer<ArgumentInfo[]>.Default.GetHashCode(Arguments);
+            int hashCode = -345771315;
+            hashCode = hashCode * -1521134295 + EqualityComparer<PropertyInfo?>.Default.GetHashCode(Property);
             hashCode = hashCode * -1521134295 + AltId.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(ElementTypes);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ValueType);
@@ -142,9 +142,9 @@ namespace VisualCard.Parts
         internal virtual bool EqualsInternal(CardValueInfo<TValue> source, CardValueInfo<TValue> target) =>
             true;
 
-        internal CardValueInfo(ArgumentInfo[] arguments, int altId, string[] elementTypes, string valueType, string group, TValue? value)
+        internal CardValueInfo(PropertyInfo? property, int altId, string[] elementTypes, string valueType, string group, TValue? value)
         {
-            Arguments = arguments;
+            Property = property;
             AltId = altId;
             ElementTypes = elementTypes;
             ValueType = valueType;

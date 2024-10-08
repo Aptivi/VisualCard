@@ -39,8 +39,8 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// </summary>
         public TimePeriod[]? RecDates { get; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            new RecDateInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, group, valueType, cardVersion);
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new RecDateInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion)
         {
@@ -60,7 +60,7 @@ namespace VisualCard.Calendar.Parts.Implementations
             return builder.ToString();
         }
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate the fields
             TimePeriod[] recDates = [];
@@ -96,7 +96,7 @@ namespace VisualCard.Calendar.Parts.Implementations
             }
 
             // Add the fetched information
-            RecDateInfo _time = new([], elementTypes, group, valueType, recDates);
+            RecDateInfo _time = new(property, elementTypes, group, valueType, recDates);
             return _time;
         }
 
@@ -152,8 +152,8 @@ namespace VisualCard.Calendar.Parts.Implementations
 
         internal RecDateInfo() { }
 
-        internal RecDateInfo(ArgumentInfo[] arguments, string[] elementTypes, string group, string valueType, TimePeriod[] recDates) :
-            base(arguments, elementTypes, group, valueType)
+        internal RecDateInfo(PropertyInfo? property, string[] elementTypes, string group, string valueType, TimePeriod[] recDates) :
+            base(property, elementTypes, group, valueType)
         {
             RecDates = recDates;
         }

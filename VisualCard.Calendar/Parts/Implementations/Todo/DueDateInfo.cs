@@ -35,8 +35,8 @@ namespace VisualCard.Calendar.Parts.Implementations.Todo
         /// </summary>
         public DateTimeOffset DueDate { get; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            new DueDateInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, group, valueType, cardVersion);
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new DueDateInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion)
         {
@@ -48,7 +48,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Todo
             return value;
         }
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate the fields
             DateTimeOffset completed =
@@ -57,7 +57,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Todo
                 VcardCommonTools.ParsePosixDateTime(value);
 
             // Add the fetched information
-            DueDateInfo _time = new(finalArgs, elementTypes, group, valueType, completed);
+            DueDateInfo _time = new(property, elementTypes, group, valueType, completed);
             return _time;
         }
 
@@ -113,8 +113,8 @@ namespace VisualCard.Calendar.Parts.Implementations.Todo
 
         internal DueDateInfo() { }
 
-        internal DueDateInfo(ArgumentInfo[] arguments, string[] elementTypes, string group, string valueType, DateTimeOffset rev) :
-            base(arguments, elementTypes, group, valueType)
+        internal DueDateInfo(PropertyInfo? property, string[] elementTypes, string group, string valueType, DateTimeOffset rev) :
+            base(property, elementTypes, group, valueType)
         {
             DueDate = rev;
         }

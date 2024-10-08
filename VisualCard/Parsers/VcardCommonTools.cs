@@ -735,8 +735,9 @@ namespace VisualCard.Parsers
             return valueBuilder.ToString();
         }
 
-        internal static int GetAltIdFromArgs(Version version, ArgumentInfo[] arguments, Type? classType, PartType type, object enumeration)
+        internal static int GetAltIdFromArgs(Version version, PropertyInfo? property, Type? classType, PartType type, object enumeration)
         {
+            var arguments = property?.Arguments ?? [];
             int altId = -1;
             if (arguments.Length > 0)
             {

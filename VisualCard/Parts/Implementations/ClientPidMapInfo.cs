@@ -42,13 +42,13 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string? PidUri { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            new ClientPidMapInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new ClientPidMapInfo().FromStringVcardInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             $"{PidNum};{PidUri ?? ""}";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Split the client PID map info
             if (!value.Contains(";"))
@@ -64,7 +64,7 @@ namespace VisualCard.Parts.Implementations
             pidUriStr = uri.ToString();
 
             // Populate the fields
-            ClientPidMapInfo _source = new(altId, finalArgs, elementTypes, valueType, group, pidNum, pidUriStr);
+            ClientPidMapInfo _source = new(altId, property, elementTypes, valueType, group, pidNum, pidUriStr);
             return _source;
         }
 
@@ -122,8 +122,8 @@ namespace VisualCard.Parts.Implementations
 
         internal ClientPidMapInfo() { }
 
-        internal ClientPidMapInfo(int altId, ArgumentInfo[] arguments, string[] elementTypes, string valueType, string group, int pidNum, string pidUri) :
-            base(arguments, altId, elementTypes, valueType, group)
+        internal ClientPidMapInfo(int altId, PropertyInfo? property, string[] elementTypes, string valueType, string group, int pidNum, string pidUri) :
+            base(property, altId, elementTypes, valueType, group)
         {
             PidNum = pidNum;
             PidUri = pidUri;

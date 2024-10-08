@@ -35,19 +35,19 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public DateTimeOffset Anniversary { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            new AnniversaryInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new AnniversaryInfo().FromStringVcardInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             $"{VcardCommonTools.SavePosixDate(Anniversary, true)}";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate the fields
             DateTimeOffset anniversary = VcardCommonTools.ParsePosixDateTime(value);
 
             // Add the fetched information
-            AnniversaryInfo _time = new(-1, [], [], valueType, group, anniversary);
+            AnniversaryInfo _time = new(-1, property, [], valueType, group, anniversary);
             return _time;
         }
 
@@ -103,8 +103,8 @@ namespace VisualCard.Parts.Implementations
 
         internal AnniversaryInfo() { }
 
-        internal AnniversaryInfo(int altId, ArgumentInfo[] arguments, string[] elementTypes, string valueType, string group, DateTimeOffset anniversary) :
-            base(arguments, altId, elementTypes, valueType, group)
+        internal AnniversaryInfo(int altId, PropertyInfo? property, string[] elementTypes, string valueType, string group, DateTimeOffset anniversary) :
+            base(property, altId, elementTypes, valueType, group)
         {
             Anniversary = anniversary;
         }

@@ -39,8 +39,8 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public Card[]? AgentCards { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            new AgentInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new AgentInfo().FromStringVcardInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion)
         {
@@ -57,7 +57,7 @@ namespace VisualCard.Parts.Implementations
             return agents.ToString();
         }
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Check the provided agent
             if (string.IsNullOrEmpty(value))
@@ -66,7 +66,7 @@ namespace VisualCard.Parts.Implementations
             // Populate the fields
             string _agentVcard = Regex.Unescape(value).Replace("\\n", "\n").Replace("\\N", "\n");
             var _agentVcardParsers = CardTools.GetCardsFromString(_agentVcard);
-            AgentInfo _agent = new(altId, finalArgs, elementTypes, valueType, group, _agentVcardParsers);
+            AgentInfo _agent = new(altId, property, elementTypes, valueType, group, _agentVcardParsers);
             return _agent;
         }
 
@@ -124,8 +124,8 @@ namespace VisualCard.Parts.Implementations
             base()
         { }
 
-        internal AgentInfo(int altId, ArgumentInfo[] arguments, string[] elementTypes, string valueType, string group, Card[] agentCard) :
-            base(arguments, altId, elementTypes, valueType, group)
+        internal AgentInfo(int altId, PropertyInfo? property, string[] elementTypes, string valueType, string group, Card[] agentCard) :
+            base(property, altId, elementTypes, valueType, group)
         {
             AgentCards = agentCard;
         }

@@ -34,14 +34,16 @@ namespace VisualCard.Parts
             string extraKeyName =
                 (partInfo is XNameInfo xName ? xName.XKeyName :
                  partInfo is ExtraInfo exName ? exName.KeyName : "") ?? "";
-            return BuildArguments(partInfo.ElementTypes, partInfo.ValueType, partInfo.Arguments, extraKeyName, defaultType, defaultValue);
+            return BuildArguments(partInfo.ElementTypes, partInfo.ValueType, partInfo.Property, extraKeyName, defaultType, defaultValue);
         }
 
         internal static string BuildArguments<TValue>(CardValueInfo<TValue> partInfo, string defaultType, string defaultValue) =>
-            BuildArguments(partInfo.ElementTypes, partInfo.ValueType, partInfo.Arguments, "", defaultType, defaultValue);
+            BuildArguments(partInfo.ElementTypes, partInfo.ValueType, partInfo.Property, "", defaultType, defaultValue);
 
-        internal static string BuildArguments(string[] elementTypes, string valueType, ArgumentInfo[] arguments, string extraKeyName, string defaultType, string defaultValue)
+        internal static string BuildArguments(string[] elementTypes, string valueType, PropertyInfo? property, string extraKeyName, string defaultType, string defaultValue)
         {
+            var arguments = property?.Arguments ?? [];
+
             // Filter the list of types and values first
             string[] finalElementTypes = elementTypes.Where((type) => !type.Equals(defaultType, StringComparison.OrdinalIgnoreCase)).ToArray();
             string finalValue = valueType.Equals(defaultValue, StringComparison.OrdinalIgnoreCase) ? "" : valueType;

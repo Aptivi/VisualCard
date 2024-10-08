@@ -41,13 +41,13 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// </summary>
         public string[]? Values { get; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            new ExtraInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, group, valueType, cardVersion);
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new ExtraInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion) =>
             string.Join(VcardConstants._fieldDelimiter.ToString(), Values);
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             string[] split = value.Split(VcardConstants._argumentDelimiter);
 
@@ -58,7 +58,7 @@ namespace VisualCard.Calendar.Parts.Implementations
 
             // Populate the fields
             string[] _values = split[1].Split(VcardConstants._fieldDelimiter);
-            ExtraInfo _extraInfo = new(finalArgs, elementTypes, group, valueType, _extra, _values);
+            ExtraInfo _extraInfo = new(property, elementTypes, group, valueType, _extra, _values);
             return _extraInfo;
         }
 
@@ -116,8 +116,8 @@ namespace VisualCard.Calendar.Parts.Implementations
 
         internal ExtraInfo() { }
 
-        internal ExtraInfo(ArgumentInfo[] arguments, string[] elementTypes, string group, string valueType, string keyName, string[] values) :
-            base(arguments, elementTypes, group, valueType)
+        internal ExtraInfo(PropertyInfo? property, string[] elementTypes, string group, string valueType, string keyName, string[] values) :
+            base(property, elementTypes, group, valueType)
         {
             KeyName = keyName;
             Values = values;

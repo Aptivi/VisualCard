@@ -39,13 +39,13 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// </summary>
         public double Longitude { get; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version calendarVersion) =>
-            new GeoInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, group, valueType, calendarVersion);
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version calendarVersion) =>
+            new GeoInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, calendarVersion);
 
         internal override string ToStringVcalendarInternal(Version calendarVersion) =>
             $"{Latitude}{(calendarVersion.Major == 1 ? ',' : ';')}{Longitude}";
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version calendarVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version calendarVersion)
         {
             // Get the value
             string[] _geoSplit = value.Split(calendarVersion.Major == 1 ? ',' : ';');
@@ -57,7 +57,7 @@ namespace VisualCard.Calendar.Parts.Implementations
                 throw new ArgumentException($"Invalid longitude {_geoSplit[1]}");
 
             // Populate the fields
-            GeoInfo _geo = new(finalArgs, elementTypes, group, valueType, lat, lon);
+            GeoInfo _geo = new(property, elementTypes, group, valueType, lat, lon);
             return _geo;
         }
 
@@ -115,8 +115,8 @@ namespace VisualCard.Calendar.Parts.Implementations
 
         internal GeoInfo() { }
 
-        internal GeoInfo(ArgumentInfo[] arguments, string[] elementTypes, string group, string valueType, double lat, double lon) :
-            base(arguments, elementTypes, group, valueType)
+        internal GeoInfo(PropertyInfo? property, string[] elementTypes, string group, string valueType, double lat, double lon) :
+            base(property, elementTypes, group, valueType)
         {
             Latitude = lat;
             Longitude = lon;

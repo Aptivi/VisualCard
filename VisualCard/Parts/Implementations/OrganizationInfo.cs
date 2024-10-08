@@ -45,15 +45,15 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string? Role { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            new OrganizationInfo().FromStringVcardInternal(value, finalArgs, altId, elementTypes, group, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new OrganizationInfo().FromStringVcardInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             $"{Name}{VcardConstants._fieldDelimiter}" +
             $"{Unit}{VcardConstants._fieldDelimiter}" +
             $"{Role}";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, ArgumentInfo[] finalArgs, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             string[] splitOrg = value.Split(VcardConstants._fieldDelimiter);
 
@@ -61,7 +61,7 @@ namespace VisualCard.Parts.Implementations
             string _orgName = Regex.Unescape(splitOrg[0]);
             string _orgUnit = Regex.Unescape(splitOrg.Length >= 2 ? splitOrg[1] : "");
             string _orgUnitRole = Regex.Unescape(splitOrg.Length >= 3 ? splitOrg[2] : "");
-            OrganizationInfo _org = new(altId, finalArgs, elementTypes, valueType, group, _orgName, _orgUnit, _orgUnitRole);
+            OrganizationInfo _org = new(altId, property, elementTypes, valueType, group, _orgName, _orgUnit, _orgUnitRole);
             return _org;
         }
 
@@ -121,8 +121,8 @@ namespace VisualCard.Parts.Implementations
 
         internal OrganizationInfo() { }
 
-        internal OrganizationInfo(int altId, ArgumentInfo[] arguments, string[] elementTypes, string valueType, string group, string name, string unit, string role) :
-            base(arguments, altId, elementTypes, valueType, group)
+        internal OrganizationInfo(int altId, PropertyInfo? property, string[] elementTypes, string valueType, string group, string name, string unit, string role) :
+            base(property, altId, elementTypes, valueType, group)
         {
             Name = name;
             Unit = unit;

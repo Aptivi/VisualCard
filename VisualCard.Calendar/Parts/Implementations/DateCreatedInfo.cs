@@ -35,19 +35,19 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// </summary>
         public DateTimeOffset DateCreated { get; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            new DateCreatedInfo().FromStringVcalendarInternal(value, finalArgs, elementTypes, group, valueType, cardVersion);
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new DateCreatedInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion) =>
             $"{VcardCommonTools.SavePosixDate(DateCreated)}";
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, ArgumentInfo[] finalArgs, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate the fields
             DateTimeOffset created = VcardCommonTools.ParsePosixDateTime(value);
 
             // Add the fetched information
-            DateCreatedInfo _time = new(finalArgs, elementTypes, group, valueType, created);
+            DateCreatedInfo _time = new(property, elementTypes, group, valueType, created);
             return _time;
         }
 
@@ -103,8 +103,8 @@ namespace VisualCard.Calendar.Parts.Implementations
 
         internal DateCreatedInfo() { }
 
-        internal DateCreatedInfo(ArgumentInfo[] arguments, string[] elementTypes, string group, string valueType, DateTimeOffset rev) :
-            base(arguments, elementTypes, group, valueType)
+        internal DateCreatedInfo(PropertyInfo? property, string[] elementTypes, string group, string valueType, DateTimeOffset rev) :
+            base(property, elementTypes, group, valueType)
         {
             DateCreated = rev;
         }

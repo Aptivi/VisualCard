@@ -93,7 +93,7 @@ namespace VisualCard.Parsers
                     var (type, enumeration, classType, fromString, defaultType, defaultValue, defaultValueType, extraAllowedTypes, allowedValues) = VcardParserTools.GetPartType(info.Prefix);
                     
                     // Handle AltID
-                    int altId = VcardCommonTools.GetAltIdFromArgs(CardVersion, info.Arguments, classType, type, enumeration);
+                    int altId = VcardCommonTools.GetAltIdFromArgs(CardVersion, info, classType, type, enumeration);
 
                     // Check the type for allowed types
                     bool specifierRequired = CardVersion.Major >= 3;
@@ -146,7 +146,7 @@ namespace VisualCard.Parsers
                                     throw new InvalidDataException("Profile must be \"vCard\"");
 
                                 // Set the string for real
-                                var stringValueInfo = new CardValueInfo<string>(info.Arguments, altId, elementTypes, valueType, info.Group, finalValue);
+                                var stringValueInfo = new CardValueInfo<string>(info, altId, elementTypes, valueType, info.Group, finalValue);
                                 card.AddString(stringType, stringValueInfo);
                             }
                             break;
@@ -161,7 +161,7 @@ namespace VisualCard.Parsers
 
                                 // Now, get the part info
                                 finalValue = partsArrayType is PartsArrayEnum.NonstandardNames or PartsArrayEnum.IanaNames ? _value : info.Value;
-                                var partInfo = fromString(finalValue, info.Arguments, altId, elementTypes, info.Group, valueType, CardVersion);
+                                var partInfo = fromString(finalValue, info, altId, elementTypes, info.Group, valueType, CardVersion);
 
                                 // Set the array for real
                                 card.AddPartToArray(partsArrayType, partInfo);

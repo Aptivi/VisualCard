@@ -29,10 +29,10 @@ namespace VisualCard.Calendar.Parts
             string extraKeyName =
                 (partInfo is XNameInfo xName ? xName.XKeyName :
                  partInfo is ExtraInfo exName ? exName.KeyName : "") ?? "";
-            return CardBuilderTools.BuildArguments(partInfo.ElementTypes, partInfo.ValueType, partInfo.Arguments, extraKeyName, defaultType, defaultValue);
+            return CardBuilderTools.BuildArguments(partInfo.ElementTypes, partInfo.ValueType, partInfo.Property, extraKeyName, defaultType, defaultValue);
         }
 
         internal static string BuildArguments<TValue>(CalendarValueInfo<TValue> partInfo, string defaultType, string defaultValue) =>
-            CardBuilderTools.BuildArguments(partInfo.ElementTypes, partInfo.ValueType, partInfo.Arguments, "", defaultType, defaultValue);
+            CardBuilderTools.BuildArguments(partInfo.ElementTypes, partInfo.ValueType, partInfo.Property, "", defaultType, defaultValue);
     }
 }

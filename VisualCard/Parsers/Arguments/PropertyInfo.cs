@@ -18,9 +18,11 @@
 //
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Textify.General;
+using VisualCard.Parts.Comparers;
 
 namespace VisualCard.Parsers.Arguments
 {
@@ -28,7 +30,7 @@ namespace VisualCard.Parsers.Arguments
     /// Property info class
     /// </summary>
     [DebuggerDisplay("Property: {Arguments.Length} args, {Prefix} [G: {Group}] = {Value}")]
-    public class PropertyInfo
+    public class PropertyInfo : IEquatable<PropertyInfo?>
     {
         private string rawValue = "";
         private string prefix = "";
@@ -70,6 +72,58 @@ namespace VisualCard.Parsers.Arguments
             get => arguments;
             set => arguments = value;
         }
+
+        /// <summary>
+        /// Checks to see if both the property info instances are equal
+        /// </summary>
+        /// <param name="other">The target <see cref="PropertyInfo"/> instance to check to see if they equal</param>
+        /// <returns>True if both instances are equal. Otherwise, false.</returns>
+        public bool Equals(PropertyInfo? other) =>
+            Equals(this, other);
+
+        /// <summary>
+        /// Checks to see if both the property info instances are equal
+        /// </summary>
+        /// <param name="source">The source <see cref="PropertyInfo"/> instance to check to see if they equal</param>
+        /// <param name="target">The target <see cref="PropertyInfo"/> instance to check to see if they equal</param>
+        /// <returns>True if both instances are equal. Otherwise, false.</returns>
+        public bool Equals(PropertyInfo? source, PropertyInfo? target)
+        {
+            // We can't perform this operation on null.
+            if (source is null || target is null)
+                return false;
+
+            // Check all the properties
+            return
+                source.rawValue == target.rawValue &&
+                source.prefix == target.prefix &&
+                source.group == target.group &&
+                PartComparison.CompareLists(source.arguments, target.arguments)
+            ;
+        }
+
+        /// <inheritdoc/>
+        public override bool Equals(object? obj) =>
+            Equals((PropertyInfo?)obj);
+
+        /// <inheritdoc/>
+        public override int GetHashCode()
+        {
+            int hashCode = -1293333806;
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(rawValue);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(prefix);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(group);
+            hashCode = hashCode * -1521134295 + EqualityComparer<ArgumentInfo[]>.Default.GetHashCode(arguments);
+            return hashCode;
+        }
+
+        /// <inheritdoc/>
+        public static bool operator ==(PropertyInfo? left, PropertyInfo? right) =>
+            left?.Equals(right) ?? false;
+
+        /// <inheritdoc/>
+        public static bool operator !=(PropertyInfo? left, PropertyInfo? right) =>
+            !(left == right);
 
         internal PropertyInfo(string line)
         {
