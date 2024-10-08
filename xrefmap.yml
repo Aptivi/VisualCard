@@ -402,6 +402,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Calendar.Parts.Calendar.GetString
   nameWithType: Calendar.GetString
+- uid: VisualCard.Calendar.Parts.Calendar.Integers
+  name: Integers
+  href: api/VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_Integers
+  commentId: P:VisualCard.Calendar.Parts.Calendar.Integers
+  fullName: VisualCard.Calendar.Parts.Calendar.Integers
+  nameWithType: Calendar.Integers
+- uid: VisualCard.Calendar.Parts.Calendar.Integers*
+  name: Integers
+  href: api/VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_Integers_
+  commentId: Overload:VisualCard.Calendar.Parts.Calendar.Integers
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Calendar.Integers
+  nameWithType: Calendar.Integers
 - uid: VisualCard.Calendar.Parts.Calendar.Journals
   name: Journals
   href: api/VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_Journals
@@ -428,6 +441,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Calendar.Parts.Calendar.Others
   nameWithType: Calendar.Others
+- uid: VisualCard.Calendar.Parts.Calendar.PartsArray
+  name: PartsArray
+  href: api/VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_PartsArray
+  commentId: P:VisualCard.Calendar.Parts.Calendar.PartsArray
+  fullName: VisualCard.Calendar.Parts.Calendar.PartsArray
+  nameWithType: Calendar.PartsArray
+- uid: VisualCard.Calendar.Parts.Calendar.PartsArray*
+  name: PartsArray
+  href: api/VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_PartsArray_
+  commentId: Overload:VisualCard.Calendar.Parts.Calendar.PartsArray
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Calendar.PartsArray
+  nameWithType: Calendar.PartsArray
 - uid: VisualCard.Calendar.Parts.Calendar.SaveTo(System.String)
   name: SaveTo(string)
   href: api/VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_SaveTo_System_String_
@@ -457,6 +483,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Calendar.Parts.Calendar.SaveToString
   nameWithType: Calendar.SaveToString
+- uid: VisualCard.Calendar.Parts.Calendar.Strings
+  name: Strings
+  href: api/VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_Strings
+  commentId: P:VisualCard.Calendar.Parts.Calendar.Strings
+  fullName: VisualCard.Calendar.Parts.Calendar.Strings
+  nameWithType: Calendar.Strings
+- uid: VisualCard.Calendar.Parts.Calendar.Strings*
+  name: Strings
+  href: api/VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_Strings_
+  commentId: Overload:VisualCard.Calendar.Parts.Calendar.Strings
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.Calendar.Strings
+  nameWithType: Calendar.Strings
 - uid: VisualCard.Calendar.Parts.Calendar.TimeZones
   name: TimeZones
   href: api/VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_TimeZones
@@ -651,6 +690,32 @@ references:
   isSpec: "True"
   fullName: VisualCard.Calendar.Parts.CalendarAlarm.GetString
   nameWithType: CalendarAlarm.GetString
+- uid: VisualCard.Calendar.Parts.CalendarAlarm.Integers
+  name: Integers
+  href: api/VisualCard.Calendar.Parts.CalendarAlarm.html#VisualCard_Calendar_Parts_CalendarAlarm_Integers
+  commentId: P:VisualCard.Calendar.Parts.CalendarAlarm.Integers
+  fullName: VisualCard.Calendar.Parts.CalendarAlarm.Integers
+  nameWithType: CalendarAlarm.Integers
+- uid: VisualCard.Calendar.Parts.CalendarAlarm.Integers*
+  name: Integers
+  href: api/VisualCard.Calendar.Parts.CalendarAlarm.html#VisualCard_Calendar_Parts_CalendarAlarm_Integers_
+  commentId: Overload:VisualCard.Calendar.Parts.CalendarAlarm.Integers
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.CalendarAlarm.Integers
+  nameWithType: CalendarAlarm.Integers
+- uid: VisualCard.Calendar.Parts.CalendarAlarm.PartsArray
+  name: PartsArray
+  href: api/VisualCard.Calendar.Parts.CalendarAlarm.html#VisualCard_Calendar_Parts_CalendarAlarm_PartsArray
+  commentId: P:VisualCard.Calendar.Parts.CalendarAlarm.PartsArray
+  fullName: VisualCard.Calendar.Parts.CalendarAlarm.PartsArray
+  nameWithType: CalendarAlarm.PartsArray
+- uid: VisualCard.Calendar.Parts.CalendarAlarm.PartsArray*
+  name: PartsArray
+  href: api/VisualCard.Calendar.Parts.CalendarAlarm.html#VisualCard_Calendar_Parts_CalendarAlarm_PartsArray_
+  commentId: Overload:VisualCard.Calendar.Parts.CalendarAlarm.PartsArray
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.CalendarAlarm.PartsArray
+  nameWithType: CalendarAlarm.PartsArray
 - uid: VisualCard.Calendar.Parts.CalendarAlarm.SaveToString
   name: SaveToString()
   href: api/VisualCard.Calendar.Parts.CalendarAlarm.html#VisualCard_Calendar_Parts_CalendarAlarm_SaveToString
@@ -664,6 +729,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Calendar.Parts.CalendarAlarm.SaveToString
   nameWithType: CalendarAlarm.SaveToString
+- uid: VisualCard.Calendar.Parts.CalendarAlarm.Strings
+  name: Strings
+  href: api/VisualCard.Calendar.Parts.CalendarAlarm.html#VisualCard_Calendar_Parts_CalendarAlarm_Strings
+  commentId: P:VisualCard.Calendar.Parts.CalendarAlarm.Strings
+  fullName: VisualCard.Calendar.Parts.CalendarAlarm.Strings
+  nameWithType: CalendarAlarm.Strings
+- uid: VisualCard.Calendar.Parts.CalendarAlarm.Strings*
+  name: Strings
+  href: api/VisualCard.Calendar.Parts.CalendarAlarm.html#VisualCard_Calendar_Parts_CalendarAlarm_Strings_
+  commentId: Overload:VisualCard.Calendar.Parts.CalendarAlarm.Strings
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.CalendarAlarm.Strings
+  nameWithType: CalendarAlarm.Strings
 - uid: VisualCard.Calendar.Parts.CalendarAlarm.ToString
   name: ToString()
   href: api/VisualCard.Calendar.Parts.CalendarAlarm.html#VisualCard_Calendar_Parts_CalendarAlarm_ToString
@@ -819,6 +897,32 @@ references:
   isSpec: "True"
   fullName: VisualCard.Calendar.Parts.CalendarDaylight.GetString
   nameWithType: CalendarDaylight.GetString
+- uid: VisualCard.Calendar.Parts.CalendarDaylight.Integers
+  name: Integers
+  href: api/VisualCard.Calendar.Parts.CalendarDaylight.html#VisualCard_Calendar_Parts_CalendarDaylight_Integers
+  commentId: P:VisualCard.Calendar.Parts.CalendarDaylight.Integers
+  fullName: VisualCard.Calendar.Parts.CalendarDaylight.Integers
+  nameWithType: CalendarDaylight.Integers
+- uid: VisualCard.Calendar.Parts.CalendarDaylight.Integers*
+  name: Integers
+  href: api/VisualCard.Calendar.Parts.CalendarDaylight.html#VisualCard_Calendar_Parts_CalendarDaylight_Integers_
+  commentId: Overload:VisualCard.Calendar.Parts.CalendarDaylight.Integers
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.CalendarDaylight.Integers
+  nameWithType: CalendarDaylight.Integers
+- uid: VisualCard.Calendar.Parts.CalendarDaylight.PartsArray
+  name: PartsArray
+  href: api/VisualCard.Calendar.Parts.CalendarDaylight.html#VisualCard_Calendar_Parts_CalendarDaylight_PartsArray
+  commentId: P:VisualCard.Calendar.Parts.CalendarDaylight.PartsArray
+  fullName: VisualCard.Calendar.Parts.CalendarDaylight.PartsArray
+  nameWithType: CalendarDaylight.PartsArray
+- uid: VisualCard.Calendar.Parts.CalendarDaylight.PartsArray*
+  name: PartsArray
+  href: api/VisualCard.Calendar.Parts.CalendarDaylight.html#VisualCard_Calendar_Parts_CalendarDaylight_PartsArray_
+  commentId: Overload:VisualCard.Calendar.Parts.CalendarDaylight.PartsArray
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.CalendarDaylight.PartsArray
+  nameWithType: CalendarDaylight.PartsArray
 - uid: VisualCard.Calendar.Parts.CalendarDaylight.SaveToString
   name: SaveToString()
   href: api/VisualCard.Calendar.Parts.CalendarDaylight.html#VisualCard_Calendar_Parts_CalendarDaylight_SaveToString
@@ -832,6 +936,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Calendar.Parts.CalendarDaylight.SaveToString
   nameWithType: CalendarDaylight.SaveToString
+- uid: VisualCard.Calendar.Parts.CalendarDaylight.Strings
+  name: Strings
+  href: api/VisualCard.Calendar.Parts.CalendarDaylight.html#VisualCard_Calendar_Parts_CalendarDaylight_Strings
+  commentId: P:VisualCard.Calendar.Parts.CalendarDaylight.Strings
+  fullName: VisualCard.Calendar.Parts.CalendarDaylight.Strings
+  nameWithType: CalendarDaylight.Strings
+- uid: VisualCard.Calendar.Parts.CalendarDaylight.Strings*
+  name: Strings
+  href: api/VisualCard.Calendar.Parts.CalendarDaylight.html#VisualCard_Calendar_Parts_CalendarDaylight_Strings_
+  commentId: Overload:VisualCard.Calendar.Parts.CalendarDaylight.Strings
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.CalendarDaylight.Strings
+  nameWithType: CalendarDaylight.Strings
 - uid: VisualCard.Calendar.Parts.CalendarDaylight.ToString
   name: ToString()
   href: api/VisualCard.Calendar.Parts.CalendarDaylight.html#VisualCard_Calendar_Parts_CalendarDaylight_ToString
@@ -1000,6 +1117,32 @@ references:
   isSpec: "True"
   fullName: VisualCard.Calendar.Parts.CalendarEvent.GetString
   nameWithType: CalendarEvent.GetString
+- uid: VisualCard.Calendar.Parts.CalendarEvent.Integers
+  name: Integers
+  href: api/VisualCard.Calendar.Parts.CalendarEvent.html#VisualCard_Calendar_Parts_CalendarEvent_Integers
+  commentId: P:VisualCard.Calendar.Parts.CalendarEvent.Integers
+  fullName: VisualCard.Calendar.Parts.CalendarEvent.Integers
+  nameWithType: CalendarEvent.Integers
+- uid: VisualCard.Calendar.Parts.CalendarEvent.Integers*
+  name: Integers
+  href: api/VisualCard.Calendar.Parts.CalendarEvent.html#VisualCard_Calendar_Parts_CalendarEvent_Integers_
+  commentId: Overload:VisualCard.Calendar.Parts.CalendarEvent.Integers
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.CalendarEvent.Integers
+  nameWithType: CalendarEvent.Integers
+- uid: VisualCard.Calendar.Parts.CalendarEvent.PartsArray
+  name: PartsArray
+  href: api/VisualCard.Calendar.Parts.CalendarEvent.html#VisualCard_Calendar_Parts_CalendarEvent_PartsArray
+  commentId: P:VisualCard.Calendar.Parts.CalendarEvent.PartsArray
+  fullName: VisualCard.Calendar.Parts.CalendarEvent.PartsArray
+  nameWithType: CalendarEvent.PartsArray
+- uid: VisualCard.Calendar.Parts.CalendarEvent.PartsArray*
+  name: PartsArray
+  href: api/VisualCard.Calendar.Parts.CalendarEvent.html#VisualCard_Calendar_Parts_CalendarEvent_PartsArray_
+  commentId: Overload:VisualCard.Calendar.Parts.CalendarEvent.PartsArray
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.CalendarEvent.PartsArray
+  nameWithType: CalendarEvent.PartsArray
 - uid: VisualCard.Calendar.Parts.CalendarEvent.SaveToString
   name: SaveToString()
   href: api/VisualCard.Calendar.Parts.CalendarEvent.html#VisualCard_Calendar_Parts_CalendarEvent_SaveToString
@@ -1013,6 +1156,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Calendar.Parts.CalendarEvent.SaveToString
   nameWithType: CalendarEvent.SaveToString
+- uid: VisualCard.Calendar.Parts.CalendarEvent.Strings
+  name: Strings
+  href: api/VisualCard.Calendar.Parts.CalendarEvent.html#VisualCard_Calendar_Parts_CalendarEvent_Strings
+  commentId: P:VisualCard.Calendar.Parts.CalendarEvent.Strings
+  fullName: VisualCard.Calendar.Parts.CalendarEvent.Strings
+  nameWithType: CalendarEvent.Strings
+- uid: VisualCard.Calendar.Parts.CalendarEvent.Strings*
+  name: Strings
+  href: api/VisualCard.Calendar.Parts.CalendarEvent.html#VisualCard_Calendar_Parts_CalendarEvent_Strings_
+  commentId: Overload:VisualCard.Calendar.Parts.CalendarEvent.Strings
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.CalendarEvent.Strings
+  nameWithType: CalendarEvent.Strings
 - uid: VisualCard.Calendar.Parts.CalendarEvent.ToString
   name: ToString()
   href: api/VisualCard.Calendar.Parts.CalendarEvent.html#VisualCard_Calendar_Parts_CalendarEvent_ToString
@@ -1168,6 +1324,32 @@ references:
   isSpec: "True"
   fullName: VisualCard.Calendar.Parts.CalendarFreeBusy.GetString
   nameWithType: CalendarFreeBusy.GetString
+- uid: VisualCard.Calendar.Parts.CalendarFreeBusy.Integers
+  name: Integers
+  href: api/VisualCard.Calendar.Parts.CalendarFreeBusy.html#VisualCard_Calendar_Parts_CalendarFreeBusy_Integers
+  commentId: P:VisualCard.Calendar.Parts.CalendarFreeBusy.Integers
+  fullName: VisualCard.Calendar.Parts.CalendarFreeBusy.Integers
+  nameWithType: CalendarFreeBusy.Integers
+- uid: VisualCard.Calendar.Parts.CalendarFreeBusy.Integers*
+  name: Integers
+  href: api/VisualCard.Calendar.Parts.CalendarFreeBusy.html#VisualCard_Calendar_Parts_CalendarFreeBusy_Integers_
+  commentId: Overload:VisualCard.Calendar.Parts.CalendarFreeBusy.Integers
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.CalendarFreeBusy.Integers
+  nameWithType: CalendarFreeBusy.Integers
+- uid: VisualCard.Calendar.Parts.CalendarFreeBusy.PartsArray
+  name: PartsArray
+  href: api/VisualCard.Calendar.Parts.CalendarFreeBusy.html#VisualCard_Calendar_Parts_CalendarFreeBusy_PartsArray
+  commentId: P:VisualCard.Calendar.Parts.CalendarFreeBusy.PartsArray
+  fullName: VisualCard.Calendar.Parts.CalendarFreeBusy.PartsArray
+  nameWithType: CalendarFreeBusy.PartsArray
+- uid: VisualCard.Calendar.Parts.CalendarFreeBusy.PartsArray*
+  name: PartsArray
+  href: api/VisualCard.Calendar.Parts.CalendarFreeBusy.html#VisualCard_Calendar_Parts_CalendarFreeBusy_PartsArray_
+  commentId: Overload:VisualCard.Calendar.Parts.CalendarFreeBusy.PartsArray
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.CalendarFreeBusy.PartsArray
+  nameWithType: CalendarFreeBusy.PartsArray
 - uid: VisualCard.Calendar.Parts.CalendarFreeBusy.SaveToString
   name: SaveToString()
   href: api/VisualCard.Calendar.Parts.CalendarFreeBusy.html#VisualCard_Calendar_Parts_CalendarFreeBusy_SaveToString
@@ -1181,6 +1363,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Calendar.Parts.CalendarFreeBusy.SaveToString
   nameWithType: CalendarFreeBusy.SaveToString
+- uid: VisualCard.Calendar.Parts.CalendarFreeBusy.Strings
+  name: Strings
+  href: api/VisualCard.Calendar.Parts.CalendarFreeBusy.html#VisualCard_Calendar_Parts_CalendarFreeBusy_Strings
+  commentId: P:VisualCard.Calendar.Parts.CalendarFreeBusy.Strings
+  fullName: VisualCard.Calendar.Parts.CalendarFreeBusy.Strings
+  nameWithType: CalendarFreeBusy.Strings
+- uid: VisualCard.Calendar.Parts.CalendarFreeBusy.Strings*
+  name: Strings
+  href: api/VisualCard.Calendar.Parts.CalendarFreeBusy.html#VisualCard_Calendar_Parts_CalendarFreeBusy_Strings_
+  commentId: Overload:VisualCard.Calendar.Parts.CalendarFreeBusy.Strings
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.CalendarFreeBusy.Strings
+  nameWithType: CalendarFreeBusy.Strings
 - uid: VisualCard.Calendar.Parts.CalendarFreeBusy.ToString
   name: ToString()
   href: api/VisualCard.Calendar.Parts.CalendarFreeBusy.html#VisualCard_Calendar_Parts_CalendarFreeBusy_ToString
@@ -1336,6 +1531,32 @@ references:
   isSpec: "True"
   fullName: VisualCard.Calendar.Parts.CalendarJournal.GetString
   nameWithType: CalendarJournal.GetString
+- uid: VisualCard.Calendar.Parts.CalendarJournal.Integers
+  name: Integers
+  href: api/VisualCard.Calendar.Parts.CalendarJournal.html#VisualCard_Calendar_Parts_CalendarJournal_Integers
+  commentId: P:VisualCard.Calendar.Parts.CalendarJournal.Integers
+  fullName: VisualCard.Calendar.Parts.CalendarJournal.Integers
+  nameWithType: CalendarJournal.Integers
+- uid: VisualCard.Calendar.Parts.CalendarJournal.Integers*
+  name: Integers
+  href: api/VisualCard.Calendar.Parts.CalendarJournal.html#VisualCard_Calendar_Parts_CalendarJournal_Integers_
+  commentId: Overload:VisualCard.Calendar.Parts.CalendarJournal.Integers
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.CalendarJournal.Integers
+  nameWithType: CalendarJournal.Integers
+- uid: VisualCard.Calendar.Parts.CalendarJournal.PartsArray
+  name: PartsArray
+  href: api/VisualCard.Calendar.Parts.CalendarJournal.html#VisualCard_Calendar_Parts_CalendarJournal_PartsArray
+  commentId: P:VisualCard.Calendar.Parts.CalendarJournal.PartsArray
+  fullName: VisualCard.Calendar.Parts.CalendarJournal.PartsArray
+  nameWithType: CalendarJournal.PartsArray
+- uid: VisualCard.Calendar.Parts.CalendarJournal.PartsArray*
+  name: PartsArray
+  href: api/VisualCard.Calendar.Parts.CalendarJournal.html#VisualCard_Calendar_Parts_CalendarJournal_PartsArray_
+  commentId: Overload:VisualCard.Calendar.Parts.CalendarJournal.PartsArray
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.CalendarJournal.PartsArray
+  nameWithType: CalendarJournal.PartsArray
 - uid: VisualCard.Calendar.Parts.CalendarJournal.SaveToString
   name: SaveToString()
   href: api/VisualCard.Calendar.Parts.CalendarJournal.html#VisualCard_Calendar_Parts_CalendarJournal_SaveToString
@@ -1349,6 +1570,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Calendar.Parts.CalendarJournal.SaveToString
   nameWithType: CalendarJournal.SaveToString
+- uid: VisualCard.Calendar.Parts.CalendarJournal.Strings
+  name: Strings
+  href: api/VisualCard.Calendar.Parts.CalendarJournal.html#VisualCard_Calendar_Parts_CalendarJournal_Strings
+  commentId: P:VisualCard.Calendar.Parts.CalendarJournal.Strings
+  fullName: VisualCard.Calendar.Parts.CalendarJournal.Strings
+  nameWithType: CalendarJournal.Strings
+- uid: VisualCard.Calendar.Parts.CalendarJournal.Strings*
+  name: Strings
+  href: api/VisualCard.Calendar.Parts.CalendarJournal.html#VisualCard_Calendar_Parts_CalendarJournal_Strings_
+  commentId: Overload:VisualCard.Calendar.Parts.CalendarJournal.Strings
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.CalendarJournal.Strings
+  nameWithType: CalendarJournal.Strings
 - uid: VisualCard.Calendar.Parts.CalendarJournal.ToString
   name: ToString()
   href: api/VisualCard.Calendar.Parts.CalendarJournal.html#VisualCard_Calendar_Parts_CalendarJournal_ToString
@@ -1517,6 +1751,32 @@ references:
   isSpec: "True"
   fullName: VisualCard.Calendar.Parts.CalendarOtherComponent.GetString
   nameWithType: CalendarOtherComponent.GetString
+- uid: VisualCard.Calendar.Parts.CalendarOtherComponent.Integers
+  name: Integers
+  href: api/VisualCard.Calendar.Parts.CalendarOtherComponent.html#VisualCard_Calendar_Parts_CalendarOtherComponent_Integers
+  commentId: P:VisualCard.Calendar.Parts.CalendarOtherComponent.Integers
+  fullName: VisualCard.Calendar.Parts.CalendarOtherComponent.Integers
+  nameWithType: CalendarOtherComponent.Integers
+- uid: VisualCard.Calendar.Parts.CalendarOtherComponent.Integers*
+  name: Integers
+  href: api/VisualCard.Calendar.Parts.CalendarOtherComponent.html#VisualCard_Calendar_Parts_CalendarOtherComponent_Integers_
+  commentId: Overload:VisualCard.Calendar.Parts.CalendarOtherComponent.Integers
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.CalendarOtherComponent.Integers
+  nameWithType: CalendarOtherComponent.Integers
+- uid: VisualCard.Calendar.Parts.CalendarOtherComponent.PartsArray
+  name: PartsArray
+  href: api/VisualCard.Calendar.Parts.CalendarOtherComponent.html#VisualCard_Calendar_Parts_CalendarOtherComponent_PartsArray
+  commentId: P:VisualCard.Calendar.Parts.CalendarOtherComponent.PartsArray
+  fullName: VisualCard.Calendar.Parts.CalendarOtherComponent.PartsArray
+  nameWithType: CalendarOtherComponent.PartsArray
+- uid: VisualCard.Calendar.Parts.CalendarOtherComponent.PartsArray*
+  name: PartsArray
+  href: api/VisualCard.Calendar.Parts.CalendarOtherComponent.html#VisualCard_Calendar_Parts_CalendarOtherComponent_PartsArray_
+  commentId: Overload:VisualCard.Calendar.Parts.CalendarOtherComponent.PartsArray
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.CalendarOtherComponent.PartsArray
+  nameWithType: CalendarOtherComponent.PartsArray
 - uid: VisualCard.Calendar.Parts.CalendarOtherComponent.SaveToString
   name: SaveToString()
   href: api/VisualCard.Calendar.Parts.CalendarOtherComponent.html#VisualCard_Calendar_Parts_CalendarOtherComponent_SaveToString
@@ -1530,6 +1790,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Calendar.Parts.CalendarOtherComponent.SaveToString
   nameWithType: CalendarOtherComponent.SaveToString
+- uid: VisualCard.Calendar.Parts.CalendarOtherComponent.Strings
+  name: Strings
+  href: api/VisualCard.Calendar.Parts.CalendarOtherComponent.html#VisualCard_Calendar_Parts_CalendarOtherComponent_Strings
+  commentId: P:VisualCard.Calendar.Parts.CalendarOtherComponent.Strings
+  fullName: VisualCard.Calendar.Parts.CalendarOtherComponent.Strings
+  nameWithType: CalendarOtherComponent.Strings
+- uid: VisualCard.Calendar.Parts.CalendarOtherComponent.Strings*
+  name: Strings
+  href: api/VisualCard.Calendar.Parts.CalendarOtherComponent.html#VisualCard_Calendar_Parts_CalendarOtherComponent_Strings_
+  commentId: Overload:VisualCard.Calendar.Parts.CalendarOtherComponent.Strings
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.CalendarOtherComponent.Strings
+  nameWithType: CalendarOtherComponent.Strings
 - uid: VisualCard.Calendar.Parts.CalendarOtherComponent.ToString
   name: ToString()
   href: api/VisualCard.Calendar.Parts.CalendarOtherComponent.html#VisualCard_Calendar_Parts_CalendarOtherComponent_ToString
@@ -1685,6 +1958,32 @@ references:
   isSpec: "True"
   fullName: VisualCard.Calendar.Parts.CalendarStandard.GetString
   nameWithType: CalendarStandard.GetString
+- uid: VisualCard.Calendar.Parts.CalendarStandard.Integers
+  name: Integers
+  href: api/VisualCard.Calendar.Parts.CalendarStandard.html#VisualCard_Calendar_Parts_CalendarStandard_Integers
+  commentId: P:VisualCard.Calendar.Parts.CalendarStandard.Integers
+  fullName: VisualCard.Calendar.Parts.CalendarStandard.Integers
+  nameWithType: CalendarStandard.Integers
+- uid: VisualCard.Calendar.Parts.CalendarStandard.Integers*
+  name: Integers
+  href: api/VisualCard.Calendar.Parts.CalendarStandard.html#VisualCard_Calendar_Parts_CalendarStandard_Integers_
+  commentId: Overload:VisualCard.Calendar.Parts.CalendarStandard.Integers
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.CalendarStandard.Integers
+  nameWithType: CalendarStandard.Integers
+- uid: VisualCard.Calendar.Parts.CalendarStandard.PartsArray
+  name: PartsArray
+  href: api/VisualCard.Calendar.Parts.CalendarStandard.html#VisualCard_Calendar_Parts_CalendarStandard_PartsArray
+  commentId: P:VisualCard.Calendar.Parts.CalendarStandard.PartsArray
+  fullName: VisualCard.Calendar.Parts.CalendarStandard.PartsArray
+  nameWithType: CalendarStandard.PartsArray
+- uid: VisualCard.Calendar.Parts.CalendarStandard.PartsArray*
+  name: PartsArray
+  href: api/VisualCard.Calendar.Parts.CalendarStandard.html#VisualCard_Calendar_Parts_CalendarStandard_PartsArray_
+  commentId: Overload:VisualCard.Calendar.Parts.CalendarStandard.PartsArray
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.CalendarStandard.PartsArray
+  nameWithType: CalendarStandard.PartsArray
 - uid: VisualCard.Calendar.Parts.CalendarStandard.SaveToString
   name: SaveToString()
   href: api/VisualCard.Calendar.Parts.CalendarStandard.html#VisualCard_Calendar_Parts_CalendarStandard_SaveToString
@@ -1698,6 +1997,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Calendar.Parts.CalendarStandard.SaveToString
   nameWithType: CalendarStandard.SaveToString
+- uid: VisualCard.Calendar.Parts.CalendarStandard.Strings
+  name: Strings
+  href: api/VisualCard.Calendar.Parts.CalendarStandard.html#VisualCard_Calendar_Parts_CalendarStandard_Strings
+  commentId: P:VisualCard.Calendar.Parts.CalendarStandard.Strings
+  fullName: VisualCard.Calendar.Parts.CalendarStandard.Strings
+  nameWithType: CalendarStandard.Strings
+- uid: VisualCard.Calendar.Parts.CalendarStandard.Strings*
+  name: Strings
+  href: api/VisualCard.Calendar.Parts.CalendarStandard.html#VisualCard_Calendar_Parts_CalendarStandard_Strings_
+  commentId: Overload:VisualCard.Calendar.Parts.CalendarStandard.Strings
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.CalendarStandard.Strings
+  nameWithType: CalendarStandard.Strings
 - uid: VisualCard.Calendar.Parts.CalendarStandard.ToString
   name: ToString()
   href: api/VisualCard.Calendar.Parts.CalendarStandard.html#VisualCard_Calendar_Parts_CalendarStandard_ToString
@@ -1866,6 +2178,32 @@ references:
   isSpec: "True"
   fullName: VisualCard.Calendar.Parts.CalendarTimeZone.GetString
   nameWithType: CalendarTimeZone.GetString
+- uid: VisualCard.Calendar.Parts.CalendarTimeZone.Integers
+  name: Integers
+  href: api/VisualCard.Calendar.Parts.CalendarTimeZone.html#VisualCard_Calendar_Parts_CalendarTimeZone_Integers
+  commentId: P:VisualCard.Calendar.Parts.CalendarTimeZone.Integers
+  fullName: VisualCard.Calendar.Parts.CalendarTimeZone.Integers
+  nameWithType: CalendarTimeZone.Integers
+- uid: VisualCard.Calendar.Parts.CalendarTimeZone.Integers*
+  name: Integers
+  href: api/VisualCard.Calendar.Parts.CalendarTimeZone.html#VisualCard_Calendar_Parts_CalendarTimeZone_Integers_
+  commentId: Overload:VisualCard.Calendar.Parts.CalendarTimeZone.Integers
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.CalendarTimeZone.Integers
+  nameWithType: CalendarTimeZone.Integers
+- uid: VisualCard.Calendar.Parts.CalendarTimeZone.PartsArray
+  name: PartsArray
+  href: api/VisualCard.Calendar.Parts.CalendarTimeZone.html#VisualCard_Calendar_Parts_CalendarTimeZone_PartsArray
+  commentId: P:VisualCard.Calendar.Parts.CalendarTimeZone.PartsArray
+  fullName: VisualCard.Calendar.Parts.CalendarTimeZone.PartsArray
+  nameWithType: CalendarTimeZone.PartsArray
+- uid: VisualCard.Calendar.Parts.CalendarTimeZone.PartsArray*
+  name: PartsArray
+  href: api/VisualCard.Calendar.Parts.CalendarTimeZone.html#VisualCard_Calendar_Parts_CalendarTimeZone_PartsArray_
+  commentId: Overload:VisualCard.Calendar.Parts.CalendarTimeZone.PartsArray
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.CalendarTimeZone.PartsArray
+  nameWithType: CalendarTimeZone.PartsArray
 - uid: VisualCard.Calendar.Parts.CalendarTimeZone.SaveToString
   name: SaveToString()
   href: api/VisualCard.Calendar.Parts.CalendarTimeZone.html#VisualCard_Calendar_Parts_CalendarTimeZone_SaveToString
@@ -1892,6 +2230,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Calendar.Parts.CalendarTimeZone.StandardTimeList
   nameWithType: CalendarTimeZone.StandardTimeList
+- uid: VisualCard.Calendar.Parts.CalendarTimeZone.Strings
+  name: Strings
+  href: api/VisualCard.Calendar.Parts.CalendarTimeZone.html#VisualCard_Calendar_Parts_CalendarTimeZone_Strings
+  commentId: P:VisualCard.Calendar.Parts.CalendarTimeZone.Strings
+  fullName: VisualCard.Calendar.Parts.CalendarTimeZone.Strings
+  nameWithType: CalendarTimeZone.Strings
+- uid: VisualCard.Calendar.Parts.CalendarTimeZone.Strings*
+  name: Strings
+  href: api/VisualCard.Calendar.Parts.CalendarTimeZone.html#VisualCard_Calendar_Parts_CalendarTimeZone_Strings_
+  commentId: Overload:VisualCard.Calendar.Parts.CalendarTimeZone.Strings
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.CalendarTimeZone.Strings
+  nameWithType: CalendarTimeZone.Strings
 - uid: VisualCard.Calendar.Parts.CalendarTimeZone.ToString
   name: ToString()
   href: api/VisualCard.Calendar.Parts.CalendarTimeZone.html#VisualCard_Calendar_Parts_CalendarTimeZone_ToString
@@ -2060,6 +2411,32 @@ references:
   isSpec: "True"
   fullName: VisualCard.Calendar.Parts.CalendarTodo.GetString
   nameWithType: CalendarTodo.GetString
+- uid: VisualCard.Calendar.Parts.CalendarTodo.Integers
+  name: Integers
+  href: api/VisualCard.Calendar.Parts.CalendarTodo.html#VisualCard_Calendar_Parts_CalendarTodo_Integers
+  commentId: P:VisualCard.Calendar.Parts.CalendarTodo.Integers
+  fullName: VisualCard.Calendar.Parts.CalendarTodo.Integers
+  nameWithType: CalendarTodo.Integers
+- uid: VisualCard.Calendar.Parts.CalendarTodo.Integers*
+  name: Integers
+  href: api/VisualCard.Calendar.Parts.CalendarTodo.html#VisualCard_Calendar_Parts_CalendarTodo_Integers_
+  commentId: Overload:VisualCard.Calendar.Parts.CalendarTodo.Integers
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.CalendarTodo.Integers
+  nameWithType: CalendarTodo.Integers
+- uid: VisualCard.Calendar.Parts.CalendarTodo.PartsArray
+  name: PartsArray
+  href: api/VisualCard.Calendar.Parts.CalendarTodo.html#VisualCard_Calendar_Parts_CalendarTodo_PartsArray
+  commentId: P:VisualCard.Calendar.Parts.CalendarTodo.PartsArray
+  fullName: VisualCard.Calendar.Parts.CalendarTodo.PartsArray
+  nameWithType: CalendarTodo.PartsArray
+- uid: VisualCard.Calendar.Parts.CalendarTodo.PartsArray*
+  name: PartsArray
+  href: api/VisualCard.Calendar.Parts.CalendarTodo.html#VisualCard_Calendar_Parts_CalendarTodo_PartsArray_
+  commentId: Overload:VisualCard.Calendar.Parts.CalendarTodo.PartsArray
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.CalendarTodo.PartsArray
+  nameWithType: CalendarTodo.PartsArray
 - uid: VisualCard.Calendar.Parts.CalendarTodo.SaveToString
   name: SaveToString()
   href: api/VisualCard.Calendar.Parts.CalendarTodo.html#VisualCard_Calendar_Parts_CalendarTodo_SaveToString
@@ -2073,6 +2450,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Calendar.Parts.CalendarTodo.SaveToString
   nameWithType: CalendarTodo.SaveToString
+- uid: VisualCard.Calendar.Parts.CalendarTodo.Strings
+  name: Strings
+  href: api/VisualCard.Calendar.Parts.CalendarTodo.html#VisualCard_Calendar_Parts_CalendarTodo_Strings
+  commentId: P:VisualCard.Calendar.Parts.CalendarTodo.Strings
+  fullName: VisualCard.Calendar.Parts.CalendarTodo.Strings
+  nameWithType: CalendarTodo.Strings
+- uid: VisualCard.Calendar.Parts.CalendarTodo.Strings*
+  name: Strings
+  href: api/VisualCard.Calendar.Parts.CalendarTodo.html#VisualCard_Calendar_Parts_CalendarTodo_Strings_
+  commentId: Overload:VisualCard.Calendar.Parts.CalendarTodo.Strings
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.CalendarTodo.Strings
+  nameWithType: CalendarTodo.Strings
 - uid: VisualCard.Calendar.Parts.CalendarTodo.ToString
   name: ToString()
   href: api/VisualCard.Calendar.Parts.CalendarTodo.html#VisualCard_Calendar_Parts_CalendarTodo_ToString
@@ -6901,6 +7291,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Card.NestedCards
   nameWithType: Card.NestedCards
+- uid: VisualCard.Parts.Card.PartsArray
+  name: PartsArray
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_PartsArray
+  commentId: P:VisualCard.Parts.Card.PartsArray
+  fullName: VisualCard.Parts.Card.PartsArray
+  nameWithType: Card.PartsArray
+- uid: VisualCard.Parts.Card.PartsArray*
+  name: PartsArray
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_PartsArray_
+  commentId: Overload:VisualCard.Parts.Card.PartsArray
+  isSpec: "True"
+  fullName: VisualCard.Parts.Card.PartsArray
+  nameWithType: Card.PartsArray
 - uid: VisualCard.Parts.Card.SaveTo(System.String)
   name: SaveTo(string)
   href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_SaveTo_System_String_
@@ -6930,6 +7333,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.Card.SaveToString
   nameWithType: Card.SaveToString
+- uid: VisualCard.Parts.Card.Strings
+  name: Strings
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_Strings
+  commentId: P:VisualCard.Parts.Card.Strings
+  fullName: VisualCard.Parts.Card.Strings
+  nameWithType: Card.Strings
+- uid: VisualCard.Parts.Card.Strings*
+  name: Strings
+  href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_Strings_
+  commentId: Overload:VisualCard.Parts.Card.Strings
+  isSpec: "True"
+  fullName: VisualCard.Parts.Card.Strings
+  nameWithType: Card.Strings
 - uid: VisualCard.Parts.Card.ToString
   name: ToString()
   href: api/VisualCard.Parts.Card.html#VisualCard_Parts_Card_ToString
