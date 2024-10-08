@@ -95,7 +95,6 @@ namespace VisualCard.Parsers.Arguments
 
             // Check all the properties
             return
-                source.rawValue == target.rawValue &&
                 source.prefix == target.prefix &&
                 source.group == target.group &&
                 PartComparison.CompareLists(source.arguments, target.arguments)
@@ -109,8 +108,7 @@ namespace VisualCard.Parsers.Arguments
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = -1293333806;
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(rawValue);
+            int hashCode = 106740708;
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(prefix);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(group);
             hashCode = hashCode * -1521134295 + EqualityComparer<ArgumentInfo[]>.Default.GetHashCode(arguments);
