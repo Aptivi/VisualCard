@@ -87,19 +87,6 @@ references:
   commentId: T:VisualCard.Calendar.Parts.BaseCalendarPartInfo
   fullName: VisualCard.Calendar.Parts.BaseCalendarPartInfo
   nameWithType: BaseCalendarPartInfo
-- uid: VisualCard.Calendar.Parts.BaseCalendarPartInfo.Arguments
-  name: Arguments
-  href: api/VisualCard.Calendar.Parts.BaseCalendarPartInfo.html#VisualCard_Calendar_Parts_BaseCalendarPartInfo_Arguments
-  commentId: P:VisualCard.Calendar.Parts.BaseCalendarPartInfo.Arguments
-  fullName: VisualCard.Calendar.Parts.BaseCalendarPartInfo.Arguments
-  nameWithType: BaseCalendarPartInfo.Arguments
-- uid: VisualCard.Calendar.Parts.BaseCalendarPartInfo.Arguments*
-  name: Arguments
-  href: api/VisualCard.Calendar.Parts.BaseCalendarPartInfo.html#VisualCard_Calendar_Parts_BaseCalendarPartInfo_Arguments_
-  commentId: Overload:VisualCard.Calendar.Parts.BaseCalendarPartInfo.Arguments
-  isSpec: "True"
-  fullName: VisualCard.Calendar.Parts.BaseCalendarPartInfo.Arguments
-  nameWithType: BaseCalendarPartInfo.Arguments
 - uid: VisualCard.Calendar.Parts.BaseCalendarPartInfo.ElementTypes
   name: ElementTypes
   href: api/VisualCard.Calendar.Parts.BaseCalendarPartInfo.html#VisualCard_Calendar_Parts_BaseCalendarPartInfo_ElementTypes
@@ -196,6 +183,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Calendar.Parts.BaseCalendarPartInfo.IsPreferred
   nameWithType: BaseCalendarPartInfo.IsPreferred
+- uid: VisualCard.Calendar.Parts.BaseCalendarPartInfo.Property
+  name: Property
+  href: api/VisualCard.Calendar.Parts.BaseCalendarPartInfo.html#VisualCard_Calendar_Parts_BaseCalendarPartInfo_Property
+  commentId: P:VisualCard.Calendar.Parts.BaseCalendarPartInfo.Property
+  fullName: VisualCard.Calendar.Parts.BaseCalendarPartInfo.Property
+  nameWithType: BaseCalendarPartInfo.Property
+- uid: VisualCard.Calendar.Parts.BaseCalendarPartInfo.Property*
+  name: Property
+  href: api/VisualCard.Calendar.Parts.BaseCalendarPartInfo.html#VisualCard_Calendar_Parts_BaseCalendarPartInfo_Property_
+  commentId: Overload:VisualCard.Calendar.Parts.BaseCalendarPartInfo.Property
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.BaseCalendarPartInfo.Property
+  nameWithType: BaseCalendarPartInfo.Property
 - uid: VisualCard.Calendar.Parts.BaseCalendarPartInfo.ValueType
   name: ValueType
   href: api/VisualCard.Calendar.Parts.BaseCalendarPartInfo.html#VisualCard_Calendar_Parts_BaseCalendarPartInfo_ValueType
@@ -2133,23 +2133,6 @@ references:
   fullName.vb: VisualCard.Calendar.Parts.CalendarValueInfo(Of TValue)
   nameWithType: CalendarValueInfo<TValue>
   nameWithType.vb: CalendarValueInfo(Of TValue)
-- uid: VisualCard.Calendar.Parts.CalendarValueInfo`1.Arguments
-  name: Arguments
-  href: api/VisualCard.Calendar.Parts.CalendarValueInfo-1.html#VisualCard_Calendar_Parts_CalendarValueInfo_1_Arguments
-  commentId: P:VisualCard.Calendar.Parts.CalendarValueInfo`1.Arguments
-  fullName: VisualCard.Calendar.Parts.CalendarValueInfo<TValue>.Arguments
-  fullName.vb: VisualCard.Calendar.Parts.CalendarValueInfo(Of TValue).Arguments
-  nameWithType: CalendarValueInfo<TValue>.Arguments
-  nameWithType.vb: CalendarValueInfo(Of TValue).Arguments
-- uid: VisualCard.Calendar.Parts.CalendarValueInfo`1.Arguments*
-  name: Arguments
-  href: api/VisualCard.Calendar.Parts.CalendarValueInfo-1.html#VisualCard_Calendar_Parts_CalendarValueInfo_1_Arguments_
-  commentId: Overload:VisualCard.Calendar.Parts.CalendarValueInfo`1.Arguments
-  isSpec: "True"
-  fullName: VisualCard.Calendar.Parts.CalendarValueInfo<TValue>.Arguments
-  fullName.vb: VisualCard.Calendar.Parts.CalendarValueInfo(Of TValue).Arguments
-  nameWithType: CalendarValueInfo<TValue>.Arguments
-  nameWithType.vb: CalendarValueInfo(Of TValue).Arguments
 - uid: VisualCard.Calendar.Parts.CalendarValueInfo`1.ElementTypes
   name: ElementTypes
   href: api/VisualCard.Calendar.Parts.CalendarValueInfo-1.html#VisualCard_Calendar_Parts_CalendarValueInfo_1_ElementTypes
@@ -2272,6 +2255,23 @@ references:
   fullName.vb: VisualCard.Calendar.Parts.CalendarValueInfo(Of TValue).IsPreferred
   nameWithType: CalendarValueInfo<TValue>.IsPreferred
   nameWithType.vb: CalendarValueInfo(Of TValue).IsPreferred
+- uid: VisualCard.Calendar.Parts.CalendarValueInfo`1.Property
+  name: Property
+  href: api/VisualCard.Calendar.Parts.CalendarValueInfo-1.html#VisualCard_Calendar_Parts_CalendarValueInfo_1_Property
+  commentId: P:VisualCard.Calendar.Parts.CalendarValueInfo`1.Property
+  fullName: VisualCard.Calendar.Parts.CalendarValueInfo<TValue>.Property
+  fullName.vb: VisualCard.Calendar.Parts.CalendarValueInfo(Of TValue).Property
+  nameWithType: CalendarValueInfo<TValue>.Property
+  nameWithType.vb: CalendarValueInfo(Of TValue).Property
+- uid: VisualCard.Calendar.Parts.CalendarValueInfo`1.Property*
+  name: Property
+  href: api/VisualCard.Calendar.Parts.CalendarValueInfo-1.html#VisualCard_Calendar_Parts_CalendarValueInfo_1_Property_
+  commentId: Overload:VisualCard.Calendar.Parts.CalendarValueInfo`1.Property
+  isSpec: "True"
+  fullName: VisualCard.Calendar.Parts.CalendarValueInfo<TValue>.Property
+  fullName.vb: VisualCard.Calendar.Parts.CalendarValueInfo(Of TValue).Property
+  nameWithType: CalendarValueInfo<TValue>.Property
+  nameWithType.vb: CalendarValueInfo(Of TValue).Property
 - uid: VisualCard.Calendar.Parts.CalendarValueInfo`1.Value
   name: Value
   href: api/VisualCard.Calendar.Parts.CalendarValueInfo-1.html#VisualCard_Calendar_Parts_CalendarValueInfo_1_Value
@@ -5767,6 +5767,53 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parsers.Arguments.PropertyInfo.Arguments
   nameWithType: PropertyInfo.Arguments
+- uid: VisualCard.Parsers.Arguments.PropertyInfo.Equals(System.Object)
+  name: Equals(object?)
+  href: api/VisualCard.Parsers.Arguments.PropertyInfo.html#VisualCard_Parsers_Arguments_PropertyInfo_Equals_System_Object_
+  commentId: M:VisualCard.Parsers.Arguments.PropertyInfo.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Parsers.Arguments.PropertyInfo.Equals(object?)
+  fullName.vb: VisualCard.Parsers.Arguments.PropertyInfo.Equals(Object)
+  nameWithType: PropertyInfo.Equals(object?)
+  nameWithType.vb: PropertyInfo.Equals(Object)
+- uid: VisualCard.Parsers.Arguments.PropertyInfo.Equals(VisualCard.Parsers.Arguments.PropertyInfo)
+  name: Equals(PropertyInfo?)
+  href: api/VisualCard.Parsers.Arguments.PropertyInfo.html#VisualCard_Parsers_Arguments_PropertyInfo_Equals_VisualCard_Parsers_Arguments_PropertyInfo_
+  commentId: M:VisualCard.Parsers.Arguments.PropertyInfo.Equals(VisualCard.Parsers.Arguments.PropertyInfo)
+  name.vb: Equals(PropertyInfo)
+  fullName: VisualCard.Parsers.Arguments.PropertyInfo.Equals(VisualCard.Parsers.Arguments.PropertyInfo?)
+  fullName.vb: VisualCard.Parsers.Arguments.PropertyInfo.Equals(VisualCard.Parsers.Arguments.PropertyInfo)
+  nameWithType: PropertyInfo.Equals(PropertyInfo?)
+  nameWithType.vb: PropertyInfo.Equals(PropertyInfo)
+- uid: VisualCard.Parsers.Arguments.PropertyInfo.Equals(VisualCard.Parsers.Arguments.PropertyInfo,VisualCard.Parsers.Arguments.PropertyInfo)
+  name: Equals(PropertyInfo?, PropertyInfo?)
+  href: api/VisualCard.Parsers.Arguments.PropertyInfo.html#VisualCard_Parsers_Arguments_PropertyInfo_Equals_VisualCard_Parsers_Arguments_PropertyInfo_VisualCard_Parsers_Arguments_PropertyInfo_
+  commentId: M:VisualCard.Parsers.Arguments.PropertyInfo.Equals(VisualCard.Parsers.Arguments.PropertyInfo,VisualCard.Parsers.Arguments.PropertyInfo)
+  name.vb: Equals(PropertyInfo, PropertyInfo)
+  fullName: VisualCard.Parsers.Arguments.PropertyInfo.Equals(VisualCard.Parsers.Arguments.PropertyInfo?, VisualCard.Parsers.Arguments.PropertyInfo?)
+  fullName.vb: VisualCard.Parsers.Arguments.PropertyInfo.Equals(VisualCard.Parsers.Arguments.PropertyInfo, VisualCard.Parsers.Arguments.PropertyInfo)
+  nameWithType: PropertyInfo.Equals(PropertyInfo?, PropertyInfo?)
+  nameWithType.vb: PropertyInfo.Equals(PropertyInfo, PropertyInfo)
+- uid: VisualCard.Parsers.Arguments.PropertyInfo.Equals*
+  name: Equals
+  href: api/VisualCard.Parsers.Arguments.PropertyInfo.html#VisualCard_Parsers_Arguments_PropertyInfo_Equals_
+  commentId: Overload:VisualCard.Parsers.Arguments.PropertyInfo.Equals
+  isSpec: "True"
+  fullName: VisualCard.Parsers.Arguments.PropertyInfo.Equals
+  nameWithType: PropertyInfo.Equals
+- uid: VisualCard.Parsers.Arguments.PropertyInfo.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Parsers.Arguments.PropertyInfo.html#VisualCard_Parsers_Arguments_PropertyInfo_GetHashCode
+  commentId: M:VisualCard.Parsers.Arguments.PropertyInfo.GetHashCode
+  fullName: VisualCard.Parsers.Arguments.PropertyInfo.GetHashCode()
+  nameWithType: PropertyInfo.GetHashCode()
+- uid: VisualCard.Parsers.Arguments.PropertyInfo.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Parsers.Arguments.PropertyInfo.html#VisualCard_Parsers_Arguments_PropertyInfo_GetHashCode_
+  commentId: Overload:VisualCard.Parsers.Arguments.PropertyInfo.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Parsers.Arguments.PropertyInfo.GetHashCode
+  nameWithType: PropertyInfo.GetHashCode
 - uid: VisualCard.Parsers.Arguments.PropertyInfo.Group
   name: Group
   href: api/VisualCard.Parsers.Arguments.PropertyInfo.html#VisualCard_Parsers_Arguments_PropertyInfo_Group
@@ -5806,6 +5853,44 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parsers.Arguments.PropertyInfo.Value
   nameWithType: PropertyInfo.Value
+- uid: VisualCard.Parsers.Arguments.PropertyInfo.op_Equality(VisualCard.Parsers.Arguments.PropertyInfo,VisualCard.Parsers.Arguments.PropertyInfo)
+  name: operator ==(PropertyInfo?, PropertyInfo?)
+  href: api/VisualCard.Parsers.Arguments.PropertyInfo.html#VisualCard_Parsers_Arguments_PropertyInfo_op_Equality_VisualCard_Parsers_Arguments_PropertyInfo_VisualCard_Parsers_Arguments_PropertyInfo_
+  commentId: M:VisualCard.Parsers.Arguments.PropertyInfo.op_Equality(VisualCard.Parsers.Arguments.PropertyInfo,VisualCard.Parsers.Arguments.PropertyInfo)
+  name.vb: =(PropertyInfo, PropertyInfo)
+  fullName: VisualCard.Parsers.Arguments.PropertyInfo.operator ==(VisualCard.Parsers.Arguments.PropertyInfo?, VisualCard.Parsers.Arguments.PropertyInfo?)
+  fullName.vb: VisualCard.Parsers.Arguments.PropertyInfo.=(VisualCard.Parsers.Arguments.PropertyInfo, VisualCard.Parsers.Arguments.PropertyInfo)
+  nameWithType: PropertyInfo.operator ==(PropertyInfo?, PropertyInfo?)
+  nameWithType.vb: PropertyInfo.=(PropertyInfo, PropertyInfo)
+- uid: VisualCard.Parsers.Arguments.PropertyInfo.op_Equality*
+  name: operator ==
+  href: api/VisualCard.Parsers.Arguments.PropertyInfo.html#VisualCard_Parsers_Arguments_PropertyInfo_op_Equality_
+  commentId: Overload:VisualCard.Parsers.Arguments.PropertyInfo.op_Equality
+  isSpec: "True"
+  name.vb: =
+  fullName: VisualCard.Parsers.Arguments.PropertyInfo.operator ==
+  fullName.vb: VisualCard.Parsers.Arguments.PropertyInfo.=
+  nameWithType: PropertyInfo.operator ==
+  nameWithType.vb: PropertyInfo.=
+- uid: VisualCard.Parsers.Arguments.PropertyInfo.op_Inequality(VisualCard.Parsers.Arguments.PropertyInfo,VisualCard.Parsers.Arguments.PropertyInfo)
+  name: operator !=(PropertyInfo?, PropertyInfo?)
+  href: api/VisualCard.Parsers.Arguments.PropertyInfo.html#VisualCard_Parsers_Arguments_PropertyInfo_op_Inequality_VisualCard_Parsers_Arguments_PropertyInfo_VisualCard_Parsers_Arguments_PropertyInfo_
+  commentId: M:VisualCard.Parsers.Arguments.PropertyInfo.op_Inequality(VisualCard.Parsers.Arguments.PropertyInfo,VisualCard.Parsers.Arguments.PropertyInfo)
+  name.vb: <>(PropertyInfo, PropertyInfo)
+  fullName: VisualCard.Parsers.Arguments.PropertyInfo.operator !=(VisualCard.Parsers.Arguments.PropertyInfo?, VisualCard.Parsers.Arguments.PropertyInfo?)
+  fullName.vb: VisualCard.Parsers.Arguments.PropertyInfo.<>(VisualCard.Parsers.Arguments.PropertyInfo, VisualCard.Parsers.Arguments.PropertyInfo)
+  nameWithType: PropertyInfo.operator !=(PropertyInfo?, PropertyInfo?)
+  nameWithType.vb: PropertyInfo.<>(PropertyInfo, PropertyInfo)
+- uid: VisualCard.Parsers.Arguments.PropertyInfo.op_Inequality*
+  name: operator !=
+  href: api/VisualCard.Parsers.Arguments.PropertyInfo.html#VisualCard_Parsers_Arguments_PropertyInfo_op_Inequality_
+  commentId: Overload:VisualCard.Parsers.Arguments.PropertyInfo.op_Inequality
+  isSpec: "True"
+  name.vb: <>
+  fullName: VisualCard.Parsers.Arguments.PropertyInfo.operator !=
+  fullName.vb: VisualCard.Parsers.Arguments.PropertyInfo.<>
+  nameWithType: PropertyInfo.operator !=
+  nameWithType.vb: PropertyInfo.<>
 - uid: VisualCard.Parsers.Recurrence
   name: VisualCard.Parsers.Recurrence
   href: api/VisualCard.Parsers.Recurrence.html
@@ -6507,19 +6592,6 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.BaseCardPartInfo.AltId
   nameWithType: BaseCardPartInfo.AltId
-- uid: VisualCard.Parts.BaseCardPartInfo.Arguments
-  name: Arguments
-  href: api/VisualCard.Parts.BaseCardPartInfo.html#VisualCard_Parts_BaseCardPartInfo_Arguments
-  commentId: P:VisualCard.Parts.BaseCardPartInfo.Arguments
-  fullName: VisualCard.Parts.BaseCardPartInfo.Arguments
-  nameWithType: BaseCardPartInfo.Arguments
-- uid: VisualCard.Parts.BaseCardPartInfo.Arguments*
-  name: Arguments
-  href: api/VisualCard.Parts.BaseCardPartInfo.html#VisualCard_Parts_BaseCardPartInfo_Arguments_
-  commentId: Overload:VisualCard.Parts.BaseCardPartInfo.Arguments
-  isSpec: "True"
-  fullName: VisualCard.Parts.BaseCardPartInfo.Arguments
-  nameWithType: BaseCardPartInfo.Arguments
 - uid: VisualCard.Parts.BaseCardPartInfo.ElementTypes
   name: ElementTypes
   href: api/VisualCard.Parts.BaseCardPartInfo.html#VisualCard_Parts_BaseCardPartInfo_ElementTypes
@@ -6616,6 +6688,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.BaseCardPartInfo.IsPreferred
   nameWithType: BaseCardPartInfo.IsPreferred
+- uid: VisualCard.Parts.BaseCardPartInfo.Property
+  name: Property
+  href: api/VisualCard.Parts.BaseCardPartInfo.html#VisualCard_Parts_BaseCardPartInfo_Property
+  commentId: P:VisualCard.Parts.BaseCardPartInfo.Property
+  fullName: VisualCard.Parts.BaseCardPartInfo.Property
+  nameWithType: BaseCardPartInfo.Property
+- uid: VisualCard.Parts.BaseCardPartInfo.Property*
+  name: Property
+  href: api/VisualCard.Parts.BaseCardPartInfo.html#VisualCard_Parts_BaseCardPartInfo_Property_
+  commentId: Overload:VisualCard.Parts.BaseCardPartInfo.Property
+  isSpec: "True"
+  fullName: VisualCard.Parts.BaseCardPartInfo.Property
+  nameWithType: BaseCardPartInfo.Property
 - uid: VisualCard.Parts.BaseCardPartInfo.ValueType
   name: ValueType
   href: api/VisualCard.Parts.BaseCardPartInfo.html#VisualCard_Parts_BaseCardPartInfo_ValueType
@@ -6935,23 +7020,6 @@ references:
   fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).AltId
   nameWithType: CardValueInfo<TValue>.AltId
   nameWithType.vb: CardValueInfo(Of TValue).AltId
-- uid: VisualCard.Parts.CardValueInfo`1.Arguments
-  name: Arguments
-  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_Arguments
-  commentId: P:VisualCard.Parts.CardValueInfo`1.Arguments
-  fullName: VisualCard.Parts.CardValueInfo<TValue>.Arguments
-  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).Arguments
-  nameWithType: CardValueInfo<TValue>.Arguments
-  nameWithType.vb: CardValueInfo(Of TValue).Arguments
-- uid: VisualCard.Parts.CardValueInfo`1.Arguments*
-  name: Arguments
-  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_Arguments_
-  commentId: Overload:VisualCard.Parts.CardValueInfo`1.Arguments
-  isSpec: "True"
-  fullName: VisualCard.Parts.CardValueInfo<TValue>.Arguments
-  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).Arguments
-  nameWithType: CardValueInfo<TValue>.Arguments
-  nameWithType.vb: CardValueInfo(Of TValue).Arguments
 - uid: VisualCard.Parts.CardValueInfo`1.ElementTypes
   name: ElementTypes
   href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_ElementTypes
@@ -7074,6 +7142,23 @@ references:
   fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).IsPreferred
   nameWithType: CardValueInfo<TValue>.IsPreferred
   nameWithType.vb: CardValueInfo(Of TValue).IsPreferred
+- uid: VisualCard.Parts.CardValueInfo`1.Property
+  name: Property
+  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_Property
+  commentId: P:VisualCard.Parts.CardValueInfo`1.Property
+  fullName: VisualCard.Parts.CardValueInfo<TValue>.Property
+  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).Property
+  nameWithType: CardValueInfo<TValue>.Property
+  nameWithType.vb: CardValueInfo(Of TValue).Property
+- uid: VisualCard.Parts.CardValueInfo`1.Property*
+  name: Property
+  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_Property_
+  commentId: Overload:VisualCard.Parts.CardValueInfo`1.Property
+  isSpec: "True"
+  fullName: VisualCard.Parts.CardValueInfo<TValue>.Property
+  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).Property
+  nameWithType: CardValueInfo<TValue>.Property
+  nameWithType.vb: CardValueInfo(Of TValue).Property
 - uid: VisualCard.Parts.CardValueInfo`1.Value
   name: Value
   href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_Value
