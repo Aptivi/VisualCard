@@ -142,14 +142,14 @@ namespace VisualCard.Parsers.Arguments
             if (kvp.Contains(VcardConstants._argumentValueDelimiter))
             {
                 string keyStr = kvp.Substring(0, kvp.IndexOf(VcardConstants._argumentValueDelimiter));
-                string valueStr = kvp.RemovePrefix($"{keyStr}{VcardConstants._argumentValueDelimiter}");
-                var info = new ArgumentInfo(keyStr, valueStr);
+                string valueStr = kvp.RemovePrefix($"{keyStr}{VcardConstants._argumentValueDelimiter}").Trim();
+                var info = new ArgumentInfo(keyStr.Trim(), valueStr);
                 key = info.key;
                 values = info.values;
             }
             else
             {
-                var info = new ArgumentInfo("", kvp);
+                var info = new ArgumentInfo("", kvp.Trim());
                 key = "";
                 values = info.values;
             }
