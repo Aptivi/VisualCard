@@ -123,10 +123,10 @@ namespace VisualCard.Calendar.Parts
         public virtual TPart[] GetPartsArray<TPart>() where TPart : BaseCalendarPartInfo
         {
             // Get the parts enumeration according to the type
-            var key = VCalendarParserTools.GetPartsArrayEnumFromType(typeof(TPart), CalendarVersion);
+            var key = VCalendarParserTools.GetPartsArrayEnumFromType(typeof(TPart), VCalendarConstants._objectVCalendarSpecifier, CalendarVersion, GetType());
 
             // Now, return the value
-            return GetPartsArray<TPart>(key.Item1);
+            return GetPartsArray<TPart>(key);
         }
 
         /// <summary>
@@ -149,10 +149,10 @@ namespace VisualCard.Calendar.Parts
                 throw new InvalidOperationException($"Base type is not BaseCalendarPartInfo [{partType.BaseType.Name}] and the part type is [{partType.Name}] that doesn't represent calendar part.");
 
             // Get the parts enumeration according to the type
-            var key = VCalendarParserTools.GetPartsArrayEnumFromType(partType, CalendarVersion);
+            var key = VCalendarParserTools.GetPartsArrayEnumFromType(partType, VCalendarConstants._objectVCalendarSpecifier, CalendarVersion, GetType());
 
             // Now, return the value
-            return GetPartsArray(partType, key.Item1);
+            return GetPartsArray(partType, key);
         }
 
         /// <summary>
@@ -178,20 +178,20 @@ namespace VisualCard.Calendar.Parts
         public virtual BaseCalendarPartInfo[] GetPartsArray(CalendarPartsArrayEnum key)
         {
             string prefix = VCalendarParserTools.GetPrefixFromPartsArrayEnum(key);
-            var (_, _, enumType, _, _, _, _, _, _) = VCalendarParserTools.GetPartType(prefix, "", CalendarVersion);
-            if (enumType is null)
+            var partType = VCalendarParserTools.GetPartType(prefix, "", CalendarVersion, typeof(Calendar));
+            if (partType.enumType is null)
                 throw new ArgumentException($"Enumeration type is not found for {key}");
-            return GetPartsArray(enumType, key, version, partsArray);
+            return GetPartsArray(partType.enumType, key, CalendarVersion, partsArray);
         }
 
         internal TPart[] GetPartsArray<TPart>(Version version, Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray)
             where TPart : BaseCalendarPartInfo
         {
             // Get the parts enumeration according to the type
-            var key = VCalendarParserTools.GetPartsArrayEnumFromType(typeof(TPart), version);
+            var key = VCalendarParserTools.GetPartsArrayEnumFromType(typeof(TPart), VCalendarConstants._objectVCalendarSpecifier, version, GetType());
 
             // Now, return the value
-            return GetPartsArray<TPart>(key.Item1, version, partsArray);
+            return GetPartsArray<TPart>(key, version, partsArray);
         }
 
         internal TPart[] GetPartsArray<TPart>(CalendarPartsArrayEnum key, Version version, Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray)
@@ -201,23 +201,25 @@ namespace VisualCard.Calendar.Parts
         internal BaseCalendarPartInfo[] GetPartsArray(Type partType, Version version, Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray)
         {
             // Get the parts enumeration according to the type
-            var key = VCalendarParserTools.GetPartsArrayEnumFromType(typeof(BaseCalendarPartInfo), version);
+            var key = VCalendarParserTools.GetPartsArrayEnumFromType(typeof(BaseCalendarPartInfo), VCalendarConstants._objectVCalendarSpecifier, version, GetType());
 
             // Now, return the value
-            return GetPartsArray(partType, key.Item1, version, partsArray);
+            return GetPartsArray(partType, key, version, partsArray);
         }
 
         internal BaseCalendarPartInfo[] GetPartsArray(Type partType, CalendarPartsArrayEnum key, Version version, Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray)
         {
             // Check for version support
-            if (!VCalendarParserTools.EnumArrayTypeSupported(key, version, GetType()))
+            string prefix = VCalendarParserTools.GetPrefixFromPartsArrayEnum(key);
+            var type = VCalendarParserTools.GetPartType(prefix, "", version, GetType());
+            if (!type.minimumVersionCondition(version))
                 return [];
 
             // Get the parts enumeration according to the type
             if (partType != typeof(BaseCalendarPartInfo))
             {
                 // We don't need the base, but a derivative of it. Check it.
-                var partsArrayEnum = VCalendarParserTools.GetPartsArrayEnumFromType(partType, version).Item1;
+                var partsArrayEnum = (CalendarPartsArrayEnum)type.enumeration;
                 if (key != partsArrayEnum)
                     throw new InvalidOperationException($"Parts array enumeration [{key}] is different from the expected one [{partsArrayEnum}] according to type {partType.Name}.");
             }
@@ -249,7 +251,9 @@ namespace VisualCard.Calendar.Parts
         internal CalendarValueInfo<string>[] GetString(CalendarStringsEnum key, Version version, Dictionary<CalendarStringsEnum, List<CalendarValueInfo<string>>> strings)
         {
             // Check for version support
-            if (!VCalendarParserTools.StringSupported(key, version, GetType()))
+            string prefix = VCalendarParserTools.GetPrefixFromStringsEnum(key);
+            var partType = VCalendarParserTools.GetPartType(prefix, "", version, GetType());
+            if (!partType.minimumVersionCondition(version))
                 return [];
 
             // Check to see if the string has a value or not
@@ -272,7 +276,9 @@ namespace VisualCard.Calendar.Parts
         internal CalendarValueInfo<double>[] GetInteger(CalendarIntegersEnum key, Version version, Dictionary<CalendarIntegersEnum, List<CalendarValueInfo<double>>> integers)
         {
             // Check for version support
-            if (!VCalendarParserTools.IntegerSupported(key, version, GetType()))
+            string prefix = VCalendarParserTools.GetPrefixFromIntegersEnum(key);
+            var partType = VCalendarParserTools.GetPartType(prefix, "", version, GetType());
+            if (!partType.minimumVersionCondition(version))
                 return [];
 
             // Check to see if the integer has a value or not
@@ -310,7 +316,7 @@ namespace VisualCard.Calendar.Parts
 
                 // Get the prefix
                 string prefix = VCalendarParserTools.GetPrefixFromStringsEnum(stringEnum);
-                var type = VCalendarParserTools.GetPartType(prefix, objectType, version);
+                var type = VCalendarParserTools.GetPartType(prefix, objectType, version, GetType());
                 string defaultType = type.defaultType;
                 string defaultValueType = type.defaultValueType;
 
@@ -340,7 +346,7 @@ namespace VisualCard.Calendar.Parts
 
                 // Get the prefix
                 string prefix = VCalendarParserTools.GetPrefixFromIntegersEnum(integerEnum);
-                var type = VCalendarParserTools.GetPartType(prefix, objectType, version);
+                var type = VCalendarParserTools.GetPartType(prefix, objectType, version, GetType());
                 string defaultType = type.defaultType;
                 string defaultValueType = type.defaultValueType;
 
@@ -370,7 +376,7 @@ namespace VisualCard.Calendar.Parts
 
                 // Get the prefix
                 string prefix = VCalendarParserTools.GetPrefixFromPartsArrayEnum(partsArrayEnum);
-                var type = VCalendarParserTools.GetPartType(prefix, objectType, version);
+                var type = VCalendarParserTools.GetPartType(prefix, objectType, version, GetType());
                 string defaultType = type.defaultType;
                 string defaultValueType = type.defaultValueType;
 
@@ -519,7 +525,8 @@ namespace VisualCard.Calendar.Parts
 
             // Get the appropriate type and check it
             string prefix = VCalendarParserTools.GetPrefixFromPartsArrayEnum(key);
-            var enumType = VCalendarParserTools.GetPartType(prefix, objectType, version).enumType;
+            var partType = VCalendarParserTools.GetPartType(prefix, objectType, version, GetType());
+            var enumType = partType.enumType;
             if (value.GetType() != enumType)
                 return;
 
@@ -529,7 +536,7 @@ namespace VisualCard.Calendar.Parts
             else
             {
                 // We need to check the cardinality.
-                var cardinality = VCalendarParserTools.GetPartsArrayEnumFromType(enumType, version).Item2;
+                var cardinality = partType.cardinality;
                 bool onlyOne =
                     cardinality == PartCardinality.ShouldBeOne ||
                     cardinality == PartCardinality.MayBeOne;
@@ -540,12 +547,16 @@ namespace VisualCard.Calendar.Parts
         }
 
         internal virtual void AddString(CalendarStringsEnum key, CalendarValueInfo<string> value) =>
-            AddString(key, value, strings);
+            AddString(key, value, version, strings, VCalendarConstants._objectVCalendarSpecifier);
 
-        internal virtual void AddString(CalendarStringsEnum key, CalendarValueInfo<string> value, Dictionary<CalendarStringsEnum, List<CalendarValueInfo<string>>> strings)
+        internal virtual void AddString(CalendarStringsEnum key, CalendarValueInfo<string> value, Version version, Dictionary<CalendarStringsEnum, List<CalendarValueInfo<string>>> strings, string objectType)
         {
             if (value is null || string.IsNullOrEmpty(value.Value))
                 return;
+
+            // Get the appropriate type
+            string prefix = VCalendarParserTools.GetPrefixFromStringsEnum(key);
+            var partType = VCalendarParserTools.GetPartType(prefix, objectType, version, GetType());
 
             // If we don't have this key yet, add it.
             if (!strings.ContainsKey(key))
@@ -553,23 +564,27 @@ namespace VisualCard.Calendar.Parts
             else
             {
                 // We need to check the cardinality.
-                var cardinality = VCalendarParserTools.GetStringsEnumFromType(key);
+                var cardinality = partType.cardinality;
                 bool onlyOne =
                     cardinality == PartCardinality.ShouldBeOne ||
                     cardinality == PartCardinality.MayBeOne;
                 if (onlyOne)
-                    throw new InvalidOperationException($"Can't add part array {key}, because cardinality is {cardinality}.");
+                    throw new InvalidOperationException($"Can't add string {key}, because cardinality is {cardinality}.");
                 strings[key].Add(value);
             }
         }
 
         internal virtual void AddInteger(CalendarIntegersEnum key, CalendarValueInfo<double> value) =>
-            AddInteger(key, value, integers);
+            AddInteger(key, value, version, integers, VCalendarConstants._objectVCalendarSpecifier);
 
-        internal virtual void AddInteger(CalendarIntegersEnum key, CalendarValueInfo<double> value, Dictionary<CalendarIntegersEnum, List<CalendarValueInfo<double>>> integers)
+        internal virtual void AddInteger(CalendarIntegersEnum key, CalendarValueInfo<double> value, Version version, Dictionary<CalendarIntegersEnum, List<CalendarValueInfo<double>>> integers, string objectType)
         {
             if (value is null || value.Value < 0)
                 return;
+
+            // Get the appropriate type
+            string prefix = VCalendarParserTools.GetPrefixFromIntegersEnum(key);
+            var partType = VCalendarParserTools.GetPartType(prefix, objectType, version, GetType());
 
             // If we don't have this key yet, add it.
             if (!integers.ContainsKey(key))
@@ -577,12 +592,12 @@ namespace VisualCard.Calendar.Parts
             else
             {
                 // We need to check the cardinality.
-                var cardinality = VCalendarParserTools.GetIntegersEnumFromType(key);
+                var cardinality = partType.cardinality;
                 bool onlyOne =
                     cardinality == PartCardinality.ShouldBeOne ||
                     cardinality == PartCardinality.MayBeOne;
                 if (onlyOne)
-                    throw new InvalidOperationException($"Can't add part array {key}, because cardinality is {cardinality}.");
+                    throw new InvalidOperationException($"Can't add integer {key}, because cardinality is {cardinality}.");
                 integers[key].Add(value);
             }
         }

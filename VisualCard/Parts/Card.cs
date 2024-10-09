@@ -93,10 +93,10 @@ namespace VisualCard.Parts
             where TPart : BaseCardPartInfo
         {
             // Get the parts enumeration according to the type
-            var key = VcardParserTools.GetPartsArrayEnumFromType(typeof(TPart), CardVersion);
+            var key = VcardParserTools.GetPartsArrayEnumFromType(typeof(TPart), CardVersion, CardKindStr);
 
             // Now, return the value
-            return GetPartsArray<TPart>(key.Item1);
+            return GetPartsArray<TPart>(key);
         }
 
         /// <summary>
@@ -120,10 +120,10 @@ namespace VisualCard.Parts
                 throw new InvalidOperationException($"Base type is not BaseCardPartInfo [{partType.BaseType.Name}] and the part type is [{partType.Name}] that doesn't represent card part.");
 
             // Get the parts enumeration according to the type
-            var key = VcardParserTools.GetPartsArrayEnumFromType(partType, CardVersion);
+            var key = VcardParserTools.GetPartsArrayEnumFromType(partType, CardVersion, CardKindStr);
 
             // Now, return the value
-            return GetPartsArray(partType, key.Item1);
+            return GetPartsArray(partType, key);
         }
 
         /// <summary>
@@ -139,14 +139,16 @@ namespace VisualCard.Parts
                 throw new InvalidOperationException($"Base type is not BaseCardPartInfo [{partType.BaseType.Name}] and the part type is [{partType.Name}] that doesn't represent card part.");
 
             // Check for version support
-            if (!VcardParserTools.EnumArrayTypeSupported(key, CardVersion))
+            string prefix = VcardParserTools.GetPrefixFromPartsArrayEnum(key);
+            var type = VcardParserTools.GetPartType(prefix, CardVersion, CardKindStr);
+            if (!type.minimumVersionCondition(CardVersion))
                 return [];
 
             // Get the parts enumeration according to the type
             if (partType != typeof(BaseCardPartInfo))
             {
                 // We don't need the base, but a derivative of it. Check it.
-                var partsArrayEnum = VcardParserTools.GetPartsArrayEnumFromType(partType, CardVersion).Item1;
+                var partsArrayEnum = (PartsArrayEnum)type.enumeration;
                 if (key != partsArrayEnum)
                     throw new InvalidOperationException($"Parts array enumeration [{key}] is different from the expected one [{partsArrayEnum}] according to type {typeof(BaseCardPartInfo).Name}.");
             }
@@ -175,7 +177,9 @@ namespace VisualCard.Parts
         public CardValueInfo<string>[] GetString(StringsEnum key)
         {
             // Check for version support
-            if (!VcardParserTools.StringSupported(key, CardVersion, CardKind))
+            string prefix = VcardParserTools.GetPrefixFromStringsEnum(key);
+            var partType = VcardParserTools.GetPartType(prefix, CardVersion, CardKindStr);
+            if (!partType.minimumVersionCondition(CardVersion))
                 return [];
 
             // Get the fallback value
@@ -222,7 +226,7 @@ namespace VisualCard.Parts
 
                 // Get the prefix
                 string prefix = VcardParserTools.GetPrefixFromStringsEnum(stringEnum);
-                var type = VcardParserTools.GetPartType(prefix);
+                var type = VcardParserTools.GetPartType(prefix, version, CardKindStr);
                 string defaultType = type.defaultType;
                 string defaultValueType = type.defaultValueType;
 
@@ -252,7 +256,7 @@ namespace VisualCard.Parts
 
                 // Get the prefix
                 string prefix = VcardParserTools.GetPrefixFromPartsArrayEnum(partsArrayEnum);
-                var type = VcardParserTools.GetPartType(prefix);
+                var type = VcardParserTools.GetPartType(prefix, version, CardKindStr);
                 string defaultType = type.defaultType;
                 string defaultValueType = type.defaultValueType;
 
@@ -359,7 +363,8 @@ namespace VisualCard.Parts
 
             // Get the appropriate type and check it
             string prefix = VcardParserTools.GetPrefixFromPartsArrayEnum(key);
-            var enumType = VcardParserTools.GetPartType(prefix).enumType;
+            var partType = VcardParserTools.GetPartType(prefix, CardVersion, CardKindStr);
+            var enumType = partType.enumType;
             if (value.GetType() != enumType)
                 return;
 
@@ -369,7 +374,7 @@ namespace VisualCard.Parts
             else
             {
                 // We need to check the cardinality.
-                var cardinality = VcardParserTools.GetPartsArrayEnumFromType(enumType, CardVersion).Item2;
+                var cardinality = partType.cardinality;
                 int actualAltId = partsArray[key][0].AltId;
                 bool onlyOne =
                     cardinality == PartCardinality.ShouldBeOne ||
@@ -390,13 +395,17 @@ namespace VisualCard.Parts
             if (value is null || string.IsNullOrEmpty(value.Value))
                 return;
 
+            // Get the appropriate type
+            string prefix = VcardParserTools.GetPrefixFromStringsEnum(key);
+            var partType = VcardParserTools.GetPartType(prefix, CardVersion, CardKindStr);
+
             // If we don't have this key yet, add it.
             if (!strings.ContainsKey(key))
                 strings.Add(key, [value]);
             else
             {
                 // We need to check the cardinality.
-                var cardinality = VcardParserTools.GetStringsEnumFromType(key, CardVersion);
+                var cardinality = partType.cardinality;
                 int actualAltId = strings[key][0].AltId;
                 bool onlyOne =
                     cardinality == PartCardinality.ShouldBeOne ||

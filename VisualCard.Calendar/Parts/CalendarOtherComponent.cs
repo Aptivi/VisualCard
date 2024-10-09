@@ -70,10 +70,10 @@ namespace VisualCard.Calendar.Parts
         public override TPart[] GetPartsArray<TPart>()
         {
             // Get the parts enumeration according to the type
-            var key = VCalendarParserTools.GetPartsArrayEnumFromType(typeof(TPart), CalendarVersion);
+            var key = VCalendarParserTools.GetPartsArrayEnumFromType(typeof(TPart), ComponentName, CalendarVersion, GetType());
 
             // Now, return the value
-            return GetPartsArray<TPart>(key.Item1, CalendarVersion, partsArray);
+            return GetPartsArray<TPart>(key, CalendarVersion, partsArray);
         }
 
         /// <summary>
@@ -92,10 +92,10 @@ namespace VisualCard.Calendar.Parts
         public override BaseCalendarPartInfo[] GetPartsArray(CalendarPartsArrayEnum key)
         {
             string prefix = VCalendarParserTools.GetPrefixFromPartsArrayEnum(key);
-            var (_, _, enumType, _, _, _, _, _, _) = VCalendarParserTools.GetPartType(prefix, "", CalendarVersion);
-            if (enumType is null)
+            var partType = VCalendarParserTools.GetPartType(prefix, "", CalendarVersion, typeof(CalendarOtherComponent));
+            if (partType.enumType is null)
                 throw new ArgumentException($"Enumeration type is not found for {key}");
-            return GetPartsArray(enumType, key, CalendarVersion, partsArray);
+            return GetPartsArray(partType.enumType, key, CalendarVersion, partsArray);
         }
 
         /// <summary>
@@ -182,10 +182,10 @@ namespace VisualCard.Calendar.Parts
             AddPartToArray(key, value, CalendarVersion, partsArray, componentName);
 
         internal override void AddString(CalendarStringsEnum key, CalendarValueInfo<string> value) =>
-            AddString(key, value, strings);
+            AddString(key, value, CalendarVersion, strings, componentName);
 
         internal override void AddInteger(CalendarIntegersEnum key, CalendarValueInfo<double> value) =>
-            AddInteger(key, value, integers);
+            AddInteger(key, value, CalendarVersion, integers, componentName);
 
         internal CalendarOtherComponent(Version version, string componentName) :
             base(version)

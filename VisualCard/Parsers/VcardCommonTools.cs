@@ -735,7 +735,7 @@ namespace VisualCard.Parsers
             return valueBuilder.ToString();
         }
 
-        internal static int GetAltIdFromArgs(Version version, PropertyInfo? property, Type? classType, PartType type, object enumeration)
+        internal static int GetAltIdFromArgs(Version version, PropertyInfo? property, VcardPartType partType)
         {
             var arguments = property?.Arguments ?? [];
             int altId = -1;
@@ -744,9 +744,7 @@ namespace VisualCard.Parsers
                 // If we have more than one argument, check for ALTID
                 if (version.Major >= 4)
                 {
-                    var cardinality =
-                        type == PartType.Strings ? VcardParserTools.GetStringsEnumFromType((StringsEnum)enumeration, version) :
-                        VcardParserTools.GetPartsArrayEnumFromType(classType, version).Item2;
+                    var cardinality = partType.cardinality;
                     bool supportsAltId =
                         cardinality != PartCardinality.MayBeOneNoAltId && cardinality != PartCardinality.ShouldBeOneNoAltId &&
                         cardinality != PartCardinality.AtLeastOneNoAltId && cardinality != PartCardinality.AnyNoAltId;
@@ -772,7 +770,7 @@ namespace VisualCard.Parsers
                             throw new InvalidDataException("ALTID must be exactly in the first position of the argument, because arguments that follow it are required to be specified");
                     }
                     else if (altIdArg is not null)
-                        throw new InvalidDataException($"ALTID must not be specified in the {enumeration} type that expects a cardinality of {cardinality}.");
+                        throw new InvalidDataException($"ALTID must not be specified in the {partType.enumeration} type that expects a cardinality of {cardinality}.");
                 }
             }
             return altId;
