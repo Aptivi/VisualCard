@@ -50,7 +50,7 @@ namespace VisualCard.Parsers.Arguments
             prefix;
 
         /// <summary>
-        /// Property group
+        /// Property group (dots are for nested groups)
         /// </summary>
         public string Group =>
             group;
@@ -125,7 +125,7 @@ namespace VisualCard.Parsers.Arguments
             var finalArgs = splitArgs.Select((arg) => new ArgumentInfo(arg)).ToArray();
 
             // Extract the group name
-            string group = prefix.Contains(".") ? prefix.Substring(0, prefix.IndexOf(".")) : "";
+            string group = prefix.Contains(".") ? prefix.Substring(0, prefix.LastIndexOf(".")) : "";
             prefix = prefix.RemovePrefix($"{group}.");
 
             // Check to see if this is a nonstandard prefix

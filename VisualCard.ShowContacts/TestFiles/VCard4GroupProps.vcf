@@ -2,16 +2,16 @@ BEGIN:VCARD
 VERSION:4.0
 UID:urn:uuid:136c1090-d7d3-4399-9f59-8f7a7b6e2ef1
 ADR;TYPE=home:;;New York\, USA;;;;
-A.EMAIL;TYPE=HOME:sarah.s@gmail.com
-B.EMAIL;TYPE=WORK:sarah.s@sso.org
+E.A.EMAIL;TYPE=HOME:sarah.s@gmail.com
+E.B.EMAIL;TYPE=WORK:sarah.s@sso.org
 FN:Sarah Santos
 N:Santos;Sarah;;;
 ORG:Support Scammer Outcry Organization
-A.TEL;TYPE=cell:589-210-1059
-B.TEL;TYPE=cell:589-210-1058
+T.A.TEL;TYPE=cell:589-210-1059
+T.B.TEL;TYPE=cell:589-210-1058
 TITLE:Chief Executive Officer
-URL:https://sso.org/
-X-SIP-SIP:sip test
+S.URL:https://sso.org/
+S.X-SIP-SIP:sip test
 ANNIVERSARY:20230406
 GENDER:F;grrrl
 DRESSCODE:CASUAL
