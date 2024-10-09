@@ -1,19 +1,15 @@
-VisualCard has become refreshed! We've made it more flexible and more efficient than before so that you can build the most powerful calendaring, scheduling, and contact management applications!
+We are sorry for slowing down card parsing in v3.0.0, but this update improves the parsing speed in that regard.
+
+VisualCard has become refreshed, again! This time, in the internals. We've made some of the newsworthy changes that necessitate making a release to bring back performance! As an apology, we've also added features, like better support for nested groups and actual access to `PropertyInfo`.
 
 ### Changes
 
 This release contains a variety of changes, including, but not limited to:
 
-- `[+]` Added more vCard and vCalendar properties (100% of them!)
-- `[+]` Added recurrence parser
-- `[+]` Added duration, date/time, and UTC offset parsers
-- `[+]` Added property grouping support
-- `[+]` Added value info, property info, and argument info instances
-- `[+]` Added support for more than one string and integer
-- `[*]` Moved extra tools to VisualCard.Extras
-- `[*]` Massive improvements to vCard and vCalendar parsers
-- `[*]` Property names are now case-insensitive
-- `[*]` Mass migrated several text-based arrays to strings
+- `[+]` Added `PropertyInfo`
+- `[+]` Added part dictionary properties (strings, integers, and parts array instances)
+- `[+]` Added support for nested property groups
+- `[*]` Better support for whitespace padded properties and their arguments
 - `[*]` General improvements and bug fixes
 
 Review the commit history if you want to get a deep insight about the changes.
