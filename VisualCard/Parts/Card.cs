@@ -186,7 +186,7 @@ namespace VisualCard.Parts
             string fallback = key == StringsEnum.Kind ? "individual" : "";
             CardValueInfo<string>[] fallbacks =
                 !string.IsNullOrEmpty(fallback) ?
-                [new CardValueInfo<string>(null, -1, [], "", "", fallback)] :
+                [new CardValueInfo<string>(null, -1, [], "", fallback)] :
                 [];
 
             // Check to see if the string has a value or not

@@ -55,8 +55,8 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string[]? Suffixes { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            new NameInfo().FromStringVcardInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
+            new NameInfo().FromStringVcardInternal(value, property, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion)
         {
@@ -71,7 +71,7 @@ namespace VisualCard.Parts.Implementations
                 $"{suffixesStr}";
         }
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
             string[] splitName = value.Split(VcardConstants._fieldDelimiter);
             if (splitName.Length < 2)
@@ -83,7 +83,7 @@ namespace VisualCard.Parts.Implementations
             string[] _altNames = splitName.Length >= 3 ? Regex.Unescape(splitName[2]).Split(new char[] { VcardConstants._valueDelimiter }, StringSplitOptions.RemoveEmptyEntries) : [];
             string[] _prefixes = splitName.Length >= 4 ? Regex.Unescape(splitName[3]).Split(new char[] { VcardConstants._valueDelimiter }, StringSplitOptions.RemoveEmptyEntries) : [];
             string[] _suffixes = splitName.Length >= 5 ? Regex.Unescape(splitName[4]).Split(new char[] { VcardConstants._valueDelimiter }, StringSplitOptions.RemoveEmptyEntries) : [];
-            NameInfo _name = new(altId, property, elementTypes, valueType, group, _firstName, _lastName, _altNames, _prefixes, _suffixes);
+            NameInfo _name = new(altId, property, elementTypes, valueType, _firstName, _lastName, _altNames, _prefixes, _suffixes);
             return _name;
         }
 
@@ -147,8 +147,8 @@ namespace VisualCard.Parts.Implementations
 
         internal NameInfo() { }
 
-        internal NameInfo(int altId, PropertyInfo? property, string[] elementTypes, string valueType, string group, string contactFirstName, string contactLastName, string[] altNames, string[] prefixes, string[] suffixes) :
-            base(property, altId, elementTypes, valueType, group)
+        internal NameInfo(int altId, PropertyInfo? property, string[] elementTypes, string valueType, string contactFirstName, string contactLastName, string[] altNames, string[] prefixes, string[] suffixes) :
+            base(property, altId, elementTypes, valueType)
         {
             ContactFirstName = contactFirstName;
             ContactLastName = contactLastName;

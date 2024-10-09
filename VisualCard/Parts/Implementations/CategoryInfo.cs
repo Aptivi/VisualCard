@@ -37,19 +37,19 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string[]? Category { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            new CategoryInfo().FromStringVcardInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
+            new CategoryInfo().FromStringVcardInternal(value, property, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             $"{string.Join(VcardConstants._valueDelimiter.ToString(), Category)}";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Populate the fields
             var categories = Regex.Unescape(value).Split(',');
 
             // Add the fetched information
-            CategoryInfo _time = new(-1, property, elementTypes, valueType, group, categories);
+            CategoryInfo _time = new(-1, property, elementTypes, valueType, categories);
             return _time;
         }
 
@@ -105,8 +105,8 @@ namespace VisualCard.Parts.Implementations
 
         internal CategoryInfo() { }
 
-        internal CategoryInfo(int altId, PropertyInfo? property, string[] elementTypes, string valueType, string group, string[] category) :
-            base(property, altId, elementTypes, valueType, group)
+        internal CategoryInfo(int altId, PropertyInfo? property, string[] elementTypes, string valueType, string[] category) :
+            base(property, altId, elementTypes, valueType)
         {
             Category = category;
         }

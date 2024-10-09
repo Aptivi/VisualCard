@@ -56,6 +56,12 @@ namespace VisualCard.Parsers.Arguments
             group;
 
         /// <summary>
+        /// Nested property groups
+        /// </summary>
+        public string[] NestedGroups =>
+            group.Split('.');
+
+        /// <summary>
         /// Argument info instances. It includes AltId, type, and value
         /// </summary>
         public ArgumentInfo[] Arguments =>

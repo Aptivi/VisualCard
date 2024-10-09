@@ -46,13 +46,13 @@ namespace VisualCard.Parts.Implementations
         public bool IsBlob =>
             VcardCommonTools.IsEncodingBlob(Property?.Arguments ?? [], LogoEncoded);
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            new LogoInfo().FromStringVcardInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
+            new LogoInfo().FromStringVcardInternal(value, property, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             LogoEncoded ?? "";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
             bool vCard4 = cardVersion.Major >= 4;
             var arguments = property?.Arguments ?? [];
@@ -80,7 +80,7 @@ namespace VisualCard.Parts.Implementations
             }
 
             // Populate the fields
-            LogoInfo _logo = new(altId, property, elementTypes, valueType, group, logoEncoding, value);
+            LogoInfo _logo = new(altId, property, elementTypes, valueType, logoEncoding, value);
             return _logo;
         }
 
@@ -145,8 +145,8 @@ namespace VisualCard.Parts.Implementations
 
         internal LogoInfo() { }
 
-        internal LogoInfo(int altId, PropertyInfo? property, string[] elementTypes, string valueType, string group, string encoding, string logoEncoded) :
-            base(property, altId, elementTypes, valueType, group)
+        internal LogoInfo(int altId, PropertyInfo? property, string[] elementTypes, string valueType, string encoding, string logoEncoded) :
+            base(property, altId, elementTypes, valueType)
         {
             Encoding = encoding;
             LogoEncoded = logoEncoded;

@@ -54,7 +54,14 @@ namespace VisualCard.Parts
         /// <summary>
         /// Property group
         /// </summary>
-        public virtual string Group { get; internal set; } = "";
+        public string Group =>
+            Property?.Group ?? "";
+
+        /// <summary>
+        /// Nested property groups
+        /// </summary>
+        public string[] NestedGroups =>
+            Group.Split('.');
 
         /// <summary>
         /// Is this part preferred?
@@ -136,20 +143,19 @@ namespace VisualCard.Parts
         internal virtual bool EqualsInternal(BaseCardPartInfo source, BaseCardPartInfo target) =>
             true;
 
-        internal abstract BaseCardPartInfo FromStringVcardInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion);
+        internal abstract BaseCardPartInfo FromStringVcardInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion);
 
         internal abstract string ToStringVcardInternal(Version cardVersion);
 
         internal BaseCardPartInfo()
         { }
 
-        internal BaseCardPartInfo(PropertyInfo? property, int altId, string[] elementTypes, string valueType, string group)
+        internal BaseCardPartInfo(PropertyInfo? property, int altId, string[] elementTypes, string valueType)
         {
             Property = property;
             AltId = altId;
             ElementTypes = elementTypes;
             ValueType = valueType;
-            Group = group;
         }
     }
 }

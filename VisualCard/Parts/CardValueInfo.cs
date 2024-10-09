@@ -54,7 +54,14 @@ namespace VisualCard.Parts
         /// <summary>
         /// Property group
         /// </summary>
-        public virtual string Group { get; internal set; } = "";
+        public string Group =>
+            Property?.Group ?? "";
+
+        /// <summary>
+        /// Nested property groups
+        /// </summary>
+        public string[] NestedGroups =>
+            Group.Split('.');
 
         /// <summary>
         /// Value
@@ -142,13 +149,12 @@ namespace VisualCard.Parts
         internal virtual bool EqualsInternal(CardValueInfo<TValue> source, CardValueInfo<TValue> target) =>
             true;
 
-        internal CardValueInfo(PropertyInfo? property, int altId, string[] elementTypes, string valueType, string group, TValue? value)
+        internal CardValueInfo(PropertyInfo? property, int altId, string[] elementTypes, string valueType, TValue? value)
         {
             Property = property;
             AltId = altId;
             ElementTypes = elementTypes;
             ValueType = valueType;
-            Group = group;
             Value = value ??
                 throw new ArgumentNullException(nameof(value));
         }

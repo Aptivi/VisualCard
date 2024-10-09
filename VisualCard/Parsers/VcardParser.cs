@@ -149,7 +149,7 @@ namespace VisualCard.Parsers
                                     throw new InvalidDataException("Profile must be \"vCard\"");
 
                                 // Set the string for real
-                                var stringValueInfo = new CardValueInfo<string>(info, altId, elementTypes, valueType, info.Group, finalValue);
+                                var stringValueInfo = new CardValueInfo<string>(info, altId, elementTypes, valueType, finalValue);
                                 card.AddString(stringType, stringValueInfo);
                             }
                             break;
@@ -161,7 +161,7 @@ namespace VisualCard.Parsers
 
                                 // Now, get the part info
                                 finalValue = partsArrayType is PartsArrayEnum.NonstandardNames or PartsArrayEnum.IanaNames ? _value : info.Value;
-                                var partInfo = partType.fromStringFunc(finalValue, info, altId, elementTypes, info.Group, valueType, CardVersion);
+                                var partInfo = partType.fromStringFunc(finalValue, info, altId, elementTypes, valueType, CardVersion);
 
                                 // Set the array for real
                                 card.AddPartToArray(partsArrayType, partInfo);

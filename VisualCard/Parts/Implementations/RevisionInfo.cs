@@ -35,13 +35,13 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public DateTimeOffset Revision { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            new RevisionInfo().FromStringVcardInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
+            new RevisionInfo().FromStringVcardInternal(value, property, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             $"{VcardCommonTools.SavePosixDate(Revision)}";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
             // Get the value
             string revValue = value.Substring(VcardConstants._revSpecifier.Length + 1);
@@ -50,7 +50,7 @@ namespace VisualCard.Parts.Implementations
             DateTimeOffset rev = VcardCommonTools.ParsePosixDateTime(revValue);
 
             // Add the fetched information
-            RevisionInfo _time = new(altId, property, elementTypes, valueType, group, rev);
+            RevisionInfo _time = new(altId, property, elementTypes, valueType, rev);
             return _time;
         }
 
@@ -106,8 +106,8 @@ namespace VisualCard.Parts.Implementations
 
         internal RevisionInfo() { }
 
-        internal RevisionInfo(int altId, PropertyInfo? property, string[] elementTypes, string valueType, string group, DateTimeOffset rev) :
-            base(property, altId, elementTypes, valueType, group)
+        internal RevisionInfo(int altId, PropertyInfo? property, string[] elementTypes, string valueType, DateTimeOffset rev) :
+            base(property, altId, elementTypes, valueType)
         {
             Revision = rev;
         }

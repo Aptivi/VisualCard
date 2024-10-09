@@ -41,13 +41,13 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string[]? Values { get; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            new ExtraInfo().FromStringVcardInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringVcardStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
+            new ExtraInfo().FromStringVcardInternal(value, property, altId, elementTypes, valueType, cardVersion);
 
         internal override string ToStringVcardInternal(Version cardVersion) =>
             string.Join(VcardConstants._fieldDelimiter.ToString(), Values);
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BaseCardPartInfo FromStringVcardInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
             string[] split = value.Split(VcardConstants._argumentDelimiter);
 
@@ -58,7 +58,7 @@ namespace VisualCard.Parts.Implementations
 
             // Populate the fields
             string[] _values = split[1].Split(VcardConstants._fieldDelimiter);
-            ExtraInfo _extraInfo = new(altId, property, elementTypes, valueType, group, _extra, _values);
+            ExtraInfo _extraInfo = new(altId, property, elementTypes, valueType, _extra, _values);
             return _extraInfo;
         }
 
@@ -116,8 +116,8 @@ namespace VisualCard.Parts.Implementations
 
         internal ExtraInfo() { }
 
-        internal ExtraInfo(int altId, PropertyInfo? property, string[] elementTypes, string valueType, string group, string keyName, string[] values) :
-            base(property, altId, elementTypes, valueType, group)
+        internal ExtraInfo(int altId, PropertyInfo? property, string[] elementTypes, string valueType, string keyName, string[] values) :
+            base(property, altId, elementTypes, valueType)
         {
             KeyName = keyName;
             Values = values;
