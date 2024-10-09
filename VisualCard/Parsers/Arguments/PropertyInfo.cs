@@ -119,7 +119,7 @@ namespace VisualCard.Parsers.Arguments
             line = line.Trim();
             string value = line.Substring(line.IndexOf(VcardConstants._argumentDelimiter) + 1).Trim();
             string prefixWithArgs = line.Substring(0, line.IndexOf(VcardConstants._argumentDelimiter)).Trim();
-            string prefix = (prefixWithArgs.Contains($"{VcardConstants._fieldDelimiter}") ? prefixWithArgs.Substring(0, prefixWithArgs.IndexOf($"{VcardConstants._fieldDelimiter}")) : prefixWithArgs).ToUpper();
+            string prefix = (prefixWithArgs.Contains($"{VcardConstants._fieldDelimiter}") ? prefixWithArgs.Substring(0, prefixWithArgs.IndexOf($"{VcardConstants._fieldDelimiter}")) : prefixWithArgs).Trim().ToUpper();
             string args = prefixWithArgs.Contains($"{VcardConstants._fieldDelimiter}") ? prefixWithArgs.Substring(prefix.Length + 1) : "";
             string[] splitArgs = args.Split([VcardConstants._fieldDelimiter], StringSplitOptions.RemoveEmptyEntries);
             var finalArgs = splitArgs.Select((arg) => new ArgumentInfo(arg)).ToArray();
@@ -136,7 +136,7 @@ namespace VisualCard.Parsers.Arguments
             this.rawValue = value;
             this.prefix = prefix;
             this.arguments = finalArgs;
-            this.group = group;
+            this.group = group.Trim();
         }
     }
 }

@@ -13,7 +13,7 @@ ADR;TYPE=home:;;Street Address;;;;
 EMAIL;TYPE=HOME:neville.nvs@gmail.com
 EMAIL;TYPE=WORK:neville.nvs@nvsc.com
 FN:Neville Navasquillo
-IMPP;TYPE=HOME:aim:IM
+A.IMPP;TYPE=HOME:aim:IM
 IMPP;TYPE=HOME:msn:Windows LIVE
 IMPP;TYPE=HOME:ymsgr:Yahoo
 N;ALTID=0;LANGUAGE=en:Navasquillo;Neville;Neville\,Nevile;Mr.;Jr.
