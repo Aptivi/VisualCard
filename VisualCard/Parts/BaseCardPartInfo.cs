@@ -22,7 +22,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using VisualCard.Parsers.Arguments;
-using VisualCard.Parts.Comparers;
 
 namespace VisualCard.Parts
 {

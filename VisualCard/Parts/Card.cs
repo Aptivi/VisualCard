@@ -163,7 +163,7 @@ namespace VisualCard.Parts
 
             // Cast the values
             var value = partsArray[key];
-            BaseCardPartInfo[] parts = value.ToArray();
+            BaseCardPartInfo[] parts = [.. value];
 
             // Now, return the value
             return parts;

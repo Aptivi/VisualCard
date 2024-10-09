@@ -234,7 +234,7 @@ namespace VisualCard.Calendar.Parts
 
             // Cast the values
             var value = partsArray[key];
-            BaseCalendarPartInfo[] parts = value.ToArray();
+            BaseCalendarPartInfo[] parts = [.. value];
 
             // Now, return the value
             return parts;

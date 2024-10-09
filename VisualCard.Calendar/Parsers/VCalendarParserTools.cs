@@ -27,7 +27,6 @@ using System.Linq;
 using VisualCard.Calendar.Parts.Implementations.TimeZone;
 using VisualCard.Calendar.Parts.Implementations.Todo;
 using VisualCard.Calendar.Parts.Implementations.Legacy;
-using System.IO;
 using VisualCard.Calendar.Parts.Implementations.FreeBusy;
 using VisualCard.Parsers;
 

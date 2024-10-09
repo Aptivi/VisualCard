@@ -20,7 +20,6 @@
 using System;
 using VisualCard.Calendar.Parts;
 using VisualCard.Parsers.Arguments;
-using VisualCard.Parts;
 using VisualCard.Parts.Enums;
 
 namespace VisualCard.Calendar.Parsers

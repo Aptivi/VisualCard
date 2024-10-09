@@ -24,8 +24,6 @@ using System.Text;
 using Textify.Data.NameGen;
 using VisualCard.Parsers;
 using VisualCard.Parts;
-using VisualCard.Parts.Enums;
-using VisualCard.Parts.Implementations;
 
 namespace VisualCard.Extras.Misc
 {
