@@ -6217,6 +6217,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parsers.Arguments.PropertyInfo.Group
   nameWithType: PropertyInfo.Group
+- uid: VisualCard.Parsers.Arguments.PropertyInfo.NestedGroups
+  name: NestedGroups
+  href: api/VisualCard.Parsers.Arguments.PropertyInfo.html#VisualCard_Parsers_Arguments_PropertyInfo_NestedGroups
+  commentId: P:VisualCard.Parsers.Arguments.PropertyInfo.NestedGroups
+  fullName: VisualCard.Parsers.Arguments.PropertyInfo.NestedGroups
+  nameWithType: PropertyInfo.NestedGroups
+- uid: VisualCard.Parsers.Arguments.PropertyInfo.NestedGroups*
+  name: NestedGroups
+  href: api/VisualCard.Parsers.Arguments.PropertyInfo.html#VisualCard_Parsers_Arguments_PropertyInfo_NestedGroups_
+  commentId: Overload:VisualCard.Parsers.Arguments.PropertyInfo.NestedGroups
+  isSpec: "True"
+  fullName: VisualCard.Parsers.Arguments.PropertyInfo.NestedGroups
+  nameWithType: PropertyInfo.NestedGroups
 - uid: VisualCard.Parsers.Arguments.PropertyInfo.Prefix
   name: Prefix
   href: api/VisualCard.Parsers.Arguments.PropertyInfo.html#VisualCard_Parsers_Arguments_PropertyInfo_Prefix
@@ -7078,6 +7091,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parts.BaseCardPartInfo.IsPreferred
   nameWithType: BaseCardPartInfo.IsPreferred
+- uid: VisualCard.Parts.BaseCardPartInfo.NestedGroups
+  name: NestedGroups
+  href: api/VisualCard.Parts.BaseCardPartInfo.html#VisualCard_Parts_BaseCardPartInfo_NestedGroups
+  commentId: P:VisualCard.Parts.BaseCardPartInfo.NestedGroups
+  fullName: VisualCard.Parts.BaseCardPartInfo.NestedGroups
+  nameWithType: BaseCardPartInfo.NestedGroups
+- uid: VisualCard.Parts.BaseCardPartInfo.NestedGroups*
+  name: NestedGroups
+  href: api/VisualCard.Parts.BaseCardPartInfo.html#VisualCard_Parts_BaseCardPartInfo_NestedGroups_
+  commentId: Overload:VisualCard.Parts.BaseCardPartInfo.NestedGroups
+  isSpec: "True"
+  fullName: VisualCard.Parts.BaseCardPartInfo.NestedGroups
+  nameWithType: BaseCardPartInfo.NestedGroups
 - uid: VisualCard.Parts.BaseCardPartInfo.Property
   name: Property
   href: api/VisualCard.Parts.BaseCardPartInfo.html#VisualCard_Parts_BaseCardPartInfo_Property
@@ -7558,6 +7584,23 @@ references:
   fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).IsPreferred
   nameWithType: CardValueInfo<TValue>.IsPreferred
   nameWithType.vb: CardValueInfo(Of TValue).IsPreferred
+- uid: VisualCard.Parts.CardValueInfo`1.NestedGroups
+  name: NestedGroups
+  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_NestedGroups
+  commentId: P:VisualCard.Parts.CardValueInfo`1.NestedGroups
+  fullName: VisualCard.Parts.CardValueInfo<TValue>.NestedGroups
+  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).NestedGroups
+  nameWithType: CardValueInfo<TValue>.NestedGroups
+  nameWithType.vb: CardValueInfo(Of TValue).NestedGroups
+- uid: VisualCard.Parts.CardValueInfo`1.NestedGroups*
+  name: NestedGroups
+  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_NestedGroups_
+  commentId: Overload:VisualCard.Parts.CardValueInfo`1.NestedGroups
+  isSpec: "True"
+  fullName: VisualCard.Parts.CardValueInfo<TValue>.NestedGroups
+  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).NestedGroups
+  nameWithType: CardValueInfo<TValue>.NestedGroups
+  nameWithType.vb: CardValueInfo(Of TValue).NestedGroups
 - uid: VisualCard.Parts.CardValueInfo`1.Property
   name: Property
   href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_Property
