@@ -115,7 +115,7 @@ namespace VisualCard.Calendar.Parsers
 
                     // Get the type and its properties
                     Type calendarType = subPart is not null ? subPart.GetType() : calendar.GetType();
-                    var partType = VCalendarParserTools.GetPartType(info.Prefix, VCalendarParserTools.GetObjectTypeFromType(calendarType), CalendarVersion, calendarType);
+                    var partType = VCalendarParserTools.GetPartType(info.Prefix, CalendarVersion, calendarType);
 
                     // Check the type for allowed types
                     string[] elementTypes = VcardCommonTools.GetTypes(info.Arguments, partType.defaultType);
@@ -350,7 +350,7 @@ namespace VisualCard.Calendar.Parsers
             where TComponent : Parts.Calendar
         {
             // Requirement checks
-            var partType = VCalendarParserTools.GetPartType(expectedFieldName, VCalendarParserTools.GetObjectTypeFromComponent(component), CalendarVersion, component.GetType());
+            var partType = VCalendarParserTools.GetPartType(expectedFieldName, CalendarVersion, component.GetType());
             bool exists = false;
             switch (partType.type)
             {

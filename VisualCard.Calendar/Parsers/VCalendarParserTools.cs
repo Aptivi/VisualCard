@@ -112,7 +112,7 @@ namespace VisualCard.Calendar.Parsers
                 _ => ""
             };
 
-        internal static CalendarPartsArrayEnum GetPartsArrayEnumFromType(Type? partsArrayType, string objectType, Version cardVersion, Type componentType)
+        internal static CalendarPartsArrayEnum GetPartsArrayEnumFromType(Type? partsArrayType, Version cardVersion, Type componentType)
         {
             if (partsArrayType is null)
                 throw new NotImplementedException("Type is not provided.");
@@ -122,21 +122,21 @@ namespace VisualCard.Calendar.Parsers
             foreach (CalendarPartsArrayEnum part in enums)
             {
                 string prefix = GetPrefixFromPartsArrayEnum(part);
-                var type = GetPartType(prefix, objectType, cardVersion, componentType);
+                var type = GetPartType(prefix, cardVersion, componentType);
                 if (type.enumType == partsArrayType)
                     return part;
             }
             return CalendarPartsArrayEnum.IanaNames;
         }
 
-        internal static VCalendarPartType GetPartType(string prefix, string objectType, Version calendarVersion, Type componentType)
+        internal static VCalendarPartType GetPartType(string prefix, Version calendarVersion, Type componentType)
         {
             string[] allowedStatuses =
-                objectType == VCalendarConstants._objectVEventSpecifier && calendarVersion.Major == 2 ? ["TENTATIVE", "CONFIRMED", "CANCELLED"] :
-                objectType == VCalendarConstants._objectVEventSpecifier && calendarVersion.Major == 1 ? ["NEEDS ACTION", "SENT", "TENTATIVE", "CONFIRMED", "DECLINED", "DELEGATED"] :
-                objectType == VCalendarConstants._objectVTodoSpecifier && calendarVersion.Major == 2 ? ["NEEDS-ACTION", "COMPLETED", "IN-PROCESS", "CANCELLED"] :
-                objectType == VCalendarConstants._objectVTodoSpecifier && calendarVersion.Major == 1 ? ["NEEDS ACTION", "SENT", "ACCEPTED", "COMPLETED", "DECLINED", "DELEGATED"] :
-                objectType == VCalendarConstants._objectVJournalSpecifier ? ["DRAFT", "FINAL", "CANCELLED"] :
+                componentType == typeof(CalendarEvent) && calendarVersion.Major == 2 ? ["TENTATIVE", "CONFIRMED", "CANCELLED"] :
+                componentType == typeof(CalendarEvent) && calendarVersion.Major == 1 ? ["NEEDS ACTION", "SENT", "TENTATIVE", "CONFIRMED", "DECLINED", "DELEGATED"] :
+                componentType == typeof(CalendarTodo) && calendarVersion.Major == 2 ? ["NEEDS-ACTION", "COMPLETED", "IN-PROCESS", "CANCELLED"] :
+                componentType == typeof(CalendarTodo) && calendarVersion.Major == 1 ? ["NEEDS ACTION", "SENT", "ACCEPTED", "COMPLETED", "DECLINED", "DELEGATED"] :
+                componentType == typeof(CalendarJournal) ? ["DRAFT", "FINAL", "CANCELLED"] :
                 [];
             return prefix switch
             {
@@ -200,26 +200,6 @@ namespace VisualCard.Calendar.Parsers
                 _ => new(PartType.PartsArray, CalendarPartsArrayEnum.IanaNames, PartCardinality.Any, null, typeof(ExtraInfo), ExtraInfo.FromStringVcalendarStatic, "", "", "", [], []),
             };
         }
-
-        internal static string GetObjectTypeFromComponent<TComponent>(TComponent component)
-            where TComponent : Parts.Calendar =>
-            GetObjectTypeFromType(component.GetType(), component is CalendarOtherComponent other ? other.ComponentName : "");
-
-        internal static string GetObjectTypeFromType(Type type, string specifier = "") =>
-            type.Name switch
-            {
-                nameof(Parts.Calendar) => VCalendarConstants._objectVCalendarSpecifier,
-                nameof(CalendarEvent) => VCalendarConstants._objectVEventSpecifier,
-                nameof(CalendarTodo) => VCalendarConstants._objectVTodoSpecifier,
-                nameof(CalendarJournal) => VCalendarConstants._objectVJournalSpecifier,
-                nameof(CalendarFreeBusy) => VCalendarConstants._objectVFreeBusySpecifier,
-                nameof(CalendarTimeZone) => VCalendarConstants._objectVTimeZoneSpecifier,
-                nameof(CalendarStandard) => VCalendarConstants._objectVStandardSpecifier,
-                nameof(CalendarDaylight) => VCalendarConstants._objectVDaylightSpecifier,
-                nameof(CalendarAlarm) => VCalendarConstants._objectVAlarmSpecifier,
-                nameof(CalendarOtherComponent) => specifier,
-                _ => throw new InvalidDataException("Type is not a valid component"),
-            };
 
         private static bool TypeMatch(Type componentType, params Type[] expectedTypes) =>
             expectedTypes.Contains(componentType);

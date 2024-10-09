@@ -123,7 +123,7 @@ namespace VisualCard.Calendar.Parts
         public virtual TPart[] GetPartsArray<TPart>() where TPart : BaseCalendarPartInfo
         {
             // Get the parts enumeration according to the type
-            var key = VCalendarParserTools.GetPartsArrayEnumFromType(typeof(TPart), VCalendarConstants._objectVCalendarSpecifier, CalendarVersion, GetType());
+            var key = VCalendarParserTools.GetPartsArrayEnumFromType(typeof(TPart), CalendarVersion, GetType());
 
             // Now, return the value
             return GetPartsArray<TPart>(key);
@@ -149,7 +149,7 @@ namespace VisualCard.Calendar.Parts
                 throw new InvalidOperationException($"Base type is not BaseCalendarPartInfo [{partType.BaseType.Name}] and the part type is [{partType.Name}] that doesn't represent calendar part.");
 
             // Get the parts enumeration according to the type
-            var key = VCalendarParserTools.GetPartsArrayEnumFromType(partType, VCalendarConstants._objectVCalendarSpecifier, CalendarVersion, GetType());
+            var key = VCalendarParserTools.GetPartsArrayEnumFromType(partType, CalendarVersion, GetType());
 
             // Now, return the value
             return GetPartsArray(partType, key);
@@ -178,7 +178,7 @@ namespace VisualCard.Calendar.Parts
         public virtual BaseCalendarPartInfo[] GetPartsArray(CalendarPartsArrayEnum key)
         {
             string prefix = VCalendarParserTools.GetPrefixFromPartsArrayEnum(key);
-            var partType = VCalendarParserTools.GetPartType(prefix, "", CalendarVersion, typeof(Calendar));
+            var partType = VCalendarParserTools.GetPartType(prefix, CalendarVersion, typeof(Calendar));
             if (partType.enumType is null)
                 throw new ArgumentException($"Enumeration type is not found for {key}");
             return GetPartsArray(partType.enumType, key, CalendarVersion, partsArray);
@@ -188,7 +188,7 @@ namespace VisualCard.Calendar.Parts
             where TPart : BaseCalendarPartInfo
         {
             // Get the parts enumeration according to the type
-            var key = VCalendarParserTools.GetPartsArrayEnumFromType(typeof(TPart), VCalendarConstants._objectVCalendarSpecifier, version, GetType());
+            var key = VCalendarParserTools.GetPartsArrayEnumFromType(typeof(TPart), version, GetType());
 
             // Now, return the value
             return GetPartsArray<TPart>(key, version, partsArray);
@@ -201,7 +201,7 @@ namespace VisualCard.Calendar.Parts
         internal BaseCalendarPartInfo[] GetPartsArray(Type partType, Version version, Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray)
         {
             // Get the parts enumeration according to the type
-            var key = VCalendarParserTools.GetPartsArrayEnumFromType(typeof(BaseCalendarPartInfo), VCalendarConstants._objectVCalendarSpecifier, version, GetType());
+            var key = VCalendarParserTools.GetPartsArrayEnumFromType(typeof(BaseCalendarPartInfo), version, GetType());
 
             // Now, return the value
             return GetPartsArray(partType, key, version, partsArray);
@@ -211,7 +211,7 @@ namespace VisualCard.Calendar.Parts
         {
             // Check for version support
             string prefix = VCalendarParserTools.GetPrefixFromPartsArrayEnum(key);
-            var type = VCalendarParserTools.GetPartType(prefix, "", version, GetType());
+            var type = VCalendarParserTools.GetPartType(prefix, version, GetType());
             if (!type.minimumVersionCondition(version))
                 return [];
 
@@ -252,7 +252,7 @@ namespace VisualCard.Calendar.Parts
         {
             // Check for version support
             string prefix = VCalendarParserTools.GetPrefixFromStringsEnum(key);
-            var partType = VCalendarParserTools.GetPartType(prefix, "", version, GetType());
+            var partType = VCalendarParserTools.GetPartType(prefix, version, GetType());
             if (!partType.minimumVersionCondition(version))
                 return [];
 
@@ -277,7 +277,7 @@ namespace VisualCard.Calendar.Parts
         {
             // Check for version support
             string prefix = VCalendarParserTools.GetPrefixFromIntegersEnum(key);
-            var partType = VCalendarParserTools.GetPartType(prefix, "", version, GetType());
+            var partType = VCalendarParserTools.GetPartType(prefix, version, GetType());
             if (!partType.minimumVersionCondition(version))
                 return [];
 
@@ -316,7 +316,7 @@ namespace VisualCard.Calendar.Parts
 
                 // Get the prefix
                 string prefix = VCalendarParserTools.GetPrefixFromStringsEnum(stringEnum);
-                var type = VCalendarParserTools.GetPartType(prefix, objectType, version, GetType());
+                var type = VCalendarParserTools.GetPartType(prefix, version, GetType());
                 string defaultType = type.defaultType;
                 string defaultValueType = type.defaultValueType;
 
@@ -346,7 +346,7 @@ namespace VisualCard.Calendar.Parts
 
                 // Get the prefix
                 string prefix = VCalendarParserTools.GetPrefixFromIntegersEnum(integerEnum);
-                var type = VCalendarParserTools.GetPartType(prefix, objectType, version, GetType());
+                var type = VCalendarParserTools.GetPartType(prefix, version, GetType());
                 string defaultType = type.defaultType;
                 string defaultValueType = type.defaultValueType;
 
@@ -376,7 +376,7 @@ namespace VisualCard.Calendar.Parts
 
                 // Get the prefix
                 string prefix = VCalendarParserTools.GetPrefixFromPartsArrayEnum(partsArrayEnum);
-                var type = VCalendarParserTools.GetPartType(prefix, objectType, version, GetType());
+                var type = VCalendarParserTools.GetPartType(prefix, version, GetType());
                 string defaultType = type.defaultType;
                 string defaultValueType = type.defaultValueType;
 
@@ -516,16 +516,16 @@ namespace VisualCard.Calendar.Parts
             => !a.Equals(b);
 
         internal virtual void AddPartToArray(CalendarPartsArrayEnum key, BaseCalendarPartInfo value) =>
-            AddPartToArray(key, value, version, partsArray, VCalendarConstants._objectVCalendarSpecifier);
+            AddPartToArray(key, value, version, partsArray);
 
-        internal virtual void AddPartToArray(CalendarPartsArrayEnum key, BaseCalendarPartInfo value, Version version, Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray, string objectType)
+        internal virtual void AddPartToArray(CalendarPartsArrayEnum key, BaseCalendarPartInfo value, Version version, Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray)
         {
             if (value is null)
                 return;
 
             // Get the appropriate type and check it
             string prefix = VCalendarParserTools.GetPrefixFromPartsArrayEnum(key);
-            var partType = VCalendarParserTools.GetPartType(prefix, objectType, version, GetType());
+            var partType = VCalendarParserTools.GetPartType(prefix, version, GetType());
             var enumType = partType.enumType;
             if (value.GetType() != enumType)
                 return;
@@ -547,16 +547,16 @@ namespace VisualCard.Calendar.Parts
         }
 
         internal virtual void AddString(CalendarStringsEnum key, CalendarValueInfo<string> value) =>
-            AddString(key, value, version, strings, VCalendarConstants._objectVCalendarSpecifier);
+            AddString(key, value, version, strings);
 
-        internal virtual void AddString(CalendarStringsEnum key, CalendarValueInfo<string> value, Version version, Dictionary<CalendarStringsEnum, List<CalendarValueInfo<string>>> strings, string objectType)
+        internal virtual void AddString(CalendarStringsEnum key, CalendarValueInfo<string> value, Version version, Dictionary<CalendarStringsEnum, List<CalendarValueInfo<string>>> strings)
         {
             if (value is null || string.IsNullOrEmpty(value.Value))
                 return;
 
             // Get the appropriate type
             string prefix = VCalendarParserTools.GetPrefixFromStringsEnum(key);
-            var partType = VCalendarParserTools.GetPartType(prefix, objectType, version, GetType());
+            var partType = VCalendarParserTools.GetPartType(prefix, version, GetType());
 
             // If we don't have this key yet, add it.
             if (!strings.ContainsKey(key))
@@ -575,16 +575,16 @@ namespace VisualCard.Calendar.Parts
         }
 
         internal virtual void AddInteger(CalendarIntegersEnum key, CalendarValueInfo<double> value) =>
-            AddInteger(key, value, version, integers, VCalendarConstants._objectVCalendarSpecifier);
+            AddInteger(key, value, version, integers);
 
-        internal virtual void AddInteger(CalendarIntegersEnum key, CalendarValueInfo<double> value, Version version, Dictionary<CalendarIntegersEnum, List<CalendarValueInfo<double>>> integers, string objectType)
+        internal virtual void AddInteger(CalendarIntegersEnum key, CalendarValueInfo<double> value, Version version, Dictionary<CalendarIntegersEnum, List<CalendarValueInfo<double>>> integers)
         {
             if (value is null || value.Value < 0)
                 return;
 
             // Get the appropriate type
             string prefix = VCalendarParserTools.GetPrefixFromIntegersEnum(key);
-            var partType = VCalendarParserTools.GetPartType(prefix, objectType, version, GetType());
+            var partType = VCalendarParserTools.GetPartType(prefix, version, GetType());
 
             // If we don't have this key yet, add it.
             if (!integers.ContainsKey(key))
