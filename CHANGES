@@ -1,16 +1,10 @@
-We are sorry for slowing down card parsing in v3.0.0, but this update improves the parsing speed in that regard.
-
-VisualCard has become refreshed, again! This time, in the internals. We've made some of the newsworthy changes that necessitate making a release to bring back performance! As an apology, we've also added features, like better support for nested groups and actual access to `PropertyInfo`.
+We've made this release to update libraries
 
 ### Changes
 
 This release contains a variety of changes, including, but not limited to:
 
-- `[+]` Added `PropertyInfo`
-- `[+]` Added part dictionary properties (strings, integers, and parts array instances)
-- `[+]` Added support for nested property groups
-- `[*]` Better support for whitespace padded properties and their arguments
-- `[*]` General improvements and bug fixes
+- `[*]` Updated libraries
 
 Review the commit history if you want to get a deep insight about the changes.
 
