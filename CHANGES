@@ -1,10 +1,12 @@
-We've made this release to update Textify to boost the performance again.
+We've made this release to make some improvements regarding value interoperability.
 
 ### Changes
 
 This release contains a variety of changes, including, but not limited to:
 
-- `[*]` Updated Textify
+- `[*]` Merged CalendarValueInfo and CardValueInfo
+- `[*]` ValueInfo equality comparison now also compares the values
+- `[*]` General improvements
 
 Review the commit history if you want to get a deep insight about the changes.
 
