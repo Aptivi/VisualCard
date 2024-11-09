@@ -61,7 +61,7 @@ namespace VisualCard.Parts
         /// Nested property groups
         /// </summary>
         public string[] NestedGroups =>
-            Group.Split('.');
+            Property?.NestedGroups ?? [];
 
         /// <summary>
         /// Value
