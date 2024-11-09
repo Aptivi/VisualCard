@@ -34,22 +34,22 @@ namespace VisualCard.Parts
         /// <summary>
         /// Property information containing details about this property that this class instance was created from
         /// </summary>
-        public virtual PropertyInfo? Property { get; internal set; }
+        public PropertyInfo? Property { get; internal set; }
 
         /// <summary>
         /// Alternative ID. -1 if unspecified.
         /// </summary>
-        public virtual int AltId { get; internal set; }
+        public int AltId { get; internal set; }
 
         /// <summary>
         /// Card element type (home, work, ...)
         /// </summary>
-        public virtual string[] ElementTypes { get; internal set; } = [];
+        public string[] ElementTypes { get; internal set; } = [];
 
         /// <summary>
         /// Value type (usually set by VALUE=)
         /// </summary>
-        public virtual string ValueType { get; internal set; } = "";
+        public string ValueType { get; internal set; } = "";
 
         /// <summary>
         /// Property group
@@ -64,9 +64,9 @@ namespace VisualCard.Parts
             Property?.NestedGroups ?? [];
 
         /// <summary>
-        /// Value
+        /// Parsed value
         /// </summary>
-        public virtual TValue Value { get; internal set; }
+        public TValue Value { get; internal set; }
 
         /// <summary>
         /// Is this part preferred?
@@ -146,7 +146,7 @@ namespace VisualCard.Parts
         public static bool operator !=(ValueInfo<TValue> left, ValueInfo<TValue> right) =>
             !(left == right);
 
-        internal virtual bool EqualsInternal(ValueInfo<TValue> source, ValueInfo<TValue> target) =>
+        internal bool EqualsInternal(ValueInfo<TValue> source, ValueInfo<TValue> target) =>
             true;
 
         internal ValueInfo(PropertyInfo? property, int altId, string[] elementTypes, string valueType, TValue? value)
