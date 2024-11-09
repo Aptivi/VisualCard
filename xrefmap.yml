@@ -2514,226 +2514,6 @@ references:
   fullName.vb: VisualCard.Calendar.Parts.CalendarTodo.<>
   nameWithType: CalendarTodo.operator !=
   nameWithType.vb: CalendarTodo.<>
-- uid: VisualCard.Calendar.Parts.CalendarValueInfo`1
-  name: CalendarValueInfo<TValue>
-  href: api/VisualCard.Calendar.Parts.CalendarValueInfo-1.html
-  commentId: T:VisualCard.Calendar.Parts.CalendarValueInfo`1
-  name.vb: CalendarValueInfo(Of TValue)
-  fullName: VisualCard.Calendar.Parts.CalendarValueInfo<TValue>
-  fullName.vb: VisualCard.Calendar.Parts.CalendarValueInfo(Of TValue)
-  nameWithType: CalendarValueInfo<TValue>
-  nameWithType.vb: CalendarValueInfo(Of TValue)
-- uid: VisualCard.Calendar.Parts.CalendarValueInfo`1.ElementTypes
-  name: ElementTypes
-  href: api/VisualCard.Calendar.Parts.CalendarValueInfo-1.html#VisualCard_Calendar_Parts_CalendarValueInfo_1_ElementTypes
-  commentId: P:VisualCard.Calendar.Parts.CalendarValueInfo`1.ElementTypes
-  fullName: VisualCard.Calendar.Parts.CalendarValueInfo<TValue>.ElementTypes
-  fullName.vb: VisualCard.Calendar.Parts.CalendarValueInfo(Of TValue).ElementTypes
-  nameWithType: CalendarValueInfo<TValue>.ElementTypes
-  nameWithType.vb: CalendarValueInfo(Of TValue).ElementTypes
-- uid: VisualCard.Calendar.Parts.CalendarValueInfo`1.ElementTypes*
-  name: ElementTypes
-  href: api/VisualCard.Calendar.Parts.CalendarValueInfo-1.html#VisualCard_Calendar_Parts_CalendarValueInfo_1_ElementTypes_
-  commentId: Overload:VisualCard.Calendar.Parts.CalendarValueInfo`1.ElementTypes
-  isSpec: "True"
-  fullName: VisualCard.Calendar.Parts.CalendarValueInfo<TValue>.ElementTypes
-  fullName.vb: VisualCard.Calendar.Parts.CalendarValueInfo(Of TValue).ElementTypes
-  nameWithType: CalendarValueInfo<TValue>.ElementTypes
-  nameWithType.vb: CalendarValueInfo(Of TValue).ElementTypes
-- uid: VisualCard.Calendar.Parts.CalendarValueInfo`1.Equals(System.Object)
-  name: Equals(object)
-  href: api/VisualCard.Calendar.Parts.CalendarValueInfo-1.html#VisualCard_Calendar_Parts_CalendarValueInfo_1_Equals_System_Object_
-  commentId: M:VisualCard.Calendar.Parts.CalendarValueInfo`1.Equals(System.Object)
-  name.vb: Equals(Object)
-  fullName: VisualCard.Calendar.Parts.CalendarValueInfo<TValue>.Equals(object)
-  fullName.vb: VisualCard.Calendar.Parts.CalendarValueInfo(Of TValue).Equals(Object)
-  nameWithType: CalendarValueInfo<TValue>.Equals(object)
-  nameWithType.vb: CalendarValueInfo(Of TValue).Equals(Object)
-- uid: VisualCard.Calendar.Parts.CalendarValueInfo`1.Equals(VisualCard.Calendar.Parts.CalendarValueInfo{`0})
-  name: Equals(CalendarValueInfo<TValue>)
-  href: api/VisualCard.Calendar.Parts.CalendarValueInfo-1.html#VisualCard_Calendar_Parts_CalendarValueInfo_1_Equals_VisualCard_Calendar_Parts_CalendarValueInfo__0__
-  commentId: M:VisualCard.Calendar.Parts.CalendarValueInfo`1.Equals(VisualCard.Calendar.Parts.CalendarValueInfo{`0})
-  name.vb: Equals(CalendarValueInfo(Of TValue))
-  fullName: VisualCard.Calendar.Parts.CalendarValueInfo<TValue>.Equals(VisualCard.Calendar.Parts.CalendarValueInfo<TValue>)
-  fullName.vb: VisualCard.Calendar.Parts.CalendarValueInfo(Of TValue).Equals(VisualCard.Calendar.Parts.CalendarValueInfo(Of TValue))
-  nameWithType: CalendarValueInfo<TValue>.Equals(CalendarValueInfo<TValue>)
-  nameWithType.vb: CalendarValueInfo(Of TValue).Equals(CalendarValueInfo(Of TValue))
-- uid: VisualCard.Calendar.Parts.CalendarValueInfo`1.Equals(VisualCard.Calendar.Parts.CalendarValueInfo{`0},VisualCard.Calendar.Parts.CalendarValueInfo{`0})
-  name: Equals(CalendarValueInfo<TValue>, CalendarValueInfo<TValue>)
-  href: api/VisualCard.Calendar.Parts.CalendarValueInfo-1.html#VisualCard_Calendar_Parts_CalendarValueInfo_1_Equals_VisualCard_Calendar_Parts_CalendarValueInfo__0__VisualCard_Calendar_Parts_CalendarValueInfo__0__
-  commentId: M:VisualCard.Calendar.Parts.CalendarValueInfo`1.Equals(VisualCard.Calendar.Parts.CalendarValueInfo{`0},VisualCard.Calendar.Parts.CalendarValueInfo{`0})
-  name.vb: Equals(CalendarValueInfo(Of TValue), CalendarValueInfo(Of TValue))
-  fullName: VisualCard.Calendar.Parts.CalendarValueInfo<TValue>.Equals(VisualCard.Calendar.Parts.CalendarValueInfo<TValue>, VisualCard.Calendar.Parts.CalendarValueInfo<TValue>)
-  fullName.vb: VisualCard.Calendar.Parts.CalendarValueInfo(Of TValue).Equals(VisualCard.Calendar.Parts.CalendarValueInfo(Of TValue), VisualCard.Calendar.Parts.CalendarValueInfo(Of TValue))
-  nameWithType: CalendarValueInfo<TValue>.Equals(CalendarValueInfo<TValue>, CalendarValueInfo<TValue>)
-  nameWithType.vb: CalendarValueInfo(Of TValue).Equals(CalendarValueInfo(Of TValue), CalendarValueInfo(Of TValue))
-- uid: VisualCard.Calendar.Parts.CalendarValueInfo`1.Equals*
-  name: Equals
-  href: api/VisualCard.Calendar.Parts.CalendarValueInfo-1.html#VisualCard_Calendar_Parts_CalendarValueInfo_1_Equals_
-  commentId: Overload:VisualCard.Calendar.Parts.CalendarValueInfo`1.Equals
-  isSpec: "True"
-  fullName: VisualCard.Calendar.Parts.CalendarValueInfo<TValue>.Equals
-  fullName.vb: VisualCard.Calendar.Parts.CalendarValueInfo(Of TValue).Equals
-  nameWithType: CalendarValueInfo<TValue>.Equals
-  nameWithType.vb: CalendarValueInfo(Of TValue).Equals
-- uid: VisualCard.Calendar.Parts.CalendarValueInfo`1.GetHashCode
-  name: GetHashCode()
-  href: api/VisualCard.Calendar.Parts.CalendarValueInfo-1.html#VisualCard_Calendar_Parts_CalendarValueInfo_1_GetHashCode
-  commentId: M:VisualCard.Calendar.Parts.CalendarValueInfo`1.GetHashCode
-  fullName: VisualCard.Calendar.Parts.CalendarValueInfo<TValue>.GetHashCode()
-  fullName.vb: VisualCard.Calendar.Parts.CalendarValueInfo(Of TValue).GetHashCode()
-  nameWithType: CalendarValueInfo<TValue>.GetHashCode()
-  nameWithType.vb: CalendarValueInfo(Of TValue).GetHashCode()
-- uid: VisualCard.Calendar.Parts.CalendarValueInfo`1.GetHashCode*
-  name: GetHashCode
-  href: api/VisualCard.Calendar.Parts.CalendarValueInfo-1.html#VisualCard_Calendar_Parts_CalendarValueInfo_1_GetHashCode_
-  commentId: Overload:VisualCard.Calendar.Parts.CalendarValueInfo`1.GetHashCode
-  isSpec: "True"
-  fullName: VisualCard.Calendar.Parts.CalendarValueInfo<TValue>.GetHashCode
-  fullName.vb: VisualCard.Calendar.Parts.CalendarValueInfo(Of TValue).GetHashCode
-  nameWithType: CalendarValueInfo<TValue>.GetHashCode
-  nameWithType.vb: CalendarValueInfo(Of TValue).GetHashCode
-- uid: VisualCard.Calendar.Parts.CalendarValueInfo`1.Group
-  name: Group
-  href: api/VisualCard.Calendar.Parts.CalendarValueInfo-1.html#VisualCard_Calendar_Parts_CalendarValueInfo_1_Group
-  commentId: P:VisualCard.Calendar.Parts.CalendarValueInfo`1.Group
-  fullName: VisualCard.Calendar.Parts.CalendarValueInfo<TValue>.Group
-  fullName.vb: VisualCard.Calendar.Parts.CalendarValueInfo(Of TValue).Group
-  nameWithType: CalendarValueInfo<TValue>.Group
-  nameWithType.vb: CalendarValueInfo(Of TValue).Group
-- uid: VisualCard.Calendar.Parts.CalendarValueInfo`1.Group*
-  name: Group
-  href: api/VisualCard.Calendar.Parts.CalendarValueInfo-1.html#VisualCard_Calendar_Parts_CalendarValueInfo_1_Group_
-  commentId: Overload:VisualCard.Calendar.Parts.CalendarValueInfo`1.Group
-  isSpec: "True"
-  fullName: VisualCard.Calendar.Parts.CalendarValueInfo<TValue>.Group
-  fullName.vb: VisualCard.Calendar.Parts.CalendarValueInfo(Of TValue).Group
-  nameWithType: CalendarValueInfo<TValue>.Group
-  nameWithType.vb: CalendarValueInfo(Of TValue).Group
-- uid: VisualCard.Calendar.Parts.CalendarValueInfo`1.HasType(System.String)
-  name: HasType(string)
-  href: api/VisualCard.Calendar.Parts.CalendarValueInfo-1.html#VisualCard_Calendar_Parts_CalendarValueInfo_1_HasType_System_String_
-  commentId: M:VisualCard.Calendar.Parts.CalendarValueInfo`1.HasType(System.String)
-  name.vb: HasType(String)
-  fullName: VisualCard.Calendar.Parts.CalendarValueInfo<TValue>.HasType(string)
-  fullName.vb: VisualCard.Calendar.Parts.CalendarValueInfo(Of TValue).HasType(String)
-  nameWithType: CalendarValueInfo<TValue>.HasType(string)
-  nameWithType.vb: CalendarValueInfo(Of TValue).HasType(String)
-- uid: VisualCard.Calendar.Parts.CalendarValueInfo`1.HasType*
-  name: HasType
-  href: api/VisualCard.Calendar.Parts.CalendarValueInfo-1.html#VisualCard_Calendar_Parts_CalendarValueInfo_1_HasType_
-  commentId: Overload:VisualCard.Calendar.Parts.CalendarValueInfo`1.HasType
-  isSpec: "True"
-  fullName: VisualCard.Calendar.Parts.CalendarValueInfo<TValue>.HasType
-  fullName.vb: VisualCard.Calendar.Parts.CalendarValueInfo(Of TValue).HasType
-  nameWithType: CalendarValueInfo<TValue>.HasType
-  nameWithType.vb: CalendarValueInfo(Of TValue).HasType
-- uid: VisualCard.Calendar.Parts.CalendarValueInfo`1.IsPreferred
-  name: IsPreferred
-  href: api/VisualCard.Calendar.Parts.CalendarValueInfo-1.html#VisualCard_Calendar_Parts_CalendarValueInfo_1_IsPreferred
-  commentId: P:VisualCard.Calendar.Parts.CalendarValueInfo`1.IsPreferred
-  fullName: VisualCard.Calendar.Parts.CalendarValueInfo<TValue>.IsPreferred
-  fullName.vb: VisualCard.Calendar.Parts.CalendarValueInfo(Of TValue).IsPreferred
-  nameWithType: CalendarValueInfo<TValue>.IsPreferred
-  nameWithType.vb: CalendarValueInfo(Of TValue).IsPreferred
-- uid: VisualCard.Calendar.Parts.CalendarValueInfo`1.IsPreferred*
-  name: IsPreferred
-  href: api/VisualCard.Calendar.Parts.CalendarValueInfo-1.html#VisualCard_Calendar_Parts_CalendarValueInfo_1_IsPreferred_
-  commentId: Overload:VisualCard.Calendar.Parts.CalendarValueInfo`1.IsPreferred
-  isSpec: "True"
-  fullName: VisualCard.Calendar.Parts.CalendarValueInfo<TValue>.IsPreferred
-  fullName.vb: VisualCard.Calendar.Parts.CalendarValueInfo(Of TValue).IsPreferred
-  nameWithType: CalendarValueInfo<TValue>.IsPreferred
-  nameWithType.vb: CalendarValueInfo(Of TValue).IsPreferred
-- uid: VisualCard.Calendar.Parts.CalendarValueInfo`1.Property
-  name: Property
-  href: api/VisualCard.Calendar.Parts.CalendarValueInfo-1.html#VisualCard_Calendar_Parts_CalendarValueInfo_1_Property
-  commentId: P:VisualCard.Calendar.Parts.CalendarValueInfo`1.Property
-  fullName: VisualCard.Calendar.Parts.CalendarValueInfo<TValue>.Property
-  fullName.vb: VisualCard.Calendar.Parts.CalendarValueInfo(Of TValue).Property
-  nameWithType: CalendarValueInfo<TValue>.Property
-  nameWithType.vb: CalendarValueInfo(Of TValue).Property
-- uid: VisualCard.Calendar.Parts.CalendarValueInfo`1.Property*
-  name: Property
-  href: api/VisualCard.Calendar.Parts.CalendarValueInfo-1.html#VisualCard_Calendar_Parts_CalendarValueInfo_1_Property_
-  commentId: Overload:VisualCard.Calendar.Parts.CalendarValueInfo`1.Property
-  isSpec: "True"
-  fullName: VisualCard.Calendar.Parts.CalendarValueInfo<TValue>.Property
-  fullName.vb: VisualCard.Calendar.Parts.CalendarValueInfo(Of TValue).Property
-  nameWithType: CalendarValueInfo<TValue>.Property
-  nameWithType.vb: CalendarValueInfo(Of TValue).Property
-- uid: VisualCard.Calendar.Parts.CalendarValueInfo`1.Value
-  name: Value
-  href: api/VisualCard.Calendar.Parts.CalendarValueInfo-1.html#VisualCard_Calendar_Parts_CalendarValueInfo_1_Value
-  commentId: P:VisualCard.Calendar.Parts.CalendarValueInfo`1.Value
-  fullName: VisualCard.Calendar.Parts.CalendarValueInfo<TValue>.Value
-  fullName.vb: VisualCard.Calendar.Parts.CalendarValueInfo(Of TValue).Value
-  nameWithType: CalendarValueInfo<TValue>.Value
-  nameWithType.vb: CalendarValueInfo(Of TValue).Value
-- uid: VisualCard.Calendar.Parts.CalendarValueInfo`1.Value*
-  name: Value
-  href: api/VisualCard.Calendar.Parts.CalendarValueInfo-1.html#VisualCard_Calendar_Parts_CalendarValueInfo_1_Value_
-  commentId: Overload:VisualCard.Calendar.Parts.CalendarValueInfo`1.Value
-  isSpec: "True"
-  fullName: VisualCard.Calendar.Parts.CalendarValueInfo<TValue>.Value
-  fullName.vb: VisualCard.Calendar.Parts.CalendarValueInfo(Of TValue).Value
-  nameWithType: CalendarValueInfo<TValue>.Value
-  nameWithType.vb: CalendarValueInfo(Of TValue).Value
-- uid: VisualCard.Calendar.Parts.CalendarValueInfo`1.ValueType
-  name: ValueType
-  href: api/VisualCard.Calendar.Parts.CalendarValueInfo-1.html#VisualCard_Calendar_Parts_CalendarValueInfo_1_ValueType
-  commentId: P:VisualCard.Calendar.Parts.CalendarValueInfo`1.ValueType
-  fullName: VisualCard.Calendar.Parts.CalendarValueInfo<TValue>.ValueType
-  fullName.vb: VisualCard.Calendar.Parts.CalendarValueInfo(Of TValue).ValueType
-  nameWithType: CalendarValueInfo<TValue>.ValueType
-  nameWithType.vb: CalendarValueInfo(Of TValue).ValueType
-- uid: VisualCard.Calendar.Parts.CalendarValueInfo`1.ValueType*
-  name: ValueType
-  href: api/VisualCard.Calendar.Parts.CalendarValueInfo-1.html#VisualCard_Calendar_Parts_CalendarValueInfo_1_ValueType_
-  commentId: Overload:VisualCard.Calendar.Parts.CalendarValueInfo`1.ValueType
-  isSpec: "True"
-  fullName: VisualCard.Calendar.Parts.CalendarValueInfo<TValue>.ValueType
-  fullName.vb: VisualCard.Calendar.Parts.CalendarValueInfo(Of TValue).ValueType
-  nameWithType: CalendarValueInfo<TValue>.ValueType
-  nameWithType.vb: CalendarValueInfo(Of TValue).ValueType
-- uid: VisualCard.Calendar.Parts.CalendarValueInfo`1.op_Equality(VisualCard.Calendar.Parts.CalendarValueInfo{`0},VisualCard.Calendar.Parts.CalendarValueInfo{`0})
-  name: operator ==(CalendarValueInfo<TValue>, CalendarValueInfo<TValue>)
-  href: api/VisualCard.Calendar.Parts.CalendarValueInfo-1.html#VisualCard_Calendar_Parts_CalendarValueInfo_1_op_Equality_VisualCard_Calendar_Parts_CalendarValueInfo__0__VisualCard_Calendar_Parts_CalendarValueInfo__0__
-  commentId: M:VisualCard.Calendar.Parts.CalendarValueInfo`1.op_Equality(VisualCard.Calendar.Parts.CalendarValueInfo{`0},VisualCard.Calendar.Parts.CalendarValueInfo{`0})
-  name.vb: =(CalendarValueInfo(Of TValue), CalendarValueInfo(Of TValue))
-  fullName: VisualCard.Calendar.Parts.CalendarValueInfo<TValue>.operator ==(VisualCard.Calendar.Parts.CalendarValueInfo<TValue>, VisualCard.Calendar.Parts.CalendarValueInfo<TValue>)
-  fullName.vb: VisualCard.Calendar.Parts.CalendarValueInfo(Of TValue).=(VisualCard.Calendar.Parts.CalendarValueInfo(Of TValue), VisualCard.Calendar.Parts.CalendarValueInfo(Of TValue))
-  nameWithType: CalendarValueInfo<TValue>.operator ==(CalendarValueInfo<TValue>, CalendarValueInfo<TValue>)
-  nameWithType.vb: CalendarValueInfo(Of TValue).=(CalendarValueInfo(Of TValue), CalendarValueInfo(Of TValue))
-- uid: VisualCard.Calendar.Parts.CalendarValueInfo`1.op_Equality*
-  name: operator ==
-  href: api/VisualCard.Calendar.Parts.CalendarValueInfo-1.html#VisualCard_Calendar_Parts_CalendarValueInfo_1_op_Equality_
-  commentId: Overload:VisualCard.Calendar.Parts.CalendarValueInfo`1.op_Equality
-  isSpec: "True"
-  name.vb: =
-  fullName: VisualCard.Calendar.Parts.CalendarValueInfo<TValue>.operator ==
-  fullName.vb: VisualCard.Calendar.Parts.CalendarValueInfo(Of TValue).=
-  nameWithType: CalendarValueInfo<TValue>.operator ==
-  nameWithType.vb: CalendarValueInfo(Of TValue).=
-- uid: VisualCard.Calendar.Parts.CalendarValueInfo`1.op_Inequality(VisualCard.Calendar.Parts.CalendarValueInfo{`0},VisualCard.Calendar.Parts.CalendarValueInfo{`0})
-  name: operator !=(CalendarValueInfo<TValue>, CalendarValueInfo<TValue>)
-  href: api/VisualCard.Calendar.Parts.CalendarValueInfo-1.html#VisualCard_Calendar_Parts_CalendarValueInfo_1_op_Inequality_VisualCard_Calendar_Parts_CalendarValueInfo__0__VisualCard_Calendar_Parts_CalendarValueInfo__0__
-  commentId: M:VisualCard.Calendar.Parts.CalendarValueInfo`1.op_Inequality(VisualCard.Calendar.Parts.CalendarValueInfo{`0},VisualCard.Calendar.Parts.CalendarValueInfo{`0})
-  name.vb: <>(CalendarValueInfo(Of TValue), CalendarValueInfo(Of TValue))
-  fullName: VisualCard.Calendar.Parts.CalendarValueInfo<TValue>.operator !=(VisualCard.Calendar.Parts.CalendarValueInfo<TValue>, VisualCard.Calendar.Parts.CalendarValueInfo<TValue>)
-  fullName.vb: VisualCard.Calendar.Parts.CalendarValueInfo(Of TValue).<>(VisualCard.Calendar.Parts.CalendarValueInfo(Of TValue), VisualCard.Calendar.Parts.CalendarValueInfo(Of TValue))
-  nameWithType: CalendarValueInfo<TValue>.operator !=(CalendarValueInfo<TValue>, CalendarValueInfo<TValue>)
-  nameWithType.vb: CalendarValueInfo(Of TValue).<>(CalendarValueInfo(Of TValue), CalendarValueInfo(Of TValue))
-- uid: VisualCard.Calendar.Parts.CalendarValueInfo`1.op_Inequality*
-  name: operator !=
-  href: api/VisualCard.Calendar.Parts.CalendarValueInfo-1.html#VisualCard_Calendar_Parts_CalendarValueInfo_1_op_Inequality_
-  commentId: Overload:VisualCard.Calendar.Parts.CalendarValueInfo`1.op_Inequality
-  isSpec: "True"
-  name.vb: <>
-  fullName: VisualCard.Calendar.Parts.CalendarValueInfo<TValue>.operator !=
-  fullName.vb: VisualCard.Calendar.Parts.CalendarValueInfo(Of TValue).<>
-  nameWithType: CalendarValueInfo<TValue>.operator !=
-  nameWithType.vb: CalendarValueInfo(Of TValue).<>
 - uid: VisualCard.Calendar.Parts.Enums
   name: VisualCard.Calendar.Parts.Enums
   href: api/VisualCard.Calendar.Parts.Enums.html
@@ -7436,260 +7216,6 @@ references:
   fullName.vb: VisualCard.Parts.Card.<>
   nameWithType: Card.operator !=
   nameWithType.vb: Card.<>
-- uid: VisualCard.Parts.CardValueInfo`1
-  name: CardValueInfo<TValue>
-  href: api/VisualCard.Parts.CardValueInfo-1.html
-  commentId: T:VisualCard.Parts.CardValueInfo`1
-  name.vb: CardValueInfo(Of TValue)
-  fullName: VisualCard.Parts.CardValueInfo<TValue>
-  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue)
-  nameWithType: CardValueInfo<TValue>
-  nameWithType.vb: CardValueInfo(Of TValue)
-- uid: VisualCard.Parts.CardValueInfo`1.AltId
-  name: AltId
-  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_AltId
-  commentId: P:VisualCard.Parts.CardValueInfo`1.AltId
-  fullName: VisualCard.Parts.CardValueInfo<TValue>.AltId
-  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).AltId
-  nameWithType: CardValueInfo<TValue>.AltId
-  nameWithType.vb: CardValueInfo(Of TValue).AltId
-- uid: VisualCard.Parts.CardValueInfo`1.AltId*
-  name: AltId
-  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_AltId_
-  commentId: Overload:VisualCard.Parts.CardValueInfo`1.AltId
-  isSpec: "True"
-  fullName: VisualCard.Parts.CardValueInfo<TValue>.AltId
-  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).AltId
-  nameWithType: CardValueInfo<TValue>.AltId
-  nameWithType.vb: CardValueInfo(Of TValue).AltId
-- uid: VisualCard.Parts.CardValueInfo`1.ElementTypes
-  name: ElementTypes
-  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_ElementTypes
-  commentId: P:VisualCard.Parts.CardValueInfo`1.ElementTypes
-  fullName: VisualCard.Parts.CardValueInfo<TValue>.ElementTypes
-  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).ElementTypes
-  nameWithType: CardValueInfo<TValue>.ElementTypes
-  nameWithType.vb: CardValueInfo(Of TValue).ElementTypes
-- uid: VisualCard.Parts.CardValueInfo`1.ElementTypes*
-  name: ElementTypes
-  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_ElementTypes_
-  commentId: Overload:VisualCard.Parts.CardValueInfo`1.ElementTypes
-  isSpec: "True"
-  fullName: VisualCard.Parts.CardValueInfo<TValue>.ElementTypes
-  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).ElementTypes
-  nameWithType: CardValueInfo<TValue>.ElementTypes
-  nameWithType.vb: CardValueInfo(Of TValue).ElementTypes
-- uid: VisualCard.Parts.CardValueInfo`1.Equals(System.Object)
-  name: Equals(object)
-  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_Equals_System_Object_
-  commentId: M:VisualCard.Parts.CardValueInfo`1.Equals(System.Object)
-  name.vb: Equals(Object)
-  fullName: VisualCard.Parts.CardValueInfo<TValue>.Equals(object)
-  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).Equals(Object)
-  nameWithType: CardValueInfo<TValue>.Equals(object)
-  nameWithType.vb: CardValueInfo(Of TValue).Equals(Object)
-- uid: VisualCard.Parts.CardValueInfo`1.Equals(VisualCard.Parts.CardValueInfo{`0})
-  name: Equals(CardValueInfo<TValue>)
-  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_Equals_VisualCard_Parts_CardValueInfo__0__
-  commentId: M:VisualCard.Parts.CardValueInfo`1.Equals(VisualCard.Parts.CardValueInfo{`0})
-  name.vb: Equals(CardValueInfo(Of TValue))
-  fullName: VisualCard.Parts.CardValueInfo<TValue>.Equals(VisualCard.Parts.CardValueInfo<TValue>)
-  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).Equals(VisualCard.Parts.CardValueInfo(Of TValue))
-  nameWithType: CardValueInfo<TValue>.Equals(CardValueInfo<TValue>)
-  nameWithType.vb: CardValueInfo(Of TValue).Equals(CardValueInfo(Of TValue))
-- uid: VisualCard.Parts.CardValueInfo`1.Equals(VisualCard.Parts.CardValueInfo{`0},VisualCard.Parts.CardValueInfo{`0})
-  name: Equals(CardValueInfo<TValue>, CardValueInfo<TValue>)
-  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_Equals_VisualCard_Parts_CardValueInfo__0__VisualCard_Parts_CardValueInfo__0__
-  commentId: M:VisualCard.Parts.CardValueInfo`1.Equals(VisualCard.Parts.CardValueInfo{`0},VisualCard.Parts.CardValueInfo{`0})
-  name.vb: Equals(CardValueInfo(Of TValue), CardValueInfo(Of TValue))
-  fullName: VisualCard.Parts.CardValueInfo<TValue>.Equals(VisualCard.Parts.CardValueInfo<TValue>, VisualCard.Parts.CardValueInfo<TValue>)
-  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).Equals(VisualCard.Parts.CardValueInfo(Of TValue), VisualCard.Parts.CardValueInfo(Of TValue))
-  nameWithType: CardValueInfo<TValue>.Equals(CardValueInfo<TValue>, CardValueInfo<TValue>)
-  nameWithType.vb: CardValueInfo(Of TValue).Equals(CardValueInfo(Of TValue), CardValueInfo(Of TValue))
-- uid: VisualCard.Parts.CardValueInfo`1.Equals*
-  name: Equals
-  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_Equals_
-  commentId: Overload:VisualCard.Parts.CardValueInfo`1.Equals
-  isSpec: "True"
-  fullName: VisualCard.Parts.CardValueInfo<TValue>.Equals
-  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).Equals
-  nameWithType: CardValueInfo<TValue>.Equals
-  nameWithType.vb: CardValueInfo(Of TValue).Equals
-- uid: VisualCard.Parts.CardValueInfo`1.GetHashCode
-  name: GetHashCode()
-  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_GetHashCode
-  commentId: M:VisualCard.Parts.CardValueInfo`1.GetHashCode
-  fullName: VisualCard.Parts.CardValueInfo<TValue>.GetHashCode()
-  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).GetHashCode()
-  nameWithType: CardValueInfo<TValue>.GetHashCode()
-  nameWithType.vb: CardValueInfo(Of TValue).GetHashCode()
-- uid: VisualCard.Parts.CardValueInfo`1.GetHashCode*
-  name: GetHashCode
-  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_GetHashCode_
-  commentId: Overload:VisualCard.Parts.CardValueInfo`1.GetHashCode
-  isSpec: "True"
-  fullName: VisualCard.Parts.CardValueInfo<TValue>.GetHashCode
-  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).GetHashCode
-  nameWithType: CardValueInfo<TValue>.GetHashCode
-  nameWithType.vb: CardValueInfo(Of TValue).GetHashCode
-- uid: VisualCard.Parts.CardValueInfo`1.Group
-  name: Group
-  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_Group
-  commentId: P:VisualCard.Parts.CardValueInfo`1.Group
-  fullName: VisualCard.Parts.CardValueInfo<TValue>.Group
-  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).Group
-  nameWithType: CardValueInfo<TValue>.Group
-  nameWithType.vb: CardValueInfo(Of TValue).Group
-- uid: VisualCard.Parts.CardValueInfo`1.Group*
-  name: Group
-  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_Group_
-  commentId: Overload:VisualCard.Parts.CardValueInfo`1.Group
-  isSpec: "True"
-  fullName: VisualCard.Parts.CardValueInfo<TValue>.Group
-  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).Group
-  nameWithType: CardValueInfo<TValue>.Group
-  nameWithType.vb: CardValueInfo(Of TValue).Group
-- uid: VisualCard.Parts.CardValueInfo`1.HasType(System.String)
-  name: HasType(string)
-  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_HasType_System_String_
-  commentId: M:VisualCard.Parts.CardValueInfo`1.HasType(System.String)
-  name.vb: HasType(String)
-  fullName: VisualCard.Parts.CardValueInfo<TValue>.HasType(string)
-  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).HasType(String)
-  nameWithType: CardValueInfo<TValue>.HasType(string)
-  nameWithType.vb: CardValueInfo(Of TValue).HasType(String)
-- uid: VisualCard.Parts.CardValueInfo`1.HasType*
-  name: HasType
-  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_HasType_
-  commentId: Overload:VisualCard.Parts.CardValueInfo`1.HasType
-  isSpec: "True"
-  fullName: VisualCard.Parts.CardValueInfo<TValue>.HasType
-  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).HasType
-  nameWithType: CardValueInfo<TValue>.HasType
-  nameWithType.vb: CardValueInfo(Of TValue).HasType
-- uid: VisualCard.Parts.CardValueInfo`1.IsPreferred
-  name: IsPreferred
-  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_IsPreferred
-  commentId: P:VisualCard.Parts.CardValueInfo`1.IsPreferred
-  fullName: VisualCard.Parts.CardValueInfo<TValue>.IsPreferred
-  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).IsPreferred
-  nameWithType: CardValueInfo<TValue>.IsPreferred
-  nameWithType.vb: CardValueInfo(Of TValue).IsPreferred
-- uid: VisualCard.Parts.CardValueInfo`1.IsPreferred*
-  name: IsPreferred
-  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_IsPreferred_
-  commentId: Overload:VisualCard.Parts.CardValueInfo`1.IsPreferred
-  isSpec: "True"
-  fullName: VisualCard.Parts.CardValueInfo<TValue>.IsPreferred
-  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).IsPreferred
-  nameWithType: CardValueInfo<TValue>.IsPreferred
-  nameWithType.vb: CardValueInfo(Of TValue).IsPreferred
-- uid: VisualCard.Parts.CardValueInfo`1.NestedGroups
-  name: NestedGroups
-  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_NestedGroups
-  commentId: P:VisualCard.Parts.CardValueInfo`1.NestedGroups
-  fullName: VisualCard.Parts.CardValueInfo<TValue>.NestedGroups
-  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).NestedGroups
-  nameWithType: CardValueInfo<TValue>.NestedGroups
-  nameWithType.vb: CardValueInfo(Of TValue).NestedGroups
-- uid: VisualCard.Parts.CardValueInfo`1.NestedGroups*
-  name: NestedGroups
-  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_NestedGroups_
-  commentId: Overload:VisualCard.Parts.CardValueInfo`1.NestedGroups
-  isSpec: "True"
-  fullName: VisualCard.Parts.CardValueInfo<TValue>.NestedGroups
-  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).NestedGroups
-  nameWithType: CardValueInfo<TValue>.NestedGroups
-  nameWithType.vb: CardValueInfo(Of TValue).NestedGroups
-- uid: VisualCard.Parts.CardValueInfo`1.Property
-  name: Property
-  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_Property
-  commentId: P:VisualCard.Parts.CardValueInfo`1.Property
-  fullName: VisualCard.Parts.CardValueInfo<TValue>.Property
-  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).Property
-  nameWithType: CardValueInfo<TValue>.Property
-  nameWithType.vb: CardValueInfo(Of TValue).Property
-- uid: VisualCard.Parts.CardValueInfo`1.Property*
-  name: Property
-  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_Property_
-  commentId: Overload:VisualCard.Parts.CardValueInfo`1.Property
-  isSpec: "True"
-  fullName: VisualCard.Parts.CardValueInfo<TValue>.Property
-  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).Property
-  nameWithType: CardValueInfo<TValue>.Property
-  nameWithType.vb: CardValueInfo(Of TValue).Property
-- uid: VisualCard.Parts.CardValueInfo`1.Value
-  name: Value
-  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_Value
-  commentId: P:VisualCard.Parts.CardValueInfo`1.Value
-  fullName: VisualCard.Parts.CardValueInfo<TValue>.Value
-  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).Value
-  nameWithType: CardValueInfo<TValue>.Value
-  nameWithType.vb: CardValueInfo(Of TValue).Value
-- uid: VisualCard.Parts.CardValueInfo`1.Value*
-  name: Value
-  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_Value_
-  commentId: Overload:VisualCard.Parts.CardValueInfo`1.Value
-  isSpec: "True"
-  fullName: VisualCard.Parts.CardValueInfo<TValue>.Value
-  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).Value
-  nameWithType: CardValueInfo<TValue>.Value
-  nameWithType.vb: CardValueInfo(Of TValue).Value
-- uid: VisualCard.Parts.CardValueInfo`1.ValueType
-  name: ValueType
-  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_ValueType
-  commentId: P:VisualCard.Parts.CardValueInfo`1.ValueType
-  fullName: VisualCard.Parts.CardValueInfo<TValue>.ValueType
-  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).ValueType
-  nameWithType: CardValueInfo<TValue>.ValueType
-  nameWithType.vb: CardValueInfo(Of TValue).ValueType
-- uid: VisualCard.Parts.CardValueInfo`1.ValueType*
-  name: ValueType
-  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_ValueType_
-  commentId: Overload:VisualCard.Parts.CardValueInfo`1.ValueType
-  isSpec: "True"
-  fullName: VisualCard.Parts.CardValueInfo<TValue>.ValueType
-  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).ValueType
-  nameWithType: CardValueInfo<TValue>.ValueType
-  nameWithType.vb: CardValueInfo(Of TValue).ValueType
-- uid: VisualCard.Parts.CardValueInfo`1.op_Equality(VisualCard.Parts.CardValueInfo{`0},VisualCard.Parts.CardValueInfo{`0})
-  name: operator ==(CardValueInfo<TValue>, CardValueInfo<TValue>)
-  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_op_Equality_VisualCard_Parts_CardValueInfo__0__VisualCard_Parts_CardValueInfo__0__
-  commentId: M:VisualCard.Parts.CardValueInfo`1.op_Equality(VisualCard.Parts.CardValueInfo{`0},VisualCard.Parts.CardValueInfo{`0})
-  name.vb: =(CardValueInfo(Of TValue), CardValueInfo(Of TValue))
-  fullName: VisualCard.Parts.CardValueInfo<TValue>.operator ==(VisualCard.Parts.CardValueInfo<TValue>, VisualCard.Parts.CardValueInfo<TValue>)
-  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).=(VisualCard.Parts.CardValueInfo(Of TValue), VisualCard.Parts.CardValueInfo(Of TValue))
-  nameWithType: CardValueInfo<TValue>.operator ==(CardValueInfo<TValue>, CardValueInfo<TValue>)
-  nameWithType.vb: CardValueInfo(Of TValue).=(CardValueInfo(Of TValue), CardValueInfo(Of TValue))
-- uid: VisualCard.Parts.CardValueInfo`1.op_Equality*
-  name: operator ==
-  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_op_Equality_
-  commentId: Overload:VisualCard.Parts.CardValueInfo`1.op_Equality
-  isSpec: "True"
-  name.vb: =
-  fullName: VisualCard.Parts.CardValueInfo<TValue>.operator ==
-  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).=
-  nameWithType: CardValueInfo<TValue>.operator ==
-  nameWithType.vb: CardValueInfo(Of TValue).=
-- uid: VisualCard.Parts.CardValueInfo`1.op_Inequality(VisualCard.Parts.CardValueInfo{`0},VisualCard.Parts.CardValueInfo{`0})
-  name: operator !=(CardValueInfo<TValue>, CardValueInfo<TValue>)
-  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_op_Inequality_VisualCard_Parts_CardValueInfo__0__VisualCard_Parts_CardValueInfo__0__
-  commentId: M:VisualCard.Parts.CardValueInfo`1.op_Inequality(VisualCard.Parts.CardValueInfo{`0},VisualCard.Parts.CardValueInfo{`0})
-  name.vb: <>(CardValueInfo(Of TValue), CardValueInfo(Of TValue))
-  fullName: VisualCard.Parts.CardValueInfo<TValue>.operator !=(VisualCard.Parts.CardValueInfo<TValue>, VisualCard.Parts.CardValueInfo<TValue>)
-  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).<>(VisualCard.Parts.CardValueInfo(Of TValue), VisualCard.Parts.CardValueInfo(Of TValue))
-  nameWithType: CardValueInfo<TValue>.operator !=(CardValueInfo<TValue>, CardValueInfo<TValue>)
-  nameWithType.vb: CardValueInfo(Of TValue).<>(CardValueInfo(Of TValue), CardValueInfo(Of TValue))
-- uid: VisualCard.Parts.CardValueInfo`1.op_Inequality*
-  name: operator !=
-  href: api/VisualCard.Parts.CardValueInfo-1.html#VisualCard_Parts_CardValueInfo_1_op_Inequality_
-  commentId: Overload:VisualCard.Parts.CardValueInfo`1.op_Inequality
-  isSpec: "True"
-  name.vb: <>
-  fullName: VisualCard.Parts.CardValueInfo<TValue>.operator !=
-  fullName.vb: VisualCard.Parts.CardValueInfo(Of TValue).<>
-  nameWithType: CardValueInfo<TValue>.operator !=
-  nameWithType.vb: CardValueInfo(Of TValue).<>
 - uid: VisualCard.Parts.Enums
   name: VisualCard.Parts.Enums
   href: api/VisualCard.Parts.Enums.html
@@ -10159,3 +9685,257 @@ references:
   fullName.vb: VisualCard.Parts.Implementations.XmlInfo.<>
   nameWithType: XmlInfo.operator !=
   nameWithType.vb: XmlInfo.<>
+- uid: VisualCard.Parts.ValueInfo`1
+  name: ValueInfo<TValue>
+  href: api/VisualCard.Parts.ValueInfo-1.html
+  commentId: T:VisualCard.Parts.ValueInfo`1
+  name.vb: ValueInfo(Of TValue)
+  fullName: VisualCard.Parts.ValueInfo<TValue>
+  fullName.vb: VisualCard.Parts.ValueInfo(Of TValue)
+  nameWithType: ValueInfo<TValue>
+  nameWithType.vb: ValueInfo(Of TValue)
+- uid: VisualCard.Parts.ValueInfo`1.AltId
+  name: AltId
+  href: api/VisualCard.Parts.ValueInfo-1.html#VisualCard_Parts_ValueInfo_1_AltId
+  commentId: P:VisualCard.Parts.ValueInfo`1.AltId
+  fullName: VisualCard.Parts.ValueInfo<TValue>.AltId
+  fullName.vb: VisualCard.Parts.ValueInfo(Of TValue).AltId
+  nameWithType: ValueInfo<TValue>.AltId
+  nameWithType.vb: ValueInfo(Of TValue).AltId
+- uid: VisualCard.Parts.ValueInfo`1.AltId*
+  name: AltId
+  href: api/VisualCard.Parts.ValueInfo-1.html#VisualCard_Parts_ValueInfo_1_AltId_
+  commentId: Overload:VisualCard.Parts.ValueInfo`1.AltId
+  isSpec: "True"
+  fullName: VisualCard.Parts.ValueInfo<TValue>.AltId
+  fullName.vb: VisualCard.Parts.ValueInfo(Of TValue).AltId
+  nameWithType: ValueInfo<TValue>.AltId
+  nameWithType.vb: ValueInfo(Of TValue).AltId
+- uid: VisualCard.Parts.ValueInfo`1.ElementTypes
+  name: ElementTypes
+  href: api/VisualCard.Parts.ValueInfo-1.html#VisualCard_Parts_ValueInfo_1_ElementTypes
+  commentId: P:VisualCard.Parts.ValueInfo`1.ElementTypes
+  fullName: VisualCard.Parts.ValueInfo<TValue>.ElementTypes
+  fullName.vb: VisualCard.Parts.ValueInfo(Of TValue).ElementTypes
+  nameWithType: ValueInfo<TValue>.ElementTypes
+  nameWithType.vb: ValueInfo(Of TValue).ElementTypes
+- uid: VisualCard.Parts.ValueInfo`1.ElementTypes*
+  name: ElementTypes
+  href: api/VisualCard.Parts.ValueInfo-1.html#VisualCard_Parts_ValueInfo_1_ElementTypes_
+  commentId: Overload:VisualCard.Parts.ValueInfo`1.ElementTypes
+  isSpec: "True"
+  fullName: VisualCard.Parts.ValueInfo<TValue>.ElementTypes
+  fullName.vb: VisualCard.Parts.ValueInfo(Of TValue).ElementTypes
+  nameWithType: ValueInfo<TValue>.ElementTypes
+  nameWithType.vb: ValueInfo(Of TValue).ElementTypes
+- uid: VisualCard.Parts.ValueInfo`1.Equals(System.Object)
+  name: Equals(object)
+  href: api/VisualCard.Parts.ValueInfo-1.html#VisualCard_Parts_ValueInfo_1_Equals_System_Object_
+  commentId: M:VisualCard.Parts.ValueInfo`1.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: VisualCard.Parts.ValueInfo<TValue>.Equals(object)
+  fullName.vb: VisualCard.Parts.ValueInfo(Of TValue).Equals(Object)
+  nameWithType: ValueInfo<TValue>.Equals(object)
+  nameWithType.vb: ValueInfo(Of TValue).Equals(Object)
+- uid: VisualCard.Parts.ValueInfo`1.Equals(VisualCard.Parts.ValueInfo{`0})
+  name: Equals(ValueInfo<TValue>)
+  href: api/VisualCard.Parts.ValueInfo-1.html#VisualCard_Parts_ValueInfo_1_Equals_VisualCard_Parts_ValueInfo__0__
+  commentId: M:VisualCard.Parts.ValueInfo`1.Equals(VisualCard.Parts.ValueInfo{`0})
+  name.vb: Equals(ValueInfo(Of TValue))
+  fullName: VisualCard.Parts.ValueInfo<TValue>.Equals(VisualCard.Parts.ValueInfo<TValue>)
+  fullName.vb: VisualCard.Parts.ValueInfo(Of TValue).Equals(VisualCard.Parts.ValueInfo(Of TValue))
+  nameWithType: ValueInfo<TValue>.Equals(ValueInfo<TValue>)
+  nameWithType.vb: ValueInfo(Of TValue).Equals(ValueInfo(Of TValue))
+- uid: VisualCard.Parts.ValueInfo`1.Equals(VisualCard.Parts.ValueInfo{`0},VisualCard.Parts.ValueInfo{`0})
+  name: Equals(ValueInfo<TValue>, ValueInfo<TValue>)
+  href: api/VisualCard.Parts.ValueInfo-1.html#VisualCard_Parts_ValueInfo_1_Equals_VisualCard_Parts_ValueInfo__0__VisualCard_Parts_ValueInfo__0__
+  commentId: M:VisualCard.Parts.ValueInfo`1.Equals(VisualCard.Parts.ValueInfo{`0},VisualCard.Parts.ValueInfo{`0})
+  name.vb: Equals(ValueInfo(Of TValue), ValueInfo(Of TValue))
+  fullName: VisualCard.Parts.ValueInfo<TValue>.Equals(VisualCard.Parts.ValueInfo<TValue>, VisualCard.Parts.ValueInfo<TValue>)
+  fullName.vb: VisualCard.Parts.ValueInfo(Of TValue).Equals(VisualCard.Parts.ValueInfo(Of TValue), VisualCard.Parts.ValueInfo(Of TValue))
+  nameWithType: ValueInfo<TValue>.Equals(ValueInfo<TValue>, ValueInfo<TValue>)
+  nameWithType.vb: ValueInfo(Of TValue).Equals(ValueInfo(Of TValue), ValueInfo(Of TValue))
+- uid: VisualCard.Parts.ValueInfo`1.Equals*
+  name: Equals
+  href: api/VisualCard.Parts.ValueInfo-1.html#VisualCard_Parts_ValueInfo_1_Equals_
+  commentId: Overload:VisualCard.Parts.ValueInfo`1.Equals
+  isSpec: "True"
+  fullName: VisualCard.Parts.ValueInfo<TValue>.Equals
+  fullName.vb: VisualCard.Parts.ValueInfo(Of TValue).Equals
+  nameWithType: ValueInfo<TValue>.Equals
+  nameWithType.vb: ValueInfo(Of TValue).Equals
+- uid: VisualCard.Parts.ValueInfo`1.GetHashCode
+  name: GetHashCode()
+  href: api/VisualCard.Parts.ValueInfo-1.html#VisualCard_Parts_ValueInfo_1_GetHashCode
+  commentId: M:VisualCard.Parts.ValueInfo`1.GetHashCode
+  fullName: VisualCard.Parts.ValueInfo<TValue>.GetHashCode()
+  fullName.vb: VisualCard.Parts.ValueInfo(Of TValue).GetHashCode()
+  nameWithType: ValueInfo<TValue>.GetHashCode()
+  nameWithType.vb: ValueInfo(Of TValue).GetHashCode()
+- uid: VisualCard.Parts.ValueInfo`1.GetHashCode*
+  name: GetHashCode
+  href: api/VisualCard.Parts.ValueInfo-1.html#VisualCard_Parts_ValueInfo_1_GetHashCode_
+  commentId: Overload:VisualCard.Parts.ValueInfo`1.GetHashCode
+  isSpec: "True"
+  fullName: VisualCard.Parts.ValueInfo<TValue>.GetHashCode
+  fullName.vb: VisualCard.Parts.ValueInfo(Of TValue).GetHashCode
+  nameWithType: ValueInfo<TValue>.GetHashCode
+  nameWithType.vb: ValueInfo(Of TValue).GetHashCode
+- uid: VisualCard.Parts.ValueInfo`1.Group
+  name: Group
+  href: api/VisualCard.Parts.ValueInfo-1.html#VisualCard_Parts_ValueInfo_1_Group
+  commentId: P:VisualCard.Parts.ValueInfo`1.Group
+  fullName: VisualCard.Parts.ValueInfo<TValue>.Group
+  fullName.vb: VisualCard.Parts.ValueInfo(Of TValue).Group
+  nameWithType: ValueInfo<TValue>.Group
+  nameWithType.vb: ValueInfo(Of TValue).Group
+- uid: VisualCard.Parts.ValueInfo`1.Group*
+  name: Group
+  href: api/VisualCard.Parts.ValueInfo-1.html#VisualCard_Parts_ValueInfo_1_Group_
+  commentId: Overload:VisualCard.Parts.ValueInfo`1.Group
+  isSpec: "True"
+  fullName: VisualCard.Parts.ValueInfo<TValue>.Group
+  fullName.vb: VisualCard.Parts.ValueInfo(Of TValue).Group
+  nameWithType: ValueInfo<TValue>.Group
+  nameWithType.vb: ValueInfo(Of TValue).Group
+- uid: VisualCard.Parts.ValueInfo`1.HasType(System.String)
+  name: HasType(string)
+  href: api/VisualCard.Parts.ValueInfo-1.html#VisualCard_Parts_ValueInfo_1_HasType_System_String_
+  commentId: M:VisualCard.Parts.ValueInfo`1.HasType(System.String)
+  name.vb: HasType(String)
+  fullName: VisualCard.Parts.ValueInfo<TValue>.HasType(string)
+  fullName.vb: VisualCard.Parts.ValueInfo(Of TValue).HasType(String)
+  nameWithType: ValueInfo<TValue>.HasType(string)
+  nameWithType.vb: ValueInfo(Of TValue).HasType(String)
+- uid: VisualCard.Parts.ValueInfo`1.HasType*
+  name: HasType
+  href: api/VisualCard.Parts.ValueInfo-1.html#VisualCard_Parts_ValueInfo_1_HasType_
+  commentId: Overload:VisualCard.Parts.ValueInfo`1.HasType
+  isSpec: "True"
+  fullName: VisualCard.Parts.ValueInfo<TValue>.HasType
+  fullName.vb: VisualCard.Parts.ValueInfo(Of TValue).HasType
+  nameWithType: ValueInfo<TValue>.HasType
+  nameWithType.vb: ValueInfo(Of TValue).HasType
+- uid: VisualCard.Parts.ValueInfo`1.IsPreferred
+  name: IsPreferred
+  href: api/VisualCard.Parts.ValueInfo-1.html#VisualCard_Parts_ValueInfo_1_IsPreferred
+  commentId: P:VisualCard.Parts.ValueInfo`1.IsPreferred
+  fullName: VisualCard.Parts.ValueInfo<TValue>.IsPreferred
+  fullName.vb: VisualCard.Parts.ValueInfo(Of TValue).IsPreferred
+  nameWithType: ValueInfo<TValue>.IsPreferred
+  nameWithType.vb: ValueInfo(Of TValue).IsPreferred
+- uid: VisualCard.Parts.ValueInfo`1.IsPreferred*
+  name: IsPreferred
+  href: api/VisualCard.Parts.ValueInfo-1.html#VisualCard_Parts_ValueInfo_1_IsPreferred_
+  commentId: Overload:VisualCard.Parts.ValueInfo`1.IsPreferred
+  isSpec: "True"
+  fullName: VisualCard.Parts.ValueInfo<TValue>.IsPreferred
+  fullName.vb: VisualCard.Parts.ValueInfo(Of TValue).IsPreferred
+  nameWithType: ValueInfo<TValue>.IsPreferred
+  nameWithType.vb: ValueInfo(Of TValue).IsPreferred
+- uid: VisualCard.Parts.ValueInfo`1.NestedGroups
+  name: NestedGroups
+  href: api/VisualCard.Parts.ValueInfo-1.html#VisualCard_Parts_ValueInfo_1_NestedGroups
+  commentId: P:VisualCard.Parts.ValueInfo`1.NestedGroups
+  fullName: VisualCard.Parts.ValueInfo<TValue>.NestedGroups
+  fullName.vb: VisualCard.Parts.ValueInfo(Of TValue).NestedGroups
+  nameWithType: ValueInfo<TValue>.NestedGroups
+  nameWithType.vb: ValueInfo(Of TValue).NestedGroups
+- uid: VisualCard.Parts.ValueInfo`1.NestedGroups*
+  name: NestedGroups
+  href: api/VisualCard.Parts.ValueInfo-1.html#VisualCard_Parts_ValueInfo_1_NestedGroups_
+  commentId: Overload:VisualCard.Parts.ValueInfo`1.NestedGroups
+  isSpec: "True"
+  fullName: VisualCard.Parts.ValueInfo<TValue>.NestedGroups
+  fullName.vb: VisualCard.Parts.ValueInfo(Of TValue).NestedGroups
+  nameWithType: ValueInfo<TValue>.NestedGroups
+  nameWithType.vb: ValueInfo(Of TValue).NestedGroups
+- uid: VisualCard.Parts.ValueInfo`1.Property
+  name: Property
+  href: api/VisualCard.Parts.ValueInfo-1.html#VisualCard_Parts_ValueInfo_1_Property
+  commentId: P:VisualCard.Parts.ValueInfo`1.Property
+  fullName: VisualCard.Parts.ValueInfo<TValue>.Property
+  fullName.vb: VisualCard.Parts.ValueInfo(Of TValue).Property
+  nameWithType: ValueInfo<TValue>.Property
+  nameWithType.vb: ValueInfo(Of TValue).Property
+- uid: VisualCard.Parts.ValueInfo`1.Property*
+  name: Property
+  href: api/VisualCard.Parts.ValueInfo-1.html#VisualCard_Parts_ValueInfo_1_Property_
+  commentId: Overload:VisualCard.Parts.ValueInfo`1.Property
+  isSpec: "True"
+  fullName: VisualCard.Parts.ValueInfo<TValue>.Property
+  fullName.vb: VisualCard.Parts.ValueInfo(Of TValue).Property
+  nameWithType: ValueInfo<TValue>.Property
+  nameWithType.vb: ValueInfo(Of TValue).Property
+- uid: VisualCard.Parts.ValueInfo`1.Value
+  name: Value
+  href: api/VisualCard.Parts.ValueInfo-1.html#VisualCard_Parts_ValueInfo_1_Value
+  commentId: P:VisualCard.Parts.ValueInfo`1.Value
+  fullName: VisualCard.Parts.ValueInfo<TValue>.Value
+  fullName.vb: VisualCard.Parts.ValueInfo(Of TValue).Value
+  nameWithType: ValueInfo<TValue>.Value
+  nameWithType.vb: ValueInfo(Of TValue).Value
+- uid: VisualCard.Parts.ValueInfo`1.Value*
+  name: Value
+  href: api/VisualCard.Parts.ValueInfo-1.html#VisualCard_Parts_ValueInfo_1_Value_
+  commentId: Overload:VisualCard.Parts.ValueInfo`1.Value
+  isSpec: "True"
+  fullName: VisualCard.Parts.ValueInfo<TValue>.Value
+  fullName.vb: VisualCard.Parts.ValueInfo(Of TValue).Value
+  nameWithType: ValueInfo<TValue>.Value
+  nameWithType.vb: ValueInfo(Of TValue).Value
+- uid: VisualCard.Parts.ValueInfo`1.ValueType
+  name: ValueType
+  href: api/VisualCard.Parts.ValueInfo-1.html#VisualCard_Parts_ValueInfo_1_ValueType
+  commentId: P:VisualCard.Parts.ValueInfo`1.ValueType
+  fullName: VisualCard.Parts.ValueInfo<TValue>.ValueType
+  fullName.vb: VisualCard.Parts.ValueInfo(Of TValue).ValueType
+  nameWithType: ValueInfo<TValue>.ValueType
+  nameWithType.vb: ValueInfo(Of TValue).ValueType
+- uid: VisualCard.Parts.ValueInfo`1.ValueType*
+  name: ValueType
+  href: api/VisualCard.Parts.ValueInfo-1.html#VisualCard_Parts_ValueInfo_1_ValueType_
+  commentId: Overload:VisualCard.Parts.ValueInfo`1.ValueType
+  isSpec: "True"
+  fullName: VisualCard.Parts.ValueInfo<TValue>.ValueType
+  fullName.vb: VisualCard.Parts.ValueInfo(Of TValue).ValueType
+  nameWithType: ValueInfo<TValue>.ValueType
+  nameWithType.vb: ValueInfo(Of TValue).ValueType
+- uid: VisualCard.Parts.ValueInfo`1.op_Equality(VisualCard.Parts.ValueInfo{`0},VisualCard.Parts.ValueInfo{`0})
+  name: operator ==(ValueInfo<TValue>, ValueInfo<TValue>)
+  href: api/VisualCard.Parts.ValueInfo-1.html#VisualCard_Parts_ValueInfo_1_op_Equality_VisualCard_Parts_ValueInfo__0__VisualCard_Parts_ValueInfo__0__
+  commentId: M:VisualCard.Parts.ValueInfo`1.op_Equality(VisualCard.Parts.ValueInfo{`0},VisualCard.Parts.ValueInfo{`0})
+  name.vb: =(ValueInfo(Of TValue), ValueInfo(Of TValue))
+  fullName: VisualCard.Parts.ValueInfo<TValue>.operator ==(VisualCard.Parts.ValueInfo<TValue>, VisualCard.Parts.ValueInfo<TValue>)
+  fullName.vb: VisualCard.Parts.ValueInfo(Of TValue).=(VisualCard.Parts.ValueInfo(Of TValue), VisualCard.Parts.ValueInfo(Of TValue))
+  nameWithType: ValueInfo<TValue>.operator ==(ValueInfo<TValue>, ValueInfo<TValue>)
+  nameWithType.vb: ValueInfo(Of TValue).=(ValueInfo(Of TValue), ValueInfo(Of TValue))
+- uid: VisualCard.Parts.ValueInfo`1.op_Equality*
+  name: operator ==
+  href: api/VisualCard.Parts.ValueInfo-1.html#VisualCard_Parts_ValueInfo_1_op_Equality_
+  commentId: Overload:VisualCard.Parts.ValueInfo`1.op_Equality
+  isSpec: "True"
+  name.vb: =
+  fullName: VisualCard.Parts.ValueInfo<TValue>.operator ==
+  fullName.vb: VisualCard.Parts.ValueInfo(Of TValue).=
+  nameWithType: ValueInfo<TValue>.operator ==
+  nameWithType.vb: ValueInfo(Of TValue).=
+- uid: VisualCard.Parts.ValueInfo`1.op_Inequality(VisualCard.Parts.ValueInfo{`0},VisualCard.Parts.ValueInfo{`0})
+  name: operator !=(ValueInfo<TValue>, ValueInfo<TValue>)
+  href: api/VisualCard.Parts.ValueInfo-1.html#VisualCard_Parts_ValueInfo_1_op_Inequality_VisualCard_Parts_ValueInfo__0__VisualCard_Parts_ValueInfo__0__
+  commentId: M:VisualCard.Parts.ValueInfo`1.op_Inequality(VisualCard.Parts.ValueInfo{`0},VisualCard.Parts.ValueInfo{`0})
+  name.vb: <>(ValueInfo(Of TValue), ValueInfo(Of TValue))
+  fullName: VisualCard.Parts.ValueInfo<TValue>.operator !=(VisualCard.Parts.ValueInfo<TValue>, VisualCard.Parts.ValueInfo<TValue>)
+  fullName.vb: VisualCard.Parts.ValueInfo(Of TValue).<>(VisualCard.Parts.ValueInfo(Of TValue), VisualCard.Parts.ValueInfo(Of TValue))
+  nameWithType: ValueInfo<TValue>.operator !=(ValueInfo<TValue>, ValueInfo<TValue>)
+  nameWithType.vb: ValueInfo(Of TValue).<>(ValueInfo(Of TValue), ValueInfo(Of TValue))
+- uid: VisualCard.Parts.ValueInfo`1.op_Inequality*
+  name: operator !=
+  href: api/VisualCard.Parts.ValueInfo-1.html#VisualCard_Parts_ValueInfo_1_op_Inequality_
+  commentId: Overload:VisualCard.Parts.ValueInfo`1.op_Inequality
+  isSpec: "True"
+  name.vb: <>
+  fullName: VisualCard.Parts.ValueInfo<TValue>.operator !=
+  fullName.vb: VisualCard.Parts.ValueInfo(Of TValue).<>
+  nameWithType: ValueInfo<TValue>.operator !=
+  nameWithType.vb: ValueInfo(Of TValue).<>
