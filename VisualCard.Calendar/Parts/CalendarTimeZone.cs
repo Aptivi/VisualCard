@@ -25,6 +25,7 @@ using System.Linq;
 using VisualCard.Calendar.Parsers;
 using VisualCard.Calendar.Parts.Comparers;
 using VisualCard.Calendar.Parts.Enums;
+using VisualCard.Parts;
 
 namespace VisualCard.Calendar.Parts
 {
@@ -37,8 +38,8 @@ namespace VisualCard.Calendar.Parts
         internal readonly List<CalendarStandard> standards = [];
         internal readonly List<CalendarDaylight> daylights = [];
         private readonly Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray = [];
-        private readonly Dictionary<CalendarStringsEnum, List<CalendarValueInfo<string>>> strings = [];
-        private readonly Dictionary<CalendarIntegersEnum, List<CalendarValueInfo<double>>> integers = [];
+        private readonly Dictionary<CalendarStringsEnum, List<ValueInfo<string>>> strings = [];
+        private readonly Dictionary<CalendarIntegersEnum, List<ValueInfo<double>>> integers = [];
 
         /// <summary>
         /// Part array list in a dictionary (for enumeration operations)
@@ -49,13 +50,13 @@ namespace VisualCard.Calendar.Parts
         /// <summary>
         /// String list in a dictionary (for enumeration operations)
         /// </summary>
-        public override ReadOnlyDictionary<CalendarStringsEnum, ReadOnlyCollection<CalendarValueInfo<string>>> Strings =>
+        public override ReadOnlyDictionary<CalendarStringsEnum, ReadOnlyCollection<ValueInfo<string>>> Strings =>
             new(strings.ToDictionary((kvp) => kvp.Key, (kvp) => kvp.Value.AsReadOnly()));
 
         /// <summary>
         /// Integer list in a dictionary (for enumeration operations)
         /// </summary>
-        public override ReadOnlyDictionary<CalendarIntegersEnum, ReadOnlyCollection<CalendarValueInfo<double>>> Integers =>
+        public override ReadOnlyDictionary<CalendarIntegersEnum, ReadOnlyCollection<ValueInfo<double>>> Integers =>
             new(integers.ToDictionary((kvp) => kvp.Key, (kvp) => kvp.Value.AsReadOnly()));
 
         /// <summary>
@@ -110,7 +111,7 @@ namespace VisualCard.Calendar.Parts
         /// </summary>
         /// <param name="key">A key to use</param>
         /// <returns>A value or null if any other type either doesn't exist or the type is not supported by the card version</returns>
-        public override CalendarValueInfo<string>[] GetString(CalendarStringsEnum key) =>
+        public override ValueInfo<string>[] GetString(CalendarStringsEnum key) =>
             GetString(key, CalendarVersion, strings);
 
         /// <summary>
@@ -118,7 +119,7 @@ namespace VisualCard.Calendar.Parts
         /// </summary>
         /// <param name="key">A key to use</param>
         /// <returns>A value or null if any other type either doesn't exist or the type is not supported by the card version</returns>
-        public override CalendarValueInfo<double>[] GetInteger(CalendarIntegersEnum key) =>
+        public override ValueInfo<double>[] GetInteger(CalendarIntegersEnum key) =>
             GetInteger(key, CalendarVersion, integers);
 
         /// <summary>
@@ -175,8 +176,8 @@ namespace VisualCard.Calendar.Parts
             hashCode = hashCode * -1521134295 + EqualityComparer<List<CalendarStandard>>.Default.GetHashCode(standards);
             hashCode = hashCode * -1521134295 + EqualityComparer<List<CalendarDaylight>>.Default.GetHashCode(daylights);
             hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>>>.Default.GetHashCode(partsArray);
-            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarStringsEnum, List<CalendarValueInfo<string>>>>.Default.GetHashCode(strings);
-            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarIntegersEnum, List<CalendarValueInfo<double>>>>.Default.GetHashCode(integers);
+            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarStringsEnum, List<ValueInfo<string>>>>.Default.GetHashCode(strings);
+            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarIntegersEnum, List<ValueInfo<double>>>>.Default.GetHashCode(integers);
             return hashCode;
         }
 
@@ -191,10 +192,10 @@ namespace VisualCard.Calendar.Parts
         internal override void AddPartToArray(CalendarPartsArrayEnum key, BaseCalendarPartInfo value) =>
             AddPartToArray(key, value, CalendarVersion, partsArray);
 
-        internal override void AddString(CalendarStringsEnum key, CalendarValueInfo<string> value) =>
+        internal override void AddString(CalendarStringsEnum key, ValueInfo<string> value) =>
             AddString(key, value, CalendarVersion, strings);
 
-        internal override void AddInteger(CalendarIntegersEnum key, CalendarValueInfo<double> value) =>
+        internal override void AddInteger(CalendarIntegersEnum key, ValueInfo<double> value) =>
             AddInteger(key, value, CalendarVersion, integers);
 
         internal CalendarTimeZone(Version version) :

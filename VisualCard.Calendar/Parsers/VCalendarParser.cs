@@ -30,6 +30,7 @@ using VisualCard.Parsers;
 using VisualCard.Parsers.Arguments;
 using VisualCard.Calendar.Parts.Implementations.Event;
 using VisualCard.Calendar.Parts.Implementations.Todo;
+using VisualCard.Parts;
 
 namespace VisualCard.Calendar.Parsers
 {
@@ -162,7 +163,7 @@ namespace VisualCard.Calendar.Parsers
                                 CalendarStringsEnum stringType = (CalendarStringsEnum)partType.enumeration;
 
                                 // Set the string for real
-                                var stringValueInfo = new CalendarValueInfo<string>(info, elementTypes, info.Group, valueType, finalValue);
+                                var stringValueInfo = new ValueInfo<string>(info, -1, elementTypes, valueType, finalValue);
                                 if (subPart is not null)
                                     subPart.AddString(stringType, stringValueInfo);
                                 else
@@ -177,7 +178,7 @@ namespace VisualCard.Calendar.Parsers
                                 double finalDouble = double.Parse(finalValue);
 
                                 // Set the integer for real
-                                var stringValueInfo = new CalendarValueInfo<double>(info, elementTypes, info.Group, valueType, finalDouble);
+                                var stringValueInfo = new ValueInfo<double>(info, -1, elementTypes, valueType, finalDouble);
                                 if (subPart is not null)
                                     subPart.AddInteger(integerType, stringValueInfo);
                                 else

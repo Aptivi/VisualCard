@@ -20,6 +20,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using VisualCard.Calendar.Parts.Enums;
+using VisualCard.Parts;
 
 namespace VisualCard.Calendar.Parts.Comparers
 {
@@ -51,8 +52,8 @@ namespace VisualCard.Calendar.Parts.Comparers
         }
 
         internal static bool StringsEqual(
-            IDictionary<CalendarStringsEnum, List<CalendarValueInfo<string>>> source,
-            IDictionary<CalendarStringsEnum, List<CalendarValueInfo<string>>> target)
+            IDictionary<CalendarStringsEnum, List<ValueInfo<string>>> source,
+            IDictionary<CalendarStringsEnum, List<ValueInfo<string>>> target)
         {
             // Verify the dictionaries
             if (!VerifyDicts(source, target))
@@ -76,8 +77,8 @@ namespace VisualCard.Calendar.Parts.Comparers
         }
 
         internal static bool IntegersEqual(
-            IDictionary<CalendarIntegersEnum, List<CalendarValueInfo<double>>> source,
-            IDictionary<CalendarIntegersEnum, List<CalendarValueInfo<double>>> target)
+            IDictionary<CalendarIntegersEnum, List<ValueInfo<double>>> source,
+            IDictionary<CalendarIntegersEnum, List<ValueInfo<double>>> target)
         {
             // Verify the dictionaries
             if (!VerifyDicts(source, target))

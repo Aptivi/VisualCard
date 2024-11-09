@@ -29,6 +29,7 @@ using VisualCard.Calendar.Parsers;
 using VisualCard.Calendar.Parts.Comparers;
 using VisualCard.Calendar.Parts.Enums;
 using VisualCard.Parsers;
+using VisualCard.Parts;
 using VisualCard.Parts.Enums;
 
 namespace VisualCard.Calendar.Parts
@@ -47,8 +48,8 @@ namespace VisualCard.Calendar.Parts
         internal readonly List<CalendarOtherComponent> others = [];
         private readonly Version version;
         private readonly Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray = [];
-        private readonly Dictionary<CalendarStringsEnum, List<CalendarValueInfo<string>>> strings = [];
-        private readonly Dictionary<CalendarIntegersEnum, List<CalendarValueInfo<double>>> integers = [];
+        private readonly Dictionary<CalendarStringsEnum, List<ValueInfo<string>>> strings = [];
+        private readonly Dictionary<CalendarIntegersEnum, List<ValueInfo<double>>> integers = [];
 
         /// <summary>
         /// The vCalendar version
@@ -107,13 +108,13 @@ namespace VisualCard.Calendar.Parts
         /// <summary>
         /// String list in a dictionary (for enumeration operations)
         /// </summary>
-        public virtual ReadOnlyDictionary<CalendarStringsEnum, ReadOnlyCollection<CalendarValueInfo<string>>> Strings =>
+        public virtual ReadOnlyDictionary<CalendarStringsEnum, ReadOnlyCollection<ValueInfo<string>>> Strings =>
             new(strings.ToDictionary((kvp) => kvp.Key, (kvp) => kvp.Value.AsReadOnly()));
 
         /// <summary>
         /// Integer list in a dictionary (for enumeration operations)
         /// </summary>
-        public virtual ReadOnlyDictionary<CalendarIntegersEnum, ReadOnlyCollection<CalendarValueInfo<double>>> Integers =>
+        public virtual ReadOnlyDictionary<CalendarIntegersEnum, ReadOnlyCollection<ValueInfo<double>>> Integers =>
             new(integers.ToDictionary((kvp) => kvp.Key, (kvp) => kvp.Value.AsReadOnly()));
 
         /// <summary>
@@ -245,10 +246,10 @@ namespace VisualCard.Calendar.Parts
         /// </summary>
         /// <param name="key">A key to use</param>
         /// <returns>A value or null if any other type either doesn't exist or the type is not supported by the card version</returns>
-        public virtual CalendarValueInfo<string>[] GetString(CalendarStringsEnum key) =>
+        public virtual ValueInfo<string>[] GetString(CalendarStringsEnum key) =>
             GetString(key, version, strings);
 
-        internal CalendarValueInfo<string>[] GetString(CalendarStringsEnum key, Version version, Dictionary<CalendarStringsEnum, List<CalendarValueInfo<string>>> strings)
+        internal ValueInfo<string>[] GetString(CalendarStringsEnum key, Version version, Dictionary<CalendarStringsEnum, List<ValueInfo<string>>> strings)
         {
             // Check for version support
             string prefix = VCalendarParserTools.GetPrefixFromStringsEnum(key);
@@ -270,10 +271,10 @@ namespace VisualCard.Calendar.Parts
         /// </summary>
         /// <param name="key">A key to use</param>
         /// <returns>A value or null if any other type either doesn't exist or the type is not supported by the card version</returns>
-        public virtual CalendarValueInfo<double>[] GetInteger(CalendarIntegersEnum key) =>
+        public virtual ValueInfo<double>[] GetInteger(CalendarIntegersEnum key) =>
             GetInteger(key, version, integers);
 
-        internal CalendarValueInfo<double>[] GetInteger(CalendarIntegersEnum key, Version version, Dictionary<CalendarIntegersEnum, List<CalendarValueInfo<double>>> integers)
+        internal ValueInfo<double>[] GetInteger(CalendarIntegersEnum key, Version version, Dictionary<CalendarIntegersEnum, List<ValueInfo<double>>> integers)
         {
             // Check for version support
             string prefix = VCalendarParserTools.GetPrefixFromIntegersEnum(key);
@@ -296,7 +297,7 @@ namespace VisualCard.Calendar.Parts
         public virtual string SaveToString() =>
             SaveToString(version, partsArray, strings, integers, VCalendarConstants._objectVCalendarSpecifier);
 
-        internal string SaveToString(Version version, Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray, Dictionary<CalendarStringsEnum, List<CalendarValueInfo<string>>> strings, Dictionary<CalendarIntegersEnum, List<CalendarValueInfo<double>>> integers, string objectType)
+        internal string SaveToString(Version version, Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray, Dictionary<CalendarStringsEnum, List<ValueInfo<string>>> strings, Dictionary<CalendarIntegersEnum, List<ValueInfo<double>>> integers, string objectType)
         {
             // Initialize the card builder
             var cardBuilder = new StringBuilder();
@@ -502,8 +503,8 @@ namespace VisualCard.Calendar.Parts
             hashCode = hashCode * -1521134295 + EqualityComparer<List<CalendarTimeZone>>.Default.GetHashCode(timeZones);
             hashCode = hashCode * -1521134295 + EqualityComparer<List<CalendarOtherComponent>>.Default.GetHashCode(others);
             hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>>>.Default.GetHashCode(partsArray);
-            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarStringsEnum, List<CalendarValueInfo<string>>>>.Default.GetHashCode(strings);
-            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarIntegersEnum, List<CalendarValueInfo<double>>>>.Default.GetHashCode(integers);
+            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarStringsEnum, List<ValueInfo<string>>>>.Default.GetHashCode(strings);
+            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarIntegersEnum, List<ValueInfo<double>>>>.Default.GetHashCode(integers);
             return hashCode;
         }
 
@@ -546,10 +547,10 @@ namespace VisualCard.Calendar.Parts
             }
         }
 
-        internal virtual void AddString(CalendarStringsEnum key, CalendarValueInfo<string> value) =>
+        internal virtual void AddString(CalendarStringsEnum key, ValueInfo<string> value) =>
             AddString(key, value, version, strings);
 
-        internal virtual void AddString(CalendarStringsEnum key, CalendarValueInfo<string> value, Version version, Dictionary<CalendarStringsEnum, List<CalendarValueInfo<string>>> strings)
+        internal virtual void AddString(CalendarStringsEnum key, ValueInfo<string> value, Version version, Dictionary<CalendarStringsEnum, List<ValueInfo<string>>> strings)
         {
             if (value is null || string.IsNullOrEmpty(value.Value))
                 return;
@@ -574,10 +575,10 @@ namespace VisualCard.Calendar.Parts
             }
         }
 
-        internal virtual void AddInteger(CalendarIntegersEnum key, CalendarValueInfo<double> value) =>
+        internal virtual void AddInteger(CalendarIntegersEnum key, ValueInfo<double> value) =>
             AddInteger(key, value, version, integers);
 
-        internal virtual void AddInteger(CalendarIntegersEnum key, CalendarValueInfo<double> value, Version version, Dictionary<CalendarIntegersEnum, List<CalendarValueInfo<double>>> integers)
+        internal virtual void AddInteger(CalendarIntegersEnum key, ValueInfo<double> value, Version version, Dictionary<CalendarIntegersEnum, List<ValueInfo<double>>> integers)
         {
             if (value is null || value.Value < 0)
                 return;

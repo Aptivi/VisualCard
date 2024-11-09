@@ -37,7 +37,7 @@ namespace VisualCard.Parts
             return BuildArguments(partInfo.ElementTypes, partInfo.ValueType, partInfo.Property, extraKeyName, defaultType, defaultValue);
         }
 
-        internal static string BuildArguments<TValue>(CardValueInfo<TValue> partInfo, string defaultType, string defaultValue) =>
+        internal static string BuildArguments<TValue>(ValueInfo<TValue> partInfo, string defaultType, string defaultValue) =>
             BuildArguments(partInfo.ElementTypes, partInfo.ValueType, partInfo.Property, "", defaultType, defaultValue);
 
         internal static string BuildArguments(string[] elementTypes, string valueType, PropertyInfo? property, string extraKeyName, string defaultType, string defaultValue)

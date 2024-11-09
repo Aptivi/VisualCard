@@ -149,7 +149,7 @@ namespace VisualCard.Parsers
                                     throw new InvalidDataException("Profile must be \"vCard\"");
 
                                 // Set the string for real
-                                var stringValueInfo = new CardValueInfo<string>(info, altId, elementTypes, valueType, finalValue);
+                                var stringValueInfo = new ValueInfo<string>(info, altId, elementTypes, valueType, finalValue);
                                 card.AddString(stringType, stringValueInfo);
                             }
                             break;

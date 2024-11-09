@@ -28,8 +28,8 @@ namespace VisualCard.Parts
     /// <summary>
     /// Card value information
     /// </summary>
-    [DebuggerDisplay("Card value [{Value}] | ALTID: {AltId}, TYPE: [{string.Join(\", \", ElementTypes)}], VALUE: {ValueType}")]
-    public class CardValueInfo<TValue> : IEquatable<CardValueInfo<TValue>>
+    [DebuggerDisplay("Versit value [{Value}] | ALTID: {AltId}, TYPE: [{string.Join(\", \", ElementTypes)}], VALUE: {ValueType}")]
+    public class ValueInfo<TValue> : IEquatable<ValueInfo<TValue>>
     {
         /// <summary>
         /// Property information containing details about this property that this class instance was created from
@@ -37,7 +37,7 @@ namespace VisualCard.Parts
         public virtual PropertyInfo? Property { get; internal set; }
 
         /// <summary>
-        /// Alternative ID. Zero if unspecified.
+        /// Alternative ID. -1 if unspecified.
         /// </summary>
         public virtual int AltId { get; internal set; }
 
@@ -93,18 +93,18 @@ namespace VisualCard.Parts
         /// <summary>
         /// Checks to see if both the parts are equal
         /// </summary>
-        /// <param name="other">The target <see cref="CardValueInfo{TValue}"/> instance to check to see if they equal</param>
+        /// <param name="other">The target <see cref="ValueInfo{TValue}"/> instance to check to see if they equal</param>
         /// <returns>True if all the part elements are equal. Otherwise, false.</returns>
-        public bool Equals(CardValueInfo<TValue> other) =>
+        public bool Equals(ValueInfo<TValue> other) =>
             Equals(this, other);
 
         /// <summary>
         /// Checks to see if both the parts are equal
         /// </summary>
-        /// <param name="source">The source <see cref="CardValueInfo{TValue}"/> instance to check to see if they equal</param>
-        /// <param name="target">The target <see cref="CardValueInfo{TValue}"/> instance to check to see if they equal</param>
+        /// <param name="source">The source <see cref="ValueInfo{TValue}"/> instance to check to see if they equal</param>
+        /// <param name="target">The target <see cref="ValueInfo{TValue}"/> instance to check to see if they equal</param>
         /// <returns>True if all the part elements are equal. Otherwise, false.</returns>
-        public bool Equals(CardValueInfo<TValue> source, CardValueInfo<TValue> target)
+        public bool Equals(ValueInfo<TValue> source, ValueInfo<TValue> target)
         {
             // We can't perform this operation on null.
             if (source is null || target is null)
@@ -123,7 +123,7 @@ namespace VisualCard.Parts
 
         /// <inheritdoc/>
         public override bool Equals(object obj) =>
-            Equals((CardValueInfo<TValue>)obj);
+            Equals((ValueInfo<TValue>)obj);
 
         /// <inheritdoc/>
         public override int GetHashCode()
@@ -139,17 +139,17 @@ namespace VisualCard.Parts
         }
 
         /// <inheritdoc/>
-        public static bool operator ==(CardValueInfo<TValue> left, CardValueInfo<TValue> right) =>
+        public static bool operator ==(ValueInfo<TValue> left, ValueInfo<TValue> right) =>
             left.Equals(right);
 
         /// <inheritdoc/>
-        public static bool operator !=(CardValueInfo<TValue> left, CardValueInfo<TValue> right) =>
+        public static bool operator !=(ValueInfo<TValue> left, ValueInfo<TValue> right) =>
             !(left == right);
 
-        internal virtual bool EqualsInternal(CardValueInfo<TValue> source, CardValueInfo<TValue> target) =>
+        internal virtual bool EqualsInternal(ValueInfo<TValue> source, ValueInfo<TValue> target) =>
             true;
 
-        internal CardValueInfo(PropertyInfo? property, int altId, string[] elementTypes, string valueType, TValue? value)
+        internal ValueInfo(PropertyInfo? property, int altId, string[] elementTypes, string valueType, TValue? value)
         {
             Property = property;
             AltId = altId;

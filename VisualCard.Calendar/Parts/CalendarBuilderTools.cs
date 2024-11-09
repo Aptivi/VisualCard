@@ -32,7 +32,7 @@ namespace VisualCard.Calendar.Parts
             return CardBuilderTools.BuildArguments(partInfo.ElementTypes, partInfo.ValueType, partInfo.Property, extraKeyName, defaultType, defaultValue);
         }
 
-        internal static string BuildArguments<TValue>(CalendarValueInfo<TValue> partInfo, string defaultType, string defaultValue) =>
+        internal static string BuildArguments<TValue>(ValueInfo<TValue> partInfo, string defaultType, string defaultValue) =>
             CardBuilderTools.BuildArguments(partInfo.ElementTypes, partInfo.ValueType, partInfo.Property, "", defaultType, defaultValue);
     }
 }

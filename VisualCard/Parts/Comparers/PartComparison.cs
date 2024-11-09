@@ -51,8 +51,8 @@ namespace VisualCard.Parts.Comparers
         }
         
         internal static bool StringsEqual(
-            IDictionary<StringsEnum, List<CardValueInfo<string>>> source,
-            IDictionary<StringsEnum, List<CardValueInfo<string>>> target)
+            IDictionary<StringsEnum, List<ValueInfo<string>>> source,
+            IDictionary<StringsEnum, List<ValueInfo<string>>> target)
         {
             // Verify the dictionaries
             if (!VerifyDicts(source, target))

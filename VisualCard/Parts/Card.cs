@@ -41,7 +41,7 @@ namespace VisualCard.Parts
         internal Card[] nestedCards = [];
         private readonly Version version;
         private readonly Dictionary<PartsArrayEnum, List<BaseCardPartInfo>> partsArray = [];
-        private readonly Dictionary<StringsEnum, List<CardValueInfo<string>>> strings = [];
+        private readonly Dictionary<StringsEnum, List<ValueInfo<string>>> strings = [];
 
         /// <summary>
         /// The VCard version
@@ -82,7 +82,7 @@ namespace VisualCard.Parts
         /// <summary>
         /// String list in a dictionary (for enumeration operations)
         /// </summary>
-        public ReadOnlyDictionary<StringsEnum, ReadOnlyCollection<CardValueInfo<string>>> Strings =>
+        public ReadOnlyDictionary<StringsEnum, ReadOnlyCollection<ValueInfo<string>>> Strings =>
             new(strings.ToDictionary((kvp) => kvp.Key, (kvp) => kvp.Value.AsReadOnly()));
 
         /// <summary>
@@ -174,7 +174,7 @@ namespace VisualCard.Parts
         /// </summary>
         /// <param name="key">A key to use</param>
         /// <returns>A list of strings that stores a group and a value, or "individual" if the kind doesn't exist, or an empty list if any other type either doesn't exist or the type is not supported by the card version</returns>
-        public CardValueInfo<string>[] GetString(StringsEnum key)
+        public ValueInfo<string>[] GetString(StringsEnum key)
         {
             // Check for version support
             string prefix = VcardParserTools.GetPrefixFromStringsEnum(key);
@@ -184,9 +184,9 @@ namespace VisualCard.Parts
 
             // Get the fallback value
             string fallback = key == StringsEnum.Kind ? "individual" : "";
-            CardValueInfo<string>[] fallbacks =
+            ValueInfo<string>[] fallbacks =
                 !string.IsNullOrEmpty(fallback) ?
-                [new CardValueInfo<string>(null, -1, [], "", fallback)] :
+                [new ValueInfo<string>(null, -1, [], "", fallback)] :
                 [];
 
             // Check to see if the string has a value or not
@@ -344,7 +344,7 @@ namespace VisualCard.Parts
             int hashCode = 1365540608;
             hashCode = hashCode * -1521134295 + EqualityComparer<Card[]>.Default.GetHashCode(nestedCards);
             hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<PartsArrayEnum, List<BaseCardPartInfo>>>.Default.GetHashCode(partsArray);
-            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<StringsEnum, List<CardValueInfo<string>>>>.Default.GetHashCode(strings);
+            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<StringsEnum, List<ValueInfo<string>>>>.Default.GetHashCode(strings);
             return hashCode;
         }
 
@@ -390,7 +390,7 @@ namespace VisualCard.Parts
             }
         }
 
-        internal void AddString(StringsEnum key, CardValueInfo<string> value)
+        internal void AddString(StringsEnum key, ValueInfo<string> value)
         {
             if (value is null || string.IsNullOrEmpty(value.Value))
                 return;
