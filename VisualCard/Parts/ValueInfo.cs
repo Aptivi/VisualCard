@@ -112,12 +112,16 @@ namespace VisualCard.Parts
 
             // Check all the properties
             return
+                source.Property is not null &&
+                target.Property is not null &&
+                source.Value is not null &&
+                target.Value is not null &&
                 source.Property == target.Property &&
                 source.ElementTypes.SequenceEqual(target.ElementTypes) &&
                 source.AltId == target.AltId &&
+                source.Value.Equals(target.Value) &&
                 source.ValueType == target.ValueType &&
-                source.Group == target.Group &&
-                EqualsInternal(source, target)
+                source.Group == target.Group
             ;
         }
 
@@ -145,9 +149,6 @@ namespace VisualCard.Parts
         /// <inheritdoc/>
         public static bool operator !=(ValueInfo<TValue> left, ValueInfo<TValue> right) =>
             !(left == right);
-
-        internal bool EqualsInternal(ValueInfo<TValue> source, ValueInfo<TValue> target) =>
-            true;
 
         internal ValueInfo(PropertyInfo? property, int altId, string[] elementTypes, string valueType, TValue? value)
         {
