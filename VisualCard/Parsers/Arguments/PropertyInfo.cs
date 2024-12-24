@@ -33,6 +33,7 @@ namespace VisualCard.Parsers.Arguments
     public class PropertyInfo : IEquatable<PropertyInfo?>
     {
         private readonly string rawValue = "";
+        private string tailValue = "";
         private readonly string prefix = "";
         private readonly string group = "";
         private readonly ArgumentInfo[] arguments = [];
@@ -41,7 +42,7 @@ namespace VisualCard.Parsers.Arguments
         /// Raw value
         /// </summary>
         public string Value =>
-            rawValue;
+            rawValue + tailValue;
 
         /// <summary>
         /// Property prefix
@@ -66,6 +67,11 @@ namespace VisualCard.Parsers.Arguments
         /// </summary>
         public ArgumentInfo[] Arguments =>
             arguments;
+
+        /// <summary>
+        /// Specifies if this property spans multiple lines
+        /// </summary>
+        public bool Multiline { get; set; }
 
         /// <summary>
         /// Checks to see if both the property info instances are equal
@@ -117,6 +123,19 @@ namespace VisualCard.Parsers.Arguments
         public static bool operator !=(PropertyInfo? left, PropertyInfo? right) =>
             !(left == right);
 
+        internal static string Encoding(ArgumentInfo[] args)
+            => VcardCommonTools.GetValuesString(args, "", VcardConstants._encodingArgumentSpecifier);
+
+        /// <inheritdoc/>
+        public bool Continue
+            => Multiline ? (0 < Value?.Length ? '=' == Value[Value.Length - 1] : false) : false;
+
+        /// <inheritdoc/>
+        public void AddLine(string line)
+        {
+            tailValue += line;
+        }
+
         internal PropertyInfo(string line)
         {
             // Now, parse this value
@@ -142,6 +161,10 @@ namespace VisualCard.Parsers.Arguments
             this.rawValue = value;
             this.prefix = prefix;
             this.arguments = finalArgs;
+            if (VcardConstants._quotedPrintable == Encoding(this.arguments))
+                Multiline = true;
+            else
+                Multiline = false;
             this.group = group.Trim();
         }
     }
