@@ -5924,6 +5924,22 @@ references:
   commentId: T:VisualCard.Parsers.Arguments.PropertyInfo
   fullName: VisualCard.Parsers.Arguments.PropertyInfo
   nameWithType: PropertyInfo
+- uid: VisualCard.Parsers.Arguments.PropertyInfo.AddLine(System.String)
+  name: AddLine(string)
+  href: api/VisualCard.Parsers.Arguments.PropertyInfo.html#VisualCard_Parsers_Arguments_PropertyInfo_AddLine_System_String_
+  commentId: M:VisualCard.Parsers.Arguments.PropertyInfo.AddLine(System.String)
+  name.vb: AddLine(String)
+  fullName: VisualCard.Parsers.Arguments.PropertyInfo.AddLine(string)
+  fullName.vb: VisualCard.Parsers.Arguments.PropertyInfo.AddLine(String)
+  nameWithType: PropertyInfo.AddLine(string)
+  nameWithType.vb: PropertyInfo.AddLine(String)
+- uid: VisualCard.Parsers.Arguments.PropertyInfo.AddLine*
+  name: AddLine
+  href: api/VisualCard.Parsers.Arguments.PropertyInfo.html#VisualCard_Parsers_Arguments_PropertyInfo_AddLine_
+  commentId: Overload:VisualCard.Parsers.Arguments.PropertyInfo.AddLine
+  isSpec: "True"
+  fullName: VisualCard.Parsers.Arguments.PropertyInfo.AddLine
+  nameWithType: PropertyInfo.AddLine
 - uid: VisualCard.Parsers.Arguments.PropertyInfo.Arguments
   name: Arguments
   href: api/VisualCard.Parsers.Arguments.PropertyInfo.html#VisualCard_Parsers_Arguments_PropertyInfo_Arguments
@@ -5937,6 +5953,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parsers.Arguments.PropertyInfo.Arguments
   nameWithType: PropertyInfo.Arguments
+- uid: VisualCard.Parsers.Arguments.PropertyInfo.Continue
+  name: Continue
+  href: api/VisualCard.Parsers.Arguments.PropertyInfo.html#VisualCard_Parsers_Arguments_PropertyInfo_Continue
+  commentId: P:VisualCard.Parsers.Arguments.PropertyInfo.Continue
+  fullName: VisualCard.Parsers.Arguments.PropertyInfo.Continue
+  nameWithType: PropertyInfo.Continue
+- uid: VisualCard.Parsers.Arguments.PropertyInfo.Continue*
+  name: Continue
+  href: api/VisualCard.Parsers.Arguments.PropertyInfo.html#VisualCard_Parsers_Arguments_PropertyInfo_Continue_
+  commentId: Overload:VisualCard.Parsers.Arguments.PropertyInfo.Continue
+  isSpec: "True"
+  fullName: VisualCard.Parsers.Arguments.PropertyInfo.Continue
+  nameWithType: PropertyInfo.Continue
 - uid: VisualCard.Parsers.Arguments.PropertyInfo.Equals(System.Object)
   name: Equals(object?)
   href: api/VisualCard.Parsers.Arguments.PropertyInfo.html#VisualCard_Parsers_Arguments_PropertyInfo_Equals_System_Object_
@@ -5997,6 +6026,19 @@ references:
   isSpec: "True"
   fullName: VisualCard.Parsers.Arguments.PropertyInfo.Group
   nameWithType: PropertyInfo.Group
+- uid: VisualCard.Parsers.Arguments.PropertyInfo.Multiline
+  name: Multiline
+  href: api/VisualCard.Parsers.Arguments.PropertyInfo.html#VisualCard_Parsers_Arguments_PropertyInfo_Multiline
+  commentId: P:VisualCard.Parsers.Arguments.PropertyInfo.Multiline
+  fullName: VisualCard.Parsers.Arguments.PropertyInfo.Multiline
+  nameWithType: PropertyInfo.Multiline
+- uid: VisualCard.Parsers.Arguments.PropertyInfo.Multiline*
+  name: Multiline
+  href: api/VisualCard.Parsers.Arguments.PropertyInfo.html#VisualCard_Parsers_Arguments_PropertyInfo_Multiline_
+  commentId: Overload:VisualCard.Parsers.Arguments.PropertyInfo.Multiline
+  isSpec: "True"
+  fullName: VisualCard.Parsers.Arguments.PropertyInfo.Multiline
+  nameWithType: PropertyInfo.Multiline
 - uid: VisualCard.Parsers.Arguments.PropertyInfo.NestedGroups
   name: NestedGroups
   href: api/VisualCard.Parsers.Arguments.PropertyInfo.html#VisualCard_Parsers_Arguments_PropertyInfo_NestedGroups
