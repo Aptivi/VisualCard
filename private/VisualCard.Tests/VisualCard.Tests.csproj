@@ -14,9 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\VisualCard.Extras\VisualCard.Extras.csproj" />
-    <ProjectReference Include="..\VisualCard.Calendar\VisualCard.Calendar.csproj" />
-    <ProjectReference Include="..\VisualCard\VisualCard.csproj" />
+    <ProjectReference Include="..\..\public\VisualCard.Extras\VisualCard.Extras.csproj" />
+    <ProjectReference Include="..\..\public\VisualCard.Calendar\VisualCard.Calendar.csproj" />
+    <ProjectReference Include="..\..\public\VisualCard\VisualCard.csproj" />
   </ItemGroup>
 
 </Project>

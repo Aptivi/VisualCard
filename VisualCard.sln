@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisualCard", "VisualCard\VisualCard.csproj", "{2AFDCE5C-842F-4129-B4BE-00A72F19DCD2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisualCard", "public\VisualCard\VisualCard.csproj", "{2AFDCE5C-842F-4129-B4BE-00A72F19DCD2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisualCard.ShowContacts", "VisualCard.ShowContacts\VisualCard.ShowContacts.csproj", "{798FA5EC-E411-4DF3-B8C7-D5E0AA63AA58}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisualCard.ShowContacts", "private\VisualCard.ShowContacts\VisualCard.ShowContacts.csproj", "{798FA5EC-E411-4DF3-B8C7-D5E0AA63AA58}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisualCard.Tests", "VisualCard.Tests\VisualCard.Tests.csproj", "{93EB56B7-90CD-4EA9-B7C3-51C040E135F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisualCard.Tests", "private\VisualCard.Tests\VisualCard.Tests.csproj", "{93EB56B7-90CD-4EA9-B7C3-51C040E135F7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{CE28233F-91D8-490D-839F-BC599A77E524}"
 	ProjectSection(SolutionItems) = preProject
@@ -17,15 +17,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{CE2823
 		Directory.Build.props = Directory.Build.props
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisualCard.Calendar", "VisualCard.Calendar\VisualCard.Calendar.csproj", "{C67176FD-09C7-4F0E-B7C3-A15550961484}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisualCard.Calendar", "public\VisualCard.Calendar\VisualCard.Calendar.csproj", "{C67176FD-09C7-4F0E-B7C3-A15550961484}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Private", "Private", "{FBDC2E9C-4689-46B6-9889-3BA1D34D133D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Public", "Public", "{F07A71FB-5A78-448F-A5A2-5B7608319ACD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisualCard.ShowCalendars", "VisualCard.ShowCalendars\VisualCard.ShowCalendars.csproj", "{80A3B32A-F96E-4E87-837F-94E6EB188547}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisualCard.ShowCalendars", "private\VisualCard.ShowCalendars\VisualCard.ShowCalendars.csproj", "{80A3B32A-F96E-4E87-837F-94E6EB188547}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisualCard.Extras", "VisualCard.Extras\VisualCard.Extras.csproj", "{A06611BC-20E0-4990-B907-83C2979E5AE8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisualCard.Extras", "public\VisualCard.Extras\VisualCard.Extras.csproj", "{A06611BC-20E0-4990-B907-83C2979E5AE8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

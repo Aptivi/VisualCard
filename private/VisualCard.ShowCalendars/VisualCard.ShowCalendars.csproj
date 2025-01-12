@@ -11,12 +11,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\VisualCard\VisualCard.csproj" />
-    <ProjectReference Include="..\VisualCard.Extras\VisualCard.Extras.csproj" />
+    <ProjectReference Include="..\..\public\VisualCard.Calendar\VisualCard.Calendar.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="TestFiles\*.vcf">
+    <None Update="TestFiles\*.vcalendar">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestFiles\*.vcs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestFiles\*.ics">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
