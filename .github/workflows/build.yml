@@ -28,7 +28,9 @@ jobs:
         run: cd tools ; ./build.cmd Debug ; cd ..
       - name: Solution Compilation (Unix)
         if: matrix.runs-on != 'windows-latest'
-        run: make dbg
+        run: |
+          sudo apt install mono-complete
+          make dbg
       - name: Testing
         run: dotnet test --no-build --configuration Debug
         

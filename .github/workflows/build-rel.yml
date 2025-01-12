@@ -28,7 +28,9 @@ jobs:
         run: cd tools ; ./build.cmd ; cd ..
       - name: Solution Compilation (Unix)
         if: matrix.runs-on != 'windows-latest'
-        run: make
+        run: |
+          sudo apt install mono-complete
+          make
       - name: Testing
         run: dotnet test --no-build --configuration Release
         
