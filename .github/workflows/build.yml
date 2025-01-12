@@ -26,8 +26,11 @@ jobs:
       - name: Solution Compilation (Windows)
         if: matrix.runs-on == 'windows-latest'
         run: cd tools ; ./build.cmd Debug ; cd ..
+      - name: Solution Compilation (macOS)
+        if: matrix.runs-on == 'macos-latest'
+        run: make dbg
       - name: Solution Compilation (Unix)
-        if: matrix.runs-on != 'windows-latest'
+        if: matrix.runs-on == 'ubuntu-latest'
         run: |
           sudo apt install mono-complete
           make dbg
