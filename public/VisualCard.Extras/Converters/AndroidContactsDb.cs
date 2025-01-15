@@ -95,9 +95,9 @@ namespace VisualCard.Extras.Converters
             // Check to see if the database exists
             string dbObtainTip =
                 "\n\nMake sure that your phone is rooted before being able to obtain the contacts2.db file. " +
-                "Try out these paths:\n" +
-               $"  - {knownPaths[0]} (systemwide contacts)" +
-               $"  - {knownPaths[1]} (userspace (user 0) contacts)" +
+                "Try out these paths:\n\n" +
+               $"  - {knownPaths[0]} (systemwide contacts)\n" +
+               $"  - {knownPaths[1]} (userspace (user 0) contacts)\n" +
                $"  - {knownPaths[2]} (Motorola Blur)" +
                 "\n\nIf they don't work, consult your device's /data directory in the root file manager.";
             if (!File.Exists(pathToDb))
