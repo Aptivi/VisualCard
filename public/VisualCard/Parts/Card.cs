@@ -241,7 +241,7 @@ namespace VisualCard.Parts
                         cardBuilder.Append($"{group}.");
                     partBuilder.Append($"{prefix}");
                     partBuilder.Append($"{partArguments}");
-                    partBuilder.Append($"{VcardCommonTools.MakeStringBlock(part.Value, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length)}");
+                    partBuilder.Append($"{VcardCommonTools.MakeStringBlock(part.Value, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length, encoding: part.Property?.Encoding() ?? "")}");
                     cardBuilder.AppendLine($"{partBuilder}");
                 }
             }
@@ -276,7 +276,7 @@ namespace VisualCard.Parts
                         cardBuilder.Append($"{group}.");
                     partBuilder.Append($"{prefix}");
                     partBuilder.Append($"{partArguments}");
-                    partBuilder.Append($"{VcardCommonTools.MakeStringBlock(partRepresentation, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length, !(partsArrayEnum == PartsArrayEnum.Agents && version.Major == 2))}");
+                    partBuilder.Append($"{VcardCommonTools.MakeStringBlock(partRepresentation, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length, !(partsArrayEnum == PartsArrayEnum.Agents && version.Major == 2), part.Property?.Encoding() ?? "")}");
                     cardBuilder.AppendLine($"{partBuilder}");
                 }
             }

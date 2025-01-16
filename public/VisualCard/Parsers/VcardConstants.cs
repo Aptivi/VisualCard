@@ -35,7 +35,7 @@ namespace VisualCard.Parsers
         internal const string _spaceBreak = " ";
         internal const string _tabBreak = "\x0009";
 
-        //Encodings
+        // Encodings
         internal const string _quotedPrintable = "QUOTED-PRINTABLE";
 
         // Available in vCard 2.1, 3.0, 4.0, and 5.0

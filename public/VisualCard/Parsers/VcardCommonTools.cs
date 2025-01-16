@@ -505,7 +505,7 @@ namespace VisualCard.Parsers
             return argString;
         }
 
-        internal static string MakeStringBlock(string target, int firstLength = 0, bool writeSpace = true)
+        internal static string MakeStringBlock(string target, int firstLength = 0, bool writeSpace = true, string encoding = "")
         {
             const int maxChars = 74;
             int maxCharsFirst = maxChars - firstLength;
@@ -522,7 +522,7 @@ namespace VisualCard.Parsers
                     selectedMax = writeSpace ? maxChars - 1 : maxChars;
                     processed = 0;
                     block.Append("\n");
-                    if (writeSpace)
+                    if (writeSpace && encoding != VcardConstants._quotedPrintable)
                         block.Append(" ");
                 }
                 if (target[currCharNum] != '\n' && target[currCharNum] != '\r')
