@@ -99,6 +99,14 @@ namespace VisualCard.Calendar
                     var prop = new PropertyInfo(CalendarLine);
                     prefix = prop.Prefix;
                     value = prop.Value;
+                    while (prop.CanContinueMultiline())
+                    {
+                        string nextLine = stream.ReadLine();
+                        prop.rawValue.Append(nextLine);
+
+                        // Add it to the current line for later processing
+                        CalendarLine += nextLine;
+                    }
                 }
                 catch
                 {
