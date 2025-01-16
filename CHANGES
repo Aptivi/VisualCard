@@ -1,11 +1,10 @@
-We've made this release to make some improvements regarding value interoperability.
+We've made this release to add basic support for QUOTED-PRINTABLE. The next release will be a huge release that will make your applications more powerful than never before.
 
 ### Changes
 
 This release contains a variety of changes, including, but not limited to:
 
-- `[*]` Merged CalendarValueInfo and CardValueInfo
-- `[*]` ValueInfo equality comparison now also compares the values
+- `[+]` Added QUOTED-PRINTABLE support for cards and calendars
 - `[*]` General improvements
 
 Review the commit history if you want to get a deep insight about the changes.
