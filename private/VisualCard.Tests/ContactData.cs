@@ -24,25 +24,25 @@ namespace VisualCard.Tests
     public static class ContactData
     {
         #region singleVcardTwoContactShort
-        private static readonly string singleMeCardContactShort =
+        internal static readonly string singleMeCardContactShort =
             """
             MECARD:N:Hood,Rick,,,;;
             """
         ;
 
-        private static readonly string singleMeCardContactShortReparsed =
+        internal static readonly string singleMeCardContactShortReparsed =
             """
             MECARD:N:Hood,Rick;;
             """
         ;
 
-        private static readonly string singleMeCardContactShortReparsedCompatibility =
+        internal static readonly string singleMeCardContactShortReparsedCompatibility =
             """
             MECARD:N:Hood,Rick;;
             """
         ;
 
-        private static readonly string singleVcardContactShortFromMeCard =
+        internal static readonly string singleVcardContactShortFromMeCard =
             """
             BEGIN:VCARD
             VERSION:3.0
@@ -53,7 +53,7 @@ namespace VisualCard.Tests
             """
         ;
 
-        private static readonly string singleVcardTwoContactShort =
+        internal static readonly string singleVcardTwoContactShort =
             """
             BEGIN:VCARD
             VERSION:2.1
@@ -65,7 +65,7 @@ namespace VisualCard.Tests
         #endregion
 
         #region singleVcardThreeContactShort
-        private static readonly string singleVcardThreeContactShort =
+        internal static readonly string singleVcardThreeContactShort =
             """
             BEGIN:VCARD
             VERSION:3.0
@@ -77,7 +77,7 @@ namespace VisualCard.Tests
         #endregion
 
         #region singleVcardFourContactShort
-        private static readonly string singleVcardFourContactShort =
+        internal static readonly string singleVcardFourContactShort =
             """
             BEGIN:VCARD
             VERSION:4.0
@@ -89,7 +89,7 @@ namespace VisualCard.Tests
         #endregion
 
         #region singleVcardFiveContactShort
-        private static readonly string singleVcardFiveContactShort =
+        internal static readonly string singleVcardFiveContactShort =
             """
             BEGIN:VCARD
             VERSION:5.0
@@ -101,43 +101,43 @@ namespace VisualCard.Tests
         #endregion
 
         #region singleVcardTwoContact
-        private static readonly string singleMeCardContact =
+        internal static readonly string singleMeCardContact =
             """
             MECARD:N:Sanders,John,,,;TEL:495-522-3560;EMAIL:john.s@acme.co;ADR:,,Los Angeles,,,,USA;NOTE:Note test for VisualCard;;
             """
         ;
 
-        private static readonly string singleMeCardContactFull =
+        internal static readonly string singleMeCardContactFull =
             """
             MECARD:N:Sanders,John,,,;SOUND:Saunders,John;TEL:495-522-3560;TEL-AV:495-522-3550;EMAIL:john.s@acme.co;ADR:,,Los Angeles,,,,USA;NOTE:Note test for VisualCard;;
             """
         ;
 
-        private static readonly string singleMeCardContactReparsed =
+        internal static readonly string singleMeCardContactReparsed =
             """
             MECARD:N:Sanders,John;TEL:495-522-3560;EMAIL:john.s@acme.co;NOTE:Note test for VisualCard;ADR:,,Los Angeles,,,,USA;;
             """
         ;
 
-        private static readonly string singleMeCardContactFullReparsed =
+        internal static readonly string singleMeCardContactFullReparsed =
             """
             MECARD:N:Sanders,John;SOUND:Saunders,John;TEL:495-522-3560;TEL-AV:495-522-3550;EMAIL:john.s@acme.co;NOTE:Note test for VisualCard;ADR:,,Los Angeles,,,,USA;;
             """
         ;
 
-        private static readonly string singleMeCardContactReparsedCompatibility =
+        internal static readonly string singleMeCardContactReparsedCompatibility =
             """
             MECARD:N:Sanders,John;TEL:495-522-3560;EMAIL:john.s@acme.co;ADR:,,Los Angeles,,,,USA;;
             """
         ;
 
-        private static readonly string singleMeCardContactFullReparsedCompatibility =
+        internal static readonly string singleMeCardContactFullReparsedCompatibility =
             """
             MECARD:N:Sanders,John;SOUND:Saunders,John;TEL:495-522-3560;EMAIL:john.s@acme.co;ADR:,,Los Angeles,,,,USA;;
             """
         ;
 
-        private static readonly string singleVcardContactFromMeCard =
+        internal static readonly string singleVcardContactFromMeCard =
             """
             BEGIN:VCARD
             VERSION:3.0
@@ -152,7 +152,7 @@ namespace VisualCard.Tests
             """
         ;
 
-        private static readonly string singleVcardContactFullFromMeCard =
+        internal static readonly string singleVcardContactFullFromMeCard =
             """
             BEGIN:VCARD
             VERSION:3.0
@@ -169,7 +169,7 @@ namespace VisualCard.Tests
             """
         ;
 
-        private static readonly string singleVcardTwoContact =
+        internal static readonly string singleVcardTwoContact =
             """
             BEGIN:VCARD
             VERSION:2.1
@@ -191,7 +191,7 @@ namespace VisualCard.Tests
         #endregion
 
         #region singleVcardThreeContact
-        private static readonly string singleVcardThreeContact =
+        internal static readonly string singleVcardThreeContact =
             """
             BEGIN:VCARD
             VERSION:3.0
@@ -213,7 +213,7 @@ namespace VisualCard.Tests
         #endregion
 
         #region singleVcardFourContact
-        private static readonly string singleVcardFourContact =
+        internal static readonly string singleVcardFourContact =
             """
             BEGIN:VCARD
             VERSION:4.0
@@ -235,7 +235,7 @@ namespace VisualCard.Tests
         #endregion
 
         #region singleVcardFiveContact
-        private static readonly string singleVcardFiveContact =
+        internal static readonly string singleVcardFiveContact =
             """
             BEGIN:VCARD
             VERSION:5.0
@@ -258,7 +258,7 @@ namespace VisualCard.Tests
         #endregion
 
         #region multipleVcardTwoContacts
-        private static readonly string multipleVcardTwoContacts =
+        internal static readonly string multipleVcardTwoContacts =
             """
             BEGIN:VCARD
             VERSION:2.1
@@ -321,7 +321,7 @@ namespace VisualCard.Tests
         #endregion
 
         #region multipleVcardThreeContacts
-        private static readonly string multipleVcardThreeContacts =
+        internal static readonly string multipleVcardThreeContacts =
             """
             BEGIN:VCARD
             VERSION:3.0
@@ -384,7 +384,7 @@ namespace VisualCard.Tests
         #endregion
 
         #region multipleVcardFourContacts
-        private static readonly string multipleVcardFourContacts =
+        internal static readonly string multipleVcardFourContacts =
             """
             BEGIN:VCARD
             VERSION:4.0
@@ -449,7 +449,7 @@ namespace VisualCard.Tests
         #endregion
 
         #region multipleVcardFiveContacts
-        private static readonly string multipleVcardFiveContacts =
+        internal static readonly string multipleVcardFiveContacts =
             """
             BEGIN:VCARD
             VERSION:5.0
@@ -516,7 +516,7 @@ namespace VisualCard.Tests
         #endregion
 
         #region vcardThreeOldSample
-        private static readonly string vcardThreeOldSample =
+        internal static readonly string vcardThreeOldSample =
             """
             BEGIN:VCARD
             VERSION:3.0
