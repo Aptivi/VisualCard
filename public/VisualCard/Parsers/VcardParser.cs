@@ -74,102 +74,20 @@ namespace VisualCard.Parsers
 
             // Iterate through all the lines
             StringBuilder valueBuilder = new();
-            string[] allowedTypes = ["HOME", "WORK", "PREF"];
-            string kind = "individual";
             for (int i = 0; i < CardContent.Length; i++)
             {
                 // Get line
+                var contentLines = CardContent.Select((tuple) => tuple.Item2).ToArray();
                 var content = CardContent[i];
-                string _value = VcardCommonTools.ConstructBlocks(CardContent, ref i);
+                string _value = VcardCommonTools.ConstructBlocks(contentLines, ref i);
                 int lineNumber = content.Item1;
                 if (string.IsNullOrEmpty(_value))
                     continue;
 
+                // Process the line
                 try
                 {
-                    // Now, parse a property
-                    var info = new PropertyInfo(_value);
-                    var partType = VcardParserTools.GetPartType(info.Prefix, CardVersion, kind);
-                    
-                    // Handle AltID
-                    int altId = VcardCommonTools.GetAltIdFromArgs(CardVersion, info, partType);
-
-                    // Check the type for allowed types
-                    bool specifierRequired = CardVersion.Major >= 3;
-                    string[] elementTypes = VcardCommonTools.GetTypes(info.Arguments, partType.defaultType, specifierRequired);
-                    foreach (string elementType in elementTypes)
-                    {
-                        string elementTypeUpper = elementType.ToUpper();
-                        if (!allowedTypes.Contains(elementTypeUpper) && !partType.allowedExtraTypes.Contains(elementTypeUpper) && !elementTypeUpper.StartsWith("X-"))
-                        {
-                            if (partType.type == PartType.PartsArray &&
-                                ((PartsArrayEnum)partType.enumeration == PartsArrayEnum.IanaNames ||
-                                 (PartsArrayEnum)partType.enumeration == PartsArrayEnum.NonstandardNames))
-                                continue;
-                            throw new InvalidDataException($"Part info type {partType.enumType?.Name ?? "<null>"} doesn't support property type {elementTypeUpper} because the following base types are supported: [{string.Join(", ", allowedTypes)}] and the extra types are supported: [{string.Join(", ", partType.allowedExtraTypes)}]");
-                        }
-                    }
-
-                    // Handle the part type
-                    string valueType = VcardCommonTools.GetFirstValue(info.Arguments, partType.defaultValueType, VcardConstants._valueArgumentSpecifier);
-                    string finalValue = VcardCommonTools.ProcessStringValue(info.Value, valueType);
-
-                    // Check for allowed values
-                    if (partType.allowedValues.Length != 0)
-                    {
-                        bool found = false;
-                        foreach (string allowedValue in partType.allowedValues)
-                        {
-                            if (finalValue == allowedValue)
-                                found = true;
-                        }
-                        if (!found)
-                            throw new InvalidDataException($"Value {finalValue} not in the list of allowed values [{string.Join(", ", partType.allowedValues)}]");
-                    }
-
-                    // Check for support
-                    bool supported = partType.minimumVersionCondition(CardVersion);
-                    if (!supported)
-                        continue;
-
-                    // Process the value
-                    switch (partType.type)
-                    {
-                        case PartType.Strings:
-                            {
-                                StringsEnum stringType = (StringsEnum)partType.enumeration;
-
-                                // Let VisualCard know that we've explicitly specified a kind.
-                                if (stringType == StringsEnum.Kind)
-                                {
-                                    kind = string.IsNullOrEmpty(finalValue) ? "individual" : finalValue;
-                                    card.kindExplicitlySpecified = true;
-                                }
-                                else if (stringType == StringsEnum.Profile && !finalValue.Equals("vcard", StringComparison.OrdinalIgnoreCase))
-                                    throw new InvalidDataException("Profile must be \"vCard\"");
-
-                                // Set the string for real
-                                var stringValueInfo = new ValueInfo<string>(info, altId, elementTypes, valueType, finalValue);
-                                card.AddString(stringType, stringValueInfo);
-                            }
-                            break;
-                        case PartType.PartsArray:
-                            {
-                                PartsArrayEnum partsArrayType = (PartsArrayEnum)partType.enumeration;
-                                if (partType.fromStringFunc is null)
-                                    continue;
-
-                                // Now, get the part info
-                                finalValue = partsArrayType is PartsArrayEnum.NonstandardNames or PartsArrayEnum.IanaNames ? _value : info.Value;
-                                var partInfo = partType.fromStringFunc(finalValue, info, altId, elementTypes, valueType, CardVersion);
-
-                                // Set the array for real
-                                card.AddPartToArray(partsArrayType, partInfo);
-                            }
-                            break;
-                        default:
-                            throw new InvalidDataException($"The type {partType.type} is invalid. Are you sure that you've specified the correct type in your vCard representation?");
-                    }
+                    Process(_value, ref card);
                 }
                 catch (Exception ex)
                 {
@@ -183,6 +101,93 @@ namespace VisualCard.Parsers
             // Validate this card before returning it.
             ValidateCard(card);
             return card;
+        }
+
+        internal void Process(string _value, ref Card card)
+        {
+            string[] allowedTypes = ["HOME", "WORK", "PREF"];
+            string kind = card.CardKindStr;
+
+            // Parse a property
+            var info = new PropertyInfo(_value);
+            var partType = VcardParserTools.GetPartType(info.Prefix, CardVersion, kind);
+
+            // Handle AltID
+            int altId = VcardCommonTools.GetAltIdFromArgs(CardVersion, info, partType);
+
+            // Check the type for allowed types
+            bool specifierRequired = CardVersion.Major >= 3;
+            string[] elementTypes = VcardCommonTools.GetTypes(info.Arguments, partType.defaultType, specifierRequired);
+            foreach (string elementType in elementTypes)
+            {
+                string elementTypeUpper = elementType.ToUpper();
+                if (!allowedTypes.Contains(elementTypeUpper) && !partType.allowedExtraTypes.Contains(elementTypeUpper) && !elementTypeUpper.StartsWith("X-"))
+                {
+                    if (partType.type == PartType.PartsArray &&
+                        ((PartsArrayEnum)partType.enumeration == PartsArrayEnum.IanaNames ||
+                         (PartsArrayEnum)partType.enumeration == PartsArrayEnum.NonstandardNames))
+                        continue;
+                    throw new InvalidDataException($"Part info type {partType.enumType?.Name ?? "<null>"} doesn't support property type {elementTypeUpper} because the following base types are supported: [{string.Join(", ", allowedTypes)}] and the extra types are supported: [{string.Join(", ", partType.allowedExtraTypes)}]");
+                }
+            }
+
+            // Handle the part type
+            string valueType = VcardCommonTools.GetFirstValue(info.Arguments, partType.defaultValueType, VcardConstants._valueArgumentSpecifier);
+            string finalValue = VcardCommonTools.ProcessStringValue(info.Value, valueType);
+
+            // Check for allowed values
+            if (partType.allowedValues.Length != 0)
+            {
+                bool found = false;
+                foreach (string allowedValue in partType.allowedValues)
+                {
+                    if (finalValue == allowedValue)
+                        found = true;
+                }
+                if (!found)
+                    throw new InvalidDataException($"Value {finalValue} not in the list of allowed values [{string.Join(", ", partType.allowedValues)}]");
+            }
+
+            // Check for support
+            bool supported = partType.minimumVersionCondition(CardVersion);
+            if (!supported)
+                return;
+
+            // Process the value
+            switch (partType.type)
+            {
+                case PartType.Strings:
+                    {
+                        StringsEnum stringType = (StringsEnum)partType.enumeration;
+
+                        // Let VisualCard know that we've explicitly specified a kind.
+                        if (stringType == StringsEnum.Kind)
+                            card.kindExplicitlySpecified = true;
+                        else if (stringType == StringsEnum.Profile && !finalValue.Equals("vcard", StringComparison.OrdinalIgnoreCase))
+                            throw new InvalidDataException("Profile must be \"vCard\"");
+
+                        // Set the string for real
+                        var stringValueInfo = new ValueInfo<string>(info, altId, elementTypes, valueType, finalValue);
+                        card.AddString(stringType, stringValueInfo);
+                    }
+                    break;
+                case PartType.PartsArray:
+                    {
+                        PartsArrayEnum partsArrayType = (PartsArrayEnum)partType.enumeration;
+                        if (partType.fromStringFunc is null)
+                            return;
+
+                        // Now, get the part info
+                        finalValue = partsArrayType is PartsArrayEnum.NonstandardNames or PartsArrayEnum.IanaNames ? _value : info.Value;
+                        var partInfo = partType.fromStringFunc(finalValue, info, altId, elementTypes, valueType, CardVersion);
+
+                        // Set the array for real
+                        card.AddPartToArray(partsArrayType, partInfo);
+                    }
+                    break;
+                default:
+                    throw new InvalidDataException($"The type {partType.type} is invalid. Are you sure that you've specified the correct type in your vCard representation?");
+            }
         }
 
         internal void ValidateCard(Card card)

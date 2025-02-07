@@ -72,8 +72,9 @@ namespace VisualCard.Calendar.Parsers
             for (int i = 0; i < CalendarContent.Length; i++)
             {
                 // Get line
+                var contentLines = CalendarContent.Select((tuple) => tuple.Item2).ToArray();
                 var content = CalendarContent[i];
-                string _value = VcardCommonTools.ConstructBlocks(CalendarContent, ref i);
+                string _value = VcardCommonTools.ConstructBlocks(contentLines, ref i);
                 int lineNumber = content.Item1;
                 if (string.IsNullOrEmpty(_value))
                     continue;

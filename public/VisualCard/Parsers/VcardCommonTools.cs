@@ -702,7 +702,7 @@ namespace VisualCard.Parsers
                 _ => CardKind.Others,
             };
 
-        internal static string ConstructBlocks((int, string)[] cardContent, ref int i)
+        internal static string ConstructBlocks(string[] cardContent, ref int i)
         {
             StringBuilder valueBuilder = new();
             bool constructing;
@@ -711,12 +711,12 @@ namespace VisualCard.Parsers
             {
                 // Get line
                 var content = cardContent[idx];
-                string _value = content.Item2;
+                string _value = content;
                 if (string.IsNullOrEmpty(_value))
                     continue;
 
                 // First, check to see if we need to construct blocks
-                string secondLine = idx + 1 < cardContent.Length ? cardContent[idx + 1].Item2 : "";
+                string secondLine = idx + 1 < cardContent.Length ? cardContent[idx + 1] : "";
                 bool firstConstructedLine = !_value.StartsWith(VcardConstants._spaceBreak) && !_value.StartsWith(VcardConstants._tabBreak);
                 constructing = secondLine.StartsWithAnyOf([VcardConstants._spaceBreak, VcardConstants._tabBreak]);
                 secondLine = secondLine.Length > 1 ? secondLine.Substring(1) : "";
