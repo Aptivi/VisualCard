@@ -35,7 +35,7 @@ namespace VisualCard.Calendar.Parts.Implementations.FreeBusy
         /// <summary>
         /// Free/busy time periods
         /// </summary>
-        public TimePeriod? FreeBusy { get; }
+        public TimePeriod? FreeBusy { get; set; }
 
         internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion) =>
             new CalendarFreeBusyInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, cardVersion);

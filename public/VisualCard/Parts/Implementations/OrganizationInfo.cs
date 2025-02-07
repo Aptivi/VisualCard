@@ -35,15 +35,15 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// The contact's organization name
         /// </summary>
-        public string? Name { get; }
+        public string? Name { get; set; }
         /// <summary>
         /// The contact's organization unit
         /// </summary>
-        public string? Unit { get; }
+        public string? Unit { get; set; }
         /// <summary>
         /// The contact's organization unit's role
         /// </summary>
-        public string? Role { get; }
+        public string? Role { get; set; }
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new OrganizationInfo().FromStringVcardInternal(value, property, altId, elementTypes, valueType, cardVersion);

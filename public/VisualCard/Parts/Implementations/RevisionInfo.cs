@@ -33,7 +33,7 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// The card's revision
         /// </summary>
-        public DateTimeOffset Revision { get; }
+        public DateTimeOffset Revision { get; set; }
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new RevisionInfo().FromStringVcardInternal(value, property, altId, elementTypes, valueType, cardVersion);

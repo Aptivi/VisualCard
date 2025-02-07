@@ -35,7 +35,7 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// <summary>
         /// The calendar's resources
         /// </summary>
-        public string[]? Resources { get; }
+        public string[]? Resources { get; set; }
 
         internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion) =>
             new ResourcesInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, cardVersion);

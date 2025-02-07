@@ -33,7 +33,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
         /// <summary>
         /// The event's date stamp
         /// </summary>
-        public DateTimeOffset DateStamp { get; }
+        public DateTimeOffset DateStamp { get; set; }
 
         internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion) =>
             new DateStampInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, cardVersion);

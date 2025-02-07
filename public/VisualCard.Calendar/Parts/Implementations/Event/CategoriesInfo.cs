@@ -34,7 +34,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
         /// <summary>
         /// The calendar event's categories
         /// </summary>
-        public string[]? Categories { get; }
+        public string[]? Categories { get; set; }
 
         internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion) =>
             new CategoriesInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, cardVersion);

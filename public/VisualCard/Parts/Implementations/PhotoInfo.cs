@@ -39,7 +39,7 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// Encoded photo
         /// </summary>
-        public string? PhotoEncoded { get; }
+        public string? PhotoEncoded { get; set; }
         /// <summary>
         /// Whether this photo is a blob or not
         /// </summary>

@@ -33,7 +33,7 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// The contact's wedding anniversary date (that is, the day that this contact is married)
         /// </summary>
-        public DateTimeOffset Anniversary { get; }
+        public DateTimeOffset Anniversary { get; set; }
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new AnniversaryInfo().FromStringVcardInternal(value, property, altId, elementTypes, valueType, cardVersion);

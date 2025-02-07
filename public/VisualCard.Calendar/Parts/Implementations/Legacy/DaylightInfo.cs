@@ -34,32 +34,32 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
         /// <summary>
         /// Whether it's enabled or not
         /// </summary>
-        public bool Flag { get; }
+        public bool Flag { get; set; }
 
         /// <summary>
         /// UTC offset of the daylight saving time
         /// </summary>
-        public TimeSpan UtcOffset { get; }
+        public TimeSpan UtcOffset { get; set; }
 
         /// <summary>
         /// Start date and time of the daylight saving time
         /// </summary>
-        public DateTimeOffset DaylightStart { get; }
+        public DateTimeOffset DaylightStart { get; set; }
 
         /// <summary>
         /// End date and time of the daylight saving time
         /// </summary>
-        public DateTimeOffset DaylightEnd { get; }
+        public DateTimeOffset DaylightEnd { get; set; }
 
         /// <summary>
         /// Standard time designation
         /// </summary>
-        public string? StandardDesignation { get; }
+        public string? StandardDesignation { get; set; }
 
         /// <summary>
         /// Daylight saving time designation
         /// </summary>
-        public string? DaylightDesignation { get; }
+        public string? DaylightDesignation { get; set; }
 
         internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version calendarVersion) =>
             new DaylightInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, calendarVersion);

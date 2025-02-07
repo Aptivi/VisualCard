@@ -32,12 +32,12 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// <summary>
         /// Latitude of a geographical area
         /// </summary>
-        public double Latitude { get; }
+        public double Latitude { get; set; }
 
         /// <summary>
         /// Longitude of a geographical area
         /// </summary>
-        public double Longitude { get; }
+        public double Longitude { get; set; }
 
         internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version calendarVersion) =>
             new GeoInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, calendarVersion);

@@ -39,7 +39,7 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// Encoded key
         /// </summary>
-        public string? KeyEncoded { get; }
+        public string? KeyEncoded { get; set; }
         /// <summary>
         /// Whether this key is a blob or not
         /// </summary>

@@ -37,11 +37,11 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// The contact's gender
         /// </summary>
-        public Gender Gender { get; }
+        public Gender Gender { get; set; }
         /// <summary>
         /// The contact's gender description
         /// </summary>
-        public string? GenderDescription { get; }
+        public string? GenderDescription { get; set; }
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new GenderInfo().FromStringVcardInternal(value, property, altId, elementTypes, valueType, cardVersion);

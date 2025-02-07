@@ -31,15 +31,27 @@ namespace VisualCard.Parts.Implementations
     [DebuggerDisplay("XML = {XmlString}")]
     public class XmlInfo : BaseCardPartInfo, IEquatable<XmlInfo>
     {
+        private string? xmlString;
+        private XmlDocument? xml;
+
         /// <summary>
         /// The contact's XML field
         /// </summary>
-        public XmlDocument? Xml { get; }
-        
+        public XmlDocument? Xml =>
+            xml;
+
         /// <summary>
         /// The contact's XML string that generated the <see cref="Xml"/> property
         /// </summary>
-        public string? XmlString { get; }
+        public string? XmlString
+        {
+            get => xmlString;
+            set
+            {
+                xmlString = value;
+                xml = GenerateDocument(value);
+            }
+        }
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new XmlInfo().FromStringVcardInternal(value, property, altId, elementTypes, valueType, cardVersion);
@@ -49,6 +61,19 @@ namespace VisualCard.Parts.Implementations
 
         internal override BaseCardPartInfo FromStringVcardInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion)
         {
+            XmlDocument doc = GenerateDocument(value) ??
+                throw new ArgumentNullException("Can't generate XML document from nothing.");
+
+            // Add the fetched information
+            XmlInfo _xml = new(altId, property, elementTypes, valueType, doc, value);
+            return _xml;
+        }
+
+        private XmlDocument? GenerateDocument(string? value)
+        {
+            if (value is null || string.IsNullOrWhiteSpace(value))
+                return null;
+
             // Check to see if the XML document is valid or not
             string finalXml =
                 $"""
@@ -59,10 +84,7 @@ namespace VisualCard.Parts.Implementations
                 """;
             XmlDocument doc = new();
             doc.LoadXml(finalXml);
-
-            // Add the fetched information
-            XmlInfo _xml = new(altId, property, elementTypes, valueType, doc, value);
-            return _xml;
+            return doc;
         }
 
         /// <inheritdoc/>
@@ -121,7 +143,7 @@ namespace VisualCard.Parts.Implementations
         internal XmlInfo(int altId, PropertyInfo? property, string[] elementTypes, string valueType, XmlDocument xml, string xmlString) :
             base(property, altId, elementTypes, valueType)
         {
-            Xml = xml;
+            this.xml = xml;
             XmlString = xmlString;
         }
     }

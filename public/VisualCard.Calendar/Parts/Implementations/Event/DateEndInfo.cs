@@ -33,7 +33,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
         /// <summary>
         /// The event's end date
         /// </summary>
-        public DateTimeOffset DateEnd { get; }
+        public DateTimeOffset DateEnd { get; set; }
 
         internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion) =>
             new DateEndInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, cardVersion);

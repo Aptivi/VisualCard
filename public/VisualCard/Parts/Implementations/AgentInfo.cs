@@ -37,7 +37,7 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// The contact's agent <see cref="Card"/> instances
         /// </summary>
-        public Card[]? AgentCards { get; }
+        public Card[]? AgentCards { get; set; }
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new AgentInfo().FromStringVcardInternal(value, property, altId, elementTypes, valueType, cardVersion);

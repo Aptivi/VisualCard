@@ -66,7 +66,7 @@ namespace VisualCard.Parts
         /// <summary>
         /// Parsed value
         /// </summary>
-        public TValue Value { get; internal set; }
+        public TValue Value { get; set; }
 
         /// <summary>
         /// Is this part preferred?

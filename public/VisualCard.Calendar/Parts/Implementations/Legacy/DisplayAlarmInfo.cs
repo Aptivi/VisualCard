@@ -34,22 +34,22 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
         /// <summary>
         /// Alarm run time
         /// </summary>
-        public DateTimeOffset RunTime { get; }
+        public DateTimeOffset RunTime { get; set; }
 
         /// <summary>
         /// Alarm snooze time
         /// </summary>
-        public string? SnoozeTime { get; }
+        public string? SnoozeTime { get; set; }
 
         /// <summary>
         /// Alarm repeat count
         /// </summary>
-        public int RepeatCount { get; }
+        public int RepeatCount { get; set; }
 
         /// <summary>
         /// Display alarm string
         /// </summary>
-        public string? Display { get; }
+        public string? Display { get; set; }
 
         /// <summary>
         /// Snooze duration. Throws exception if there is no snooze time, so check accordingly.

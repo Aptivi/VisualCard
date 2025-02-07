@@ -33,7 +33,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Todo
         /// <summary>
         /// The to-do due date
         /// </summary>
-        public DateTimeOffset DueDate { get; }
+        public DateTimeOffset DueDate { get; set; }
 
         internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion) =>
             new DueDateInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, cardVersion);

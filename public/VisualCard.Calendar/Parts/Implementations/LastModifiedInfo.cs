@@ -33,7 +33,7 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// <summary>
         /// The calendar's revision
         /// </summary>
-        public DateTimeOffset LastModified { get; }
+        public DateTimeOffset LastModified { get; set; }
 
         internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion) =>
             new LastModifiedInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, cardVersion);

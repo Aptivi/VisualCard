@@ -37,23 +37,23 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// The contact's first name
         /// </summary>
-        public string? ContactFirstName { get; }
+        public string? ContactFirstName { get; set; }
         /// <summary>
         /// The contact's last name
         /// </summary>
-        public string? ContactLastName { get; }
+        public string? ContactLastName { get; set; }
         /// <summary>
         /// The contact's alternative names
         /// </summary>
-        public string[]? AltNames { get; }
+        public string[]? AltNames { get; set; }
         /// <summary>
         /// The contact's prefixes
         /// </summary>
-        public string[]? Prefixes { get; }
+        public string[]? Prefixes { get; set; }
         /// <summary>
         /// The contact's suffixes
         /// </summary>
-        public string[]? Suffixes { get; }
+        public string[]? Suffixes { get; set; }
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new NameInfo().FromStringVcardInternal(value, property, altId, elementTypes, valueType, cardVersion);

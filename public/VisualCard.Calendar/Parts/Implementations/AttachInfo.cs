@@ -39,7 +39,7 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// <summary>
         /// Encoded attach
         /// </summary>
-        public string? AttachEncoded { get; }
+        public string? AttachEncoded { get; set; }
         /// <summary>
         /// Whether this attach is a blob or not
         /// </summary>

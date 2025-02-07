@@ -33,7 +33,7 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// <summary>
         /// The calendar's creation date
         /// </summary>
-        public DateTimeOffset DateCreated { get; }
+        public DateTimeOffset DateCreated { get; set; }
 
         internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion) =>
             new DateCreatedInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, cardVersion);

@@ -35,12 +35,12 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// Client PID number
         /// </summary>
-        public int PidNum { get; }
+        public int PidNum { get; set; }
         
         /// <summary>
         /// Client PID URI
         /// </summary>
-        public string? PidUri { get; }
+        public string? PidUri { get; set; }
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new ClientPidMapInfo().FromStringVcardInternal(value, property, altId, elementTypes, valueType, cardVersion);

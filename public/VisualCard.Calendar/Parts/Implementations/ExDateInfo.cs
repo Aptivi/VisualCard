@@ -36,7 +36,7 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// <summary>
         /// The excluded date list
         /// </summary>
-        public DateTimeOffset[]? ExDates { get; }
+        public DateTimeOffset[]? ExDates { get; set; }
 
         internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion) =>
             new ExDateInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, cardVersion);

@@ -39,7 +39,7 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// Encoded sound
         /// </summary>
-        public string? SoundEncoded { get; }
+        public string? SoundEncoded { get; set; }
         /// <summary>
         /// Whether this sound is a blob or not
         /// </summary>

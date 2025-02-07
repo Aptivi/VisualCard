@@ -33,7 +33,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Todo
         /// <summary>
         /// The to-do completion date
         /// </summary>
-        public DateTimeOffset DateCompleted { get; }
+        public DateTimeOffset DateCompleted { get; set; }
 
         internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion) =>
             new DateCompletedInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, cardVersion);

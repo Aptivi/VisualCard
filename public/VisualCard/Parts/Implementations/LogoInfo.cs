@@ -39,7 +39,7 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// Encoded logo
         /// </summary>
-        public string? LogoEncoded { get; }
+        public string? LogoEncoded { get; set; }
         /// <summary>
         /// Whether this logo is a blob or not
         /// </summary>

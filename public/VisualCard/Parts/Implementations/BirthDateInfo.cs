@@ -33,7 +33,7 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// The contact's birth date
         /// </summary>
-        public DateTimeOffset BirthDate { get; }
+        public DateTimeOffset BirthDate { get; set; }
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new BirthDateInfo().FromStringVcardInternal(value, property, altId, elementTypes, valueType, cardVersion);

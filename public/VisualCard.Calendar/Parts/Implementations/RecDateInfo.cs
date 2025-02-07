@@ -37,7 +37,7 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// <summary>
         /// The recurrence date list
         /// </summary>
-        public TimePeriod[]? RecDates { get; }
+        public TimePeriod[]? RecDates { get; set; }
 
         internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion) =>
             new RecDateInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, cardVersion);

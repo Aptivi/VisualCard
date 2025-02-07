@@ -37,17 +37,17 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// <summary>
         /// The calendar's request status code
         /// </summary>
-        public (int, int, int) RequestStatus { get; }
+        public (int, int, int) RequestStatus { get; set; }
         
         /// <summary>
         /// The calendar's request status description
         /// </summary>
-        public string? RequestStatusDesc { get; }
+        public string? RequestStatusDesc { get; set; }
         
         /// <summary>
         /// The calendar's request status external data
         /// </summary>
-        public string? RequestStatusExtData { get; }
+        public string? RequestStatusExtData { get; set; }
 
         internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion) =>
             new RequestStatusInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, cardVersion);

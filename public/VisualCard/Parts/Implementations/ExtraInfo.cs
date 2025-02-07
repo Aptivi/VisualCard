@@ -39,7 +39,7 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// Values
         /// </summary>
-        public string[]? Values { get; }
+        public string[]? Values { get; set; }
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new ExtraInfo().FromStringVcardInternal(value, property, altId, elementTypes, valueType, cardVersion);

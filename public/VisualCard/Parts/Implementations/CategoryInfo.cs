@@ -35,7 +35,7 @@ namespace VisualCard.Parts.Implementations
         /// <summary>
         /// The contact's categories
         /// </summary>
-        public string[]? Category { get; }
+        public string[]? Category { get; set; }
 
         internal static BaseCardPartInfo FromStringVcardStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
             new CategoryInfo().FromStringVcardInternal(value, property, altId, elementTypes, valueType, cardVersion);

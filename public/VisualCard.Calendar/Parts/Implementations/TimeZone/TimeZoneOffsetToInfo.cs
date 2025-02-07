@@ -33,7 +33,7 @@ namespace VisualCard.Calendar.Parts.Implementations.TimeZone
         /// <summary>
         /// Time zone offset
         /// </summary>
-        public TimeSpan Offset { get; }
+        public TimeSpan Offset { get; set; }
 
         internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion) =>
             new TimeZoneOffsetToInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, cardVersion);
