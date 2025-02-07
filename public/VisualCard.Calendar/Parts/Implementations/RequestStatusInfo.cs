@@ -1,5 +1,5 @@
 ﻿//
-// VisualCard  Copyright (C) 2021-2024  Aptivi
+// VisualCard  Copyright (C) 2021-2025  Aptivi
 //
 // This file is part of VisualCard
 //
