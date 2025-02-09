@@ -87,7 +87,7 @@ namespace VisualCard.Parsers
                 // Process the line
                 try
                 {
-                    Process(_value, ref card);
+                    Process(_value, card, CardVersion);
                 }
                 catch (Exception ex)
                 {
@@ -103,20 +103,20 @@ namespace VisualCard.Parsers
             return card;
         }
 
-        internal void Process(string _value, ref Card card)
+        internal static void Process(string _value, Card card, Version version)
         {
             string[] allowedTypes = ["HOME", "WORK", "PREF"];
             string kind = card.CardKindStr;
 
             // Parse a property
             var info = new PropertyInfo(_value);
-            var partType = VcardParserTools.GetPartType(info.Prefix, CardVersion, kind);
+            var partType = VcardParserTools.GetPartType(info.Prefix, version, kind);
 
             // Handle AltID
-            int altId = VcardCommonTools.GetAltIdFromArgs(CardVersion, info, partType);
+            int altId = VcardCommonTools.GetAltIdFromArgs(version, info, partType);
 
             // Check the type for allowed types
-            bool specifierRequired = CardVersion.Major >= 3;
+            bool specifierRequired = version.Major >= 3;
             string[] elementTypes = VcardCommonTools.GetTypes(info.Arguments, partType.defaultType, specifierRequired);
             foreach (string elementType in elementTypes)
             {
@@ -149,7 +149,7 @@ namespace VisualCard.Parsers
             }
 
             // Check for support
-            bool supported = partType.minimumVersionCondition(CardVersion);
+            bool supported = partType.minimumVersionCondition(version);
             if (!supported)
                 return;
 
@@ -179,7 +179,7 @@ namespace VisualCard.Parsers
 
                         // Now, get the part info
                         finalValue = partsArrayType is PartsArrayEnum.NonstandardNames or PartsArrayEnum.IanaNames ? _value : info.Value;
-                        var partInfo = partType.fromStringFunc(finalValue, info, altId, elementTypes, valueType, CardVersion);
+                        var partInfo = partType.fromStringFunc(finalValue, info, altId, elementTypes, valueType, version);
 
                         // Set the array for real
                         card.AddPartToArray(partsArrayType, partInfo);

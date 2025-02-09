@@ -137,7 +137,11 @@ namespace VisualCard.Parsers.Arguments
         public static bool operator !=(ArgumentInfo a, ArgumentInfo b)
             => !a.Equals(b);
 
-        internal ArgumentInfo(string kvp)
+        /// <summary>
+        /// Builds the argument info class
+        /// </summary>
+        /// <param name="kvp">Key and value pair that describes one argument</param>
+        public ArgumentInfo(string kvp)
         {
             if (kvp.Contains(VcardConstants._argumentValueDelimiter))
             {
@@ -155,7 +159,12 @@ namespace VisualCard.Parsers.Arguments
             }
         }
 
-        internal ArgumentInfo(string key, string value)
+        /// <summary>
+        /// Builds the argument info class
+        /// </summary>
+        /// <param name="key">Key name</param>
+        /// <param name="value">Key value</param>
+        public ArgumentInfo(string key, string value)
         {
             // First, split the values and check for quotes
             string[] valuesArray = value.SplitEncloseDoubleQuotesNoRelease(',');

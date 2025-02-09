@@ -39,17 +39,17 @@ namespace VisualCard.Parts
         /// <summary>
         /// Alternative ID. -1 if unspecified.
         /// </summary>
-        public int AltId { get; internal set; }
+        public int AltId { get; set; }
 
         /// <summary>
         /// Card element type (home, work, ...)
         /// </summary>
-        public string[] ElementTypes { get; internal set; } = [];
+        public string[] ElementTypes { get; set; } = [];
 
         /// <summary>
         /// Value type (usually set by VALUE=)
         /// </summary>
-        public string ValueType { get; internal set; } = "";
+        public string ValueType { get; set; } = "";
 
         /// <summary>
         /// Property group
