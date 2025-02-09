@@ -21,8 +21,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shouldly;
 using VisualCard.Parts.Enums;
 using VisualCard.Parts.Implementations;
+using VisualCard.Tests.Contacts.Data;
 
-namespace VisualCard.Tests
+namespace VisualCard.Tests.Contacts
 {
     [TestClass]
     public class ContactPropertyTests

@@ -25,8 +25,9 @@ using VisualCard.Extras.Converters;
 using VisualCard.Exceptions;
 using VisualCard.Parts;
 using VisualCard.Extras.Misc;
+using VisualCard.Tests.Contacts.Data;
 
-namespace VisualCard.Tests
+namespace VisualCard.Tests.Contacts
 {
     [TestClass]
     public class ContactParseTests

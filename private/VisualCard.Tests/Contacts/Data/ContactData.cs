@@ -19,7 +19,7 @@
 
 using System.Collections.Generic;
 
-namespace VisualCard.Tests
+namespace VisualCard.Tests.Contacts.Data
 {
     public static class ContactData
     {

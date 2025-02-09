@@ -25,7 +25,7 @@ using VisualCard.Parts;
 using VisualCard.Parts.Enums;
 using VisualCard.Parts.Implementations;
 
-namespace VisualCard.Tests
+namespace VisualCard.Tests.Contacts
 {
     [TestClass]
     public class ContactMiscTests

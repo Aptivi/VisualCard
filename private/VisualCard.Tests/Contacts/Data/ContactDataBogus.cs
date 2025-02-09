@@ -20,7 +20,7 @@
 using System.Collections.Generic;
 using VisualCard.Parsers;
 
-namespace VisualCard.Tests
+namespace VisualCard.Tests.Contacts.Data
 {
     public static class ContactDataBogus
     {
