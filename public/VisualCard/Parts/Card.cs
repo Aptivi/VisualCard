@@ -537,19 +537,25 @@ namespace VisualCard.Parts
                 partsArray.Add(key, [value]);
             else
             {
-                // We need to check the cardinality.
-                var cardinality = partType.cardinality;
-                int actualAltId = partsArray[key][0].AltId;
-                bool onlyOne =
-                    cardinality == PartCardinality.ShouldBeOne ||
-                    cardinality == PartCardinality.MayBeOne;
-                bool onlyOneNoAltId =
-                    cardinality == PartCardinality.ShouldBeOneNoAltId ||
-                    cardinality == PartCardinality.MayBeOneNoAltId;
-                if (onlyOne && actualAltId != value.AltId)
-                    throw new InvalidOperationException($"Can't overwrite part array {key} with AltID {value.AltId}, because cardinality is {cardinality} and expected AltID is {actualAltId}.");
-                if (onlyOneNoAltId)
-                    throw new InvalidOperationException($"Can never overwrite part array {key} with AltID {value.AltId}, because cardinality is {cardinality}, even though the expected AltID is {actualAltId}.");
+                // Maybe somehow we no longer have any value info but we still have the key entry?
+                if (partsArray[key].Count > 0)
+                {
+                    // We need to check the cardinality.
+                    var cardinality = partType.cardinality;
+                    int actualAltId = partsArray[key][0].AltId;
+                    bool onlyOne =
+                        cardinality == PartCardinality.ShouldBeOne ||
+                        cardinality == PartCardinality.MayBeOne;
+                    bool onlyOneNoAltId =
+                        cardinality == PartCardinality.ShouldBeOneNoAltId ||
+                        cardinality == PartCardinality.MayBeOneNoAltId;
+                    if (onlyOne && actualAltId != value.AltId)
+                        throw new InvalidOperationException($"Can't overwrite part array {key} with AltID {value.AltId}, because cardinality is {cardinality} and expected AltID is {actualAltId}.");
+                    if (onlyOneNoAltId)
+                        throw new InvalidOperationException($"Can never overwrite part array {key} with AltID {value.AltId}, because cardinality is {cardinality}, even though the expected AltID is {actualAltId}.");
+                }
+
+                // Add this value info!
                 partsArray[key].Add(value);
             }
         }
@@ -585,19 +591,25 @@ namespace VisualCard.Parts
                 strings.Add(key, [value]);
             else
             {
-                // We need to check the cardinality.
-                var cardinality = partType.cardinality;
-                int actualAltId = strings[key][0].AltId;
-                bool onlyOne =
-                    cardinality == PartCardinality.ShouldBeOne ||
-                    cardinality == PartCardinality.MayBeOne;
-                bool onlyOneNoAltId =
-                    cardinality == PartCardinality.ShouldBeOneNoAltId ||
-                    cardinality == PartCardinality.MayBeOneNoAltId;
-                if (onlyOne && actualAltId != value.AltId)
-                    throw new InvalidOperationException($"Can't overwrite string {key} with AltID {value.AltId}, because cardinality is {cardinality} and expected AltID is {actualAltId}.");
-                if (onlyOneNoAltId)
-                    throw new InvalidOperationException($"Can never overwrite string {key} with AltID {value.AltId}, because cardinality is {cardinality}, even though the expected AltID is {actualAltId}.");
+                // Maybe somehow we no longer have any value info but we still have the key entry?
+                if (strings[key].Count > 0)
+                {
+                    // We need to check the cardinality.
+                    var cardinality = partType.cardinality;
+                    int actualAltId = strings[key][0].AltId;
+                    bool onlyOne =
+                        cardinality == PartCardinality.ShouldBeOne ||
+                        cardinality == PartCardinality.MayBeOne;
+                    bool onlyOneNoAltId =
+                        cardinality == PartCardinality.ShouldBeOneNoAltId ||
+                        cardinality == PartCardinality.MayBeOneNoAltId;
+                    if (onlyOne && actualAltId != value.AltId)
+                        throw new InvalidOperationException($"Can't overwrite string {key} with AltID {value.AltId}, because cardinality is {cardinality} and expected AltID is {actualAltId}.");
+                    if (onlyOneNoAltId)
+                        throw new InvalidOperationException($"Can never overwrite string {key} with AltID {value.AltId}, because cardinality is {cardinality}, even though the expected AltID is {actualAltId}.");
+                }
+
+                // Add this value info!
                 strings[key].Add(value);
             }
         }
