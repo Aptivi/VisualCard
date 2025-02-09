@@ -665,7 +665,16 @@ namespace VisualCard.Parts
             return valueBuilder.ToString();
         }
 
-        internal Card(Version version) =>
+        /// <summary>
+        /// Creates a new empty card
+        /// </summary>
+        /// <param name="version">vCard version to use</param>
+        /// <exception cref="ArgumentException"></exception>
+        public Card(Version version)
+        {
+            if (!VcardParserTools.VerifySupportedVersion(version))
+                throw new ArgumentException($"Invalid vCard version {version} specified. The supported versions are 2.1, 3.0, 4.0, and 5.0.");
             this.version = version;
+        }
     }
 }

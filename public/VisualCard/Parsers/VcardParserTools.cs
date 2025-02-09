@@ -25,6 +25,26 @@ namespace VisualCard.Parsers
 {
     internal class VcardParserTools
     {
+        internal static Version[] supportedVersions =
+        [
+            new(2, 1),
+            new(3, 0),
+            new(4, 0),
+            new(5, 0),
+        ];
+
+        internal static bool VerifySupportedVersion(Version version)
+        {
+            int major = version.Major;
+            int minor = version.Minor;
+            foreach (var supportedVersion in supportedVersions)
+            {
+                if (supportedVersion.Major == major && supportedVersion.Minor == minor)
+                    return true;
+            }
+            return false;
+        }
+
         internal static string GetPrefixFromStringsEnum(StringsEnum stringsEnum) =>
             stringsEnum switch
             {
