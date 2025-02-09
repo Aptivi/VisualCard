@@ -308,7 +308,10 @@ namespace VisualCard.Parts
 
             // Remove the string value
             var stringValue = strings[stringsEnum][idx];
-            return strings[stringsEnum].Remove(stringValue);
+            bool result = strings[stringsEnum].Remove(stringValue);
+            if (strings[stringsEnum].Count == 0)
+                strings.Remove(stringsEnum);
+            return result;
         }
 
         /// <summary>
@@ -388,7 +391,10 @@ namespace VisualCard.Parts
         {
             // Remove the part
             var part = partsArray[partsArrayEnum][idx];
-            return partsArray[partsArrayEnum].Remove(part);
+            bool result = partsArray[partsArrayEnum].Remove(part);
+            if (partsArray[partsArrayEnum].Count == 0)
+                partsArray.Remove(partsArrayEnum);
+            return result;
         }
 
         /// <summary>
