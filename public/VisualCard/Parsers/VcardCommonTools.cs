@@ -775,5 +775,35 @@ namespace VisualCard.Parsers
             }
             return altId;
         }
+
+        internal static string BuildRawValue(string prefix, string rawValue, string group, ArgumentInfo[] args)
+        {
+            var valueBuilder = new StringBuilder(prefix);
+            if (!string.IsNullOrWhiteSpace(group))
+                valueBuilder.Insert(0, $"{group}.");
+
+            // Check to see if we've been provided arguments
+            bool argsNeeded = args.Length > 0;
+            if (argsNeeded)
+            {
+                valueBuilder.Append(VcardConstants._fieldDelimiter);
+                for (int i = 0; i < args.Length; i++)
+                {
+                    // Get the argument and build it as a string
+                    ArgumentInfo arg = args[i];
+                    string argFinal = arg.BuildArguments();
+                    valueBuilder.Append(argFinal);
+
+                    // If not done, add another delimiter
+                    if (i + 1 < args.Length)
+                        valueBuilder.Append(VcardConstants._fieldDelimiter);
+                }
+            }
+
+            // Now, add the raw value
+            valueBuilder.Append(VcardConstants._argumentDelimiter);
+            valueBuilder.Append(rawValue);
+            return valueBuilder.ToString();
+        }
     }
 }

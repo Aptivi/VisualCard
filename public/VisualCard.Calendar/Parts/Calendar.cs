@@ -31,6 +31,7 @@ using VisualCard.Calendar.Parts.Enums;
 using VisualCard.Calendar.Parts.Implementations.Event;
 using VisualCard.Calendar.Parts.Implementations.Todo;
 using VisualCard.Parsers;
+using VisualCard.Parsers.Arguments;
 using VisualCard.Parts;
 using VisualCard.Parts.Enums;
 
@@ -148,8 +149,7 @@ namespace VisualCard.Calendar.Parts
         public virtual BaseCalendarPartInfo[] GetPartsArray(Type partType)
         {
             // Check the base type
-            if (partType.BaseType != typeof(BaseCalendarPartInfo))
-                throw new InvalidOperationException($"Base type is not BaseCalendarPartInfo [{partType.BaseType.Name}] and the part type is [{partType.Name}] that doesn't represent calendar part.");
+            VerifyPartType(partType);
 
             // Get the parts enumeration according to the type
             var key = VCalendarParserTools.GetPartsArrayEnumFromType(partType, CalendarVersion, GetType());
@@ -167,9 +167,7 @@ namespace VisualCard.Calendar.Parts
         public virtual BaseCalendarPartInfo[] GetPartsArray(Type partType, CalendarPartsArrayEnum key)
         {
             // Check the base type
-            if (partType.BaseType != typeof(BaseCalendarPartInfo) && partType != typeof(BaseCalendarPartInfo))
-                throw new InvalidOperationException($"Base type is not BaseCalendarPartInfo [{partType.BaseType.Name}] and the part type is [{partType.Name}] that doesn't represent calendar part.");
-
+            VerifyPartType(partType);
             return GetPartsArray(partType, key, version, partsArray);
         }
 
@@ -212,20 +210,13 @@ namespace VisualCard.Calendar.Parts
 
         internal BaseCalendarPartInfo[] GetPartsArray(Type partType, CalendarPartsArrayEnum key, Version version, Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray)
         {
+            VerifyPartsArrayType(key, partType, GetType());
+
             // Check for version support
             string prefix = VCalendarParserTools.GetPrefixFromPartsArrayEnum(key);
             var type = VCalendarParserTools.GetPartType(prefix, version, GetType());
             if (!type.minimumVersionCondition(version))
                 return [];
-
-            // Get the parts enumeration according to the type
-            if (partType != typeof(BaseCalendarPartInfo))
-            {
-                // We don't need the base, but a derivative of it. Check it.
-                var partsArrayEnum = (CalendarPartsArrayEnum)type.enumeration;
-                if (key != partsArrayEnum)
-                    throw new InvalidOperationException($"Parts array enumeration [{key}] is different from the expected one [{partsArrayEnum}] according to type {partType.Name}.");
-            }
 
             // Get the fallback value
             BaseCalendarPartInfo[] fallback = [];
@@ -653,6 +644,74 @@ namespace VisualCard.Calendar.Parts
         public static bool operator !=(Calendar a, Calendar b)
             => !a.Equals(b);
 
+        /// <summary>
+        /// Adds a part to the array
+        /// </summary>
+        /// <typeparam name="TPart">Part type to add</typeparam>
+        /// <param name="rawValue">Raw value representing a group of values delimited by the semicolon</param>
+        /// <param name="group">Property group (can be nested with a dot)</param>
+        /// <param name="args">Argument list to be added</param>
+        public void AddPartToArray<TPart>(string rawValue, string group = "", params ArgumentInfo[] args)
+            where TPart : BaseCalendarPartInfo
+        {
+            // Get the parts enumeration according to the type
+            var key = VCalendarParserTools.GetPartsArrayEnumFromType(typeof(TPart), CalendarVersion, GetType());
+
+            // Now, add the part
+            AddPartToArray<TPart>(key, rawValue, group, args);
+        }
+
+        /// <summary>
+        /// Adds a part to the array
+        /// </summary>
+        /// <typeparam name="TPart">Part type to add</typeparam>
+        /// <param name="key">Part array type</param>
+        /// <param name="rawValue">Raw value representing a group of values delimited by the semicolon</param>
+        /// <param name="group">Property group (can be nested with a dot)</param>
+        /// <param name="args">Argument list to be added</param>
+        public void AddPartToArray<TPart>(CalendarPartsArrayEnum key, string rawValue, string group = "", params ArgumentInfo[] args)
+            where TPart : BaseCalendarPartInfo =>
+            AddPartToArray(key, typeof(TPart), rawValue, group, args);
+
+        /// <summary>
+        /// Adds a part to the array
+        /// </summary>
+        /// <param name="key">Part array type</param>
+        /// <param name="rawValue">Raw value representing a group of values delimited by the semicolon</param>
+        /// <param name="group">Property group (can be nested with a dot)</param>
+        /// <param name="args">Argument list to be added</param>
+        public void AddPartToArray(CalendarPartsArrayEnum key, string rawValue, string group = "", params ArgumentInfo[] args)
+        {
+            // Get the part type
+            string prefix = VCalendarParserTools.GetPrefixFromPartsArrayEnum(key);
+            var type = VCalendarParserTools.GetPartType(prefix, CalendarVersion, GetType());
+            var partType = type.enumType ??
+                throw new ArgumentException("Can't determine enumeration type to delete part.");
+
+            // Now, add the part
+            AddPartToArray(key, partType, rawValue, group, args);
+        }
+
+        /// <summary>
+        /// Adds a part to the array
+        /// </summary>
+        /// <param name="key">Part array type</param>
+        /// <param name="partType">Enumeration type</param>
+        /// <param name="rawValue">Raw value representing a group of values delimited by the semicolon</param>
+        /// <param name="group">Property group (can be nested with a dot)</param>
+        /// <param name="args">Argument list to be added</param>
+        public void AddPartToArray(CalendarPartsArrayEnum key, Type partType, string rawValue, string group = "", params ArgumentInfo[] args)
+        {
+            VerifyPartsArrayType(key, partType, GetType());
+
+            // Get the part type and build the line
+            string prefix = VCalendarParserTools.GetPrefixFromPartsArrayEnum(key);
+            string line = VcardCommonTools.BuildRawValue(prefix, rawValue, group, args);
+
+            // Process the value
+            VCalendarParser.Process(null, line, this, version);
+        }
+
         internal virtual void AddPartToArray(CalendarPartsArrayEnum key, BaseCalendarPartInfo value) =>
             AddPartToArray(key, value, version, partsArray);
 
@@ -684,6 +743,23 @@ namespace VisualCard.Calendar.Parts
             }
         }
 
+        /// <summary>
+        /// Adds a string to the array
+        /// </summary>
+        /// <param name="key">String type</param>
+        /// <param name="rawValue">Raw value representing a group of values delimited by the semicolon</param>
+        /// <param name="group">Property group (can be nested with a dot)</param>
+        /// <param name="args">Argument list to be added</param>
+        public virtual void AddString(CalendarStringsEnum key, string rawValue, string group = "", params ArgumentInfo[] args)
+        {
+            // Get the part type and build the line
+            string prefix = VCalendarParserTools.GetPrefixFromStringsEnum(key);
+            string line = VcardCommonTools.BuildRawValue(prefix, rawValue, group, args);
+
+            // Process the value
+            VCalendarParser.Process(null, line, this, version);
+        }
+
         internal virtual void AddString(CalendarStringsEnum key, ValueInfo<string> value) =>
             AddString(key, value, version, strings);
 
@@ -710,6 +786,23 @@ namespace VisualCard.Calendar.Parts
                     throw new InvalidOperationException($"Can't add string {key}, because cardinality is {cardinality}.");
                 strings[key].Add(value);
             }
+        }
+
+        /// <summary>
+        /// Adds an integer to the array
+        /// </summary>
+        /// <param name="key">Integer type</param>
+        /// <param name="rawValue">Raw value representing a group of values delimited by the semicolon</param>
+        /// <param name="group">Property group (can be nested with a dot)</param>
+        /// <param name="args">Argument list to be added</param>
+        public virtual void AddInteger(CalendarIntegersEnum key, string rawValue, string group = "", params ArgumentInfo[] args)
+        {
+            // Get the part type and build the line
+            string prefix = VCalendarParserTools.GetPrefixFromIntegersEnum(key);
+            string line = VcardCommonTools.BuildRawValue(prefix, rawValue, group, args);
+
+            // Process the value
+            VCalendarParser.Process(null, line, this, version);
         }
 
         internal virtual void AddInteger(CalendarIntegersEnum key, ValueInfo<double> value) =>
@@ -942,6 +1035,32 @@ namespace VisualCard.Calendar.Parts
             {
                 if (!ValidateComponent(ref expectedRepeatedAlarmFields, out string[] actualRepeatedAlarmFields, alarmInfo))
                     throw new InvalidDataException($"The following keys [{string.Join(", ", expectedRepeatedAlarmFields)}] are required in the repeated alarm representation. Got [{string.Join(", ", actualRepeatedAlarmFields)}].");
+            }
+        }
+
+        internal void VerifyPartType(Type partType)
+        {
+            // Check the base type
+            if (partType.BaseType != typeof(BaseCalendarPartInfo) && partType != typeof(BaseCalendarPartInfo))
+                throw new InvalidOperationException($"Base type is not BaseCalendarPartInfo [{partType.BaseType.Name}] and the part type is [{partType.Name}] that doesn't represent calendar part.");
+        }
+
+        internal void VerifyPartsArrayType(CalendarPartsArrayEnum key, Type partType, Type componentType)
+        {
+            // Check the base type
+            VerifyPartType(partType);
+
+            // Get the type
+            string prefix = VCalendarParserTools.GetPrefixFromPartsArrayEnum(key);
+            var type = VCalendarParserTools.GetPartType(prefix, CalendarVersion, componentType);
+
+            // Get the parts enumeration according to the type
+            if (partType != typeof(BaseCalendarPartInfo))
+            {
+                // We don't need the base, but a derivative of it. Check it.
+                var partsArrayEnum = (CalendarPartsArrayEnum)type.enumeration;
+                if (key != partsArrayEnum)
+                    throw new InvalidOperationException($"Parts array enumeration [{key}] is different from the expected one [{partsArrayEnum}] according to type {partType.Name}.");
             }
         }
 
