@@ -205,7 +205,7 @@ namespace VisualCard
                     // Make a new parser instance
                     VcardParser CardParser = new([.. lines], CardVersion)
                     {
-                        nestedCards = [.. nestedCards]
+                        nestedCards = nestedCards
                     };
                     FinalParsers.Add(CardParser);
 

@@ -36,7 +36,7 @@ namespace VisualCard.Parsers
     [DebuggerDisplay("vCard contact, version {CardVersion.ToString()}, {CardContent.Length} lines")]
     internal class VcardParser
     {
-        internal Card[] nestedCards = [];
+        internal List<Card> nestedCards = [];
         private readonly Version cardVersion = new();
         private (int, string)[] cardContent = [];
 

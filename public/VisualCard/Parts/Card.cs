@@ -38,7 +38,7 @@ namespace VisualCard.Parts
     public class Card : IEquatable<Card>
     {
         internal bool kindExplicitlySpecified = false;
-        internal Card[] nestedCards = [];
+        internal List<Card> nestedCards = [];
         private readonly Version version;
         private readonly Dictionary<PartsArrayEnum, List<BaseCardPartInfo>> partsArray = [];
         private readonly Dictionary<StringsEnum, List<ValueInfo<string>>> strings = [];
@@ -52,7 +52,7 @@ namespace VisualCard.Parts
         /// <summary>
         /// List of parsed nested cards
         /// </summary>
-        public Card[] NestedCards =>
+        public List<Card> NestedCards =>
             nestedCards;
 
         /// <summary>
@@ -442,7 +442,7 @@ namespace VisualCard.Parts
         public override int GetHashCode()
         {
             int hashCode = 1365540608;
-            hashCode = hashCode * -1521134295 + EqualityComparer<Card[]>.Default.GetHashCode(nestedCards);
+            hashCode = hashCode * -1521134295 + EqualityComparer<List<Card>>.Default.GetHashCode(nestedCards);
             hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<PartsArrayEnum, List<BaseCardPartInfo>>>.Default.GetHashCode(partsArray);
             hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<StringsEnum, List<ValueInfo<string>>>>.Default.GetHashCode(strings);
             return hashCode;
