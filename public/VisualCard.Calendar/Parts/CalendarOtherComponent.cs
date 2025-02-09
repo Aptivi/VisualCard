@@ -277,9 +277,17 @@ namespace VisualCard.Calendar.Parts
         internal override void AddInteger(CalendarIntegersEnum key, ValueInfo<double> value) =>
             AddInteger(key, value, CalendarVersion, integers);
 
-        internal CalendarOtherComponent(Version version, string componentName) :
+        /// <summary>
+        /// Makes an empty calendar for other components
+        /// </summary>
+        /// <param name="version">vCalendar version to use</param>
+        /// <param name="componentName">Component name</param>
+        /// <exception cref="ArgumentException"></exception>
+        public CalendarOtherComponent(Version version, string componentName) :
             base(version)
         {
+            if (version.Major != 2 && version.Minor != 0)
+                throw new ArgumentException($"Invalid vCalendar version {version} specified. The supported version is 2.0.");
             this.componentName = componentName.ToUpper();
         }
     }

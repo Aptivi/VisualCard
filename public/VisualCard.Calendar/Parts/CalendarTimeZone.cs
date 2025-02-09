@@ -287,8 +287,16 @@ namespace VisualCard.Calendar.Parts
         internal override void AddInteger(CalendarIntegersEnum key, ValueInfo<double> value) =>
             AddInteger(key, value, CalendarVersion, integers);
 
-        internal CalendarTimeZone(Version version) :
+        /// <summary>
+        /// Makes an empty calendar time zone info
+        /// </summary>
+        /// <param name="version">vCalendar version to use</param>
+        /// <exception cref="ArgumentException"></exception>
+        public CalendarTimeZone(Version version) :
             base(version)
-        { }
+        {
+            if (version.Major != 2 && version.Minor != 0)
+                throw new ArgumentException($"Invalid vCalendar version {version} specified. The supported version is 2.0.");
+        }
     }
 }

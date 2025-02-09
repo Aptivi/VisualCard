@@ -34,6 +34,24 @@ namespace VisualCard.Calendar.Parsers
 {
     internal class VCalendarParserTools
     {
+        internal static Version[] supportedVersions =
+        [
+            new(1, 0),
+            new(2, 0),
+        ];
+
+        internal static bool VerifySupportedVersion(Version version)
+        {
+            int major = version.Major;
+            int minor = version.Minor;
+            foreach (var supportedVersion in supportedVersions)
+            {
+                if (supportedVersion.Major == major && supportedVersion.Minor == minor)
+                    return true;
+            }
+            return false;
+        }
+
         internal static string GetPrefixFromStringsEnum(CalendarStringsEnum stringsEnum) =>
             stringsEnum switch
             {

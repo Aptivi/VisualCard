@@ -738,7 +738,16 @@ namespace VisualCard.Calendar.Parts
             }
         }
 
-        internal Calendar(Version version) =>
+        /// <summary>
+        /// Makes an empty calendar
+        /// </summary>
+        /// <param name="version">vCalendar version to use</param>
+        /// <exception cref="ArgumentException"></exception>
+        public Calendar(Version version)
+        {
+            if (!VCalendarParserTools.VerifySupportedVersion(version))
+                throw new ArgumentException($"Invalid vCalendar version {version} specified. The supported versions are 1.0 and 2.0.");
             this.version = version;
+        }
     }
 }

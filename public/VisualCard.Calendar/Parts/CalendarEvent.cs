@@ -278,7 +278,12 @@ namespace VisualCard.Calendar.Parts
         internal override void AddInteger(CalendarIntegersEnum key, ValueInfo<double> value) =>
             AddInteger(key, value, CalendarVersion, integers);
 
-        internal CalendarEvent(Version version) :
+        /// <summary>
+        /// Makes an empty calendar event
+        /// </summary>
+        /// <param name="version">vCalendar version to use</param>
+        /// <exception cref="ArgumentException"></exception>
+        public CalendarEvent(Version version) :
             base(version)
         { }
     }

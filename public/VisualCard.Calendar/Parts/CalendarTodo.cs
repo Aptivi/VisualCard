@@ -278,7 +278,12 @@ namespace VisualCard.Calendar.Parts
         internal override void AddInteger(CalendarIntegersEnum key, ValueInfo<double> value) =>
             AddInteger(key, value, CalendarVersion, integers);
 
-        internal CalendarTodo(Version version) :
+        /// <summary>
+        /// Makes an empty calendar to-do list
+        /// </summary>
+        /// <param name="version">vCalendar version to use</param>
+        /// <exception cref="ArgumentException"></exception>
+        public CalendarTodo(Version version) :
             base(version)
         { }
     }
