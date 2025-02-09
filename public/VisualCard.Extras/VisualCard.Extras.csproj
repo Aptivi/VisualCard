@@ -38,6 +38,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Aptivestigate.Serilog" Version="1.2.0" />
     <PackageReference Include="Nettify" Version="1.5.5.1" />
   </ItemGroup>
 
