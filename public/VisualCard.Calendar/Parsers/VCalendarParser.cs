@@ -86,10 +86,8 @@ namespace VisualCard.Calendar.Parsers
 
                 try
                 {
-                    // Now, parse a property
-                    var info = new PropertyInfo(_value);
-
                     // Check to see if we have a BEGIN or an END prefix
+                    var info = new PropertyInfo(_value);
                     if (info.Prefix == VcardConstants._beginSpecifier)
                     {
                         string finalType = info.Value.ToUpper();
@@ -115,97 +113,8 @@ namespace VisualCard.Calendar.Parsers
                         continue;
                     }
 
-                    // Get the type and its properties
-                    Type calendarType = subPart is not null ? subPart.GetType() : calendar.GetType();
-                    var partType = VCalendarParserTools.GetPartType(info.Prefix, CalendarVersion, calendarType);
-
-                    // Check the type for allowed types
-                    string[] elementTypes = VcardCommonTools.GetTypes(info.Arguments, partType.defaultType);
-                    foreach (string elementType in elementTypes)
-                    {
-                        string elementTypeUpper = elementType.ToUpper();
-                        if (!partType.allowedExtraTypes.Contains(elementTypeUpper) && !elementTypeUpper.StartsWith("X-"))
-                        {
-                            if (partType.type == PartType.PartsArray &&
-                                ((CalendarPartsArrayEnum)partType.enumeration == CalendarPartsArrayEnum.IanaNames ||
-                                 (CalendarPartsArrayEnum)partType.enumeration == CalendarPartsArrayEnum.NonstandardNames))
-                                continue;
-                            throw new InvalidDataException($"Part info type {partType.enumType?.Name ?? "<null>"} doesn't support property type {elementTypeUpper} because the following types are supported: [{string.Join(", ", partType.allowedExtraTypes)}]");
-                        }
-                    }
-
-                    // Handle the part type, and extract the value
-                    string valueType = VcardCommonTools.GetFirstValue(info.Arguments, partType.defaultValueType, VcardConstants._valueArgumentSpecifier);
-                    string finalValue = VcardCommonTools.ProcessStringValue(info.Value, valueType, calendarVersion.Major == 1 ? ';' : ',');
-
-                    // Check for allowed values
-                    if (partType.allowedValues.Length != 0)
-                    {
-                        bool found = false;
-                        foreach (string allowedValue in partType.allowedValues)
-                        {
-                            if (finalValue == allowedValue)
-                                found = true;
-                        }
-                        if (!found)
-                            throw new InvalidDataException($"Value {finalValue} not in the list of allowed values [{string.Join(", ", partType.allowedValues)}]");
-                    }
-
-                    // Check for support
-                    bool supported = partType.minimumVersionCondition(CalendarVersion);
-                    if (!supported)
-                        continue;
-
-                    // Process the value
-                    switch (partType.type)
-                    {
-                        case PartType.Strings:
-                            {
-                                CalendarStringsEnum stringType = (CalendarStringsEnum)partType.enumeration;
-
-                                // Set the string for real
-                                var stringValueInfo = new ValueInfo<string>(info, -1, elementTypes, valueType, finalValue);
-                                if (subPart is not null)
-                                    subPart.AddString(stringType, stringValueInfo);
-                                else
-                                    calendar.AddString(stringType, stringValueInfo);
-                            }
-                            break;
-                        case PartType.Integers:
-                            {
-                                CalendarIntegersEnum integerType = (CalendarIntegersEnum)partType.enumeration;
-
-                                // Get the final value
-                                double finalDouble = double.Parse(finalValue);
-
-                                // Set the integer for real
-                                var stringValueInfo = new ValueInfo<double>(info, -1, elementTypes, valueType, finalDouble);
-                                if (subPart is not null)
-                                    subPart.AddInteger(integerType, stringValueInfo);
-                                else
-                                    calendar.AddInteger(integerType, stringValueInfo);
-                            }
-                            break;
-                        case PartType.PartsArray:
-                            {
-                                CalendarPartsArrayEnum partsArrayType = (CalendarPartsArrayEnum)partType.enumeration;
-                                if (partType.fromStringFunc is null)
-                                    continue;
-
-                                // Now, get the part info
-                                finalValue = partsArrayType is CalendarPartsArrayEnum.IanaNames or CalendarPartsArrayEnum.NonstandardNames ? _value : info.Value;
-                                var partInfo = partType.fromStringFunc(finalValue, info, elementTypes, info.Group, valueType, CalendarVersion);
-
-                                // Set the array for real
-                                if (subPart is not null)
-                                    subPart.AddPartToArray(partsArrayType, partInfo);
-                                else
-                                    calendar.AddPartToArray(partsArrayType, partInfo);
-                            }
-                            break;
-                        default:
-                            throw new InvalidDataException($"The type {partType.type} is invalid. Are you sure that you've specified the correct type in your vCalendar representation?");
-                    }
+                    // Process this line
+                    Process(subPart, _value, calendar, CalendarVersion);
                 }
                 catch (Exception ex)
                 {
@@ -216,6 +125,104 @@ namespace VisualCard.Calendar.Parsers
             // Validate this calendar before returning it.
             ValidateCalendar(calendar);
             return calendar;
+        }
+
+        internal static void Process(Parts.Calendar? subPart, string _value, Parts.Calendar calendar, Version version)
+        {
+            // Now, parse a property
+            var info = new PropertyInfo(_value);
+
+            // Get the type and its properties
+            Type calendarType = subPart is not null ? subPart.GetType() : calendar.GetType();
+            var partType = VCalendarParserTools.GetPartType(info.Prefix, version, calendarType);
+
+            // Check the type for allowed types
+            string[] elementTypes = VcardCommonTools.GetTypes(info.Arguments, partType.defaultType);
+            foreach (string elementType in elementTypes)
+            {
+                string elementTypeUpper = elementType.ToUpper();
+                if (!partType.allowedExtraTypes.Contains(elementTypeUpper) && !elementTypeUpper.StartsWith("X-"))
+                {
+                    if (partType.type == PartType.PartsArray &&
+                        ((CalendarPartsArrayEnum)partType.enumeration == CalendarPartsArrayEnum.IanaNames ||
+                         (CalendarPartsArrayEnum)partType.enumeration == CalendarPartsArrayEnum.NonstandardNames))
+                        continue;
+                    throw new InvalidDataException($"Part info type {partType.enumType?.Name ?? "<null>"} doesn't support property type {elementTypeUpper} because the following types are supported: [{string.Join(", ", partType.allowedExtraTypes)}]");
+                }
+            }
+
+            // Handle the part type, and extract the value
+            string valueType = VcardCommonTools.GetFirstValue(info.Arguments, partType.defaultValueType, VcardConstants._valueArgumentSpecifier);
+            string finalValue = VcardCommonTools.ProcessStringValue(info.Value, valueType, version.Major == 1 ? ';' : ',');
+
+            // Check for allowed values
+            if (partType.allowedValues.Length != 0)
+            {
+                bool found = false;
+                foreach (string allowedValue in partType.allowedValues)
+                {
+                    if (finalValue == allowedValue)
+                        found = true;
+                }
+                if (!found)
+                    throw new InvalidDataException($"Value {finalValue} not in the list of allowed values [{string.Join(", ", partType.allowedValues)}]");
+            }
+
+            // Check for support
+            bool supported = partType.minimumVersionCondition(version);
+            if (!supported)
+                return;
+
+            // Process the value
+            switch (partType.type)
+            {
+                case PartType.Strings:
+                    {
+                        CalendarStringsEnum stringType = (CalendarStringsEnum)partType.enumeration;
+
+                        // Set the string for real
+                        var stringValueInfo = new ValueInfo<string>(info, -1, elementTypes, valueType, finalValue);
+                        if (subPart is not null)
+                            subPart.AddString(stringType, stringValueInfo);
+                        else
+                            calendar.AddString(stringType, stringValueInfo);
+                    }
+                    break;
+                case PartType.Integers:
+                    {
+                        CalendarIntegersEnum integerType = (CalendarIntegersEnum)partType.enumeration;
+
+                        // Get the final value
+                        double finalDouble = double.Parse(finalValue);
+
+                        // Set the integer for real
+                        var stringValueInfo = new ValueInfo<double>(info, -1, elementTypes, valueType, finalDouble);
+                        if (subPart is not null)
+                            subPart.AddInteger(integerType, stringValueInfo);
+                        else
+                            calendar.AddInteger(integerType, stringValueInfo);
+                    }
+                    break;
+                case PartType.PartsArray:
+                    {
+                        CalendarPartsArrayEnum partsArrayType = (CalendarPartsArrayEnum)partType.enumeration;
+                        if (partType.fromStringFunc is null)
+                            return;
+
+                        // Now, get the part info
+                        finalValue = partsArrayType is CalendarPartsArrayEnum.IanaNames or CalendarPartsArrayEnum.NonstandardNames ? _value : info.Value;
+                        var partInfo = partType.fromStringFunc(finalValue, info, elementTypes, info.Group, valueType, version);
+
+                        // Set the array for real
+                        if (subPart is not null)
+                            subPart.AddPartToArray(partsArrayType, partInfo);
+                        else
+                            calendar.AddPartToArray(partsArrayType, partInfo);
+                    }
+                    break;
+                default:
+                    throw new InvalidDataException($"The type {partType.type} is invalid. Are you sure that you've specified the correct type in your vCalendar representation?");
+            }
         }
 
         internal void ValidateCalendar(Parts.Calendar calendar)
