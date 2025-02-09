@@ -127,6 +127,95 @@ namespace VisualCard.Calendar.Parts
         public override string ToString() =>
             SaveToString();
 
+        /// <summary>
+        /// Deletes a string from the list of string values
+        /// </summary>
+        /// <param name="stringsEnum">String type</param>
+        /// <param name="idx">Index of a string value</param>
+        /// <returns>True if successful; false otherwise</returns>
+        public override bool DeleteString(CalendarStringsEnum stringsEnum, int idx) =>
+            DeleteString(stringsEnum, idx, strings);
+
+        /// <summary>
+        /// Deletes an integer from the list of integer values
+        /// </summary>
+        /// <param name="integersEnum">Integer type</param>
+        /// <param name="idx">Index of a integer value</param>
+        /// <returns>True if successful; false otherwise</returns>
+        public override bool DeleteInteger(CalendarIntegersEnum integersEnum, int idx) =>
+            DeleteInteger(integersEnum, idx, integers);
+
+        /// <summary>
+        /// Deletes a part from the list of parts
+        /// </summary>
+        /// <param name="partsArrayEnum">Part array type</param>
+        /// <param name="idx">Index of a part</param>
+        /// <returns>True if successful; false otherwise</returns>
+        public override bool DeletePartsArray(CalendarPartsArrayEnum partsArrayEnum, int idx)
+        {
+            // Get the part type
+            string prefix = VCalendarParserTools.GetPrefixFromPartsArrayEnum(partsArrayEnum);
+            var type = VCalendarParserTools.GetPartType(prefix, CalendarVersion, GetType());
+            var partType = type.enumType ??
+                throw new ArgumentException("Can't determine enumeration type to delete part.");
+
+            // Remove the string value
+            return DeletePartsArray(partsArrayEnum, partType, idx);
+        }
+
+        /// <summary>
+        /// Deletes a part from the list of parts
+        /// </summary>
+        /// <param name="partsArrayEnum">Part array type</param>
+        /// <param name="enumType">Enumeration type</param>
+        /// <param name="idx">Index of a part</param>
+        /// <returns>True if successful; false otherwise</returns>
+        public override bool DeletePartsArray(CalendarPartsArrayEnum partsArrayEnum, Type enumType, int idx)
+        {
+            // Get the string values
+            var parts = GetPartsArray(enumType, partsArrayEnum, CalendarVersion, partsArray);
+
+            // Check the index
+            if (idx >= parts.Length)
+                return false;
+
+            // Remove the string value
+            return DeletePartsArrayInternal(partsArrayEnum, idx, partsArray);
+        }
+
+        /// <summary>
+        /// Deletes a part from the list of parts
+        /// </summary>
+        /// <param name="idx">Index of a part</param>
+        /// <returns>True if successful; false otherwise</returns>
+        public override bool DeletePartsArray<TPart>(int idx)
+        {
+            // Get the parts enumeration according to the type
+            var key = VCalendarParserTools.GetPartsArrayEnumFromType(typeof(TPart), CalendarVersion, GetType());
+
+            // Remove the part
+            return DeletePartsArray<TPart>(key, idx);
+        }
+
+        /// <summary>
+        /// Deletes a part from the list of parts
+        /// </summary>
+        /// <param name="partsArrayEnum">Part array type</param>
+        /// <param name="idx">Index of a part</param>
+        /// <returns>True if successful; false otherwise</returns>
+        public override bool DeletePartsArray<TPart>(CalendarPartsArrayEnum partsArrayEnum, int idx)
+        {
+            // Get the parts
+            var parts = GetPartsArray(typeof(TPart), partsArrayEnum, CalendarVersion, partsArray);
+
+            // Check the index
+            if (idx >= parts.Length)
+                return false;
+
+            // Remove the part
+            return DeletePartsArrayInternal(partsArrayEnum, idx, partsArray);
+        }
+
         /// <inheritdoc/>
         public override bool Equals(object obj) =>
             Equals((CalendarEvent)obj);

@@ -449,6 +449,132 @@ namespace VisualCard.Calendar.Parts
         }
 
         /// <summary>
+        /// Deletes a string from the list of string values
+        /// </summary>
+        /// <param name="stringsEnum">String type</param>
+        /// <param name="idx">Index of a string value</param>
+        /// <returns>True if successful; false otherwise</returns>
+        public virtual bool DeleteString(CalendarStringsEnum stringsEnum, int idx) =>
+            DeleteString(stringsEnum, idx, strings);
+
+        internal bool DeleteString(CalendarStringsEnum stringsEnum, int idx, Dictionary<CalendarStringsEnum, List<ValueInfo<string>>> strings)
+        {
+            // Get the string values
+            var stringValues = GetString(stringsEnum, CalendarVersion, strings);
+
+            // Check the index
+            if (idx >= stringValues.Length)
+                return false;
+
+            // Remove the string value
+            var stringValue = strings[stringsEnum][idx];
+            return strings[stringsEnum].Remove(stringValue);
+        }
+
+        /// <summary>
+        /// Deletes an integer from the list of integer values
+        /// </summary>
+        /// <param name="integersEnum">Integer type</param>
+        /// <param name="idx">Index of a integer value</param>
+        /// <returns>True if successful; false otherwise</returns>
+        public virtual bool DeleteInteger(CalendarIntegersEnum integersEnum, int idx) =>
+            DeleteInteger(integersEnum, idx, integers);
+
+        internal bool DeleteInteger(CalendarIntegersEnum integersEnum, int idx, Dictionary<CalendarIntegersEnum, List<ValueInfo<double>>> integers)
+        {
+            // Get the integer values
+            var integerValues = GetInteger(integersEnum, CalendarVersion, integers);
+
+            // Check the index
+            if (idx >= integerValues.Length)
+                return false;
+
+            // Remove the integer value
+            var integerValue = integers[integersEnum][idx];
+            return integers[integersEnum].Remove(integerValue);
+        }
+
+        /// <summary>
+        /// Deletes a part from the list of parts
+        /// </summary>
+        /// <param name="partsArrayEnum">Part array type</param>
+        /// <param name="idx">Index of a part</param>
+        /// <returns>True if successful; false otherwise</returns>
+        public virtual bool DeletePartsArray(CalendarPartsArrayEnum partsArrayEnum, int idx)
+        {
+            // Get the part type
+            string prefix = VCalendarParserTools.GetPrefixFromPartsArrayEnum(partsArrayEnum);
+            var type = VCalendarParserTools.GetPartType(prefix, CalendarVersion, GetType());
+            var partType = type.enumType ??
+                throw new ArgumentException("Can't determine enumeration type to delete part.");
+
+            // Remove the string value
+            return DeletePartsArray(partsArrayEnum, partType, idx);
+        }
+
+        /// <summary>
+        /// Deletes a part from the list of parts
+        /// </summary>
+        /// <param name="partsArrayEnum">Part array type</param>
+        /// <param name="enumType">Enumeration type</param>
+        /// <param name="idx">Index of a part</param>
+        /// <returns>True if successful; false otherwise</returns>
+        public virtual bool DeletePartsArray(CalendarPartsArrayEnum partsArrayEnum, Type enumType, int idx)
+        {
+            // Get the string values
+            var parts = GetPartsArray(enumType, partsArrayEnum, CalendarVersion, partsArray);
+
+            // Check the index
+            if (idx >= parts.Length)
+                return false;
+
+            // Remove the string value
+            return DeletePartsArrayInternal(partsArrayEnum, idx, partsArray);
+        }
+
+        /// <summary>
+        /// Deletes a part from the list of parts
+        /// </summary>
+        /// <param name="idx">Index of a part</param>
+        /// <returns>True if successful; false otherwise</returns>
+        public virtual bool DeletePartsArray<TPart>(int idx)
+            where TPart : BaseCalendarPartInfo
+        {
+            // Get the parts enumeration according to the type
+            var key = VCalendarParserTools.GetPartsArrayEnumFromType(typeof(TPart), CalendarVersion, GetType());
+
+            // Remove the part
+            return DeletePartsArray<TPart>(key, idx);
+        }
+
+        /// <summary>
+        /// Deletes a part from the list of parts
+        /// </summary>
+        /// <param name="partsArrayEnum">Part array type</param>
+        /// <param name="idx">Index of a part</param>
+        /// <returns>True if successful; false otherwise</returns>
+        public virtual bool DeletePartsArray<TPart>(CalendarPartsArrayEnum partsArrayEnum, int idx)
+            where TPart : BaseCalendarPartInfo
+        {
+            // Get the parts
+            var parts = GetPartsArray(typeof(TPart), partsArrayEnum, CalendarVersion, partsArray);
+
+            // Check the index
+            if (idx >= parts.Length)
+                return false;
+
+            // Remove the part
+            return DeletePartsArrayInternal(partsArrayEnum, idx, partsArray);
+        }
+
+        internal bool DeletePartsArrayInternal(CalendarPartsArrayEnum partsArrayEnum, int idx, Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray)
+        {
+            // Remove the part
+            var part = partsArray[partsArrayEnum][idx];
+            return partsArray[partsArrayEnum].Remove(part);
+        }
+
+        /// <summary>
         /// Saves the contact to the returned string
         /// </summary>
         public override string ToString() =>

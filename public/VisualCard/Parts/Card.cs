@@ -302,6 +302,106 @@ namespace VisualCard.Parts
         }
 
         /// <summary>
+        /// Deletes a string from the list of string values
+        /// </summary>
+        /// <param name="stringsEnum">String type</param>
+        /// <param name="idx">Index of a string value</param>
+        /// <returns>True if successful; false otherwise</returns>
+        public bool DeleteString(StringsEnum stringsEnum, int idx)
+        {
+            // Get the string values
+            var stringValues = GetString(stringsEnum);
+
+            // Check the index
+            if (idx >= stringValues.Length)
+                return false;
+
+            // Remove the string value
+            var stringValue = strings[stringsEnum][idx];
+            return strings[stringsEnum].Remove(stringValue);
+        }
+
+        /// <summary>
+        /// Deletes a part from the list of parts
+        /// </summary>
+        /// <param name="partsArrayEnum">Part array type</param>
+        /// <param name="idx">Index of a part</param>
+        /// <returns>True if successful; false otherwise</returns>
+        public bool DeletePartsArray(PartsArrayEnum partsArrayEnum, int idx)
+        {
+            // Get the part type
+            string prefix = VcardParserTools.GetPrefixFromPartsArrayEnum(partsArrayEnum);
+            var type = VcardParserTools.GetPartType(prefix, CardVersion, CardKindStr);
+            var partType = type.enumType ??
+                throw new ArgumentException("Can't determine enumeration type to delete part.");
+
+            // Remove the string value
+            return DeletePartsArray(partsArrayEnum, partType, idx);
+        }
+
+        /// <summary>
+        /// Deletes a part from the list of parts
+        /// </summary>
+        /// <param name="partsArrayEnum">Part array type</param>
+        /// <param name="enumType">Enumeration type</param>
+        /// <param name="idx">Index of a part</param>
+        /// <returns>True if successful; false otherwise</returns>
+        public bool DeletePartsArray(PartsArrayEnum partsArrayEnum, Type enumType, int idx)
+        {
+            // Get the string values
+            var parts = GetPartsArray(enumType, partsArrayEnum);
+
+            // Check the index
+            if (idx >= parts.Length)
+                return false;
+
+            // Remove the string value
+            return DeletePartsArrayInternal(partsArrayEnum, idx);
+        }
+
+        /// <summary>
+        /// Deletes a part from the list of parts
+        /// </summary>
+        /// <param name="idx">Index of a part</param>
+        /// <returns>True if successful; false otherwise</returns>
+        public bool DeletePartsArray<TPart>(int idx)
+            where TPart : BaseCardPartInfo
+        {
+            // Get the parts enumeration according to the type
+            var key = VcardParserTools.GetPartsArrayEnumFromType(typeof(TPart), CardVersion, CardKindStr);
+
+            // Remove the part
+            return DeletePartsArray<TPart>(key, idx);
+        }
+
+        /// <summary>
+        /// Deletes a part from the list of parts
+        /// </summary>
+        /// <param name="partsArrayEnum">Part array type</param>
+        /// <param name="idx">Index of a part</param>
+        /// <returns>True if successful; false otherwise</returns>
+        public bool DeletePartsArray<TPart>(PartsArrayEnum partsArrayEnum, int idx)
+            where TPart : BaseCardPartInfo
+        {
+            // Get the parts
+            var parts = GetPartsArray(typeof(TPart), partsArrayEnum);
+
+            // Check the index
+            if (idx >= parts.Length)
+                return false;
+
+            // Remove the part
+            return DeletePartsArrayInternal(partsArrayEnum, idx);
+        }
+
+        internal bool DeletePartsArrayInternal(PartsArrayEnum partsArrayEnum, int idx)
+        {
+            // Remove the part
+            var part = partsArray[partsArrayEnum][idx];
+            return partsArray[partsArrayEnum].Remove(part);
+        }
+
+        /// <summary>
         /// Saves the contact to the returned string
         /// </summary>
         public override string ToString() =>

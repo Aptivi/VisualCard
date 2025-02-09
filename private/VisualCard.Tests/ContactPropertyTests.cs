@@ -20,6 +20,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shouldly;
 using VisualCard.Parts.Enums;
+using VisualCard.Parts.Implementations;
 
 namespace VisualCard.Tests
 {
@@ -27,7 +28,7 @@ namespace VisualCard.Tests
     public class ContactPropertyTests
     {
         [TestMethod]
-        public void TestContactPropertySet()
+        public void TestContactPropertySetString()
         {
             var cards = CardTools.GetCardsFromString(ContactData.singleVcardTwoContactShort);
             var card = cards[0];
@@ -37,6 +38,32 @@ namespace VisualCard.Tests
             fullName.Value.ShouldBe("Rick Rock");
             string cardStr = card.SaveToString();
             cardStr.ShouldContain("Rick Rock");
+        }
+
+        [TestMethod]
+        public void TestContactPropertyRemoveString()
+        {
+            var cards = CardTools.GetCardsFromString(ContactData.singleVcardTwoContact);
+            var card = cards[0];
+            var note = card.GetString(StringsEnum.Notes)[0];
+            note.Value.ShouldBe("Note test for VisualCard");
+            card.DeleteString(StringsEnum.Notes, 0);
+            card.GetString(StringsEnum.Notes).ShouldBeEmpty();
+            string cardStr = card.SaveToString();
+            cardStr.ShouldNotContain("Note test for VisualCard");
+        }
+
+        [TestMethod]
+        public void TestContactPropertyRemovePartsArray()
+        {
+            var cards = CardTools.GetCardsFromString(ContactData.singleVcardTwoContact);
+            var card = cards[0];
+            var note = card.GetPartsArray<AddressInfo>()[0];
+            note.StreetAddress.ShouldBe("Los Angeles, USA");
+            card.DeletePartsArray<AddressInfo>(0);
+            card.GetPartsArray<AddressInfo>().ShouldBeEmpty();
+            string cardStr = card.SaveToString();
+            cardStr.ShouldNotContain("Los Angeles, USA");
         }
     }
 }
