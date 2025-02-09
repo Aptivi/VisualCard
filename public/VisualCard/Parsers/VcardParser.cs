@@ -99,7 +99,7 @@ namespace VisualCard.Parsers
             card.nestedCards = nestedCards;
 
             // Validate this card before returning it.
-            ValidateCard(card);
+            card.Validate();
             return card;
         }
 
@@ -186,66 +186,6 @@ namespace VisualCard.Parsers
                 default:
                     throw new InvalidDataException($"The type {partType.type} is invalid. Are you sure that you've specified the correct type in your vCard representation?");
             }
-        }
-
-        internal void ValidateCard(Card card)
-        {
-            // Track the required fields
-            List<string> expectedFieldList = [];
-            var partType = VcardParserTools.GetPartType(VcardConstants._nameSpecifier, CardVersion, card.CardKindStr);
-            var nameCardinality = partType.cardinality;
-            if (nameCardinality == PartCardinality.ShouldBeOne)
-                expectedFieldList.Add(VcardConstants._nameSpecifier);
-            if (CardVersion.Major >= 3)
-                expectedFieldList.Add(VcardConstants._fullNameSpecifier);
-
-            // Now, check for requirements
-            string[] expectedFields = [.. expectedFieldList];
-            if (!ValidateComponent(ref expectedFields, out string[] actualFields, card))
-                throw new InvalidDataException($"The following keys [{string.Join(", ", expectedFields)}] are required. Got [{string.Join(", ", actualFields)}].");
-
-            // Check for organization vCards that may not have MEMBER properties
-            string[] forbiddenOrgFields = [VcardConstants._memberSpecifier];
-            if (card.CardKind != CardKind.Group && ValidateComponent(ref forbiddenOrgFields, out _, card))
-                throw new InvalidDataException($"{card.CardKind} vCards are forbidden from having MEMBER properties.");
-        }
-
-        private bool ValidateComponent<TComponent>(ref string[] expectedFields, out string[] actualFields, TComponent component)
-            where TComponent : Card
-        {
-            // Track the required fields
-            List<string> actualFieldList = [];
-
-            // Requirement checks
-            foreach (string expectedFieldName in expectedFields)
-            {
-                var partType = VcardParserTools.GetPartType(expectedFieldName, component.CardVersion, component.CardKindStr);
-                switch (partType.type)
-                {
-                    case PartType.Strings:
-                        {
-                            var values = component.GetString((StringsEnum)partType.enumeration);
-                            bool exists = values.Length > 0;
-                            if (exists)
-                                actualFieldList.Add(expectedFieldName);
-                        }
-                        break;
-                    case PartType.PartsArray:
-                        {
-                            if (partType.enumType is null)
-                                continue;
-                            var values = component.GetPartsArray(partType.enumType, (PartsArrayEnum)partType.enumeration);
-                            bool exists = values.Length > 0;
-                            if (exists)
-                                actualFieldList.Add(expectedFieldName);
-                        }
-                        break;
-                }
-            }
-            Array.Sort(expectedFields);
-            actualFieldList.Sort();
-            actualFields = [.. actualFieldList];
-            return actualFields.SequenceEqual(expectedFields);
         }
 
         internal VcardParser((int, string)[] cardContent, Version cardVersion)

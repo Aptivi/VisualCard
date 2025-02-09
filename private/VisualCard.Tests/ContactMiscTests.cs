@@ -19,6 +19,7 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shouldly;
+using System.IO;
 using Textify.General;
 using VisualCard.Parts;
 using VisualCard.Parts.Enums;
@@ -40,6 +41,16 @@ namespace VisualCard.Tests
             savedLines[0].ShouldBe("BEGIN:VCARD");
             savedLines[1].ShouldBe("VERSION:2.1");
             savedLines[2].ShouldBe("END:VCARD");
+        }
+
+        [TestMethod]
+        public void TestValidateNewCard()
+        {
+            var card = new Card(new(2, 1));
+            card.NestedCards.Count.ShouldBe(0);
+            card.Strings.Count.ShouldBe(0);
+            card.PartsArray.Count.ShouldBe(0);
+            Should.Throw(card.Validate, typeof(InvalidDataException));
         }
     }
 }

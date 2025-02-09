@@ -609,6 +609,69 @@ namespace VisualCard.Parts
             }
         }
 
+        /// <summary>
+        /// Validates the card
+        /// </summary>
+        /// <exception cref="InvalidDataException"></exception>
+        public void Validate()
+        {
+            // Track the required fields
+            List<string> expectedFieldList = [];
+            var partType = VcardParserTools.GetPartType(VcardConstants._nameSpecifier, CardVersion, CardKindStr);
+            var nameCardinality = partType.cardinality;
+            if (nameCardinality == PartCardinality.ShouldBeOne)
+                expectedFieldList.Add(VcardConstants._nameSpecifier);
+            if (CardVersion.Major >= 3)
+                expectedFieldList.Add(VcardConstants._fullNameSpecifier);
+
+            // Now, check for requirements
+            string[] expectedFields = [.. expectedFieldList];
+            if (!ValidateFields(ref expectedFields, out string[] actualFields))
+                throw new InvalidDataException($"The following keys [{string.Join(", ", expectedFields)}] are required. Got [{string.Join(", ", actualFields)}].");
+
+            // Check for organization vCards that may not have MEMBER properties
+            string[] forbiddenOrgFields = [VcardConstants._memberSpecifier];
+            if (CardKind != CardKind.Group && ValidateFields(ref forbiddenOrgFields, out _))
+                throw new InvalidDataException($"{CardKind} vCards are forbidden from having MEMBER properties.");
+        }
+
+        private bool ValidateFields(ref string[] expectedFields, out string[] actualFields)
+        {
+            // Track the required fields
+            List<string> actualFieldList = [];
+
+            // Requirement checks
+            foreach (string expectedFieldName in expectedFields)
+            {
+                var partType = VcardParserTools.GetPartType(expectedFieldName, CardVersion, CardKindStr);
+                switch (partType.type)
+                {
+                    case PartType.Strings:
+                        {
+                            var values = GetString((StringsEnum)partType.enumeration);
+                            bool exists = values.Length > 0;
+                            if (exists)
+                                actualFieldList.Add(expectedFieldName);
+                        }
+                        break;
+                    case PartType.PartsArray:
+                        {
+                            if (partType.enumType is null)
+                                continue;
+                            var values = GetPartsArray(partType.enumType, (PartsArrayEnum)partType.enumeration);
+                            bool exists = values.Length > 0;
+                            if (exists)
+                                actualFieldList.Add(expectedFieldName);
+                        }
+                        break;
+                }
+            }
+            Array.Sort(expectedFields);
+            actualFieldList.Sort();
+            actualFields = [.. actualFieldList];
+            return actualFields.SequenceEqual(expectedFields);
+        }
+
         internal void VerifyPartType(Type partType)
         {
             // Check the base type
