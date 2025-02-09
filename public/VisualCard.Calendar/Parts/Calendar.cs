@@ -28,6 +28,8 @@ using Textify.General;
 using VisualCard.Calendar.Parsers;
 using VisualCard.Calendar.Parts.Comparers;
 using VisualCard.Calendar.Parts.Enums;
+using VisualCard.Calendar.Parts.Implementations.Event;
+using VisualCard.Calendar.Parts.Implementations.Todo;
 using VisualCard.Parsers;
 using VisualCard.Parts;
 using VisualCard.Parts.Enums;
@@ -735,6 +737,211 @@ namespace VisualCard.Calendar.Parts
                 if (onlyOne)
                     throw new InvalidOperationException($"Can't add integer {key}, because cardinality is {cardinality}.");
                 integers[key].Add(value);
+            }
+        }
+
+        /// <summary>
+        /// Validates the calendar
+        /// </summary>
+        /// <exception cref="InvalidDataException"></exception>
+        public void Validate()
+        {
+            // Track the required root fields
+            string[] expectedFields =
+                CalendarVersion.Major == 2 ? [VCalendarConstants._productIdSpecifier] : [];
+            if (!ValidateComponent(ref expectedFields, out string[] actualFields, this))
+                throw new InvalidDataException($"The following keys [{string.Join(", ", expectedFields)}] are required in the root  Got [{string.Join(", ", actualFields)}].");
+
+            // Now, track the individual components starting from events
+            string[] expectedEventFields =
+                CalendarVersion.Major == 2 ?
+                [VCalendarConstants._uidSpecifier, VCalendarConstants._dateStampSpecifier] : [];
+            string[] expectedTodoFields = expectedEventFields;
+            expectedEventFields =
+                CalendarVersion.Major == 2 && GetString(CalendarStringsEnum.Method).Length == 0 ?
+                [VCalendarConstants._dateStartSpecifier, .. expectedEventFields] :
+                expectedEventFields;
+            foreach (var eventInfo in events)
+            {
+                if (!ValidateComponent(ref expectedEventFields, out string[] actualEventFields, eventInfo))
+                    throw new InvalidDataException($"The following keys [{string.Join(", ", expectedEventFields)}] are required in the event representation. Got [{string.Join(", ", actualEventFields)}].");
+                foreach (var alarmInfo in eventInfo.Alarms)
+                    ValidateAlarm(alarmInfo);
+
+                // Check the priority
+                var priorities = eventInfo.GetInteger(CalendarIntegersEnum.PercentComplete);
+                foreach (var priority in priorities)
+                {
+                    if (priority.Value < 0 || priority.Value > 9)
+                        throw new ArgumentOutOfRangeException(nameof(CalendarIntegersEnum.PercentComplete), priority.Value, "Percent completion may not be less than zero or greater than 100");
+                }
+
+                // Check for conflicts
+                var dtends = eventInfo.GetPartsArray<DateEndInfo>();
+                var durations = eventInfo.GetString(CalendarStringsEnum.Duration);
+                if (dtends.Length > 0 && durations.Length > 0)
+                    throw new InvalidDataException("Date end and duration conflict found.");
+            }
+            foreach (var todoInfo in Todos)
+            {
+                if (!ValidateComponent(ref expectedTodoFields, out string[] actualTodoFields, todoInfo))
+                    throw new InvalidDataException($"The following keys [{string.Join(", ", expectedTodoFields)}] are required in the todo representation. Got [{string.Join(", ", actualTodoFields)}].");
+                foreach (var alarmInfo in todoInfo.Alarms)
+                    ValidateAlarm(alarmInfo);
+
+                // Check the percentage
+                var percentages = todoInfo.GetInteger(CalendarIntegersEnum.PercentComplete);
+                foreach (var percentage in percentages)
+                {
+                    if (percentage.Value < 0 || percentage.Value > 100)
+                        throw new ArgumentOutOfRangeException(nameof(CalendarIntegersEnum.PercentComplete), percentage.Value, "Percent completion may not be less than zero or greater than 100");
+                }
+
+                // Check the priority
+                var priorities = todoInfo.GetInteger(CalendarIntegersEnum.PercentComplete);
+                foreach (var priority in priorities)
+                {
+                    if (priority.Value < 0 || priority.Value > 9)
+                        throw new ArgumentOutOfRangeException(nameof(CalendarIntegersEnum.PercentComplete), priority.Value, "Percent completion may not be less than zero or greater than 100");
+                }
+
+                // Check for conflicts
+                var dtstarts = todoInfo.GetPartsArray<DateStartInfo>();
+                var dues = todoInfo.GetPartsArray<DueDateInfo>();
+                var durations = todoInfo.GetString(CalendarStringsEnum.Duration);
+                if (dues.Length > 0 && durations.Length > 0)
+                    throw new InvalidDataException("Due date and duration conflict found.");
+                if (durations.Length > 0 && dtstarts.Length == 0)
+                    throw new InvalidDataException("There is no date start to add to the duration.");
+            }
+
+            // Continue if we have a calendar with version 2.0
+            if (CalendarVersion.Major < 2)
+                return;
+            string[] expectedJournalFields = expectedEventFields;
+            string[] expectedFreeBusyFields = expectedEventFields;
+            string[] expectedTimeZoneFields = [VCalendarConstants._tzidSpecifier];
+            string[] expectedStandardFields = [VCalendarConstants._dateStartSpecifier, VCalendarConstants._tzOffsetFromSpecifier, VCalendarConstants._tzOffsetToSpecifier];
+            string[] expectedDaylightFields = expectedStandardFields;
+            foreach (var journalInfo in Journals)
+            {
+                if (!ValidateComponent(ref expectedJournalFields, out string[] actualJournalFields, journalInfo))
+                    throw new InvalidDataException($"The following keys [{string.Join(", ", expectedJournalFields)}] are required in the journal representation. Got [{string.Join(", ", actualJournalFields)}].");
+            }
+            foreach (var freebusyInfo in FreeBusyList)
+            {
+                if (!ValidateComponent(ref expectedFreeBusyFields, out string[] actualFreeBusyFields, freebusyInfo))
+                    throw new InvalidDataException($"The following keys [{string.Join(", ", expectedFreeBusyFields)}] are required in the freebusy representation. Got [{string.Join(", ", actualFreeBusyFields)}].");
+            }
+            foreach (var timezoneInfo in TimeZones)
+            {
+                if (!ValidateComponent(ref expectedTimeZoneFields, out string[] actualTimeZoneFields, timezoneInfo))
+                    throw new InvalidDataException($"The following keys [{string.Join(", ", expectedTimeZoneFields)}] are required in the timezone representation. Got [{string.Join(", ", actualTimeZoneFields)}].");
+
+                // Check for standard and/or daylight
+                if (timezoneInfo.StandardTimeList.Length == 0 && timezoneInfo.DaylightTimeList.Length == 0)
+                    throw new InvalidDataException("One of the standard/daylight components is required.");
+
+                // Verify the standard and/or daylight components
+                foreach (var standardInfo in timezoneInfo.StandardTimeList)
+                {
+                    if (!ValidateComponent(ref expectedStandardFields, out string[] actualStandardFields, standardInfo))
+                        throw new InvalidDataException($"The following keys [{string.Join(", ", expectedStandardFields)}] are required in the standard representation. Got [{string.Join(", ", actualStandardFields)}].");
+                }
+                foreach (var daylightInfo in timezoneInfo.DaylightTimeList)
+                {
+                    if (!ValidateComponent(ref expectedDaylightFields, out string[] actualDaylightFields, daylightInfo))
+                        throw new InvalidDataException($"The following keys [{string.Join(", ", expectedDaylightFields)}] are required in the daylight representation. Got [{string.Join(", ", actualDaylightFields)}].");
+                }
+            }
+        }
+
+        private bool ValidateComponent<TComponent>(ref string[] expectedFields, out string[] actualFields, TComponent component)
+            where TComponent : Parts.Calendar
+        {
+            // Track the required fields
+            List<string> actualFieldList = [];
+
+            // Requirement checks
+            foreach (string expectedFieldName in expectedFields)
+            {
+                if (HasComponent(expectedFieldName, component))
+                    actualFieldList.Add(expectedFieldName);
+            }
+            Array.Sort(expectedFields);
+            actualFieldList.Sort();
+            actualFields = [.. actualFieldList];
+            return actualFields.SequenceEqual(expectedFields);
+        }
+
+        private bool HasComponent<TComponent>(string expectedFieldName, TComponent component)
+            where TComponent : Parts.Calendar
+        {
+            // Requirement checks
+            var partType = VCalendarParserTools.GetPartType(expectedFieldName, CalendarVersion, component.GetType());
+            bool exists = false;
+            switch (partType.type)
+            {
+                case PartType.Strings:
+                    {
+                        var values = component.GetString((CalendarStringsEnum)partType.enumeration);
+                        exists = values.Length > 0;
+                    }
+                    break;
+                case PartType.PartsArray:
+                    {
+                        if (partType.enumType is null)
+                            return false;
+                        var values = component.GetPartsArray((CalendarPartsArrayEnum)partType.enumeration);
+                        exists = values.Length > 0;
+                    }
+                    break;
+                case PartType.Integers:
+                    {
+                        var values = component.GetInteger((CalendarIntegersEnum)partType.enumeration);
+                        exists = values.Length > 0;
+                    }
+                    break;
+            }
+            return exists;
+        }
+
+        private void ValidateAlarm(CalendarAlarm alarmInfo)
+        {
+            string[] expectedAlarmFields = [VCalendarConstants._actionSpecifier, VCalendarConstants._triggerSpecifier];
+            if (!ValidateComponent(ref expectedAlarmFields, out string[] actualAlarmFields, alarmInfo))
+                throw new InvalidDataException($"The following keys [{string.Join(", ", expectedAlarmFields)}] are required in the alarm representation. Got [{string.Join(", ", actualAlarmFields)}].");
+
+            // Check the alarm action
+            string[] expectedAudioAlarmFields = [VCalendarConstants._attachSpecifier];
+            string[] expectedDisplayAlarmFields = [VCalendarConstants._descriptionSpecifier];
+            string[] expectedMailAlarmFields = [VCalendarConstants._descriptionSpecifier, VCalendarConstants._summarySpecifier, VCalendarConstants._attendeeSpecifier];
+            var actionList = alarmInfo.GetString(CalendarStringsEnum.Action);
+            string type = actionList.Length > 0 ? actionList[0].Value : "";
+            switch (type)
+            {
+                case "AUDIO":
+                    if (!ValidateComponent(ref expectedAudioAlarmFields, out string[] actualAudioAlarmFields, alarmInfo))
+                        throw new InvalidDataException($"The following keys [{string.Join(", ", expectedAudioAlarmFields)}] are required in the audio alarm representation. Got [{string.Join(", ", actualAudioAlarmFields)}].");
+                    break;
+                case "DISPLAY":
+                    if (!ValidateComponent(ref expectedDisplayAlarmFields, out string[] actualDisplayAlarmFields, alarmInfo))
+                        throw new InvalidDataException($"The following keys [{string.Join(", ", expectedDisplayAlarmFields)}] are required in the display alarm representation. Got [{string.Join(", ", actualDisplayAlarmFields)}].");
+                    break;
+                case "EMAIL":
+                    if (!ValidateComponent(ref expectedMailAlarmFields, out string[] actualMailAlarmFields, alarmInfo))
+                        throw new InvalidDataException($"The following keys [{string.Join(", ", expectedMailAlarmFields)}] are required in the mail alarm representation. Got [{string.Join(", ", actualMailAlarmFields)}].");
+                    break;
+            }
+
+            // Check to see if there is a repeat property
+            var repeatList = alarmInfo.GetInteger(CalendarIntegersEnum.Repeat);
+            int repeat = (int)(repeatList.Length > 0 ? repeatList[0].Value : -1);
+            string[] expectedRepeatedAlarmFields = [VCalendarConstants._durationSpecifier];
+            if (repeat >= 1)
+            {
+                if (!ValidateComponent(ref expectedRepeatedAlarmFields, out string[] actualRepeatedAlarmFields, alarmInfo))
+                    throw new InvalidDataException($"The following keys [{string.Join(", ", expectedRepeatedAlarmFields)}] are required in the repeated alarm representation. Got [{string.Join(", ", actualRepeatedAlarmFields)}].");
             }
         }
 
