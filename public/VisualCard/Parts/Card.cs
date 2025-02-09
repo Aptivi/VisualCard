@@ -38,7 +38,6 @@ namespace VisualCard.Parts
     [DebuggerDisplay("vCard version {CardVersion.ToString()}, parts: (A [{partsArray.Count}] | S [{strings.Count}]), explicit kind: {kindExplicitlySpecified}")]
     public class Card : IEquatable<Card>
     {
-        internal bool kindExplicitlySpecified = false;
         internal List<Card> nestedCards = [];
         private readonly Version version;
         private readonly Dictionary<PartsArrayEnum, List<BaseCardPartInfo>> partsArray = [];
@@ -208,10 +207,6 @@ namespace VisualCard.Parts
                 // Get the string values
                 var array = GetString(stringEnum);
                 if (array is null || array.Length == 0)
-                    continue;
-
-                // Check to see if kind is specified
-                if (!kindExplicitlySpecified && stringEnum == StringsEnum.Kind)
                     continue;
 
                 // Get the prefix

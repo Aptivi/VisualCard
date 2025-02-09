@@ -160,10 +160,8 @@ namespace VisualCard.Parsers
                     {
                         StringsEnum stringType = (StringsEnum)partType.enumeration;
 
-                        // Let VisualCard know that we've explicitly specified a kind.
-                        if (stringType == StringsEnum.Kind)
-                            card.kindExplicitlySpecified = true;
-                        else if (stringType == StringsEnum.Profile && !finalValue.Equals("vcard", StringComparison.OrdinalIgnoreCase))
+                        // Check if the profile is vCard or not.
+                        if (stringType == StringsEnum.Profile && !finalValue.Equals("vcard", StringComparison.OrdinalIgnoreCase))
                             throw new InvalidDataException("Profile must be \"vCard\"");
 
                         // Set the string for real
