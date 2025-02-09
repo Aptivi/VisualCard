@@ -72,6 +72,34 @@ namespace VisualCard.Calendar.Parts
             [.. daylights];
 
         /// <summary>
+        /// Adds a standard time to the calendar time zone info (To validate, you'll need to call <see cref="Calendar.Validate"/>).
+        /// </summary>
+        /// <param name="standardInstance">Instance of a calendar standard time info</param>
+        public void AddStandardTime(CalendarStandard standardInstance) =>
+            standards.Add(standardInstance);
+
+        /// <summary>
+        /// Deletes a standard time to the calendar time zone info (To validate, you'll need to call <see cref="Calendar.Validate"/>).
+        /// </summary>
+        /// <param name="standardInstance">Instance of a calendar standard time info</param>
+        public void DeleteStandardTime(CalendarStandard standardInstance) =>
+            standards.Remove(standardInstance);
+
+        /// <summary>
+        /// Adds a daylight time to the calendar time zone info (To validate, you'll need to call <see cref="Calendar.Validate"/>).
+        /// </summary>
+        /// <param name="daylightInstance">Instance of a calendar daylight time info</param>
+        public void AddDaylightTime(CalendarDaylight daylightInstance) =>
+            daylights.Add(daylightInstance);
+
+        /// <summary>
+        /// Deletes a daylight time to the calendar time zone info (To validate, you'll need to call <see cref="Calendar.Validate"/>).
+        /// </summary>
+        /// <param name="daylightInstance">Instance of a calendar daylight time info</param>
+        public void DeleteDaylightTime(CalendarDaylight daylightInstance) =>
+            daylights.Remove(daylightInstance);
+
+        /// <summary>
         /// Gets a part array from a specified key
         /// </summary>
         /// <returns>An array of values or an empty part array []</returns>

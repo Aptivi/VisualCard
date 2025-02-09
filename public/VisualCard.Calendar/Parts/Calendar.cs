@@ -121,6 +121,90 @@ namespace VisualCard.Calendar.Parts
             new(integers.ToDictionary((kvp) => kvp.Key, (kvp) => kvp.Value.AsReadOnly()));
 
         /// <summary>
+        /// Adds an event to the calendar (To validate, you'll need to call <see cref="Validate"/>).
+        /// </summary>
+        /// <param name="eventInstance">Instance of a calendar event</param>
+        public void AddEvent(CalendarEvent eventInstance) =>
+            events.Add(eventInstance);
+
+        /// <summary>
+        /// Deletes an event from the calendar (To validate, you'll need to call <see cref="Validate"/>).
+        /// </summary>
+        /// <param name="eventInstance">Instance of a calendar event</param>
+        public void DeleteEvent(CalendarEvent eventInstance) =>
+            events.Remove(eventInstance);
+
+        /// <summary>
+        /// Adds a todo to the calendar (To validate, you'll need to call <see cref="Validate"/>).
+        /// </summary>
+        /// <param name="todoInstance">Instance of a calendar todo</param>
+        public void AddTodo(CalendarTodo todoInstance) =>
+            todos.Add(todoInstance);
+
+        /// <summary>
+        /// Deletes a todo to the calendar (To validate, you'll need to call <see cref="Validate"/>).
+        /// </summary>
+        /// <param name="todoInstance">Instance of a calendar todo</param>
+        public void DeleteTodo(CalendarTodo todoInstance) =>
+            todos.Remove(todoInstance);
+
+        /// <summary>
+        /// Adds a journal to the calendar (To validate, you'll need to call <see cref="Validate"/>).
+        /// </summary>
+        /// <param name="journalInstance">Instance of a calendar journal</param>
+        public void AddJournal(CalendarJournal journalInstance) =>
+            journals.Add(journalInstance);
+
+        /// <summary>
+        /// Deletes a journal to the calendar (To validate, you'll need to call <see cref="Validate"/>).
+        /// </summary>
+        /// <param name="journalInstance">Instance of a calendar journal</param>
+        public void DeleteJournal(CalendarJournal journalInstance) =>
+            journals.Remove(journalInstance);
+
+        /// <summary>
+        /// Adds a free/busy info to the calendar (To validate, you'll need to call <see cref="Validate"/>).
+        /// </summary>
+        /// <param name="freeBusyInstance">Instance of a calendar free/busy info</param>
+        public void AddFreeBusy(CalendarFreeBusy freeBusyInstance) =>
+            freeBusyList.Add(freeBusyInstance);
+
+        /// <summary>
+        /// Deletes a free/busy info to the calendar (To validate, you'll need to call <see cref="Validate"/>).
+        /// </summary>
+        /// <param name="freeBusyInstance">Instance of a calendar free/busy info</param>
+        public void DeleteFreeBusy(CalendarFreeBusy freeBusyInstance) =>
+            freeBusyList.Remove(freeBusyInstance);
+
+        /// <summary>
+        /// Adds a timezone to the calendar (To validate, you'll need to call <see cref="Validate"/>).
+        /// </summary>
+        /// <param name="timeZoneInstance">Instance of a calendar timezone</param>
+        public void AddTimeZone(CalendarTimeZone timeZoneInstance) =>
+            timeZones.Add(timeZoneInstance);
+
+        /// <summary>
+        /// Deletes a timezone to the calendar (To validate, you'll need to call <see cref="Validate"/>).
+        /// </summary>
+        /// <param name="timeZoneInstance">Instance of a calendar timezone</param>
+        public void DeleteTimeZone(CalendarTimeZone timeZoneInstance) =>
+            timeZones.Remove(timeZoneInstance);
+
+        /// <summary>
+        /// Adds a custom component to the calendar (To validate, you'll need to call <see cref="Validate"/>).
+        /// </summary>
+        /// <param name="otherInstance">Instance of a calendar custom component</param>
+        public void AddOther(CalendarOtherComponent otherInstance) =>
+            others.Add(otherInstance);
+
+        /// <summary>
+        /// Deletes a custom component to the calendar (To validate, you'll need to call <see cref="Validate"/>).
+        /// </summary>
+        /// <param name="otherInstance">Instance of a calendar custom component</param>
+        public void DeleteOther(CalendarOtherComponent otherInstance) =>
+            others.Remove(otherInstance);
+
+        /// <summary>
         /// Gets a part array from a specified key
         /// </summary>
         /// <returns>An array of values or an empty part array []</returns>

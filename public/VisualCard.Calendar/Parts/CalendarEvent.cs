@@ -65,6 +65,20 @@ namespace VisualCard.Calendar.Parts
             [.. alarms];
 
         /// <summary>
+        /// Adds an alarm to the calendar event (To validate, you'll need to call <see cref="Calendar.Validate"/>).
+        /// </summary>
+        /// <param name="alarmInstance">Instance of a calendar alarm</param>
+        public void AddAlarm(CalendarAlarm alarmInstance) =>
+            alarms.Add(alarmInstance);
+
+        /// <summary>
+        /// Deletes an alarm to the calendar event (To validate, you'll need to call <see cref="Calendar.Validate"/>).
+        /// </summary>
+        /// <param name="alarmInstance">Instance of a calendar alarm</param>
+        public void DeleteAlarm(CalendarAlarm alarmInstance) =>
+            alarms.Remove(alarmInstance);
+
+        /// <summary>
         /// Gets a part array from a specified key
         /// </summary>
         /// <returns>An array of values or an empty part array []</returns>
