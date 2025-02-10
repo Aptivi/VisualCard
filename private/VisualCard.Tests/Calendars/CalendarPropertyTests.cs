@@ -77,11 +77,11 @@ namespace VisualCard.Tests.Calendars
             var calendar = calendars[0];
             var eventChunk = calendar.Events[0];
             var status = eventChunk.GetString(CalendarStringsEnum.Status)[0];
-            status.Value.ShouldBe("GREGORIAN");
+            status.Value.ShouldBe("CONFIRMED");
             eventChunk.DeleteString(CalendarStringsEnum.Status, 0);
             eventChunk.GetString(CalendarStringsEnum.Status).ShouldBeEmpty();
             string calendarStr = calendar.SaveToString();
-            calendarStr.ShouldNotContain("GREGORIAN");
+            calendarStr.ShouldNotContain("CONFIRMED");
         }
 
         [TestMethod]
@@ -89,14 +89,15 @@ namespace VisualCard.Tests.Calendars
         {
             var calendars = CalendarTools.GetCalendarsFromString(CalendarData.singleVCalendarTwoCalendar);
             var calendar = calendars[0];
-            var status = calendar.GetPartsArray<RequestStatusInfo>()[0];
+            var eventChunk = calendar.Events[0];
+            var status = eventChunk.GetPartsArray<RequestStatusInfo>()[0];
             status.RequestStatus.ShouldBe((4, 1, 0));
-            calendar.DeletePartsArray<RequestStatusInfo>(0);
-            calendar.GetPartsArray<RequestStatusInfo>().Length.ShouldBe(1);
-            status = calendar.GetPartsArray<RequestStatusInfo>()[0];
+            eventChunk.DeletePartsArray<RequestStatusInfo>(0);
+            eventChunk.GetPartsArray<RequestStatusInfo>().Length.ShouldBe(1);
+            status = eventChunk.GetPartsArray<RequestStatusInfo>()[0];
             status.RequestStatus.ShouldBe((3, 7, 0));
-            calendar.DeletePartsArray<RequestStatusInfo>(0);
-            calendar.GetPartsArray<RequestStatusInfo>().ShouldBeEmpty();
+            eventChunk.DeletePartsArray<RequestStatusInfo>(0);
+            eventChunk.GetPartsArray<RequestStatusInfo>().ShouldBeEmpty();
             string calendarStr = calendar.SaveToString();
             calendarStr.ShouldNotContain("REQUEST-STATUS");
         }
