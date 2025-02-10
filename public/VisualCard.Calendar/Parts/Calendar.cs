@@ -946,11 +946,11 @@ namespace VisualCard.Calendar.Parts
                     ValidateAlarm(alarmInfo);
 
                 // Check the priority
-                var priorities = eventInfo.GetInteger(CalendarIntegersEnum.PercentComplete);
+                var priorities = eventInfo.GetInteger(CalendarIntegersEnum.Priority);
                 foreach (var priority in priorities)
                 {
                     if (priority.Value < 0 || priority.Value > 9)
-                        throw new ArgumentOutOfRangeException(nameof(CalendarIntegersEnum.PercentComplete), priority.Value, "Percent completion may not be less than zero or greater than 100");
+                        throw new ArgumentOutOfRangeException(nameof(CalendarIntegersEnum.Priority), priority.Value, "Percent completion may not be less than zero or greater than 100");
                 }
 
                 // Check for conflicts
@@ -975,11 +975,11 @@ namespace VisualCard.Calendar.Parts
                 }
 
                 // Check the priority
-                var priorities = todoInfo.GetInteger(CalendarIntegersEnum.PercentComplete);
+                var priorities = todoInfo.GetInteger(CalendarIntegersEnum.Priority);
                 foreach (var priority in priorities)
                 {
                     if (priority.Value < 0 || priority.Value > 9)
-                        throw new ArgumentOutOfRangeException(nameof(CalendarIntegersEnum.PercentComplete), priority.Value, "Percent completion may not be less than zero or greater than 100");
+                        throw new ArgumentOutOfRangeException(nameof(CalendarIntegersEnum.Priority), priority.Value, "Percent completion may not be less than zero or greater than 100");
                 }
 
                 // Check for conflicts
