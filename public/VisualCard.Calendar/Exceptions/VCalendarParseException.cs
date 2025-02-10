@@ -28,7 +28,7 @@ namespace VisualCard.Calendar.Exceptions
     {
         /// <inheritdoc/>
         internal VCalendarParseException()
-            : base("General contact parsing error.")
+            : base("General calendar parsing error.")
         {
         }
 
@@ -40,7 +40,7 @@ namespace VisualCard.Calendar.Exceptions
         /// <param name="linenumber">Line number in which it caused the error</param>
         /// <param name="innerException">Inner exception (if any)</param>
         internal VCalendarParseException(string message, string line, int linenumber, Exception innerException)
-            : base($"An error occurred while parsing the VCalendar contact\n" +
+            : base($"An error occurred while parsing the VCalendar calendar\n" +
                    $"Error: {message}\n" +
                    $"Line: {line}\n" +
                    $"Line number: {linenumber}", innerException)
