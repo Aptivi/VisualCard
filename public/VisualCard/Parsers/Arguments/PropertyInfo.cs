@@ -37,7 +37,6 @@ namespace VisualCard.Parsers.Arguments
         private readonly string prefix = "";
         private readonly string group = "";
         private readonly ArgumentInfo[] arguments = [];
-        private readonly bool printableMultiline;
 
         /// <summary>
         /// Raw value
@@ -88,7 +87,7 @@ namespace VisualCard.Parsers.Arguments
             => VcardCommonTools.GetValuesString(arguments, "", VcardConstants._valueArgumentSpecifier);
 
         internal bool CanContinueMultiline
-            => printableMultiline && Value?.Length > 0 && Value[Value.Length - 1] == '=';
+            => Encoding == VcardConstants._quotedPrintable && Value?.Length > 0 && Value[Value.Length - 1] == '=';
 
         /// <summary>
         /// Checks to see if both the property info instances are equal
@@ -165,7 +164,6 @@ namespace VisualCard.Parsers.Arguments
             this.rawValue.Append(value);
             this.prefix = prefix;
             this.arguments = finalArgs;
-            printableMultiline = Encoding == VcardConstants._quotedPrintable;
             this.group = group.Trim();
         }
     }

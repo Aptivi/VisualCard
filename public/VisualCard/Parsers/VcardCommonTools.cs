@@ -521,14 +521,32 @@ namespace VisualCard.Parsers
                     // Append a new line because we reached the maximum limit
                     selectedMax = writeSpace ? maxChars - 1 : maxChars;
                     processed = 0;
-                    block.Append("\n");
+
+                    // If we're dealing with quoted printable, put the equal sign before the new line
+                    if (encoding == VcardConstants._quotedPrintable)
+                        block.Append('=');
+                    block.Append('\n');
+
+                    // If we're not dealing with quoted printable, add space.
                     if (writeSpace && encoding != VcardConstants._quotedPrintable)
-                        block.Append(" ");
+                        block.Append(' ');
                 }
                 if (target[currCharNum] != '\n' && target[currCharNum] != '\r')
                 {
                     block.Append(target[currCharNum]);
                     processed++;
+
+                    // Check to see if the current character is an equal sign and the string is a quoted printable
+                    if (target[currCharNum] == '=' && encoding == VcardConstants._quotedPrintable)
+                    {
+                        // We need two characters to write the encoded character
+                        for (int step = 1; step <= 2; step++)
+                        {
+                            block.Append(target[currCharNum + 1]);
+                            processed++;
+                            currCharNum++;
+                        }
+                    }
                 }
             }
             return block.ToString();

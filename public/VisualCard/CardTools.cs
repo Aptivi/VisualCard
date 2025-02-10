@@ -92,7 +92,7 @@ namespace VisualCard
                 bool append = false;
                 lineNumber++;
 
-                // Skip empty lines
+                // Read the line
                 CardLine = stream.ReadLine();
 
                 // Get the property info
@@ -101,16 +101,21 @@ namespace VisualCard
                 try
                 {
                     var prop = new PropertyInfo(CardLine);
-                    prefix = prop.Prefix;
-                    value = prop.Value;
+                    if (prop.CanContinueMultiline)
+                        CardLine = CardLine.Remove(CardLine.Length - 1, 1);
                     while (prop.CanContinueMultiline)
                     {
+                        prop.rawValue.Remove(prop.rawValue.Length - 1, 1);
                         string nextLine = stream.ReadLine();
                         prop.rawValue.Append(nextLine);
 
                         // Add it to the current line for later processing
                         CardLine += nextLine;
+                        if (CardLine[CardLine.Length - 1] == '=')
+                            CardLine = CardLine.Remove(CardLine.Length - 1, 1);
                     }
+                    prefix = prop.Prefix;
+                    value = prop.Value;
                 }
                 catch
                 {

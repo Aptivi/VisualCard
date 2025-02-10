@@ -88,7 +88,7 @@ namespace VisualCard.Calendar
                 bool append = false;
                 lineNumber++;
 
-                // Skip empty lines
+                // Read the line
                 CalendarLine = stream.ReadLine();
 
                 // Get the property info
@@ -97,16 +97,21 @@ namespace VisualCard.Calendar
                 try
                 {
                     var prop = new PropertyInfo(CalendarLine);
-                    prefix = prop.Prefix;
-                    value = prop.Value;
+                    if (prop.CanContinueMultiline)
+                        CalendarLine = CalendarLine.Remove(CalendarLine.Length - 1, 1);
                     while (prop.CanContinueMultiline)
                     {
+                        prop.rawValue.Remove(prop.rawValue.Length - 1, 1);
                         string nextLine = stream.ReadLine();
                         prop.rawValue.Append(nextLine);
 
                         // Add it to the current line for later processing
                         CalendarLine += nextLine;
+                        if (CalendarLine[CalendarLine.Length - 1] == '=')
+                            CalendarLine = CalendarLine.Remove(CalendarLine.Length - 1, 1);
                     }
+                    prefix = prop.Prefix;
+                    value = prop.Value;
                 }
                 catch
                 {
