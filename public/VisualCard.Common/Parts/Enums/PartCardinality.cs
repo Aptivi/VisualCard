@@ -17,12 +17,12 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-namespace VisualCard.Parts.Enums
+namespace VisualCard.Common.Parts.Enums
 {
     /// <summary>
     /// Part cardinality (specifies how many times an integer, a string, or an array of parts may exist)
     /// </summary>
-    internal enum PartCardinality
+    public enum PartCardinality
     {
         /// <summary>
         /// Cardinality: * (One or more instances per vCard MAY be present.) - AltID supported

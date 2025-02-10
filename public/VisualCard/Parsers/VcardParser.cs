@@ -23,6 +23,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using VisualCard.Common.Parts.Enums;
 using VisualCard.Exceptions;
 using VisualCard.Parsers.Arguments;
 using VisualCard.Parts;

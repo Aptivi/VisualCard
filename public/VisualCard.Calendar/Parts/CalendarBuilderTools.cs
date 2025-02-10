@@ -17,7 +17,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-using VisualCard.Calendar.Parts.Implementations;
+using VisualCard.Common.Parts.Implementations;
 using VisualCard.Parts;
 
 namespace VisualCard.Calendar.Parts

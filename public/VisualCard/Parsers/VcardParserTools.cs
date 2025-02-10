@@ -18,6 +18,12 @@
 //
 
 using System;
+using System.IO;
+using System.Linq;
+using VisualCard.Common.Parsers;
+using VisualCard.Common.Parsers.Arguments;
+using VisualCard.Common.Parts.Enums;
+using VisualCard.Common.Parts.Implementations;
 using VisualCard.Parts.Enums;
 using VisualCard.Parts.Implementations;
 
@@ -127,7 +133,7 @@ namespace VisualCard.Parsers
 
         internal static VcardPartType GetPartType(string prefix, Version cardVersion, string kindStr)
         {
-            var kind = VcardCommonTools.GetKindEnum(kindStr);
+            var kind = GetKindEnum(kindStr);
             return prefix switch
             {
                 VcardConstants._nameSpecifier => new(PartType.PartsArray, PartsArrayEnum.Names, cardVersion.Major == 4 ? PartCardinality.MayBeOne : PartCardinality.ShouldBeOne, null, typeof(NameInfo), NameInfo.FromStringVcardStatic, "", "", "text", [], []),
@@ -179,9 +185,60 @@ namespace VisualCard.Parsers
                 VcardConstants._orgDirectorySpecifier => new(PartType.Strings, StringsEnum.OrgDirectory, PartCardinality.Any, (ver) => ver.Major >= 4, null, null, "", "", "uri", [], []),
 
                 // Extensions are allowed
-                VcardConstants._xSpecifier => new(PartType.PartsArray, PartsArrayEnum.NonstandardNames, PartCardinality.Any, null, typeof(XNameInfo), XNameInfo.FromStringVcardStatic, "", "", "", [], []),
-                _ => new(PartType.PartsArray, PartsArrayEnum.IanaNames, PartCardinality.Any, null, typeof(ExtraInfo), ExtraInfo.FromStringVcardStatic, "", "", "", [], []),
+                VcardConstants._xSpecifier => new(PartType.PartsArray, PartsArrayEnum.NonstandardNames, PartCardinality.Any, null, typeof(XNameInfo), XNameInfo.FromStringStatic, "", "", "", [], []),
+                _ => new(PartType.PartsArray, PartsArrayEnum.IanaNames, PartCardinality.Any, null, typeof(ExtraInfo), ExtraInfo.FromStringStatic, "", "", "", [], []),
             };
+        }
+
+        internal static CardKind GetKindEnum(string kind) =>
+            kind.ToLower() switch
+            {
+                "individual" => CardKind.Individual,
+                "group" => CardKind.Group,
+                "organization" => CardKind.Organization,
+                "location" => CardKind.Location,
+                _ => CardKind.Others,
+            };
+
+        internal static int GetAltIdFromArgs(Version version, PropertyInfo? property, VcardPartType partType)
+        {
+            var arguments = property?.Arguments ?? [];
+            int altId = -1;
+            if (arguments.Length > 0)
+            {
+                // If we have more than one argument, check for ALTID
+                if (version.Major >= 4)
+                {
+                    var cardinality = partType.cardinality;
+                    bool supportsAltId =
+                        cardinality != PartCardinality.MayBeOneNoAltId && cardinality != PartCardinality.ShouldBeOneNoAltId &&
+                        cardinality != PartCardinality.AtLeastOneNoAltId && cardinality != PartCardinality.AnyNoAltId;
+                    var altIdArg = arguments.SingleOrDefault((arg) => arg.Key == VcardConstants._altIdArgumentSpecifier);
+                    if (supportsAltId)
+                    {
+                        // The type supports ALTID.
+                        if (arguments[0].Key == VcardConstants._altIdArgumentSpecifier)
+                        {
+                            // We need ALTID to be numeric
+                            if (!int.TryParse(altIdArg.Values[0].value, out altId))
+                                throw new InvalidDataException("ALTID must be numeric");
+
+                            // We need ALTID to be positive
+                            if (altId < 0)
+                                throw new InvalidDataException("ALTID must be positive");
+
+                            // Here, we require arguments for ALTID
+                            if (arguments.Length <= 1)
+                                throw new InvalidDataException("ALTID must have one or more arguments to specify why this instance is an alternative");
+                        }
+                        else if (altIdArg is not null)
+                            throw new InvalidDataException("ALTID must be exactly in the first position of the argument, because arguments that follow it are required to be specified");
+                    }
+                    else if (altIdArg is not null)
+                        throw new InvalidDataException($"ALTID must not be specified in the {partType.enumeration} type that expects a cardinality of {cardinality}.");
+                }
+            }
+            return altId;
         }
     }
 }

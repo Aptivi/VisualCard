@@ -20,6 +20,8 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using VisualCard.Common.Parsers;
+using VisualCard.Common.Parsers.Recurrence;
 
 namespace VisualCard.Parsers.Recurrence
 {
@@ -138,7 +140,7 @@ namespace VisualCard.Parsers.Recurrence
                 }
 
                 // Is this designator an optional enddate?
-                if (VcardCommonTools.TryParsePosixDateTime(filtered, out DateTimeOffset endDate) && i == designators.Length - 1)
+                if (CommonTools.TryParsePosixDateTime(filtered, out DateTimeOffset endDate) && i == designators.Length - 1)
                 {
                     // Check to see if this rule is the only rule
                     if (rules.Count == 0)

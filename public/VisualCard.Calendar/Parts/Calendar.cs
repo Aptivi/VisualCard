@@ -30,10 +30,10 @@ using VisualCard.Calendar.Parts.Comparers;
 using VisualCard.Calendar.Parts.Enums;
 using VisualCard.Calendar.Parts.Implementations.Event;
 using VisualCard.Calendar.Parts.Implementations.Todo;
+using VisualCard.Common.Parts.Enums;
 using VisualCard.Parsers;
 using VisualCard.Parsers.Arguments;
 using VisualCard.Parts;
-using VisualCard.Parts.Enums;
 
 namespace VisualCard.Calendar.Parts
 {

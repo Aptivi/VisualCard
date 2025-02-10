@@ -25,6 +25,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Textify.General;
+using VisualCard.Common.Parts.Enums;
 using VisualCard.Parsers;
 using VisualCard.Parsers.Arguments;
 using VisualCard.Parts.Comparers;

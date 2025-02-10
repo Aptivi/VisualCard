@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisualCard.Extras", "public
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildTargets", "private\BuildTargets\BuildTargets.csproj", "{FF903B9E-3605-4F14-B851-10306427F32D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisualCard.Common", "public\VisualCard.Common\VisualCard.Common.csproj", "{F58FE94C-FCE9-4CAE-8CD1-C62BDEB4701C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{FF903B9E-3605-4F14-B851-10306427F32D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF903B9E-3605-4F14-B851-10306427F32D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF903B9E-3605-4F14-B851-10306427F32D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F58FE94C-FCE9-4CAE-8CD1-C62BDEB4701C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F58FE94C-FCE9-4CAE-8CD1-C62BDEB4701C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F58FE94C-FCE9-4CAE-8CD1-C62BDEB4701C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F58FE94C-FCE9-4CAE-8CD1-C62BDEB4701C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -75,6 +81,7 @@ Global
 		{80A3B32A-F96E-4E87-837F-94E6EB188547} = {FBDC2E9C-4689-46B6-9889-3BA1D34D133D}
 		{A06611BC-20E0-4990-B907-83C2979E5AE8} = {F07A71FB-5A78-448F-A5A2-5B7608319ACD}
 		{FF903B9E-3605-4F14-B851-10306427F32D} = {FBDC2E9C-4689-46B6-9889-3BA1D34D133D}
+		{F58FE94C-FCE9-4CAE-8CD1-C62BDEB4701C} = {F07A71FB-5A78-448F-A5A2-5B7608319ACD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {889936F5-3595-4A31-90D3-A39A9B398546}

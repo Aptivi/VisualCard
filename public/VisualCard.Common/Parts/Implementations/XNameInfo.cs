@@ -24,63 +24,64 @@ using System.Linq;
 using VisualCard.Parsers;
 using VisualCard.Parsers.Arguments;
 
-namespace VisualCard.Calendar.Parts.Implementations
+namespace VisualCard.Common.Parts.Implementations
 {
     /// <summary>
-    /// Extraneous information that a calendar may hold
+    /// Calendar non-standard field entry information
     /// </summary>
-    [DebuggerDisplay("Extra: {KeyName} = {string.Join(\", \", Values)}")]
-    public class ExtraInfo : BaseCalendarPartInfo, IEquatable<ExtraInfo>
+    [DebuggerDisplay("Non-standard: {XKeyName} = {string.Join(\", \", XValues)}")]
+    public class XNameInfo : BaseCalendarPartInfo, IEquatable<XNameInfo>
     {
         /// <summary>
-        /// Key name
+        /// X- key name
         /// </summary>
-        public string? KeyName { get; }
+        public string? XKeyName { get; }
         /// <summary>
-        /// Values
+        /// X- values
         /// </summary>
-        public string[]? Values { get; set; }
+        public string[]? XValues { get; set; }
 
         internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            new ExtraInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, cardVersion);
+            new XNameInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringVcalendarInternal(Version cardVersion) =>
-            string.Join(VcardConstants._fieldDelimiter.ToString(), Values);
+            string.Join(VcardConstants._fieldDelimiter.ToString(), XValues);
 
         internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
-            string[] split = value.Split(VcardConstants._argumentDelimiter);
+            string xValue = value.Substring(VcardConstants._xSpecifier.Length);
+            string[] splitX = xValue.Split(VcardConstants._argumentDelimiter);
 
             // Populate the name
-            string _extra = split[0].Contains(VcardConstants._fieldDelimiter.ToString()) ?
-                            split[0].Substring(0, split[0].IndexOf(VcardConstants._fieldDelimiter)) :
-                            split[0];
+            string _xName = splitX[0].Contains(VcardConstants._fieldDelimiter.ToString()) ?
+                            splitX[0].Substring(0, splitX[0].IndexOf(VcardConstants._fieldDelimiter)) :
+                            splitX[0];
 
             // Populate the fields
-            string[] _values = split[1].Split(VcardConstants._fieldDelimiter);
-            ExtraInfo _extraInfo = new(property, elementTypes, group, valueType, _extra, _values);
-            return _extraInfo;
+            string[] _xValues = splitX[1].Split(VcardConstants._fieldDelimiter);
+            XNameInfo _x = new(property, elementTypes, group, valueType, _xName, _xValues);
+            return _x;
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj) =>
-            Equals((ExtraInfo)obj);
+            Equals((XNameInfo)obj);
 
         /// <summary>
         /// Checks to see if both the parts are equal
         /// </summary>
-        /// <param name="other">The target <see cref="ExtraInfo"/> instance to check to see if they equal</param>
+        /// <param name="other">The target <see cref="XNameInfo"/> instance to check to see if they equal</param>
         /// <returns>True if all the part elements are equal. Otherwise, false.</returns>
-        public bool Equals(ExtraInfo other) =>
+        public bool Equals(XNameInfo other) =>
             Equals(this, other);
 
         /// <summary>
         /// Checks to see if both the parts are equal
         /// </summary>
-        /// <param name="source">The source <see cref="ExtraInfo"/> instance to check to see if they equal</param>
-        /// <param name="target">The target <see cref="ExtraInfo"/> instance to check to see if they equal</param>
+        /// <param name="source">The source <see cref="XNameInfo"/> instance to check to see if they equal</param>
+        /// <param name="target">The target <see cref="XNameInfo"/> instance to check to see if they equal</param>
         /// <returns>True if all the part elements are equal. Otherwise, false.</returns>
-        public bool Equals(ExtraInfo source, ExtraInfo target)
+        public bool Equals(XNameInfo source, XNameInfo target)
         {
             // We can't perform this operation on null.
             if (source is null || target is null)
@@ -88,39 +89,39 @@ namespace VisualCard.Calendar.Parts.Implementations
 
             // Check all the properties
             return
-                source.Values.SequenceEqual(target.Values) &&
-                source.KeyName == target.KeyName
+                source.XValues.SequenceEqual(target.XValues) &&
+                source.XKeyName == target.XKeyName
             ;
         }
 
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = 1248266464;
+            int hashCode = 390070728;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(KeyName);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string[]?>.Default.GetHashCode(Values);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string?>.Default.GetHashCode(XKeyName);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string[]?>.Default.GetHashCode(XValues);
             return hashCode;
         }
 
         /// <inheritdoc/>
-        public static bool operator ==(ExtraInfo left, ExtraInfo right) =>
+        public static bool operator ==(XNameInfo left, XNameInfo right) =>
             left.Equals(right);
 
         /// <inheritdoc/>
-        public static bool operator !=(ExtraInfo left, ExtraInfo right) =>
+        public static bool operator !=(XNameInfo left, XNameInfo right) =>
             !(left == right);
 
         internal override bool EqualsInternal(BaseCalendarPartInfo source, BaseCalendarPartInfo target) =>
-            (ExtraInfo)source == (ExtraInfo)target;
+            (XNameInfo)source == (XNameInfo)target;
 
-        internal ExtraInfo() { }
+        internal XNameInfo() { }
 
-        internal ExtraInfo(PropertyInfo? property, string[] elementTypes, string group, string valueType, string keyName, string[] values) :
+        internal XNameInfo(PropertyInfo? property, string[] elementTypes, string group, string valueType, string xKeyName, string[] xValues) :
             base(property, elementTypes, group, valueType)
         {
-            KeyName = keyName;
-            Values = values;
+            XKeyName = xKeyName;
+            XValues = xValues;
         }
     }
 }

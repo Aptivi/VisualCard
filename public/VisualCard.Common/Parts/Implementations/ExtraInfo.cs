@@ -24,13 +24,13 @@ using System.Linq;
 using VisualCard.Parsers;
 using VisualCard.Parsers.Arguments;
 
-namespace VisualCard.Parts.Implementations
+namespace VisualCard.Common.Parts.Implementations
 {
     /// <summary>
-    /// Extraneous information that a card may hold
+    /// Extraneous information that a calendar may hold
     /// </summary>
     [DebuggerDisplay("Extra: {KeyName} = {string.Join(\", \", Values)}")]
-    public class ExtraInfo : BaseCardPartInfo, IEquatable<ExtraInfo>
+    public class ExtraInfo : BaseCalendarPartInfo, IEquatable<ExtraInfo>
     {
         /// <summary>
         /// Key name
@@ -41,13 +41,13 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string[]? Values { get; set; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
-            new ExtraInfo().FromStringVcardInternal(value, property, altId, elementTypes, valueType, cardVersion);
+        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new ExtraInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, cardVersion);
 
-        internal override string ToStringVcardInternal(Version cardVersion) =>
+        internal override string ToStringVcalendarInternal(Version cardVersion) =>
             string.Join(VcardConstants._fieldDelimiter.ToString(), Values);
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             string[] split = value.Split(VcardConstants._argumentDelimiter);
 
@@ -58,7 +58,7 @@ namespace VisualCard.Parts.Implementations
 
             // Populate the fields
             string[] _values = split[1].Split(VcardConstants._fieldDelimiter);
-            ExtraInfo _extraInfo = new(altId, property, elementTypes, valueType, _extra, _values);
+            ExtraInfo _extraInfo = new(property, elementTypes, group, valueType, _extra, _values);
             return _extraInfo;
         }
 
@@ -111,13 +111,13 @@ namespace VisualCard.Parts.Implementations
         public static bool operator !=(ExtraInfo left, ExtraInfo right) =>
             !(left == right);
 
-        internal override bool EqualsInternal(BaseCardPartInfo source, BaseCardPartInfo target) =>
+        internal override bool EqualsInternal(BaseCalendarPartInfo source, BaseCalendarPartInfo target) =>
             (ExtraInfo)source == (ExtraInfo)target;
 
         internal ExtraInfo() { }
 
-        internal ExtraInfo(int altId, PropertyInfo? property, string[] elementTypes, string valueType, string keyName, string[] values) :
-            base(property, altId, elementTypes, valueType)
+        internal ExtraInfo(PropertyInfo? property, string[] elementTypes, string group, string valueType, string keyName, string[] values) :
+            base(property, elementTypes, group, valueType)
         {
             KeyName = keyName;
             Values = values;

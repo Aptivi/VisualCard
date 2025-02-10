@@ -20,7 +20,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace VisualCard.Parts.Comparers
+namespace VisualCard.Common.Parts.Comparers
 {
     internal static class CommonComparison
     {

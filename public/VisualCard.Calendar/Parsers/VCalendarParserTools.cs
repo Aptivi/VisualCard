@@ -22,13 +22,14 @@ using VisualCard.Calendar.Parts;
 using VisualCard.Calendar.Parts.Implementations;
 using VisualCard.Calendar.Parts.Enums;
 using VisualCard.Calendar.Parts.Implementations.Event;
-using VisualCard.Parts.Enums;
 using System.Linq;
 using VisualCard.Calendar.Parts.Implementations.TimeZone;
 using VisualCard.Calendar.Parts.Implementations.Todo;
 using VisualCard.Calendar.Parts.Implementations.Legacy;
 using VisualCard.Calendar.Parts.Implementations.FreeBusy;
 using VisualCard.Parsers;
+using VisualCard.Common.Parts.Implementations;
+using VisualCard.Common.Parts.Enums;
 
 namespace VisualCard.Calendar.Parsers
 {

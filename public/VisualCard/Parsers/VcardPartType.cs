@@ -18,9 +18,9 @@
 //
 
 using System;
+using VisualCard.Common.Parts.Enums;
 using VisualCard.Parsers.Arguments;
 using VisualCard.Parts;
-using VisualCard.Parts.Enums;
 
 namespace VisualCard.Parsers
 {

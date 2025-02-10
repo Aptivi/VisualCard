@@ -20,6 +20,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using VisualCard.Common.Parsers;
+using VisualCard.Common.Parsers.Recurrence;
 
 namespace VisualCard.Parsers.Recurrence
 {
@@ -93,7 +95,7 @@ namespace VisualCard.Parsers.Recurrence
                     case "UNTIL":
                         // ( "UNTIL" "=" enddate )
                         //  enddate     = date / date-time
-                        DateTimeOffset dateTime = VcardCommonTools.ParsePosixDateTime(valueRepresentation);
+                        DateTimeOffset dateTime = CommonTools.ParsePosixDateTime(valueRepresentation);
                         recurrenceRule.endDate = dateTime;
                         break;
                     case "COUNT":

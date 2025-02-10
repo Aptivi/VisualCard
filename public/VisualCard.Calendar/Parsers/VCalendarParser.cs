@@ -25,12 +25,12 @@ using System.Linq;
 using VisualCard.Calendar.Parts;
 using VisualCard.Calendar.Parts.Enums;
 using VisualCard.Calendar.Exceptions;
-using VisualCard.Parts.Enums;
 using VisualCard.Parsers;
 using VisualCard.Parsers.Arguments;
 using VisualCard.Calendar.Parts.Implementations.Event;
 using VisualCard.Calendar.Parts.Implementations.Todo;
 using VisualCard.Parts;
+using VisualCard.Common.Parts.Enums;
 
 namespace VisualCard.Calendar.Parsers
 {

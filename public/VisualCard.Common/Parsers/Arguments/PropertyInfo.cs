@@ -23,9 +23,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using Textify.General;
-using VisualCard.Parts.Comparers;
+using VisualCard.Common.Parts.Comparers;
 
-namespace VisualCard.Parsers.Arguments
+namespace VisualCard.Common.Parsers.Arguments
 {
     /// <summary>
     /// Property info class
@@ -72,19 +72,19 @@ namespace VisualCard.Parsers.Arguments
         /// Property encoding
         /// </summary>
         public string Encoding
-            => VcardCommonTools.GetValuesString(arguments, "", VcardConstants._encodingArgumentSpecifier);
+            => CommonTools.GetValuesString(arguments, "", VcardConstants._encodingArgumentSpecifier);
 
         /// <summary>
         /// Property type
         /// </summary>
         public string Type
-            => VcardCommonTools.GetValuesString(arguments, "", VcardConstants._typeArgumentSpecifier);
+            => CommonTools.GetValuesString(arguments, "", VcardConstants._typeArgumentSpecifier);
 
         /// <summary>
         /// Property value type
         /// </summary>
         public string ValueType
-            => VcardCommonTools.GetValuesString(arguments, "", VcardConstants._valueArgumentSpecifier);
+            => CommonTools.GetValuesString(arguments, "", VcardConstants._valueArgumentSpecifier);
 
         internal bool CanContinueMultiline
             => Encoding == VcardConstants._quotedPrintable && Value?.Length > 0 && Value[Value.Length - 1] == '=';
@@ -161,9 +161,9 @@ namespace VisualCard.Parsers.Arguments
             prefix = xNonstandard ? VcardConstants._xSpecifier : prefix;
 
             // Install values
-            this.rawValue.Append(value);
+            rawValue.Append(value);
             this.prefix = prefix;
-            this.arguments = finalArgs;
+            arguments = finalArgs;
             this.group = group.Trim();
         }
     }

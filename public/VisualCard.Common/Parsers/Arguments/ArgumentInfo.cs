@@ -24,7 +24,7 @@ using System.Linq;
 using System.Text;
 using Textify.General;
 
-namespace VisualCard.Parsers.Arguments
+namespace VisualCard.Common.Parsers.Arguments
 {
     /// <summary>
     /// Argument info for properties

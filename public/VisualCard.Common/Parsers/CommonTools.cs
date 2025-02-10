@@ -25,16 +25,16 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using Textify.General;
-using VisualCard.Parsers.Arguments;
+using VisualCard.Common.Parsers.Arguments;
+using VisualCard.Common.Parts.Enums;
 using VisualCard.Parsers.Recurrence;
-using VisualCard.Parts.Enums;
 
-namespace VisualCard.Parsers
+namespace VisualCard.Common.Parsers
 {
     /// <summary>
     /// Common tools for vCard parsing
     /// </summary>
-    public static class VcardCommonTools
+    public static class CommonTools
     {
         private static readonly string[] supportedDateTimeFormats =
         [
@@ -161,7 +161,7 @@ namespace VisualCard.Parsers
                 return false;
             }
         }
-        
+
         /// <summary>
         /// Parses the POSIX date formatted with the representation according to the vCard and vCalendar specifications
         /// </summary>
@@ -189,7 +189,7 @@ namespace VisualCard.Parsers
                 return false;
             }
         }
-        
+
         /// <summary>
         /// Parses the POSIX date formatted with the representation according to the vCard and vCalendar specifications
         /// </summary>
@@ -339,7 +339,7 @@ namespace VisualCard.Parsers
             DateTimeOffset rightNow =
                 source is DateTimeOffset sourceDate ?
                 sourceDate :
-                (utc ? DateTimeOffset.UtcNow : DateTimeOffset.Now);
+                utc ? DateTimeOffset.UtcNow : DateTimeOffset.Now;
             DateTimeOffset offset = rightNow;
             bool inDate = true;
             while (!string.IsNullOrEmpty(duration))
@@ -440,7 +440,7 @@ namespace VisualCard.Parsers
             // We're given an array of split arguments of an element delimited by the colon, such as: "...TYPE=home..."
             // Filter list of arguments with the arguments that start with the type argument specifier, or, if specifier is not required,
             // that doesn't have an equals sign
-            var ArgType = args.Where((arg) => arg.Key == VcardConstants._typeArgumentSpecifier || string.IsNullOrEmpty(arg.Key)).ToArray();
+            var ArgType = args.Where((arg) => arg.Key == CommonConstants._typeArgumentSpecifier || string.IsNullOrEmpty(arg.Key)).ToArray();
 
             // Trying to specify type without TYPE= is illegal according to RFC2426 in vCard 3.0 and 4.0
             if (ArgType.Length > 0 && string.IsNullOrEmpty(ArgType[0].Key) && isSpecifierRequired)
@@ -455,7 +455,7 @@ namespace VisualCard.Parsers
             // Get the type from the split argument
             string Type =
                 ArgType.Length > 0 ?
-                string.Join(VcardConstants._valueDelimiter.ToString(), flattened) :
+                string.Join(CommonConstants._valueDelimiter.ToString(), flattened) :
                 @default;
 
             // Return the type
@@ -463,7 +463,7 @@ namespace VisualCard.Parsers
         }
 
         internal static string[] GetTypes(ArgumentInfo[] args, string @default, bool isSpecifierRequired = true) =>
-            GetTypesString(args, @default, isSpecifierRequired).Split([VcardConstants._valueDelimiter], StringSplitOptions.RemoveEmptyEntries);
+            GetTypesString(args, @default, isSpecifierRequired).Split([CommonConstants._valueDelimiter], StringSplitOptions.RemoveEmptyEntries);
 
         internal static string GetValuesString(ArgumentInfo[] args, string @default, string argSpecifier)
         {
@@ -481,13 +481,13 @@ namespace VisualCard.Parsers
             // Attempt to get the value from the key
             string argString =
                 flattened.Count() > 0 ?
-                string.Join(VcardConstants._valueDelimiter.ToString(), flattened) :
+                string.Join(CommonConstants._valueDelimiter.ToString(), flattened) :
                 @default;
             return argString;
         }
 
         internal static string[] GetValues(ArgumentInfo[] args, string @default, string argSpecifier) =>
-            GetValuesString(args, @default, argSpecifier).Split([VcardConstants._valueDelimiter], StringSplitOptions.RemoveEmptyEntries);
+            GetValuesString(args, @default, argSpecifier).Split([CommonConstants._valueDelimiter], StringSplitOptions.RemoveEmptyEntries);
 
         internal static string GetFirstValue(ArgumentInfo[] args, string @default, string argSpecifier)
         {
@@ -523,12 +523,12 @@ namespace VisualCard.Parsers
                     processed = 0;
 
                     // If we're dealing with quoted printable, put the equal sign before the new line
-                    if (encoding == VcardConstants._quotedPrintable)
+                    if (encoding == CommonConstants._quotedPrintable)
                         block.Append('=');
                     block.Append('\n');
 
                     // If we're not dealing with quoted printable, add space.
-                    if (writeSpace && encoding != VcardConstants._quotedPrintable)
+                    if (writeSpace && encoding != CommonConstants._quotedPrintable)
                         block.Append(' ');
                 }
                 if (target[currCharNum] != '\n' && target[currCharNum] != '\r')
@@ -537,7 +537,7 @@ namespace VisualCard.Parsers
                     processed++;
 
                     // Check to see if the current character is an equal sign and the string is a quoted printable
-                    if (target[currCharNum] == '=' && encoding == VcardConstants._quotedPrintable)
+                    if (target[currCharNum] == '=' && encoding == CommonConstants._quotedPrintable)
                     {
                         // We need two characters to write the encoded character
                         for (int step = 1; step <= 2; step++)
@@ -555,7 +555,7 @@ namespace VisualCard.Parsers
         internal static bool IsEncodingBlob(ArgumentInfo[]? args, string? keyEncoded)
         {
             args ??= [];
-            string encoding = GetValuesString(args, "b", VcardConstants._encodingArgumentSpecifier);
+            string encoding = GetValuesString(args, "b", CommonConstants._encodingArgumentSpecifier);
             bool isValidUri = Uri.TryCreate(keyEncoded, UriKind.Absolute, out Uri uri);
             if (isValidUri)
             {
@@ -710,16 +710,6 @@ namespace VisualCard.Parsers
             return finalValue;
         }
 
-        internal static CardKind GetKindEnum(string kind) =>
-            kind.ToLower() switch
-            {
-                "individual" => CardKind.Individual,
-                "group" => CardKind.Group,
-                "organization" => CardKind.Organization,
-                "location" => CardKind.Location,
-                _ => CardKind.Others,
-            };
-
         internal static string ConstructBlocks(string[] cardContent, ref int i)
         {
             StringBuilder valueBuilder = new();
@@ -735,8 +725,8 @@ namespace VisualCard.Parsers
 
                 // First, check to see if we need to construct blocks
                 string secondLine = idx + 1 < cardContent.Length ? cardContent[idx + 1] : "";
-                bool firstConstructedLine = !_value.StartsWith(VcardConstants._spaceBreak) && !_value.StartsWith(VcardConstants._tabBreak);
-                constructing = secondLine.StartsWithAnyOf([VcardConstants._spaceBreak, VcardConstants._tabBreak]);
+                bool firstConstructedLine = !_value.StartsWith(CommonConstants._spaceBreak) && !_value.StartsWith(CommonConstants._tabBreak);
+                constructing = secondLine.StartsWithAnyOf([CommonConstants._spaceBreak, CommonConstants._tabBreak]);
                 secondLine = secondLine.Length > 1 ? secondLine.Substring(1) : "";
                 if (constructing)
                 {
@@ -753,47 +743,6 @@ namespace VisualCard.Parsers
             return valueBuilder.ToString();
         }
 
-        internal static int GetAltIdFromArgs(Version version, PropertyInfo? property, VcardPartType partType)
-        {
-            var arguments = property?.Arguments ?? [];
-            int altId = -1;
-            if (arguments.Length > 0)
-            {
-                // If we have more than one argument, check for ALTID
-                if (version.Major >= 4)
-                {
-                    var cardinality = partType.cardinality;
-                    bool supportsAltId =
-                        cardinality != PartCardinality.MayBeOneNoAltId && cardinality != PartCardinality.ShouldBeOneNoAltId &&
-                        cardinality != PartCardinality.AtLeastOneNoAltId && cardinality != PartCardinality.AnyNoAltId;
-                    var altIdArg = arguments.SingleOrDefault((arg) => arg.Key == VcardConstants._altIdArgumentSpecifier);
-                    if (supportsAltId)
-                    {
-                        // The type supports ALTID.
-                        if (arguments[0].Key == VcardConstants._altIdArgumentSpecifier)
-                        {
-                            // We need ALTID to be numeric
-                            if (!int.TryParse(altIdArg.Values[0].value, out altId))
-                                throw new InvalidDataException("ALTID must be numeric");
-
-                            // We need ALTID to be positive
-                            if (altId < 0)
-                                throw new InvalidDataException("ALTID must be positive");
-
-                            // Here, we require arguments for ALTID
-                            if (arguments.Length <= 1)
-                                throw new InvalidDataException("ALTID must have one or more arguments to specify why this instance is an alternative");
-                        }
-                        else if (altIdArg is not null)
-                            throw new InvalidDataException("ALTID must be exactly in the first position of the argument, because arguments that follow it are required to be specified");
-                    }
-                    else if (altIdArg is not null)
-                        throw new InvalidDataException($"ALTID must not be specified in the {partType.enumeration} type that expects a cardinality of {cardinality}.");
-                }
-            }
-            return altId;
-        }
-
         internal static string BuildRawValue(string prefix, string rawValue, string group, ArgumentInfo[] args)
         {
             var valueBuilder = new StringBuilder(prefix);
@@ -804,7 +753,7 @@ namespace VisualCard.Parsers
             bool argsNeeded = args.Length > 0;
             if (argsNeeded)
             {
-                valueBuilder.Append(VcardConstants._fieldDelimiter);
+                valueBuilder.Append(CommonConstants._fieldDelimiter);
                 for (int i = 0; i < args.Length; i++)
                 {
                     // Get the argument and build it as a string
@@ -814,12 +763,12 @@ namespace VisualCard.Parsers
 
                     // If not done, add another delimiter
                     if (i + 1 < args.Length)
-                        valueBuilder.Append(VcardConstants._fieldDelimiter);
+                        valueBuilder.Append(CommonConstants._fieldDelimiter);
                 }
             }
 
             // Now, add the raw value
-            valueBuilder.Append(VcardConstants._argumentDelimiter);
+            valueBuilder.Append(CommonConstants._argumentDelimiter);
             valueBuilder.Append(rawValue);
             return valueBuilder.ToString();
         }

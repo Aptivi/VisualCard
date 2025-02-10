@@ -20,7 +20,7 @@
 using System;
 using System.Diagnostics;
 
-namespace VisualCard.Parsers
+namespace VisualCard.Common.Parsers
 {
     /// <summary>
     /// Precise period of time

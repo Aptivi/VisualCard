@@ -19,8 +19,8 @@
 
 using System;
 using VisualCard.Calendar.Parts;
+using VisualCard.Common.Parts.Enums;
 using VisualCard.Parsers.Arguments;
-using VisualCard.Parts.Enums;
 
 namespace VisualCard.Calendar.Parsers
 {
