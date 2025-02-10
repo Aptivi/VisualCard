@@ -256,10 +256,10 @@ namespace VisualCard.Calendar.Parts
 
             // Check all the properties
             return
-                PartComparison.PartsArrayEnumEqual(source.partsArray, target.partsArray) &&
-                PartComparison.StringsEqual(source.strings, target.strings) &&
-                PartComparison.IntegersEqual(source.integers, target.integers) &&
-                PartComparison.CompareCalendarComponents(source.alarms, target.alarms)
+                CalendarPartComparison.PartsArrayEnumEqual(source.partsArray, target.partsArray) &&
+                CalendarPartComparison.StringsEqual(source.strings, target.strings) &&
+                CalendarPartComparison.IntegersEqual(source.integers, target.integers) &&
+                CalendarPartComparison.CompareCalendarComponents(source.alarms, target.alarms)
             ;
         }
 

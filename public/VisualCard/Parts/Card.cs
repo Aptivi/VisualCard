@@ -424,8 +424,8 @@ namespace VisualCard.Parts
 
             // Check all the properties
             return
-                PartComparison.PartsArrayEnumEqual(source.partsArray, target.partsArray) &&
-                PartComparison.StringsEqual(source.strings, target.strings)
+                CardPartComparison.PartsArrayEnumEqual(source.partsArray, target.partsArray) &&
+                CardPartComparison.StringsEqual(source.strings, target.strings)
             ;
         }
 

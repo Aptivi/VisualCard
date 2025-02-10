@@ -93,7 +93,7 @@ namespace VisualCard.Parsers.Arguments
             return
                 source.prefix == target.prefix &&
                 source.group == target.group &&
-                PartComparison.CompareLists(source.arguments, target.arguments)
+                CommonComparison.CompareLists(source.arguments, target.arguments)
             ;
         }
 

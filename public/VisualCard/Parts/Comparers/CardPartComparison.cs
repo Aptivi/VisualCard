@@ -23,14 +23,14 @@ using VisualCard.Parts.Enums;
 
 namespace VisualCard.Parts.Comparers
 {
-    internal static class PartComparison
+    internal static class CardPartComparison
     {
         internal static bool PartsArrayEnumEqual(
             IDictionary<PartsArrayEnum, List<BaseCardPartInfo>> source,
             IDictionary<PartsArrayEnum, List<BaseCardPartInfo>> target)
         {
             // Verify the dictionaries
-            if (!VerifyDicts(source, target))
+            if (!CommonComparison.VerifyDicts(source, target))
                 return false;
 
             // If they are really equal using the equals operator, return true.
@@ -45,7 +45,7 @@ namespace VisualCard.Parts.Comparers
                     return false;
 
                 // Compare between the lists
-                return CompareLists(kvp.Value, parts);
+                return CommonComparison.CompareLists(kvp.Value, parts);
             });
             return equal;
         }
@@ -55,7 +55,7 @@ namespace VisualCard.Parts.Comparers
             IDictionary<StringsEnum, List<ValueInfo<string>>> target)
         {
             // Verify the dictionaries
-            if (!VerifyDicts(source, target))
+            if (!CommonComparison.VerifyDicts(source, target))
                 return false;
 
             // If they are really equal using the equals operator, return true.
@@ -70,53 +70,9 @@ namespace VisualCard.Parts.Comparers
                     return false;
 
                 // Compare between the lists
-                return CompareLists(kvp.Value, parts);
+                return CommonComparison.CompareLists(kvp.Value, parts);
             });
             return equal;
-        }
-
-        internal static bool CompareLists<TValue>(
-            IList<TValue> source,
-            IList<TValue> target)
-        {
-            // Verify the lists
-            if (!VerifyLists(source, target))
-                return false;
-
-            // Now, compare between two parts
-            List<bool> results = [];
-            for (int i = 0; i < target.Count; i++)
-            {
-                TValue sourcePart = source[i];
-                TValue targetPart = target[i];
-                bool equals = sourcePart?.Equals(targetPart) ?? false;
-                results.Add(equals);
-            }
-            return !results.Contains(false);
-        }
-
-        private static bool VerifyLists<TValue>(
-            IList<TValue> source,
-            IList<TValue> target)
-        {
-            if (source == null || target == null)
-                return false;
-
-            if (source.Count != target.Count)
-                return false;
-            return true;
-        }
-
-        private static bool VerifyDicts<TKey, TValue>(
-            IDictionary<TKey, TValue> source,
-            IDictionary<TKey, TValue> target)
-        {
-            if (source == null || target == null)
-                return false;
-
-            if (source.Count != target.Count)
-                return false;
-            return true;
         }
     }
 }

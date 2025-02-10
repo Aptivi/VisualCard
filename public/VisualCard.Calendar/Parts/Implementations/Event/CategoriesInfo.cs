@@ -23,6 +23,7 @@ using System.Diagnostics;
 using System.Text.RegularExpressions;
 using VisualCard.Calendar.Parts.Comparers;
 using VisualCard.Parsers.Arguments;
+using VisualCard.Parts.Comparers;
 
 namespace VisualCard.Calendar.Parts.Implementations.Event
 {
@@ -81,7 +82,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
 
             // Check all the properties
             return
-                PartComparison.ContainsAll(source.Categories, target.Categories)
+                CommonComparison.ContainsAll(source.Categories, target.Categories)
             ;
         }
 

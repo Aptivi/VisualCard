@@ -692,15 +692,15 @@ namespace VisualCard.Calendar.Parts
 
             // Check all the properties
             return
-                PartComparison.PartsArrayEnumEqual(source.partsArray, target.partsArray) &&
-                PartComparison.StringsEqual(source.strings, target.strings) &&
-                PartComparison.IntegersEqual(source.integers, target.integers) &&
-                PartComparison.CompareCalendarComponents(source.events, target.events) &&
-                PartComparison.CompareCalendarComponents(source.todos, target.todos) &&
-                PartComparison.CompareCalendarComponents(source.journals, target.journals) &&
-                PartComparison.CompareCalendarComponents(source.freeBusyList, target.freeBusyList) &&
-                PartComparison.CompareCalendarComponents(source.timeZones, target.timeZones) &&
-                PartComparison.CompareCalendarComponents(source.others, target.others)
+                CalendarPartComparison.PartsArrayEnumEqual(source.partsArray, target.partsArray) &&
+                CalendarPartComparison.StringsEqual(source.strings, target.strings) &&
+                CalendarPartComparison.IntegersEqual(source.integers, target.integers) &&
+                CalendarPartComparison.CompareCalendarComponents(source.events, target.events) &&
+                CalendarPartComparison.CompareCalendarComponents(source.todos, target.todos) &&
+                CalendarPartComparison.CompareCalendarComponents(source.journals, target.journals) &&
+                CalendarPartComparison.CompareCalendarComponents(source.freeBusyList, target.freeBusyList) &&
+                CalendarPartComparison.CompareCalendarComponents(source.timeZones, target.timeZones) &&
+                CalendarPartComparison.CompareCalendarComponents(source.others, target.others)
             ;
         }
 

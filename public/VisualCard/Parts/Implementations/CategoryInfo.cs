@@ -23,6 +23,7 @@ using System.Diagnostics;
 using System.Text.RegularExpressions;
 using VisualCard.Parsers;
 using VisualCard.Parsers.Arguments;
+using VisualCard.Parts.Comparers;
 
 namespace VisualCard.Parts.Implementations
 {
@@ -76,10 +77,12 @@ namespace VisualCard.Parts.Implementations
             // We can't perform this operation on null.
             if (source is null || target is null)
                 return false;
+            if (source.Category is null || target.Category is null)
+                return false;
 
             // Check all the properties
             return
-                source.Category == target.Category
+                CommonComparison.ContainsAll(source.Category, target.Category)
             ;
         }
 
