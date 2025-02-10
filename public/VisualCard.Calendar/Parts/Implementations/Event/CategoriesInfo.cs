@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using VisualCard.Calendar.Parts.Comparers;
 using VisualCard.Parsers.Arguments;
 
 namespace VisualCard.Calendar.Parts.Implementations.Event
@@ -75,10 +76,12 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
             // We can't perform this operation on null.
             if (source is null || target is null)
                 return false;
+            if (source.Categories is null || target.Categories is null)
+                return false;
 
             // Check all the properties
             return
-                source.Categories == target.Categories
+                PartComparison.ContainsAll(source.Categories, target.Categories)
             ;
         }
 

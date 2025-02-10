@@ -127,6 +127,21 @@ namespace VisualCard.Calendar.Parts.Comparers
             return !results.Contains(false);
         }
 
+        internal static bool ContainsAll<TValue>(
+            IEnumerable<TValue> source,
+            IEnumerable<TValue> target)
+        {
+            // Check to see if the target list contains all source elements
+            List<bool> results = [];
+            for (int i = 0; i < target.Count(); i++)
+            {
+                TValue targetPart = target.ElementAt(i);
+                bool equals = source?.Contains(targetPart) ?? false;
+                results.Add(equals);
+            }
+            return !results.Contains(false);
+        }
+
         private static bool VerifyLists<TValue>(
             IList<TValue> source,
             IList<TValue> target)
