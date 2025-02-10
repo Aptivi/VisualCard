@@ -103,7 +103,7 @@ namespace VisualCard
                     var prop = new PropertyInfo(CardLine);
                     prefix = prop.Prefix;
                     value = prop.Value;
-                    while (prop.CanContinueMultiline())
+                    while (prop.CanContinueMultiline)
                     {
                         string nextLine = stream.ReadLine();
                         prop.rawValue.Append(nextLine);

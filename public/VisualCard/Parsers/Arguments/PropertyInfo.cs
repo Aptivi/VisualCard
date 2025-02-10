@@ -70,6 +70,27 @@ namespace VisualCard.Parsers.Arguments
             arguments;
 
         /// <summary>
+        /// Property encoding
+        /// </summary>
+        public string Encoding
+            => VcardCommonTools.GetValuesString(arguments, "", VcardConstants._encodingArgumentSpecifier);
+
+        /// <summary>
+        /// Property type
+        /// </summary>
+        public string Type
+            => VcardCommonTools.GetValuesString(arguments, "", VcardConstants._typeArgumentSpecifier);
+
+        /// <summary>
+        /// Property value type
+        /// </summary>
+        public string ValueType
+            => VcardCommonTools.GetValuesString(arguments, "", VcardConstants._valueArgumentSpecifier);
+
+        internal bool CanContinueMultiline
+            => printableMultiline && Value?.Length > 0 && Value[Value.Length - 1] == '=';
+
+        /// <summary>
         /// Checks to see if both the property info instances are equal
         /// </summary>
         /// <param name="other">The target <see cref="PropertyInfo"/> instance to check to see if they equal</param>
@@ -119,12 +140,6 @@ namespace VisualCard.Parsers.Arguments
         public static bool operator !=(PropertyInfo? left, PropertyInfo? right) =>
             !(left == right);
 
-        internal string Encoding()
-            => VcardCommonTools.GetValuesString(arguments, "", VcardConstants._encodingArgumentSpecifier);
-
-        internal bool CanContinueMultiline()
-            => printableMultiline && 0 < Value?.Length && '=' == Value[Value.Length - 1];
-
         internal PropertyInfo(string line)
         {
             // Now, parse this value
@@ -150,7 +165,7 @@ namespace VisualCard.Parsers.Arguments
             this.rawValue.Append(value);
             this.prefix = prefix;
             this.arguments = finalArgs;
-            printableMultiline = Encoding() == VcardConstants._quotedPrintable;
+            printableMultiline = Encoding == VcardConstants._quotedPrintable;
             this.group = group.Trim();
         }
     }
