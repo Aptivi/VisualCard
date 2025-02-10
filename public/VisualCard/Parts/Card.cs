@@ -35,7 +35,7 @@ namespace VisualCard.Parts
     /// <summary>
     /// A vCard card instance
     /// </summary>
-    [DebuggerDisplay("vCard version {CardVersion.ToString()}, parts: (A [{partsArray.Count}] | S [{strings.Count}]), explicit kind: {kindExplicitlySpecified}")]
+    [DebuggerDisplay("vCard version {CardVersion.ToString()}, parts: (A [{partsArray.Count}] | S [{strings.Count}])")]
     public class Card : IEquatable<Card>
     {
         internal List<Card> nestedCards = [];
