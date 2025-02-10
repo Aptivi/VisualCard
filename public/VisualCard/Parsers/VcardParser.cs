@@ -23,9 +23,11 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using VisualCard.Common.Parsers;
+using VisualCard.Common.Parsers.Arguments;
+using VisualCard.Common.Parts;
 using VisualCard.Common.Parts.Enums;
 using VisualCard.Exceptions;
-using VisualCard.Parsers.Arguments;
 using VisualCard.Parts;
 using VisualCard.Parts.Enums;
 
@@ -80,7 +82,7 @@ namespace VisualCard.Parsers
                 // Get line
                 var contentLines = CardContent.Select((tuple) => tuple.Item2).ToArray();
                 var content = CardContent[i];
-                string _value = VcardCommonTools.ConstructBlocks(contentLines, ref i);
+                string _value = CommonTools.ConstructBlocks(contentLines, ref i);
                 int lineNumber = content.Item1;
                 if (string.IsNullOrEmpty(_value))
                     continue;
@@ -114,11 +116,11 @@ namespace VisualCard.Parsers
             var partType = VcardParserTools.GetPartType(info.Prefix, version, kind);
 
             // Handle AltID
-            int altId = VcardCommonTools.GetAltIdFromArgs(version, info, partType);
+            int altId = VcardParserTools.GetAltIdFromArgs(version, info, partType);
 
             // Check the type for allowed types
             bool specifierRequired = version.Major >= 3;
-            string[] elementTypes = VcardCommonTools.GetTypes(info.Arguments, partType.defaultType, specifierRequired);
+            string[] elementTypes = CommonTools.GetTypes(info.Arguments, partType.defaultType, specifierRequired);
             foreach (string elementType in elementTypes)
             {
                 string elementTypeUpper = elementType.ToUpper();
@@ -133,8 +135,8 @@ namespace VisualCard.Parsers
             }
 
             // Handle the part type
-            string valueType = VcardCommonTools.GetFirstValue(info.Arguments, partType.defaultValueType, VcardConstants._valueArgumentSpecifier);
-            string finalValue = VcardCommonTools.ProcessStringValue(info.Value, valueType);
+            string valueType = CommonTools.GetFirstValue(info.Arguments, partType.defaultValueType, VcardConstants._valueArgumentSpecifier);
+            string finalValue = CommonTools.ProcessStringValue(info.Value, valueType);
 
             // Check for allowed values
             if (partType.allowedValues.Length != 0)
@@ -166,7 +168,7 @@ namespace VisualCard.Parsers
                             throw new InvalidDataException("Profile must be \"vCard\"");
 
                         // Set the string for real
-                        var stringValueInfo = new ValueInfo<string>(info, altId, elementTypes, valueType, finalValue);
+                        var stringValueInfo = new ValueInfo<string>(info, altId, elementTypes, info.Group, valueType, finalValue);
                         card.AddString(stringType, stringValueInfo);
                     }
                     break;
@@ -178,7 +180,7 @@ namespace VisualCard.Parsers
 
                         // Now, get the part info
                         finalValue = partsArrayType is PartsArrayEnum.NonstandardNames or PartsArrayEnum.IanaNames ? _value : info.Value;
-                        var partInfo = partType.fromStringFunc(finalValue, info, altId, elementTypes, valueType, version);
+                        var partInfo = partType.fromStringFunc(finalValue, info, altId, elementTypes, info.Group, valueType, version);
 
                         // Set the array for real
                         card.AddPartToArray(partsArrayType, partInfo);

@@ -21,15 +21,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using VisualCard.Common.Parsers;
+using VisualCard.Common.Parsers.Arguments;
+using VisualCard.Common.Parts.Implementations;
 using VisualCard.Parsers;
-using VisualCard.Parsers.Arguments;
-using VisualCard.Parts.Implementations;
 
-namespace VisualCard.Parts
+namespace VisualCard.Common.Parts
 {
-    internal static class CardBuilderTools
+    internal static class BuilderTools
     {
-        internal static string BuildArguments(BaseCardPartInfo partInfo, string defaultType, string defaultValue)
+        internal static string BuildArguments(BasePartInfo partInfo, string defaultType, string defaultValue)
         {
             string extraKeyName =
                 (partInfo is XNameInfo xName ? xName.XKeyName :
@@ -51,10 +52,10 @@ namespace VisualCard.Parts
             // Check to see if we've been provided arguments
             bool noSemicolon = arguments.Length == 0 && finalElementTypes.Length == 0 && string.IsNullOrEmpty(finalValue);
             if (noSemicolon)
-                return extraKeyName + VcardConstants._argumentDelimiter.ToString();
+                return extraKeyName + CommonConstants._argumentDelimiter.ToString();
 
             // Now, initialize the argument builder
-            StringBuilder argumentsBuilder = new(extraKeyName + VcardConstants._fieldDelimiter.ToString());
+            StringBuilder argumentsBuilder = new(extraKeyName + CommonConstants._fieldDelimiter.ToString());
             bool installArguments = arguments.Length > 0;
 
             // Install the remaining arguments if they exist and contain keys and values
@@ -63,12 +64,12 @@ namespace VisualCard.Parts
                 List<string> finalArguments = [];
                 foreach (var arg in arguments)
                     finalArguments.Add(arg.BuildArguments());
-                argumentsBuilder.Append(string.Join(VcardConstants._fieldDelimiter.ToString(), finalArguments));
+                argumentsBuilder.Append(string.Join(CommonConstants._fieldDelimiter.ToString(), finalArguments));
             }
 
             // We've reached the end.
-            argumentsBuilder.Append(VcardConstants._argumentDelimiter.ToString());
-            return VcardCommonTools.MakeStringBlock(argumentsBuilder.ToString());
+            argumentsBuilder.Append(CommonConstants._argumentDelimiter.ToString());
+            return CommonTools.MakeStringBlock(argumentsBuilder.ToString());
         }
     }
 }

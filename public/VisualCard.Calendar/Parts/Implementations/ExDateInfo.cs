@@ -22,8 +22,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
-using VisualCard.Parsers;
-using VisualCard.Parsers.Arguments;
+using VisualCard.Common.Parsers;
+using VisualCard.Common.Parsers.Arguments;
+using VisualCard.Common.Parts;
 
 namespace VisualCard.Calendar.Parts.Implementations
 {
@@ -38,17 +39,17 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// </summary>
         public DateTimeOffset[]? ExDates { get; set; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            new ExDateInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, cardVersion);
+        internal static BaseCalendarPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            (BaseCalendarPartInfo)new ExDateInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
 
-        internal override string ToStringVcalendarInternal(Version cardVersion)
+        internal override string ToStringInternal(Version cardVersion)
         {
             string type = ValueType ?? "";
             bool justDate = type.Equals("date", StringComparison.OrdinalIgnoreCase);
-            return $"{string.Join(cardVersion.Major == 1 ? ";" : ",", ExDates.Select((dt) => VcardCommonTools.SavePosixDate(dt, justDate)))}";
+            return $"{string.Join(cardVersion.Major == 1 ? ";" : ",", ExDates.Select((dt) => CommonTools.SavePosixDate(dt, justDate)))}";
         }
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate the fields
             var exDates = Regex.Unescape(value).Split(cardVersion.Major == 1 ? ';' : ',');
@@ -57,8 +58,8 @@ namespace VisualCard.Calendar.Parts.Implementations
             {
                 DateTimeOffset date =
                     valueType.Equals("date", StringComparison.OrdinalIgnoreCase) ?
-                    VcardCommonTools.ParsePosixDate(exDate) :
-                    VcardCommonTools.ParsePosixDateTime(exDate);
+                    CommonTools.ParsePosixDate(exDate) :
+                    CommonTools.ParsePosixDateTime(exDate);
                 dates.Add(date);
             }
 
@@ -114,7 +115,7 @@ namespace VisualCard.Calendar.Parts.Implementations
         public static bool operator !=(ExDateInfo left, ExDateInfo right) =>
             !(left == right);
 
-        internal override bool EqualsInternal(BaseCalendarPartInfo source, BaseCalendarPartInfo target) =>
+        internal override bool EqualsInternal(BasePartInfo source, BasePartInfo target) =>
             (ExDateInfo)source == (ExDateInfo)target;
 
         internal ExDateInfo() { }

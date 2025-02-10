@@ -23,8 +23,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using VisualCard.Parsers;
-using VisualCard.Parsers.Arguments;
+using VisualCard.Common.Parsers;
+using VisualCard.Common.Parsers.Arguments;
+using VisualCard.Common.Parts;
 
 namespace VisualCard.Calendar.Parts.Implementations
 {
@@ -39,28 +40,28 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// </summary>
         public TimePeriod[]? RecDates { get; set; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            new RecDateInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, cardVersion);
+        internal static BaseCalendarPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            (BaseCalendarPartInfo)new RecDateInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
 
-        internal override string ToStringVcalendarInternal(Version cardVersion)
+        internal override string ToStringInternal(Version cardVersion)
         {
             if (RecDates is null)
                 return "";
 
             var builder = new StringBuilder();
             if (cardVersion.Major == 1)
-                builder.Append(string.Join(";", RecDates.Select((dt) => VcardCommonTools.SavePosixDate(dt.StartDate))));
+                builder.Append(string.Join(";", RecDates.Select((dt) => CommonTools.SavePosixDate(dt.StartDate))));
             else
             {
                 string type = ValueType ?? "";
-                builder.Append(VcardCommonTools.SavePosixDate(RecDates[0].StartDate));
+                builder.Append(CommonTools.SavePosixDate(RecDates[0].StartDate));
                 if (RecDates[0].StartDate != RecDates[0].EndDate && type.Equals("period", StringComparison.OrdinalIgnoreCase))
-                    builder.Append("/" + VcardCommonTools.SavePosixDate(RecDates[0].EndDate));
+                    builder.Append("/" + CommonTools.SavePosixDate(RecDates[0].EndDate));
             }
             return builder.ToString();
         }
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate the fields
             TimePeriod[] recDates = [];
@@ -69,7 +70,7 @@ namespace VisualCard.Calendar.Parts.Implementations
                 var recDateStrings = Regex.Unescape(value).Split(';');
                 recDates = recDateStrings.Select((date) =>
                 {
-                    var parsedDate = VcardCommonTools.ParsePosixDateTime(date);
+                    var parsedDate = CommonTools.ParsePosixDateTime(date);
                     return new TimePeriod(parsedDate, parsedDate);
                 }).ToArray();
             }
@@ -78,19 +79,19 @@ namespace VisualCard.Calendar.Parts.Implementations
                 // Check to see if it's a period
                 if (valueType.Equals("period", StringComparison.OrdinalIgnoreCase))
                 {
-                    var parsedPeriod = VcardCommonTools.GetTimePeriod(value);
+                    var parsedPeriod = CommonTools.GetTimePeriod(value);
                     recDates = [parsedPeriod];
                 }
                 else if (valueType.Equals("date", StringComparison.OrdinalIgnoreCase))
                 {
                     // Not a period. Use date
-                    var parsedDate = VcardCommonTools.ParsePosixDate(value);
+                    var parsedDate = CommonTools.ParsePosixDate(value);
                     recDates = [new TimePeriod(parsedDate, parsedDate)];
                 }
                 else
                 {
                     // Not a period. Continue using normal date and time
-                    var parsedDate = VcardCommonTools.ParsePosixDateTime(value);
+                    var parsedDate = CommonTools.ParsePosixDateTime(value);
                     recDates = [new TimePeriod(parsedDate, parsedDate)];
                 }
             }
@@ -147,7 +148,7 @@ namespace VisualCard.Calendar.Parts.Implementations
         public static bool operator !=(RecDateInfo left, RecDateInfo right) =>
             !(left == right);
 
-        internal override bool EqualsInternal(BaseCalendarPartInfo source, BaseCalendarPartInfo target) =>
+        internal override bool EqualsInternal(BasePartInfo source, BasePartInfo target) =>
             (RecDateInfo)source == (RecDateInfo)target;
 
         internal RecDateInfo() { }

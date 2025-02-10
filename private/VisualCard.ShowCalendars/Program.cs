@@ -26,7 +26,6 @@ using VisualCard.Calendar;
 using CalendarInfo = VisualCard.Calendar.Parts.Calendar;
 using VisualCard.Calendar.Parts.Implementations.Event;
 using VisualCard.Calendar.Parts.Enums;
-using VisualCard.Calendar.Parts.Implementations;
 
 namespace VisualCard.ShowCalendars
 {

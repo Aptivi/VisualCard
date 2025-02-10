@@ -21,16 +21,16 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using VisualCard.Parsers;
-using VisualCard.Parsers.Arguments;
+using VisualCard.Common.Parsers;
+using VisualCard.Common.Parsers.Arguments;
 
 namespace VisualCard.Common.Parts.Implementations
 {
     /// <summary>
-    /// Calendar non-standard field entry information
+    /// Non-standard field entry information
     /// </summary>
     [DebuggerDisplay("Non-standard: {XKeyName} = {string.Join(\", \", XValues)}")]
-    public class XNameInfo : BaseCalendarPartInfo, IEquatable<XNameInfo>
+    public class XNameInfo : BasePartInfo, IEquatable<XNameInfo>
     {
         /// <summary>
         /// X- key name
@@ -41,25 +41,25 @@ namespace VisualCard.Common.Parts.Implementations
         /// </summary>
         public string[]? XValues { get; set; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            new XNameInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, cardVersion);
+        internal static BasePartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            new XNameInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
 
-        internal override string ToStringVcalendarInternal(Version cardVersion) =>
-            string.Join(VcardConstants._fieldDelimiter.ToString(), XValues);
+        internal override string ToStringInternal(Version cardVersion) =>
+            string.Join(CommonConstants._fieldDelimiter.ToString(), XValues);
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
-            string xValue = value.Substring(VcardConstants._xSpecifier.Length);
-            string[] splitX = xValue.Split(VcardConstants._argumentDelimiter);
+            string xValue = value.Substring(CommonConstants._xSpecifier.Length);
+            string[] splitX = xValue.Split(CommonConstants._argumentDelimiter);
 
             // Populate the name
-            string _xName = splitX[0].Contains(VcardConstants._fieldDelimiter.ToString()) ?
-                            splitX[0].Substring(0, splitX[0].IndexOf(VcardConstants._fieldDelimiter)) :
+            string _xName = splitX[0].Contains(CommonConstants._fieldDelimiter.ToString()) ?
+                            splitX[0].Substring(0, splitX[0].IndexOf(CommonConstants._fieldDelimiter)) :
                             splitX[0];
 
             // Populate the fields
-            string[] _xValues = splitX[1].Split(VcardConstants._fieldDelimiter);
-            XNameInfo _x = new(property, elementTypes, group, valueType, _xName, _xValues);
+            string[] _xValues = splitX[1].Split(CommonConstants._fieldDelimiter);
+            XNameInfo _x = new(property, altId, elementTypes, group, valueType, _xName, _xValues);
             return _x;
         }
 
@@ -112,13 +112,13 @@ namespace VisualCard.Common.Parts.Implementations
         public static bool operator !=(XNameInfo left, XNameInfo right) =>
             !(left == right);
 
-        internal override bool EqualsInternal(BaseCalendarPartInfo source, BaseCalendarPartInfo target) =>
+        internal override bool EqualsInternal(BasePartInfo source, BasePartInfo target) =>
             (XNameInfo)source == (XNameInfo)target;
 
         internal XNameInfo() { }
 
-        internal XNameInfo(PropertyInfo? property, string[] elementTypes, string group, string valueType, string xKeyName, string[] xValues) :
-            base(property, elementTypes, group, valueType)
+        internal XNameInfo(PropertyInfo? property, int altId, string[] elementTypes, string group, string valueType, string xKeyName, string[] xValues) :
+            base(property, altId, elementTypes, group, valueType)
         {
             XKeyName = xKeyName;
             XValues = xValues;

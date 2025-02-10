@@ -22,8 +22,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using VisualCard.Parsers;
-using VisualCard.Parsers.Arguments;
-using VisualCard.Parts.Comparers;
+using VisualCard.Common.Parsers.Arguments;
+using VisualCard.Common.Parts;
+using VisualCard.Common.Parts.Comparers;
 
 namespace VisualCard.Parts.Implementations
 {
@@ -38,19 +39,19 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string[]? Category { get; set; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
-            new CategoryInfo().FromStringVcardInternal(value, property, altId, elementTypes, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            (BaseCardPartInfo)new CategoryInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
 
-        internal override string ToStringVcardInternal(Version cardVersion) =>
+        internal override string ToStringInternal(Version cardVersion) =>
             $"{string.Join(VcardConstants._valueDelimiter.ToString(), Category)}";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate the fields
             var categories = Regex.Unescape(value).Split(',');
 
             // Add the fetched information
-            CategoryInfo _time = new(-1, property, elementTypes, valueType, categories);
+            CategoryInfo _time = new(-1, property, elementTypes, group, valueType, categories);
             return _time;
         }
 
@@ -103,13 +104,13 @@ namespace VisualCard.Parts.Implementations
         public static bool operator !=(CategoryInfo left, CategoryInfo right) =>
             !(left == right);
 
-        internal override bool EqualsInternal(BaseCardPartInfo source, BaseCardPartInfo target) =>
+        internal override bool EqualsInternal(BasePartInfo source, BasePartInfo target) =>
             ((CategoryInfo)source) == ((CategoryInfo)target);
 
         internal CategoryInfo() { }
 
-        internal CategoryInfo(int altId, PropertyInfo? property, string[] elementTypes, string valueType, string[] category) :
-            base(property, altId, elementTypes, valueType)
+        internal CategoryInfo(int altId, PropertyInfo? property, string[] elementTypes, string group, string valueType, string[] category) :
+            base(property, altId, elementTypes, group, valueType)
         {
             Category = category;
         }

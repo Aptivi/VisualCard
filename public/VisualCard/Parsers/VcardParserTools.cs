@@ -20,7 +20,6 @@
 using System;
 using System.IO;
 using System.Linq;
-using VisualCard.Common.Parsers;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parts.Enums;
 using VisualCard.Common.Parts.Implementations;
@@ -136,21 +135,21 @@ namespace VisualCard.Parsers
             var kind = GetKindEnum(kindStr);
             return prefix switch
             {
-                VcardConstants._nameSpecifier => new(PartType.PartsArray, PartsArrayEnum.Names, cardVersion.Major == 4 ? PartCardinality.MayBeOne : PartCardinality.ShouldBeOne, null, typeof(NameInfo), NameInfo.FromStringVcardStatic, "", "", "text", [], []),
-                VcardConstants._addressSpecifier => new(PartType.PartsArray, PartsArrayEnum.Addresses, PartCardinality.Any, null, typeof(AddressInfo), AddressInfo.FromStringVcardStatic, "HOME", "", "text", ["DOM", "INTL", "PARCEL", "POSTAL"], []),
-                VcardConstants._agentSpecifier => new(PartType.PartsArray, PartsArrayEnum.Agents, PartCardinality.Any, (ver) => ver.Major != 4, typeof(AgentInfo), AgentInfo.FromStringVcardStatic, "", "", "inline", [], []),
-                VcardConstants._orgSpecifier => new(PartType.PartsArray, PartsArrayEnum.Organizations, PartCardinality.Any, null, typeof(OrganizationInfo), OrganizationInfo.FromStringVcardStatic, "WORK", "", "text", [], []),
-                VcardConstants._photoSpecifier => new(PartType.PartsArray, PartsArrayEnum.Photos, PartCardinality.Any, null, typeof(PhotoInfo), PhotoInfo.FromStringVcardStatic, "JPEG", "", "inline", ["JPG", "GIF", "CGM", "WMF", "BMP", "MET", "PMB", "DIB", "PICT", "TIFF", "PS", "PDF", "JPEG", "MPEG", "MPEG2", "AVI", "QTIME", "PNG", "WEBP"], []),
-                VcardConstants._logoSpecifier => new(PartType.PartsArray, PartsArrayEnum.Logos, PartCardinality.Any, null, typeof(LogoInfo), LogoInfo.FromStringVcardStatic, "JPEG", "", "inline", ["JPG", "GIF", "CGM", "WMF", "BMP", "MET", "PMB", "DIB", "PICT", "TIFF", "PS", "PDF", "JPEG", "MPEG", "MPEG2", "AVI", "QTIME", "PNG", "WEBP"], []),
-                VcardConstants._soundSpecifier => new(PartType.PartsArray, PartsArrayEnum.Sounds, PartCardinality.Any, null, typeof(SoundInfo), SoundInfo.FromStringVcardStatic, "MP3", "", "inline", ["MP3", "WAVE", "PCM", "AIFF", "AAC"], []),
-                VcardConstants._categoriesSpecifier => new(PartType.PartsArray, PartsArrayEnum.Categories, PartCardinality.Any, null, typeof(CategoryInfo), CategoryInfo.FromStringVcardStatic, "", "", "text", [], []),
-                VcardConstants._xmlSpecifier => new(PartType.PartsArray, PartsArrayEnum.Xml, PartCardinality.Any, (ver) => ver.Major == 4, typeof(XmlInfo), XmlInfo.FromStringVcardStatic, "", "", "text", [], []),
-                VcardConstants._keySpecifier => new(PartType.PartsArray, PartsArrayEnum.Key, PartCardinality.Any, null, typeof(KeyInfo), KeyInfo.FromStringVcardStatic, "", "", "text", [], []),
-                VcardConstants._revSpecifier => new(PartType.PartsArray, PartsArrayEnum.Revision, PartCardinality.MayBeOneNoAltId, null, typeof(RevisionInfo), RevisionInfo.FromStringVcardStatic, "", "", "timestamp", [], []),
-                VcardConstants._birthSpecifier => new(PartType.PartsArray, PartsArrayEnum.Birthdate, PartCardinality.MayBeOne, null, typeof(BirthDateInfo), BirthDateInfo.FromStringVcardStatic, "", "", "date-and-or-time", [], []),
-                VcardConstants._anniversarySpecifier => new(PartType.PartsArray, PartsArrayEnum.Anniversary, PartCardinality.MayBeOne, (ver) => ver.Major >= 4, typeof(AnniversaryInfo), AnniversaryInfo.FromStringVcardStatic, "", "", "date-and-or-time", [], []),
-                VcardConstants._genderSpecifier => new(PartType.PartsArray, PartsArrayEnum.Gender, PartCardinality.MayBeOneNoAltId, (ver) => ver.Major >= 4, typeof(GenderInfo), GenderInfo.FromStringVcardStatic, "", "", "text", [], []),
-                VcardConstants._clientPidMapSpecifier => new(PartType.PartsArray, PartsArrayEnum.ClientPidMap, PartCardinality.Any, (ver) => ver.Major == 4, typeof(ClientPidMapInfo), ClientPidMapInfo.FromStringVcardStatic, "", "", "text", [], []),
+                VcardConstants._nameSpecifier => new(PartType.PartsArray, PartsArrayEnum.Names, cardVersion.Major == 4 ? PartCardinality.MayBeOne : PartCardinality.ShouldBeOne, null, typeof(NameInfo), NameInfo.FromStringStatic, "", "", "text", [], []),
+                VcardConstants._addressSpecifier => new(PartType.PartsArray, PartsArrayEnum.Addresses, PartCardinality.Any, null, typeof(AddressInfo), AddressInfo.FromStringStatic, "HOME", "", "text", ["DOM", "INTL", "PARCEL", "POSTAL"], []),
+                VcardConstants._agentSpecifier => new(PartType.PartsArray, PartsArrayEnum.Agents, PartCardinality.Any, (ver) => ver.Major != 4, typeof(AgentInfo), AgentInfo.FromStringStatic, "", "", "inline", [], []),
+                VcardConstants._orgSpecifier => new(PartType.PartsArray, PartsArrayEnum.Organizations, PartCardinality.Any, null, typeof(OrganizationInfo), OrganizationInfo.FromStringStatic, "WORK", "", "text", [], []),
+                VcardConstants._photoSpecifier => new(PartType.PartsArray, PartsArrayEnum.Photos, PartCardinality.Any, null, typeof(PhotoInfo), PhotoInfo.FromStringStatic, "JPEG", "", "inline", ["JPG", "GIF", "CGM", "WMF", "BMP", "MET", "PMB", "DIB", "PICT", "TIFF", "PS", "PDF", "JPEG", "MPEG", "MPEG2", "AVI", "QTIME", "PNG", "WEBP"], []),
+                VcardConstants._logoSpecifier => new(PartType.PartsArray, PartsArrayEnum.Logos, PartCardinality.Any, null, typeof(LogoInfo), LogoInfo.FromStringStatic, "JPEG", "", "inline", ["JPG", "GIF", "CGM", "WMF", "BMP", "MET", "PMB", "DIB", "PICT", "TIFF", "PS", "PDF", "JPEG", "MPEG", "MPEG2", "AVI", "QTIME", "PNG", "WEBP"], []),
+                VcardConstants._soundSpecifier => new(PartType.PartsArray, PartsArrayEnum.Sounds, PartCardinality.Any, null, typeof(SoundInfo), SoundInfo.FromStringStatic, "MP3", "", "inline", ["MP3", "WAVE", "PCM", "AIFF", "AAC"], []),
+                VcardConstants._categoriesSpecifier => new(PartType.PartsArray, PartsArrayEnum.Categories, PartCardinality.Any, null, typeof(CategoryInfo), CategoryInfo.FromStringStatic, "", "", "text", [], []),
+                VcardConstants._xmlSpecifier => new(PartType.PartsArray, PartsArrayEnum.Xml, PartCardinality.Any, (ver) => ver.Major == 4, typeof(XmlInfo), XmlInfo.FromStringStatic, "", "", "text", [], []),
+                VcardConstants._keySpecifier => new(PartType.PartsArray, PartsArrayEnum.Key, PartCardinality.Any, null, typeof(KeyInfo), KeyInfo.FromStringStatic, "", "", "text", [], []),
+                VcardConstants._revSpecifier => new(PartType.PartsArray, PartsArrayEnum.Revision, PartCardinality.MayBeOneNoAltId, null, typeof(RevisionInfo), RevisionInfo.FromStringStatic, "", "", "timestamp", [], []),
+                VcardConstants._birthSpecifier => new(PartType.PartsArray, PartsArrayEnum.Birthdate, PartCardinality.MayBeOne, null, typeof(BirthDateInfo), BirthDateInfo.FromStringStatic, "", "", "date-and-or-time", [], []),
+                VcardConstants._anniversarySpecifier => new(PartType.PartsArray, PartsArrayEnum.Anniversary, PartCardinality.MayBeOne, (ver) => ver.Major >= 4, typeof(AnniversaryInfo), AnniversaryInfo.FromStringStatic, "", "", "date-and-or-time", [], []),
+                VcardConstants._genderSpecifier => new(PartType.PartsArray, PartsArrayEnum.Gender, PartCardinality.MayBeOneNoAltId, (ver) => ver.Major >= 4, typeof(GenderInfo), GenderInfo.FromStringStatic, "", "", "text", [], []),
+                VcardConstants._clientPidMapSpecifier => new(PartType.PartsArray, PartsArrayEnum.ClientPidMap, PartCardinality.Any, (ver) => ver.Major == 4, typeof(ClientPidMapInfo), ClientPidMapInfo.FromStringStatic, "", "", "text", [], []),
                 VcardConstants._kindSpecifier => new(PartType.Strings, StringsEnum.Kind, PartCardinality.MayBeOneNoAltId, (ver) => ver.Major >= 4, null, null, "", "", "text", [], []),
                 VcardConstants._mailerSpecifier => new(PartType.Strings, StringsEnum.Mailer, PartCardinality.MayBeOneNoAltId, (ver) => ver.Major != 4, null, null, "", "", "text", [], []),
                 VcardConstants._productIdSpecifier => new(PartType.Strings, StringsEnum.ProductId, PartCardinality.MayBeOneNoAltId, (ver) => ver.Major >= 3, null, null, "", "", "text", [], []),

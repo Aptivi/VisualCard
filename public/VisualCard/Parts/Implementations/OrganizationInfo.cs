@@ -22,7 +22,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using VisualCard.Parsers;
-using VisualCard.Parsers.Arguments;
+using VisualCard.Common.Parsers.Arguments;
+using VisualCard.Common.Parts;
+using VisualCard.Common.Parsers;
 
 namespace VisualCard.Parts.Implementations
 {
@@ -45,15 +47,15 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string? Role { get; set; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
-            new OrganizationInfo().FromStringVcardInternal(value, property, altId, elementTypes, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            (BaseCardPartInfo)new OrganizationInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
 
-        internal override string ToStringVcardInternal(Version cardVersion) =>
+        internal override string ToStringInternal(Version cardVersion) =>
             $"{Name}{VcardConstants._fieldDelimiter}" +
             $"{Unit}{VcardConstants._fieldDelimiter}" +
             $"{Role}";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             string[] splitOrg = value.Split(VcardConstants._fieldDelimiter);
 
@@ -61,7 +63,7 @@ namespace VisualCard.Parts.Implementations
             string _orgName = Regex.Unescape(splitOrg[0]);
             string _orgUnit = Regex.Unescape(splitOrg.Length >= 2 ? splitOrg[1] : "");
             string _orgUnitRole = Regex.Unescape(splitOrg.Length >= 3 ? splitOrg[2] : "");
-            OrganizationInfo _org = new(altId, property, elementTypes, valueType, _orgName, _orgUnit, _orgUnitRole);
+            OrganizationInfo _org = new(altId, property, elementTypes, group, valueType, _orgName, _orgUnit, _orgUnitRole);
             return _org;
         }
 
@@ -116,13 +118,13 @@ namespace VisualCard.Parts.Implementations
         public static bool operator !=(OrganizationInfo left, OrganizationInfo right) =>
             !(left == right);
 
-        internal override bool EqualsInternal(BaseCardPartInfo source, BaseCardPartInfo target) =>
+        internal override bool EqualsInternal(BasePartInfo source, BasePartInfo target) =>
             ((OrganizationInfo)source) == ((OrganizationInfo)target);
 
         internal OrganizationInfo() { }
 
-        internal OrganizationInfo(int altId, PropertyInfo? property, string[] elementTypes, string valueType, string name, string unit, string role) :
-            base(property, altId, elementTypes, valueType)
+        internal OrganizationInfo(int altId, PropertyInfo? property, string[] elementTypes, string group, string valueType, string name, string unit, string role) :
+            base(property, altId, elementTypes, group, valueType)
         {
             Name = name;
             Unit = unit;

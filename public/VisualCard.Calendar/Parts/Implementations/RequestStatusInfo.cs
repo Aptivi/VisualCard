@@ -24,7 +24,8 @@ using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using Textify.General;
-using VisualCard.Parsers.Arguments;
+using VisualCard.Common.Parsers.Arguments;
+using VisualCard.Common.Parts;
 
 namespace VisualCard.Calendar.Parts.Implementations
 {
@@ -49,10 +50,10 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// </summary>
         public string? RequestStatusExtData { get; set; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            new RequestStatusInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, cardVersion);
+        internal static BaseCalendarPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            (BaseCalendarPartInfo)new RequestStatusInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
 
-        internal override string ToStringVcalendarInternal(Version cardVersion)
+        internal override string ToStringInternal(Version cardVersion)
         {
             var statusBuilder = new StringBuilder();
 
@@ -71,7 +72,7 @@ namespace VisualCard.Calendar.Parts.Implementations
             return statusBuilder.ToString();
         }
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Get the request and split it with the semicolon two times
             var requestStatus = Regex.Unescape(value);
@@ -154,7 +155,7 @@ namespace VisualCard.Calendar.Parts.Implementations
         public static bool operator !=(RequestStatusInfo left, RequestStatusInfo right) =>
             !(left == right);
 
-        internal override bool EqualsInternal(BaseCalendarPartInfo source, BaseCalendarPartInfo target) =>
+        internal override bool EqualsInternal(BasePartInfo source, BasePartInfo target) =>
             (RequestStatusInfo)source == (RequestStatusInfo)target;
 
         internal RequestStatusInfo() { }

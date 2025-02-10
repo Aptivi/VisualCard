@@ -25,9 +25,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Textify.General;
+using VisualCard.Common.Parsers;
+using VisualCard.Common.Parsers.Arguments;
+using VisualCard.Common.Parts;
 using VisualCard.Common.Parts.Enums;
 using VisualCard.Parsers;
-using VisualCard.Parsers.Arguments;
 using VisualCard.Parts.Comparers;
 using VisualCard.Parts.Enums;
 
@@ -72,7 +74,7 @@ namespace VisualCard.Parts
         /// Card kind
         /// </summary>
         public CardKind CardKind =>
-            VcardCommonTools.GetKindEnum(CardKindStr);
+            VcardParserTools.GetKindEnum(CardKindStr);
 
         /// <summary>
         /// Part array list in a dictionary (for enumeration operations)
@@ -176,7 +178,7 @@ namespace VisualCard.Parts
             string fallback = key == StringsEnum.Kind ? "individual" : "";
             ValueInfo<string>[] fallbacks =
                 !string.IsNullOrEmpty(fallback) ?
-                [new ValueInfo<string>(null, -1, [], "", fallback)] :
+                [new ValueInfo<string>(null, -1, [], "", "", fallback)] :
                 [];
 
             // Check to see if the string has a value or not
@@ -220,14 +222,14 @@ namespace VisualCard.Parts
                 foreach (var part in array)
                 {
                     var partBuilder = new StringBuilder();
-                    string partArguments = CardBuilderTools.BuildArguments(part, defaultType, defaultValueType);
+                    string partArguments = BuilderTools.BuildArguments(part, defaultType, defaultValueType);
                     string[] partArgumentsLines = partArguments.SplitNewLines();
                     string group = part.Group;
                     if (!string.IsNullOrEmpty(group))
                         cardBuilder.Append($"{group}.");
                     partBuilder.Append($"{prefix}");
                     partBuilder.Append($"{partArguments}");
-                    partBuilder.Append($"{VcardCommonTools.MakeStringBlock(part.Value, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length, encoding: part.Property?.Encoding ?? "")}");
+                    partBuilder.Append($"{CommonTools.MakeStringBlock(part.Value, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length, encoding: part.Property?.Encoding ?? "")}");
                     cardBuilder.AppendLine($"{partBuilder}");
                 }
             }
@@ -250,8 +252,8 @@ namespace VisualCard.Parts
                 foreach (var part in array)
                 {
                     var partBuilder = new StringBuilder();
-                    string partRepresentation = part.ToStringVcardInternal(version);
-                    string partArguments = CardBuilderTools.BuildArguments(part, defaultType, defaultValueType);
+                    string partRepresentation = part.ToStringInternal(version);
+                    string partArguments = BuilderTools.BuildArguments(part, defaultType, defaultValueType);
                     string[] partArgumentsLines = partArguments.SplitNewLines();
                     string group = part.Group;
 
@@ -262,7 +264,7 @@ namespace VisualCard.Parts
                         cardBuilder.Append($"{group}.");
                     partBuilder.Append($"{prefix}");
                     partBuilder.Append($"{partArguments}");
-                    partBuilder.Append($"{VcardCommonTools.MakeStringBlock(partRepresentation, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length, !(partsArrayEnum == PartsArrayEnum.Agents && version.Major == 2), part.Property?.Encoding ?? "")}");
+                    partBuilder.Append($"{CommonTools.MakeStringBlock(partRepresentation, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length, !(partsArrayEnum == PartsArrayEnum.Agents && version.Major == 2), part.Property?.Encoding ?? "")}");
                     cardBuilder.AppendLine($"{partBuilder}");
                 }
             }
@@ -510,7 +512,7 @@ namespace VisualCard.Parts
 
             // Get the prefix and build the resultant line
             string prefix = VcardParserTools.GetPrefixFromPartsArrayEnum(key);
-            string line = VcardCommonTools.BuildRawValue(prefix, rawValue, group, args);
+            string line = CommonTools.BuildRawValue(prefix, rawValue, group, args);
 
             // Process the value
             VcardParser.Process(line, this, version);
@@ -567,7 +569,7 @@ namespace VisualCard.Parts
         {
             // Get the part type and build the line
             string prefix = VcardParserTools.GetPrefixFromStringsEnum(key);
-            string line = VcardCommonTools.BuildRawValue(prefix, rawValue, group, args);
+            string line = CommonTools.BuildRawValue(prefix, rawValue, group, args);
 
             // Process the value
             VcardParser.Process(line, this, version);

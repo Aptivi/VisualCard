@@ -21,7 +21,9 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Xml;
-using VisualCard.Parsers.Arguments;
+using VisualCard.Common.Parsers.Arguments;
+using VisualCard.Common.Parts;
+using VisualCard.Common.Parsers;
 
 namespace VisualCard.Parts.Implementations
 {
@@ -53,19 +55,19 @@ namespace VisualCard.Parts.Implementations
             }
         }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
-            new XmlInfo().FromStringVcardInternal(value, property, altId, elementTypes, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            (BaseCardPartInfo)new XmlInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
 
-        internal override string ToStringVcardInternal(Version cardVersion) =>
+        internal override string ToStringInternal(Version cardVersion) =>
             XmlString ?? "";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             XmlDocument doc = GenerateDocument(value) ??
                 throw new ArgumentNullException("Can't generate XML document from nothing.");
 
             // Add the fetched information
-            XmlInfo _xml = new(altId, property, elementTypes, valueType, doc, value);
+            XmlInfo _xml = new(altId, property, elementTypes, group, valueType, doc, value);
             return _xml;
         }
 
@@ -135,13 +137,13 @@ namespace VisualCard.Parts.Implementations
         public static bool operator !=(XmlInfo left, XmlInfo right) =>
             !(left == right);
 
-        internal override bool EqualsInternal(BaseCardPartInfo source, BaseCardPartInfo target) =>
+        internal override bool EqualsInternal(BasePartInfo source, BasePartInfo target) =>
             ((XmlInfo)source) == ((XmlInfo)target);
 
         internal XmlInfo() { }
 
-        internal XmlInfo(int altId, PropertyInfo? property, string[] elementTypes, string valueType, XmlDocument xml, string xmlString) :
-            base(property, altId, elementTypes, valueType)
+        internal XmlInfo(int altId, PropertyInfo? property, string[] elementTypes, string group, string valueType, XmlDocument xml, string xmlString) :
+            base(property, altId, elementTypes, group, valueType)
         {
             this.xml = xml;
             XmlString = xmlString;

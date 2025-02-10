@@ -18,7 +18,6 @@
 //
 
 using System.Collections.Generic;
-using VisualCard.Parsers;
 
 namespace VisualCard.Tests.Calendars.Data
 {

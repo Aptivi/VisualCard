@@ -20,8 +20,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using VisualCard.Calendar.Parts.Enums;
-using VisualCard.Parts;
-using VisualCard.Parts.Comparers;
+using VisualCard.Common.Parts;
+using VisualCard.Common.Parts.Comparers;
 
 namespace VisualCard.Calendar.Parts.Comparers
 {

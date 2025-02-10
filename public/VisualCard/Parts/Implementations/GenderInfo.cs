@@ -24,7 +24,8 @@ using System.IO;
 using System.Linq;
 using VisualCard.Parsers;
 using VisualCard.Parts.Implementations.Tools;
-using VisualCard.Parsers.Arguments;
+using VisualCard.Common.Parsers.Arguments;
+using VisualCard.Common.Parts;
 
 namespace VisualCard.Parts.Implementations
 {
@@ -43,14 +44,14 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string? GenderDescription { get; set; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
-            new GenderInfo().FromStringVcardInternal(value, property, altId, elementTypes, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            (BaseCardPartInfo)new GenderInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
 
-        internal override string ToStringVcardInternal(Version cardVersion) =>
+        internal override string ToStringInternal(Version cardVersion) =>
             (Gender != Gender.Unspecified ? Gender.ToString()[0] : "") +
             (!string.IsNullOrEmpty(GenderDescription) ? $"{VcardConstants._fieldDelimiter}{GenderDescription}" : "");
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate field
             string genderString = value;
@@ -79,7 +80,7 @@ namespace VisualCard.Parts.Implementations
             };
 
             // Add the fetched information
-            GenderInfo _gender = new(-1, property, elementTypes, valueType, gender, genderDescription);
+            GenderInfo _gender = new(-1, property, elementTypes, group, valueType, gender, genderDescription);
             return _gender;
         }
 
@@ -132,13 +133,13 @@ namespace VisualCard.Parts.Implementations
         public static bool operator !=(GenderInfo left, GenderInfo right) =>
             !(left == right);
 
-        internal override bool EqualsInternal(BaseCardPartInfo source, BaseCardPartInfo target) =>
+        internal override bool EqualsInternal(BasePartInfo source, BasePartInfo target) =>
             ((GenderInfo)source) == ((GenderInfo)target);
 
         internal GenderInfo() { }
 
-        internal GenderInfo(int altId, PropertyInfo? property, string[] elementTypes, string valueType, Gender gender, string genderDescription) :
-            base(property, altId, elementTypes, valueType)
+        internal GenderInfo(int altId, PropertyInfo? property, string[] elementTypes, string group, string valueType, Gender gender, string genderDescription) :
+            base(property, altId, elementTypes, group, valueType)
         {
             Gender = gender;
             GenderDescription = genderDescription;

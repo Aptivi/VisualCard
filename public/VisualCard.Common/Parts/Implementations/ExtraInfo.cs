@@ -21,16 +21,16 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using VisualCard.Parsers;
-using VisualCard.Parsers.Arguments;
+using VisualCard.Common.Parsers;
+using VisualCard.Common.Parsers.Arguments;
 
 namespace VisualCard.Common.Parts.Implementations
 {
     /// <summary>
-    /// Extraneous information that a calendar may hold
+    /// Extraneous information that a calendar or a card may hold
     /// </summary>
     [DebuggerDisplay("Extra: {KeyName} = {string.Join(\", \", Values)}")]
-    public class ExtraInfo : BaseCalendarPartInfo, IEquatable<ExtraInfo>
+    public class ExtraInfo : BasePartInfo, IEquatable<ExtraInfo>
     {
         /// <summary>
         /// Key name
@@ -41,24 +41,24 @@ namespace VisualCard.Common.Parts.Implementations
         /// </summary>
         public string[]? Values { get; set; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            new ExtraInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, cardVersion);
+        internal static BasePartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version version) =>
+            new ExtraInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, version);
 
-        internal override string ToStringVcalendarInternal(Version cardVersion) =>
-            string.Join(VcardConstants._fieldDelimiter.ToString(), Values);
+        internal override string ToStringInternal(Version version) =>
+            string.Join(CommonConstants._fieldDelimiter.ToString(), Values);
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version version)
         {
-            string[] split = value.Split(VcardConstants._argumentDelimiter);
+            string[] split = value.Split(CommonConstants._argumentDelimiter);
 
             // Populate the name
-            string _extra = split[0].Contains(VcardConstants._fieldDelimiter.ToString()) ?
-                            split[0].Substring(0, split[0].IndexOf(VcardConstants._fieldDelimiter)) :
+            string _extra = split[0].Contains(CommonConstants._fieldDelimiter.ToString()) ?
+                            split[0].Substring(0, split[0].IndexOf(CommonConstants._fieldDelimiter)) :
                             split[0];
 
             // Populate the fields
-            string[] _values = split[1].Split(VcardConstants._fieldDelimiter);
-            ExtraInfo _extraInfo = new(property, elementTypes, group, valueType, _extra, _values);
+            string[] _values = split[1].Split(CommonConstants._fieldDelimiter);
+            ExtraInfo _extraInfo = new(property, altId, elementTypes, group, valueType, _extra, _values);
             return _extraInfo;
         }
 
@@ -111,13 +111,13 @@ namespace VisualCard.Common.Parts.Implementations
         public static bool operator !=(ExtraInfo left, ExtraInfo right) =>
             !(left == right);
 
-        internal override bool EqualsInternal(BaseCalendarPartInfo source, BaseCalendarPartInfo target) =>
+        internal override bool EqualsInternal(BasePartInfo source, BasePartInfo target) =>
             (ExtraInfo)source == (ExtraInfo)target;
 
         internal ExtraInfo() { }
 
-        internal ExtraInfo(PropertyInfo? property, string[] elementTypes, string group, string valueType, string keyName, string[] values) :
-            base(property, elementTypes, group, valueType)
+        internal ExtraInfo(PropertyInfo? property, int altId, string[] elementTypes, string group, string valueType, string keyName, string[] values) :
+            base(property, altId, elementTypes, group, valueType)
         {
             KeyName = keyName;
             Values = values;

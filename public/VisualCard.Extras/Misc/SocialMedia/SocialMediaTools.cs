@@ -19,9 +19,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
-using VisualCard.Parts;
-using VisualCard.Parts.Implementations;
+using VisualCard.Common.Parts.Implementations;
 
 namespace VisualCard.Extras.Misc.SocialMedia
 {

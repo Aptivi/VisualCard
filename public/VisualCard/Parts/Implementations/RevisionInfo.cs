@@ -20,7 +20,9 @@
 using System;
 using System.Diagnostics;
 using VisualCard.Parsers;
-using VisualCard.Parsers.Arguments;
+using VisualCard.Common.Parsers.Arguments;
+using VisualCard.Common.Parts;
+using VisualCard.Common.Parsers;
 
 namespace VisualCard.Parts.Implementations
 {
@@ -35,22 +37,22 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public DateTimeOffset Revision { get; set; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
-            new RevisionInfo().FromStringVcardInternal(value, property, altId, elementTypes, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            (BaseCardPartInfo)new RevisionInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
 
-        internal override string ToStringVcardInternal(Version cardVersion) =>
-            $"{VcardCommonTools.SavePosixDate(Revision)}";
+        internal override string ToStringInternal(Version cardVersion) =>
+            $"{CommonTools.SavePosixDate(Revision)}";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Get the value
             string revValue = value.Substring(VcardConstants._revSpecifier.Length + 1);
 
             // Populate the fields
-            DateTimeOffset rev = VcardCommonTools.ParsePosixDateTime(revValue);
+            DateTimeOffset rev = CommonTools.ParsePosixDateTime(revValue);
 
             // Add the fetched information
-            RevisionInfo _time = new(altId, property, elementTypes, valueType, rev);
+            RevisionInfo _time = new(altId, property, elementTypes, group, valueType, rev);
             return _time;
         }
 
@@ -101,13 +103,13 @@ namespace VisualCard.Parts.Implementations
         public static bool operator !=(RevisionInfo left, RevisionInfo right) =>
             !(left == right);
 
-        internal override bool EqualsInternal(BaseCardPartInfo source, BaseCardPartInfo target) =>
+        internal override bool EqualsInternal(BasePartInfo source, BasePartInfo target) =>
             ((RevisionInfo)source) == ((RevisionInfo)target);
 
         internal RevisionInfo() { }
 
-        internal RevisionInfo(int altId, PropertyInfo? property, string[] elementTypes, string valueType, DateTimeOffset rev) :
-            base(property, altId, elementTypes, valueType)
+        internal RevisionInfo(int altId, PropertyInfo? property, string[] elementTypes, string group, string valueType, DateTimeOffset rev) :
+            base(property, altId, elementTypes, group, valueType)
         {
             Revision = rev;
         }

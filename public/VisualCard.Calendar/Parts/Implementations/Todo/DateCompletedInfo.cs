@@ -19,8 +19,9 @@
 
 using System;
 using System.Diagnostics;
-using VisualCard.Parsers;
-using VisualCard.Parsers.Arguments;
+using VisualCard.Common.Parsers;
+using VisualCard.Common.Parsers.Arguments;
+using VisualCard.Common.Parts;
 
 namespace VisualCard.Calendar.Parts.Implementations.Todo
 {
@@ -35,16 +36,16 @@ namespace VisualCard.Calendar.Parts.Implementations.Todo
         /// </summary>
         public DateTimeOffset DateCompleted { get; set; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            new DateCompletedInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, cardVersion);
+        internal static BaseCalendarPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            (BaseCalendarPartInfo)new DateCompletedInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
 
-        internal override string ToStringVcalendarInternal(Version cardVersion) =>
-            $"{VcardCommonTools.SavePosixDate(DateCompleted)}";
+        internal override string ToStringInternal(Version cardVersion) =>
+            $"{CommonTools.SavePosixDate(DateCompleted)}";
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate the fields
-            DateTimeOffset completed = VcardCommonTools.ParsePosixDateTime(value);
+            DateTimeOffset completed = CommonTools.ParsePosixDateTime(value);
 
             // Add the fetched information
             DateCompletedInfo _time = new(property, elementTypes, group, valueType, completed);
@@ -98,7 +99,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Todo
         public static bool operator !=(DateCompletedInfo left, DateCompletedInfo right) =>
             !(left == right);
 
-        internal override bool EqualsInternal(BaseCalendarPartInfo source, BaseCalendarPartInfo target) =>
+        internal override bool EqualsInternal(BasePartInfo source, BasePartInfo target) =>
             (DateCompletedInfo)source == (DateCompletedInfo)target;
 
         internal DateCompletedInfo() { }

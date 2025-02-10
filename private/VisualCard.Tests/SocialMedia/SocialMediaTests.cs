@@ -19,9 +19,8 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shouldly;
+using VisualCard.Common.Parts.Implementations;
 using VisualCard.Extras.Misc.SocialMedia;
-using VisualCard.Parsers;
-using VisualCard.Parts.Implementations;
 
 namespace VisualCard.Tests.SocialMedia
 {

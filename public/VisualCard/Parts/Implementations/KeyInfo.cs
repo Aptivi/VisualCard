@@ -22,7 +22,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using VisualCard.Parsers;
-using VisualCard.Parsers.Arguments;
+using VisualCard.Common.Parsers.Arguments;
+using VisualCard.Common.Parts;
+using VisualCard.Common.Parsers;
 
 namespace VisualCard.Parts.Implementations
 {
@@ -44,15 +46,15 @@ namespace VisualCard.Parts.Implementations
         /// Whether this key is a blob or not
         /// </summary>
         public bool IsBlob =>
-            VcardCommonTools.IsEncodingBlob(Property?.Arguments, KeyEncoded);
+            CommonTools.IsEncodingBlob(Property?.Arguments, KeyEncoded);
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
-            new KeyInfo().FromStringVcardInternal(value, property, altId, elementTypes, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            (BaseCardPartInfo)new KeyInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
 
-        internal override string ToStringVcardInternal(Version cardVersion) =>
+        internal override string ToStringInternal(Version cardVersion) =>
             KeyEncoded ?? "";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             bool vCard4 = cardVersion.Major >= 4;
 
@@ -73,8 +75,8 @@ namespace VisualCard.Parts.Implementations
                 var arguments = property?.Arguments ?? [];
 
                 // vCard 3.0 handles this in a different way
-                keyEncoding = VcardCommonTools.GetValuesString(arguments, "b", VcardConstants._encodingArgumentSpecifier);
-                if (!VcardCommonTools.IsEncodingBlob(arguments, value))
+                keyEncoding = CommonTools.GetValuesString(arguments, "b", VcardConstants._encodingArgumentSpecifier);
+                if (!CommonTools.IsEncodingBlob(arguments, value))
                 {
                     // Since we don't need embedded keys, we need to check a URL.
                     if (!Uri.TryCreate(value, UriKind.Absolute, out Uri uri))
@@ -84,7 +86,7 @@ namespace VisualCard.Parts.Implementations
             }
 
             // Populate the fields
-            KeyInfo _key = new(altId, property, elementTypes, valueType, keyEncoding, value);
+            KeyInfo _key = new(altId, property, elementTypes, group, valueType, keyEncoding, value);
             return _key;
         }
 
@@ -93,7 +95,7 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         /// <returns>A stream that contains key data</returns>
         public Stream GetStream() =>
-            VcardCommonTools.GetBlobData(Property?.Arguments ?? [], KeyEncoded);
+            CommonTools.GetBlobData(Property?.Arguments ?? [], KeyEncoded);
 
         /// <inheritdoc/>
         public override bool Equals(object obj) =>
@@ -144,13 +146,13 @@ namespace VisualCard.Parts.Implementations
         public static bool operator !=(KeyInfo left, KeyInfo right) =>
             !(left == right);
 
-        internal override bool EqualsInternal(BaseCardPartInfo source, BaseCardPartInfo target) =>
+        internal override bool EqualsInternal(BasePartInfo source, BasePartInfo target) =>
             ((KeyInfo)source) == ((KeyInfo)target);
 
         internal KeyInfo() { }
 
-        internal KeyInfo(int altId, PropertyInfo? property, string[] elementTypes, string valueType, string encoding, string keyEncoded) :
-            base(property, altId, elementTypes, valueType)
+        internal KeyInfo(int altId, PropertyInfo? property, string[] elementTypes, string group, string valueType, string encoding, string keyEncoded) :
+            base(property, altId, elementTypes, group, valueType)
         {
             Encoding = encoding;
             KeyEncoded = keyEncoded;

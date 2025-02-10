@@ -30,10 +30,11 @@ using VisualCard.Calendar.Parts.Comparers;
 using VisualCard.Calendar.Parts.Enums;
 using VisualCard.Calendar.Parts.Implementations.Event;
 using VisualCard.Calendar.Parts.Implementations.Todo;
+using VisualCard.Common.Parsers;
+using VisualCard.Common.Parsers.Arguments;
+using VisualCard.Common.Parts;
 using VisualCard.Common.Parts.Enums;
 using VisualCard.Parsers;
-using VisualCard.Parsers.Arguments;
-using VisualCard.Parts;
 
 namespace VisualCard.Calendar.Parts
 {
@@ -402,14 +403,14 @@ namespace VisualCard.Calendar.Parts
                 foreach (var part in array)
                 {
                     var partBuilder = new StringBuilder();
-                    string partArguments = CalendarBuilderTools.BuildArguments(part, defaultType, defaultValueType);
+                    string partArguments = BuilderTools.BuildArguments(part, defaultType, defaultValueType);
                     string[] partArgumentsLines = partArguments.SplitNewLines();
                     string group = part.Group;
                     if (!string.IsNullOrEmpty(group))
                         cardBuilder.Append($"{group}.");
                     partBuilder.Append($"{prefix}");
                     partBuilder.Append($"{partArguments}");
-                    partBuilder.Append($"{VcardCommonTools.MakeStringBlock(part.Value, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length, encoding: part.Property?.Encoding ?? "")}");
+                    partBuilder.Append($"{CommonTools.MakeStringBlock(part.Value, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length, encoding: part.Property?.Encoding ?? "")}");
                     cardBuilder.AppendLine($"{partBuilder}");
                 }
             }
@@ -432,14 +433,14 @@ namespace VisualCard.Calendar.Parts
                 foreach (var part in array)
                 {
                     var partBuilder = new StringBuilder();
-                    string partArguments = CalendarBuilderTools.BuildArguments(part, defaultType, defaultValueType);
+                    string partArguments = BuilderTools.BuildArguments(part, defaultType, defaultValueType);
                     string[] partArgumentsLines = partArguments.SplitNewLines();
                     string group = part.Group;
                     if (!string.IsNullOrEmpty(group))
                         cardBuilder.Append($"{group}.");
                     partBuilder.Append($"{prefix}");
                     partBuilder.Append($"{partArguments}");
-                    partBuilder.Append($"{VcardCommonTools.MakeStringBlock($"{part.Value}", partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length, encoding: part.Property?.Encoding ?? "")}");
+                    partBuilder.Append($"{CommonTools.MakeStringBlock($"{part.Value}", partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length, encoding: part.Property?.Encoding ?? "")}");
                     cardBuilder.AppendLine($"{partBuilder}");
                 }
             }
@@ -462,15 +463,15 @@ namespace VisualCard.Calendar.Parts
                 foreach (var part in array)
                 {
                     var partBuilder = new StringBuilder();
-                    string partRepresentation = part.ToStringVcalendarInternal(version);
-                    string partArguments = CalendarBuilderTools.BuildArguments(part, defaultType, defaultValueType);
+                    string partRepresentation = part.ToStringInternal(version);
+                    string partArguments = BuilderTools.BuildArguments(part, defaultType, defaultValueType);
                     string[] partArgumentsLines = partArguments.SplitNewLines();
                     string group = part.Group;
                     if (!string.IsNullOrEmpty(group))
                         cardBuilder.Append($"{group}.");
                     partBuilder.Append($"{prefix}");
                     partBuilder.Append($"{partArguments}");
-                    partBuilder.Append($"{VcardCommonTools.MakeStringBlock(partRepresentation, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length, encoding: part.Property?.Encoding ?? "")}");
+                    partBuilder.Append($"{CommonTools.MakeStringBlock(partRepresentation, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length, encoding: part.Property?.Encoding ?? "")}");
                     cardBuilder.AppendLine($"{partBuilder}");
                 }
             }
@@ -790,7 +791,7 @@ namespace VisualCard.Calendar.Parts
 
             // Get the part type and build the line
             string prefix = VCalendarParserTools.GetPrefixFromPartsArrayEnum(key);
-            string line = VcardCommonTools.BuildRawValue(prefix, rawValue, group, args);
+            string line = CommonTools.BuildRawValue(prefix, rawValue, group, args);
 
             // Process the value
             VCalendarParser.Process(null, line, this, version);
@@ -838,7 +839,7 @@ namespace VisualCard.Calendar.Parts
         {
             // Get the part type and build the line
             string prefix = VCalendarParserTools.GetPrefixFromStringsEnum(key);
-            string line = VcardCommonTools.BuildRawValue(prefix, rawValue, group, args);
+            string line = CommonTools.BuildRawValue(prefix, rawValue, group, args);
 
             // Process the value
             VCalendarParser.Process(null, line, this, version);
@@ -883,7 +884,7 @@ namespace VisualCard.Calendar.Parts
         {
             // Get the part type and build the line
             string prefix = VCalendarParserTools.GetPrefixFromIntegersEnum(key);
-            string line = VcardCommonTools.BuildRawValue(prefix, rawValue, group, args);
+            string line = CommonTools.BuildRawValue(prefix, rawValue, group, args);
 
             // Process the value
             VCalendarParser.Process(null, line, this, version);

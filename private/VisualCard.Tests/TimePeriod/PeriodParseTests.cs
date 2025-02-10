@@ -19,7 +19,6 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shouldly;
-using VisualCard.Parsers;
 
 namespace VisualCard.Tests.TimePeriod
 {
@@ -31,7 +30,7 @@ namespace VisualCard.Tests.TimePeriod
         [DataRow("19970101T180000Z/PT5H30M")]
         public void ParsePeriods(string rule)
         {
-            var span = VcardCommonTools.GetTimePeriod(rule);
+            var span = CommonTools.GetTimePeriod(rule);
             span.StartDate.ShouldNotBe(new());
             span.EndDate.ShouldNotBe(new());
             span.Duration.ShouldNotBe(new());
@@ -40,7 +39,7 @@ namespace VisualCard.Tests.TimePeriod
         [TestMethod]
         public void ParsePeriodWithDateDate()
         {
-            var span = VcardCommonTools.GetTimePeriod("19970101T180000Z/19970102T070000Z");
+            var span = CommonTools.GetTimePeriod("19970101T180000Z/19970102T070000Z");
 
             // We can't test against result because it's uninferrable due to CPU timings.
             span.StartDate.ShouldNotBe(new());
@@ -55,7 +54,7 @@ namespace VisualCard.Tests.TimePeriod
         [TestMethod]
         public void ParsePeriodWithDateDuration()
         {
-            var span = VcardCommonTools.GetTimePeriod("19970101T180000Z/PT5H30M");
+            var span = CommonTools.GetTimePeriod("19970101T180000Z/PT5H30M");
 
             // We can't test against result because it's uninferrable due to CPU timings.
             span.StartDate.ShouldNotBe(new());

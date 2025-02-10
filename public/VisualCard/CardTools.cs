@@ -24,7 +24,7 @@ using VisualCard.Parsers;
 using System;
 using VisualCard.Parts;
 using Textify.General;
-using VisualCard.Parsers.Arguments;
+using VisualCard.Common.Parsers.Arguments;
 
 namespace VisualCard
 {

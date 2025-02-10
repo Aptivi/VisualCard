@@ -24,7 +24,7 @@ using System;
 using Textify.General;
 using VisualCard.Calendar.Parsers;
 using VisualCard.Parsers;
-using VisualCard.Parsers.Arguments;
+using VisualCard.Common.Parsers.Arguments;
 
 namespace VisualCard.Calendar
 {

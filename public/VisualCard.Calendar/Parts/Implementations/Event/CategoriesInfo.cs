@@ -21,9 +21,9 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
-using VisualCard.Calendar.Parts.Comparers;
-using VisualCard.Parsers.Arguments;
-using VisualCard.Parts.Comparers;
+using VisualCard.Common.Parsers.Arguments;
+using VisualCard.Common.Parts;
+using VisualCard.Common.Parts.Comparers;
 
 namespace VisualCard.Calendar.Parts.Implementations.Event
 {
@@ -38,13 +38,13 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
         /// </summary>
         public string[]? Categories { get; set; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            new CategoriesInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, cardVersion);
+        internal static BaseCalendarPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            (BaseCalendarPartInfo)new CategoriesInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
 
-        internal override string ToStringVcalendarInternal(Version cardVersion) =>
+        internal override string ToStringInternal(Version cardVersion) =>
             $"{string.Join(cardVersion.Major == 1 ? ";" : ",", Categories)}";
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate the fields
             var categories = Regex.Unescape(value).Split(cardVersion.Major == 1 ? ';' : ',');
@@ -103,7 +103,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
         public static bool operator !=(CategoriesInfo left, CategoriesInfo right) =>
             !(left == right);
 
-        internal override bool EqualsInternal(BaseCalendarPartInfo source, BaseCalendarPartInfo target) =>
+        internal override bool EqualsInternal(BasePartInfo source, BasePartInfo target) =>
             (CategoriesInfo)source == (CategoriesInfo)target;
 
         internal CategoriesInfo() { }

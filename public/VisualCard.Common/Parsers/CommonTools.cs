@@ -26,7 +26,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Textify.General;
 using VisualCard.Common.Parsers.Arguments;
-using VisualCard.Common.Parts.Enums;
 using VisualCard.Parsers.Recurrence;
 
 namespace VisualCard.Common.Parsers

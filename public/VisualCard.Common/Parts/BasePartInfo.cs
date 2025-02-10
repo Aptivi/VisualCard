@@ -26,47 +26,41 @@ using VisualCard.Common.Parsers.Arguments;
 namespace VisualCard.Common.Parts
 {
     /// <summary>
-    /// Card value information
+    /// Base card part class
     /// </summary>
-    [DebuggerDisplay("Versit value [{Value}] | ALTID: {AltId}, TYPE: [{string.Join(\", \", ElementTypes)}], VALUE: {ValueType}")]
-    public class ValueInfo<TValue> : IEquatable<ValueInfo<TValue>>
+    [DebuggerDisplay("Base part | TYPE: {ElementTypes}, VALUE: {ValueType}")]
+    public abstract class BasePartInfo : IEquatable<BasePartInfo>
     {
         /// <summary>
-        /// Property information containing details about this property that this class instance was created from
+        /// Final arguments
         /// </summary>
-        public PropertyInfo? Property { get; internal set; }
+        public virtual PropertyInfo? Property { get; internal set; }
 
         /// <summary>
-        /// Alternative ID. -1 if unspecified.
+        /// Alternative ID. Zero if unspecified.
         /// </summary>
-        public int AltId { get; set; }
+        public virtual int AltId { get; internal set; }
 
         /// <summary>
         /// Card element type (home, work, ...)
         /// </summary>
-        public string[] ElementTypes { get; set; } = [];
+        public virtual string[] ElementTypes { get; internal set; } = [];
 
         /// <summary>
         /// Value type (usually set by VALUE=)
         /// </summary>
-        public string ValueType { get; set; } = "";
+        public virtual string ValueType { get; internal set; } = "";
 
         /// <summary>
         /// Property group
         /// </summary>
-        public string Group =>
-            Property?.Group ?? "";
+        public virtual string Group { get; internal set; } = "";
 
         /// <summary>
         /// Nested property groups
         /// </summary>
         public string[] NestedGroups =>
-            Property?.NestedGroups ?? [];
-
-        /// <summary>
-        /// Parsed value
-        /// </summary>
-        public TValue Value { get; set; }
+            Group.Split('.');
 
         /// <summary>
         /// Is this part preferred?
@@ -81,6 +75,8 @@ namespace VisualCard.Common.Parts
         /// <returns>True if found; otherwise, false.</returns>
         public bool HasType(string type)
         {
+            if (ElementTypes is null)
+                return false;
             bool found = false;
             foreach (string elementType in ElementTypes)
             {
@@ -93,18 +89,18 @@ namespace VisualCard.Common.Parts
         /// <summary>
         /// Checks to see if both the parts are equal
         /// </summary>
-        /// <param name="other">The target <see cref="ValueInfo{TValue}"/> instance to check to see if they equal</param>
+        /// <param name="other">The target <see cref="BasePartInfo"/> instance to check to see if they equal</param>
         /// <returns>True if all the part elements are equal. Otherwise, false.</returns>
-        public bool Equals(ValueInfo<TValue> other) =>
+        public bool Equals(BasePartInfo other) =>
             Equals(this, other);
 
         /// <summary>
         /// Checks to see if both the parts are equal
         /// </summary>
-        /// <param name="source">The source <see cref="ValueInfo{TValue}"/> instance to check to see if they equal</param>
-        /// <param name="target">The target <see cref="ValueInfo{TValue}"/> instance to check to see if they equal</param>
+        /// <param name="source">The source <see cref="BasePartInfo"/> instance to check to see if they equal</param>
+        /// <param name="target">The target <see cref="BasePartInfo"/> instance to check to see if they equal</param>
         /// <returns>True if all the part elements are equal. Otherwise, false.</returns>
-        public bool Equals(ValueInfo<TValue> source, ValueInfo<TValue> target)
+        public bool Equals(BasePartInfo source, BasePartInfo target)
         {
             // We can't perform this operation on null.
             if (source is null || target is null)
@@ -112,52 +108,55 @@ namespace VisualCard.Common.Parts
 
             // Check all the properties
             return
-                source.Property is not null &&
-                target.Property is not null &&
-                source.Value is not null &&
-                target.Value is not null &&
                 source.Property == target.Property &&
-                source.ElementTypes.SequenceEqual(target.ElementTypes) &&
                 source.AltId == target.AltId &&
-                source.Value.Equals(target.Value) &&
+                source.ElementTypes.SequenceEqual(target.ElementTypes) &&
                 source.ValueType == target.ValueType &&
-                source.Group == target.Group
+                source.Group == target.Group &&
+                EqualsInternal(source, target)
             ;
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj) =>
-            Equals((ValueInfo<TValue>)obj);
+            Equals((BasePartInfo)obj);
 
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = -345771315;
+            int hashCode = 516898731;
             hashCode = hashCode * -1521134295 + EqualityComparer<PropertyInfo?>.Default.GetHashCode(Property);
             hashCode = hashCode * -1521134295 + AltId.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(ElementTypes);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ValueType);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Group);
-            hashCode = hashCode * -1521134295 + EqualityComparer<TValue>.Default.GetHashCode(Value);
             return hashCode;
         }
 
         /// <inheritdoc/>
-        public static bool operator ==(ValueInfo<TValue> left, ValueInfo<TValue> right) =>
+        public static bool operator ==(BasePartInfo left, BasePartInfo right) =>
             left.Equals(right);
 
         /// <inheritdoc/>
-        public static bool operator !=(ValueInfo<TValue> left, ValueInfo<TValue> right) =>
+        public static bool operator !=(BasePartInfo left, BasePartInfo right) =>
             !(left == right);
 
-        internal ValueInfo(PropertyInfo? property, int altId, string[] elementTypes, string group, string valueType, TValue? value)
+        internal virtual bool EqualsInternal(BasePartInfo source, BasePartInfo target) =>
+            true;
+
+        internal abstract BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version version);
+
+        internal abstract string ToStringInternal(Version version);
+
+        internal BasePartInfo()
+        { }
+
+        internal BasePartInfo(PropertyInfo? property, int altId, string[] elementTypes, string group, string valueType)
         {
             Property = property;
-            AltId = altId;
             ElementTypes = elementTypes;
             ValueType = valueType;
-            Value = value ??
-                throw new ArgumentNullException(nameof(value));
+            Group = group;
         }
     }
 }

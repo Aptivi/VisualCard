@@ -19,8 +19,8 @@
 
 using System;
 using VisualCard.Calendar.Parts;
+using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parts.Enums;
-using VisualCard.Parsers.Arguments;
 
 namespace VisualCard.Calendar.Parsers
 {
@@ -31,14 +31,14 @@ namespace VisualCard.Calendar.Parsers
         internal readonly PartCardinality cardinality;
         internal readonly Func<Version, bool> minimumVersionCondition = (_) => true;
         internal readonly Type? enumType;
-        internal readonly Func<string, PropertyInfo, string[], string, string, Version, BaseCalendarPartInfo>? fromStringFunc;
+        internal readonly Func<string, PropertyInfo, int, string[], string, string, Version, BaseCalendarPartInfo>? fromStringFunc;
         internal readonly string defaultType = "";
         internal readonly string defaultValue = "";
         internal readonly string defaultValueType = "";
         internal readonly string[] allowedExtraTypes = [];
         internal readonly string[] allowedValues = [];
 
-        internal VCalendarPartType(PartType type, object enumeration, PartCardinality cardinality, Func<Version, bool>? minimumVersionCondition, Type? enumType, Func<string, PropertyInfo, string[], string, string, Version, BaseCalendarPartInfo>? fromStringFunc, string defaultType, string defaultValue, string defaultValueType, string[] allowedExtraTypes, string[] allowedValues)
+        internal VCalendarPartType(PartType type, object enumeration, PartCardinality cardinality, Func<Version, bool>? minimumVersionCondition, Type? enumType, Func<string, PropertyInfo, int, string[], string, string, Version, BaseCalendarPartInfo>? fromStringFunc, string defaultType, string defaultValue, string defaultValueType, string[] allowedExtraTypes, string[] allowedValues)
         {
             this.type = type;
             this.enumeration = enumeration;

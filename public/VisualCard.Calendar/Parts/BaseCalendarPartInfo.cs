@@ -21,59 +21,20 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using VisualCard.Parsers.Arguments;
+using VisualCard.Common.Parsers.Arguments;
+using VisualCard.Common.Parts;
 
 namespace VisualCard.Calendar.Parts
 {
     /// <summary>
-    /// Base card part class
+    /// Base calendar part class
     /// </summary>
-    [DebuggerDisplay("Base card part | TYPE: {ElementTypes}, VALUE: {ValueType}")]
-    public abstract class BaseCalendarPartInfo : IEquatable<BaseCalendarPartInfo>
+    [DebuggerDisplay("Base calendar part | TYPE: {ElementTypes}, VALUE: {ValueType}")]
+    public abstract class BaseCalendarPartInfo : BasePartInfo, IEquatable<BaseCalendarPartInfo>
     {
-        /// <summary>
-        /// Final arguments
-        /// </summary>
-        public virtual PropertyInfo? Property { get; internal set; }
-
-        /// <summary>
-        /// Card element type (home, work, ...)
-        /// </summary>
-        public virtual string[] ElementTypes { get; internal set; } = [];
-
-        /// <summary>
-        /// Value type (usually set by VALUE=)
-        /// </summary>
-        public virtual string ValueType { get; internal set; } = "";
-
-        /// <summary>
-        /// Property group
-        /// </summary>
-        public virtual string Group { get; internal set; } = "";
-
-        /// <summary>
-        /// Is this part preferred?
-        /// </summary>
-        public bool IsPreferred =>
-            HasType("PREF");
-
-        /// <summary>
-        /// Checks to see if this part has a specific type
-        /// </summary>
-        /// <param name="type">Type to check (home, work, ...)</param>
-        /// <returns>True if found; otherwise, false.</returns>
-        public bool HasType(string type)
-        {
-            if (ElementTypes is null)
-                return false;
-            bool found = false;
-            foreach (string elementType in ElementTypes)
-            {
-                if (type.Equals(elementType, StringComparison.OrdinalIgnoreCase))
-                    found = true;
-            }
-            return found;
-        }
+        /// <inheritdoc/>
+        public override bool Equals(object obj) =>
+            Equals((BaseCalendarPartInfo)obj);
 
         /// <summary>
         /// Checks to see if both the parts are equal
@@ -106,13 +67,10 @@ namespace VisualCard.Calendar.Parts
         }
 
         /// <inheritdoc/>
-        public override bool Equals(object obj) =>
-            Equals((BaseCalendarPartInfo)obj);
-
-        /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = -1432369694;
+            int hashCode = -516533944;
+            hashCode = hashCode * -1521134295 + base.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<PropertyInfo?>.Default.GetHashCode(Property);
             hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(ElementTypes);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ValueType);
@@ -128,22 +86,14 @@ namespace VisualCard.Calendar.Parts
         public static bool operator !=(BaseCalendarPartInfo left, BaseCalendarPartInfo right) =>
             !(left == right);
 
-        internal virtual bool EqualsInternal(BaseCalendarPartInfo source, BaseCalendarPartInfo target) =>
-            true;
-
-        internal abstract BaseCalendarPartInfo FromStringVcalendarInternal(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version calendarVersion);
-
-        internal abstract string ToStringVcalendarInternal(Version calendarVersion);
+        internal override bool EqualsInternal(BasePartInfo source, BasePartInfo target) =>
+            (BaseCalendarPartInfo)source == (BaseCalendarPartInfo)target;
 
         internal BaseCalendarPartInfo()
         { }
 
-        internal BaseCalendarPartInfo(PropertyInfo? property, string[] elementTypes, string group, string valueType)
-        {
-            Property = property;
-            ElementTypes = elementTypes;
-            ValueType = valueType;
-            Group = group;
-        }
+        internal BaseCalendarPartInfo(PropertyInfo? property, string[] elementTypes, string group, string valueType) :
+            base(property, -1, elementTypes, group, valueType)
+        { }
     }
 }

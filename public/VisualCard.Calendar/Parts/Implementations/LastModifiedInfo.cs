@@ -19,8 +19,9 @@
 
 using System;
 using System.Diagnostics;
-using VisualCard.Parsers;
-using VisualCard.Parsers.Arguments;
+using VisualCard.Common.Parsers;
+using VisualCard.Common.Parsers.Arguments;
+using VisualCard.Common.Parts;
 
 namespace VisualCard.Calendar.Parts.Implementations
 {
@@ -35,16 +36,16 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// </summary>
         public DateTimeOffset LastModified { get; set; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            new LastModifiedInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, cardVersion);
+        internal static BaseCalendarPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            (BaseCalendarPartInfo)new LastModifiedInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
 
-        internal override string ToStringVcalendarInternal(Version cardVersion) =>
-            $"{VcardCommonTools.SavePosixDate(LastModified)}";
+        internal override string ToStringInternal(Version cardVersion) =>
+            $"{CommonTools.SavePosixDate(LastModified)}";
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate the fields
-            DateTimeOffset created = VcardCommonTools.ParsePosixDateTime(value);
+            DateTimeOffset created = CommonTools.ParsePosixDateTime(value);
 
             // Add the fetched information
             LastModifiedInfo _time = new(property, elementTypes, group, valueType, created);
@@ -98,7 +99,7 @@ namespace VisualCard.Calendar.Parts.Implementations
         public static bool operator !=(LastModifiedInfo left, LastModifiedInfo right) =>
             !(left == right);
 
-        internal override bool EqualsInternal(BaseCalendarPartInfo source, BaseCalendarPartInfo target) =>
+        internal override bool EqualsInternal(BasePartInfo source, BasePartInfo target) =>
             (LastModifiedInfo)source == (LastModifiedInfo)target;
 
         internal LastModifiedInfo() { }

@@ -20,8 +20,9 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using VisualCard.Parsers;
-using VisualCard.Parsers.Arguments;
+using VisualCard.Common.Parsers;
+using VisualCard.Common.Parsers.Arguments;
+using VisualCard.Common.Parts;
 
 namespace VisualCard.Calendar.Parts.Implementations.Legacy
 {
@@ -61,20 +62,20 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
         /// </summary>
         public string? DaylightDesignation { get; set; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version calendarVersion) =>
-            new DaylightInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, calendarVersion);
+        internal static BaseCalendarPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version calendarVersion) =>
+            (BaseCalendarPartInfo)new DaylightInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, calendarVersion);
 
-        internal override string ToStringVcalendarInternal(Version calendarVersion)
+        internal override string ToStringInternal(Version calendarVersion)
         {
             if (!Flag)
                 return "FALSE";
-            string posixUtc = VcardCommonTools.SaveUtcOffset(UtcOffset);
-            string posixStart = VcardCommonTools.SavePosixDate(DaylightStart);
-            string posixEnd = VcardCommonTools.SavePosixDate(DaylightEnd);
+            string posixUtc = CommonTools.SaveUtcOffset(UtcOffset);
+            string posixStart = CommonTools.SavePosixDate(DaylightStart);
+            string posixEnd = CommonTools.SavePosixDate(DaylightEnd);
             return $"TRUE;{posixUtc};{posixStart};{posixEnd};{StandardDesignation};{DaylightDesignation}";
         }
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version calendarVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version calendarVersion)
         {
             // Get the values
             string[] split = value.Split(';');
@@ -89,9 +90,9 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
             string daylight = split[5];
 
             // Process the UTC offset and start/end dates
-            TimeSpan utcOffset = VcardCommonTools.ParseUtcOffset(unprocessedUtc);
-            DateTimeOffset startDate = VcardCommonTools.ParsePosixDateTime(unprocessedStart);
-            DateTimeOffset endDate = VcardCommonTools.ParsePosixDateTime(unprocessedEnd);
+            TimeSpan utcOffset = CommonTools.ParseUtcOffset(unprocessedUtc);
+            DateTimeOffset startDate = CommonTools.ParsePosixDateTime(unprocessedStart);
+            DateTimeOffset endDate = CommonTools.ParsePosixDateTime(unprocessedEnd);
 
             // Populate the fields
             DaylightInfo _geo = new(property, elementTypes, group, valueType, true, utcOffset, startDate, endDate, standard, daylight);
@@ -155,7 +156,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
         public static bool operator !=(DaylightInfo left, DaylightInfo right) =>
             !(left == right);
 
-        internal override bool EqualsInternal(BaseCalendarPartInfo source, BaseCalendarPartInfo target) =>
+        internal override bool EqualsInternal(BasePartInfo source, BasePartInfo target) =>
             (DaylightInfo)source == (DaylightInfo)target;
 
         internal DaylightInfo() { }

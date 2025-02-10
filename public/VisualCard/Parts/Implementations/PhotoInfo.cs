@@ -22,7 +22,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using VisualCard.Parsers;
-using VisualCard.Parsers.Arguments;
+using VisualCard.Common.Parsers.Arguments;
+using VisualCard.Common.Parts;
+using VisualCard.Common.Parsers;
 
 namespace VisualCard.Parts.Implementations
 {
@@ -44,15 +46,15 @@ namespace VisualCard.Parts.Implementations
         /// Whether this photo is a blob or not
         /// </summary>
         public bool IsBlob =>
-            VcardCommonTools.IsEncodingBlob(Property?.Arguments ?? [], PhotoEncoded);
+            CommonTools.IsEncodingBlob(Property?.Arguments ?? [], PhotoEncoded);
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
-            new PhotoInfo().FromStringVcardInternal(value, property, altId, elementTypes, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            (BaseCardPartInfo)new PhotoInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
 
-        internal override string ToStringVcardInternal(Version cardVersion) =>
+        internal override string ToStringInternal(Version cardVersion) =>
             PhotoEncoded ?? "";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             bool vCard4 = cardVersion.Major >= 4;
             var arguments = property?.Arguments ?? [];
@@ -69,8 +71,8 @@ namespace VisualCard.Parts.Implementations
             else
             {
                 // vCard 3.0 handles this in a different way
-                photoEncoding = VcardCommonTools.GetValuesString(arguments, "b", VcardConstants._encodingArgumentSpecifier);
-                if (!VcardCommonTools.IsEncodingBlob(arguments, value))
+                photoEncoding = CommonTools.GetValuesString(arguments, "b", VcardConstants._encodingArgumentSpecifier);
+                if (!CommonTools.IsEncodingBlob(arguments, value))
                 {
                     // Since we don't need embedded photos, we need to check a URL.
                     if (!Uri.TryCreate(value, UriKind.Absolute, out Uri uri))
@@ -80,7 +82,7 @@ namespace VisualCard.Parts.Implementations
             }
 
             // Populate the fields
-            PhotoInfo _photo = new(altId, property, elementTypes, valueType, photoEncoding, value);
+            PhotoInfo _photo = new(altId, property, elementTypes, group, valueType, photoEncoding, value);
             return _photo;
         }
 
@@ -89,7 +91,7 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         /// <returns>A stream that contains image data</returns>
         public Stream GetStream() =>
-            VcardCommonTools.GetBlobData(Property?.Arguments ?? [], PhotoEncoded);
+            CommonTools.GetBlobData(Property?.Arguments ?? [], PhotoEncoded);
 
         /// <inheritdoc/>
         public override bool Equals(object obj) =>
@@ -140,13 +142,13 @@ namespace VisualCard.Parts.Implementations
         public static bool operator !=(PhotoInfo left, PhotoInfo right) =>
             !(left == right);
 
-        internal override bool EqualsInternal(BaseCardPartInfo source, BaseCardPartInfo target) =>
+        internal override bool EqualsInternal(BasePartInfo source, BasePartInfo target) =>
             ((PhotoInfo)source) == ((PhotoInfo)target);
 
         internal PhotoInfo() { }
 
-        internal PhotoInfo(int altId, PropertyInfo? property, string[] elementTypes, string valueType, string encoding, string photoEncoded) :
-            base(property, altId, elementTypes, valueType)
+        internal PhotoInfo(int altId, PropertyInfo? property, string[] elementTypes, string group, string valueType, string encoding, string photoEncoded) :
+            base(property, altId, elementTypes, group, valueType)
         {
             Encoding = encoding;
             PhotoEncoded = photoEncoded;

@@ -19,6 +19,8 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using VisualCard.Common.Parts;
+using VisualCard.Common.Parts.Comparers;
 using VisualCard.Parts.Enums;
 
 namespace VisualCard.Parts.Comparers

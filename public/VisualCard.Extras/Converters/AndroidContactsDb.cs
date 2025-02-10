@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using Textify.General;
+using VisualCard.Common.Parsers;
 using VisualCard.Parsers;
 using VisualCard.Parts;
 
@@ -671,7 +672,7 @@ namespace VisualCard.Extras.Converters
                             const string _photoSpecifierWithType = "PHOTO;ENCODING=BLOB;TYPE=JPEG:";
                             const int maxChars = 74;
                             d15 = d15.StartsWith("X") ? d15.Substring(1) : d15;
-                            d15 = VcardCommonTools.MakeStringBlock(d15.ReleaseDoubleQuotes(), maxChars - _photoSpecifierWithType.Length);
+                            d15 = CommonTools.MakeStringBlock(d15.ReleaseDoubleQuotes(), maxChars - _photoSpecifierWithType.Length);
                             masterContactBuilder.AppendLine($"{_photoSpecifierWithType}{d15}");
                             break;
                     }

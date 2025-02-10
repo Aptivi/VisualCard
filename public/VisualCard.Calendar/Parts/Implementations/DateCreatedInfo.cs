@@ -19,8 +19,9 @@
 
 using System;
 using System.Diagnostics;
-using VisualCard.Parsers;
-using VisualCard.Parsers.Arguments;
+using VisualCard.Common.Parsers;
+using VisualCard.Common.Parsers.Arguments;
+using VisualCard.Common.Parts;
 
 namespace VisualCard.Calendar.Parts.Implementations
 {
@@ -35,16 +36,16 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// </summary>
         public DateTimeOffset DateCreated { get; set; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            new DateCreatedInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, cardVersion);
+        internal static BaseCalendarPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            (BaseCalendarPartInfo)new DateCreatedInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
 
-        internal override string ToStringVcalendarInternal(Version cardVersion) =>
-            $"{VcardCommonTools.SavePosixDate(DateCreated)}";
+        internal override string ToStringInternal(Version cardVersion) =>
+            $"{CommonTools.SavePosixDate(DateCreated)}";
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate the fields
-            DateTimeOffset created = VcardCommonTools.ParsePosixDateTime(value);
+            DateTimeOffset created = CommonTools.ParsePosixDateTime(value);
 
             // Add the fetched information
             DateCreatedInfo _time = new(property, elementTypes, group, valueType, created);
@@ -98,7 +99,7 @@ namespace VisualCard.Calendar.Parts.Implementations
         public static bool operator !=(DateCreatedInfo left, DateCreatedInfo right) =>
             !(left == right);
 
-        internal override bool EqualsInternal(BaseCalendarPartInfo source, BaseCalendarPartInfo target) =>
+        internal override bool EqualsInternal(BasePartInfo source, BasePartInfo target) =>
             (DateCreatedInfo)source == (DateCreatedInfo)target;
 
         internal DateCreatedInfo() { }

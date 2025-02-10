@@ -25,7 +25,7 @@ using System.Linq;
 using VisualCard.Calendar.Parsers;
 using VisualCard.Calendar.Parts.Comparers;
 using VisualCard.Calendar.Parts.Enums;
-using VisualCard.Parts;
+using VisualCard.Common.Parts;
 
 namespace VisualCard.Calendar.Parts
 {

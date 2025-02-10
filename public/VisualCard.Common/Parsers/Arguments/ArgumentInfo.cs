@@ -84,7 +84,7 @@ namespace VisualCard.Common.Parsers.Arguments
                 (bool caseSensitive, string value) value = Values[i];
                 argBuilder.Append($"{(value.caseSensitive ? $"\"{value.value}\"" : value.value)}");
                 if (i < Values.Length - 1)
-                    argBuilder.Append(VcardConstants._valueDelimiter);
+                    argBuilder.Append(CommonConstants._valueDelimiter);
             }
             return argBuilder.ToString();
         }
@@ -143,10 +143,10 @@ namespace VisualCard.Common.Parsers.Arguments
         /// <param name="kvp">Key and value pair that describes one argument</param>
         public ArgumentInfo(string kvp)
         {
-            if (kvp.Contains(VcardConstants._argumentValueDelimiter))
+            if (kvp.Contains(CommonConstants._argumentValueDelimiter))
             {
-                string keyStr = kvp.Substring(0, kvp.IndexOf(VcardConstants._argumentValueDelimiter));
-                string valueStr = kvp.RemovePrefix($"{keyStr}{VcardConstants._argumentValueDelimiter}").Trim();
+                string keyStr = kvp.Substring(0, kvp.IndexOf(CommonConstants._argumentValueDelimiter));
+                string valueStr = kvp.RemovePrefix($"{keyStr}{CommonConstants._argumentValueDelimiter}").Trim();
                 var info = new ArgumentInfo(keyStr.Trim(), valueStr);
                 key = info.key;
                 values = info.values;

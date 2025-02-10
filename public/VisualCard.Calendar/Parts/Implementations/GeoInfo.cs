@@ -19,7 +19,9 @@
 
 using System;
 using System.Diagnostics;
-using VisualCard.Parsers.Arguments;
+using VisualCard.Common.Parsers;
+using VisualCard.Common.Parsers.Arguments;
+using VisualCard.Common.Parts;
 
 namespace VisualCard.Calendar.Parts.Implementations
 {
@@ -39,13 +41,13 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// </summary>
         public double Longitude { get; set; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version calendarVersion) =>
-            new GeoInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, calendarVersion);
+        internal static BaseCalendarPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version calendarVersion) =>
+            (BaseCalendarPartInfo)new GeoInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, calendarVersion);
 
-        internal override string ToStringVcalendarInternal(Version calendarVersion) =>
+        internal override string ToStringInternal(Version calendarVersion) =>
             $"{Latitude}{(calendarVersion.Major == 1 ? ',' : ';')}{Longitude}";
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version calendarVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version calendarVersion)
         {
             // Get the value
             string[] _geoSplit = value.Split(calendarVersion.Major == 1 ? ',' : ';');
@@ -110,7 +112,7 @@ namespace VisualCard.Calendar.Parts.Implementations
         public static bool operator !=(GeoInfo left, GeoInfo right) =>
             !(left == right);
 
-        internal override bool EqualsInternal(BaseCalendarPartInfo source, BaseCalendarPartInfo target) =>
+        internal override bool EqualsInternal(BasePartInfo source, BasePartInfo target) =>
             ((GeoInfo)source) == ((GeoInfo)target);
 
         internal GeoInfo() { }

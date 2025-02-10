@@ -19,8 +19,9 @@
 
 using System;
 using System.Diagnostics;
-using VisualCard.Parsers;
-using VisualCard.Parsers.Arguments;
+using VisualCard.Common.Parsers;
+using VisualCard.Common.Parsers.Arguments;
+using VisualCard.Common.Parts;
 
 namespace VisualCard.Calendar.Parts.Implementations.Event
 {
@@ -35,16 +36,16 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
         /// </summary>
         public DateTimeOffset DateStamp { get; set; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            new DateStampInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, cardVersion);
+        internal static BaseCalendarPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            (BaseCalendarPartInfo)new DateStampInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
 
-        internal override string ToStringVcalendarInternal(Version cardVersion) =>
-            $"{VcardCommonTools.SavePosixDate(DateStamp)}";
+        internal override string ToStringInternal(Version cardVersion) =>
+            $"{CommonTools.SavePosixDate(DateStamp)}";
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate the fields
-            DateTimeOffset stamp = VcardCommonTools.ParsePosixDateTime(value);
+            DateTimeOffset stamp = CommonTools.ParsePosixDateTime(value);
 
             // Add the fetched information
             DateStampInfo _time = new(property, elementTypes, group, valueType, stamp);
@@ -98,7 +99,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
         public static bool operator !=(DateStampInfo left, DateStampInfo right) =>
             !(left == right);
 
-        internal override bool EqualsInternal(BaseCalendarPartInfo source, BaseCalendarPartInfo target) =>
+        internal override bool EqualsInternal(BasePartInfo source, BasePartInfo target) =>
             (DateStampInfo)source == (DateStampInfo)target;
 
         internal DateStampInfo() { }

@@ -20,8 +20,9 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using VisualCard.Parsers;
-using VisualCard.Parsers.Arguments;
+using VisualCard.Common.Parsers;
+using VisualCard.Common.Parsers.Arguments;
+using VisualCard.Common.Parts;
 
 namespace VisualCard.Calendar.Parts.Implementations.Legacy
 {
@@ -55,24 +56,24 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
         /// Snooze duration. Throws exception if there is no snooze time, so check accordingly.
         /// </summary>
         public TimeSpan SnoozeDuration =>
-            VcardCommonTools.GetDurationSpan(SnoozeTime ?? "").span;
+            CommonTools.GetDurationSpan(SnoozeTime ?? "").span;
 
         /// <summary>
         /// Snooze date/time. Throws exception if there is no snooze time, so check accordingly.
         /// </summary>
         public DateTimeOffset SnoozeIn =>
-            VcardCommonTools.GetDurationSpan(SnoozeTime ?? "").result;
+            CommonTools.GetDurationSpan(SnoozeTime ?? "").result;
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version calendarVersion) =>
-            new AudioAlarmInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, calendarVersion);
+        internal static BaseCalendarPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version calendarVersion) =>
+            (BaseCalendarPartInfo)new AudioAlarmInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, calendarVersion);
 
-        internal override string ToStringVcalendarInternal(Version calendarVersion)
+        internal override string ToStringInternal(Version calendarVersion)
         {
-            string posixRunTime = VcardCommonTools.SavePosixDate(RunTime);
+            string posixRunTime = CommonTools.SavePosixDate(RunTime);
             return $"{posixRunTime};{SnoozeTime};{RepeatCount};{AudioResource}";
         }
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version calendarVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version calendarVersion)
         {
             // Get the values
             string[] split = value.Split(';');
@@ -84,7 +85,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
             string audioResource = split[3];
 
             // Process the run time and the repeat times
-            DateTimeOffset runTime = VcardCommonTools.ParsePosixDateTime(unprocessedRunTime);
+            DateTimeOffset runTime = CommonTools.ParsePosixDateTime(unprocessedRunTime);
             int repeat = 0;
             if (!string.IsNullOrWhiteSpace(unprocessedRepeat) && !int.TryParse(unprocessedRepeat, out repeat))
                 throw new ArgumentException("Invalid repeat times");
@@ -147,7 +148,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
         public static bool operator !=(AudioAlarmInfo left, AudioAlarmInfo right) =>
             !(left == right);
 
-        internal override bool EqualsInternal(BaseCalendarPartInfo source, BaseCalendarPartInfo target) =>
+        internal override bool EqualsInternal(BasePartInfo source, BasePartInfo target) =>
             (AudioAlarmInfo)source == (AudioAlarmInfo)target;
 
         internal AudioAlarmInfo() { }

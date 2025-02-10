@@ -72,22 +72,22 @@ namespace VisualCard.Common.Parsers.Arguments
         /// Property encoding
         /// </summary>
         public string Encoding
-            => CommonTools.GetValuesString(arguments, "", VcardConstants._encodingArgumentSpecifier);
+            => CommonTools.GetValuesString(arguments, "", CommonConstants._encodingArgumentSpecifier);
 
         /// <summary>
         /// Property type
         /// </summary>
         public string Type
-            => CommonTools.GetValuesString(arguments, "", VcardConstants._typeArgumentSpecifier);
+            => CommonTools.GetValuesString(arguments, "", CommonConstants._typeArgumentSpecifier);
 
         /// <summary>
         /// Property value type
         /// </summary>
         public string ValueType
-            => CommonTools.GetValuesString(arguments, "", VcardConstants._valueArgumentSpecifier);
+            => CommonTools.GetValuesString(arguments, "", CommonConstants._valueArgumentSpecifier);
 
         internal bool CanContinueMultiline
-            => Encoding == VcardConstants._quotedPrintable && Value?.Length > 0 && Value[Value.Length - 1] == '=';
+            => Encoding == CommonConstants._quotedPrintable && Value?.Length > 0 && Value[Value.Length - 1] == '=';
 
         /// <summary>
         /// Checks to see if both the property info instances are equal
@@ -142,14 +142,14 @@ namespace VisualCard.Common.Parsers.Arguments
         internal PropertyInfo(string line)
         {
             // Now, parse this value
-            if (!line.Contains($"{VcardConstants._argumentDelimiter}"))
+            if (!line.Contains($"{CommonConstants._argumentDelimiter}"))
                 throw new ArgumentException("The line must contain an argument delimiter.");
             line = line.Trim();
-            string value = line.Substring(line.IndexOf(VcardConstants._argumentDelimiter) + 1).Trim();
-            string prefixWithArgs = line.Substring(0, line.IndexOf(VcardConstants._argumentDelimiter)).Trim();
-            string prefix = (prefixWithArgs.Contains($"{VcardConstants._fieldDelimiter}") ? prefixWithArgs.Substring(0, prefixWithArgs.IndexOf($"{VcardConstants._fieldDelimiter}")) : prefixWithArgs).Trim().ToUpper();
-            string args = prefixWithArgs.Contains($"{VcardConstants._fieldDelimiter}") ? prefixWithArgs.Substring(prefix.Length + 1) : "";
-            string[] splitArgs = args.Split([VcardConstants._fieldDelimiter], StringSplitOptions.RemoveEmptyEntries);
+            string value = line.Substring(line.IndexOf(CommonConstants._argumentDelimiter) + 1).Trim();
+            string prefixWithArgs = line.Substring(0, line.IndexOf(CommonConstants._argumentDelimiter)).Trim();
+            string prefix = (prefixWithArgs.Contains($"{CommonConstants._fieldDelimiter}") ? prefixWithArgs.Substring(0, prefixWithArgs.IndexOf($"{CommonConstants._fieldDelimiter}")) : prefixWithArgs).Trim().ToUpper();
+            string args = prefixWithArgs.Contains($"{CommonConstants._fieldDelimiter}") ? prefixWithArgs.Substring(prefix.Length + 1) : "";
+            string[] splitArgs = args.Split([CommonConstants._fieldDelimiter], StringSplitOptions.RemoveEmptyEntries);
             var finalArgs = splitArgs.Select((arg) => new ArgumentInfo(arg)).ToArray();
 
             // Extract the group name
@@ -157,8 +157,8 @@ namespace VisualCard.Common.Parsers.Arguments
             prefix = prefix.RemovePrefix($"{group}.");
 
             // Check to see if this is a nonstandard prefix
-            bool xNonstandard = prefix.StartsWith(VcardConstants._xSpecifier);
-            prefix = xNonstandard ? VcardConstants._xSpecifier : prefix;
+            bool xNonstandard = prefix.StartsWith(CommonConstants._xSpecifier);
+            prefix = xNonstandard ? CommonConstants._xSpecifier : prefix;
 
             // Install values
             rawValue.Append(value);

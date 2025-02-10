@@ -19,8 +19,9 @@
 
 using System;
 using System.Diagnostics;
-using VisualCard.Parsers;
-using VisualCard.Parsers.Arguments;
+using VisualCard.Common.Parsers;
+using VisualCard.Common.Parsers.Arguments;
+using VisualCard.Common.Parts;
 
 namespace VisualCard.Calendar.Parts.Implementations.Event
 {
@@ -35,26 +36,26 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
         /// </summary>
         public DateTimeOffset DateEnd { get; set; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            new DateEndInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, cardVersion);
+        internal static BaseCalendarPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            (BaseCalendarPartInfo)new DateEndInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
 
-        internal override string ToStringVcalendarInternal(Version cardVersion)
+        internal override string ToStringInternal(Version cardVersion)
         {
             string type = ValueType ?? "";
             string value =
                 type.Equals("date", StringComparison.OrdinalIgnoreCase) ?
-                VcardCommonTools.SavePosixDate(DateEnd, true) :
-                VcardCommonTools.SavePosixDate(DateEnd);
+                CommonTools.SavePosixDate(DateEnd, true) :
+                CommonTools.SavePosixDate(DateEnd);
             return value;
         }
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate the fields
             DateTimeOffset end =
                 valueType.Equals("date", StringComparison.OrdinalIgnoreCase) ?
-                VcardCommonTools.ParsePosixDate(value) :
-                VcardCommonTools.ParsePosixDateTime(value);
+                CommonTools.ParsePosixDate(value) :
+                CommonTools.ParsePosixDateTime(value);
 
             // Add the fetched information
             DateEndInfo _time = new(property, elementTypes, group, valueType, end);
@@ -108,7 +109,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
         public static bool operator !=(DateEndInfo left, DateEndInfo right) =>
             !(left == right);
 
-        internal override bool EqualsInternal(BaseCalendarPartInfo source, BaseCalendarPartInfo target) =>
+        internal override bool EqualsInternal(BasePartInfo source, BasePartInfo target) =>
             (DateEndInfo)source == (DateEndInfo)target;
 
         internal DateEndInfo() { }

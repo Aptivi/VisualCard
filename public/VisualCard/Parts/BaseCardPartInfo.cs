@@ -21,7 +21,8 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using VisualCard.Parsers.Arguments;
+using VisualCard.Common.Parsers.Arguments;
+using VisualCard.Common.Parts;
 
 namespace VisualCard.Parts
 {
@@ -29,61 +30,11 @@ namespace VisualCard.Parts
     /// Base card part class
     /// </summary>
     [DebuggerDisplay("Base card part | ALTID: {AltId}, TYPE: {ElementTypes}, VALUE: {ValueType}")]
-    public abstract class BaseCardPartInfo : IEquatable<BaseCardPartInfo>
+    public abstract class BaseCardPartInfo : BasePartInfo, IEquatable<BaseCardPartInfo>
     {
-        /// <summary>
-        /// Property information containing details about this property that this class instance was created from
-        /// </summary>
-        public virtual PropertyInfo? Property { get; internal set; }
-
-        /// <summary>
-        /// Alternative ID. Zero if unspecified.
-        /// </summary>
-        public virtual int AltId { get; internal set; }
-
-        /// <summary>
-        /// Card element type (home, work, ...)
-        /// </summary>
-        public virtual string[] ElementTypes { get; internal set; } = [];
-
-        /// <summary>
-        /// Value type (usually set by VALUE=)
-        /// </summary>
-        public virtual string ValueType { get; internal set; } = "";
-
-        /// <summary>
-        /// Property group
-        /// </summary>
-        public string Group =>
-            Property?.Group ?? "";
-
-        /// <summary>
-        /// Nested property groups
-        /// </summary>
-        public string[] NestedGroups =>
-            Group.Split('.');
-
-        /// <summary>
-        /// Is this part preferred?
-        /// </summary>
-        public bool IsPreferred =>
-            HasType("PREF");
-
-        /// <summary>
-        /// Checks to see if this part has a specific type
-        /// </summary>
-        /// <param name="type">Type to check (home, work, ...)</param>
-        /// <returns>True if found; otherwise, false.</returns>
-        public bool HasType(string type)
-        {
-            bool found = false;
-            foreach (string elementType in ElementTypes)
-            {
-                if (type.Equals(elementType, StringComparison.OrdinalIgnoreCase))
-                    found = true;
-            }
-            return found;
-        }
+        /// <inheritdoc/>
+        public override bool Equals(object obj) =>
+            Equals((BaseCardPartInfo)obj);
 
         /// <summary>
         /// Checks to see if both the parts are equal
@@ -117,13 +68,10 @@ namespace VisualCard.Parts
         }
 
         /// <inheritdoc/>
-        public override bool Equals(object obj) =>
-            Equals((BaseCardPartInfo)obj);
-
-        /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = 516898731;
+            int hashCode = 1046930009;
+            hashCode = hashCode * -1521134295 + base.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<PropertyInfo?>.Default.GetHashCode(Property);
             hashCode = hashCode * -1521134295 + AltId.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(ElementTypes);
@@ -140,22 +88,14 @@ namespace VisualCard.Parts
         public static bool operator !=(BaseCardPartInfo left, BaseCardPartInfo right) =>
             !(left == right);
 
-        internal virtual bool EqualsInternal(BaseCardPartInfo source, BaseCardPartInfo target) =>
-            true;
-
-        internal abstract BaseCardPartInfo FromStringVcardInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion);
-
-        internal abstract string ToStringVcardInternal(Version cardVersion);
+        internal override bool EqualsInternal(BasePartInfo source, BasePartInfo target) =>
+            (BaseCardPartInfo)source == (BaseCardPartInfo)target;
 
         internal BaseCardPartInfo()
         { }
 
-        internal BaseCardPartInfo(PropertyInfo? property, int altId, string[] elementTypes, string valueType)
-        {
-            Property = property;
-            AltId = altId;
-            ElementTypes = elementTypes;
-            ValueType = valueType;
-        }
+        internal BaseCardPartInfo(PropertyInfo? property, int altId, string[] elementTypes, string group, string valueType) :
+            base(property, altId, elementTypes, group, valueType)
+        { }
     }
 }

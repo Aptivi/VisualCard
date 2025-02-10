@@ -21,8 +21,9 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
-using VisualCard.Parsers;
-using VisualCard.Parsers.Arguments;
+using VisualCard.Common.Parsers;
+using VisualCard.Common.Parsers.Arguments;
+using VisualCard.Common.Parts;
 
 namespace VisualCard.Calendar.Parts.Implementations.FreeBusy
 {
@@ -37,23 +38,23 @@ namespace VisualCard.Calendar.Parts.Implementations.FreeBusy
         /// </summary>
         public TimePeriod? FreeBusy { get; set; }
 
-        internal static BaseCalendarPartInfo FromStringVcalendarStatic(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            new CalendarFreeBusyInfo().FromStringVcalendarInternal(value, property, elementTypes, group, valueType, cardVersion);
+        internal static BaseCalendarPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            (BaseCalendarPartInfo)new CalendarFreeBusyInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
 
-        internal override string ToStringVcalendarInternal(Version cardVersion)
+        internal override string ToStringInternal(Version cardVersion)
         {
             if (FreeBusy is null)
                 return "";
 
             var builder = new StringBuilder();
-            builder.Append(VcardCommonTools.SavePosixDate(FreeBusy.StartDate) + "/" + VcardCommonTools.SavePosixDate(FreeBusy.EndDate));
+            builder.Append(CommonTools.SavePosixDate(FreeBusy.StartDate) + "/" + CommonTools.SavePosixDate(FreeBusy.EndDate));
             return builder.ToString();
         }
 
-        internal override BaseCalendarPartInfo FromStringVcalendarInternal(string value, PropertyInfo property, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate the fields
-            var freeBusy = VcardCommonTools.GetTimePeriod(value);
+            var freeBusy = CommonTools.GetTimePeriod(value);
 
             // Add the fetched information
             CalendarFreeBusyInfo _time = new(property, elementTypes, group, valueType, freeBusy);
@@ -107,7 +108,7 @@ namespace VisualCard.Calendar.Parts.Implementations.FreeBusy
         public static bool operator !=(CalendarFreeBusyInfo left, CalendarFreeBusyInfo right) =>
             !(left == right);
 
-        internal override bool EqualsInternal(BaseCalendarPartInfo source, BaseCalendarPartInfo target) =>
+        internal override bool EqualsInternal(BasePartInfo source, BasePartInfo target) =>
             (CalendarFreeBusyInfo)source == (CalendarFreeBusyInfo)target;
 
         internal CalendarFreeBusyInfo() { }

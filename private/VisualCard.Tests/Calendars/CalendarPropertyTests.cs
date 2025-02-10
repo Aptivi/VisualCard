@@ -22,7 +22,6 @@ using Shouldly;
 using VisualCard.Calendar;
 using VisualCard.Calendar.Parts.Enums;
 using VisualCard.Calendar.Parts.Implementations;
-using VisualCard.Parts.Enums;
 using VisualCard.Tests.Calendars.Data;
 
 namespace VisualCard.Tests.Calendars

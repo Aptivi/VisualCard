@@ -19,8 +19,9 @@
 
 using System;
 using System.Diagnostics;
-using VisualCard.Parsers;
-using VisualCard.Parsers.Arguments;
+using VisualCard.Common.Parsers;
+using VisualCard.Common.Parsers.Arguments;
+using VisualCard.Common.Parts;
 
 namespace VisualCard.Parts.Implementations
 {
@@ -35,19 +36,19 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public DateTimeOffset BirthDate { get; set; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
-            new BirthDateInfo().FromStringVcardInternal(value, property, altId, elementTypes, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            (BaseCardPartInfo)new BirthDateInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
 
-        internal override string ToStringVcardInternal(Version cardVersion) =>
-            $"{VcardCommonTools.SavePosixDate(BirthDate, true)}";
+        internal override string ToStringInternal(Version cardVersion) =>
+            $"{CommonTools.SavePosixDate(BirthDate, true)}";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate field
-            DateTimeOffset bday = VcardCommonTools.ParsePosixDateTime(value);
+            DateTimeOffset bday = CommonTools.ParsePosixDateTime(value);
 
             // Add the fetched information
-            BirthDateInfo _time = new(altId, property, elementTypes, valueType, bday);
+            BirthDateInfo _time = new(altId, property, elementTypes, group, valueType, bday);
             return _time;
         }
 
@@ -98,13 +99,13 @@ namespace VisualCard.Parts.Implementations
         public static bool operator !=(BirthDateInfo left, BirthDateInfo right) =>
             !(left == right);
 
-        internal override bool EqualsInternal(BaseCardPartInfo source, BaseCardPartInfo target) =>
+        internal override bool EqualsInternal(BasePartInfo source, BasePartInfo target) =>
             ((BirthDateInfo)source) == ((BirthDateInfo)target);
 
         internal BirthDateInfo() { }
 
-        internal BirthDateInfo(int altId, PropertyInfo? property, string[] elementTypes, string valueType, DateTimeOffset birth) :
-            base(property, altId, elementTypes, valueType)
+        internal BirthDateInfo(int altId, PropertyInfo? property, string[] elementTypes, string group, string valueType, DateTimeOffset birth) :
+            base(property, altId, elementTypes, group, valueType)
         {
             BirthDate = birth;
         }

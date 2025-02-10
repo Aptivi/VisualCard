@@ -24,7 +24,8 @@ using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using Textify.General;
-using VisualCard.Parsers.Arguments;
+using VisualCard.Common.Parsers.Arguments;
+using VisualCard.Common.Parts;
 
 namespace VisualCard.Parts.Implementations
 {
@@ -39,10 +40,10 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public Card[]? AgentCards { get; set; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
-            new AgentInfo().FromStringVcardInternal(value, property, altId, elementTypes, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            (BaseCardPartInfo)new AgentInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
 
-        internal override string ToStringVcardInternal(Version cardVersion)
+        internal override string ToStringInternal(Version cardVersion)
         {
             if (AgentCards is null)
                 return "";
@@ -57,7 +58,7 @@ namespace VisualCard.Parts.Implementations
             return agents.ToString();
         }
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Check the provided agent
             if (string.IsNullOrEmpty(value))
@@ -66,7 +67,7 @@ namespace VisualCard.Parts.Implementations
             // Populate the fields
             string _agentVcard = Regex.Unescape(value).Replace("\\n", "\n").Replace("\\N", "\n");
             var _agentVcardParsers = CardTools.GetCardsFromString(_agentVcard);
-            AgentInfo _agent = new(altId, property, elementTypes, valueType, _agentVcardParsers);
+            AgentInfo _agent = new(altId, property, elementTypes, group, valueType, _agentVcardParsers);
             return _agent;
         }
 
@@ -117,15 +118,15 @@ namespace VisualCard.Parts.Implementations
         public static bool operator !=(AgentInfo left, AgentInfo right) =>
             !(left == right);
 
-        internal override bool EqualsInternal(BaseCardPartInfo source, BaseCardPartInfo target) =>
+        internal override bool EqualsInternal(BasePartInfo source, BasePartInfo target) =>
             ((AgentInfo)source) == ((AgentInfo)target);
 
         internal AgentInfo() :
             base()
         { }
 
-        internal AgentInfo(int altId, PropertyInfo? property, string[] elementTypes, string valueType, Card[] agentCard) :
-            base(property, altId, elementTypes, valueType)
+        internal AgentInfo(int altId, PropertyInfo? property, string[] elementTypes, string group, string valueType, Card[] agentCard) :
+            base(property, altId, elementTypes, group, valueType)
         {
             AgentCards = agentCard;
         }

@@ -19,8 +19,9 @@
 
 using System;
 using System.Diagnostics;
-using VisualCard.Parsers;
-using VisualCard.Parsers.Arguments;
+using VisualCard.Common.Parsers;
+using VisualCard.Common.Parsers.Arguments;
+using VisualCard.Common.Parts;
 
 namespace VisualCard.Parts.Implementations
 {
@@ -35,19 +36,19 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public DateTimeOffset Anniversary { get; set; }
 
-        internal static BaseCardPartInfo FromStringVcardStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion) =>
-            new AnniversaryInfo().FromStringVcardInternal(value, property, altId, elementTypes, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
+            (BaseCardPartInfo)new AnniversaryInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
 
-        internal override string ToStringVcardInternal(Version cardVersion) =>
-            $"{VcardCommonTools.SavePosixDate(Anniversary, true)}";
+        internal override string ToStringInternal(Version cardVersion) =>
+            $"{CommonTools.SavePosixDate(Anniversary, true)}";
 
-        internal override BaseCardPartInfo FromStringVcardInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string valueType, Version cardVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Populate the fields
-            DateTimeOffset anniversary = VcardCommonTools.ParsePosixDateTime(value);
+            DateTimeOffset anniversary = CommonTools.ParsePosixDateTime(value);
 
             // Add the fetched information
-            AnniversaryInfo _time = new(-1, property, [], valueType, anniversary);
+            AnniversaryInfo _time = new(-1, property, [], group, valueType, anniversary);
             return _time;
         }
 
@@ -98,13 +99,13 @@ namespace VisualCard.Parts.Implementations
         public static bool operator !=(AnniversaryInfo left, AnniversaryInfo right) =>
             !(left == right);
 
-        internal override bool EqualsInternal(BaseCardPartInfo source, BaseCardPartInfo target) =>
+        internal override bool EqualsInternal(BasePartInfo source, BasePartInfo target) =>
             ((AnniversaryInfo)source) == ((AnniversaryInfo)target);
 
         internal AnniversaryInfo() { }
 
-        internal AnniversaryInfo(int altId, PropertyInfo? property, string[] elementTypes, string valueType, DateTimeOffset anniversary) :
-            base(property, altId, elementTypes, valueType)
+        internal AnniversaryInfo(int altId, PropertyInfo? property, string[] elementTypes, string group, string valueType, DateTimeOffset anniversary) :
+            base(property, altId, elementTypes, group, valueType)
         {
             Anniversary = anniversary;
         }
