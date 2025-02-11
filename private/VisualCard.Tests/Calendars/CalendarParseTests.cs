@@ -54,19 +54,34 @@ namespace VisualCard.Tests.Calendars
         [TestMethod]
         [DynamicData(nameof(CalendarData.singleVCalendarCalendarShorts), typeof(CalendarData))]
         public void ReparseDifferentCalendarsShorts(string calendarText) =>
-            ReparseDifferentCalendarsInternal(calendarText);
+            ReparseDifferentCalendarsInternal(calendarText, false);
 
         [TestMethod]
         [DynamicData(nameof(CalendarData.singleVCalendarCalendars), typeof(CalendarData))]
         public void ReparseDifferentCalendars(string calendarText) =>
-            ReparseDifferentCalendarsInternal(calendarText);
+            ReparseDifferentCalendarsInternal(calendarText, false);
 
         [TestMethod]
         [DynamicData(nameof(CalendarData.multipleVCalendarCalendars), typeof(CalendarData))]
         public void ReparseDifferentCalendarsMultiple(string calendarText) =>
-            ReparseDifferentCalendarsInternal(calendarText);
+            ReparseDifferentCalendarsInternal(calendarText, false);
 
-        internal void ReparseDifferentCalendarsInternal(string calendarText)
+        [TestMethod]
+        [DynamicData(nameof(CalendarData.singleVCalendarCalendarShorts), typeof(CalendarData))]
+        public void ReparseDifferentCalendarsShortsWithVerify(string calendarText) =>
+            ReparseDifferentCalendarsInternal(calendarText, true);
+
+        [TestMethod]
+        [DynamicData(nameof(CalendarData.singleVCalendarCalendars), typeof(CalendarData))]
+        public void ReparseDifferentCalendarsWithVerify(string calendarText) =>
+            ReparseDifferentCalendarsInternal(calendarText, true);
+
+        [TestMethod]
+        [DynamicData(nameof(CalendarData.multipleVCalendarCalendars), typeof(CalendarData))]
+        public void ReparseDifferentCalendarsMultipleWithVerify(string calendarText) =>
+            ReparseDifferentCalendarsInternal(calendarText, true);
+
+        internal void ReparseDifferentCalendarsInternal(string calendarText, bool verify)
         {
             Calendar.Parts.Calendar[] calendars = [];
             Calendar.Parts.Calendar[] secondCalendars;
@@ -75,7 +90,7 @@ namespace VisualCard.Tests.Calendars
             // Save all the calendars to strings and re-parse
             foreach (Calendar.Parts.Calendar calendar in calendars)
             {
-                string saved = Should.NotThrow(calendar.SaveToString);
+                string saved = Should.NotThrow(() => calendar.SaveToString(verify));
                 Should.NotThrow(() => secondCalendars = CalendarTools.GetCalendarsFromString(saved));
             }
         }
@@ -123,19 +138,34 @@ namespace VisualCard.Tests.Calendars
         [TestMethod]
         [DynamicData(nameof(CalendarData.singleVCalendarCalendarShorts), typeof(CalendarData))]
         public void ParseDifferentCalendarsSaveToStringAndTestEqualityShorts(string calendarText) =>
-            ParseDifferentCalendarsSaveToStringAndTestEqualityInternal(calendarText);
+            ParseDifferentCalendarsSaveToStringAndTestEqualityInternal(calendarText, false);
 
         [TestMethod]
         [DynamicData(nameof(CalendarData.singleVCalendarCalendars), typeof(CalendarData))]
         public void ParseDifferentCalendarsSaveToStringAndTestEquality(string calendarText) =>
-            ParseDifferentCalendarsSaveToStringAndTestEqualityInternal(calendarText);
+            ParseDifferentCalendarsSaveToStringAndTestEqualityInternal(calendarText, false);
 
         [TestMethod]
         [DynamicData(nameof(CalendarData.multipleVCalendarCalendars), typeof(CalendarData))]
         public void ParseDifferentCalendarsSaveToStringAndTestEqualityMultiple(string calendarText) =>
-            ParseDifferentCalendarsSaveToStringAndTestEqualityInternal(calendarText);
+            ParseDifferentCalendarsSaveToStringAndTestEqualityInternal(calendarText, false);
 
-        public void ParseDifferentCalendarsSaveToStringAndTestEqualityInternal(string calendarText)
+        [TestMethod]
+        [DynamicData(nameof(CalendarData.singleVCalendarCalendarShorts), typeof(CalendarData))]
+        public void ParseDifferentCalendarsSaveToStringAndTestEqualityShortsWithVerify(string calendarText) =>
+            ParseDifferentCalendarsSaveToStringAndTestEqualityInternal(calendarText, true);
+
+        [TestMethod]
+        [DynamicData(nameof(CalendarData.singleVCalendarCalendars), typeof(CalendarData))]
+        public void ParseDifferentCalendarsSaveToStringAndTestEqualityWithVerify(string calendarText) =>
+            ParseDifferentCalendarsSaveToStringAndTestEqualityInternal(calendarText, true);
+
+        [TestMethod]
+        [DynamicData(nameof(CalendarData.multipleVCalendarCalendars), typeof(CalendarData))]
+        public void ParseDifferentCalendarsSaveToStringAndTestEqualityMultipleWithVerify(string calendarText) =>
+            ParseDifferentCalendarsSaveToStringAndTestEqualityInternal(calendarText, true);
+
+        public void ParseDifferentCalendarsSaveToStringAndTestEqualityInternal(string calendarText, bool verify)
         {
             List<Calendar.Parts.Calendar> savedCalendars = [];
             Calendar.Parts.Calendar[] calendars = [];
@@ -148,7 +178,7 @@ namespace VisualCard.Tests.Calendars
             // Save all the calendars to strings and re-parse
             foreach (Calendar.Parts.Calendar calendar in calendars)
             {
-                string saved = Should.NotThrow(calendar.SaveToString);
+                string saved = Should.NotThrow(() => calendar.SaveToString(verify));
                 Should.NotThrow(() => secondCalendars = CalendarTools.GetCalendarsFromString(saved));
             }
 
@@ -201,7 +231,7 @@ namespace VisualCard.Tests.Calendars
             // Save all the calendars to strings and re-parse
             foreach (Calendar.Parts.Calendar calendar in calendars)
             {
-                string saved = Should.NotThrow(calendar.SaveToString);
+                string saved = Should.NotThrow(() => calendar.SaveToString());
                 Should.NotThrow(() => secondCalendars = CalendarTools.GetCalendarsFromString(saved));
             }
             foreach (Calendar.Parts.Calendar calendar in secondCalendars)

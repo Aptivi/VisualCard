@@ -173,16 +173,24 @@ namespace VisualCard.Calendar.Parts
             GetInteger(key, CalendarVersion, integers);
 
         /// <summary>
-        /// Saves this parsed card to the string
+        /// Saves this parsed calendar event to the string
         /// </summary>
-        public override string SaveToString() =>
-            SaveToString(CalendarVersion, extraParts, partsArray, strings, integers, VCalendarConstants._objectVEventSpecifier);
+        /// <param name="validate">Whether to validate all the fields or not</param>
+        public override string SaveToString(bool validate = false) =>
+            SaveToString(CalendarVersion, extraParts, partsArray, strings, integers, VCalendarConstants._objectVEventSpecifier, validate);
 
         /// <summary>
-        /// Saves the contact to the returned string
+        /// Saves the calendar event to the returned string
         /// </summary>
         public override string ToString() =>
             SaveToString();
+
+        /// <summary>
+        /// Saves the calendar event to the returned string
+        /// </summary>
+        /// <param name="validate">Whether to validate all the fields or not</param>
+        public override string ToString(bool validate) =>
+            SaveToString(validate);
 
         /// <summary>
         /// Deletes a string from the list of string values

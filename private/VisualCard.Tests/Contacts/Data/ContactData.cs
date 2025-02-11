@@ -624,6 +624,37 @@ namespace VisualCard.Tests.Contacts.Data
         /// <summary>
         /// Test MeCard contacts
         /// </summary>
+        public static IEnumerable<object[]> meCardContactsWithVerify =>
+        [
+            [
+                singleMeCardContactShort,
+                false,
+            ],
+            [
+                singleMeCardContact,
+                false,
+            ],
+            [
+                singleMeCardContactFull,
+                false,
+            ],
+            [
+                singleMeCardContactShort,
+                true,
+            ],
+            [
+                singleMeCardContact,
+                true,
+            ],
+            [
+                singleMeCardContactFull,
+                true,
+            ],
+        ];
+
+        /// <summary>
+        /// Test MeCard contacts
+        /// </summary>
         public static IEnumerable<object[]> meCardContactsReparsed =>
         [
             [

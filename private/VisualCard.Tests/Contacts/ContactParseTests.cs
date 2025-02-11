@@ -61,24 +61,44 @@ namespace VisualCard.Tests.Contacts
         [TestMethod]
         [DynamicData(nameof(ContactData.singleVcardContactShorts), typeof(ContactData))]
         public void ReparseDifferentContactsShorts(string cardText) =>
-            ReparseDifferentContactsInternal(cardText);
+            ReparseDifferentContactsInternal(cardText, false);
 
         [TestMethod]
         [DynamicData(nameof(ContactData.singleVcardContacts), typeof(ContactData))]
         public void ReparseDifferentContacts(string cardText) =>
-            ReparseDifferentContactsInternal(cardText);
+            ReparseDifferentContactsInternal(cardText, false);
 
         [TestMethod]
         [DynamicData(nameof(ContactData.multipleVcardContacts), typeof(ContactData))]
         public void ReparseDifferentContactsMultiple(string cardText) =>
-            ReparseDifferentContactsInternal(cardText);
+            ReparseDifferentContactsInternal(cardText, false);
 
         [TestMethod]
         [DynamicData(nameof(ContactData.remainingContacts), typeof(ContactData))]
         public void ReparseDifferentContactsRemaining(string cardText) =>
-            ReparseDifferentContactsInternal(cardText);
+            ReparseDifferentContactsInternal(cardText, false);
 
-        internal void ReparseDifferentContactsInternal(string cardText)
+        [TestMethod]
+        [DynamicData(nameof(ContactData.singleVcardContactShorts), typeof(ContactData))]
+        public void ReparseDifferentContactsShortsWithVerify(string cardText) =>
+            ReparseDifferentContactsInternal(cardText, true);
+
+        [TestMethod]
+        [DynamicData(nameof(ContactData.singleVcardContacts), typeof(ContactData))]
+        public void ReparseDifferentContactsWithVerify(string cardText) =>
+            ReparseDifferentContactsInternal(cardText, true);
+
+        [TestMethod]
+        [DynamicData(nameof(ContactData.multipleVcardContacts), typeof(ContactData))]
+        public void ReparseDifferentContactsMultipleWithVerify(string cardText) =>
+            ReparseDifferentContactsInternal(cardText, true);
+
+        [TestMethod]
+        [DynamicData(nameof(ContactData.remainingContacts), typeof(ContactData))]
+        public void ReparseDifferentContactsRemainingWithVerify(string cardText) =>
+            ReparseDifferentContactsInternal(cardText, true);
+
+        internal void ReparseDifferentContactsInternal(string cardText, bool verify)
         {
             Card[] cards = [];
             Card[] secondCards;
@@ -87,7 +107,7 @@ namespace VisualCard.Tests.Contacts
             // Save all the cards to strings and re-parse
             foreach (Card card in cards)
             {
-                string saved = Should.NotThrow(card.SaveToString);
+                string saved = Should.NotThrow(() => card.SaveToString(verify));
                 Should.NotThrow(() => secondCards = CardTools.GetCardsFromString(saved));
             }
         }
@@ -100,7 +120,9 @@ namespace VisualCard.Tests.Contacts
         }
 
         [TestMethod]
-        public void ReparseGeneratedContacts()
+        [DataRow(false)]
+        [DataRow(true)]
+        public void ReparseGeneratedContacts(bool verify)
         {
             Card[] cards = [];
             Should.NotThrow(() => cards = CardGenerator.GenerateCards());
@@ -108,7 +130,7 @@ namespace VisualCard.Tests.Contacts
             // Save all the cards to strings and re-parse
             foreach (Card card in cards)
             {
-                string saved = Should.NotThrow(card.SaveToString);
+                string saved = Should.NotThrow(() => card.SaveToString(verify));
                 Should.NotThrow(() => CardTools.GetCardsFromString(saved));
             }
         }
@@ -161,24 +183,44 @@ namespace VisualCard.Tests.Contacts
         [TestMethod]
         [DynamicData(nameof(ContactData.singleVcardContactShorts), typeof(ContactData))]
         public void ParseDifferentContactsSaveToStringAndTestEqualityShorts(string cardText) =>
-            ParseDifferentContactsSaveToStringAndTestEqualityInternal(cardText);
+            ParseDifferentContactsSaveToStringAndTestEqualityInternal(cardText, false);
 
         [TestMethod]
         [DynamicData(nameof(ContactData.singleVcardContacts), typeof(ContactData))]
         public void ParseDifferentContactsSaveToStringAndTestEquality(string cardText) =>
-            ParseDifferentContactsSaveToStringAndTestEqualityInternal(cardText);
+            ParseDifferentContactsSaveToStringAndTestEqualityInternal(cardText, false);
 
         [TestMethod]
         [DynamicData(nameof(ContactData.multipleVcardContacts), typeof(ContactData))]
         public void ParseDifferentContactsSaveToStringAndTestEqualityMultiple(string cardText) =>
-            ParseDifferentContactsSaveToStringAndTestEqualityInternal(cardText);
+            ParseDifferentContactsSaveToStringAndTestEqualityInternal(cardText, false);
 
         [TestMethod]
         [DynamicData(nameof(ContactData.remainingContacts), typeof(ContactData))]
         public void ParseDifferentContactsSaveToStringAndTestEqualityRemaining(string cardText) =>
-            ParseDifferentContactsSaveToStringAndTestEqualityInternal(cardText);
+            ParseDifferentContactsSaveToStringAndTestEqualityInternal(cardText, false);
 
-        public void ParseDifferentContactsSaveToStringAndTestEqualityInternal(string cardText)
+        [TestMethod]
+        [DynamicData(nameof(ContactData.singleVcardContactShorts), typeof(ContactData))]
+        public void ParseDifferentContactsSaveToStringAndTestEqualityShortsWithVerify(string cardText) =>
+            ParseDifferentContactsSaveToStringAndTestEqualityInternal(cardText, true);
+
+        [TestMethod]
+        [DynamicData(nameof(ContactData.singleVcardContacts), typeof(ContactData))]
+        public void ParseDifferentContactsSaveToStringAndTestEqualityWithVerify(string cardText) =>
+            ParseDifferentContactsSaveToStringAndTestEqualityInternal(cardText, true);
+
+        [TestMethod]
+        [DynamicData(nameof(ContactData.multipleVcardContacts), typeof(ContactData))]
+        public void ParseDifferentContactsSaveToStringAndTestEqualityMultipleWithVerify(string cardText) =>
+            ParseDifferentContactsSaveToStringAndTestEqualityInternal(cardText, true);
+
+        [TestMethod]
+        [DynamicData(nameof(ContactData.remainingContacts), typeof(ContactData))]
+        public void ParseDifferentContactsSaveToStringAndTestEqualityRemainingWithVerify(string cardText) =>
+            ParseDifferentContactsSaveToStringAndTestEqualityInternal(cardText, true);
+
+        public void ParseDifferentContactsSaveToStringAndTestEqualityInternal(string cardText, bool verify)
         {
             List<Card> savedCards = [];
             Card[] cards = [];
@@ -191,7 +233,7 @@ namespace VisualCard.Tests.Contacts
             // Save all the cards to strings and re-parse
             foreach (Card card in cards)
             {
-                string saved = Should.NotThrow(card.SaveToString);
+                string saved = Should.NotThrow(() => card.SaveToString(verify));
                 Should.NotThrow(() => secondCards = CardTools.GetCardsFromString(saved));
             }
 
@@ -288,8 +330,8 @@ namespace VisualCard.Tests.Contacts
         }
 
         [TestMethod]
-        [DynamicData(nameof(ContactData.meCardContacts), typeof(ContactData))]
-        public void ParseDifferentMeCardContactsSaveToStringAndTestEquality(string cardText)
+        [DynamicData(nameof(ContactData.meCardContactsWithVerify), typeof(ContactData))]
+        public void ParseDifferentMeCardContactsSaveToStringAndTestEquality(string cardText, bool verify)
         {
             List<Card> savedCards = [];
             Card[] cards = [];
@@ -302,7 +344,7 @@ namespace VisualCard.Tests.Contacts
             // Save all the cards to strings and re-parse
             foreach (Card card in cards)
             {
-                string saved = Should.NotThrow(card.SaveToString);
+                string saved = Should.NotThrow(() => card.SaveToString(verify));
                 Should.NotThrow(() => secondCards = CardTools.GetCardsFromString(saved));
             }
 
@@ -355,7 +397,7 @@ namespace VisualCard.Tests.Contacts
             // Save all the cards to strings and re-parse
             foreach (Card card in cards)
             {
-                string saved = Should.NotThrow(card.SaveToString);
+                string saved = Should.NotThrow(() => card.SaveToString());
                 Should.NotThrow(() => secondCards = CardTools.GetCardsFromString(saved));
             }
             foreach (Card card in secondCards)

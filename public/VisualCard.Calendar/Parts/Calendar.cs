@@ -491,13 +491,18 @@ namespace VisualCard.Calendar.Parts
         }
 
         /// <summary>
-        /// Saves this parsed card to the string
+        /// Saves this parsed calendar to the string
         /// </summary>
-        public virtual string SaveToString() =>
-            SaveToString(version, extraParts, partsArray, strings, integers, VCalendarConstants._objectVCalendarSpecifier);
+        /// <param name="validate">Whether to validate all the fields or not</param>
+        public virtual string SaveToString(bool validate = false) =>
+            SaveToString(version, extraParts, partsArray, strings, integers, VCalendarConstants._objectVCalendarSpecifier, validate);
 
-        internal string SaveToString(Version version, Dictionary<PartsArrayEnum, List<BasePartInfo>> extraParts, Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray, Dictionary<CalendarStringsEnum, List<ValueInfo<string>>> strings, Dictionary<CalendarIntegersEnum, List<ValueInfo<double>>> integers, string objectType)
+        internal string SaveToString(Version version, Dictionary<PartsArrayEnum, List<BasePartInfo>> extraParts, Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray, Dictionary<CalendarStringsEnum, List<ValueInfo<string>>> strings, Dictionary<CalendarIntegersEnum, List<ValueInfo<double>>> integers, string objectType, bool validate)
         {
+            // Check to see if we need to validate
+            if (validate)
+                Validate();
+
             // Initialize the card builder
             var cardBuilder = new StringBuilder();
 
@@ -1367,10 +1372,17 @@ namespace VisualCard.Calendar.Parts
         }
 
         /// <summary>
-        /// Saves the contact to the returned string
+        /// Saves the calendar to the returned string
         /// </summary>
         public override string ToString() =>
             SaveToString();
+
+        /// <summary>
+        /// Saves the calendar to the returned string
+        /// </summary>
+        /// <param name="validate">Whether to validate all the fields or not</param>
+        public virtual string ToString(bool validate) =>
+            SaveToString(validate);
 
         /// <inheritdoc/>
         public override bool Equals(object obj) =>

@@ -274,8 +274,13 @@ namespace VisualCard.Parts
         /// <summary>
         /// Saves this parsed card to the string
         /// </summary>
-        public string SaveToString()
+        /// <param name="validate">Whether to validate all the fields or not</param>
+        public string SaveToString(bool validate = false)
         {
+            // Check to see if we need to validate
+            if (validate)
+                Validate();
+
             // Initialize the card builder
             var cardBuilder = new StringBuilder();
             var version = CardVersion;
@@ -835,6 +840,13 @@ namespace VisualCard.Parts
         /// </summary>
         public override string ToString() =>
             SaveToString();
+
+        /// <summary>
+        /// Saves the contact to the returned string
+        /// </summary>
+        /// <param name="validate">Whether to validate all the fields or not</param>
+        public string ToString(bool validate) =>
+            SaveToString(validate);
 
         /// <inheritdoc/>
         public override bool Equals(object obj) =>
