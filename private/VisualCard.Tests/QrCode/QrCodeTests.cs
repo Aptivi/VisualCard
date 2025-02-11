@@ -63,7 +63,7 @@ namespace VisualCard.Tests.QrCode
             var card = cards[0];
 
             // Save the code as qrCodeTest1.qrr
-            QrCodeGenerator.ExportQrCode(card, "qrCodeTest1");
+            QrCodeGenerator.ExportQrCode(card, "qrCodeTest1.qrr");
             File.Exists("qrCodeTest1.qrr").ShouldBeTrue();
         }
 
@@ -71,7 +71,7 @@ namespace VisualCard.Tests.QrCode
         public void TestExportQrCodeFromMeCardContact()
         {
             // Save the MeCard contact as qrCodeTest2.qrr
-            QrCodeGenerator.ExportQrCode(ContactData.singleMeCardContactFull, "qrCodeTest2");
+            QrCodeGenerator.ExportQrCode(ContactData.singleMeCardContactFull, "qrCodeTest2.qrr");
             File.Exists("qrCodeTest2.qrr").ShouldBeTrue();
         }
 
@@ -83,7 +83,7 @@ namespace VisualCard.Tests.QrCode
             var calendar = calendars[0];
 
             // Save the code as qrCodeTest3.qrr
-            QrCodeGenerator.ExportQrCode(calendar, "qrCodeTest3");
+            QrCodeGenerator.ExportQrCode(calendar, "qrCodeTest3.qrr");
             File.Exists("qrCodeTest3.qrr").ShouldBeTrue();
         }
     }

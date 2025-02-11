@@ -76,7 +76,7 @@ namespace VisualCard.Extras.Misc
         /// </summary>
         /// <param name="card">Card to get its QR code</param>
         /// <param name="validate">Whether to validate before saving</param>
-        /// <param name="filePath">Path to the file to export to (.qrr will be appended automatically)</param>
+        /// <param name="filePath">Path to the file to export to</param>
         public static void ExportQrCode(Card card, string filePath, bool validate = false)
         {
             // Save the card to a string
@@ -89,7 +89,7 @@ namespace VisualCard.Extras.Misc
         /// </summary>
         /// <param name="calendar">Calendar to get its QR code</param>
         /// <param name="validate">Whether to validate before saving</param>
-        /// <param name="filePath">Path to the file to export to (.qrr will be appended automatically)</param>
+        /// <param name="filePath">Path to the file to export to</param>
         public static void ExportQrCode(Calendar.Parts.Calendar calendar, string filePath, bool validate = false)
         {
             // Save the calendar to a string
@@ -101,7 +101,7 @@ namespace VisualCard.Extras.Misc
         /// Saves the MeCard contact to a QR code byte array
         /// </summary>
         /// <param name="meCard">MeCard representation to get its QR code</param>
-        /// <param name="filePath">Path to the file to export to (.qrr will be appended automatically)</param>
+        /// <param name="filePath">Path to the file to export to</param>
         public static void ExportQrCode(string meCard, string filePath)
         {
             // Verify the MeCard string and return its QR code representation
@@ -135,18 +135,7 @@ namespace VisualCard.Extras.Misc
             var qrCodeData = GetQrCodeData(representation);
 
             // Get the file path
-            filePath = GetFinalPath(filePath);
             qrCodeData.SaveRawData(filePath, QRCodeData.Compression.Uncompressed);
-        }
-
-        private static string GetFinalPath(string filePath)
-        {
-            // Check to see if this path points to a directory or a file
-            string initialFileName = DateTime.Now.ToString("yyyyMMddHHmmssfff");
-            if (Directory.Exists(filePath) || !File.Exists(filePath + ".qrr"))
-                filePath = Path.Combine(filePath, initialFileName);
-            filePath += ".qrr";
-            return filePath;
         }
     }
 }
