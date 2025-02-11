@@ -905,15 +905,16 @@ namespace VisualCard.Calendar.Parts
         /// <typeparam name="TPart">Part type to add</typeparam>
         /// <param name="rawValue">Raw value representing a group of values delimited by the semicolon</param>
         /// <param name="group">Property group (can be nested with a dot)</param>
+        /// <param name="extraPrefix">Extra prefix to append (only for <see cref="PartsArrayEnum.NonstandardNames"/> and <see cref="PartsArrayEnum.IanaNames"/>)</param>
         /// <param name="args">Argument list to be added</param>
-        public void AddPartToArray<TPart>(string rawValue, string group = "", params ArgumentInfo[] args)
+        public void AddPartToArray<TPart>(string rawValue, string group = "", string extraPrefix = "", params ArgumentInfo[] args)
             where TPart : BaseCalendarPartInfo
         {
             // Get the parts enumeration according to the type
             var key = VCalendarParserTools.GetPartsArrayEnumFromType(typeof(TPart), CalendarVersion, GetType());
 
             // Now, add the part
-            AddPartToArray<TPart>(key, rawValue, group, args);
+            AddPartToArray<TPart>(key, rawValue, group, extraPrefix, args);
         }
 
         /// <summary>
@@ -923,10 +924,11 @@ namespace VisualCard.Calendar.Parts
         /// <param name="key">Part array type</param>
         /// <param name="rawValue">Raw value representing a group of values delimited by the semicolon</param>
         /// <param name="group">Property group (can be nested with a dot)</param>
+        /// <param name="extraPrefix">Extra prefix to append (only for <see cref="PartsArrayEnum.NonstandardNames"/> and <see cref="PartsArrayEnum.IanaNames"/>)</param>
         /// <param name="args">Argument list to be added</param>
-        public void AddPartToArray<TPart>(CalendarPartsArrayEnum key, string rawValue, string group = "", params ArgumentInfo[] args)
+        public void AddPartToArray<TPart>(CalendarPartsArrayEnum key, string rawValue, string group = "", string extraPrefix = "", params ArgumentInfo[] args)
             where TPart : BaseCalendarPartInfo =>
-            AddPartToArray(key, typeof(TPart), rawValue, group, args);
+            AddPartToArray(key, typeof(TPart), rawValue, group, extraPrefix, args);
 
         /// <summary>
         /// Adds a part to the array
@@ -934,17 +936,18 @@ namespace VisualCard.Calendar.Parts
         /// <param name="key">Part array type</param>
         /// <param name="rawValue">Raw value representing a group of values delimited by the semicolon</param>
         /// <param name="group">Property group (can be nested with a dot)</param>
+        /// <param name="extraPrefix">Extra prefix to append (only for <see cref="PartsArrayEnum.NonstandardNames"/> and <see cref="PartsArrayEnum.IanaNames"/>)</param>
         /// <param name="args">Argument list to be added</param>
-        public void AddPartToArray(CalendarPartsArrayEnum key, string rawValue, string group = "", params ArgumentInfo[] args)
+        public void AddPartToArray(CalendarPartsArrayEnum key, string rawValue, string group = "", string extraPrefix = "", params ArgumentInfo[] args)
         {
             // Get the part type
             string prefix = VCalendarParserTools.GetPrefixFromPartsArrayEnum(key);
             var type = VCalendarParserTools.GetPartType(prefix, CalendarVersion, GetType());
             var partType = type.enumType ??
-                throw new ArgumentException("Can't determine enumeration type to delete part.");
+                throw new ArgumentException("Can't determine enumeration type to add part.");
 
             // Now, add the part
-            AddPartToArray(key, partType, rawValue, group, args);
+            AddPartToArray(key, partType, rawValue, group, extraPrefix, args);
         }
 
         /// <summary>
@@ -954,13 +957,16 @@ namespace VisualCard.Calendar.Parts
         /// <param name="partType">Enumeration type</param>
         /// <param name="rawValue">Raw value representing a group of values delimited by the semicolon</param>
         /// <param name="group">Property group (can be nested with a dot)</param>
+        /// <param name="extraPrefix">Extra prefix to append (only for <see cref="PartsArrayEnum.NonstandardNames"/> and <see cref="PartsArrayEnum.IanaNames"/>)</param>
         /// <param name="args">Argument list to be added</param>
-        public void AddPartToArray(CalendarPartsArrayEnum key, Type partType, string rawValue, string group = "", params ArgumentInfo[] args)
+        public void AddPartToArray(CalendarPartsArrayEnum key, Type partType, string rawValue, string group = "", string extraPrefix = "", params ArgumentInfo[] args)
         {
             VerifyPartsArrayType(key, partType, GetType());
 
             // Get the part type and build the line
             string prefix = VCalendarParserTools.GetPrefixFromPartsArrayEnum(key);
+            if (key == CalendarPartsArrayEnum.IanaNames || key == CalendarPartsArrayEnum.NonstandardNames)
+                prefix += extraPrefix.ToUpper();
             string line = CommonTools.BuildRawValue(prefix, rawValue, group, args);
 
             // Process the value

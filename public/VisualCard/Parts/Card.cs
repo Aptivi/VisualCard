@@ -529,15 +529,16 @@ namespace VisualCard.Parts
         /// <typeparam name="TPart">Part type to add</typeparam>
         /// <param name="rawValue">Raw value representing a group of values delimited by the semicolon</param>
         /// <param name="group">Property group (can be nested with a dot)</param>
+        /// <param name="extraPrefix">Extra prefix to append (only for <see cref="PartsArrayEnum.NonstandardNames"/> and <see cref="PartsArrayEnum.IanaNames"/>)</param>
         /// <param name="args">Argument list to be added</param>
-        public void AddPartToArray<TPart>(string rawValue, string group = "", params ArgumentInfo[] args)
+        public void AddPartToArray<TPart>(string rawValue, string group = "", string extraPrefix = "", params ArgumentInfo[] args)
             where TPart : BaseCardPartInfo
         {
             // Get the parts enumeration according to the type
             var key = VcardParserTools.GetPartsArrayEnumFromType(typeof(TPart), CardVersion, CardKindStr);
 
             // Now, add the part
-            AddPartToArray<TPart>(key, rawValue, group, args);
+            AddPartToArray<TPart>(key, rawValue, group, extraPrefix, args);
         }
 
         /// <summary>
@@ -547,10 +548,11 @@ namespace VisualCard.Parts
         /// <param name="key">Part array type</param>
         /// <param name="rawValue">Raw value representing a group of values delimited by the semicolon</param>
         /// <param name="group">Property group (can be nested with a dot)</param>
+        /// <param name="extraPrefix">Extra prefix to append (only for <see cref="PartsArrayEnum.NonstandardNames"/> and <see cref="PartsArrayEnum.IanaNames"/>)</param>
         /// <param name="args">Argument list to be added</param>
-        public void AddPartToArray<TPart>(CardPartsArrayEnum key, string rawValue, string group = "", params ArgumentInfo[] args)
+        public void AddPartToArray<TPart>(CardPartsArrayEnum key, string rawValue, string group = "", string extraPrefix = "", params ArgumentInfo[] args)
             where TPart : BaseCardPartInfo =>
-            AddPartToArray(key, typeof(TPart), rawValue, group, args);
+            AddPartToArray(key, typeof(TPart), rawValue, group, extraPrefix, args);
 
         /// <summary>
         /// Adds a part to the array
@@ -558,17 +560,18 @@ namespace VisualCard.Parts
         /// <param name="key">Part array type</param>
         /// <param name="rawValue">Raw value representing a group of values delimited by the semicolon</param>
         /// <param name="group">Property group (can be nested with a dot)</param>
+        /// <param name="extraPrefix">Extra prefix to append (only for <see cref="PartsArrayEnum.NonstandardNames"/> and <see cref="PartsArrayEnum.IanaNames"/>)</param>
         /// <param name="args">Argument list to be added</param>
-        public void AddPartToArray(CardPartsArrayEnum key, string rawValue, string group = "", params ArgumentInfo[] args)
+        public void AddPartToArray(CardPartsArrayEnum key, string rawValue, string group = "", string extraPrefix = "", params ArgumentInfo[] args)
         {
             // Get the part type
             string prefix = VcardParserTools.GetPrefixFromPartsArrayEnum(key);
             var type = VcardParserTools.GetPartType(prefix, CardVersion, CardKindStr);
             var partType = type.enumType ??
-                throw new ArgumentException("Can't determine enumeration type to delete part.");
+                throw new ArgumentException("Can't determine enumeration type to add part.");
 
             // Now, add the part
-            AddPartToArray(key, partType, rawValue, group, args);
+            AddPartToArray(key, partType, rawValue, group, extraPrefix, args);
         }
 
         /// <summary>
@@ -578,13 +581,16 @@ namespace VisualCard.Parts
         /// <param name="partType">Enumeration type</param>
         /// <param name="rawValue">Raw value representing a group of values delimited by the semicolon</param>
         /// <param name="group">Property group (can be nested with a dot)</param>
+        /// <param name="extraPrefix">Extra prefix to append (only for <see cref="PartsArrayEnum.NonstandardNames"/> and <see cref="PartsArrayEnum.IanaNames"/>)</param>
         /// <param name="args">Argument list to be added</param>
-        public void AddPartToArray(CardPartsArrayEnum key, Type partType, string rawValue, string group = "", params ArgumentInfo[] args)
+        public void AddPartToArray(CardPartsArrayEnum key, Type partType, string rawValue, string group = "", string extraPrefix = "", params ArgumentInfo[] args)
         {
             VerifyPartsArrayType(key, partType);
 
             // Get the prefix and build the resultant line
             string prefix = VcardParserTools.GetPrefixFromPartsArrayEnum(key);
+            if (key == CardPartsArrayEnum.IanaNames || key == CardPartsArrayEnum.NonstandardNames)
+                prefix += extraPrefix.ToUpper();
             string line = CommonTools.BuildRawValue(prefix, rawValue, group, args);
 
             // Process the value
