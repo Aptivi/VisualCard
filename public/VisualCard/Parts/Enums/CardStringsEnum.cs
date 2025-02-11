@@ -22,7 +22,7 @@ namespace VisualCard.Parts.Enums
     /// <summary>
     /// Enumeration for available parts that are strings
     /// </summary>
-    public enum StringsEnum
+    public enum CardStringsEnum
     {
         /// <summary>
         /// The VCard kind (individual is the default)

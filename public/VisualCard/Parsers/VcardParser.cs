@@ -27,6 +27,7 @@ using VisualCard.Common.Parsers;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parts;
 using VisualCard.Common.Parts.Enums;
+using VisualCard.Common.Parts.Implementations;
 using VisualCard.Exceptions;
 using VisualCard.Parts;
 using VisualCard.Parts.Enums;
@@ -127,8 +128,8 @@ namespace VisualCard.Parsers
                 if (!allowedTypes.Contains(elementTypeUpper) && !partType.allowedExtraTypes.Contains(elementTypeUpper) && !elementTypeUpper.StartsWith("X-"))
                 {
                     if (partType.type == PartType.PartsArray &&
-                        ((PartsArrayEnum)partType.enumeration == PartsArrayEnum.IanaNames ||
-                         (PartsArrayEnum)partType.enumeration == PartsArrayEnum.NonstandardNames))
+                        ((CardPartsArrayEnum)partType.enumeration == CardPartsArrayEnum.IanaNames ||
+                         (CardPartsArrayEnum)partType.enumeration == CardPartsArrayEnum.NonstandardNames))
                         continue;
                     throw new InvalidDataException($"Part info type {partType.enumType?.Name ?? "<null>"} doesn't support property type {elementTypeUpper} because the following base types are supported: [{string.Join(", ", allowedTypes)}] and the extra types are supported: [{string.Join(", ", partType.allowedExtraTypes)}]");
                 }
@@ -161,10 +162,10 @@ namespace VisualCard.Parsers
             {
                 case PartType.Strings:
                     {
-                        StringsEnum stringType = (StringsEnum)partType.enumeration;
+                        CardStringsEnum stringType = (CardStringsEnum)partType.enumeration;
 
                         // Check if the profile is vCard or not.
-                        if (stringType == StringsEnum.Profile && !finalValue.Equals("vcard", StringComparison.OrdinalIgnoreCase))
+                        if (stringType == CardStringsEnum.Profile && !finalValue.Equals("vcard", StringComparison.OrdinalIgnoreCase))
                             throw new InvalidDataException("Profile must be \"vCard\"");
 
                         // Set the string for real
@@ -174,16 +175,28 @@ namespace VisualCard.Parsers
                     break;
                 case PartType.PartsArray:
                     {
-                        PartsArrayEnum partsArrayType = (PartsArrayEnum)partType.enumeration;
-                        if (partType.fromStringFunc is null)
-                            return;
+                        CardPartsArrayEnum partsArrayType = (CardPartsArrayEnum)partType.enumeration;
+                        bool isExtra = partsArrayType is CardPartsArrayEnum.NonstandardNames or CardPartsArrayEnum.IanaNames;
 
                         // Now, get the part info
-                        finalValue = partsArrayType is PartsArrayEnum.NonstandardNames or PartsArrayEnum.IanaNames ? _value : info.Value;
-                        var partInfo = partType.fromStringFunc(finalValue, info, altId, elementTypes, info.Group, valueType, version);
+                        if (isExtra)
+                        {
+                            // Get the base part info from the 
+                            var partInfo =
+                                partsArrayType == CardPartsArrayEnum.NonstandardNames ?
+                                XNameInfo.FromStringStatic(_value, info, altId, elementTypes, info.Group, valueType, version) :
+                                ExtraInfo.FromStringStatic(_value, info, altId, elementTypes, info.Group, valueType, version);
+                            card.AddExtraPartToArray((PartsArrayEnum)partsArrayType, partInfo);
+                        }
+                        else
+                        {
+                            if (partType.fromStringFunc is null)
+                                return;
 
-                        // Set the array for real
-                        card.AddPartToArray(partsArrayType, partInfo);
+                            // Get the part info from the part type and add it to the part array
+                            var partInfo = partType.fromStringFunc(finalValue, info, altId, elementTypes, info.Group, valueType, version);
+                            card.AddPartToArray(partsArrayType, partInfo);
+                        }
                     }
                     break;
                 default:

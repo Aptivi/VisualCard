@@ -30,6 +30,20 @@ namespace VisualCard.Tests.Calendars
     public class CalendarPropertyTests
     {
         [TestMethod]
+        public void TestCalendarPropertyAddString()
+        {
+            var calendars = CalendarTools.GetCalendarsFromString(CalendarData.singleVCalendarTwoCalendarShort);
+            var calendar = calendars[0];
+            var eventChunk = calendar.Events[0];
+            eventChunk.AddString(CalendarStringsEnum.Url, "https://example.com/event");
+            eventChunk.GetString(CalendarStringsEnum.Url).ShouldNotBeEmpty();
+            var note = eventChunk.GetString(CalendarStringsEnum.Url)[0];
+            note.Value.ShouldBe("https://example.com/event");
+            string calendarStr = calendar.SaveToString();
+            calendarStr.ShouldContain("https://example.com/event");
+        }
+
+        [TestMethod]
         public void TestCalendarPropertySetStringInRoot()
         {
             var calendars = CalendarTools.GetCalendarsFromString(CalendarData.singleVCalendarTwoCalendarShort);

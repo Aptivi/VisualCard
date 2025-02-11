@@ -19,6 +19,7 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shouldly;
+using VisualCard.Common.Parsers;
 
 namespace VisualCard.Tests.TimePeriod
 {

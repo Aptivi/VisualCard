@@ -72,7 +72,7 @@ namespace VisualCard.Tests.SocialMedia
             var card = CardTools.GetCardsFromString(targetContact)[0];
 
             // Verify that we have the social media properties
-            var xNames = card.GetPartsArray<XNameInfo>();
+            var xNames = card.GetExtraPartsArray<XNameInfo>();
             xNames.ShouldNotBeEmpty();
 
             // Now, get the media from the index and construct a URI

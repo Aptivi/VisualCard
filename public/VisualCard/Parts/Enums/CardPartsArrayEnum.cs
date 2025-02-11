@@ -22,7 +22,7 @@ namespace VisualCard.Parts.Enums
     /// <summary>
     /// Enumeration for available parts that are not strings but are arrays
     /// </summary>
-    public enum PartsArrayEnum
+    public enum CardPartsArrayEnum
     {
         /// <summary>
         /// The contact's names

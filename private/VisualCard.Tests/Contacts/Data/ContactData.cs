@@ -162,8 +162,8 @@ namespace VisualCard.Tests.Contacts.Data
             NOTE:Note test for VisualCard
             FN:John Sanders
             N:Sanders;John;;;
-            X-VISUALCARD-KANA:Saunders;John
             ADR:;;Los Angeles;;;;USA
+            X-VISUALCARD-KANA:Saunders;John
             END:VCARD
 
             """

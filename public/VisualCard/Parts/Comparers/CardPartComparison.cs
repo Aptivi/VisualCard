@@ -28,8 +28,8 @@ namespace VisualCard.Parts.Comparers
     internal static class CardPartComparison
     {
         internal static bool PartsArrayEnumEqual(
-            IDictionary<PartsArrayEnum, List<BaseCardPartInfo>> source,
-            IDictionary<PartsArrayEnum, List<BaseCardPartInfo>> target)
+            IDictionary<CardPartsArrayEnum, List<BaseCardPartInfo>> source,
+            IDictionary<CardPartsArrayEnum, List<BaseCardPartInfo>> target)
         {
             // Verify the dictionaries
             if (!CommonComparison.VerifyDicts(source, target))
@@ -53,8 +53,8 @@ namespace VisualCard.Parts.Comparers
         }
         
         internal static bool StringsEqual(
-            IDictionary<StringsEnum, List<ValueInfo<string>>> source,
-            IDictionary<StringsEnum, List<ValueInfo<string>>> target)
+            IDictionary<CardStringsEnum, List<ValueInfo<string>>> source,
+            IDictionary<CardStringsEnum, List<ValueInfo<string>>> target)
         {
             // Verify the dictionaries
             if (!CommonComparison.VerifyDicts(source, target))

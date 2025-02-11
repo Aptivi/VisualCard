@@ -38,13 +38,14 @@ namespace VisualCard.Parts
     /// <summary>
     /// A vCard card instance
     /// </summary>
-    [DebuggerDisplay("vCard version {CardVersion.ToString()}, parts: (A [{partsArray.Count}] | S [{strings.Count}])")]
+    [DebuggerDisplay("vCard version {CardVersion.ToString()}, parts: (A [{partsArray.Count}] | S [{strings.Count}] | E [{extraParts.Count}])")]
     public class Card : IEquatable<Card>
     {
         internal List<Card> nestedCards = [];
         private readonly Version version;
-        private readonly Dictionary<PartsArrayEnum, List<BaseCardPartInfo>> partsArray = [];
-        private readonly Dictionary<StringsEnum, List<ValueInfo<string>>> strings = [];
+        private readonly Dictionary<PartsArrayEnum, List<BasePartInfo>> extraParts = [];
+        private readonly Dictionary<CardPartsArrayEnum, List<BaseCardPartInfo>> partsArray = [];
+        private readonly Dictionary<CardStringsEnum, List<ValueInfo<string>>> strings = [];
 
         /// <summary>
         /// The VCard version
@@ -62,13 +63,13 @@ namespace VisualCard.Parts
         /// Unique ID for this card
         /// </summary>
         public string UniqueId =>
-            GetString(StringsEnum.Uid).Length > 0 ? GetString(StringsEnum.Uid)[0].Value : "";
+            GetString(CardStringsEnum.Uid).Length > 0 ? GetString(CardStringsEnum.Uid)[0].Value : "";
 
         /// <summary>
         /// Card kind string
         /// </summary>
         public string CardKindStr =>
-            strings.ContainsKey(StringsEnum.Kind) && strings[StringsEnum.Kind].Count > 0 ? strings[StringsEnum.Kind][0].Value : "individual";
+            strings.ContainsKey(CardStringsEnum.Kind) && strings[CardStringsEnum.Kind].Count > 0 ? strings[CardStringsEnum.Kind][0].Value : "individual";
 
         /// <summary>
         /// Card kind
@@ -77,16 +78,95 @@ namespace VisualCard.Parts
             VcardParserTools.GetKindEnum(CardKindStr);
 
         /// <summary>
+        /// Extra part array list in a dictionary (for enumeration operations)
+        /// </summary>
+        public ReadOnlyDictionary<PartsArrayEnum, ReadOnlyCollection<BasePartInfo>> ExtraParts =>
+            new(extraParts.ToDictionary((kvp) => kvp.Key, (kvp) => kvp.Value.AsReadOnly()));
+
+        /// <summary>
         /// Part array list in a dictionary (for enumeration operations)
         /// </summary>
-        public ReadOnlyDictionary<PartsArrayEnum, ReadOnlyCollection<BaseCardPartInfo>> PartsArray =>
+        public ReadOnlyDictionary<CardPartsArrayEnum, ReadOnlyCollection<BaseCardPartInfo>> PartsArray =>
             new(partsArray.ToDictionary((kvp) => kvp.Key, (kvp) => kvp.Value.AsReadOnly()));
 
         /// <summary>
         /// String list in a dictionary (for enumeration operations)
         /// </summary>
-        public ReadOnlyDictionary<StringsEnum, ReadOnlyCollection<ValueInfo<string>>> Strings =>
+        public ReadOnlyDictionary<CardStringsEnum, ReadOnlyCollection<ValueInfo<string>>> Strings =>
             new(strings.ToDictionary((kvp) => kvp.Key, (kvp) => kvp.Value.AsReadOnly()));
+
+        /// <summary>
+        /// Gets a part array from a specified key
+        /// </summary>
+        /// <returns>An array of values or an empty part array []</returns>
+        public TPart[] GetExtraPartsArray<TPart>()
+            where TPart : BasePartInfo
+        {
+            // Get the extra part enumeration according to the type
+            var key = (PartsArrayEnum)VcardParserTools.GetPartsArrayEnumFromType(typeof(TPart), CardVersion, CardKindStr);
+
+            // Now, return the value
+            return GetExtraPartsArray<TPart>(key);
+        }
+
+        /// <summary>
+        /// Gets a part array from a specified key
+        /// </summary>
+        /// <param name="key">A key to use</param>
+        /// <returns>An array of values or an empty part array []</returns>
+        public TPart[] GetExtraPartsArray<TPart>(PartsArrayEnum key)
+            where TPart : BasePartInfo =>
+            GetExtraPartsArray(typeof(TPart), key).Cast<TPart>().ToArray();
+
+        /// <summary>
+        /// Gets a part array from a specified key
+        /// </summary>
+        /// <param name="partType">Target part type that derives from <see cref="BasePartInfo"/></param>
+        /// <returns>An array of values or an empty part array []</returns>
+        public BasePartInfo[] GetExtraPartsArray(Type partType)
+        {
+            // Check the base type
+            VerifyPartType(partType);
+
+            // Get the extra part enumeration according to the type
+            var key = (PartsArrayEnum)VcardParserTools.GetPartsArrayEnumFromType(partType, CardVersion, CardKindStr);
+
+            // Now, return the value
+            return GetExtraPartsArray(partType, key);
+        }
+
+        /// <summary>
+        /// Gets a part array from a specified key
+        /// </summary>
+        /// <param name="partType">Target part type that derives from <see cref="BasePartInfo"/></param>
+        /// <param name="key">A key to use</param>
+        /// <returns>An array of values or an empty part array []</returns>
+        public BasePartInfo[] GetExtraPartsArray(Type partType, PartsArrayEnum key)
+        {
+            // Check the type
+            VerifyPartsArrayType((CardPartsArrayEnum)key, partType);
+
+            // Check for version support
+            string prefix = VcardParserTools.GetPrefixFromPartsArrayEnum((CardPartsArrayEnum)key);
+            var type = VcardParserTools.GetPartType(prefix, CardVersion, CardKindStr);
+            if (!type.minimumVersionCondition(CardVersion))
+                return [];
+
+            // Get the fallback value
+            BasePartInfo[] fallback = [];
+
+            // Check to see if the partarray has a value or not
+            bool hasValue = extraParts.ContainsKey(key);
+            if (!hasValue)
+                return fallback;
+
+            // Cast the values
+            var value = extraParts[key];
+            BasePartInfo[] extraPartsArray = [.. value];
+
+            // Now, return the value
+            return extraPartsArray;
+        }
 
         /// <summary>
         /// Gets a part array from a specified key
@@ -107,7 +187,7 @@ namespace VisualCard.Parts
         /// </summary>
         /// <param name="key">A key to use</param>
         /// <returns>An array of values or an empty part array []</returns>
-        public TPart[] GetPartsArray<TPart>(PartsArrayEnum key)
+        public TPart[] GetPartsArray<TPart>(CardPartsArrayEnum key)
             where TPart : BaseCardPartInfo =>
             GetPartsArray(typeof(TPart), key).Cast<TPart>().ToArray();
 
@@ -134,7 +214,7 @@ namespace VisualCard.Parts
         /// <param name="partType">Target part type that derives from <see cref="BaseCardPartInfo"/></param>
         /// <param name="key">A key to use</param>
         /// <returns>An array of values or an empty part array []</returns>
-        public BaseCardPartInfo[] GetPartsArray(Type partType, PartsArrayEnum key)
+        public BaseCardPartInfo[] GetPartsArray(Type partType, CardPartsArrayEnum key)
         {
             // Check the type
             VerifyPartsArrayType(key, partType);
@@ -166,7 +246,7 @@ namespace VisualCard.Parts
         /// </summary>
         /// <param name="key">A key to use</param>
         /// <returns>A list of strings that stores a group and a value, or "individual" if the kind doesn't exist, or an empty list if any other type either doesn't exist or the type is not supported by the card version</returns>
-        public ValueInfo<string>[] GetString(StringsEnum key)
+        public ValueInfo<string>[] GetString(CardStringsEnum key)
         {
             // Check for version support
             string prefix = VcardParserTools.GetPrefixFromStringsEnum(key);
@@ -175,7 +255,7 @@ namespace VisualCard.Parts
                 return [];
 
             // Get the fallback value
-            string fallback = key == StringsEnum.Kind ? "individual" : "";
+            string fallback = key == CardStringsEnum.Kind ? "individual" : "";
             ValueInfo<string>[] fallbacks =
                 !string.IsNullOrEmpty(fallback) ?
                 [new ValueInfo<string>(null, -1, [], "", "", fallback)] :
@@ -205,7 +285,7 @@ namespace VisualCard.Parts
             cardBuilder.AppendLine($"{VcardConstants._versionSpecifier}:{version}");
 
             // Then, enumerate all the strings
-            foreach (StringsEnum stringEnum in strings.Keys)
+            foreach (CardStringsEnum stringEnum in strings.Keys)
             {
                 // Get the string values
                 var array = GetString(stringEnum);
@@ -235,7 +315,7 @@ namespace VisualCard.Parts
             }
 
             // Then, enumerate all the arrays
-            foreach (PartsArrayEnum partsArrayEnum in partsArray.Keys)
+            foreach (CardPartsArrayEnum partsArrayEnum in partsArray.Keys)
             {
                 // Get the array value
                 var array = GetPartsArray<BaseCardPartInfo>(partsArrayEnum);
@@ -258,13 +338,48 @@ namespace VisualCard.Parts
                     string group = part.Group;
 
                     // Special treatment for vCard 2.1's AGENT property: add the AGENT vcard line by line
-                    if (partsArrayEnum == PartsArrayEnum.Agents && version.Major == 2)
+                    if (partsArrayEnum == CardPartsArrayEnum.Agents && version.Major == 2)
                         partRepresentation = "\n" + string.Join("\n", partRepresentation.Split(["\\n", "\\N"], StringSplitOptions.None));
                     if (!string.IsNullOrEmpty(group))
                         cardBuilder.Append($"{group}.");
                     partBuilder.Append($"{prefix}");
                     partBuilder.Append($"{partArguments}");
-                    partBuilder.Append($"{CommonTools.MakeStringBlock(partRepresentation, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length, !(partsArrayEnum == PartsArrayEnum.Agents && version.Major == 2), part.Property?.Encoding ?? "")}");
+                    partBuilder.Append($"{CommonTools.MakeStringBlock(partRepresentation, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length, !(partsArrayEnum == CardPartsArrayEnum.Agents && version.Major == 2), part.Property?.Encoding ?? "")}");
+                    cardBuilder.AppendLine($"{partBuilder}");
+                }
+            }
+
+            // Then, enumerate all the extra arrays
+            foreach (PartsArrayEnum partsArrayEnum in extraParts.Keys)
+            {
+                // Get the array value
+                var array = GetExtraPartsArray<BasePartInfo>(partsArrayEnum);
+                if (array is null || array.Length == 0)
+                    continue;
+
+                // Get the prefix
+                string prefix = VcardParserTools.GetPrefixFromPartsArrayEnum((CardPartsArrayEnum)partsArrayEnum);
+                var type = VcardParserTools.GetPartType(prefix, version, CardKindStr);
+                string defaultType = type.defaultType;
+                string defaultValueType = type.defaultValueType;
+
+                // Now, assemble the line
+                foreach (var part in array)
+                {
+                    var partBuilder = new StringBuilder();
+                    string partRepresentation = part.ToStringInternal(version);
+                    string partArguments = BuilderTools.BuildArguments(part, defaultType, defaultValueType);
+                    string[] partArgumentsLines = partArguments.SplitNewLines();
+                    string group = part.Group;
+
+                    // Special treatment for vCard 2.1's AGENT property: add the AGENT vcard line by line
+                    if ((CardPartsArrayEnum)partsArrayEnum == CardPartsArrayEnum.Agents && version.Major == 2)
+                        partRepresentation = "\n" + string.Join("\n", partRepresentation.Split(["\\n", "\\N"], StringSplitOptions.None));
+                    if (!string.IsNullOrEmpty(group))
+                        cardBuilder.Append($"{group}.");
+                    partBuilder.Append($"{prefix}");
+                    partBuilder.Append($"{partArguments}");
+                    partBuilder.Append($"{CommonTools.MakeStringBlock(partRepresentation, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length, !((CardPartsArrayEnum)partsArrayEnum == CardPartsArrayEnum.Agents && version.Major == 2), part.Property?.Encoding ?? "")}");
                     cardBuilder.AppendLine($"{partBuilder}");
                 }
             }
@@ -295,7 +410,7 @@ namespace VisualCard.Parts
         /// <param name="stringsEnum">String type</param>
         /// <param name="idx">Index of a string value</param>
         /// <returns>True if successful; false otherwise</returns>
-        public bool DeleteString(StringsEnum stringsEnum, int idx)
+        public bool DeleteString(CardStringsEnum stringsEnum, int idx)
         {
             // Get the string values
             var stringValues = GetString(stringsEnum);
@@ -318,7 +433,7 @@ namespace VisualCard.Parts
         /// <param name="partsArrayEnum">Part array type</param>
         /// <param name="idx">Index of a part</param>
         /// <returns>True if successful; false otherwise</returns>
-        public bool DeletePartsArray(PartsArrayEnum partsArrayEnum, int idx)
+        public bool DeletePartsArray(CardPartsArrayEnum partsArrayEnum, int idx)
         {
             // Get the part type
             string prefix = VcardParserTools.GetPrefixFromPartsArrayEnum(partsArrayEnum);
@@ -337,7 +452,7 @@ namespace VisualCard.Parts
         /// <param name="enumType">Enumeration type</param>
         /// <param name="idx">Index of a part</param>
         /// <returns>True if successful; false otherwise</returns>
-        public bool DeletePartsArray(PartsArrayEnum partsArrayEnum, Type enumType, int idx)
+        public bool DeletePartsArray(CardPartsArrayEnum partsArrayEnum, Type enumType, int idx)
         {
             // Get the string values
             var parts = GetPartsArray(enumType, partsArrayEnum);
@@ -371,7 +486,7 @@ namespace VisualCard.Parts
         /// <param name="partsArrayEnum">Part array type</param>
         /// <param name="idx">Index of a part</param>
         /// <returns>True if successful; false otherwise</returns>
-        public bool DeletePartsArray<TPart>(PartsArrayEnum partsArrayEnum, int idx)
+        public bool DeletePartsArray<TPart>(CardPartsArrayEnum partsArrayEnum, int idx)
             where TPart : BaseCardPartInfo
         {
             // Get the parts
@@ -385,14 +500,27 @@ namespace VisualCard.Parts
             return DeletePartsArrayInternal(partsArrayEnum, idx);
         }
 
-        internal bool DeletePartsArrayInternal(PartsArrayEnum partsArrayEnum, int idx)
+        internal bool DeletePartsArrayInternal(CardPartsArrayEnum partsArrayEnum, int idx)
         {
-            // Remove the part
-            var part = partsArray[partsArrayEnum][idx];
-            bool result = partsArray[partsArrayEnum].Remove(part);
-            if (partsArray[partsArrayEnum].Count == 0)
-                partsArray.Remove(partsArrayEnum);
-            return result;
+            if (partsArrayEnum is CardPartsArrayEnum.IanaNames or CardPartsArrayEnum.NonstandardNames)
+            {
+                // Remove the extra part
+                var extraPartEnum = (PartsArrayEnum)partsArrayEnum;
+                var part = extraParts[extraPartEnum][idx];
+                bool result = extraParts[extraPartEnum].Remove(part);
+                if (extraParts[extraPartEnum].Count == 0)
+                    extraParts.Remove(extraPartEnum);
+                return result;
+            }
+            else
+            {
+                // Remove the part
+                var part = partsArray[partsArrayEnum][idx];
+                bool result = partsArray[partsArrayEnum].Remove(part);
+                if (partsArray[partsArrayEnum].Count == 0)
+                    partsArray.Remove(partsArrayEnum);
+                return result;
+            }
         }
 
         /// <summary>
@@ -437,8 +565,8 @@ namespace VisualCard.Parts
         {
             int hashCode = 1365540608;
             hashCode = hashCode * -1521134295 + EqualityComparer<List<Card>>.Default.GetHashCode(nestedCards);
-            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<PartsArrayEnum, List<BaseCardPartInfo>>>.Default.GetHashCode(partsArray);
-            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<StringsEnum, List<ValueInfo<string>>>>.Default.GetHashCode(strings);
+            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CardPartsArrayEnum, List<BaseCardPartInfo>>>.Default.GetHashCode(partsArray);
+            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CardStringsEnum, List<ValueInfo<string>>>>.Default.GetHashCode(strings);
             return hashCode;
         }
 
@@ -475,7 +603,7 @@ namespace VisualCard.Parts
         /// <param name="rawValue">Raw value representing a group of values delimited by the semicolon</param>
         /// <param name="group">Property group (can be nested with a dot)</param>
         /// <param name="args">Argument list to be added</param>
-        public void AddPartToArray<TPart>(PartsArrayEnum key, string rawValue, string group = "", params ArgumentInfo[] args)
+        public void AddPartToArray<TPart>(CardPartsArrayEnum key, string rawValue, string group = "", params ArgumentInfo[] args)
             where TPart : BaseCardPartInfo =>
             AddPartToArray(key, typeof(TPart), rawValue, group, args);
 
@@ -486,7 +614,7 @@ namespace VisualCard.Parts
         /// <param name="rawValue">Raw value representing a group of values delimited by the semicolon</param>
         /// <param name="group">Property group (can be nested with a dot)</param>
         /// <param name="args">Argument list to be added</param>
-        public void AddPartToArray(PartsArrayEnum key, string rawValue, string group = "", params ArgumentInfo[] args)
+        public void AddPartToArray(CardPartsArrayEnum key, string rawValue, string group = "", params ArgumentInfo[] args)
         {
             // Get the part type
             string prefix = VcardParserTools.GetPrefixFromPartsArrayEnum(key);
@@ -506,7 +634,7 @@ namespace VisualCard.Parts
         /// <param name="rawValue">Raw value representing a group of values delimited by the semicolon</param>
         /// <param name="group">Property group (can be nested with a dot)</param>
         /// <param name="args">Argument list to be added</param>
-        public void AddPartToArray(PartsArrayEnum key, Type partType, string rawValue, string group = "", params ArgumentInfo[] args)
+        public void AddPartToArray(CardPartsArrayEnum key, Type partType, string rawValue, string group = "", params ArgumentInfo[] args)
         {
             VerifyPartsArrayType(key, partType);
 
@@ -518,7 +646,7 @@ namespace VisualCard.Parts
             VcardParser.Process(line, this, version);
         }
 
-        internal void AddPartToArray(PartsArrayEnum key, BaseCardPartInfo value)
+        internal void AddPartToArray(CardPartsArrayEnum key, BaseCardPartInfo value)
         {
             if (value is null)
                 return;
@@ -558,6 +686,46 @@ namespace VisualCard.Parts
             }
         }
 
+        internal void AddExtraPartToArray(PartsArrayEnum key, BasePartInfo value)
+        {
+            if (value is null)
+                return;
+
+            // Get the appropriate type and check it
+            string prefix = VcardParserTools.GetPrefixFromPartsArrayEnum((CardPartsArrayEnum)key);
+            var partType = VcardParserTools.GetPartType(prefix, CardVersion, CardKindStr);
+            var enumType = partType.enumType;
+            if (value.GetType() != enumType)
+                return;
+
+            // If we don't have this key yet, add it.
+            if (!extraParts.ContainsKey(key))
+                extraParts.Add(key, [value]);
+            else
+            {
+                // Maybe somehow we no longer have any value info but we still have the key entry?
+                if (extraParts[key].Count > 0)
+                {
+                    // We need to check the cardinality.
+                    var cardinality = partType.cardinality;
+                    int actualAltId = extraParts[key][0].AltId;
+                    bool onlyOne =
+                        cardinality == PartCardinality.ShouldBeOne ||
+                        cardinality == PartCardinality.MayBeOne;
+                    bool onlyOneNoAltId =
+                        cardinality == PartCardinality.ShouldBeOneNoAltId ||
+                        cardinality == PartCardinality.MayBeOneNoAltId;
+                    if (onlyOne && actualAltId != value.AltId)
+                        throw new InvalidOperationException($"Can't overwrite part array {key} with AltID {value.AltId}, because cardinality is {cardinality} and expected AltID is {actualAltId}.");
+                    if (onlyOneNoAltId)
+                        throw new InvalidOperationException($"Can never overwrite part array {key} with AltID {value.AltId}, because cardinality is {cardinality}, even though the expected AltID is {actualAltId}.");
+                }
+
+                // Add this value info!
+                extraParts[key].Add(value);
+            }
+        }
+
         /// <summary>
         /// Adds a string to the array
         /// </summary>
@@ -565,7 +733,7 @@ namespace VisualCard.Parts
         /// <param name="rawValue">Raw value representing a group of values delimited by the semicolon</param>
         /// <param name="group">Property group (can be nested with a dot)</param>
         /// <param name="args">Argument list to be added</param>
-        public void AddString(StringsEnum key, string rawValue, string group = "", params ArgumentInfo[] args)
+        public void AddString(CardStringsEnum key, string rawValue, string group = "", params ArgumentInfo[] args)
         {
             // Get the part type and build the line
             string prefix = VcardParserTools.GetPrefixFromStringsEnum(key);
@@ -575,7 +743,7 @@ namespace VisualCard.Parts
             VcardParser.Process(line, this, version);
         }
 
-        internal void AddString(StringsEnum key, ValueInfo<string> value)
+        internal void AddString(CardStringsEnum key, ValueInfo<string> value)
         {
             if (value is null || string.IsNullOrEmpty(value.Value))
                 return;
@@ -651,7 +819,7 @@ namespace VisualCard.Parts
                 {
                     case PartType.Strings:
                         {
-                            var values = GetString((StringsEnum)partType.enumeration);
+                            var values = GetString((CardStringsEnum)partType.enumeration);
                             bool exists = values.Length > 0;
                             if (exists)
                                 actualFieldList.Add(expectedFieldName);
@@ -661,7 +829,7 @@ namespace VisualCard.Parts
                         {
                             if (partType.enumType is null)
                                 continue;
-                            var values = GetPartsArray(partType.enumType, (PartsArrayEnum)partType.enumeration);
+                            var values = GetPartsArray(partType.enumType, (CardPartsArrayEnum)partType.enumeration);
                             bool exists = values.Length > 0;
                             if (exists)
                                 actualFieldList.Add(expectedFieldName);
@@ -675,6 +843,13 @@ namespace VisualCard.Parts
             return actualFields.SequenceEqual(expectedFields);
         }
 
+        internal void VerifyBasePartType(Type partType)
+        {
+            // Check the base type
+            if (partType.BaseType != typeof(BasePartInfo) && partType != typeof(BasePartInfo))
+                throw new InvalidOperationException($"Base type is not BasePartInfo [{partType.BaseType.Name}] and the part type is [{partType.Name}] that doesn't represent the part.");
+        }
+
         internal void VerifyPartType(Type partType)
         {
             // Check the base type
@@ -682,10 +857,13 @@ namespace VisualCard.Parts
                 throw new InvalidOperationException($"Base type is not BaseCardPartInfo [{partType.BaseType.Name}] and the part type is [{partType.Name}] that doesn't represent card part.");
         }
 
-        internal void VerifyPartsArrayType(PartsArrayEnum key, Type partType)
+        internal void VerifyPartsArrayType(CardPartsArrayEnum key, Type partType)
         {
             // Check the base type
-            VerifyPartType(partType);
+            if (key == CardPartsArrayEnum.IanaNames || key == CardPartsArrayEnum.NonstandardNames)
+                VerifyBasePartType(partType);
+            else
+                VerifyPartType(partType);
 
             // Get the type
             string prefix = VcardParserTools.GetPrefixFromPartsArrayEnum(key);
@@ -695,7 +873,7 @@ namespace VisualCard.Parts
             if (partType != typeof(BaseCardPartInfo))
             {
                 // We don't need the base, but a derivative of it. Check it.
-                var partsArrayEnum = (PartsArrayEnum)type.enumeration;
+                var partsArrayEnum = (CardPartsArrayEnum)type.enumeration;
                 if (key != partsArrayEnum)
                     throw new InvalidOperationException($"Parts array enumeration [{key}] is different from the expected one [{partsArrayEnum}] according to type {typeof(BaseCardPartInfo).Name}.");
             }

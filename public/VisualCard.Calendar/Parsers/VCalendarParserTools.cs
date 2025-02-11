@@ -214,8 +214,8 @@ namespace VisualCard.Calendar.Parsers
                 VCalendarConstants._rNumSpecifier => new(PartType.Integers, CalendarIntegersEnum.RecurrTimes, PartCardinality.MayBeOne, (ver) => ver.Major == 1 && TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo)), null, null, "", "", "integer", [], []),
 
                 // Extensions are allowed
-                VcardConstants._xSpecifier => new(PartType.PartsArray, CalendarPartsArrayEnum.NonstandardNames, PartCardinality.Any, null, typeof(XNameInfo), XNameInfo.FromStringStatic, "", "", "", [], []),
-                _ => new(PartType.PartsArray, CalendarPartsArrayEnum.IanaNames, PartCardinality.Any, null, typeof(ExtraInfo), ExtraInfo.FromStringStatic, "", "", "", [], []),
+                VcardConstants._xSpecifier => new(PartType.PartsArray, CalendarPartsArrayEnum.NonstandardNames, PartCardinality.Any, null, typeof(XNameInfo), null, "", "", "", [], []),
+                _ => new(PartType.PartsArray, CalendarPartsArrayEnum.IanaNames, PartCardinality.Any, null, typeof(ExtraInfo), null, "", "", "", [], []),
             };
         }
 

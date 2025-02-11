@@ -26,6 +26,7 @@ using VisualCard.Parts.Implementations;
 using System.Linq;
 using System.Collections.Generic;
 using VisualCard.Parts.Enums;
+using VisualCard.Common.Parts.Implementations;
 
 namespace VisualCard.Extras.Converters
 {
@@ -153,15 +154,15 @@ namespace VisualCard.Extras.Converters
 
             // Now, get all the values in the below order
             var names = card.GetPartsArray<NameInfo>();
-            var fullNames = card.GetString(StringsEnum.FullName);
-            var xNames = card.GetPartsArray<XNameInfo>();
-            var telephones = card.GetString(StringsEnum.Telephones);
-            var emails = card.GetString(StringsEnum.Mails);
-            var notes = card.GetString(StringsEnum.Notes);
+            var fullNames = card.GetString(CardStringsEnum.FullName);
+            var xNames = card.GetExtraPartsArray<XNameInfo>();
+            var telephones = card.GetString(CardStringsEnum.Telephones);
+            var emails = card.GetString(CardStringsEnum.Mails);
+            var notes = card.GetString(CardStringsEnum.Notes);
             var birthdays = card.GetPartsArray<BirthDateInfo>();
             var addresses = card.GetPartsArray<AddressInfo>();
-            var urls = card.GetString(StringsEnum.Url);
-            var nicknames = card.GetString(StringsEnum.Nicknames);
+            var urls = card.GetString(CardStringsEnum.Url);
+            var nicknames = card.GetString(CardStringsEnum.Nicknames);
 
             // Check them for existence
             bool hasNames = names.Length > 0;

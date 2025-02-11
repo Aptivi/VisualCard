@@ -30,6 +30,7 @@ using VisualCard.Common.Parts.Enums;
 using VisualCard.Common.Parsers;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parts;
+using VisualCard.Common.Parts.Implementations;
 
 namespace VisualCard.Calendar.Parsers
 {
@@ -205,18 +206,33 @@ namespace VisualCard.Calendar.Parsers
                 case PartType.PartsArray:
                     {
                         CalendarPartsArrayEnum partsArrayType = (CalendarPartsArrayEnum)partType.enumeration;
-                        if (partType.fromStringFunc is null)
-                            return;
+                        bool isExtra = partsArrayType is CalendarPartsArrayEnum.NonstandardNames or CalendarPartsArrayEnum.IanaNames;
 
                         // Now, get the part info
-                        finalValue = partsArrayType is CalendarPartsArrayEnum.IanaNames or CalendarPartsArrayEnum.NonstandardNames ? _value : info.Value;
-                        var partInfo = partType.fromStringFunc(finalValue, info, -1, elementTypes, info.Group, valueType, version);
-
-                        // Set the array for real
-                        if (subPart is not null)
-                            subPart.AddPartToArray(partsArrayType, partInfo);
+                        if (isExtra)
+                        {
+                            // Get the base part info from the 
+                            var partInfo =
+                                partsArrayType == CalendarPartsArrayEnum.NonstandardNames ?
+                                XNameInfo.FromStringStatic(_value, info, -1, elementTypes, info.Group, valueType, version) :
+                                ExtraInfo.FromStringStatic(_value, info, -1, elementTypes, info.Group, valueType, version);
+                            if (subPart is not null)
+                                subPart.AddExtraPartToArray((PartsArrayEnum)partsArrayType, partInfo);
+                            else
+                                calendar.AddExtraPartToArray((PartsArrayEnum)partsArrayType, partInfo);
+                        }
                         else
-                            calendar.AddPartToArray(partsArrayType, partInfo);
+                        {
+                            if (partType.fromStringFunc is null)
+                                return;
+
+                            // Get the part info from the part type and add it to the part array
+                            var partInfo = partType.fromStringFunc(finalValue, info, -1, elementTypes, info.Group, valueType, version);
+                            if (subPart is not null)
+                                subPart.AddPartToArray(partsArrayType, partInfo);
+                            else
+                                calendar.AddPartToArray(partsArrayType, partInfo);
+                        }
                     }
                     break;
                 default:

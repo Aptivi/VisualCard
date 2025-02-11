@@ -29,11 +29,24 @@ namespace VisualCard.Tests.Contacts
     public class ContactPropertyTests
     {
         [TestMethod]
+        public void TestContactPropertyAddString()
+        {
+            var cards = CardTools.GetCardsFromString(ContactData.singleVcardTwoContactShort);
+            var card = cards[0];
+            card.AddString(CardStringsEnum.Notes, "Note test");
+            card.GetString(CardStringsEnum.Notes).ShouldNotBeEmpty();
+            var note = card.GetString(CardStringsEnum.Notes)[0];
+            note.Value.ShouldBe("Note test");
+            string cardStr = card.SaveToString();
+            cardStr.ShouldContain("Note test");
+        }
+        
+        [TestMethod]
         public void TestContactPropertySetString()
         {
             var cards = CardTools.GetCardsFromString(ContactData.singleVcardTwoContactShort);
             var card = cards[0];
-            var fullName = card.GetString(StringsEnum.FullName)[0];
+            var fullName = card.GetString(CardStringsEnum.FullName)[0];
             fullName.Value.ShouldBe("Rick Hood");
             fullName.Value = "Rick Rock";
             fullName.Value.ShouldBe("Rick Rock");
@@ -46,10 +59,10 @@ namespace VisualCard.Tests.Contacts
         {
             var cards = CardTools.GetCardsFromString(ContactData.singleVcardTwoContact);
             var card = cards[0];
-            var note = card.GetString(StringsEnum.Notes)[0];
+            var note = card.GetString(CardStringsEnum.Notes)[0];
             note.Value.ShouldBe("Note test for VisualCard");
-            card.DeleteString(StringsEnum.Notes, 0);
-            card.GetString(StringsEnum.Notes).ShouldBeEmpty();
+            card.DeleteString(CardStringsEnum.Notes, 0);
+            card.GetString(CardStringsEnum.Notes).ShouldBeEmpty();
             string cardStr = card.SaveToString();
             cardStr.ShouldNotContain("Note test for VisualCard");
         }
