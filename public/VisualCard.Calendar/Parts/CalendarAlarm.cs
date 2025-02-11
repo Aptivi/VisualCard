@@ -22,11 +22,13 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using Textify.General;
 using VisualCard.Calendar.Parsers;
 using VisualCard.Calendar.Parts.Comparers;
 using VisualCard.Calendar.Parts.Enums;
 using VisualCard.Common.Parts;
 using VisualCard.Common.Parts.Enums;
+using VisualCard.Common.Parts.Implementations;
 
 namespace VisualCard.Calendar.Parts
 {
@@ -150,6 +152,64 @@ namespace VisualCard.Calendar.Parts
         /// <returns>A value or null if any other type either doesn't exist or the type is not supported by the card version</returns>
         public override ValueInfo<double>[] GetInteger(CalendarIntegersEnum key) =>
             GetInteger(key, CalendarVersion, integers);
+
+        /// <summary>
+        /// Finds a part array from a specified key
+        /// </summary>
+        /// <param name="prefixToFind">Part of prefix to find (case-insensitive)</param>
+        /// <returns>An array of values or an empty part array []</returns>
+        public override TPart[] FindExtraPartsArray<TPart>(string prefixToFind)
+        {
+            // Get the extra part enumeration according to the type
+            var key = (PartsArrayEnum)VCalendarParserTools.GetPartsArrayEnumFromType(typeof(TPart), CalendarVersion, GetType());
+
+            // Now, return the value
+            return FindExtraPartsArray<TPart>(key, prefixToFind);
+        }
+
+        /// <summary>
+        /// Finds a part array from a specified key
+        /// </summary>
+        /// <param name="key">A key to use</param>
+        /// <param name="prefixToFind">Part of prefix to find (case-insensitive)</param>
+        /// <returns>An array of values or an empty part array []</returns>
+        public override TPart[] FindExtraPartsArray<TPart>(PartsArrayEnum key, string prefixToFind) =>
+            FindExtraPartsArray(typeof(TPart), key, prefixToFind).Cast<TPart>().ToArray();
+
+        /// <summary>
+        /// Finds a part array from a specified key
+        /// </summary>
+        /// <param name="partType">Target part type that derives from <see cref="BasePartInfo"/></param>
+        /// <param name="prefixToFind">Part of prefix to find (case-insensitive)</param>
+        /// <returns>An array of values or an empty part array []</returns>
+        public override BasePartInfo[] FindExtraPartsArray(Type partType, string prefixToFind)
+        {
+            // Check the base type
+            VerifyPartType(partType);
+
+            // Get the extra part enumeration according to the type
+            var key = (PartsArrayEnum)VCalendarParserTools.GetPartsArrayEnumFromType(partType, CalendarVersion, GetType());
+
+            // Now, return the value
+            return FindExtraPartsArray(partType, key, prefixToFind);
+        }
+
+        /// <summary>
+        /// Finds a part array from a specified key
+        /// </summary>
+        /// <param name="partType">Target part type that derives from <see cref="BasePartInfo"/></param>
+        /// <param name="key">A key to use</param>
+        /// <param name="prefixToFind">Part of prefix to find (case-insensitive)</param>
+        /// <returns>An array of values or an empty part array []</returns>
+        public override BasePartInfo[] FindExtraPartsArray(Type partType, PartsArrayEnum key, string prefixToFind) =>
+            GetExtraPartsArray(partType, key, CalendarVersion, extraParts).Where((bpi) =>
+            {
+                if (bpi is XNameInfo xNameInfo)
+                    return xNameInfo.XKeyName?.ContainsWithNoCase(prefixToFind) ?? false;
+                else if (bpi is ExtraInfo extraInfo)
+                    return extraInfo.KeyName?.ContainsWithNoCase(prefixToFind) ?? false;
+                return false;
+            }).ToArray();
 
         /// <summary>
         /// Saves this parsed calendar alarm to the string

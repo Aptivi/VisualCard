@@ -34,6 +34,7 @@ using VisualCard.Common.Parsers;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parts;
 using VisualCard.Common.Parts.Enums;
+using VisualCard.Common.Parts.Implementations;
 using VisualCard.Parsers;
 
 namespace VisualCard.Calendar.Parts
@@ -241,7 +242,7 @@ namespace VisualCard.Calendar.Parts
         public virtual BasePartInfo[] GetExtraPartsArray(Type partType)
         {
             // Check the base type
-            VerifyPartType(partType);
+            VerifyBasePartType(partType);
 
             // Get the parts enumeration according to the type
             var key = VCalendarParserTools.GetPartsArrayEnumFromType(partType, CalendarVersion, GetType());
@@ -259,7 +260,7 @@ namespace VisualCard.Calendar.Parts
         public virtual BasePartInfo[] GetExtraPartsArray(Type partType, PartsArrayEnum key)
         {
             // Check the base type
-            VerifyPartType(partType);
+            VerifyBasePartType(partType);
             return GetExtraPartsArray(partType, key, version, extraParts);
         }
 
@@ -489,6 +490,66 @@ namespace VisualCard.Calendar.Parts
             // Return the list
             return [.. values];
         }
+
+        /// <summary>
+        /// Finds a part array from a specified key
+        /// </summary>
+        /// <param name="prefixToFind">Part of prefix to find (case-insensitive)</param>
+        /// <returns>An array of values or an empty part array []</returns>
+        public virtual TPart[] FindExtraPartsArray<TPart>(string prefixToFind)
+            where TPart : BasePartInfo
+        {
+            // Get the extra part enumeration according to the type
+            var key = (PartsArrayEnum)VCalendarParserTools.GetPartsArrayEnumFromType(typeof(TPart), version, GetType());
+
+            // Now, return the value
+            return FindExtraPartsArray<TPart>(key, prefixToFind);
+        }
+
+        /// <summary>
+        /// Finds a part array from a specified key
+        /// </summary>
+        /// <param name="key">A key to use</param>
+        /// <param name="prefixToFind">Part of prefix to find (case-insensitive)</param>
+        /// <returns>An array of values or an empty part array []</returns>
+        public virtual TPart[] FindExtraPartsArray<TPart>(PartsArrayEnum key, string prefixToFind)
+            where TPart : BasePartInfo =>
+            FindExtraPartsArray(typeof(TPart), key, prefixToFind).Cast<TPart>().ToArray();
+
+        /// <summary>
+        /// Finds a part array from a specified key
+        /// </summary>
+        /// <param name="partType">Target part type that derives from <see cref="BasePartInfo"/></param>
+        /// <param name="prefixToFind">Part of prefix to find (case-insensitive)</param>
+        /// <returns>An array of values or an empty part array []</returns>
+        public virtual BasePartInfo[] FindExtraPartsArray(Type partType, string prefixToFind)
+        {
+            // Check the base type
+            VerifyBasePartType(partType);
+
+            // Get the extra part enumeration according to the type
+            var key = (PartsArrayEnum)VCalendarParserTools.GetPartsArrayEnumFromType(partType, version, GetType());
+
+            // Now, return the value
+            return FindExtraPartsArray(partType, key, prefixToFind);
+        }
+
+        /// <summary>
+        /// Finds a part array from a specified key
+        /// </summary>
+        /// <param name="partType">Target part type that derives from <see cref="BasePartInfo"/></param>
+        /// <param name="key">A key to use</param>
+        /// <param name="prefixToFind">Part of prefix to find (case-insensitive)</param>
+        /// <returns>An array of values or an empty part array []</returns>
+        public virtual BasePartInfo[] FindExtraPartsArray(Type partType, PartsArrayEnum key, string prefixToFind) =>
+            GetExtraPartsArray(partType, key).Where((bpi) =>
+            {
+                if (bpi is XNameInfo xNameInfo)
+                    return xNameInfo.XKeyName?.ContainsWithNoCase(prefixToFind) ?? false;
+                else if (bpi is ExtraInfo extraInfo)
+                    return extraInfo.KeyName?.ContainsWithNoCase(prefixToFind) ?? false;
+                return false;
+            }).ToArray();
 
         /// <summary>
         /// Saves this parsed calendar to the string

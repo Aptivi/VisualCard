@@ -29,6 +29,7 @@ using VisualCard.Common.Parsers;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parts;
 using VisualCard.Common.Parts.Enums;
+using VisualCard.Common.Parts.Implementations;
 using VisualCard.Parsers;
 using VisualCard.Parts.Comparers;
 using VisualCard.Parts.Enums;
@@ -126,7 +127,7 @@ namespace VisualCard.Parts
         public BasePartInfo[] GetExtraPartsArray(Type partType)
         {
             // Check the base type
-            VerifyPartType(partType);
+            VerifyBasePartType(partType);
 
             // Get the extra part enumeration according to the type
             var key = (PartsArrayEnum)VcardParserTools.GetPartsArrayEnumFromType(partType, CardVersion, CardKindStr);
@@ -270,6 +271,66 @@ namespace VisualCard.Parts
             hasValue = value.Count > 0;
             return hasValue ? [.. value] : fallbacks;
         }
+
+        /// <summary>
+        /// Finds a part array from a specified key
+        /// </summary>
+        /// <param name="prefixToFind">Part of prefix to find (case-insensitive)</param>
+        /// <returns>An array of values or an empty part array []</returns>
+        public TPart[] FindExtraPartsArray<TPart>(string prefixToFind)
+            where TPart : BasePartInfo
+        {
+            // Get the extra part enumeration according to the type
+            var key = (PartsArrayEnum)VcardParserTools.GetPartsArrayEnumFromType(typeof(TPart), CardVersion, CardKindStr);
+
+            // Now, return the value
+            return FindExtraPartsArray<TPart>(key, prefixToFind);
+        }
+
+        /// <summary>
+        /// Finds a part array from a specified key
+        /// </summary>
+        /// <param name="key">A key to use</param>
+        /// <param name="prefixToFind">Part of prefix to find (case-insensitive)</param>
+        /// <returns>An array of values or an empty part array []</returns>
+        public TPart[] FindExtraPartsArray<TPart>(PartsArrayEnum key, string prefixToFind)
+            where TPart : BasePartInfo =>
+            FindExtraPartsArray(typeof(TPart), key, prefixToFind).Cast<TPart>().ToArray();
+
+        /// <summary>
+        /// Finds a part array from a specified key
+        /// </summary>
+        /// <param name="partType">Target part type that derives from <see cref="BasePartInfo"/></param>
+        /// <param name="prefixToFind">Part of prefix to find (case-insensitive)</param>
+        /// <returns>An array of values or an empty part array []</returns>
+        public BasePartInfo[] FindExtraPartsArray(Type partType, string prefixToFind)
+        {
+            // Check the base type
+            VerifyPartType(partType);
+
+            // Get the extra part enumeration according to the type
+            var key = (PartsArrayEnum)VcardParserTools.GetPartsArrayEnumFromType(partType, CardVersion, CardKindStr);
+
+            // Now, return the value
+            return FindExtraPartsArray(partType, key, prefixToFind);
+        }
+
+        /// <summary>
+        /// Finds a part array from a specified key
+        /// </summary>
+        /// <param name="partType">Target part type that derives from <see cref="BasePartInfo"/></param>
+        /// <param name="key">A key to use</param>
+        /// <param name="prefixToFind">Part of prefix to find (case-insensitive)</param>
+        /// <returns>An array of values or an empty part array []</returns>
+        public BasePartInfo[] FindExtraPartsArray(Type partType, PartsArrayEnum key, string prefixToFind) =>
+            GetExtraPartsArray(partType, key).Where((bpi) =>
+            {
+                if (bpi is XNameInfo xNameInfo)
+                    return xNameInfo.XKeyName?.ContainsWithNoCase(prefixToFind) ?? false;
+                else if (bpi is ExtraInfo extraInfo)
+                    return extraInfo.KeyName?.ContainsWithNoCase(prefixToFind) ?? false;
+                return false;
+            }).ToArray();
 
         /// <summary>
         /// Saves this parsed card to the string

@@ -87,6 +87,47 @@ namespace VisualCard.Tests.Calendars
         }
         
         [TestMethod]
+        public void TestCalendarPropertyFindNonstandardInRoot()
+        {
+            var calendars = CalendarTools.GetCalendarsFromString(CalendarData.singleVCalendarTwoCalendarShort);
+            var calendar = calendars[0];
+            calendar.AddPartToArray(CalendarPartsArrayEnum.NonstandardNames, "T;E;S;T", "", "CHARACTERS");
+            calendar.FindExtraPartsArray<XNameInfo>("CHAR").ShouldNotBeEmpty();
+            var name = calendar.FindExtraPartsArray<XNameInfo>("CHAR")[0];
+            name.XKeyName.ShouldBe("CHARACTERS");
+            name.XValues.ShouldNotBeNull();
+            name.XValues.Length.ShouldBe(4);
+            name.XValues[0].ShouldBe("T");
+            name.XValues[1].ShouldBe("E");
+            name.XValues[2].ShouldBe("S");
+            name.XValues[3].ShouldBe("T");
+            string calendarStr = calendar.SaveToString();
+            calendarStr.ShouldContain("X-CHARACTERS");
+            calendarStr.ShouldContain("T;E;S;T");
+        }
+        
+        [TestMethod]
+        public void TestCalendarPropertyFindNonstandardInEvent()
+        {
+            var calendars = CalendarTools.GetCalendarsFromString(CalendarData.singleVCalendarTwoCalendarShort);
+            var calendar = calendars[0];
+            var eventChunk = calendar.Events[0];
+            eventChunk.AddPartToArray(CalendarPartsArrayEnum.NonstandardNames, "T;E;S;T", "", "CHARACTERS");
+            eventChunk.FindExtraPartsArray<XNameInfo>("CHAR").ShouldNotBeEmpty();
+            var name = eventChunk.FindExtraPartsArray<XNameInfo>("CHAR")[0];
+            name.XKeyName.ShouldBe("CHARACTERS");
+            name.XValues.ShouldNotBeNull();
+            name.XValues.Length.ShouldBe(4);
+            name.XValues[0].ShouldBe("T");
+            name.XValues[1].ShouldBe("E");
+            name.XValues[2].ShouldBe("S");
+            name.XValues[3].ShouldBe("T");
+            string calendarStr = calendar.SaveToString();
+            calendarStr.ShouldContain("X-CHARACTERS");
+            calendarStr.ShouldContain("T;E;S;T");
+        }
+        
+        [TestMethod]
         public void TestCalendarPropertyAddIanaInRoot()
         {
             var calendars = CalendarTools.GetCalendarsFromString(CalendarData.singleVCalendarTwoCalendarShort);
@@ -115,6 +156,47 @@ namespace VisualCard.Tests.Calendars
             eventChunk.AddPartToArray(CalendarPartsArrayEnum.IanaNames, "T;E;S;T", "", "CHARACTERS");
             eventChunk.GetExtraPartsArray(PartsArrayEnum.IanaNames).ShouldNotBeEmpty();
             var name = eventChunk.GetExtraPartsArray<ExtraInfo>()[0];
+            name.KeyName.ShouldBe("CHARACTERS");
+            name.Values.ShouldNotBeNull();
+            name.Values.Length.ShouldBe(4);
+            name.Values[0].ShouldBe("T");
+            name.Values[1].ShouldBe("E");
+            name.Values[2].ShouldBe("S");
+            name.Values[3].ShouldBe("T");
+            string calendarStr = calendar.SaveToString();
+            calendarStr.ShouldContain("CHARACTERS");
+            calendarStr.ShouldContain("T;E;S;T");
+        }
+        
+        [TestMethod]
+        public void TestCalendarPropertyFindIanaInRoot()
+        {
+            var calendars = CalendarTools.GetCalendarsFromString(CalendarData.singleVCalendarTwoCalendarShort);
+            var calendar = calendars[0];
+            calendar.AddPartToArray(CalendarPartsArrayEnum.IanaNames, "T;E;S;T", "", "CHARACTERS");
+            calendar.FindExtraPartsArray<ExtraInfo>("CHAR").ShouldNotBeEmpty();
+            var name = calendar.FindExtraPartsArray<ExtraInfo>("CHAR")[0];
+            name.KeyName.ShouldBe("CHARACTERS");
+            name.Values.ShouldNotBeNull();
+            name.Values.Length.ShouldBe(4);
+            name.Values[0].ShouldBe("T");
+            name.Values[1].ShouldBe("E");
+            name.Values[2].ShouldBe("S");
+            name.Values[3].ShouldBe("T");
+            string calendarStr = calendar.SaveToString();
+            calendarStr.ShouldContain("CHARACTERS");
+            calendarStr.ShouldContain("T;E;S;T");
+        }
+        
+        [TestMethod]
+        public void TestCalendarPropertyFindIanaInEvent()
+        {
+            var calendars = CalendarTools.GetCalendarsFromString(CalendarData.singleVCalendarTwoCalendarShort);
+            var calendar = calendars[0];
+            var eventChunk = calendar.Events[0];
+            eventChunk.AddPartToArray(CalendarPartsArrayEnum.IanaNames, "T;E;S;T", "", "CHARACTERS");
+            eventChunk.FindExtraPartsArray<ExtraInfo>("CHAR").ShouldNotBeEmpty();
+            var name = eventChunk.FindExtraPartsArray<ExtraInfo>("CHAR")[0];
             name.KeyName.ShouldBe("CHARACTERS");
             name.Values.ShouldNotBeNull();
             name.Values.Length.ShouldBe(4);

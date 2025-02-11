@@ -205,7 +205,7 @@ namespace VisualCard.Calendar.Parsers
                         // Now, get the part info
                         if (isExtra)
                         {
-                            // Get the base part info from the 
+                            // Get the base part info from the nonstandard value
                             var partInfo =
                                 partsArrayType == CalendarPartsArrayEnum.NonstandardNames ?
                                 XNameInfo.FromStringStatic(_value, info, -1, elementTypes, info.Group, valueType, version) :
