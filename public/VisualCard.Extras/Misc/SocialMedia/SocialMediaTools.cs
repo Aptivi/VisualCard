@@ -19,6 +19,7 @@
 
 using System;
 using System.Collections.Generic;
+using VisualCard.Common.Diagnostics;
 using VisualCard.Common.Parts.Implementations;
 
 namespace VisualCard.Extras.Misc.SocialMedia
@@ -54,9 +55,13 @@ namespace VisualCard.Extras.Misc.SocialMedia
         {
             // Check the app
             if (!mediaInfo.TryGetValue(app, out (string appAbbreviation, string appHostPart) appInfo))
+            {
+                LoggingTools.Error("Invalid social media app {0}", app);
                 throw new ArgumentException("There is no such social media app.");
+            }
 
             // Check the social media value info using the X- nonstandard names
+            LoggingTools.Info("Parsing {0} fields with key name {1}", socialMediaValue.XValues?.Length ?? 0, socialMediaValue.XKeyName);
             var socialMediaFields = socialMediaValue.XValues ??
                 throw new ArgumentException("There are no social media fields.");
             if (socialMediaValue.XKeyName != "VISUALCARD-SOCIAL")
@@ -68,32 +73,38 @@ namespace VisualCard.Extras.Misc.SocialMedia
                 throw new ArgumentException($"For {appInfo.appAbbreviation}, expected at least an abbreviation and a name. Got {socialMediaFields.Length} values. Hint: X-VISUALCARD-SOCIAL:{appInfo.appAbbreviation};NAME.");
             string valueAbbreviation = socialMediaFields[0];
             string valueName = socialMediaFields[1];
+            LoggingTools.Info("Checking abbreviation {0} by comparing it with {1}", valueAbbreviation, appInfo.appAbbreviation);
             if (appInfo.appAbbreviation != valueAbbreviation)
                 throw new ArgumentException($"For {appInfo.appAbbreviation}, expected a matching abbreviation for the app. Got {valueAbbreviation}. Hint: X-VISUALCARD-SOCIAL:{appInfo.appAbbreviation};NAME.");
 
             // Now, initialize the string builder for the URL
             var uriBuilder = new UriBuilder();
             string hostPart = appInfo.appHostPart;
+            LoggingTools.Info("Builder initialized with {0}", hostPart);
 
             // Check for Mastodon, since the account could be in a site other than mastodon.social.
             if (app == SocialMediaApp.Mastodon)
             {
                 // Check to see if we need to change the host name
+                LoggingTools.Info("Checking for fediverse host...");
                 if (socialMediaFields.Length > 2)
                 {
                     hostPart = socialMediaFields[1] + "/";
                     valueName = socialMediaFields[2];
+                    LoggingTools.Debug("Host part is {0}, value is {1}", hostPart, valueName);
                 }
             }
 
             // Now, build the URI with all the available information
             string hostName = hostPart.Substring(0, hostPart.IndexOf('/'));
             string hostPath = hostPart.Substring(hostPart.IndexOf('/')) + valueName;
+            LoggingTools.Debug("Host name is {0}, path is {1}", hostName, hostPath);
             uriBuilder.Scheme = "https";
             uriBuilder.Host = hostName;
             uriBuilder.Path = hostPath;
 
             // Return the string
+            LoggingTools.Info("Returning {0}...", uriBuilder.Uri.ToString());
             return uriBuilder.Uri;
         }
     }

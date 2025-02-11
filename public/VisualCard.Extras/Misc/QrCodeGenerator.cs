@@ -23,6 +23,7 @@ using System.IO;
 using System.Text;
 using VisualCard.Calendar;
 using VisualCard.Calendar.Parts;
+using VisualCard.Common.Diagnostics;
 using VisualCard.Extras.Converters;
 using VisualCard.Parts;
 
@@ -116,6 +117,7 @@ namespace VisualCard.Extras.Misc
             var qrData = generator.CreateQrCode(representation, QRCodeGenerator.ECCLevel.Q);
 
             // Return the QR data
+            LoggingTools.Info("QR data created!");
             return qrData;
         }
 
@@ -127,15 +129,18 @@ namespace VisualCard.Extras.Misc
             var graphicsByte = qrBitmap.GetGraphic(20);
 
             // Finally, return the byte array
+            LoggingTools.Info("QR PNG image byte array saved! {0} bytes", graphicsByte.Length);
             return graphicsByte;
         }
 
         private static void ExportQrCodeInternal(string representation, string filePath)
         {
+            LoggingTools.Info("QR raw data saving to {0}...", filePath);
             var qrCodeData = GetQrCodeData(representation);
 
             // Get the file path
             qrCodeData.SaveRawData(filePath, QRCodeData.Compression.Uncompressed);
+            LoggingTools.Info("QR raw data saved to {0}", filePath);
         }
     }
 }

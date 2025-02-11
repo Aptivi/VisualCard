@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using Textify.General;
+using VisualCard.Common.Diagnostics;
 using VisualCard.Common.Parsers;
 using VisualCard.Parsers;
 using VisualCard.Parts;
@@ -71,10 +72,14 @@ namespace VisualCard.Extras.Converters
             for (int i = 0; i < knownPaths.Length; i++)
             {
                 string path = knownPaths[i];
+                LoggingTools.Info("Trying {0}...", path);
                 if (!File.Exists(path))
                     continue;
+                LoggingTools.Info("Found {0}, fetching contacts...", path);
                 contacts.AddRange(GetContactsFromDb(path));
+                LoggingTools.Debug("We got {0} contacts so far", contacts.Count);
             }
+            LoggingTools.Info("Got {0} contacts", contacts.Count);
             return [.. contacts];
         }
 
@@ -101,14 +106,17 @@ namespace VisualCard.Extras.Converters
                $"  - {knownPaths[1]} (userspace (user 0) contacts)\n" +
                $"  - {knownPaths[2]} (Motorola Blur)" +
                 "\n\nIf they don't work, consult your device's /data directory in the root file manager.";
+            LoggingTools.Info("Checking to see if {0} exists...", pathToDb);
             if (!File.Exists(pathToDb))
                 throw new FileNotFoundException("The Android contact database file obtained from the contact provider is not found." + dbObtainTip);
 
             try
             {
                 // Open the connection to the database path
+                LoggingTools.Info("Opening the SQLite connection...");
                 using var connection = new SqliteConnection($"Data Source={pathToDb}");
                 connection.Open();
+                LoggingTools.Info("Connection to {0} opened...", pathToDb);
 
                 // Get only the necessary values.
                 var command = connection.CreateCommand();
@@ -149,7 +157,9 @@ namespace VisualCard.Extras.Converters
                 command.Parameters.AddWithValue("$NEWLINE_QUOTED", "\n");
 
                 // Install the values!
+                LoggingTools.Debug("Executing SQL command {0}", command.CommandText);
                 using var reader = command.ExecuteReader();
+                LoggingTools.Info("Reader executed successfully. Installing values...");
                 var masterContactBuilder = new StringBuilder(
                     $"""
                     {VcardConstants._beginText}
@@ -163,7 +173,9 @@ namespace VisualCard.Extras.Converters
                 while (reader.Read())
                 {
                     // Get the ID
+                    LoggingTools.Debug("Last ID is {0}...", lastId);
                     var id = !reader.IsDBNull(0) ? reader.GetString(0) : "-1";
+                    LoggingTools.Debug("ID is {0}...", id);
 
                     // Ignore ID -1
                     if (id == "-1")
@@ -174,6 +186,7 @@ namespace VisualCard.Extras.Converters
                         idChanged = true;
                     if (idChanged)
                     {
+                        LoggingTools.Info("ID has changed! {0} != {1}", id, lastId);
                         idChanged = false;
                         masterContactBuilder.AppendLine(
                             $"""
@@ -205,6 +218,7 @@ namespace VisualCard.Extras.Converters
 
                     // Check the metadata type. They're not documented to us even in the official Android developers guide,
                     // so we have to figure things out.
+                    LoggingTools.Info("Checking metadata type {0}...", mtype);
                     switch (mtype)
                     {
                         case "vnd.android.cursor.item/name":
@@ -226,6 +240,8 @@ namespace VisualCard.Extras.Converters
                             //      N:d3;d2;d5;d4;d6;
                             const string _nameSpecifier = "N:";
                             const string _fullNameSpecifier = "FN:";
+                            LoggingTools.Info("Adding full name with {0}...", d1);
+                            LoggingTools.Info("Adding name with {0}, {1}, {2}, {3}, and {4}...", d3, d2, d5, d4, d6);
                             masterContactBuilder.AppendLine($"{_fullNameSpecifier}{d1}");
                             masterContactBuilder.AppendLine($"{_nameSpecifier}{d3};{d2};{d5};{d4};{d6};");
                             break;
@@ -241,6 +257,7 @@ namespace VisualCard.Extras.Converters
                             //      TEL;TYPE=cell:1-234-567-890
                             const string _telephoneSpecifierWithType = "TEL;";
                             string _telephoneTypeName = "cell";
+                            LoggingTools.Info("Enumerating {0}...", d2);
                             switch (d2)
                             {
                                 // Let's do some translation work!
@@ -327,6 +344,7 @@ namespace VisualCard.Extras.Converters
                                     _telephoneTypeName = "mms";
                                     break;
                             }
+                            LoggingTools.Info("Got phone type {0}. Adding with {1}...", _telephoneTypeName, d1);
                             masterContactBuilder.AppendLine($"{_telephoneSpecifierWithType}TYPE={_telephoneTypeName}:{d1}");
                             break;
                         case "vnd.android.cursor.item/nickname":
@@ -339,6 +357,7 @@ namespace VisualCard.Extras.Converters
                             // ---> will get converted to VCard line:
                             //      NICKNAME:d1
                             const string _nicknameSpecifier = "NICKNAME:";
+                            LoggingTools.Info("Adding nickname with {0}...", d1);
                             masterContactBuilder.AppendLine($"{_nicknameSpecifier}{d1}");
                             break;
                         case "vnd.android.cursor.item/email_v2":
@@ -354,6 +373,7 @@ namespace VisualCard.Extras.Converters
                             //      EMAIL;TYPE=d2:d1
                             const string _emailSpecifier = "EMAIL;";
                             string _emailTypeName = "home";
+                            LoggingTools.Info("Enumerating {0}...", d2);
                             switch (d2)
                             {
                                 // Let's do some translation work!
@@ -376,6 +396,7 @@ namespace VisualCard.Extras.Converters
                                     _emailTypeName = "cell";
                                     break;
                             }
+                            LoggingTools.Info("Got email type {0}. Adding with {1}...", _emailTypeName, d1);
                             masterContactBuilder.AppendLine($"{_emailSpecifier}TYPE={_emailTypeName}:{d1}");
                             break;
                         case "vnd.android.cursor.item/postal-address_v2":
@@ -399,6 +420,7 @@ namespace VisualCard.Extras.Converters
                             //      ADR;TYPE=(d2|d3):d5;d6;d4;d8;d7;d9;d10
                             const string _addressSpecifierWithType = "ADR;";
                             string _addressTypeName = "home";
+                            LoggingTools.Info("Enumerating {0}...", d2);
                             switch (d2)
                             {
                                 // Let's do some translation work!
@@ -420,6 +442,7 @@ namespace VisualCard.Extras.Converters
                                     _addressTypeName = $"x-other";
                                     break;
                             }
+                            LoggingTools.Info("Got address type {0}. Adding with {1}, {2}, {3}, {4}, {5}, {6}, and {7}...", _addressTypeName, d5, d6, d4, d8, d7, d9, d10);
                             masterContactBuilder.AppendLine($"{_addressSpecifierWithType}TYPE={_addressTypeName}:{d5};{d6};{d4};{d8};{d7};{d9};{d10}");
                             break;
                         case "vnd.android.cursor.item/im":
@@ -439,6 +462,7 @@ namespace VisualCard.Extras.Converters
                             //      X-d5;TYPE=d2:d1
                             string _imTypeName = "home";
                             string _imSpecifier = "X-AIM";
+                            LoggingTools.Info("Enumerating {0}...", d2);
                             switch (d2)
                             {
                                 // Let's do some translation work!
@@ -460,6 +484,7 @@ namespace VisualCard.Extras.Converters
                                     _imTypeName = $"x-other";
                                     break;
                             }
+                            LoggingTools.Info("Enumerating {0}...", d5);
                             switch (d5)
                             {
                                 // Additionally, there is no built-in "IM;TYPE=d2:d1" property found in any VCard standard, so we have to use the X-nonstandard
@@ -509,6 +534,7 @@ namespace VisualCard.Extras.Converters
                                     _imSpecifier = "X-NETMEETING";
                                     break;
                             }
+                            LoggingTools.Info("Got IM {0} with type {1}. Adding with {2}...", _imSpecifier, _imTypeName, d1);
                             masterContactBuilder.AppendLine($"{_imSpecifier};TYPE={_imTypeName}:{d1}");
                             break;
                         case "vnd.android.cursor.item/organization":
@@ -525,6 +551,7 @@ namespace VisualCard.Extras.Converters
                             //      ORG;TYPE=d2:d1;d3;d4
                             const string _orgSpecifierWithType = "ORG;";
                             string _orgTypeName = "work";
+                            LoggingTools.Info("Enumerating {0}...", d2);
                             switch (d2)
                             {
                                 // Let's do some translation work!
@@ -541,6 +568,7 @@ namespace VisualCard.Extras.Converters
                                     _orgTypeName = "x-other";
                                     break;
                             }
+                            LoggingTools.Info("Got type {0}. Adding with {1}, {2}, and {3}...", _orgTypeName, d1, d3, d4);
                             masterContactBuilder.AppendLine($"{_orgSpecifierWithType}TYPE={_orgTypeName}:{d1};{d3};{d4}");
                             break;
                         case "vnd.android.cursor.item/website":
@@ -554,6 +582,7 @@ namespace VisualCard.Extras.Converters
                             // ---> will get converted to VCard line:
                             //      URL:d1
                             const string _urlSpecifier = "URL:";
+                            LoggingTools.Info("Adding URL with {0}...", d1);
                             masterContactBuilder.AppendLine($"{_urlSpecifier}{d1}");
                             break;
                         case "vnd.android.cursor.item/sip_address":
@@ -568,6 +597,7 @@ namespace VisualCard.Extras.Converters
                             //      IMPP;TYPE=d2:d1
                             const string _imppSpecifierWithType = "IMPP;";
                             string _imppTypeName = "home";
+                            LoggingTools.Info("Enumerating {0}...", d2);
                             switch (d2)
                             {
                                 // Let's do some translation work!
@@ -589,6 +619,7 @@ namespace VisualCard.Extras.Converters
                                     _imppTypeName = "x-other";
                                     break;
                             }
+                            LoggingTools.Info("Got IMPP type {0}. Adding with {1}...", _imppTypeName, d1);
                             masterContactBuilder.AppendLine($"{_imppSpecifierWithType}TYPE={_imppTypeName}:sip:{d1}");
                             break;
                         case "vnd.android.cursor.item/relation":
@@ -602,6 +633,7 @@ namespace VisualCard.Extras.Converters
                             // ---> will get converted to VCard line:
                             //      X-ANDROID-CUSTOM:vnd.android.cursor.item/relation;Name;2;;;;;;;;;;;;;
                             const string _relativeSpecifierWithType = "X-ANDROID-CUSTOM:vnd.android.cursor.item/relation;";
+                            LoggingTools.Info("Adding relationship with {0} and {1}...", d1, d2);
                             masterContactBuilder.AppendLine($"{_relativeSpecifierWithType}{d1};{d2};;;;;;;;;;;;;");
                             break;
                         case "vnd.android.cursor.item/contact_event":
@@ -626,14 +658,19 @@ namespace VisualCard.Extras.Converters
                             // public static final int TYPE_BIRTHDAY = 3;
                             //
                             // Taken from https://cs.android.com/android/platform/superproject/+/main:frameworks/base/core/java/android/provider/ContactsContract.java;l=7379
+                            LoggingTools.Info("Birthday is seen: {0}...", birthdaySeen);
                             if (d2 == "3" && !birthdaySeen)
                             {
                                 // This event is a birthday, so we need not to add more than one.
                                 birthdaySeen = true;
+                                LoggingTools.Info("Birthday is seen. Adding BDAY: with {0}...", d1);
                                 masterContactBuilder.AppendLine($"{_contactEventBirthdaySpecifierWithType}{d1}");
                             }
                             else
+                            {
+                                LoggingTools.Info("Event is seen. Adding {0} with {1}...", d1, d2);
                                 masterContactBuilder.AppendLine($"{_contactEventSpecifierWithType}{d1};{d2};;;;;;;;;;;;;");
+                            }
                             break;
                         case "vnd.android.cursor.item/identity":
                             // Example:
@@ -646,6 +683,7 @@ namespace VisualCard.Extras.Converters
                             // ---> will get converted to VCard line:
                             //      X-ANDROID-CUSTOM:vnd.android.cursor.item/identity;myid;com.aptivi;;;;;;;;;;;;;
                             const string _identitySpecifierWithType = "X-ANDROID-CUSTOM:vnd.android.cursor.item/identity;";
+                            LoggingTools.Info("Adding identity with {0} and {1}...", d1, d2);
                             masterContactBuilder.AppendLine($"{_identitySpecifierWithType}{d1};{d2};;;;;;;;;;;;;");
                             break;
                         case "vnd.android.cursor.item/note":
@@ -658,6 +696,7 @@ namespace VisualCard.Extras.Converters
                             // ---> will get converted to VCard line:
                             //      NOTE:d1
                             const string _noteSpecifier = "NOTE:";
+                            LoggingTools.Info("Adding note with {0}...", d1);
                             masterContactBuilder.AppendLine($"{_noteSpecifier}{d1}");
                             break;
                         case "vnd.android.cursor.item/photo":
@@ -673,16 +712,22 @@ namespace VisualCard.Extras.Converters
                             const int maxChars = 74;
                             d15 = d15.StartsWith("X") ? d15.Substring(1) : d15;
                             d15 = CommonTools.MakeStringBlock(d15.ReleaseDoubleQuotes(), maxChars - _photoSpecifierWithType.Length);
+                            LoggingTools.Info("Adding photo in {0} bytes...", d15.Length);
+                            LoggingTools.Debug("Photo data is:");
+                            LoggingTools.Debug(d15);
                             masterContactBuilder.AppendLine($"{_photoSpecifierWithType}{d15}");
                             break;
                     }
 
                     // Update lastId
+                    LoggingTools.Debug("Updating lastId from {0} to {1}...", lastId, id);
                     lastId = id;
                 }
+                LoggingTools.Debug("Adding ending...");
                 masterContactBuilder.AppendLine(VcardConstants._endText);
 
                 // Now, invoke VisualCard to give us the card parsers
+                LoggingTools.Info("Enumerating cards...");
                 return CardTools.GetCardsFromString(masterContactBuilder.ToString());
             }
             catch (Exception ex)

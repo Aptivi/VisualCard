@@ -22,6 +22,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Textify.Data.NameGen;
+using VisualCard.Common.Diagnostics;
 using VisualCard.Common.Parsers;
 using VisualCard.Parsers;
 using VisualCard.Parts;
@@ -64,14 +65,19 @@ namespace VisualCard.Extras.Misc
         /// <returns>A list of generated cards or an empty array if <paramref name="cards"/> is less than or equal to zero.</returns>
         public static Card[] GenerateCards(int cards, string namePrefix = "", string nameSuffix = "", string surnamePrefix = "", string surnameSuffix = "", NameGenderType nameGender = NameGenderType.Unified)
         {
+            LoggingTools.Info("Number of cards is {0}", cards);
             if (cards <= 0)
+            {
+                LoggingTools.Warning("Returning empty array because number of cards is {0}", cards);
                 return [];
+            }
 
             // Get first and last names
             string[] firstNames = NameGenerator.GenerateFirstNames(cards, namePrefix, nameSuffix, nameGender);
             string[] lastNames = NameGenerator.GenerateLastNames(cards, surnamePrefix, surnameSuffix);
             string[] mailHosts = IspTools.KnownIspHosts;
             List<Card> cardList = [];
+            LoggingTools.Debug("{0} first names, {1} last names, {2} mail hosts", firstNames.Length, lastNames.Length, mailHosts.Length);
 
             // Build this number of cards
             StringBuilder builder = new();
@@ -80,12 +86,15 @@ namespace VisualCard.Extras.Misc
                 // Get first and last names from the card index
                 string firstName = firstNames[i];
                 string lastName = lastNames[i];
+                LoggingTools.Debug("First name: {0}, last name: {1}", firstName, lastName);
                 if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName))
                     continue;
 
                 // Add the begin header and the name indicators
+                LoggingTools.Debug("Adding header");
                 builder.AppendLine(VcardConstants._beginText);
                 builder.AppendLine(CommonConstants._versionSpecifier + ":2.1");
+                LoggingTools.Debug("Adding name properties");
                 builder.AppendLine(VcardConstants._fullNameSpecifier + $":{firstName} {lastName}");
                 builder.AppendLine(VcardConstants._nameSpecifier + $":{lastName};{firstName}");
 
@@ -94,41 +103,53 @@ namespace VisualCard.Extras.Misc
                 bool generateEmail = rng.NextDouble() < 0.3;
                 if (generateTelephone)
                 {
+                    LoggingTools.Debug("Generating telephone number...");
                     bool generateWorkTelephone = rng.NextDouble() < 0.25;
                     int firstPart = rng.Next(1000);
                     int secondPart = rng.Next(1000);
                     int thirdPart = rng.Next(10000);
+                    LoggingTools.Debug("Parts: {0}, {1}, {2}", firstPart, secondPart, thirdPart);
                     builder.AppendLine(VcardConstants._telephoneSpecifier + $";TYPE=HOME:{firstPart:D3}-{secondPart:D3}-{thirdPart:D4}");
                     if (generateWorkTelephone)
                     {
+                        LoggingTools.Debug("Generating work telephone number...");
                         firstPart = rng.Next(1000);
                         secondPart = rng.Next(1000);
                         thirdPart = rng.Next(10000);
+                        LoggingTools.Debug("Parts: {0}, {1}, {2}", firstPart, secondPart, thirdPart);
                         builder.AppendLine(VcardConstants._telephoneSpecifier + $";TYPE=WORK:{firstPart:D3}-{secondPart:D3}-{thirdPart:D4}");
                     }
                 }
                 if (generateEmail)
                 {
+                    LoggingTools.Debug("Generating email address...");
                     bool generateWorkEmail = rng.NextDouble() < 0.25;
                     bool firstNameLong = rng.NextDouble() < 0.25;
                     string firstNameNormalized = firstName.ToLower().Replace(" ", "-");
                     string lastNameNormalized = lastName.ToLower().Replace(" ", "-");
+                    LoggingTools.Debug("Normalized first and last names: {0}, {1}.", firstNameNormalized, lastNameNormalized);
                     string emailName = firstNameLong ? firstNameNormalized + "." + char.ToLower(lastName[0]) : char.ToLower(firstName[0]) + "." + lastNameNormalized;
                     string mailHost = mailHosts[rng.Next(mailHosts.Length)];
+                    LoggingTools.Debug("E-mail name and mail host: {0}, {1}.", emailName, mailHost);
                     builder.AppendLine(VcardConstants._emailSpecifier + $";TYPE=HOME:{emailName}@{mailHost}");
+                    LoggingTools.Debug("Generating work mail: {0}.", generateWorkEmail);
                     if (generateWorkEmail)
                         builder.AppendLine(VcardConstants._emailSpecifier + $";TYPE=WORK:{emailName}@{lastNameNormalized}.com");
                 }
 
                 // Add the end header
+                LoggingTools.Debug("Adding footer...");
                 builder.AppendLine(VcardConstants._endText);
                 string cardString = builder.ToString();
                 builder.Clear();
 
                 // Verify the generated card and add it to the list of cards
+                LoggingTools.Info("Parsing card...");
                 var finalCard = CardTools.GetCardsFromString(cardString)[0];
                 cardList.Add(finalCard);
+                LoggingTools.Info("Card added");
             }
+            LoggingTools.Info("{0} cards generated", cardList.Count);
             return [.. cardList];
         }
     }
