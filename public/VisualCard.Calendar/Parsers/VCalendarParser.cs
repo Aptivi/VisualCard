@@ -114,7 +114,7 @@ namespace VisualCard.Calendar.Parsers
                     }
 
                     // Process this line
-                    Process(subPart, _value, calendar, CalendarVersion);
+                    Process(_value, subPart ?? calendar, CalendarVersion);
                 }
                 catch (Exception ex)
                 {
@@ -127,13 +127,13 @@ namespace VisualCard.Calendar.Parsers
             return calendar;
         }
 
-        internal static void Process(Parts.Calendar? subPart, string _value, Parts.Calendar calendar, Version version)
+        internal static void Process(string _value, Parts.Calendar component, Version version)
         {
             // Now, parse a property
             var info = new PropertyInfo(_value);
 
             // Get the type and its properties
-            Type calendarType = subPart is not null ? subPart.GetType() : calendar.GetType();
+            Type calendarType = component.GetType();
             var partType = VCalendarParserTools.GetPartType(info.Prefix, version, calendarType);
 
             // Check the type for allowed types
@@ -182,10 +182,7 @@ namespace VisualCard.Calendar.Parsers
 
                         // Set the string for real
                         var stringValueInfo = new ValueInfo<string>(info, -1, elementTypes, info.Group, valueType, finalValue);
-                        if (subPart is not null)
-                            subPart.AddString(stringType, stringValueInfo);
-                        else
-                            calendar.AddString(stringType, stringValueInfo);
+                        component.AddString(stringType, stringValueInfo);
                     }
                     break;
                 case PartType.Integers:
@@ -197,10 +194,7 @@ namespace VisualCard.Calendar.Parsers
 
                         // Set the integer for real
                         var stringValueInfo = new ValueInfo<double>(info, -1, elementTypes, info.Group, valueType, finalDouble);
-                        if (subPart is not null)
-                            subPart.AddInteger(integerType, stringValueInfo);
-                        else
-                            calendar.AddInteger(integerType, stringValueInfo);
+                        component.AddInteger(integerType, stringValueInfo);
                     }
                     break;
                 case PartType.PartsArray:
@@ -216,10 +210,7 @@ namespace VisualCard.Calendar.Parsers
                                 partsArrayType == CalendarPartsArrayEnum.NonstandardNames ?
                                 XNameInfo.FromStringStatic(_value, info, -1, elementTypes, info.Group, valueType, version) :
                                 ExtraInfo.FromStringStatic(_value, info, -1, elementTypes, info.Group, valueType, version);
-                            if (subPart is not null)
-                                subPart.AddExtraPartToArray((PartsArrayEnum)partsArrayType, partInfo);
-                            else
-                                calendar.AddExtraPartToArray((PartsArrayEnum)partsArrayType, partInfo);
+                            component.AddExtraPartToArray((PartsArrayEnum)partsArrayType, partInfo);
                         }
                         else
                         {
@@ -228,10 +219,7 @@ namespace VisualCard.Calendar.Parsers
 
                             // Get the part info from the part type and add it to the part array
                             var partInfo = partType.fromStringFunc(finalValue, info, -1, elementTypes, info.Group, valueType, version);
-                            if (subPart is not null)
-                                subPart.AddPartToArray(partsArrayType, partInfo);
-                            else
-                                calendar.AddPartToArray(partsArrayType, partInfo);
+                            component.AddPartToArray(partsArrayType, partInfo);
                         }
                     }
                     break;

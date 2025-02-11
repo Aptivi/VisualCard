@@ -24,7 +24,6 @@ using System.Text;
 using VisualCard.Common.Parsers;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parts.Implementations;
-using VisualCard.Parsers;
 
 namespace VisualCard.Common.Parts
 {

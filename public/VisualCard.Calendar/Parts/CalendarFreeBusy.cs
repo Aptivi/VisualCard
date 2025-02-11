@@ -323,6 +323,18 @@ namespace VisualCard.Calendar.Parts
             return DeletePartsArrayInternal((CalendarPartsArrayEnum)partsArrayEnum, idx, partsArray, extraParts);
         }
 
+        internal override void AddExtraPartToArray(PartsArrayEnum key, BasePartInfo value) =>
+            AddExtraPartToArray(key, value, CalendarVersion, extraParts);
+
+        internal override void AddPartToArray(CalendarPartsArrayEnum key, BaseCalendarPartInfo value) =>
+            AddPartToArray(key, value, CalendarVersion, partsArray);
+
+        internal override void AddString(CalendarStringsEnum key, ValueInfo<string> value) =>
+            AddString(key, value, CalendarVersion, strings);
+
+        internal override void AddInteger(CalendarIntegersEnum key, ValueInfo<double> value) =>
+            AddInteger(key, value, CalendarVersion, integers);
+
         /// <inheritdoc/>
         public override bool Equals(object obj) =>
             Equals((CalendarFreeBusy)obj);
@@ -373,18 +385,6 @@ namespace VisualCard.Calendar.Parts
         /// <inheritdoc/>
         public static bool operator !=(CalendarFreeBusy a, CalendarFreeBusy b)
             => !a.Equals(b);
-
-        internal override void AddExtraPartToArray(PartsArrayEnum key, BasePartInfo value) =>
-            AddExtraPartToArray(key, value, CalendarVersion, extraParts);
-
-        internal override void AddPartToArray(CalendarPartsArrayEnum key, BaseCalendarPartInfo value) =>
-            AddPartToArray(key, value, CalendarVersion, partsArray);
-
-        internal override void AddString(CalendarStringsEnum key, ValueInfo<string> value) =>
-            AddString(key, value, CalendarVersion, strings);
-
-        internal override void AddInteger(CalendarIntegersEnum key, ValueInfo<double> value) =>
-            AddInteger(key, value, CalendarVersion, integers);
 
         /// <summary>
         /// Makes an empty calendar free/busy schedule

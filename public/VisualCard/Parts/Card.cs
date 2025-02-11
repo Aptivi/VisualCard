@@ -524,61 +524,6 @@ namespace VisualCard.Parts
         }
 
         /// <summary>
-        /// Saves the contact to the returned string
-        /// </summary>
-        public override string ToString() =>
-            SaveToString();
-
-        /// <inheritdoc/>
-        public override bool Equals(object obj) =>
-            Equals((Card)obj);
-
-        /// <summary>
-        /// Checks to see if both the cards are equal
-        /// </summary>
-        /// <param name="other">The target <see cref="Card"/> instance to check to see if they equal</param>
-        /// <returns>True if all the card elements are equal. Otherwise, false.</returns>
-        public bool Equals(Card other) =>
-            Equals(this, other);
-
-        /// <summary>
-        /// Checks to see if both the cards are equal
-        /// </summary>
-        /// <param name="source">The source <see cref="Card"/> instance to check to see if they equal</param>
-        /// <param name="target">The target <see cref="Card"/> instance to check to see if they equal</param>
-        /// <returns>True if all the card elements are equal. Otherwise, false.</returns>
-        public bool Equals(Card source, Card target)
-        {
-            // We can't perform this operation on null.
-            if (source is null || target is null)
-                return false;
-
-            // Check all the properties
-            return
-                CardPartComparison.PartsArrayEnumEqual(source.partsArray, target.partsArray) &&
-                CardPartComparison.StringsEqual(source.strings, target.strings)
-            ;
-        }
-
-        /// <inheritdoc/>
-        public override int GetHashCode()
-        {
-            int hashCode = 1365540608;
-            hashCode = hashCode * -1521134295 + EqualityComparer<List<Card>>.Default.GetHashCode(nestedCards);
-            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CardPartsArrayEnum, List<BaseCardPartInfo>>>.Default.GetHashCode(partsArray);
-            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CardStringsEnum, List<ValueInfo<string>>>>.Default.GetHashCode(strings);
-            return hashCode;
-        }
-
-        /// <inheritdoc/>
-        public static bool operator ==(Card a, Card b)
-            => a.Equals(b);
-
-        /// <inheritdoc/>
-        public static bool operator !=(Card a, Card b)
-            => !a.Equals(b);
-
-        /// <summary>
         /// Adds a part to the array
         /// </summary>
         /// <typeparam name="TPart">Part type to add</typeparam>
@@ -878,6 +823,61 @@ namespace VisualCard.Parts
                     throw new InvalidOperationException($"Parts array enumeration [{key}] is different from the expected one [{partsArrayEnum}] according to type {typeof(BaseCardPartInfo).Name}.");
             }
         }
+
+        /// <summary>
+        /// Saves the contact to the returned string
+        /// </summary>
+        public override string ToString() =>
+            SaveToString();
+
+        /// <inheritdoc/>
+        public override bool Equals(object obj) =>
+            Equals((Card)obj);
+
+        /// <summary>
+        /// Checks to see if both the cards are equal
+        /// </summary>
+        /// <param name="other">The target <see cref="Card"/> instance to check to see if they equal</param>
+        /// <returns>True if all the card elements are equal. Otherwise, false.</returns>
+        public bool Equals(Card other) =>
+            Equals(this, other);
+
+        /// <summary>
+        /// Checks to see if both the cards are equal
+        /// </summary>
+        /// <param name="source">The source <see cref="Card"/> instance to check to see if they equal</param>
+        /// <param name="target">The target <see cref="Card"/> instance to check to see if they equal</param>
+        /// <returns>True if all the card elements are equal. Otherwise, false.</returns>
+        public bool Equals(Card source, Card target)
+        {
+            // We can't perform this operation on null.
+            if (source is null || target is null)
+                return false;
+
+            // Check all the properties
+            return
+                CardPartComparison.PartsArrayEnumEqual(source.partsArray, target.partsArray) &&
+                CardPartComparison.StringsEqual(source.strings, target.strings)
+            ;
+        }
+
+        /// <inheritdoc/>
+        public override int GetHashCode()
+        {
+            int hashCode = 1365540608;
+            hashCode = hashCode * -1521134295 + EqualityComparer<List<Card>>.Default.GetHashCode(nestedCards);
+            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CardPartsArrayEnum, List<BaseCardPartInfo>>>.Default.GetHashCode(partsArray);
+            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CardStringsEnum, List<ValueInfo<string>>>>.Default.GetHashCode(strings);
+            return hashCode;
+        }
+
+        /// <inheritdoc/>
+        public static bool operator ==(Card a, Card b)
+            => a.Equals(b);
+
+        /// <inheritdoc/>
+        public static bool operator !=(Card a, Card b)
+            => !a.Equals(b);
 
         /// <summary>
         /// Creates a new empty card

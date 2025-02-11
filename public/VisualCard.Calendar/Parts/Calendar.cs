@@ -900,74 +900,6 @@ namespace VisualCard.Calendar.Parts
         }
 
         /// <summary>
-        /// Saves the contact to the returned string
-        /// </summary>
-        public override string ToString() =>
-            SaveToString();
-
-        /// <inheritdoc/>
-        public override bool Equals(object obj) =>
-            Equals((Calendar)obj);
-
-        /// <summary>
-        /// Checks to see if both the cards are equal
-        /// </summary>
-        /// <param name="other">The target <see cref="Calendar"/> instance to check to see if they equal</param>
-        /// <returns>True if all the card elements are equal. Otherwise, false.</returns>
-        public bool Equals(Calendar other) =>
-            Equals(this, other);
-
-        /// <summary>
-        /// Checks to see if both the cards are equal
-        /// </summary>
-        /// <param name="source">The source <see cref="Calendar"/> instance to check to see if they equal</param>
-        /// <param name="target">The target <see cref="Calendar"/> instance to check to see if they equal</param>
-        /// <returns>True if all the card elements are equal. Otherwise, false.</returns>
-        public bool Equals(Calendar source, Calendar target)
-        {
-            // We can't perform this operation on null.
-            if (source is null || target is null)
-                return false;
-
-            // Check all the properties
-            return
-                CalendarPartComparison.PartsArrayEnumEqual(source.partsArray, target.partsArray) &&
-                CalendarPartComparison.StringsEqual(source.strings, target.strings) &&
-                CalendarPartComparison.IntegersEqual(source.integers, target.integers) &&
-                CalendarPartComparison.CompareCalendarComponents(source.events, target.events) &&
-                CalendarPartComparison.CompareCalendarComponents(source.todos, target.todos) &&
-                CalendarPartComparison.CompareCalendarComponents(source.journals, target.journals) &&
-                CalendarPartComparison.CompareCalendarComponents(source.freeBusyList, target.freeBusyList) &&
-                CalendarPartComparison.CompareCalendarComponents(source.timeZones, target.timeZones) &&
-                CalendarPartComparison.CompareCalendarComponents(source.others, target.others)
-            ;
-        }
-
-        /// <inheritdoc/>
-        public override int GetHashCode()
-        {
-            int hashCode = 797403623;
-            hashCode = hashCode * -1521134295 + EqualityComparer<List<CalendarEvent>>.Default.GetHashCode(events);
-            hashCode = hashCode * -1521134295 + EqualityComparer<List<CalendarTodo>>.Default.GetHashCode(todos);
-            hashCode = hashCode * -1521134295 + EqualityComparer<List<CalendarJournal>>.Default.GetHashCode(journals);
-            hashCode = hashCode * -1521134295 + EqualityComparer<List<CalendarFreeBusy>>.Default.GetHashCode(freeBusyList);
-            hashCode = hashCode * -1521134295 + EqualityComparer<List<CalendarTimeZone>>.Default.GetHashCode(timeZones);
-            hashCode = hashCode * -1521134295 + EqualityComparer<List<CalendarOtherComponent>>.Default.GetHashCode(others);
-            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>>>.Default.GetHashCode(partsArray);
-            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarStringsEnum, List<ValueInfo<string>>>>.Default.GetHashCode(strings);
-            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarIntegersEnum, List<ValueInfo<double>>>>.Default.GetHashCode(integers);
-            return hashCode;
-        }
-
-        /// <inheritdoc/>
-        public static bool operator ==(Calendar a, Calendar b)
-            => a.Equals(b);
-
-        /// <inheritdoc/>
-        public static bool operator !=(Calendar a, Calendar b)
-            => !a.Equals(b);
-
-        /// <summary>
         /// Adds a part to the array
         /// </summary>
         /// <typeparam name="TPart">Part type to add</typeparam>
@@ -1032,7 +964,7 @@ namespace VisualCard.Calendar.Parts
             string line = CommonTools.BuildRawValue(prefix, rawValue, group, args);
 
             // Process the value
-            VCalendarParser.Process(null, line, this, version);
+            VCalendarParser.Process(line, this, version);
         }
 
         internal virtual void AddPartToArray(CalendarPartsArrayEnum key, BaseCalendarPartInfo value) =>
@@ -1111,7 +1043,7 @@ namespace VisualCard.Calendar.Parts
             string line = CommonTools.BuildRawValue(prefix, rawValue, group, args);
 
             // Process the value
-            VCalendarParser.Process(null, line, this, version);
+            VCalendarParser.Process(line, this, version);
         }
 
         internal virtual void AddString(CalendarStringsEnum key, ValueInfo<string> value) =>
@@ -1156,7 +1088,7 @@ namespace VisualCard.Calendar.Parts
             string line = CommonTools.BuildRawValue(prefix, rawValue, group, args);
 
             // Process the value
-            VCalendarParser.Process(null, line, this, version);
+            VCalendarParser.Process(line, this, version);
         }
 
         internal virtual void AddInteger(CalendarIntegersEnum key, ValueInfo<double> value) =>
@@ -1427,6 +1359,74 @@ namespace VisualCard.Calendar.Parts
                     throw new InvalidOperationException($"Parts array enumeration [{key}] is different from the expected one [{partsArrayEnum}] according to type {partType.Name}.");
             }
         }
+
+        /// <summary>
+        /// Saves the contact to the returned string
+        /// </summary>
+        public override string ToString() =>
+            SaveToString();
+
+        /// <inheritdoc/>
+        public override bool Equals(object obj) =>
+            Equals((Calendar)obj);
+
+        /// <summary>
+        /// Checks to see if both the cards are equal
+        /// </summary>
+        /// <param name="other">The target <see cref="Calendar"/> instance to check to see if they equal</param>
+        /// <returns>True if all the card elements are equal. Otherwise, false.</returns>
+        public bool Equals(Calendar other) =>
+            Equals(this, other);
+
+        /// <summary>
+        /// Checks to see if both the cards are equal
+        /// </summary>
+        /// <param name="source">The source <see cref="Calendar"/> instance to check to see if they equal</param>
+        /// <param name="target">The target <see cref="Calendar"/> instance to check to see if they equal</param>
+        /// <returns>True if all the card elements are equal. Otherwise, false.</returns>
+        public bool Equals(Calendar source, Calendar target)
+        {
+            // We can't perform this operation on null.
+            if (source is null || target is null)
+                return false;
+
+            // Check all the properties
+            return
+                CalendarPartComparison.PartsArrayEnumEqual(source.partsArray, target.partsArray) &&
+                CalendarPartComparison.StringsEqual(source.strings, target.strings) &&
+                CalendarPartComparison.IntegersEqual(source.integers, target.integers) &&
+                CalendarPartComparison.CompareCalendarComponents(source.events, target.events) &&
+                CalendarPartComparison.CompareCalendarComponents(source.todos, target.todos) &&
+                CalendarPartComparison.CompareCalendarComponents(source.journals, target.journals) &&
+                CalendarPartComparison.CompareCalendarComponents(source.freeBusyList, target.freeBusyList) &&
+                CalendarPartComparison.CompareCalendarComponents(source.timeZones, target.timeZones) &&
+                CalendarPartComparison.CompareCalendarComponents(source.others, target.others)
+            ;
+        }
+
+        /// <inheritdoc/>
+        public override int GetHashCode()
+        {
+            int hashCode = 797403623;
+            hashCode = hashCode * -1521134295 + EqualityComparer<List<CalendarEvent>>.Default.GetHashCode(events);
+            hashCode = hashCode * -1521134295 + EqualityComparer<List<CalendarTodo>>.Default.GetHashCode(todos);
+            hashCode = hashCode * -1521134295 + EqualityComparer<List<CalendarJournal>>.Default.GetHashCode(journals);
+            hashCode = hashCode * -1521134295 + EqualityComparer<List<CalendarFreeBusy>>.Default.GetHashCode(freeBusyList);
+            hashCode = hashCode * -1521134295 + EqualityComparer<List<CalendarTimeZone>>.Default.GetHashCode(timeZones);
+            hashCode = hashCode * -1521134295 + EqualityComparer<List<CalendarOtherComponent>>.Default.GetHashCode(others);
+            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>>>.Default.GetHashCode(partsArray);
+            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarStringsEnum, List<ValueInfo<string>>>>.Default.GetHashCode(strings);
+            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarIntegersEnum, List<ValueInfo<double>>>>.Default.GetHashCode(integers);
+            return hashCode;
+        }
+
+        /// <inheritdoc/>
+        public static bool operator ==(Calendar a, Calendar b)
+            => a.Equals(b);
+
+        /// <inheritdoc/>
+        public static bool operator !=(Calendar a, Calendar b)
+            => !a.Equals(b);
 
         /// <summary>
         /// Makes an empty calendar
