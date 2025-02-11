@@ -18,6 +18,12 @@
 //
 
 using QRCoder;
+using System;
+using System.IO;
+using System.Text;
+using VisualCard.Calendar;
+using VisualCard.Calendar.Parts;
+using VisualCard.Extras.Converters;
 using VisualCard.Parts;
 
 namespace VisualCard.Extras.Misc
@@ -27,15 +33,120 @@ namespace VisualCard.Extras.Misc
     /// </summary>
     public static class QrCodeGenerator
     {
-        public static void SaveQrCode(Card card, bool validate = false)
+        /// <summary>
+        /// Saves the card to a QR code byte array
+        /// </summary>
+        /// <param name="card">Card to get its QR code</param>
+        /// <param name="validate">Whether to validate before saving</param>
+        /// <returns>A PNG representation of the QR code that can be saved</returns>
+        public static byte[] SaveQrCode(Card card, bool validate = false)
         {
+            // Save the card to a string
             string savedCard = card.ToString(validate);
-            using var generator = new QRCodeGenerator();
-            using var qrData = generator.CreateQrCode(savedCard, QRCodeGenerator.ECCLevel.Q);
-            using var qrBitmap = new PngByteQRCode(qrData);
+            return SaveQrCodeInternal(savedCard);
+        }
+
+        /// <summary>
+        /// Saves the calendar to a QR code byte array
+        /// </summary>
+        /// <param name="calendar">Calendar to get its QR code</param>
+        /// <param name="validate">Whether to validate before saving</param>
+        /// <returns>A PNG representation of the QR code that can be saved</returns>
+        public static byte[] SaveQrCode(Calendar.Parts.Calendar calendar, bool validate = false)
+        {
+            // Save the calendar to a string
+            string savedCalendar = calendar.ToString(validate);
+            return SaveQrCodeInternal(savedCalendar);
+        }
+
+        /// <summary>
+        /// Saves the MeCard contact to a QR code byte array
+        /// </summary>
+        /// <param name="meCard">MeCard representation to get its QR code</param>
+        /// <returns>A PNG representation of the QR code that can be saved</returns>
+        public static byte[] SaveQrCode(string meCard)
+        {
+            // Verify the MeCard string and return its QR code representation
+            MeCard.GetContactsFromMeCardString(meCard);
+            return SaveQrCodeInternal(meCard);
+        }
+
+        /// <summary>
+        /// Saves the card to a QR code byte array
+        /// </summary>
+        /// <param name="card">Card to get its QR code</param>
+        /// <param name="validate">Whether to validate before saving</param>
+        /// <param name="filePath">Path to the file to export to (.qrr will be appended automatically)</param>
+        public static void ExportQrCode(Card card, string filePath, bool validate = false)
+        {
+            // Save the card to a string
+            string savedCard = card.ToString(validate);
+            ExportQrCodeInternal(savedCard, filePath);
+        }
+
+        /// <summary>
+        /// Saves the calendar to a QR code byte array
+        /// </summary>
+        /// <param name="calendar">Calendar to get its QR code</param>
+        /// <param name="validate">Whether to validate before saving</param>
+        /// <param name="filePath">Path to the file to export to (.qrr will be appended automatically)</param>
+        public static void ExportQrCode(Calendar.Parts.Calendar calendar, string filePath, bool validate = false)
+        {
+            // Save the calendar to a string
+            string savedCalendar = calendar.ToString(validate);
+            ExportQrCodeInternal(savedCalendar, filePath);
+        }
+
+        /// <summary>
+        /// Saves the MeCard contact to a QR code byte array
+        /// </summary>
+        /// <param name="meCard">MeCard representation to get its QR code</param>
+        /// <param name="filePath">Path to the file to export to (.qrr will be appended automatically)</param>
+        public static void ExportQrCode(string meCard, string filePath)
+        {
+            // Verify the MeCard string and return its QR code representation
+            MeCard.GetContactsFromMeCardString(meCard);
+            ExportQrCodeInternal(meCard, filePath);
+        }
+
+        private static QRCodeData GetQrCodeData(string representation)
+        {
+            // Generate the saved payload for QR code
+            var generator = new QRCodeGenerator();
+            var qrData = generator.CreateQrCode(representation, QRCodeGenerator.ECCLevel.Q);
+
+            // Return the QR data
+            return qrData;
+        }
+
+        private static byte[] SaveQrCodeInternal(string representation)
+        {
+            // Generate the saved payload for QR code
+            var qrData = GetQrCodeData(representation);
+            var qrBitmap = new PngByteQRCode(qrData);
             var graphicsByte = qrBitmap.GetGraphic(20);
 
-            // TODO: UNFINISHED
+            // Finally, return the byte array
+            return graphicsByte;
+        }
+
+        private static void ExportQrCodeInternal(string representation, string filePath)
+        {
+            var qrCodeData = GetQrCodeData(representation);
+
+            // Get the file path
+            filePath = GetFinalPath(filePath);
+            qrCodeData.SaveRawData(filePath, QRCodeData.Compression.Uncompressed);
+        }
+
+        private static string GetFinalPath(string filePath)
+        {
+            // Check to see if this path points to a directory or a file
+            string initialFileName = DateTime.Now.ToString("yyyyMMddHHmmssfff");
+            if (Directory.Exists(filePath) || !File.Exists(filePath + ".qrr"))
+                filePath = Path.Combine(filePath, initialFileName);
+            filePath += ".qrr";
+            return filePath;
         }
     }
 }
