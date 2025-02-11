@@ -71,7 +71,7 @@ namespace VisualCard.Parts.Implementations
             else
             {
                 // vCard 3.0 handles this in a different way
-                soundEncoding = CommonTools.GetValuesString(arguments, "b", VcardConstants._encodingArgumentSpecifier);
+                soundEncoding = CommonTools.GetValuesString(arguments, "b", CommonConstants._encodingArgumentSpecifier);
                 if (!CommonTools.IsEncodingBlob(arguments, value))
                 {
                     // Since we don't need embedded sounds, we need to check a URL.

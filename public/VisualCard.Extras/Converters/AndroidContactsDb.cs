@@ -153,7 +153,7 @@ namespace VisualCard.Extras.Converters
                 var masterContactBuilder = new StringBuilder(
                     $"""
                     {VcardConstants._beginText}
-                    {VcardConstants._versionSpecifier}:3.0
+                    {CommonConstants._versionSpecifier}:3.0
 
                     """
                 );
@@ -180,7 +180,7 @@ namespace VisualCard.Extras.Converters
                             {VcardConstants._endText}
 
                             {VcardConstants._beginText}
-                            {VcardConstants._versionSpecifier}:3.0
+                            {CommonConstants._versionSpecifier}:3.0
                             """
                         );
                     }

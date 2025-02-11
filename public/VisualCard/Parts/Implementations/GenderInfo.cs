@@ -26,6 +26,7 @@ using VisualCard.Parsers;
 using VisualCard.Parts.Implementations.Tools;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parts;
+using VisualCard.Common.Parsers;
 
 namespace VisualCard.Parts.Implementations
 {
@@ -49,7 +50,7 @@ namespace VisualCard.Parts.Implementations
 
         internal override string ToStringInternal(Version cardVersion) =>
             (Gender != Gender.Unspecified ? Gender.ToString()[0] : "") +
-            (!string.IsNullOrEmpty(GenderDescription) ? $"{VcardConstants._fieldDelimiter}{GenderDescription}" : "");
+            (!string.IsNullOrEmpty(GenderDescription) ? $"{CommonConstants._fieldDelimiter}{GenderDescription}" : "");
 
         internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
@@ -58,12 +59,12 @@ namespace VisualCard.Parts.Implementations
             string genderDescription = "";
 
             // Check to see if we have the description or not (as in GENDER:F;grrrl or GENDER:F)
-            bool hasGenderDescription = value.Contains(VcardConstants._fieldDelimiter);
+            bool hasGenderDescription = value.Contains(CommonConstants._fieldDelimiter);
             if (hasGenderDescription)
             {
                 // We have the description!
-                genderString = value.Substring(0, value.IndexOf(VcardConstants._fieldDelimiter));
-                genderDescription = value.Substring(value.IndexOf(VcardConstants._fieldDelimiter) + 1);
+                genderString = value.Substring(0, value.IndexOf(CommonConstants._fieldDelimiter));
+                genderDescription = value.Substring(value.IndexOf(CommonConstants._fieldDelimiter) + 1);
             }
 
             // Now, translate the gender string to its enum equivalent

@@ -24,6 +24,7 @@ using System.Text.RegularExpressions;
 using VisualCard.Parsers;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parts;
+using VisualCard.Common.Parsers;
 
 namespace VisualCard.Calendar.Parts.Implementations
 {
@@ -42,7 +43,7 @@ namespace VisualCard.Calendar.Parts.Implementations
             (BaseCalendarPartInfo)new ResourcesInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringInternal(Version cardVersion) =>
-            $"{string.Join(VcardConstants._valueDelimiter.ToString(), Resources)}";
+            $"{string.Join(CommonConstants._valueDelimiter.ToString(), Resources)}";
 
         internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {

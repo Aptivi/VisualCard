@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text.RegularExpressions;
+using VisualCard.Common.Parsers;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parts;
 using VisualCard.Parsers;
@@ -67,18 +68,18 @@ namespace VisualCard.Parts.Implementations
             (BaseCardPartInfo)new AddressInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringInternal(Version cardVersion) =>
-            $"{PostOfficeBox}{VcardConstants._fieldDelimiter}" +
-            $"{ExtendedAddress}{VcardConstants._fieldDelimiter}" +
-            $"{StreetAddress}{VcardConstants._fieldDelimiter}" +
-            $"{Locality}{VcardConstants._fieldDelimiter}" +
-            $"{Region}{VcardConstants._fieldDelimiter}" +
-            $"{PostalCode}{VcardConstants._fieldDelimiter}" +
+            $"{PostOfficeBox}{CommonConstants._fieldDelimiter}" +
+            $"{ExtendedAddress}{CommonConstants._fieldDelimiter}" +
+            $"{StreetAddress}{CommonConstants._fieldDelimiter}" +
+            $"{Locality}{CommonConstants._fieldDelimiter}" +
+            $"{Region}{CommonConstants._fieldDelimiter}" +
+            $"{PostalCode}{CommonConstants._fieldDelimiter}" +
             $"{Country}";
 
         internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
             // Get the value
-            string[] splitAdr = value.Split(VcardConstants._fieldDelimiter);
+            string[] splitAdr = value.Split(CommonConstants._fieldDelimiter);
 
             // Check the provided address
             if (splitAdr.Length < 7)

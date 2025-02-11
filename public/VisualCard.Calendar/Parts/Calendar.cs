@@ -502,9 +502,9 @@ namespace VisualCard.Calendar.Parts
             var cardBuilder = new StringBuilder();
 
             // First, write the header
-            cardBuilder.AppendLine($"{VcardConstants._beginSpecifier}:{objectType}");
+            cardBuilder.AppendLine($"{CommonConstants._beginSpecifier}:{objectType}");
             if (objectType == VCalendarConstants._objectVCalendarSpecifier)
-                cardBuilder.AppendLine($"{VcardConstants._versionSpecifier}:{version}");
+                cardBuilder.AppendLine($"{CommonConstants._versionSpecifier}:{version}");
 
             // Then, enumerate all the strings
             foreach (CalendarStringsEnum stringEnum in strings.Keys)
@@ -663,7 +663,7 @@ namespace VisualCard.Calendar.Parts
             }
 
             // End the card and return it
-            cardBuilder.AppendLine($"{VcardConstants._endSpecifier}:{objectType}");
+            cardBuilder.AppendLine($"{CommonConstants._endSpecifier}:{objectType}");
             return cardBuilder.ToString();
         }
 

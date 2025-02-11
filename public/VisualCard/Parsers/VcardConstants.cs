@@ -17,32 +17,20 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+using VisualCard.Common.Parsers;
+
 namespace VisualCard.Parsers
 {
     internal static class VcardConstants
     {
         // Mandatory for each vCard
-        internal const string _beginText = _beginSpecifier + ":" + _objectVCardSpecifier;
-        internal const string _endText = _endSpecifier + ":" + _objectVCardSpecifier;
-        internal const string _beginSpecifier = "BEGIN";
-        internal const string _endSpecifier = "END";
-        internal const string _versionSpecifier = "VERSION";
+        internal const string _beginText = CommonConstants._beginSpecifier + ":" + _objectVCardSpecifier;
+        internal const string _endText = CommonConstants._endSpecifier + ":" + _objectVCardSpecifier;
 
         // Object specifiers
         internal const string _objectVCardSpecifier = "VCARD";
 
-        // Misc vCard constants
-        internal const string _spaceBreak = " ";
-        internal const string _tabBreak = "\x0009";
-
-        // Encodings
-        internal const string _quotedPrintable = "QUOTED-PRINTABLE";
-
         // Available in vCard 2.1, 3.0, 4.0, and 5.0
-        internal const char _fieldDelimiter = ';';
-        internal const char _valueDelimiter = ',';
-        internal const char _argumentDelimiter = ':';
-        internal const char _argumentValueDelimiter = '=';
         internal const string _nameSpecifier = "N";
         internal const string _fullNameSpecifier = "FN";
         internal const string _telephoneSpecifier = "TEL";
@@ -69,10 +57,6 @@ namespace VisualCard.Parsers
         internal const string _caladrUriSpecifier = "CALADRURI";
         internal const string _categoriesSpecifier = "CATEGORIES";
         internal const string _keySpecifier = "KEY";
-        internal const string _xSpecifier = "X-";
-        internal const string _typeArgumentSpecifier = "TYPE";
-        internal const string _valueArgumentSpecifier = "VALUE";
-        internal const string _encodingArgumentSpecifier = "ENCODING";
 
         // Available in vCard 2.1, 3.0, and 4.0
         internal const string _uidSpecifier = "UID";

@@ -30,6 +30,7 @@ using VisualCard.Calendar.Parts.Implementations.FreeBusy;
 using VisualCard.Parsers;
 using VisualCard.Common.Parts.Implementations;
 using VisualCard.Common.Parts.Enums;
+using VisualCard.Common.Parsers;
 
 namespace VisualCard.Calendar.Parsers
 {
@@ -126,7 +127,7 @@ namespace VisualCard.Calendar.Parsers
                 CalendarPartsArrayEnum.RequestStatus => VCalendarConstants._requestStatusSpecifier,
 
                 // Extensions are allowed
-                CalendarPartsArrayEnum.NonstandardNames => VcardConstants._xSpecifier,
+                CalendarPartsArrayEnum.NonstandardNames => CommonConstants._xSpecifier,
                 _ => ""
             };
 
@@ -214,7 +215,7 @@ namespace VisualCard.Calendar.Parsers
                 VCalendarConstants._rNumSpecifier => new(PartType.Integers, CalendarIntegersEnum.RecurrTimes, PartCardinality.MayBeOne, (ver) => ver.Major == 1 && TypeMatch(componentType, typeof(CalendarEvent), typeof(CalendarTodo)), null, null, "", "", "integer", [], []),
 
                 // Extensions are allowed
-                VcardConstants._xSpecifier => new(PartType.PartsArray, CalendarPartsArrayEnum.NonstandardNames, PartCardinality.Any, null, typeof(XNameInfo), null, "", "", "", [], []),
+                CommonConstants._xSpecifier => new(PartType.PartsArray, CalendarPartsArrayEnum.NonstandardNames, PartCardinality.Any, null, typeof(XNameInfo), null, "", "", "", [], []),
                 _ => new(PartType.PartsArray, CalendarPartsArrayEnum.IanaNames, PartCardinality.Any, null, typeof(ExtraInfo), null, "", "", "", [], []),
             };
         }

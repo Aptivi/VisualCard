@@ -17,15 +17,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-using VisualCard.Parsers;
+using VisualCard.Common.Parsers;
 
 namespace VisualCard.Calendar.Parsers
 {
     internal static class VCalendarConstants
     {
         // Mandatory for each vCalendar
-        internal const string _beginText = VcardConstants._beginSpecifier + ":" + _objectVCalendarSpecifier;
-        internal const string _endText = VcardConstants._endSpecifier + ":" + _objectVCalendarSpecifier;
+        internal const string _beginText = CommonConstants._beginSpecifier + ":" + _objectVCalendarSpecifier;
+        internal const string _endText = CommonConstants._endSpecifier + ":" + _objectVCalendarSpecifier;
 
         // Object specifiers
         internal const string _objectVCalendarSpecifier = "VCALENDAR";

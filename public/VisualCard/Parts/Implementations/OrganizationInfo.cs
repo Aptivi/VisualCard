@@ -24,6 +24,7 @@ using System.Text.RegularExpressions;
 using VisualCard.Parsers;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parts;
+using VisualCard.Common.Parsers;
 
 namespace VisualCard.Parts.Implementations
 {
@@ -50,13 +51,13 @@ namespace VisualCard.Parts.Implementations
             (BaseCardPartInfo)new OrganizationInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
 
         internal override string ToStringInternal(Version cardVersion) =>
-            $"{Name}{VcardConstants._fieldDelimiter}" +
-            $"{Unit}{VcardConstants._fieldDelimiter}" +
+            $"{Name}{CommonConstants._fieldDelimiter}" +
+            $"{Unit}{CommonConstants._fieldDelimiter}" +
             $"{Role}";
 
         internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
-            string[] splitOrg = value.Split(VcardConstants._fieldDelimiter);
+            string[] splitOrg = value.Split(CommonConstants._fieldDelimiter);
 
             // Populate the fields
             string _orgName = Regex.Unescape(splitOrg[0]);

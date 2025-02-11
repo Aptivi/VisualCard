@@ -282,7 +282,7 @@ namespace VisualCard.Parts
 
             // First, write the header
             cardBuilder.AppendLine(VcardConstants._beginText);
-            cardBuilder.AppendLine($"{VcardConstants._versionSpecifier}:{version}");
+            cardBuilder.AppendLine($"{CommonConstants._versionSpecifier}:{version}");
 
             // Then, enumerate all the strings
             foreach (CardStringsEnum stringEnum in strings.Keys)

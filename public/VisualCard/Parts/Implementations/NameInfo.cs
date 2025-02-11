@@ -26,6 +26,7 @@ using System.Text.RegularExpressions;
 using VisualCard.Parsers;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parts;
+using VisualCard.Common.Parsers;
 
 namespace VisualCard.Parts.Implementations
 {
@@ -61,29 +62,29 @@ namespace VisualCard.Parts.Implementations
 
         internal override string ToStringInternal(Version cardVersion)
         {
-            string altNamesStr = string.Join(VcardConstants._valueDelimiter.ToString(), AltNames);
-            string prefixesStr = string.Join(VcardConstants._valueDelimiter.ToString(), Prefixes);
-            string suffixesStr = string.Join(VcardConstants._valueDelimiter.ToString(), Suffixes);
+            string altNamesStr = string.Join(CommonConstants._valueDelimiter.ToString(), AltNames);
+            string prefixesStr = string.Join(CommonConstants._valueDelimiter.ToString(), Prefixes);
+            string suffixesStr = string.Join(CommonConstants._valueDelimiter.ToString(), Suffixes);
             return
-                $"{ContactLastName}{VcardConstants._fieldDelimiter}" +
-                $"{ContactFirstName}{VcardConstants._fieldDelimiter}" +
-                $"{altNamesStr}{VcardConstants._fieldDelimiter}" +
-                $"{prefixesStr}{VcardConstants._fieldDelimiter}" +
+                $"{ContactLastName}{CommonConstants._fieldDelimiter}" +
+                $"{ContactFirstName}{CommonConstants._fieldDelimiter}" +
+                $"{altNamesStr}{CommonConstants._fieldDelimiter}" +
+                $"{prefixesStr}{CommonConstants._fieldDelimiter}" +
                 $"{suffixesStr}";
         }
 
         internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
         {
-            string[] splitName = value.Split(VcardConstants._fieldDelimiter);
+            string[] splitName = value.Split(CommonConstants._fieldDelimiter);
             if (splitName.Length < 2)
                 throw new InvalidDataException("Name field must specify the first two or more of the five values (Last name, first name, alt names, prefixes, and suffixes)");
 
             // Populate fields
             string _lastName = Regex.Unescape(splitName[0]);
             string _firstName = Regex.Unescape(splitName[1]);
-            string[] _altNames = splitName.Length >= 3 ? Regex.Unescape(splitName[2]).Split(new char[] { VcardConstants._valueDelimiter }, StringSplitOptions.RemoveEmptyEntries) : [];
-            string[] _prefixes = splitName.Length >= 4 ? Regex.Unescape(splitName[3]).Split(new char[] { VcardConstants._valueDelimiter }, StringSplitOptions.RemoveEmptyEntries) : [];
-            string[] _suffixes = splitName.Length >= 5 ? Regex.Unescape(splitName[4]).Split(new char[] { VcardConstants._valueDelimiter }, StringSplitOptions.RemoveEmptyEntries) : [];
+            string[] _altNames = splitName.Length >= 3 ? Regex.Unescape(splitName[2]).Split(new char[] { CommonConstants._valueDelimiter }, StringSplitOptions.RemoveEmptyEntries) : [];
+            string[] _prefixes = splitName.Length >= 4 ? Regex.Unescape(splitName[3]).Split(new char[] { CommonConstants._valueDelimiter }, StringSplitOptions.RemoveEmptyEntries) : [];
+            string[] _suffixes = splitName.Length >= 5 ? Regex.Unescape(splitName[4]).Split(new char[] { CommonConstants._valueDelimiter }, StringSplitOptions.RemoveEmptyEntries) : [];
             NameInfo _name = new(altId, property, elementTypes, group, valueType, _firstName, _lastName, _altNames, _prefixes, _suffixes);
             return _name;
         }

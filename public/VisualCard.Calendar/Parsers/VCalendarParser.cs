@@ -88,13 +88,13 @@ namespace VisualCard.Calendar.Parsers
                 {
                     // Check to see if we have a BEGIN or an END prefix
                     var info = new PropertyInfo(_value);
-                    if (info.Prefix == VcardConstants._beginSpecifier)
+                    if (info.Prefix == CommonConstants._beginSpecifier)
                     {
                         string finalType = info.Value.ToUpper();
                         begins.Add((finalType, GetCalendarInheritedInstance(finalType)));
                         continue;
                     }
-                    else if (info.Prefix == VcardConstants._endSpecifier)
+                    else if (info.Prefix == CommonConstants._endSpecifier)
                     {
                         string expectedType = begins[begins.Count - 1].Item1;
                         if (info.Value == expectedType)
@@ -152,7 +152,7 @@ namespace VisualCard.Calendar.Parsers
             }
 
             // Handle the part type, and extract the value
-            string valueType = CommonTools.GetFirstValue(info.Arguments, partType.defaultValueType, VcardConstants._valueArgumentSpecifier);
+            string valueType = CommonTools.GetFirstValue(info.Arguments, partType.defaultValueType, CommonConstants._valueArgumentSpecifier);
             string finalValue = CommonTools.ProcessStringValue(info.Value, valueType, version.Major == 1 ? ';' : ',');
 
             // Check for allowed values

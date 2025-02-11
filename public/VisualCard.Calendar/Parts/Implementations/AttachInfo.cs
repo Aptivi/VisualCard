@@ -59,7 +59,7 @@ namespace VisualCard.Calendar.Parts.Implementations
             var arguments = property?.Arguments ?? [];
 
             // Check to see if the value is prepended by the ENCODING= argument
-            string attachEncoding = CommonTools.GetValuesString(arguments, "b", VcardConstants._encodingArgumentSpecifier);
+            string attachEncoding = CommonTools.GetValuesString(arguments, "b", CommonConstants._encodingArgumentSpecifier);
             if (!CommonTools.IsEncodingBlob(arguments, value))
             {
                 // Since we don't need embedded attachs, we need to check a URL.

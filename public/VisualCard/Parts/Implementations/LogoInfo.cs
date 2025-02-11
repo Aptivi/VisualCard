@@ -71,7 +71,7 @@ namespace VisualCard.Parts.Implementations
             else
             {
                 // vCard 3.0 handles this in a different way
-                logoEncoding = CommonTools.GetValuesString(arguments, "b", VcardConstants._encodingArgumentSpecifier);
+                logoEncoding = CommonTools.GetValuesString(arguments, "b", CommonConstants._encodingArgumentSpecifier);
                 if (!CommonTools.IsEncodingBlob(arguments, value))
                 {
                     // Since we don't need embedded logos, we need to check a URL.

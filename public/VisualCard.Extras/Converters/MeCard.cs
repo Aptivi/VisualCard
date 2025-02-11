@@ -27,6 +27,7 @@ using System.Linq;
 using System.Collections.Generic;
 using VisualCard.Parts.Enums;
 using VisualCard.Common.Parts.Implementations;
+using VisualCard.Common.Parsers;
 
 namespace VisualCard.Extras.Converters
 {
@@ -87,7 +88,7 @@ namespace VisualCard.Extras.Converters
                     // "SOUND:" here is actually just a Kana name, so demote it to X-nonstandard
                     if (value.StartsWith($"{_meCardSoundSpecifier}{_meCardArgumentDelimiter}"))
                     {
-                        string xNonstandard = $"{VcardConstants._xSpecifier}{_meCardXNameKanaSpecifier}{_meCardArgumentDelimiter}";
+                        string xNonstandard = $"{CommonConstants._xSpecifier}{_meCardXNameKanaSpecifier}{_meCardArgumentDelimiter}";
                         values[i] = value.Replace(",", ";");
                         values[i] = xNonstandard + values[i].Substring(6);
                     }
@@ -108,8 +109,8 @@ namespace VisualCard.Extras.Converters
                     {
                         string prefix =
                             $"{VcardConstants._telephoneSpecifier}" +
-                            $"{VcardConstants._fieldDelimiter}" +
-                            $"{VcardConstants._typeArgumentSpecifier}=VIDEO{VcardConstants._argumentDelimiter}";
+                            $"{CommonConstants._fieldDelimiter}" +
+                            $"{CommonConstants._typeArgumentSpecifier}=VIDEO{CommonConstants._argumentDelimiter}";
                         values[i] = prefix + values[i].Substring(7);
                     }
                 }
@@ -118,7 +119,7 @@ namespace VisualCard.Extras.Converters
                 var masterContactBuilder = new StringBuilder(
                    $"""
                     {VcardConstants._beginText}
-                    {VcardConstants._versionSpecifier}{VcardConstants._argumentDelimiter}3.0
+                    {CommonConstants._versionSpecifier}{CommonConstants._argumentDelimiter}3.0
 
                     """
                 );
@@ -126,7 +127,7 @@ namespace VisualCard.Extras.Converters
                     masterContactBuilder.AppendLine(value);
                 masterContactBuilder.AppendLine(
                    $"""
-                    {VcardConstants._fullNameSpecifier}{VcardConstants._argumentDelimiter}{fullName}
+                    {VcardConstants._fullNameSpecifier}{CommonConstants._argumentDelimiter}{fullName}
                     {VcardConstants._endText}
                     """
                 );

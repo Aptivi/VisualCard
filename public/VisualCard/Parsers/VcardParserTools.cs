@@ -20,6 +20,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using VisualCard.Common.Parsers;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parts.Enums;
 using VisualCard.Common.Parts.Implementations;
@@ -109,7 +110,7 @@ namespace VisualCard.Parsers
                 CardPartsArrayEnum.ClientPidMap => VcardConstants._clientPidMapSpecifier,
 
                 // Extensions are allowed
-                CardPartsArrayEnum.NonstandardNames => VcardConstants._xSpecifier,
+                CardPartsArrayEnum.NonstandardNames => CommonConstants._xSpecifier,
                 _ => ""
             };
 
@@ -184,7 +185,7 @@ namespace VisualCard.Parsers
                 VcardConstants._orgDirectorySpecifier => new(PartType.Strings, CardStringsEnum.OrgDirectory, PartCardinality.Any, (ver) => ver.Major >= 4, null, null, "", "", "uri", [], []),
 
                 // Extensions are allowed
-                VcardConstants._xSpecifier => new(PartType.PartsArray, CardPartsArrayEnum.NonstandardNames, PartCardinality.Any, null, typeof(XNameInfo), null, "", "", "", [], []),
+                CommonConstants._xSpecifier => new(PartType.PartsArray, CardPartsArrayEnum.NonstandardNames, PartCardinality.Any, null, typeof(XNameInfo), null, "", "", "", [], []),
                 _ => new(PartType.PartsArray, CardPartsArrayEnum.IanaNames, PartCardinality.Any, null, typeof(ExtraInfo), null, "", "", "", [], []),
             };
         }

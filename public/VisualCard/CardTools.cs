@@ -25,6 +25,7 @@ using System;
 using VisualCard.Parts;
 using Textify.General;
 using VisualCard.Common.Parsers.Arguments;
+using VisualCard.Common.Parsers;
 
 namespace VisualCard
 {
@@ -125,23 +126,23 @@ namespace VisualCard
                 // Process the line for begin, version, and end specifiers
                 if (string.IsNullOrEmpty(CardLine))
                     continue;
-                else if ((!prefix.EqualsNoCase(VcardConstants._beginSpecifier) &&
-                         !prefix.EqualsNoCase(VcardConstants._versionSpecifier) &&
-                         !prefix.EqualsNoCase(VcardConstants._endSpecifier)) || isAgent)
+                else if ((!prefix.EqualsNoCase(CommonConstants._beginSpecifier) &&
+                         !prefix.EqualsNoCase(CommonConstants._versionSpecifier) &&
+                         !prefix.EqualsNoCase(CommonConstants._endSpecifier)) || isAgent)
                     append = true;
-                else if (prefix.EqualsNoCase(VcardConstants._beginSpecifier) && nested && !isAgent)
+                else if (prefix.EqualsNoCase(CommonConstants._beginSpecifier) && nested && !isAgent)
                 {
                     // We have a nested card!
                     StringBuilder nestedBuilder = new();
                     int nestLevel = 1;
                     nestedBuilder.AppendLine(CardLine);
-                    while (!stream.EndOfStream && !prefix.EqualsNoCase(VcardConstants._endSpecifier) && !value.EqualsNoCase(VcardConstants._objectVCardSpecifier))
+                    while (!stream.EndOfStream && !prefix.EqualsNoCase(CommonConstants._endSpecifier) && !value.EqualsNoCase(VcardConstants._objectVCardSpecifier))
                     {
                         CardLine = stream.ReadLine();
                         nestedBuilder.AppendLine(CardLine);
-                        if (prefix.EqualsNoCase(VcardConstants._beginSpecifier) && value.EqualsNoCase(VcardConstants._objectVCardSpecifier))
+                        if (prefix.EqualsNoCase(CommonConstants._beginSpecifier) && value.EqualsNoCase(VcardConstants._objectVCardSpecifier))
                             nestLevel++;
-                        else if (prefix.EqualsNoCase(VcardConstants._endSpecifier) && value.EqualsNoCase(VcardConstants._objectVCardSpecifier) && nestLevel > 1)
+                        else if (prefix.EqualsNoCase(CommonConstants._endSpecifier) && value.EqualsNoCase(VcardConstants._objectVCardSpecifier) && nestLevel > 1)
                         {
                             nestLevel--;
                             continue;
@@ -159,7 +160,7 @@ namespace VisualCard
                 // Check for agent property
                 if (prefix == VcardConstants._agentSpecifier && string.IsNullOrEmpty(value))
                     isAgent = true;
-                else if (prefix == VcardConstants._endSpecifier && isAgent)
+                else if (prefix == CommonConstants._endSpecifier && isAgent)
                 {
                     isAgent = false;
                     continue;
@@ -168,7 +169,7 @@ namespace VisualCard
                     continue;
 
                 // All VCards must begin with BEGIN:VCARD
-                if (!prefix.EqualsNoCase(VcardConstants._beginSpecifier) && !value.EqualsNoCase(VcardConstants._objectVCardSpecifier) && !BeginSpotted)
+                if (!prefix.EqualsNoCase(CommonConstants._beginSpecifier) && !value.EqualsNoCase(VcardConstants._objectVCardSpecifier) && !BeginSpotted)
                     throw new InvalidDataException("This is not a valid vCard contact file.");
                 else if (!BeginSpotted)
                 {
@@ -183,12 +184,12 @@ namespace VisualCard
                 // Now that the beginning of the card tag is spotted, parse the version as we need to know how to select the appropriate parser.
                 // vCard 4.0 and 5.0 cards are required to have their own version directly after the BEGIN:VCARD tag, but vCard 3.0 and 2.1 may
                 // or may not place VERSION directly after the BEGIN:VCARD tag.
-                if (prefix.EqualsNoCase(VcardConstants._versionSpecifier) &&
+                if (prefix.EqualsNoCase(CommonConstants._versionSpecifier) &&
                     !value.EqualsNoCase("2.1") && !value.EqualsNoCase("3.0") &&
                     !value.EqualsNoCase("4.0") && !value.EqualsNoCase("5.0") &&
                     !VersionSpotted)
                     throw new InvalidDataException($"This card has an invalid VCard version {CardLine}.");
-                else if (!VersionSpotted && prefix.EqualsNoCase(VcardConstants._versionSpecifier))
+                else if (!VersionSpotted && prefix.EqualsNoCase(CommonConstants._versionSpecifier))
                 {
                     VersionSpotted = true;
                     CardVersion = new(value);
@@ -202,7 +203,7 @@ namespace VisualCard
                     versionDirect = false;
 
                 // If the ending tag is spotted, reset everything.
-                if (prefix.EqualsNoCase(VcardConstants._endSpecifier) && value.EqualsNoCase(VcardConstants._objectVCardSpecifier) && !EndSpotted)
+                if (prefix.EqualsNoCase(CommonConstants._endSpecifier) && value.EqualsNoCase(VcardConstants._objectVCardSpecifier) && !EndSpotted)
                 {
                     EndSpotted = true;
                     nested = false;

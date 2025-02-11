@@ -75,7 +75,7 @@ namespace VisualCard.Parts.Implementations
                 var arguments = property?.Arguments ?? [];
 
                 // vCard 3.0 handles this in a different way
-                keyEncoding = CommonTools.GetValuesString(arguments, "b", VcardConstants._encodingArgumentSpecifier);
+                keyEncoding = CommonTools.GetValuesString(arguments, "b", CommonConstants._encodingArgumentSpecifier);
                 if (!CommonTools.IsEncodingBlob(arguments, value))
                 {
                     // Since we don't need embedded keys, we need to check a URL.

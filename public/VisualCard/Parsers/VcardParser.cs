@@ -136,7 +136,7 @@ namespace VisualCard.Parsers
             }
 
             // Handle the part type
-            string valueType = CommonTools.GetFirstValue(info.Arguments, partType.defaultValueType, VcardConstants._valueArgumentSpecifier);
+            string valueType = CommonTools.GetFirstValue(info.Arguments, partType.defaultValueType, CommonConstants._valueArgumentSpecifier);
             string finalValue = CommonTools.ProcessStringValue(info.Value, valueType);
 
             // Check for allowed values
