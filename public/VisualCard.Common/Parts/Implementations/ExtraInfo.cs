@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using VisualCard.Common.Diagnostics;
 using VisualCard.Common.Parsers;
 using VisualCard.Common.Parsers.Arguments;
 
@@ -55,9 +56,11 @@ namespace VisualCard.Common.Parts.Implementations
             string _extra = split[0].Contains(CommonConstants._fieldDelimiter.ToString()) ?
                             split[0].Substring(0, split[0].IndexOf(CommonConstants._fieldDelimiter)) :
                             split[0];
+            LoggingTools.Debug("Got {0} extra name", _extra);
 
             // Populate the fields
             string[] _values = split[1].Split(CommonConstants._fieldDelimiter);
+            LoggingTools.Debug("Got {0} values [{1}]", _values.Length, string.Join(", ", _values));
             ExtraInfo _extraInfo = new(property, altId, elementTypes, group, valueType, _extra, _values);
             return _extraInfo;
         }

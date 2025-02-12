@@ -19,6 +19,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using VisualCard.Common.Diagnostics;
 
 namespace VisualCard.Common.Parts.Comparers
 {
@@ -39,6 +40,7 @@ namespace VisualCard.Common.Parts.Comparers
                 TValue sourcePart = source[i];
                 TValue targetPart = target[i];
                 bool equals = sourcePart?.Equals(targetPart) ?? false;
+                LoggingTools.Info("List items comparison returned {0}", equals);
                 results.Add(equals);
             }
             return !results.Contains(false);
@@ -54,6 +56,7 @@ namespace VisualCard.Common.Parts.Comparers
             {
                 TValue targetPart = target.ElementAt(i);
                 bool equals = source?.Contains(targetPart) ?? false;
+                LoggingTools.Info("List items comparison returned {0}", equals);
                 results.Add(equals);
             }
             return !results.Contains(false);
@@ -68,6 +71,7 @@ namespace VisualCard.Common.Parts.Comparers
 
             if (source.Count != target.Count)
                 return false;
+            LoggingTools.Debug("List verification complete, going ahead...");
             return true;
         }
 
@@ -80,6 +84,7 @@ namespace VisualCard.Common.Parts.Comparers
 
             if (source.Count != target.Count)
                 return false;
+            LoggingTools.Debug("Dictionary verification complete, going ahead...");
             return true;
         }
     }

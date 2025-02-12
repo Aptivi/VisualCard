@@ -175,9 +175,15 @@ namespace VisualCard.Parsers.Recurrence
 
                     // Check to see if this rule is the only rule
                     if (rules.Count == 0)
+                    {
                         parsedRule.endDate = endDate;
+                        LoggingTools.Debug("Added end date {0} to parsed rule.", endDate);
+                    }
                     else
+                    {
                         rules[0].endDate = endDate;
+                        LoggingTools.Debug("Added end date {0} to first parsed rule.", endDate);
+                    }
                     LoggingTools.Info("Parsing next designator...");
                     continue;
                 }
@@ -190,6 +196,7 @@ namespace VisualCard.Parsers.Recurrence
                 // with one type or another.
                 //
                 // This complexity starts with monthlybypos (MonthlyPos).
+                LoggingTools.Info("Prcessing frequency {0} [filtered length: {1}]...", parsedRule.frequency, filtered.Length);
                 switch (parsedRule.frequency)
                 {
                     case RecurrenceRuleFrequency.MonthlyPos:
@@ -204,6 +211,7 @@ namespace VisualCard.Parsers.Recurrence
                         // or the minus sign is REQUIRED here according to the recurrence rule grammar.
                         //
                         // This is dealing with monthly repetition based on a relative day.
+                        LoggingTools.Info("Filtered length must be two");
                         if (filtered.Length != 2)
                             throw new ArgumentException($"After filtering, instead of two characters, got {filtered.Length}: {filtered}");
 
@@ -211,6 +219,7 @@ namespace VisualCard.Parsers.Recurrence
                         char occurrenceNumber = filtered[0];
                         char occurrenceSign = filtered[1];
                         bool occurrenceNegative = occurrenceSign == '-';
+                        LoggingTools.Debug("Number from [1-5] {0}, sign {1}, negative {2}", occurrenceNumber, occurrenceSign, occurrenceNegative);
                         if (!int.TryParse($"{occurrenceNumber}", out int occurrence))
                             throw new ArgumentException($"Occurrence number is not a number of [1-5] {occurrenceNumber}: {filtered}");
                         if (occurrence < 1 || occurrence > 5)
@@ -220,6 +229,7 @@ namespace VisualCard.Parsers.Recurrence
 
                         // Add the parsed occurrence
                         parsedRule.monthlyOccurrences.Add((isEndMarker, (occurrence, occurrenceNegative)));
+                        LoggingTools.Debug("Added monthly occurrence {0}, {1}, {2}.", isEndMarker, occurrence, occurrenceNegative);
                         break;
                     case RecurrenceRuleFrequency.MonthlyDay:
                         // We need to parse the month day number list...
@@ -233,6 +243,7 @@ namespace VisualCard.Parsers.Recurrence
                         // We don't care about the number of days in a month here.
                         //
                         // This is dealing with monthly repetition based on an absolute day.
+                        LoggingTools.Info("Filtered length must be between 1 and 3");
                         if (filtered.Length < 1 || filtered.Length > 3)
                             throw new ArgumentException($"After filtering, got {filtered.Length} that is not 1, 2, or 3 characters long: {filtered}");
 
@@ -240,10 +251,12 @@ namespace VisualCard.Parsers.Recurrence
                         char dayNumberSign = filtered[filtered.Length - 1];
                         bool hasSign = !char.IsNumber(dayNumberSign);
                         bool dayNumberNegative = dayNumberSign == '-';
+                        LoggingTools.Debug("Number sign {0} [{1}], negative {2}", dayNumberSign, hasSign, dayNumberNegative);
 
                         // Check the number
                         bool dayNumberLast = filtered == "LD";
                         string dayNumberStr = hasSign && !dayNumberLast ? filtered.Substring(0, filtered.Length - 1) : filtered;
+                        LoggingTools.Debug("Day number {0} [last: {1}]", dayNumberStr, dayNumberLast);
                         int dayNumber = 0;
                         if (!dayNumberLast)
                         {
@@ -257,6 +270,7 @@ namespace VisualCard.Parsers.Recurrence
 
                         // Add the parsed day number
                         parsedRule.monthlyDayNumbers.Add((isEndMarker, (dayNumber, dayNumberNegative, dayNumberLast)));
+                        LoggingTools.Debug("Adding {0}, {1}, {2} with end marker {3}", dayNumber, dayNumberNegative, dayNumberLast, isEndMarker);
                         break;
                     case RecurrenceRuleFrequency.YearlyMonth:
                         // We need to parse the month number list...
@@ -265,10 +279,12 @@ namespace VisualCard.Parsers.Recurrence
                         //  - monthlist       ::= <month> {<monthlist>}
                         //
                         // This is dealing with yearly month repeat, for example, a ninth month is September.
+                        LoggingTools.Info("Filtered length must be between 1 and 2");
                         if (filtered.Length < 1 || filtered.Length > 2)
                             throw new ArgumentException($"After filtering, got {filtered.Length} that is not 1 or 2 characters long: {filtered}");
 
                         // Check the number
+                        LoggingTools.Debug("Month number [1-12] to parse: {0}", filtered);
                         if (!int.TryParse($"{filtered}", out int monthNumber))
                             throw new ArgumentException($"Month number is not a number of [1-12] {filtered}: {filtered}");
                         if (monthNumber < 1 || monthNumber > 12)
@@ -276,6 +292,7 @@ namespace VisualCard.Parsers.Recurrence
 
                         // Add the parsed month number
                         parsedRule.yearlyMonthNumbers.Add((isEndMarker, monthNumber));
+                        LoggingTools.Debug("Adding month number {0} with end marker {3}", monthNumber, isEndMarker);
                         break;
                     case RecurrenceRuleFrequency.YearlyDay:
                         // We need to parse the day number list...
@@ -286,21 +303,25 @@ namespace VisualCard.Parsers.Recurrence
                         // This is dealing with yearly day repeat, for example, a 258th day in normal years is September 15th.
                         // The client needs to handle leap years, since they have one extra day, which is February 29th or the
                         // 60th day.
+                        LoggingTools.Info("Filtered length must be between 1 and 3");
                         if (filtered.Length < 1 || filtered.Length > 3)
                             throw new ArgumentException($"After filtering, got {filtered.Length} that is not 1 or 2 characters long: {filtered}");
 
                         // Check the number
+                        LoggingTools.Debug("Yearly day number [1-366] to parse: {0}", filtered);
                         if (!int.TryParse($"{filtered}", out int yearlyDayNumber))
-                            throw new ArgumentException($"Day number is not a number of [1-12] {filtered}: {filtered}");
+                            throw new ArgumentException($"Yearly day number is not a number of [1-366] {filtered}: {filtered}");
                         if (yearlyDayNumber < 1 || yearlyDayNumber > 366)
-                            throw new ArgumentException($"Day number is out of range of [1-12] {yearlyDayNumber}: {filtered}");
+                            throw new ArgumentException($"Yearly day number is out of range of [1-366] {yearlyDayNumber}: {filtered}");
 
                         // Add the parsed day number
                         parsedRule.yearlyDayNumbers.Add((isEndMarker, yearlyDayNumber));
+                        LoggingTools.Debug("Adding yearly day number {0} with end marker {3}", yearlyDayNumber, isEndMarker);
                         break;
                 }
             }
             rules.Add(parsedRule);
+            LoggingTools.Info("All rules added: {0}", rules.Count);
 
             // Return the rules
             return [.. rules];
@@ -341,15 +362,21 @@ namespace VisualCard.Parsers.Recurrence
                 designator[0] == 'D' ? RecurrenceRuleFrequency.Daily :
                 designator[0] == 'M' ? RecurrenceRuleFrequency.Minute :
                 throw new ArgumentException($"Invalid frequency in frequency designator: {designator}");
+            LoggingTools.Debug("Frequency is {0}", freq);
 
             // Get the number index and cut the string so that we have a number
             int numberIdx;
             for (numberIdx = 0; numberIdx < designator.Length; numberIdx++)
             {
+                LoggingTools.Debug("Checking {0} to see if it's a digit", designator[numberIdx]);
                 if (char.IsDigit(designator[numberIdx]))
+                {
+                    LoggingTools.Debug("{0} is a digit, breaking...", designator[numberIdx]);
                     break;
+                }
             }
             string intervalStr = designator.Substring(numberIdx);
+            LoggingTools.Info("Checking {0} for freq {1} to see if it's parsable", intervalStr, freq);
             if (!int.TryParse(intervalStr, out int interval))
                 throw new ArgumentException($"Invalid interval in frequency designator: {intervalStr}, {designator}");
             return (freq, interval);

@@ -19,6 +19,7 @@
 
 using System;
 using System.Diagnostics;
+using VisualCard.Common.Diagnostics;
 
 namespace VisualCard.Common.Parsers
 {
@@ -56,8 +57,10 @@ namespace VisualCard.Common.Parsers
         /// <param name="endDate">End date</param>
         public TimePeriod(DateTimeOffset startDate, DateTimeOffset endDate)
         {
+            LoggingTools.Info("Start date {0}, end date {1}", startDate, endDate);
             if (startDate > endDate)
                 throw new ArgumentException("Start date may not be later than the end date");
+            LoggingTools.Debug("Installing start and end date...");
             this.startDate = startDate;
             this.endDate = endDate;
         }

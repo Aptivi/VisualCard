@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using VisualCard.Common.Diagnostics;
 using VisualCard.Common.Parsers;
 using VisualCard.Common.Parsers.Arguments;
 
@@ -56,9 +57,11 @@ namespace VisualCard.Common.Parts.Implementations
             string _xName = splitX[0].Contains(CommonConstants._fieldDelimiter.ToString()) ?
                             splitX[0].Substring(0, splitX[0].IndexOf(CommonConstants._fieldDelimiter)) :
                             splitX[0];
+            LoggingTools.Debug("Got {0} X-nonstandard name", _xName);
 
             // Populate the fields
             string[] _xValues = splitX[1].Split(CommonConstants._fieldDelimiter);
+            LoggingTools.Debug("Got {0} X-nonstandard values [{1}]", _xValues.Length, string.Join(", ", _xValues));
             XNameInfo _x = new(property, altId, elementTypes, group, valueType, _xName, _xValues);
             return _x;
         }

@@ -24,7 +24,10 @@ using System;
 
 namespace VisualCard.Common.Diagnostics
 {
-    internal class LoggingTools
+    /// <summary>
+    /// VisualCard logging tools
+    /// </summary>
+    public static class LoggingTools
     {
         private static BaseLogger? abstractLogger = null;
         private static bool enableLogging;
@@ -43,6 +46,15 @@ namespace VisualCard.Common.Diagnostics
                 else
                     abstractLogger = null;
             }
+        }
+
+        /// <summary>
+        /// Sets the logger to use
+        /// </summary>
+        public static BaseLogger? AbstractLogger
+        {
+            get => abstractLogger;
+            set => abstractLogger = value;
         }
 
         internal static void Debug(string message, params object?[]? args) =>

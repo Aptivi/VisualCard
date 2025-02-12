@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using VisualCard.Common.Diagnostics;
 using VisualCard.Common.Parsers;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parts.Implementations;
@@ -43,30 +44,43 @@ namespace VisualCard.Common.Parts
         internal static string BuildArguments(string[] elementTypes, string valueType, PropertyInfo? property, string extraKeyName, string defaultType, string defaultValue)
         {
             var arguments = property?.Arguments ?? [];
+            LoggingTools.Debug("Building {0} arguments with {1} element types [{2}], type {3}, {4}, {5}, {6}...", arguments.Length, elementTypes.Length, string.Join(", ", elementTypes), valueType, extraKeyName, defaultType, defaultValue);
 
             // Filter the list of types and values first
             string[] finalElementTypes = elementTypes.Where((type) => !type.Equals(defaultType, StringComparison.OrdinalIgnoreCase)).ToArray();
             string finalValue = valueType.Equals(defaultValue, StringComparison.OrdinalIgnoreCase) ? "" : valueType;
+            LoggingTools.Debug("{0} element types after processing [{1}], final value {2}", finalElementTypes.Length, string.Join(", ", finalElementTypes), finalValue);
 
             // Check to see if we've been provided arguments
             bool noSemicolon = arguments.Length == 0 && finalElementTypes.Length == 0 && string.IsNullOrEmpty(finalValue);
+            LoggingTools.Debug("Caller provided arguments? {0}", !noSemicolon);
             if (noSemicolon)
+            {
+                LoggingTools.Debug("Returning with extra key name and argument delimiter: {0}", extraKeyName + CommonConstants._argumentDelimiter.ToString());
                 return extraKeyName + CommonConstants._argumentDelimiter.ToString();
+            }
 
             // Now, initialize the argument builder
             StringBuilder argumentsBuilder = new(extraKeyName + CommonConstants._fieldDelimiter.ToString());
             bool installArguments = arguments.Length > 0;
+            LoggingTools.Debug("Install {0} arguments? {1}", arguments.Length, installArguments);
 
             // Install the remaining arguments if they exist and contain keys and values
             if (installArguments)
             {
                 List<string> finalArguments = [];
                 foreach (var arg in arguments)
-                    finalArguments.Add(arg.BuildArguments());
+                {
+                    string args = arg.BuildArguments();
+                    LoggingTools.Debug("Installing argument {0}...", args);
+                    finalArguments.Add(args);
+                }
                 argumentsBuilder.Append(string.Join(CommonConstants._fieldDelimiter.ToString(), finalArguments));
+                LoggingTools.Info("Installed {0} arguments", arguments.Length);
             }
 
             // We've reached the end.
+            LoggingTools.Debug("Adding delimiter...");
             argumentsBuilder.Append(CommonConstants._argumentDelimiter.ToString());
             return CommonTools.MakeStringBlock(argumentsBuilder.ToString());
         }

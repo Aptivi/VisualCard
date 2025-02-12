@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using VisualCard.Common.Diagnostics;
 using VisualCard.Common.Parsers.Arguments;
 
 namespace VisualCard.Common.Parts
@@ -82,11 +83,16 @@ namespace VisualCard.Common.Parts
         public bool HasType(string type)
         {
             bool found = false;
+            LoggingTools.Info("Finding type {0} out of {1} types [{2}]", type, ElementTypes.Length, string.Join(", ", ElementTypes));
             foreach (string elementType in ElementTypes)
             {
                 if (type.Equals(elementType, StringComparison.OrdinalIgnoreCase))
+                {
+                    LoggingTools.Debug("Found type {0} out of {1} types [{2}]", type, ElementTypes.Length, string.Join(", ", ElementTypes));
                     found = true;
+                }
             }
+            LoggingTools.Info("Found: {0}", found);
             return found;
         }
 
@@ -158,6 +164,7 @@ namespace VisualCard.Common.Parts
             ValueType = valueType;
             Value = value ??
                 throw new ArgumentNullException(nameof(value));
+            LoggingTools.Debug("Installed {0}, {1}, {2} types [{3}], {4}, {5}", Property is not null ? "a property" : "no property", AltId, ElementTypes.Length, string.Join(", ", ElementTypes), ValueType, Group);
         }
     }
 }

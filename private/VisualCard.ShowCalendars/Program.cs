@@ -26,6 +26,7 @@ using VisualCard.Calendar;
 using CalendarInfo = VisualCard.Calendar.Parts.Calendar;
 using VisualCard.Calendar.Parts.Implementations.Event;
 using VisualCard.Calendar.Parts.Enums;
+using VisualCard.Common.Diagnostics;
 
 namespace VisualCard.ShowCalendars
 {
@@ -39,6 +40,9 @@ namespace VisualCard.ShowCalendars
             }
             else
             {
+                // Enable logging
+                LoggingTools.EnableLogging = true;
+
                 // If one of the arguments is a switch to trigger printing, set it
                 bool print = !args.Contains("-noprint");
                 bool save = args.Contains("-save");

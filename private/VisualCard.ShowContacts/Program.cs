@@ -27,6 +27,7 @@ using VisualCard.Parts;
 using VisualCard.Parts.Implementations;
 using VisualCard.Extras.Misc;
 using VisualCard.Parts.Enums;
+using VisualCard.Common.Diagnostics;
 
 namespace VisualCard.ShowContacts
 {
@@ -40,6 +41,9 @@ namespace VisualCard.ShowContacts
             }
             else
             {
+                // Enable logging
+                LoggingTools.EnableLogging = true;
+
                 // If one of the arguments is a switch to trigger printing, set it
                 bool print = !args.Contains("-noprint");
                 bool save = args.Contains("-save");
