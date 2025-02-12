@@ -23,6 +23,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using Textify.General;
+using VisualCard.Common.Diagnostics;
 
 namespace VisualCard.Common.Parsers.Arguments
 {
@@ -61,15 +62,19 @@ namespace VisualCard.Common.Parsers.Arguments
         public bool MatchValue(string value)
         {
             bool equals = false;
+            LoggingTools.Info("Matching {0}...", value);
             foreach ((bool caseSensitive, string targetValue) in Values)
             {
+                LoggingTools.Debug("Processing {0} [CS: {1}]...", targetValue, caseSensitive);
                 equals =
                     caseSensitive ?
                     targetValue == value :
                     targetValue.EqualsNoCase(value);
+                LoggingTools.Debug("Equals is {0} [{1}, CS: {2}].", equals, targetValue, caseSensitive);
                 if (equals)
                     break;
             }
+            LoggingTools.Info("Found! {0}", value);
             return equals;
         }
 
@@ -77,15 +82,24 @@ namespace VisualCard.Common.Parsers.Arguments
         {
             var argBuilder = new StringBuilder();
             string key = Key;
+            LoggingTools.Info("Key: {0}", key);
             if (!string.IsNullOrEmpty(key))
+            {
+                LoggingTools.Debug("Appending key argument {0}", key);
                 argBuilder.Append($"{key}=");
+            }
             for (int i = 0; i < Values.Length; i++)
             {
                 (bool caseSensitive, string value) value = Values[i];
                 argBuilder.Append($"{(value.caseSensitive ? $"\"{value.value}\"" : value.value)}");
+                LoggingTools.Debug("Added value {0} [CS: {1}]", value.value, value.caseSensitive);
                 if (i < Values.Length - 1)
+                {
+                    LoggingTools.Debug("Value index is {0} and is less than {1}", i, Values.Length - 1);
                     argBuilder.Append(CommonConstants._valueDelimiter);
+                }
             }
+            LoggingTools.Info("Argument: {0}", argBuilder.ToString());
             return argBuilder.ToString();
         }
 
@@ -143,20 +157,25 @@ namespace VisualCard.Common.Parsers.Arguments
         /// <param name="kvp">Key and value pair that describes one argument</param>
         public ArgumentInfo(string kvp)
         {
+            LoggingTools.Info("Key-value pair: {0}", kvp);
             if (kvp.Contains(CommonConstants._argumentValueDelimiter))
             {
+                LoggingTools.Debug("Splitting with idx {0} as medium...", kvp.IndexOf(CommonConstants._argumentValueDelimiter));
                 string keyStr = kvp.Substring(0, kvp.IndexOf(CommonConstants._argumentValueDelimiter));
                 string valueStr = kvp.RemovePrefix($"{keyStr}{CommonConstants._argumentValueDelimiter}").Trim();
+                LoggingTools.Debug("Key and Value: {0}, {1}", keyStr, valueStr);
                 var info = new ArgumentInfo(keyStr.Trim(), valueStr);
                 key = info.key;
                 values = info.values;
             }
             else
             {
+                LoggingTools.Warning("Key is not provided! {0} | Assuming value...", kvp);
                 var info = new ArgumentInfo("", kvp.Trim());
                 key = "";
                 values = info.values;
             }
+            LoggingTools.Info("Installed values: {0}", values.Length);
         }
 
         /// <summary>
@@ -168,22 +187,30 @@ namespace VisualCard.Common.Parsers.Arguments
         {
             // First, split the values and check for quotes
             string[] valuesArray = value.SplitEncloseDoubleQuotesNoRelease(',');
-            var values = new (bool caseSensitive, string value)[valuesArray.Length];
+            LoggingTools.Info("Key: {0}, {1} values from {2}", key, valuesArray.Length, value);
+            var values = new(bool caseSensitive, string value)[valuesArray.Length];
             for (int i = 0; i < valuesArray.Length; i++)
             {
                 string valueArray = valuesArray[i];
-                if (valueArray.GetEnclosedDoubleQuotesType() == EnclosedDoubleQuotesType.DoubleQuotes)
+                var quoteType = valueArray.GetEnclosedDoubleQuotesType();
+                LoggingTools.Debug("Value from array: {0}, quote type: {1}", valueArray, quoteType);
+                if (quoteType == EnclosedDoubleQuotesType.DoubleQuotes)
                 {
                     values[i].caseSensitive = true;
                     values[i].value = valueArray.ReleaseDoubleQuotes();
+                    LoggingTools.Debug("Released double quotes from value: {0}, turned on case sensitivity.", values[i].value);
                 }
                 else
+                {
                     values[i].value = valueArray;
+                    LoggingTools.Debug("No quotes: {0}, no case sensitivity.", values[i].value);
+                }
             }
 
             // Install the key and the values
             this.key = key;
             this.values = values;
+            LoggingTools.Info("Installed {0} values in {1}", values.Length, key);
         }
     }
 }

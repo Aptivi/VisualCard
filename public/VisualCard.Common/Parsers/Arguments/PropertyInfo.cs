@@ -23,6 +23,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using Textify.General;
+using VisualCard.Common.Diagnostics;
 using VisualCard.Common.Parts.Comparers;
 
 namespace VisualCard.Common.Parsers.Arguments
@@ -142,8 +143,12 @@ namespace VisualCard.Common.Parsers.Arguments
         internal PropertyInfo(string line)
         {
             // Now, parse this value
+            LoggingTools.Info("Line passed: {0}", line);
             if (!line.Contains($"{CommonConstants._argumentDelimiter}"))
+            {
+                LoggingTools.Error("Invalid line! No argument delimiter ':' found!");
                 throw new ArgumentException("The line must contain an argument delimiter.");
+            }
             line = line.Trim();
             string value = line.Substring(line.IndexOf(CommonConstants._argumentDelimiter) + 1).Trim();
             string prefixWithArgs = line.Substring(0, line.IndexOf(CommonConstants._argumentDelimiter)).Trim();
@@ -151,20 +156,24 @@ namespace VisualCard.Common.Parsers.Arguments
             string args = prefixWithArgs.Contains($"{CommonConstants._fieldDelimiter}") ? prefixWithArgs.Substring(prefix.Length + 1) : "";
             string[] splitArgs = args.Split([CommonConstants._fieldDelimiter], StringSplitOptions.RemoveEmptyEntries);
             var finalArgs = splitArgs.Select((arg) => new ArgumentInfo(arg)).ToArray();
+            LoggingTools.Debug("Value: {0}, Prefix: [{1}, {2}], Args: {3} [{4} arguments, {5} processed arguments]", value, prefixWithArgs, prefix, args, splitArgs.Length, finalArgs.Length);
 
             // Extract the group name
             string group = prefix.Contains(".") ? prefix.Substring(0, prefix.LastIndexOf(".")) : "";
             prefix = prefix.RemovePrefix($"{group}.");
+            LoggingTools.Debug("Cut group {0}, resulting prefix is {1}", group, prefix);
 
             // Check to see if this is a nonstandard prefix
             bool xNonstandard = prefix.StartsWith(CommonConstants._xSpecifier);
             prefix = xNonstandard ? CommonConstants._xSpecifier : prefix;
+            LoggingTools.Debug("Nonstandard is {0}, resulting prefix is {1}", xNonstandard, prefix);
 
             // Install values
             rawValue.Append(value);
             this.prefix = prefix;
             arguments = finalArgs;
             this.group = group.Trim();
+            LoggingTools.Info("Installed values: {0}, {1} args, {2} [Initial raw: {3}]", prefix, finalArgs.Length, group, rawValue.ToString());
         }
     }
 }

@@ -20,6 +20,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using VisualCard.Common.Diagnostics;
 using VisualCard.Common.Parsers;
 using VisualCard.Common.Parsers.Recurrence;
 
@@ -38,6 +39,7 @@ namespace VisualCard.Parsers.Recurrence
         public static RecurrenceRule[] ParseRuleV1(string rule)
         {
             List<RecurrenceRule> rules = [];
+            LoggingTools.Info("Parsing recurrence v1 rule: {0}", rule);
 
             // Sanity check
             if (string.IsNullOrEmpty(rule))
@@ -47,11 +49,13 @@ namespace VisualCard.Parsers.Recurrence
 
             // Split the spaces in the rule, as the Rule Grammar requires spaces when splitting designators
             string[] designators = rule.Split(' ');
+            LoggingTools.Info("Found {0} designators from rule", designators.Length);
             RecurrenceRule parsedRule = new();
             bool firstTime = true;
             for (int i = 0; i < designators.Length; i++)
             {
                 string designator = designators[i];
+                LoggingTools.Debug("Designator {0}", designator);
 
                 // Check if this designator is a frequency designator
                 if (IsFrequencyDesignator(designator) && !IsWeekDay(designator))
@@ -71,8 +75,10 @@ namespace VisualCard.Parsers.Recurrence
                     //                -OR-
                     //   - <yearlybyday> [<enddate>]
                     // Check to see if we already have a rule being parsed, and add it to the list
+                    LoggingTools.Debug("First time adding frequency is {0}", firstTime);
                     if (!firstTime)
                     {
+                        LoggingTools.Info("Adding parsed rule with frequency {0}", parsedRule.Frequency);
                         rules.Add(parsedRule);
                         parsedRule = new();
                     }
@@ -82,35 +88,52 @@ namespace VisualCard.Parsers.Recurrence
                     //     | +-> Repetition interval
                     //     +---> Frequency
                     var (frequency, interval) = GetFrequency(designator);
+                    LoggingTools.Debug("Extracted frequency and interval {0}, {1}", frequency, interval);
                     parsedRule.frequency = frequency;
                     parsedRule.interval = interval;
                     firstTime = false;
+                    LoggingTools.Info("Parsing next designator...");
                     continue;
                 }
 
                 // Get the duration
                 if (designator[0] == '#')
                 {
+                    LoggingTools.Info("Designator {0} is a duration becuase designator[0] is {1}...", designator, designator[0]);
                     string durationStr = designator.Substring(1);
                     if (!int.TryParse(durationStr, out int duration))
+                    {
+                        LoggingTools.Error("Designator {0} contains invalid duration.", durationStr);
                         throw new ArgumentException($"Invalid duration in designator: {durationStr}, {designator}");
+                    }
+                    LoggingTools.Debug("Duration is {1}.", duration);
                     parsedRule.duration = duration;
+                    LoggingTools.Info("Parsing next designator...");
                     continue;
                 }
 
                 // Determine whether there is an end marker
                 bool isEndMarker = designator[designator.Length - 1] == '$';
                 string filtered = isEndMarker ? designator.Substring(0, designator.Length - 1) : designator;
+                LoggingTools.Debug("End marker is {0} [coming from {1}] and filtered is {2}...", isEndMarker, designator[designator.Length - 1], filtered);
 
                 // Is this filtered designator a time period of hhmm?
                 if (filtered.Length == 4)
                 {
                     // time     ::= <hhmm>[<endmarker>]
                     // timelist ::= <time> {<timelist>}
+                    LoggingTools.Info("Designator is a time period of hhmm [{0}]", filtered);
                     if (TimeSpan.TryParseExact($"{filtered[0]}{filtered[1]}:{filtered[2]}{filtered[3]}", "hh\\:mm", CultureInfo.InvariantCulture, out TimeSpan span))
+                    {
+                        LoggingTools.Debug("Got time span [{0}]", span);
                         parsedRule.timePeriods.Add((isEndMarker, span));
+                    }
                     else
+                    {
+                        LoggingTools.Error("Invalid time [{0}]", filtered);
                         throw new ArgumentException($"Invalid time {filtered}");
+                    }
+                    LoggingTools.Info("Parsing next designator...");
                     continue;
                 }
 
@@ -119,6 +142,7 @@ namespace VisualCard.Parsers.Recurrence
                 {
                     // weekday  ::= <SU|MO|TU|WE|TH|FR|SA>[<endmarker>]
                     DayOfWeek day;
+                    LoggingTools.Info("Parsing day of week {0}...", filtered);
                     if (filtered == "SU")
                         day = DayOfWeek.Sunday;
                     else if (filtered == "MO")
@@ -134,19 +158,27 @@ namespace VisualCard.Parsers.Recurrence
                     else if (filtered == "SA")
                         day = DayOfWeek.Saturday;
                     else
+                    {
+                        LoggingTools.Error("Day of week {0} is invalid.", filtered);
                         throw new ArgumentException($"Invalid day of week {filtered}");
+                    }
+                    LoggingTools.Debug("Day of week from {0} is {1} and end marker is {2}.", filtered, day, isEndMarker);
                     parsedRule.dayTimes.Add((isEndMarker, day));
+                    LoggingTools.Info("Parsing next designator...");
                     continue;
                 }
 
                 // Is this designator an optional enddate?
                 if (CommonTools.TryParsePosixDateTime(filtered, out DateTimeOffset endDate) && i == designators.Length - 1)
                 {
+                    LoggingTools.Info("Designator {0} is a POSIX date/time representing {1}.", filtered, endDate);
+
                     // Check to see if this rule is the only rule
                     if (rules.Count == 0)
                         parsedRule.endDate = endDate;
                     else
                         rules[0].endDate = endDate;
+                    LoggingTools.Info("Parsing next designator...");
                     continue;
                 }
 
