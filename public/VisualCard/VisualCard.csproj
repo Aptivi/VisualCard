@@ -35,7 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Aptivestigate.Serilog" Version="1.2.0" />
+    <PackageReference Include="Aptivestigate.Serilog" Version="1.2.0.1" />
     <PackageReference Include="Textify.Offline" Version="2.9.0" />
     <PackageReference Include="Textify.Offline.Data" Version="2.9.0" />
   </ItemGroup>
