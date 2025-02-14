@@ -21,10 +21,8 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using VisualCard.Common.Diagnostics;
-using VisualCard.Common.Parsers;
-using VisualCard.Common.Parsers.Recurrence;
 
-namespace VisualCard.Parsers.Recurrence
+namespace VisualCard.Common.Parsers.Recurrence
 {
     /// <summary>
     /// Recurrence rule parser

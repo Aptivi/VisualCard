@@ -27,7 +27,7 @@ using System.Text.RegularExpressions;
 using Textify.General;
 using VisualCard.Common.Diagnostics;
 using VisualCard.Common.Parsers.Arguments;
-using VisualCard.Parsers.Recurrence;
+using VisualCard.Common.Parsers.Recurrence;
 
 namespace VisualCard.Common.Parsers
 {

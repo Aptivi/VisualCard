@@ -21,7 +21,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shouldly;
 using System;
 using VisualCard.Common.Parsers.Recurrence;
-using VisualCard.Parsers.Recurrence;
 
 namespace VisualCard.Tests.Recurrence
 {
