@@ -19,9 +19,11 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shouldly;
+using System;
 using VisualCard.Calendar;
 using VisualCard.Calendar.Parts.Enums;
 using VisualCard.Calendar.Parts.Implementations;
+using VisualCard.Calendar.Parts.Implementations.Event;
 using VisualCard.Common.Parts.Enums;
 using VisualCard.Common.Parts.Implementations;
 using VisualCard.Tests.Calendars.Data;
@@ -235,6 +237,36 @@ namespace VisualCard.Tests.Calendars
             string calendarStr = calendar.SaveToString();
             calendarStr.ShouldContain("a.doherty@unimol.com");
         }
+        
+        [TestMethod]
+        public void TestCalendarPropertySetIntegerInEvent()
+        {
+            var calendars = CalendarTools.GetCalendarsFromString(CalendarData.multipleVCalendarTwoCalendars);
+            var calendar = calendars[1];
+            var eventChunk = calendar.Events[0];
+            var sequence = eventChunk.GetInteger(CalendarIntegersEnum.Sequence)[0];
+            sequence.Value.ShouldBe(0);
+            sequence.Value = 1;
+            sequence.Value.ShouldBe(1);
+            string calendarStr = calendar.SaveToString();
+            calendarStr.ShouldContain("SEQUENCE:1");
+        }
+        
+        [TestMethod]
+        public void TestCalendarPropertySetPartsArrayInEvent()
+        {
+            var calendars = CalendarTools.GetCalendarsFromString(CalendarData.singleVCalendarTwoCalendarShort);
+            var calendar = calendars[0];
+            var eventChunk = calendar.Events[0];
+            var date = eventChunk.GetPartsArray<DateStartInfo>()[0];
+            var oldDate = new DateTimeOffset(1996, 9, 18, 14, 30, 00, DateTimeOffset.Now.Offset);
+            var newDate = new DateTimeOffset(1996, 9, 19, 14, 30, 00, DateTimeOffset.Now.Offset);
+            date.DateStart.ShouldBe(oldDate);
+            date.DateStart = newDate;
+            date.DateStart.ShouldBe(newDate);
+            string calendarStr = calendar.SaveToString();
+            calendarStr.ShouldContain("19960919");
+        }
 
         [TestMethod]
         public void TestCalendarPropertyRemoveStringInRoot()
@@ -261,6 +293,20 @@ namespace VisualCard.Tests.Calendars
             eventChunk.GetString(CalendarStringsEnum.Status).ShouldBeEmpty();
             string calendarStr = calendar.SaveToString();
             calendarStr.ShouldNotContain("CONFIRMED");
+        }
+
+        [TestMethod]
+        public void TestCalendarPropertyRemoveIntegerInEvent()
+        {
+            var calendars = CalendarTools.GetCalendarsFromString(CalendarData.multipleVCalendarTwoCalendars);
+            var calendar = calendars[1];
+            var eventChunk = calendar.Events[0];
+            var sequence = eventChunk.GetInteger(CalendarIntegersEnum.Sequence)[0];
+            sequence.Value.ShouldBe(0);
+            eventChunk.DeleteInteger(CalendarIntegersEnum.Sequence, 0);
+            eventChunk.GetInteger(CalendarIntegersEnum.Sequence).ShouldBeEmpty();
+            string calendarStr = calendar.SaveToString();
+            calendarStr.ShouldNotContain("SEQUENCE:1");
         }
 
         [TestMethod]
