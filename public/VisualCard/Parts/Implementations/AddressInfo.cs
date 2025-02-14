@@ -64,8 +64,8 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string? Country { get; set; }
 
-        internal static BaseCardPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            (BaseCardPartInfo)new AddressInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, Version cardVersion) =>
+            (BaseCardPartInfo)new AddressInfo().FromStringInternal(value, property, altId, elementTypes, cardVersion);
 
         internal override string ToStringInternal(Version cardVersion) =>
             $"{PostOfficeBox}{CommonConstants._fieldDelimiter}" +
@@ -76,7 +76,7 @@ namespace VisualCard.Parts.Implementations
             $"{PostalCode}{CommonConstants._fieldDelimiter}" +
             $"{Country}";
 
-        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, Version cardVersion)
         {
             // Get the value
             string[] splitAdr = value.Split(CommonConstants._fieldDelimiter);
@@ -94,7 +94,7 @@ namespace VisualCard.Parts.Implementations
             string _addressRegion = Regex.Unescape(splitAdr[4]);
             string _addressPostalCode = Regex.Unescape(splitAdr[5]);
             string _addressCountry = Regex.Unescape(splitAdr[6]);
-            AddressInfo _address = new(altId, property, _addressTypes, group, valueType, _addressPOBox, _addressExtended, _addressStreet, _addressLocality, _addressRegion, _addressPostalCode, _addressCountry);
+            AddressInfo _address = new(altId, property, _addressTypes, _addressPOBox, _addressExtended, _addressStreet, _addressLocality, _addressRegion, _addressPostalCode, _addressCountry);
             return _address;
         }
 
@@ -164,8 +164,8 @@ namespace VisualCard.Parts.Implementations
             base()
         { }
 
-        internal AddressInfo(int altId, PropertyInfo? property, string[] elementTypes, string group, string valueType, string postOfficeBox, string extendedAddress, string streetAddress, string locality, string region, string postalCode, string country) :
-            base(property, altId, elementTypes, group, valueType)
+        internal AddressInfo(int altId, PropertyInfo? property, string[] elementTypes, string postOfficeBox, string extendedAddress, string streetAddress, string locality, string region, string postalCode, string country) :
+            base(property, altId, elementTypes)
         {
             PostOfficeBox = postOfficeBox;
             ExtendedAddress = extendedAddress;

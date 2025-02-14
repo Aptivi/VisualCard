@@ -62,8 +62,8 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
         /// </summary>
         public string? DaylightDesignation { get; set; }
 
-        internal static BaseCalendarPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version calendarVersion) =>
-            (BaseCalendarPartInfo)new DaylightInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, calendarVersion);
+        internal static BaseCalendarPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, Version calendarVersion) =>
+            (BaseCalendarPartInfo)new DaylightInfo().FromStringInternal(value, property, altId, elementTypes, calendarVersion);
 
         internal override string ToStringInternal(Version calendarVersion)
         {
@@ -75,12 +75,12 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
             return $"TRUE;{posixUtc};{posixStart};{posixEnd};{StandardDesignation};{DaylightDesignation}";
         }
 
-        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version calendarVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, Version calendarVersion)
         {
             // Get the values
             string[] split = value.Split(';');
             if (split.Length == 1 && split[0] == "FALSE")
-                return new DaylightInfo(property, elementTypes, group, valueType, false, new(), new(), new(), "", "");
+                return new DaylightInfo(property, elementTypes, false, new(), new(), new(), "", "");
             if (split.Length != 6)
                 throw new ArgumentException($"When splitting daylight information, the split value is {split.Length} instead of 6.");
             string unprocessedUtc = split[1];
@@ -95,7 +95,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
             DateTimeOffset endDate = CommonTools.ParsePosixDateTime(unprocessedEnd);
 
             // Populate the fields
-            DaylightInfo _geo = new(property, elementTypes, group, valueType, true, utcOffset, startDate, endDate, standard, daylight);
+            DaylightInfo _geo = new(property, elementTypes, true, utcOffset, startDate, endDate, standard, daylight);
             return _geo;
         }
 
@@ -161,8 +161,8 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
 
         internal DaylightInfo() { }
 
-        internal DaylightInfo(PropertyInfo? property, string[] elementTypes, string group, string valueType, bool flag, TimeSpan utcOffset, DateTimeOffset daylightStart, DateTimeOffset daylightEnd, string standardDesignation, string daylightDesignation) :
-            base(property, elementTypes, group, valueType)
+        internal DaylightInfo(PropertyInfo? property, string[] elementTypes, bool flag, TimeSpan utcOffset, DateTimeOffset daylightStart, DateTimeOffset daylightEnd, string standardDesignation, string daylightDesignation) :
+            base(property, elementTypes)
         {
             Flag = flag;
             UtcOffset = utcOffset;

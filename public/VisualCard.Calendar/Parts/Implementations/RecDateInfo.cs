@@ -40,8 +40,8 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// </summary>
         public TimePeriod[]? RecDates { get; set; }
 
-        internal static BaseCalendarPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            (BaseCalendarPartInfo)new RecDateInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
+        internal static BaseCalendarPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, Version cardVersion) =>
+            (BaseCalendarPartInfo)new RecDateInfo().FromStringInternal(value, property, altId, elementTypes, cardVersion);
 
         internal override string ToStringInternal(Version cardVersion)
         {
@@ -61,7 +61,7 @@ namespace VisualCard.Calendar.Parts.Implementations
             return builder.ToString();
         }
 
-        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, Version cardVersion)
         {
             // Populate the fields
             TimePeriod[] recDates = [];
@@ -77,12 +77,12 @@ namespace VisualCard.Calendar.Parts.Implementations
             else
             {
                 // Check to see if it's a period
-                if (valueType.Equals("period", StringComparison.OrdinalIgnoreCase))
+                if (property.ValueType.Equals("period", StringComparison.OrdinalIgnoreCase))
                 {
                     var parsedPeriod = CommonTools.GetTimePeriod(value);
                     recDates = [parsedPeriod];
                 }
-                else if (valueType.Equals("date", StringComparison.OrdinalIgnoreCase))
+                else if (property.ValueType.Equals("date", StringComparison.OrdinalIgnoreCase))
                 {
                     // Not a period. Use date
                     var parsedDate = CommonTools.ParsePosixDate(value);
@@ -97,7 +97,7 @@ namespace VisualCard.Calendar.Parts.Implementations
             }
 
             // Add the fetched information
-            RecDateInfo _time = new(property, elementTypes, group, valueType, recDates);
+            RecDateInfo _time = new(property, elementTypes, recDates);
             return _time;
         }
 
@@ -153,8 +153,8 @@ namespace VisualCard.Calendar.Parts.Implementations
 
         internal RecDateInfo() { }
 
-        internal RecDateInfo(PropertyInfo? property, string[] elementTypes, string group, string valueType, TimePeriod[] recDates) :
-            base(property, elementTypes, group, valueType)
+        internal RecDateInfo(PropertyInfo? property, string[] elementTypes, TimePeriod[] recDates) :
+            base(property, elementTypes)
         {
             RecDates = recDates;
         }

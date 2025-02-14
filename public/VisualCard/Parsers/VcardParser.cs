@@ -138,6 +138,7 @@ namespace VisualCard.Parsers
             // Handle the part type
             string valueType = CommonTools.GetFirstValue(info.Arguments, partType.defaultValueType, CommonConstants._valueArgumentSpecifier);
             string finalValue = CommonTools.ProcessStringValue(info.Value, valueType);
+            info.ValueType = valueType;
 
             // Check for allowed values
             if (partType.allowedValues.Length != 0)
@@ -169,7 +170,7 @@ namespace VisualCard.Parsers
                             throw new InvalidDataException("Profile must be \"vCard\"");
 
                         // Set the string for real
-                        var stringValueInfo = new ValueInfo<string>(info, altId, elementTypes, info.Group, valueType, finalValue);
+                        var stringValueInfo = new ValueInfo<string>(info, altId, elementTypes, finalValue);
                         card.AddString(stringType, stringValueInfo);
                     }
                     break;
@@ -184,8 +185,8 @@ namespace VisualCard.Parsers
                             // Get the base part info from the 
                             var partInfo =
                                 partsArrayType == CardPartsArrayEnum.NonstandardNames ?
-                                XNameInfo.FromStringStatic(_value, info, altId, elementTypes, info.Group, valueType, version) :
-                                ExtraInfo.FromStringStatic(_value, info, altId, elementTypes, info.Group, valueType, version);
+                                XNameInfo.FromStringStatic(_value, info, altId, elementTypes, version) :
+                                ExtraInfo.FromStringStatic(_value, info, altId, elementTypes, version);
                             card.AddExtraPartToArray((PartsArrayEnum)partsArrayType, partInfo);
                         }
                         else
@@ -194,7 +195,7 @@ namespace VisualCard.Parsers
                                 return;
 
                             // Get the part info from the part type and add it to the part array
-                            var partInfo = partType.fromStringFunc(finalValue, info, altId, elementTypes, info.Group, valueType, version);
+                            var partInfo = partType.fromStringFunc(finalValue, info, altId, elementTypes, version);
                             card.AddPartToArray(partsArrayType, partInfo);
                         }
                     }

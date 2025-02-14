@@ -35,10 +35,6 @@ namespace VisualCard.Parts.Implementations
     public class SoundInfo : BaseCardPartInfo, IEquatable<SoundInfo>
     {
         /// <summary>
-        /// Sound encoding type
-        /// </summary>
-        public string? Encoding { get; }
-        /// <summary>
         /// Encoded sound
         /// </summary>
         public string? SoundEncoded { get; set; }
@@ -46,21 +42,20 @@ namespace VisualCard.Parts.Implementations
         /// Whether this sound is a blob or not
         /// </summary>
         public bool IsBlob =>
-            CommonTools.IsEncodingBlob(Property?.Arguments ?? [], SoundEncoded);
+            CommonTools.IsEncodingBlob(Arguments ?? [], SoundEncoded);
 
-        internal static BaseCardPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            (BaseCardPartInfo)new SoundInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, Version cardVersion) =>
+            (BaseCardPartInfo)new SoundInfo().FromStringInternal(value, property, altId, elementTypes, cardVersion);
 
         internal override string ToStringInternal(Version cardVersion) =>
             SoundEncoded ?? "";
 
-        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, Version cardVersion)
         {
             bool vCard4 = cardVersion.Major >= 4;
             var arguments = property?.Arguments ?? [];
 
             // Check to see if the value is prepended by the ENCODING= argument
-            string soundEncoding = "";
             if (vCard4)
             {
                 // We're on a vCard 4.0 contact that contains this information
@@ -71,7 +66,6 @@ namespace VisualCard.Parts.Implementations
             else
             {
                 // vCard 3.0 handles this in a different way
-                soundEncoding = CommonTools.GetValuesString(arguments, "b", CommonConstants._encodingArgumentSpecifier);
                 if (!CommonTools.IsEncodingBlob(arguments, value))
                 {
                     // Since we don't need embedded sounds, we need to check a URL.
@@ -82,7 +76,7 @@ namespace VisualCard.Parts.Implementations
             }
 
             // Populate the fields
-            SoundInfo _sound = new(altId, property, elementTypes, group, valueType, soundEncoding, value);
+            SoundInfo _sound = new(altId, property, elementTypes, value);
             return _sound;
         }
 
@@ -91,7 +85,7 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         /// <returns>A stream that contains sound data</returns>
         public Stream GetStream() =>
-            CommonTools.GetBlobData(Property?.Arguments ?? [], SoundEncoded);
+            CommonTools.GetBlobData(Arguments ?? [], SoundEncoded);
 
         /// <inheritdoc/>
         public override bool Equals(object obj) =>
@@ -147,10 +141,9 @@ namespace VisualCard.Parts.Implementations
 
         internal SoundInfo() { }
 
-        internal SoundInfo(int altId, PropertyInfo? property, string[] elementTypes, string group, string valueType, string encoding, string soundEncoded) :
-            base(property, altId, elementTypes, group, valueType)
+        internal SoundInfo(int altId, PropertyInfo? property, string[] elementTypes, string soundEncoded) :
+            base(property, altId, elementTypes)
         {
-            Encoding = encoding;
             SoundEncoded = soundEncoded;
         }
     }

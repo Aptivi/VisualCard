@@ -54,19 +54,19 @@ namespace VisualCard.Parts.Implementations
             }
         }
 
-        internal static BaseCardPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            (BaseCardPartInfo)new XmlInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, Version cardVersion) =>
+            (BaseCardPartInfo)new XmlInfo().FromStringInternal(value, property, altId, elementTypes, cardVersion);
 
         internal override string ToStringInternal(Version cardVersion) =>
             XmlString ?? "";
 
-        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, Version cardVersion)
         {
             XmlDocument doc = GenerateDocument(value) ??
                 throw new ArgumentNullException("Can't generate XML document from nothing.");
 
             // Add the fetched information
-            XmlInfo _xml = new(altId, property, elementTypes, group, valueType, doc, value);
+            XmlInfo _xml = new(altId, property, elementTypes, doc, value);
             return _xml;
         }
 
@@ -141,8 +141,8 @@ namespace VisualCard.Parts.Implementations
 
         internal XmlInfo() { }
 
-        internal XmlInfo(int altId, PropertyInfo? property, string[] elementTypes, string group, string valueType, XmlDocument xml, string xmlString) :
-            base(property, altId, elementTypes, group, valueType)
+        internal XmlInfo(int altId, PropertyInfo? property, string[] elementTypes, XmlDocument xml, string xmlString) :
+            base(property, altId, elementTypes)
         {
             this.xml = xml;
             XmlString = xmlString;

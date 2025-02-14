@@ -38,8 +38,8 @@ namespace VisualCard.Calendar.Parts.Implementations.FreeBusy
         /// </summary>
         public TimePeriod? FreeBusy { get; set; }
 
-        internal static BaseCalendarPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            (BaseCalendarPartInfo)new CalendarFreeBusyInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
+        internal static BaseCalendarPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, Version cardVersion) =>
+            (BaseCalendarPartInfo)new CalendarFreeBusyInfo().FromStringInternal(value, property, altId, elementTypes, cardVersion);
 
         internal override string ToStringInternal(Version cardVersion)
         {
@@ -51,13 +51,13 @@ namespace VisualCard.Calendar.Parts.Implementations.FreeBusy
             return builder.ToString();
         }
 
-        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, Version cardVersion)
         {
             // Populate the fields
             var freeBusy = CommonTools.GetTimePeriod(value);
 
             // Add the fetched information
-            CalendarFreeBusyInfo _time = new(property, elementTypes, group, valueType, freeBusy);
+            CalendarFreeBusyInfo _time = new(property, elementTypes, freeBusy);
             return _time;
         }
 
@@ -113,8 +113,8 @@ namespace VisualCard.Calendar.Parts.Implementations.FreeBusy
 
         internal CalendarFreeBusyInfo() { }
 
-        internal CalendarFreeBusyInfo(PropertyInfo? property, string[] elementTypes, string group, string valueType, TimePeriod freeBusy) :
-            base(property, elementTypes, group, valueType)
+        internal CalendarFreeBusyInfo(PropertyInfo? property, string[] elementTypes, TimePeriod freeBusy) :
+            base(property, elementTypes)
         {
             FreeBusy = freeBusy;
         }

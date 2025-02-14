@@ -47,15 +47,15 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string? Role { get; set; }
 
-        internal static BaseCardPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            (BaseCardPartInfo)new OrganizationInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, Version cardVersion) =>
+            (BaseCardPartInfo)new OrganizationInfo().FromStringInternal(value, property, altId, elementTypes, cardVersion);
 
         internal override string ToStringInternal(Version cardVersion) =>
             $"{Name}{CommonConstants._fieldDelimiter}" +
             $"{Unit}{CommonConstants._fieldDelimiter}" +
             $"{Role}";
 
-        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, Version cardVersion)
         {
             string[] splitOrg = value.Split(CommonConstants._fieldDelimiter);
 
@@ -63,7 +63,7 @@ namespace VisualCard.Parts.Implementations
             string _orgName = Regex.Unescape(splitOrg[0]);
             string _orgUnit = Regex.Unescape(splitOrg.Length >= 2 ? splitOrg[1] : "");
             string _orgUnitRole = Regex.Unescape(splitOrg.Length >= 3 ? splitOrg[2] : "");
-            OrganizationInfo _org = new(altId, property, elementTypes, group, valueType, _orgName, _orgUnit, _orgUnitRole);
+            OrganizationInfo _org = new(altId, property, elementTypes, _orgName, _orgUnit, _orgUnitRole);
             return _org;
         }
 
@@ -123,8 +123,8 @@ namespace VisualCard.Parts.Implementations
 
         internal OrganizationInfo() { }
 
-        internal OrganizationInfo(int altId, PropertyInfo? property, string[] elementTypes, string group, string valueType, string name, string unit, string role) :
-            base(property, altId, elementTypes, group, valueType)
+        internal OrganizationInfo(int altId, PropertyInfo? property, string[] elementTypes, string name, string unit, string role) :
+            base(property, altId, elementTypes)
         {
             Name = name;
             Unit = unit;

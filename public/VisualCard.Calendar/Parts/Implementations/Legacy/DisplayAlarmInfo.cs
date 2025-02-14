@@ -64,8 +64,8 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
         public DateTimeOffset SnoozeIn =>
             CommonTools.GetDurationSpan(SnoozeTime ?? "").result;
 
-        internal static BaseCalendarPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version calendarVersion) =>
-            (BaseCalendarPartInfo)new DisplayAlarmInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, calendarVersion);
+        internal static BaseCalendarPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, Version calendarVersion) =>
+            (BaseCalendarPartInfo)new DisplayAlarmInfo().FromStringInternal(value, property, altId, elementTypes, calendarVersion);
 
         internal override string ToStringInternal(Version calendarVersion)
         {
@@ -73,7 +73,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
             return $"{posixRunTime};{SnoozeTime};{RepeatCount};{Display}";
         }
 
-        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version calendarVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, Version calendarVersion)
         {
             // Get the values
             string[] split = value.Split(';');
@@ -91,7 +91,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
                 throw new ArgumentException("Invalid repeat times");
 
             // Populate the fields
-            DisplayAlarmInfo info = new(property, elementTypes, group, valueType, runTime, snoozeTime, repeat, display);
+            DisplayAlarmInfo info = new(property, elementTypes, runTime, snoozeTime, repeat, display);
             return info;
         }
 
@@ -153,8 +153,8 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
 
         internal DisplayAlarmInfo() { }
 
-        internal DisplayAlarmInfo(PropertyInfo? property, string[] elementTypes, string group, string valueType, DateTimeOffset runTime, string snoozeTime, int repeat, string display) :
-            base(property, elementTypes, group, valueType)
+        internal DisplayAlarmInfo(PropertyInfo? property, string[] elementTypes, DateTimeOffset runTime, string snoozeTime, int repeat, string display) :
+            base(property, elementTypes)
         {
             RunTime = runTime;
             SnoozeTime = snoozeTime;

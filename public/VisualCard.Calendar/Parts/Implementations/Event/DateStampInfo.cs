@@ -36,19 +36,19 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
         /// </summary>
         public DateTimeOffset DateStamp { get; set; }
 
-        internal static BaseCalendarPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            (BaseCalendarPartInfo)new DateStampInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
+        internal static BaseCalendarPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, Version cardVersion) =>
+            (BaseCalendarPartInfo)new DateStampInfo().FromStringInternal(value, property, altId, elementTypes, cardVersion);
 
         internal override string ToStringInternal(Version cardVersion) =>
             $"{CommonTools.SavePosixDate(DateStamp)}";
 
-        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, Version cardVersion)
         {
             // Populate the fields
             DateTimeOffset stamp = CommonTools.ParsePosixDateTime(value);
 
             // Add the fetched information
-            DateStampInfo _time = new(property, elementTypes, group, valueType, stamp);
+            DateStampInfo _time = new(property, elementTypes, stamp);
             return _time;
         }
 
@@ -104,8 +104,8 @@ namespace VisualCard.Calendar.Parts.Implementations.Event
 
         internal DateStampInfo() { }
 
-        internal DateStampInfo(PropertyInfo? property, string[] elementTypes, string group, string valueType, DateTimeOffset rev) :
-            base(property, elementTypes, group, valueType)
+        internal DateStampInfo(PropertyInfo? property, string[] elementTypes, DateTimeOffset rev) :
+            base(property, elementTypes)
         {
             DateStamp = rev;
         }

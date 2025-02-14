@@ -40,19 +40,19 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string[]? Category { get; set; }
 
-        internal static BaseCardPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            (BaseCardPartInfo)new CategoryInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, Version cardVersion) =>
+            (BaseCardPartInfo)new CategoryInfo().FromStringInternal(value, property, altId, elementTypes, cardVersion);
 
         internal override string ToStringInternal(Version cardVersion) =>
             $"{string.Join(CommonConstants._valueDelimiter.ToString(), Category)}";
 
-        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, Version cardVersion)
         {
             // Populate the fields
             var categories = Regex.Unescape(value).Split(',');
 
             // Add the fetched information
-            CategoryInfo _time = new(-1, property, elementTypes, group, valueType, categories);
+            CategoryInfo _time = new(-1, property, elementTypes, categories);
             return _time;
         }
 
@@ -110,8 +110,8 @@ namespace VisualCard.Parts.Implementations
 
         internal CategoryInfo() { }
 
-        internal CategoryInfo(int altId, PropertyInfo? property, string[] elementTypes, string group, string valueType, string[] category) :
-            base(property, altId, elementTypes, group, valueType)
+        internal CategoryInfo(int altId, PropertyInfo? property, string[] elementTypes, string[] category) :
+            base(property, altId, elementTypes)
         {
             Category = category;
         }

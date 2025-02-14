@@ -259,7 +259,7 @@ namespace VisualCard.Parts
             string fallback = key == CardStringsEnum.Kind ? "individual" : "";
             ValueInfo<string>[] fallbacks =
                 !string.IsNullOrEmpty(fallback) ?
-                [new ValueInfo<string>(null, -1, [], "", "", fallback)] :
+                [new ValueInfo<string>(null, -1, [], fallback)] :
                 [];
 
             // Check to see if the string has a value or not
@@ -375,7 +375,7 @@ namespace VisualCard.Parts
                         cardBuilder.Append($"{group}.");
                     partBuilder.Append($"{prefix}");
                     partBuilder.Append($"{partArguments}");
-                    partBuilder.Append($"{CommonTools.MakeStringBlock(part.Value, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length, encoding: part.Property?.Encoding ?? "")}");
+                    partBuilder.Append($"{CommonTools.MakeStringBlock(part.Value, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length, encoding: part.Encoding ?? "")}");
                     cardBuilder.AppendLine($"{partBuilder}");
                 }
             }
@@ -410,7 +410,7 @@ namespace VisualCard.Parts
                         cardBuilder.Append($"{group}.");
                     partBuilder.Append($"{prefix}");
                     partBuilder.Append($"{partArguments}");
-                    partBuilder.Append($"{CommonTools.MakeStringBlock(partRepresentation, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length, !(partsArrayEnum == CardPartsArrayEnum.Agents && version.Major == 2), part.Property?.Encoding ?? "")}");
+                    partBuilder.Append($"{CommonTools.MakeStringBlock(partRepresentation, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length, !(partsArrayEnum == CardPartsArrayEnum.Agents && version.Major == 2), part.Encoding ?? "")}");
                     cardBuilder.AppendLine($"{partBuilder}");
                 }
             }
@@ -445,7 +445,7 @@ namespace VisualCard.Parts
                         cardBuilder.Append($"{group}.");
                     partBuilder.Append($"{prefix}");
                     partBuilder.Append($"{partArguments}");
-                    partBuilder.Append($"{CommonTools.MakeStringBlock(partRepresentation, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length, !((CardPartsArrayEnum)partsArrayEnum == CardPartsArrayEnum.Agents && version.Major == 2), part.Property?.Encoding ?? "")}");
+                    partBuilder.Append($"{CommonTools.MakeStringBlock(partRepresentation, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length, !((CardPartsArrayEnum)partsArrayEnum == CardPartsArrayEnum.Agents && version.Major == 2), part.Encoding ?? "")}");
                     cardBuilder.AppendLine($"{partBuilder}");
                 }
             }

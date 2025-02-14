@@ -39,8 +39,8 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// </summary>
         public DateTimeOffset[]? ExDates { get; set; }
 
-        internal static BaseCalendarPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            (BaseCalendarPartInfo)new ExDateInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
+        internal static BaseCalendarPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, Version cardVersion) =>
+            (BaseCalendarPartInfo)new ExDateInfo().FromStringInternal(value, property, altId, elementTypes, cardVersion);
 
         internal override string ToStringInternal(Version cardVersion)
         {
@@ -49,7 +49,7 @@ namespace VisualCard.Calendar.Parts.Implementations
             return $"{string.Join(cardVersion.Major == 1 ? ";" : ",", ExDates.Select((dt) => CommonTools.SavePosixDate(dt, justDate)))}";
         }
 
-        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, Version cardVersion)
         {
             // Populate the fields
             var exDates = Regex.Unescape(value).Split(cardVersion.Major == 1 ? ';' : ',');
@@ -57,14 +57,14 @@ namespace VisualCard.Calendar.Parts.Implementations
             foreach (var exDate in exDates)
             {
                 DateTimeOffset date =
-                    valueType.Equals("date", StringComparison.OrdinalIgnoreCase) ?
+                    property.ValueType.Equals("date", StringComparison.OrdinalIgnoreCase) ?
                     CommonTools.ParsePosixDate(exDate) :
                     CommonTools.ParsePosixDateTime(exDate);
                 dates.Add(date);
             }
 
             // Add the fetched information
-            ExDateInfo _time = new(property, elementTypes, group, valueType, [.. dates]);
+            ExDateInfo _time = new(property, elementTypes, [.. dates]);
             return _time;
         }
 
@@ -120,8 +120,8 @@ namespace VisualCard.Calendar.Parts.Implementations
 
         internal ExDateInfo() { }
 
-        internal ExDateInfo(PropertyInfo? property, string[] elementTypes, string group, string valueType, DateTimeOffset[] exDates) :
-            base(property, elementTypes, group, valueType)
+        internal ExDateInfo(PropertyInfo? property, string[] elementTypes, DateTimeOffset[] exDates) :
+            base(property, elementTypes)
         {
             ExDates = exDates;
         }

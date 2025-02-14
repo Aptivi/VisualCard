@@ -35,10 +35,6 @@ namespace VisualCard.Calendar.Parts.Implementations
     public class AttachInfo : BaseCalendarPartInfo, IEquatable<AttachInfo>
     {
         /// <summary>
-        /// Attach encoding type
-        /// </summary>
-        public string? Encoding { get; }
-        /// <summary>
         /// Encoded attach
         /// </summary>
         public string? AttachEncoded { get; set; }
@@ -46,20 +42,19 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// Whether this attach is a blob or not
         /// </summary>
         public bool IsBlob =>
-            CommonTools.IsEncodingBlob(Property?.Arguments ?? [], AttachEncoded);
+            CommonTools.IsEncodingBlob(Arguments ?? [], AttachEncoded);
 
-        internal static BaseCalendarPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version calendarVersion) =>
-            (BaseCalendarPartInfo)new AttachInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, calendarVersion);
+        internal static BaseCalendarPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, Version calendarVersion) =>
+            (BaseCalendarPartInfo)new AttachInfo().FromStringInternal(value, property, altId, elementTypes, calendarVersion);
 
         internal override string ToStringInternal(Version calendarVersion) =>
             AttachEncoded ?? "";
 
-        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version calendarVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, Version calendarVersion)
         {
             var arguments = property?.Arguments ?? [];
 
             // Check to see if the value is prepended by the ENCODING= argument
-            string attachEncoding = CommonTools.GetValuesString(arguments, "b", CommonConstants._encodingArgumentSpecifier);
             if (!CommonTools.IsEncodingBlob(arguments, value))
             {
                 // Since we don't need embedded attachs, we need to check a URL.
@@ -69,7 +64,7 @@ namespace VisualCard.Calendar.Parts.Implementations
             }
 
             // Populate the fields
-            AttachInfo _attach = new(property, elementTypes, group, valueType, attachEncoding, value);
+            AttachInfo _attach = new(property, elementTypes, value);
             return _attach;
         }
 
@@ -78,7 +73,7 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// </summary>
         /// <returns>A stream that contains image data</returns>
         public Stream GetStream() =>
-            CommonTools.GetBlobData(Property?.Arguments ?? [], AttachEncoded);
+            CommonTools.GetBlobData(Arguments ?? [], AttachEncoded);
 
         /// <inheritdoc/>
         public override bool Equals(object obj) =>
@@ -134,10 +129,9 @@ namespace VisualCard.Calendar.Parts.Implementations
 
         internal AttachInfo() { }
 
-        internal AttachInfo(PropertyInfo? property, string[] elementTypes, string group, string valueType, string encoding, string attachEncoded) :
-            base(property, elementTypes, group, valueType)
+        internal AttachInfo(PropertyInfo? property, string[] elementTypes, string attachEncoded) :
+            base(property, elementTypes)
         {
-            Encoding = encoding;
             AttachEncoded = attachEncoded;
         }
     }

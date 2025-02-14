@@ -35,10 +35,6 @@ namespace VisualCard.Parts.Implementations
     public class LogoInfo : BaseCardPartInfo, IEquatable<LogoInfo>
     {
         /// <summary>
-        /// Logo encoding type
-        /// </summary>
-        public string? Encoding { get; }
-        /// <summary>
         /// Encoded logo
         /// </summary>
         public string? LogoEncoded { get; set; }
@@ -46,21 +42,20 @@ namespace VisualCard.Parts.Implementations
         /// Whether this logo is a blob or not
         /// </summary>
         public bool IsBlob =>
-            CommonTools.IsEncodingBlob(Property?.Arguments ?? [], LogoEncoded);
+            CommonTools.IsEncodingBlob(Arguments ?? [], LogoEncoded);
 
-        internal static BaseCardPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            (BaseCardPartInfo)new LogoInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, Version cardVersion) =>
+            (BaseCardPartInfo)new LogoInfo().FromStringInternal(value, property, altId, elementTypes, cardVersion);
 
         internal override string ToStringInternal(Version cardVersion) =>
             LogoEncoded ?? "";
 
-        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, Version cardVersion)
         {
             bool vCard4 = cardVersion.Major >= 4;
             var arguments = property?.Arguments ?? [];
 
             // Check to see if the value is prepended by the ENCODING= argument
-            string logoEncoding = "";
             if (vCard4)
             {
                 // We're on a vCard 4.0 contact that contains this information
@@ -71,7 +66,6 @@ namespace VisualCard.Parts.Implementations
             else
             {
                 // vCard 3.0 handles this in a different way
-                logoEncoding = CommonTools.GetValuesString(arguments, "b", CommonConstants._encodingArgumentSpecifier);
                 if (!CommonTools.IsEncodingBlob(arguments, value))
                 {
                     // Since we don't need embedded logos, we need to check a URL.
@@ -82,7 +76,7 @@ namespace VisualCard.Parts.Implementations
             }
 
             // Populate the fields
-            LogoInfo _logo = new(altId, property, elementTypes, group, valueType, logoEncoding, value);
+            LogoInfo _logo = new(altId, property, elementTypes, value);
             return _logo;
         }
 
@@ -91,7 +85,7 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         /// <returns>A stream that contains logo data</returns>
         public Stream GetStream() =>
-            CommonTools.GetBlobData(Property?.Arguments ?? [], LogoEncoded);
+            CommonTools.GetBlobData(Arguments ?? [], LogoEncoded);
 
         /// <inheritdoc/>
         public override bool Equals(object obj) =>
@@ -147,10 +141,9 @@ namespace VisualCard.Parts.Implementations
 
         internal LogoInfo() { }
 
-        internal LogoInfo(int altId, PropertyInfo? property, string[] elementTypes, string group, string valueType, string encoding, string logoEncoded) :
-            base(property, altId, elementTypes, group, valueType)
+        internal LogoInfo(int altId, PropertyInfo? property, string[] elementTypes, string logoEncoded) :
+            base(property, altId, elementTypes)
         {
-            Encoding = encoding;
             LogoEncoded = logoEncoded;
         }
     }

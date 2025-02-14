@@ -45,14 +45,14 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string? GenderDescription { get; set; }
 
-        internal static BaseCardPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            (BaseCardPartInfo)new GenderInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, Version cardVersion) =>
+            (BaseCardPartInfo)new GenderInfo().FromStringInternal(value, property, altId, elementTypes, cardVersion);
 
         internal override string ToStringInternal(Version cardVersion) =>
             (Gender != Gender.Unspecified ? Gender.ToString()[0] : "") +
             (!string.IsNullOrEmpty(GenderDescription) ? $"{CommonConstants._fieldDelimiter}{GenderDescription}" : "");
 
-        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, Version cardVersion)
         {
             // Populate field
             string genderString = value;
@@ -81,7 +81,7 @@ namespace VisualCard.Parts.Implementations
             };
 
             // Add the fetched information
-            GenderInfo _gender = new(-1, property, elementTypes, group, valueType, gender, genderDescription);
+            GenderInfo _gender = new(-1, property, elementTypes, gender, genderDescription);
             return _gender;
         }
 
@@ -139,8 +139,8 @@ namespace VisualCard.Parts.Implementations
 
         internal GenderInfo() { }
 
-        internal GenderInfo(int altId, PropertyInfo? property, string[] elementTypes, string group, string valueType, Gender gender, string genderDescription) :
-            base(property, altId, elementTypes, group, valueType)
+        internal GenderInfo(int altId, PropertyInfo? property, string[] elementTypes, Gender gender, string genderDescription) :
+            base(property, altId, elementTypes)
         {
             Gender = gender;
             GenderDescription = genderDescription;

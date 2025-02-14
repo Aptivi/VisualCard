@@ -64,8 +64,8 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
         public DateTimeOffset SnoozeIn =>
             CommonTools.GetDurationSpan(SnoozeTime ?? "").result;
 
-        internal static BaseCalendarPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version calendarVersion) =>
-            (BaseCalendarPartInfo)new AudioAlarmInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, calendarVersion);
+        internal static BaseCalendarPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, Version calendarVersion) =>
+            (BaseCalendarPartInfo)new AudioAlarmInfo().FromStringInternal(value, property, altId, elementTypes, calendarVersion);
 
         internal override string ToStringInternal(Version calendarVersion)
         {
@@ -73,7 +73,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
             return $"{posixRunTime};{SnoozeTime};{RepeatCount};{AudioResource}";
         }
 
-        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version calendarVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, Version calendarVersion)
         {
             // Get the values
             string[] split = value.Split(';');
@@ -91,7 +91,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
                 throw new ArgumentException("Invalid repeat times");
 
             // Populate the fields
-            AudioAlarmInfo info = new(property, elementTypes, group, valueType, runTime, snoozeTime, repeat, audioResource);
+            AudioAlarmInfo info = new(property, elementTypes, runTime, snoozeTime, repeat, audioResource);
             return info;
         }
 
@@ -153,8 +153,8 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
 
         internal AudioAlarmInfo() { }
 
-        internal AudioAlarmInfo(PropertyInfo? property, string[] elementTypes, string group, string valueType, DateTimeOffset runTime, string snoozeTime, int repeat, string audioResource) :
-            base(property, elementTypes, group, valueType)
+        internal AudioAlarmInfo(PropertyInfo? property, string[] elementTypes, DateTimeOffset runTime, string snoozeTime, int repeat, string audioResource) :
+            base(property, elementTypes)
         {
             RunTime = runTime;
             SnoozeTime = snoozeTime;

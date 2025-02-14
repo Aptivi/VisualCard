@@ -58,7 +58,6 @@ namespace VisualCard.Parts
 
             // Check all the properties
             return
-                source.Property == target.Property &&
                 source.ElementTypes.SequenceEqual(target.ElementTypes) &&
                 source.AltId == target.AltId &&
                 source.ValueType == target.ValueType &&
@@ -72,7 +71,6 @@ namespace VisualCard.Parts
         {
             int hashCode = 1046930009;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<PropertyInfo?>.Default.GetHashCode(Property);
             hashCode = hashCode * -1521134295 + AltId.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(ElementTypes);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ValueType);
@@ -94,8 +92,8 @@ namespace VisualCard.Parts
         internal BaseCardPartInfo()
         { }
 
-        internal BaseCardPartInfo(PropertyInfo? property, int altId, string[] elementTypes, string group, string valueType) :
-            base(property, altId, elementTypes, group, valueType)
+        internal BaseCardPartInfo(PropertyInfo? property, int altId, string[] elementTypes) :
+            base(property, altId, elementTypes)
         { }
     }
 }

@@ -154,6 +154,7 @@ namespace VisualCard.Calendar.Parsers
             // Handle the part type, and extract the value
             string valueType = CommonTools.GetFirstValue(info.Arguments, partType.defaultValueType, CommonConstants._valueArgumentSpecifier);
             string finalValue = CommonTools.ProcessStringValue(info.Value, valueType, version.Major == 1 ? ';' : ',');
+            info.ValueType = valueType;
 
             // Check for allowed values
             if (partType.allowedValues.Length != 0)
@@ -181,7 +182,7 @@ namespace VisualCard.Calendar.Parsers
                         CalendarStringsEnum stringType = (CalendarStringsEnum)partType.enumeration;
 
                         // Set the string for real
-                        var stringValueInfo = new ValueInfo<string>(info, -1, elementTypes, info.Group, valueType, finalValue);
+                        var stringValueInfo = new ValueInfo<string>(info, -1, elementTypes, finalValue);
                         component.AddString(stringType, stringValueInfo);
                     }
                     break;
@@ -193,7 +194,7 @@ namespace VisualCard.Calendar.Parsers
                         double finalDouble = double.Parse(finalValue);
 
                         // Set the integer for real
-                        var stringValueInfo = new ValueInfo<double>(info, -1, elementTypes, info.Group, valueType, finalDouble);
+                        var stringValueInfo = new ValueInfo<double>(info, -1, elementTypes, finalDouble);
                         component.AddInteger(integerType, stringValueInfo);
                     }
                     break;
@@ -208,8 +209,8 @@ namespace VisualCard.Calendar.Parsers
                             // Get the base part info from the nonstandard value
                             var partInfo =
                                 partsArrayType == CalendarPartsArrayEnum.NonstandardNames ?
-                                XNameInfo.FromStringStatic(_value, info, -1, elementTypes, info.Group, valueType, version) :
-                                ExtraInfo.FromStringStatic(_value, info, -1, elementTypes, info.Group, valueType, version);
+                                XNameInfo.FromStringStatic(_value, info, -1, elementTypes, version) :
+                                ExtraInfo.FromStringStatic(_value, info, -1, elementTypes, version);
                             component.AddExtraPartToArray((PartsArrayEnum)partsArrayType, partInfo);
                         }
                         else
@@ -218,7 +219,7 @@ namespace VisualCard.Calendar.Parsers
                                 return;
 
                             // Get the part info from the part type and add it to the part array
-                            var partInfo = partType.fromStringFunc(finalValue, info, -1, elementTypes, info.Group, valueType, version);
+                            var partInfo = partType.fromStringFunc(finalValue, info, -1, elementTypes, version);
                             component.AddPartToArray(partsArrayType, partInfo);
                         }
                     }

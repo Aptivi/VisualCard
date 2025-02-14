@@ -35,10 +35,6 @@ namespace VisualCard.Parts.Implementations
     public class KeyInfo : BaseCardPartInfo, IEquatable<KeyInfo>
     {
         /// <summary>
-        /// Key encoding type
-        /// </summary>
-        public string? Encoding { get; }
-        /// <summary>
         /// Encoded key
         /// </summary>
         public string? KeyEncoded { get; set; }
@@ -46,24 +42,23 @@ namespace VisualCard.Parts.Implementations
         /// Whether this key is a blob or not
         /// </summary>
         public bool IsBlob =>
-            CommonTools.IsEncodingBlob(Property?.Arguments, KeyEncoded);
+            CommonTools.IsEncodingBlob(Arguments, KeyEncoded);
 
-        internal static BaseCardPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            (BaseCardPartInfo)new KeyInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, Version cardVersion) =>
+            (BaseCardPartInfo)new KeyInfo().FromStringInternal(value, property, altId, elementTypes, cardVersion);
 
         internal override string ToStringInternal(Version cardVersion) =>
             KeyEncoded ?? "";
 
-        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, Version cardVersion)
         {
             bool vCard4 = cardVersion.Major >= 4;
 
             // Check to see if the value is prepended by the ENCODING= argument
-            string keyEncoding = "";
             if (vCard4)
             {
                 // We're on a vCard 4.0 contact that contains this information
-                if (valueType.Equals("uri", StringComparison.OrdinalIgnoreCase))
+                if (property.ValueType.Equals("uri", StringComparison.OrdinalIgnoreCase))
                 {
                     if (!Uri.TryCreate(value, UriKind.Absolute, out Uri uri))
                         throw new InvalidDataException($"URL {value} is invalid");
@@ -75,7 +70,6 @@ namespace VisualCard.Parts.Implementations
                 var arguments = property?.Arguments ?? [];
 
                 // vCard 3.0 handles this in a different way
-                keyEncoding = CommonTools.GetValuesString(arguments, "b", CommonConstants._encodingArgumentSpecifier);
                 if (!CommonTools.IsEncodingBlob(arguments, value))
                 {
                     // Since we don't need embedded keys, we need to check a URL.
@@ -86,7 +80,7 @@ namespace VisualCard.Parts.Implementations
             }
 
             // Populate the fields
-            KeyInfo _key = new(altId, property, elementTypes, group, valueType, keyEncoding, value);
+            KeyInfo _key = new(altId, property, elementTypes, value);
             return _key;
         }
 
@@ -95,7 +89,7 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         /// <returns>A stream that contains key data</returns>
         public Stream GetStream() =>
-            CommonTools.GetBlobData(Property?.Arguments ?? [], KeyEncoded);
+            CommonTools.GetBlobData(Arguments ?? [], KeyEncoded);
 
         /// <inheritdoc/>
         public override bool Equals(object obj) =>
@@ -151,10 +145,9 @@ namespace VisualCard.Parts.Implementations
 
         internal KeyInfo() { }
 
-        internal KeyInfo(int altId, PropertyInfo? property, string[] elementTypes, string group, string valueType, string encoding, string keyEncoded) :
-            base(property, altId, elementTypes, group, valueType)
+        internal KeyInfo(int altId, PropertyInfo? property, string[] elementTypes, string keyEncoded) :
+            base(property, altId, elementTypes)
         {
-            Encoding = encoding;
             KeyEncoded = keyEncoded;
         }
     }

@@ -42,13 +42,13 @@ namespace VisualCard.Common.Parts.Implementations
         /// </summary>
         public string[]? XValues { get; set; }
 
-        internal static BasePartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            new XNameInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
+        internal static BasePartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, Version cardVersion) =>
+            new XNameInfo().FromStringInternal(value, property, altId, elementTypes, cardVersion);
 
         internal override string ToStringInternal(Version cardVersion) =>
             string.Join(CommonConstants._fieldDelimiter.ToString(), XValues);
 
-        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, Version cardVersion)
         {
             string xValue = value.Substring(CommonConstants._xSpecifier.Length);
             string[] splitX = xValue.Split(CommonConstants._argumentDelimiter);
@@ -62,7 +62,7 @@ namespace VisualCard.Common.Parts.Implementations
             // Populate the fields
             string[] _xValues = splitX[1].Split(CommonConstants._fieldDelimiter);
             LoggingTools.Debug("Got {0} X-nonstandard values [{1}]", _xValues.Length, string.Join(", ", _xValues));
-            XNameInfo _x = new(property, altId, elementTypes, group, valueType, _xName, _xValues);
+            XNameInfo _x = new(property, altId, elementTypes, _xName, _xValues);
             return _x;
         }
 
@@ -120,8 +120,8 @@ namespace VisualCard.Common.Parts.Implementations
 
         internal XNameInfo() { }
 
-        internal XNameInfo(PropertyInfo? property, int altId, string[] elementTypes, string group, string valueType, string xKeyName, string[] xValues) :
-            base(property, altId, elementTypes, group, valueType)
+        internal XNameInfo(PropertyInfo? property, int altId, string[] elementTypes, string xKeyName, string[] xValues) :
+            base(property, altId, elementTypes)
         {
             XKeyName = xKeyName;
             XValues = xValues;

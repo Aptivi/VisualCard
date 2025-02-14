@@ -36,19 +36,19 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public DateTimeOffset BirthDate { get; set; }
 
-        internal static BaseCardPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            (BaseCardPartInfo)new BirthDateInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, Version cardVersion) =>
+            (BaseCardPartInfo)new BirthDateInfo().FromStringInternal(value, property, altId, elementTypes, cardVersion);
 
         internal override string ToStringInternal(Version cardVersion) =>
             $"{CommonTools.SavePosixDate(BirthDate, true)}";
 
-        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, Version cardVersion)
         {
             // Populate field
             DateTimeOffset bday = CommonTools.ParsePosixDateTime(value);
 
             // Add the fetched information
-            BirthDateInfo _time = new(altId, property, elementTypes, group, valueType, bday);
+            BirthDateInfo _time = new(altId, property, elementTypes, bday);
             return _time;
         }
 
@@ -104,8 +104,8 @@ namespace VisualCard.Parts.Implementations
 
         internal BirthDateInfo() { }
 
-        internal BirthDateInfo(int altId, PropertyInfo? property, string[] elementTypes, string group, string valueType, DateTimeOffset birth) :
-            base(property, altId, elementTypes, group, valueType)
+        internal BirthDateInfo(int altId, PropertyInfo? property, string[] elementTypes, DateTimeOffset birth) :
+            base(property, altId, elementTypes)
         {
             BirthDate = birth;
         }

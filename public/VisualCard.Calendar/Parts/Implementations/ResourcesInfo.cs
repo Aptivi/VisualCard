@@ -39,19 +39,19 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// </summary>
         public string[]? Resources { get; set; }
 
-        internal static BaseCalendarPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            (BaseCalendarPartInfo)new ResourcesInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
+        internal static BaseCalendarPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, Version cardVersion) =>
+            (BaseCalendarPartInfo)new ResourcesInfo().FromStringInternal(value, property, altId, elementTypes, cardVersion);
 
         internal override string ToStringInternal(Version cardVersion) =>
             $"{string.Join(CommonConstants._valueDelimiter.ToString(), Resources)}";
 
-        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, Version cardVersion)
         {
             // Populate the fields
             var resources = Regex.Unescape(value).Split(cardVersion.Major == 1 ? ';' : ',');
 
             // Add the fetched information
-            ResourcesInfo _time = new(property, elementTypes, group, valueType, resources);
+            ResourcesInfo _time = new(property, elementTypes, resources);
             return _time;
         }
 
@@ -107,8 +107,8 @@ namespace VisualCard.Calendar.Parts.Implementations
 
         internal ResourcesInfo() { }
 
-        internal ResourcesInfo(PropertyInfo? property, string[] elementTypes, string group, string valueType, string[] resources) :
-            base(property, elementTypes, group, valueType)
+        internal ResourcesInfo(PropertyInfo? property, string[] elementTypes, string[] resources) :
+            base(property, elementTypes)
         {
             Resources = resources;
         }

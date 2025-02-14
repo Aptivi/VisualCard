@@ -35,15 +35,14 @@ namespace VisualCard.Common.Parts
             string extraKeyName =
                 (partInfo is XNameInfo xName ? xName.XKeyName :
                  partInfo is ExtraInfo exName ? exName.KeyName : "") ?? "";
-            return BuildArguments(partInfo.ElementTypes, partInfo.ValueType, partInfo.Property, extraKeyName, defaultType, defaultValue);
+            return BuildArguments(partInfo.ElementTypes, partInfo.ValueType, partInfo.Arguments, extraKeyName, defaultType, defaultValue);
         }
 
         internal static string BuildArguments<TValue>(ValueInfo<TValue> partInfo, string defaultType, string defaultValue) =>
-            BuildArguments(partInfo.ElementTypes, partInfo.ValueType, partInfo.Property, "", defaultType, defaultValue);
+            BuildArguments(partInfo.ElementTypes, partInfo.ValueType, partInfo.Arguments, "", defaultType, defaultValue);
 
-        internal static string BuildArguments(string[] elementTypes, string valueType, PropertyInfo? property, string extraKeyName, string defaultType, string defaultValue)
+        internal static string BuildArguments(string[] elementTypes, string valueType, ArgumentInfo[] arguments, string extraKeyName, string defaultType, string defaultValue)
         {
-            var arguments = property?.Arguments ?? [];
             LoggingTools.Debug("Building {0} arguments with {1} element types [{2}], type {3}, {4}, {5}, {6}...", arguments.Length, elementTypes.Length, string.Join(", ", elementTypes), valueType, extraKeyName, defaultType, defaultValue);
 
             // Filter the list of types and values first

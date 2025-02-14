@@ -32,7 +32,7 @@ namespace VisualCard.Common.Parsers.Arguments
     /// Property info class
     /// </summary>
     [DebuggerDisplay("Property: {Arguments.Length} args, {Prefix} [G: {Group}] = {Value}")]
-    public class PropertyInfo : IEquatable<PropertyInfo?>
+    internal class PropertyInfo : IEquatable<PropertyInfo?>
     {
         internal readonly StringBuilder rawValue = new();
         private readonly string prefix = "";
@@ -84,8 +84,7 @@ namespace VisualCard.Common.Parsers.Arguments
         /// <summary>
         /// Property value type
         /// </summary>
-        public string ValueType
-            => CommonTools.GetValuesString(arguments, "", CommonConstants._valueArgumentSpecifier);
+        public string ValueType { get; set; }
 
         internal bool CanContinueMultiline
             => Encoding == CommonConstants._quotedPrintable && Value?.Length > 0 && Value[Value.Length - 1] == '=';
@@ -173,6 +172,7 @@ namespace VisualCard.Common.Parsers.Arguments
             this.prefix = prefix;
             arguments = finalArgs;
             this.group = group.Trim();
+            ValueType = CommonTools.GetValuesString(arguments, "", CommonConstants._valueArgumentSpecifier);
             LoggingTools.Info("Installed values: {0}, {1} args, {2} [Initial raw: {3}]", prefix, finalArgs.Length, group, rawValue.ToString());
         }
     }

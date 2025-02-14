@@ -58,7 +58,6 @@ namespace VisualCard.Calendar.Parts
 
             // Check all the properties
             return
-                source.Property == target.Property &&
                 source.ElementTypes.SequenceEqual(target.ElementTypes) &&
                 source.ValueType == target.ValueType &&
                 source.Group == target.Group &&
@@ -71,7 +70,6 @@ namespace VisualCard.Calendar.Parts
         {
             int hashCode = -516533944;
             hashCode = hashCode * -1521134295 + base.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<PropertyInfo?>.Default.GetHashCode(Property);
             hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(ElementTypes);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ValueType);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Group);
@@ -92,8 +90,8 @@ namespace VisualCard.Calendar.Parts
         internal BaseCalendarPartInfo()
         { }
 
-        internal BaseCalendarPartInfo(PropertyInfo? property, string[] elementTypes, string group, string valueType) :
-            base(property, -1, elementTypes, group, valueType)
+        internal BaseCalendarPartInfo(PropertyInfo? property, string[] elementTypes) :
+            base(property, -1, elementTypes)
         { }
     }
 }

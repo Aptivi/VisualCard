@@ -36,19 +36,19 @@ namespace VisualCard.Calendar.Parts.Implementations
         /// </summary>
         public DateTimeOffset LastModified { get; set; }
 
-        internal static BaseCalendarPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            (BaseCalendarPartInfo)new LastModifiedInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
+        internal static BaseCalendarPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, Version cardVersion) =>
+            (BaseCalendarPartInfo)new LastModifiedInfo().FromStringInternal(value, property, altId, elementTypes, cardVersion);
 
         internal override string ToStringInternal(Version cardVersion) =>
             $"{CommonTools.SavePosixDate(LastModified)}";
 
-        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, Version cardVersion)
         {
             // Populate the fields
             DateTimeOffset created = CommonTools.ParsePosixDateTime(value);
 
             // Add the fetched information
-            LastModifiedInfo _time = new(property, elementTypes, group, valueType, created);
+            LastModifiedInfo _time = new(property, elementTypes, created);
             return _time;
         }
 
@@ -104,8 +104,8 @@ namespace VisualCard.Calendar.Parts.Implementations
 
         internal LastModifiedInfo() { }
 
-        internal LastModifiedInfo(PropertyInfo? property, string[] elementTypes, string group, string valueType, DateTimeOffset rev) :
-            base(property, elementTypes, group, valueType)
+        internal LastModifiedInfo(PropertyInfo? property, string[] elementTypes, DateTimeOffset rev) :
+            base(property, elementTypes)
         {
             LastModified = rev;
         }

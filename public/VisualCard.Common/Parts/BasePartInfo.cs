@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using VisualCard.Common.Diagnostics;
+using VisualCard.Common.Parsers;
 using VisualCard.Common.Parsers.Arguments;
 
 namespace VisualCard.Common.Parts
@@ -29,39 +30,52 @@ namespace VisualCard.Common.Parts
     /// <summary>
     /// Base card part class
     /// </summary>
-    [DebuggerDisplay("Base part | TYPE: {ElementTypes}, VALUE: {ValueType}")]
+    [DebuggerDisplay("Base part | TYPE: [{string.Join(\", \", ElementTypes)}], VALUE: {ValueType}, Property: {Arguments.Length} args, G: {Group}")]
     public abstract class BasePartInfo : IEquatable<BasePartInfo>
     {
         /// <summary>
-        /// Final arguments
+        /// Alternative ID. -1 if unspecified.
         /// </summary>
-        public virtual PropertyInfo? Property { get; internal set; }
-
-        /// <summary>
-        /// Alternative ID. Zero if unspecified.
-        /// </summary>
-        public virtual int AltId { get; internal set; }
+        public int AltId { get; set; } = -1;
 
         /// <summary>
         /// Card element type (home, work, ...)
         /// </summary>
-        public virtual string[] ElementTypes { get; internal set; } = [];
-
-        /// <summary>
-        /// Value type (usually set by VALUE=)
-        /// </summary>
-        public virtual string ValueType { get; internal set; } = "";
+        public string[] ElementTypes { get; set; } = [];
 
         /// <summary>
         /// Property group
         /// </summary>
-        public virtual string Group { get; internal set; } = "";
+        public string Group { get; set; } = "";
 
         /// <summary>
         /// Nested property groups
         /// </summary>
         public string[] NestedGroups =>
-            Group.Split('.');
+            Group.Split(['.'], StringSplitOptions.RemoveEmptyEntries);
+
+        /// <summary>
+        /// Argument info instances. It includes AltId, type, and value
+        /// </summary>
+        public ArgumentInfo[] Arguments { get; set; } = [];
+
+        /// <summary>
+        /// Property encoding
+        /// </summary>
+        public string Encoding
+            => CommonTools.GetValuesString(Arguments, "", CommonConstants._encodingArgumentSpecifier);
+
+        /// <summary>
+        /// Property type
+        /// </summary>
+        public string Type
+            => CommonTools.GetValuesString(Arguments, "", CommonConstants._typeArgumentSpecifier);
+
+        /// <summary>
+        /// Property value type
+        /// </summary>
+        public string ValueType
+            => CommonTools.GetValuesString(Arguments, "", CommonConstants._valueArgumentSpecifier);
 
         /// <summary>
         /// Is this part preferred?
@@ -114,7 +128,6 @@ namespace VisualCard.Common.Parts
 
             // Check all the properties
             return
-                source.Property == target.Property &&
                 source.AltId == target.AltId &&
                 source.ElementTypes.SequenceEqual(target.ElementTypes) &&
                 source.ValueType == target.ValueType &&
@@ -131,7 +144,6 @@ namespace VisualCard.Common.Parts
         public override int GetHashCode()
         {
             int hashCode = 516898731;
-            hashCode = hashCode * -1521134295 + EqualityComparer<PropertyInfo?>.Default.GetHashCode(Property);
             hashCode = hashCode * -1521134295 + AltId.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(ElementTypes);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ValueType);
@@ -150,21 +162,20 @@ namespace VisualCard.Common.Parts
         internal virtual bool EqualsInternal(BasePartInfo source, BasePartInfo target) =>
             true;
 
-        internal abstract BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version version);
+        internal abstract BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, Version version);
 
         internal abstract string ToStringInternal(Version version);
 
         internal BasePartInfo()
         { }
 
-        internal BasePartInfo(PropertyInfo? property, int altId, string[] elementTypes, string group, string valueType)
+        internal BasePartInfo(PropertyInfo? property, int altId, string[] elementTypes)
         {
-            Property = property;
             AltId = altId;
             ElementTypes = elementTypes;
-            ValueType = valueType;
-            Group = group;
-            LoggingTools.Debug("Installed {0}, {1}, {2} types [{3}], {4}, {5}", Property is not null ? "a property" : "no property", AltId, ElementTypes.Length, string.Join(", ", ElementTypes), ValueType, Group);
+            Group = property?.Group ?? "";
+            Arguments = property?.Arguments ?? [];
+            LoggingTools.Debug("Installed {0}, {1} types [{2}], {3}, {4}", AltId, ElementTypes.Length, string.Join(", ", ElementTypes), ValueType, Group);
         }
     }
 }

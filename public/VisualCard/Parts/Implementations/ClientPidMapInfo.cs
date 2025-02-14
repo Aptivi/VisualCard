@@ -43,13 +43,13 @@ namespace VisualCard.Parts.Implementations
         /// </summary>
         public string? PidUri { get; set; }
 
-        internal static BaseCardPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion) =>
-            (BaseCardPartInfo)new ClientPidMapInfo().FromStringInternal(value, property, altId, elementTypes, group, valueType, cardVersion);
+        internal static BaseCardPartInfo FromStringStatic(string value, PropertyInfo property, int altId, string[] elementTypes, Version cardVersion) =>
+            (BaseCardPartInfo)new ClientPidMapInfo().FromStringInternal(value, property, altId, elementTypes, cardVersion);
 
         internal override string ToStringInternal(Version cardVersion) =>
             $"{PidNum};{PidUri ?? ""}";
 
-        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, string group, string valueType, Version cardVersion)
+        internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, Version cardVersion)
         {
             // Split the client PID map info
             if (!value.Contains(";"))
@@ -65,7 +65,7 @@ namespace VisualCard.Parts.Implementations
             pidUriStr = uri.ToString();
 
             // Populate the fields
-            ClientPidMapInfo _source = new(altId, property, elementTypes, group, valueType, pidNum, pidUriStr);
+            ClientPidMapInfo _source = new(altId, property, elementTypes, pidNum, pidUriStr);
             return _source;
         }
 
@@ -123,8 +123,8 @@ namespace VisualCard.Parts.Implementations
 
         internal ClientPidMapInfo() { }
 
-        internal ClientPidMapInfo(int altId, PropertyInfo? property, string[] elementTypes, string group, string valueType, int pidNum, string pidUri) :
-            base(property, altId, elementTypes, group, valueType)
+        internal ClientPidMapInfo(int altId, PropertyInfo? property, string[] elementTypes, int pidNum, string pidUri) :
+            base(property, altId, elementTypes)
         {
             PidNum = pidNum;
             PidUri = pidUri;
