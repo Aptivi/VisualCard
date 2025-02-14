@@ -44,6 +44,20 @@ namespace VisualCard.Tests.Contacts
         }
         
         [TestMethod]
+        public void TestContactPropertyAddStringWithGroup()
+        {
+            var cards = CardTools.GetCardsFromString(ContactData.singleVcardTwoContactShort);
+            var card = cards[0];
+            card.AddString(CardStringsEnum.Notes, "Note test", "GROUP");
+            card.GetString(CardStringsEnum.Notes).ShouldNotBeEmpty();
+            var note = card.GetString(CardStringsEnum.Notes)[0];
+            note.Value.ShouldBe("Note test");
+            string cardStr = card.SaveToString();
+            cardStr.ShouldContain("GROUP.NOTE");
+            cardStr.ShouldContain("Note test");
+        }
+        
+        [TestMethod]
         public void TestContactPropertyAddNonstandard()
         {
             var cards = CardTools.GetCardsFromString(ContactData.singleVcardTwoContactShort);
@@ -60,6 +74,26 @@ namespace VisualCard.Tests.Contacts
             name.XValues[3].ShouldBe("T");
             string cardStr = card.SaveToString();
             cardStr.ShouldContain("X-CHARACTERS");
+            cardStr.ShouldContain("T;E;S;T");
+        }
+        
+        [TestMethod]
+        public void TestContactPropertyAddNonstandardWithGroup()
+        {
+            var cards = CardTools.GetCardsFromString(ContactData.singleVcardTwoContactShort);
+            var card = cards[0];
+            card.AddPartToArray(CardPartsArrayEnum.NonstandardNames, "T;E;S;T", "GROUP", "CHARACTERS");
+            card.GetExtraPartsArray<XNameInfo>().ShouldNotBeEmpty();
+            var name = card.GetExtraPartsArray<XNameInfo>()[0];
+            name.XKeyName.ShouldBe("CHARACTERS");
+            name.XValues.ShouldNotBeNull();
+            name.XValues.Length.ShouldBe(4);
+            name.XValues[0].ShouldBe("T");
+            name.XValues[1].ShouldBe("E");
+            name.XValues[2].ShouldBe("S");
+            name.XValues[3].ShouldBe("T");
+            string cardStr = card.SaveToString();
+            cardStr.ShouldContain("GROUP.X-CHARACTERS");
             cardStr.ShouldContain("T;E;S;T");
         }
         
@@ -84,6 +118,26 @@ namespace VisualCard.Tests.Contacts
         }
         
         [TestMethod]
+        public void TestContactPropertyFindNonstandardWithGroup()
+        {
+            var cards = CardTools.GetCardsFromString(ContactData.singleVcardTwoContactShort);
+            var card = cards[0];
+            card.AddPartToArray(CardPartsArrayEnum.NonstandardNames, "T;E;S;T", "GROUP", "CHARACTERS");
+            card.FindExtraPartsArray<XNameInfo>("CHAR").ShouldNotBeEmpty();
+            var name = card.FindExtraPartsArray<XNameInfo>("CHAR")[0];
+            name.XKeyName.ShouldBe("CHARACTERS");
+            name.XValues.ShouldNotBeNull();
+            name.XValues.Length.ShouldBe(4);
+            name.XValues[0].ShouldBe("T");
+            name.XValues[1].ShouldBe("E");
+            name.XValues[2].ShouldBe("S");
+            name.XValues[3].ShouldBe("T");
+            string cardStr = card.SaveToString();
+            cardStr.ShouldContain("GROUP.X-CHARACTERS");
+            cardStr.ShouldContain("T;E;S;T");
+        }
+        
+        [TestMethod]
         public void TestContactPropertyAddIana()
         {
             var cards = CardTools.GetCardsFromString(ContactData.singleVcardTwoContactShort);
@@ -104,6 +158,26 @@ namespace VisualCard.Tests.Contacts
         }
         
         [TestMethod]
+        public void TestContactPropertyAddIanaWithGroup()
+        {
+            var cards = CardTools.GetCardsFromString(ContactData.singleVcardTwoContactShort);
+            var card = cards[0];
+            card.AddPartToArray(CardPartsArrayEnum.IanaNames, "T;E;S;T", "GROUP", "CHARACTERS");
+            card.GetExtraPartsArray<ExtraInfo>().ShouldNotBeEmpty();
+            var name = card.GetExtraPartsArray<ExtraInfo>()[0];
+            name.KeyName.ShouldBe("CHARACTERS");
+            name.Values.ShouldNotBeNull();
+            name.Values.Length.ShouldBe(4);
+            name.Values[0].ShouldBe("T");
+            name.Values[1].ShouldBe("E");
+            name.Values[2].ShouldBe("S");
+            name.Values[3].ShouldBe("T");
+            string cardStr = card.SaveToString();
+            cardStr.ShouldContain("GROUP.CHARACTERS");
+            cardStr.ShouldContain("T;E;S;T");
+        }
+        
+        [TestMethod]
         public void TestContactPropertyFindIana()
         {
             var cards = CardTools.GetCardsFromString(ContactData.singleVcardTwoContactShort);
@@ -120,6 +194,26 @@ namespace VisualCard.Tests.Contacts
             name.Values[3].ShouldBe("T");
             string cardStr = card.SaveToString();
             cardStr.ShouldContain("CHARACTERS");
+            cardStr.ShouldContain("T;E;S;T");
+        }
+        
+        [TestMethod]
+        public void TestContactPropertyFindIanaWithCharacters()
+        {
+            var cards = CardTools.GetCardsFromString(ContactData.singleVcardTwoContactShort);
+            var card = cards[0];
+            card.AddPartToArray(CardPartsArrayEnum.IanaNames, "T;E;S;T", "GROUP", "CHARACTERS");
+            card.FindExtraPartsArray<ExtraInfo>("CHAR").ShouldNotBeEmpty();
+            var name = card.FindExtraPartsArray<ExtraInfo>("CHAR")[0];
+            name.KeyName.ShouldBe("CHARACTERS");
+            name.Values.ShouldNotBeNull();
+            name.Values.Length.ShouldBe(4);
+            name.Values[0].ShouldBe("T");
+            name.Values[1].ShouldBe("E");
+            name.Values[2].ShouldBe("S");
+            name.Values[3].ShouldBe("T");
+            string cardStr = card.SaveToString();
+            cardStr.ShouldContain("GROUP.CHARACTERS");
             cardStr.ShouldContain("T;E;S;T");
         }
         

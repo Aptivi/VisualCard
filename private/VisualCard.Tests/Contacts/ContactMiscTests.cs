@@ -22,6 +22,8 @@ using Shouldly;
 using System.IO;
 using Textify.General;
 using VisualCard.Parts;
+using VisualCard.Parts.Enums;
+using VisualCard.Parts.Implementations;
 
 namespace VisualCard.Tests.Contacts
 {
@@ -29,7 +31,7 @@ namespace VisualCard.Tests.Contacts
     public class ContactMiscTests
     {
         [TestMethod]
-        public void TestCreateNewCard()
+        public void TestCreateNewCard21()
         {
             var card = new Card(new(2, 1));
             card.NestedCards.Count.ShouldBe(0);
@@ -40,11 +42,171 @@ namespace VisualCard.Tests.Contacts
             savedLines[1].ShouldBe("VERSION:2.1");
             savedLines[2].ShouldBe("END:VCARD");
         }
-
+        
         [TestMethod]
-        public void TestValidateNewCard()
+        public void TestCreateNewMinimalCard21()
         {
             var card = new Card(new(2, 1));
+            card.NestedCards.Count.ShouldBe(0);
+            card.Strings.Count.ShouldBe(0);
+            card.PartsArray.Count.ShouldBe(0);
+            card.AddPartToArray(CardPartsArrayEnum.Names, "Doherty;Alisha;;;");
+            card.NestedCards.Count.ShouldBe(0);
+            card.Strings.Count.ShouldBe(0);
+            card.PartsArray.Count.ShouldBe(1);
+            var name = card.GetPartsArray<NameInfo>()[0];
+            name.ContactFirstName.ShouldBe("Alisha");
+            name.ContactLastName.ShouldBe("Doherty");
+            string[] savedLines = card.SaveToString(true).SplitNewLines(false);
+            savedLines[0].ShouldBe("BEGIN:VCARD");
+            savedLines[1].ShouldBe("VERSION:2.1");
+            savedLines[2].ShouldBe("N:Doherty;Alisha;;;");
+            savedLines[3].ShouldBe("END:VCARD");
+        }
+
+        [TestMethod]
+        public void TestValidateNewCard21()
+        {
+            var card = new Card(new(2, 1));
+            card.NestedCards.Count.ShouldBe(0);
+            card.Strings.Count.ShouldBe(0);
+            card.PartsArray.Count.ShouldBe(0);
+            Should.Throw(card.Validate, typeof(InvalidDataException));
+        }
+
+        [TestMethod]
+        public void TestCreateNewCard30()
+        {
+            var card = new Card(new(3, 0));
+            card.NestedCards.Count.ShouldBe(0);
+            card.Strings.Count.ShouldBe(0);
+            card.PartsArray.Count.ShouldBe(0);
+            string[] savedLines = card.SaveToString().SplitNewLines(false);
+            savedLines[0].ShouldBe("BEGIN:VCARD");
+            savedLines[1].ShouldBe("VERSION:3.0");
+            savedLines[2].ShouldBe("END:VCARD");
+        }
+
+        [TestMethod]
+        public void TestCreateNewMinimalCard30()
+        {
+            var card = new Card(new(3, 0));
+            card.NestedCards.Count.ShouldBe(0);
+            card.Strings.Count.ShouldBe(0);
+            card.PartsArray.Count.ShouldBe(0);
+            card.AddString(CardStringsEnum.FullName, "Alisha Doherty");
+            card.AddPartToArray(CardPartsArrayEnum.Names, "Doherty;Alisha;;;");
+            card.NestedCards.Count.ShouldBe(0);
+            card.Strings.Count.ShouldBe(1);
+            card.PartsArray.Count.ShouldBe(1);
+            var fullName = card.GetString(CardStringsEnum.FullName)[0];
+            fullName.Value.ShouldBe("Alisha Doherty");
+            var name = card.GetPartsArray<NameInfo>()[0];
+            name.ContactFirstName.ShouldBe("Alisha");
+            name.ContactLastName.ShouldBe("Doherty");
+            string[] savedLines = card.SaveToString(true).SplitNewLines(false);
+            savedLines[0].ShouldBe("BEGIN:VCARD");
+            savedLines[1].ShouldBe("VERSION:3.0");
+            savedLines[2].ShouldBe("FN:Alisha Doherty");
+            savedLines[3].ShouldBe("N:Doherty;Alisha;;;");
+            savedLines[4].ShouldBe("END:VCARD");
+        }
+
+        [TestMethod]
+        public void TestValidateNewCard30()
+        {
+            var card = new Card(new(3, 0));
+            card.NestedCards.Count.ShouldBe(0);
+            card.Strings.Count.ShouldBe(0);
+            card.PartsArray.Count.ShouldBe(0);
+            Should.Throw(card.Validate, typeof(InvalidDataException));
+        }
+
+        [TestMethod]
+        public void TestCreateNewCard40()
+        {
+            var card = new Card(new(4, 0));
+            card.NestedCards.Count.ShouldBe(0);
+            card.Strings.Count.ShouldBe(0);
+            card.PartsArray.Count.ShouldBe(0);
+            string[] savedLines = card.SaveToString().SplitNewLines(false);
+            savedLines[0].ShouldBe("BEGIN:VCARD");
+            savedLines[1].ShouldBe("VERSION:4.0");
+            savedLines[2].ShouldBe("END:VCARD");
+        }
+
+        [TestMethod]
+        public void TestCreateNewMinimalCard40()
+        {
+            var card = new Card(new(4, 0));
+            card.NestedCards.Count.ShouldBe(0);
+            card.Strings.Count.ShouldBe(0);
+            card.PartsArray.Count.ShouldBe(0);
+            card.AddString(CardStringsEnum.FullName, "Alisha Doherty");
+            card.NestedCards.Count.ShouldBe(0);
+            card.Strings.Count.ShouldBe(1);
+            card.PartsArray.Count.ShouldBe(0);
+            var fullName = card.GetString(CardStringsEnum.FullName)[0];
+            fullName.Value.ShouldBe("Alisha Doherty");
+            string[] savedLines = card.SaveToString(true).SplitNewLines(false);
+            savedLines[0].ShouldBe("BEGIN:VCARD");
+            savedLines[1].ShouldBe("VERSION:4.0");
+            savedLines[2].ShouldBe("FN:Alisha Doherty");
+            savedLines[3].ShouldBe("END:VCARD");
+        }
+
+        [TestMethod]
+        public void TestValidateNewCard40()
+        {
+            var card = new Card(new(4, 0));
+            card.NestedCards.Count.ShouldBe(0);
+            card.Strings.Count.ShouldBe(0);
+            card.PartsArray.Count.ShouldBe(0);
+            Should.Throw(card.Validate, typeof(InvalidDataException));
+        }
+
+        [TestMethod]
+        public void TestCreateNewCard50()
+        {
+            var card = new Card(new(5, 0));
+            card.NestedCards.Count.ShouldBe(0);
+            card.Strings.Count.ShouldBe(0);
+            card.PartsArray.Count.ShouldBe(0);
+            string[] savedLines = card.SaveToString().SplitNewLines(false);
+            savedLines[0].ShouldBe("BEGIN:VCARD");
+            savedLines[1].ShouldBe("VERSION:5.0");
+            savedLines[2].ShouldBe("END:VCARD");
+        }
+
+        [TestMethod]
+        public void TestCreateNewMinimalCard50()
+        {
+            var card = new Card(new(5, 0));
+            card.NestedCards.Count.ShouldBe(0);
+            card.Strings.Count.ShouldBe(0);
+            card.PartsArray.Count.ShouldBe(0);
+            card.AddString(CardStringsEnum.FullName, "Alisha Doherty");
+            card.AddPartToArray(CardPartsArrayEnum.Names, "Doherty;Alisha;;;");
+            card.NestedCards.Count.ShouldBe(0);
+            card.Strings.Count.ShouldBe(1);
+            card.PartsArray.Count.ShouldBe(1);
+            var fullName = card.GetString(CardStringsEnum.FullName)[0];
+            fullName.Value.ShouldBe("Alisha Doherty");
+            var name = card.GetPartsArray<NameInfo>()[0];
+            name.ContactFirstName.ShouldBe("Alisha");
+            name.ContactLastName.ShouldBe("Doherty");
+            string[] savedLines = card.SaveToString(true).SplitNewLines(false);
+            savedLines[0].ShouldBe("BEGIN:VCARD");
+            savedLines[1].ShouldBe("VERSION:5.0");
+            savedLines[2].ShouldBe("FN:Alisha Doherty");
+            savedLines[3].ShouldBe("N:Doherty;Alisha;;;");
+            savedLines[4].ShouldBe("END:VCARD");
+        }
+
+        [TestMethod]
+        public void TestValidateNewCard50()
+        {
+            var card = new Card(new(5, 0));
             card.NestedCards.Count.ShouldBe(0);
             card.Strings.Count.ShouldBe(0);
             card.PartsArray.Count.ShouldBe(0);
