@@ -182,7 +182,9 @@ namespace VisualCard.Parsers
                         // Now, get the part info
                         if (isExtra)
                         {
-                            // Get the base part info from the 
+                            // Get the base part info from the nonstandard value, stripping the group part from the initial value.
+                            if (info.Group.Length > 0)
+                                _value = _value.Substring(info.Group.Length + 1);
                             var partInfo =
                                 partsArrayType == CardPartsArrayEnum.NonstandardNames ?
                                 XNameInfo.FromStringStatic(_value, info, altId, elementTypes, version) :
