@@ -1122,7 +1122,7 @@ namespace VisualCard.Calendar.Parts
                 cardinality == PartCardinality.ShouldBeOne ||
                 cardinality == PartCardinality.MayBeOne;
             LoggingTools.Debug("Checking cardinality {0} [{1}]", cardinality, onlyOne);
-            if (onlyOne)
+            if (onlyOne && partsArray[key].Count > 0)
                 throw new InvalidOperationException($"Can't add part array {key}, because cardinality is {cardinality}.");
 
             // Add this value info!
@@ -1158,7 +1158,7 @@ namespace VisualCard.Calendar.Parts
                 cardinality == PartCardinality.ShouldBeOne ||
                 cardinality == PartCardinality.MayBeOne;
             LoggingTools.Debug("Checking cardinality {0} [{1}]", cardinality, onlyOne);
-            if (onlyOne)
+            if (onlyOne && partsArray[key].Count > 0)
                 throw new InvalidOperationException($"Can't add part array {key}, because cardinality is {cardinality}.");
 
             // Add this value info!
@@ -1208,7 +1208,7 @@ namespace VisualCard.Calendar.Parts
                 cardinality == PartCardinality.ShouldBeOne ||
                 cardinality == PartCardinality.MayBeOne;
             LoggingTools.Debug("Checking cardinality {0} [{1}]", cardinality, onlyOne);
-            if (onlyOne)
+            if (onlyOne && strings[key].Count > 0)
                 throw new InvalidOperationException($"Can't add string {key}, because cardinality is {cardinality}.");
 
             // Add this value info!
@@ -1258,7 +1258,7 @@ namespace VisualCard.Calendar.Parts
                 cardinality == PartCardinality.ShouldBeOne ||
                 cardinality == PartCardinality.MayBeOne;
             LoggingTools.Debug("Checking cardinality {0} [{1}]", cardinality, onlyOne);
-            if (onlyOne)
+            if (onlyOne && integers[key].Count > 0)
                 throw new InvalidOperationException($"Can't add integer {key}, because cardinality is {cardinality}.");
 
             // Add this value info!
