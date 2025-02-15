@@ -18,6 +18,7 @@
 //
 
 using System;
+using VisualCard.Common.Diagnostics;
 
 namespace VisualCard.Exceptions
 {
@@ -30,6 +31,7 @@ namespace VisualCard.Exceptions
         internal VCardParseException()
             : base("General contact parsing error.")
         {
+            LoggingTools.Error("Throwing vCard parse exception...");
         }
 
         /// <summary>
@@ -45,6 +47,7 @@ namespace VisualCard.Exceptions
                    $"Line: {line}\n" + 
                    $"Line number: {linenumber}", innerException)
         {
+            LoggingTools.Error(this, "Throwing vCard parse exception...");
         }
     }
 }

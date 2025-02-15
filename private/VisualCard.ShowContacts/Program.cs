@@ -30,6 +30,7 @@ using VisualCard.Parts.Enums;
 using VisualCard.Common.Diagnostics;
 using Aptivestigate.Serilog;
 using Serilog;
+using Aptivestigate.Logging;
 
 namespace VisualCard.ShowContacts
 {

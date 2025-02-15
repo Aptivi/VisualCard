@@ -19,6 +19,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using VisualCard.Common.Diagnostics;
 using VisualCard.Common.Parts;
 using VisualCard.Common.Parts.Comparers;
 using VisualCard.Parts.Enums;
@@ -49,6 +50,7 @@ namespace VisualCard.Parts.Comparers
                 // Compare between the lists
                 return CommonComparison.CompareLists(kvp.Value, parts);
             });
+            LoggingTools.Info("As a result, equal is {0}", equal);
             return equal;
         }
         
@@ -74,6 +76,7 @@ namespace VisualCard.Parts.Comparers
                 // Compare between the lists
                 return CommonComparison.CompareLists(kvp.Value, parts);
             });
+            LoggingTools.Info("As a result, equal is {0}", equal);
             return equal;
         }
     }

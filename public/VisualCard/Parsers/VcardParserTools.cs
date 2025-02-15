@@ -20,6 +20,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using VisualCard.Common.Diagnostics;
 using VisualCard.Common.Parsers;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parts.Enums;
@@ -48,6 +49,7 @@ namespace VisualCard.Parsers
                 if (supportedVersion.Major == major && supportedVersion.Minor == minor)
                     return true;
             }
+            LoggingTools.Warning("Major version {0} and minor version {1} isn't in supported version list", major, minor);
             return false;
         }
 
@@ -117,23 +119,32 @@ namespace VisualCard.Parsers
         internal static CardPartsArrayEnum GetPartsArrayEnumFromType(Type? partsArrayType, Version cardVersion, string cardKindStr)
         {
             if (partsArrayType is null)
+            {
+                LoggingTools.Error("Part type not provided [version {0}, kind {1}]", cardVersion.ToString(), cardKindStr);
                 throw new NotImplementedException("Type is not provided.");
+            }
 
             // Enumerate through all parts array enums
             var enums = Enum.GetValues(typeof(CardPartsArrayEnum));
+            LoggingTools.Debug("Processing {0} enums...", enums.Length);
             foreach (CardPartsArrayEnum part in enums)
             {
                 string prefix = GetPrefixFromPartsArrayEnum(part);
                 var type = GetPartType(prefix, cardVersion, cardKindStr);
                 if (type.enumType == partsArrayType)
+                {
+                    LoggingTools.Debug("Returning {0} based on {1}...", part, partsArrayType.Name);
                     return part;
+                }
             }
+            LoggingTools.Warning("Returning IANA name enum");
             return CardPartsArrayEnum.IanaNames;
         }
 
         internal static VcardPartType GetPartType(string prefix, Version cardVersion, string kindStr)
         {
             var kind = GetKindEnum(kindStr);
+            LoggingTools.Debug("Got kind {0}", kind);
             return prefix switch
             {
                 VcardConstants._nameSpecifier => new(PartType.PartsArray, CardPartsArrayEnum.Names, cardVersion.Major == 4 ? PartCardinality.MayBeOne : PartCardinality.ShouldBeOne, null, typeof(NameInfo), NameInfo.FromStringStatic, "", "", "text", [], []),
@@ -214,6 +225,7 @@ namespace VisualCard.Parsers
                         cardinality != PartCardinality.MayBeOneNoAltId && cardinality != PartCardinality.ShouldBeOneNoAltId &&
                         cardinality != PartCardinality.AtLeastOneNoAltId && cardinality != PartCardinality.AnyNoAltId;
                     var altIdArg = arguments.SingleOrDefault((arg) => arg.Key == VcardConstants._altIdArgumentSpecifier);
+                    LoggingTools.Debug("Cardinality {0} with altid support: {1}", cardinality, supportsAltId);
                     if (supportsAltId)
                     {
                         // The type supports ALTID.
@@ -222,12 +234,14 @@ namespace VisualCard.Parsers
                             // We need ALTID to be numeric
                             if (!int.TryParse(altIdArg.Values[0].value, out altId))
                                 throw new InvalidDataException("ALTID must be numeric");
+                            LoggingTools.Debug("Parsed altid as {0}", altId);
 
                             // We need ALTID to be positive
                             if (altId < 0)
                                 throw new InvalidDataException("ALTID must be positive");
 
                             // Here, we require arguments for ALTID
+                            LoggingTools.Debug("Checking {0} arguments to find reasons as to why altid is {1}", arguments.Length, altId);
                             if (arguments.Length <= 1)
                                 throw new InvalidDataException("ALTID must have one or more arguments to specify why this instance is an alternative");
                         }
@@ -238,6 +252,7 @@ namespace VisualCard.Parsers
                         throw new InvalidDataException($"ALTID must not be specified in the {partType.enumeration} type that expects a cardinality of {cardinality}.");
                 }
             }
+            LoggingTools.Info("Returning ALTID {0}", altId);
             return altId;
         }
     }

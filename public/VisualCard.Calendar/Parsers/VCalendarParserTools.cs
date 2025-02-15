@@ -31,6 +31,7 @@ using VisualCard.Parsers;
 using VisualCard.Common.Parts.Implementations;
 using VisualCard.Common.Parts.Enums;
 using VisualCard.Common.Parsers;
+using VisualCard.Common.Diagnostics;
 
 namespace VisualCard.Calendar.Parsers
 {
@@ -51,6 +52,7 @@ namespace VisualCard.Calendar.Parsers
                 if (supportedVersion.Major == major && supportedVersion.Minor == minor)
                     return true;
             }
+            LoggingTools.Warning("Major version {0} and minor version {1} isn't in supported version list", major, minor);
             return false;
         }
 
@@ -134,17 +136,25 @@ namespace VisualCard.Calendar.Parsers
         internal static CalendarPartsArrayEnum GetPartsArrayEnumFromType(Type? partsArrayType, Version cardVersion, Type componentType)
         {
             if (partsArrayType is null)
+            {
+                LoggingTools.Error("Part type not provided [version {0}, kind {1}]", cardVersion.ToString(), componentType.Name);
                 throw new NotImplementedException("Type is not provided.");
+            }
 
             // Enumerate through all parts array enums
             var enums = Enum.GetValues(typeof(CalendarPartsArrayEnum));
+            LoggingTools.Debug("Processing {0} enums...", enums.Length);
             foreach (CalendarPartsArrayEnum part in enums)
             {
                 string prefix = GetPrefixFromPartsArrayEnum(part);
                 var type = GetPartType(prefix, cardVersion, componentType);
                 if (type.enumType == partsArrayType)
+                {
+                    LoggingTools.Debug("Returning {0} based on {1}...", part, partsArrayType.Name);
                     return part;
+                }
             }
+            LoggingTools.Warning("Returning IANA name enum");
             return CalendarPartsArrayEnum.IanaNames;
         }
 

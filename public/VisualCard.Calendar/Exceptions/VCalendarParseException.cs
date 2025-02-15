@@ -18,6 +18,7 @@
 //
 
 using System;
+using VisualCard.Common.Diagnostics;
 
 namespace VisualCard.Calendar.Exceptions
 {
@@ -30,6 +31,7 @@ namespace VisualCard.Calendar.Exceptions
         internal VCalendarParseException()
             : base("General calendar parsing error.")
         {
+            LoggingTools.Error("Throwing vCalendar parse exception...");
         }
 
         /// <summary>
@@ -45,6 +47,7 @@ namespace VisualCard.Calendar.Exceptions
                    $"Line: {line}\n" +
                    $"Line number: {linenumber}", innerException)
         {
+            LoggingTools.Error(this, "Throwing vCalendar parse exception...");
         }
     }
 }

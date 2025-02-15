@@ -31,6 +31,7 @@ using VisualCard.Common.Parsers;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parts;
 using VisualCard.Common.Parts.Implementations;
+using VisualCard.Common.Diagnostics;
 
 namespace VisualCard.Calendar.Parsers
 {
@@ -61,11 +62,13 @@ namespace VisualCard.Calendar.Parsers
         public Parts.Calendar Parse()
         {
             // Check the content to ensure that we really have data
+            LoggingTools.Debug("Content lines is {0}...", CalendarContent.Length);
             if (CalendarContent.Length == 0)
                 throw new InvalidDataException($"Calendar content is empty.");
 
             // Make a new vcalendar
             var calendar = new Parts.Calendar(CalendarVersion);
+            LoggingTools.Info("Made a new calendar instance with version {0}...", CalendarVersion.ToString());
 
             // Iterate through all the lines
             List<(string, Parts.Calendar)> begins = [];
@@ -76,13 +79,17 @@ namespace VisualCard.Calendar.Parsers
                 var content = CalendarContent[i];
                 string _value = CommonTools.ConstructBlocks(contentLines, ref i);
                 int lineNumber = content.Item1;
+                LoggingTools.Debug("Content number {0} [idx: {1}] constructed to {2}...", lineNumber, i, _value);
                 if (string.IsNullOrEmpty(_value))
                     continue;
 
                 // Take the last sub-part if available
                 Parts.Calendar? subPart = null;
                 if (begins.Count > 0)
+                {
+                    LoggingTools.Debug("Setting last sub-part [idx: {0}] as the target with type {1}", begins.Count - 1, subPart?.GetType().Name ?? "<null>");
                     subPart = begins[begins.Count - 1].Item2;
+                }
 
                 try
                 {
@@ -91,14 +98,17 @@ namespace VisualCard.Calendar.Parsers
                     if (info.Prefix == CommonConstants._beginSpecifier)
                     {
                         string finalType = info.Value.ToUpper();
+                        LoggingTools.Debug("Trying to add sub-part from inherited instance of {0}...", finalType);
                         begins.Add((finalType, GetCalendarInheritedInstance(finalType)));
                         continue;
                     }
                     else if (info.Prefix == CommonConstants._endSpecifier)
                     {
                         string expectedType = begins[begins.Count - 1].Item1;
+                        LoggingTools.Debug("Expected type is {0}.", expectedType);
                         if (info.Value == expectedType)
                         {
+                            LoggingTools.Debug("Saving sub-part...");
                             if (begins.Count == 1)
                                 SaveLastSubPart(subPart, ref calendar);
                             else
@@ -109,7 +119,10 @@ namespace VisualCard.Calendar.Parsers
                             begins.RemoveAt(begins.Count - 1);
                         }
                         else
+                        {
+                            LoggingTools.Error("Expected type {0} for ending, got {1}", expectedType, info.Value);
                             throw new ArgumentException($"Ending mismatch: Expected {expectedType} vs. actual {info.Value}");
+                        }
                         continue;
                     }
 
@@ -124,11 +137,14 @@ namespace VisualCard.Calendar.Parsers
 
             // Validate this calendar before returning it.
             calendar.Validate();
+            LoggingTools.Info("Returning valid calendar...");
             return calendar;
         }
 
         internal static void Process(string _value, Parts.Calendar component, Version version)
         {
+            LoggingTools.Debug("Processing value with component type {0} in version {1}: {2}", component.GetType().Name, version.ToString(), _value);
+
             // Now, parse a property
             var info = new PropertyInfo(_value);
 
@@ -138,15 +154,18 @@ namespace VisualCard.Calendar.Parsers
 
             // Check the type for allowed types
             string[] elementTypes = CommonTools.GetTypes(info.Arguments, partType.defaultType);
+            LoggingTools.Debug("Got {0} element types [{1}]", elementTypes.Length, string.Join(", ", elementTypes));
             foreach (string elementType in elementTypes)
             {
                 string elementTypeUpper = elementType.ToUpper();
+                LoggingTools.Debug("Processing element type [{0}, resolved to {1}]", elementType, elementTypeUpper);
                 if (!partType.allowedExtraTypes.Contains(elementTypeUpper) && !elementTypeUpper.StartsWith("X-"))
                 {
                     if (partType.type == PartType.PartsArray &&
                         ((CalendarPartsArrayEnum)partType.enumeration == CalendarPartsArrayEnum.IanaNames ||
                          (CalendarPartsArrayEnum)partType.enumeration == CalendarPartsArrayEnum.NonstandardNames))
                         continue;
+                    LoggingTools.Error("Element type {0} is not in the list of allowed types", elementTypeUpper);
                     throw new InvalidDataException($"Part info type {partType.enumType?.Name ?? "<null>"} doesn't support property type {elementTypeUpper} because the following types are supported: [{string.Join(", ", partType.allowedExtraTypes)}]");
                 }
             }
@@ -155,11 +174,13 @@ namespace VisualCard.Calendar.Parsers
             string valueType = CommonTools.GetFirstValue(info.Arguments, partType.defaultValueType, CommonConstants._valueArgumentSpecifier);
             string finalValue = CommonTools.ProcessStringValue(info.Value, valueType, version.Major == 1 ? ';' : ',');
             info.ValueType = valueType;
+            LoggingTools.Debug("Got value [type: {0}]: {1}", valueType, finalValue);
 
             // Check for allowed values
             if (partType.allowedValues.Length != 0)
             {
                 bool found = false;
+                LoggingTools.Debug("Comparing value against {0} allowed values [{1}] [type: {2}]: {3}", partType.allowedValues.Length, string.Join(", ", partType.allowedValues), valueType, finalValue);
                 foreach (string allowedValue in partType.allowedValues)
                 {
                     if (finalValue == allowedValue)
@@ -167,14 +188,19 @@ namespace VisualCard.Calendar.Parsers
                 }
                 if (!found)
                     throw new InvalidDataException($"Value {finalValue} not in the list of allowed values [{string.Join(", ", partType.allowedValues)}]");
+                LoggingTools.Debug("Found allowed value [type: {0}]: {1}", valueType, finalValue);
             }
 
             // Check for support
             bool supported = partType.minimumVersionCondition(version);
             if (!supported)
+            {
+                LoggingTools.Warning("Part {0} doesn't support version {1}", partType.enumeration, version.ToString());
                 return;
+            }
 
             // Process the value
+            LoggingTools.Debug("Part {0} is {1}", partType.enumeration, partType.type);
             switch (partType.type)
             {
                 case PartType.Strings:
@@ -184,6 +210,7 @@ namespace VisualCard.Calendar.Parsers
                         // Set the string for real
                         var stringValueInfo = new ValueInfo<string>(info, -1, elementTypes, finalValue);
                         component.AddString(stringType, stringValueInfo);
+                        LoggingTools.Debug("Added string {0} with value {1}", stringType, finalValue);
                     }
                     break;
                 case PartType.Integers:
@@ -196,6 +223,7 @@ namespace VisualCard.Calendar.Parsers
                         // Set the integer for real
                         var stringValueInfo = new ValueInfo<double>(info, -1, elementTypes, finalDouble);
                         component.AddInteger(integerType, stringValueInfo);
+                        LoggingTools.Debug("Added integer {0} with value {1}", integerType, finalValue);
                     }
                     break;
                 case PartType.PartsArray:
@@ -214,6 +242,7 @@ namespace VisualCard.Calendar.Parsers
                                 XNameInfo.FromStringStatic(_value, info, -1, elementTypes, version) :
                                 ExtraInfo.FromStringStatic(_value, info, -1, elementTypes, version);
                             component.AddExtraPartToArray((PartsArrayEnum)partsArrayType, partInfo);
+                            LoggingTools.Debug("Added extra part {0} with value {1}", partsArrayType, _value);
                         }
                         else
                         {
@@ -223,16 +252,19 @@ namespace VisualCard.Calendar.Parsers
                             // Get the part info from the part type and add it to the part array
                             var partInfo = partType.fromStringFunc(finalValue, info, -1, elementTypes, version);
                             component.AddPartToArray(partsArrayType, partInfo);
+                            LoggingTools.Debug("Added part {0} to array with value {1}", partsArrayType, finalValue);
                         }
                     }
                     break;
                 default:
+                    LoggingTools.Error("Unknown part {0}", partType.type);
                     throw new InvalidDataException($"The type {partType.type} is invalid. Are you sure that you've specified the correct type in your vCalendar representation?");
             }
         }
 
         private Parts.Calendar GetCalendarInheritedInstance(string type)
         {
+            LoggingTools.Debug("Trying to get inherited instance of type {0}", type);
             return type switch
             {
                 VCalendarConstants._objectVEventSpecifier => new CalendarEvent(CalendarVersion),
@@ -255,28 +287,29 @@ namespace VisualCard.Calendar.Parsers
             if (subpart is null)
                 return;
             bool nestable = true;
+            LoggingTools.Debug("Part type: {0}, sub-part type: {1}", part.GetType().Name, subpart.GetType().Name);
             switch (part.GetType().Name)
             {
                 case nameof(Parts.Calendar):
                     switch (subpart.GetType().Name)
                     {
                         case nameof(CalendarEvent):
-                            part.events.Add((CalendarEvent)subpart);
+                            part.AddEvent((CalendarEvent)subpart);
                             break;
                         case nameof(CalendarTodo):
-                            part.todos.Add((CalendarTodo)subpart);
+                            part.AddTodo((CalendarTodo)subpart);
                             break;
                         case nameof(CalendarJournal):
-                            part.journals.Add((CalendarJournal)subpart);
+                            part.AddJournal((CalendarJournal)subpart);
                             break;
                         case nameof(CalendarFreeBusy):
-                            part.freeBusyList.Add((CalendarFreeBusy)subpart);
+                            part.AddFreeBusy((CalendarFreeBusy)subpart);
                             break;
                         case nameof(CalendarTimeZone):
-                            part.timeZones.Add((CalendarTimeZone)subpart);
+                            part.AddTimeZone((CalendarTimeZone)subpart);
                             break;
                         case nameof(CalendarOtherComponent):
-                            part.others.Add((CalendarOtherComponent)subpart);
+                            part.AddOther((CalendarOtherComponent)subpart);
                             break;
                         default:
                             nestable = false;
@@ -324,7 +357,10 @@ namespace VisualCard.Calendar.Parsers
                     break;
             }
             if (!nestable)
+            {
+                LoggingTools.Warning("Part type {0} can't hold parts of type {1}", part.GetType().Name, subpart.GetType().Name);
                 throw new ArgumentException($"Can't place {subpart.GetType().Name} inside {part.GetType().Name}");
+            }
         }
 
         internal VCalendarParser((int, string)[] calendarContent, Version calendarVersion)

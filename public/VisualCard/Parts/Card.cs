@@ -25,6 +25,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Textify.General;
+using VisualCard.Common.Diagnostics;
 using VisualCard.Common.Parsers;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parts;
@@ -340,13 +341,17 @@ namespace VisualCard.Parts
         {
             // Check to see if we need to validate
             if (validate)
+            {
+                LoggingTools.Info("Validation requested before saving");
                 Validate();
+            }
 
             // Initialize the card builder
             var cardBuilder = new StringBuilder();
             var version = CardVersion;
 
             // First, write the header
+            LoggingTools.Debug("Writing header");
             cardBuilder.AppendLine(VcardConstants._beginText);
             cardBuilder.AppendLine($"{CommonConstants._versionSpecifier}:{version}");
 
@@ -357,6 +362,7 @@ namespace VisualCard.Parts
                 var array = GetString(stringEnum);
                 if (array is null || array.Length == 0)
                     continue;
+                LoggingTools.Debug("Installing {0} strings to card text...", array.Length);
 
                 // Get the prefix
                 string prefix = VcardParserTools.GetPrefixFromStringsEnum(stringEnum);
@@ -372,10 +378,11 @@ namespace VisualCard.Parts
                     string[] partArgumentsLines = partArguments.SplitNewLines();
                     string group = part.Group;
                     if (!string.IsNullOrEmpty(group))
-                        cardBuilder.Append($"{group}.");
+                        partBuilder.Append($"{group}.");
                     partBuilder.Append($"{prefix}");
                     partBuilder.Append($"{partArguments}");
                     partBuilder.Append($"{CommonTools.MakeStringBlock(part.Value, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length, encoding: part.Encoding ?? "")}");
+                    LoggingTools.Debug("Adding part to line with length {0} [prefix: {1}, {2}]", partBuilder.Length, prefix, partArguments);
                     cardBuilder.AppendLine($"{partBuilder}");
                 }
             }
@@ -387,6 +394,7 @@ namespace VisualCard.Parts
                 var array = GetPartsArray<BaseCardPartInfo>(partsArrayEnum);
                 if (array is null || array.Length == 0)
                     continue;
+                LoggingTools.Debug("Installing {0} parts to card text...", array.Length);
 
                 // Get the prefix
                 string prefix = VcardParserTools.GetPrefixFromPartsArrayEnum(partsArrayEnum);
@@ -407,10 +415,11 @@ namespace VisualCard.Parts
                     if (partsArrayEnum == CardPartsArrayEnum.Agents && version.Major == 2)
                         partRepresentation = "\n" + string.Join("\n", partRepresentation.Split(["\\n", "\\N"], StringSplitOptions.None));
                     if (!string.IsNullOrEmpty(group))
-                        cardBuilder.Append($"{group}.");
+                        partBuilder.Append($"{group}.");
                     partBuilder.Append($"{prefix}");
                     partBuilder.Append($"{partArguments}");
                     partBuilder.Append($"{CommonTools.MakeStringBlock(partRepresentation, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length, !(partsArrayEnum == CardPartsArrayEnum.Agents && version.Major == 2), part.Encoding ?? "")}");
+                    LoggingTools.Debug("Adding part to line with length {0} [prefix: {1}, {2}]", partBuilder.Length, prefix, partArguments);
                     cardBuilder.AppendLine($"{partBuilder}");
                 }
             }
@@ -422,6 +431,7 @@ namespace VisualCard.Parts
                 var array = GetExtraPartsArray<BasePartInfo>(partsArrayEnum);
                 if (array is null || array.Length == 0)
                     continue;
+                LoggingTools.Debug("Installing {0} extra parts to card text...", array.Length);
 
                 // Get the prefix
                 string prefix = VcardParserTools.GetPrefixFromPartsArrayEnum((CardPartsArrayEnum)partsArrayEnum);
@@ -442,20 +452,24 @@ namespace VisualCard.Parts
                     if ((CardPartsArrayEnum)partsArrayEnum == CardPartsArrayEnum.Agents && version.Major == 2)
                         partRepresentation = "\n" + string.Join("\n", partRepresentation.Split(["\\n", "\\N"], StringSplitOptions.None));
                     if (!string.IsNullOrEmpty(group))
-                        cardBuilder.Append($"{group}.");
+                        partBuilder.Append($"{group}.");
                     partBuilder.Append($"{prefix}");
                     partBuilder.Append($"{partArguments}");
                     partBuilder.Append($"{CommonTools.MakeStringBlock(partRepresentation, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length, !((CardPartsArrayEnum)partsArrayEnum == CardPartsArrayEnum.Agents && version.Major == 2), part.Encoding ?? "")}");
+                    LoggingTools.Debug("Adding extra part to line with length {0} [prefix: {1}, {2}]", partBuilder.Length, prefix, partArguments);
                     cardBuilder.AppendLine($"{partBuilder}");
                 }
             }
 
             // Finally, save the nested cards
+            LoggingTools.Debug("Installing {0} nested cards to card text...", nestedCards.Count);
             foreach (var nestedCard in nestedCards)
                 cardBuilder.Append(nestedCard.ToString());
 
             // End the card and return it
+            LoggingTools.Debug("Writing footer...");
             cardBuilder.AppendLine(VcardConstants._endText);
+            LoggingTools.Info("Returning card text with length {0}...", cardBuilder.Length);
             return cardBuilder.ToString();
         }
 
@@ -488,8 +502,14 @@ namespace VisualCard.Parts
             // Remove the string value
             var stringValue = strings[stringsEnum][idx];
             bool result = strings[stringsEnum].Remove(stringValue);
+            LoggingTools.Debug("Removal of {0} from {1} result: {2}", idx, stringsEnum, result);
+
+            // Delete section if needed
             if (strings[stringsEnum].Count == 0)
+            {
+                LoggingTools.Warning("Deleting dangling section {0}...", stringsEnum);
                 strings.Remove(stringsEnum);
+            }
             return result;
         }
 
@@ -574,8 +594,12 @@ namespace VisualCard.Parts
                 var extraPartEnum = (PartsArrayEnum)partsArrayEnum;
                 var part = extraParts[extraPartEnum][idx];
                 bool result = extraParts[extraPartEnum].Remove(part);
+                LoggingTools.Debug("Removal of {0} from {1} result: {2}", idx, partsArrayEnum, result);
                 if (extraParts[extraPartEnum].Count == 0)
+                {
+                    LoggingTools.Warning("Deleting dangling section {0}...", extraPartEnum);
                     extraParts.Remove(extraPartEnum);
+                }
                 return result;
             }
             else
@@ -583,8 +607,12 @@ namespace VisualCard.Parts
                 // Remove the part
                 var part = partsArray[partsArrayEnum][idx];
                 bool result = partsArray[partsArrayEnum].Remove(part);
+                LoggingTools.Debug("Removal of {0} from {1} result: {2}", idx, partsArrayEnum, result);
                 if (partsArray[partsArrayEnum].Count == 0)
+                {
+                    LoggingTools.Warning("Deleting dangling section {0}...", partsArrayEnum);
                     partsArray.Remove(partsArrayEnum);
+                }
                 return result;
             }
         }
@@ -677,30 +705,33 @@ namespace VisualCard.Parts
 
             // If we don't have this key yet, add it.
             if (!partsArray.ContainsKey(key))
-                partsArray.Add(key, [value]);
-            else
             {
-                // Maybe somehow we no longer have any value info but we still have the key entry?
-                if (partsArray[key].Count > 0)
-                {
-                    // We need to check the cardinality.
-                    var cardinality = partType.cardinality;
-                    int actualAltId = partsArray[key][0].AltId;
-                    bool onlyOne =
-                        cardinality == PartCardinality.ShouldBeOne ||
-                        cardinality == PartCardinality.MayBeOne;
-                    bool onlyOneNoAltId =
-                        cardinality == PartCardinality.ShouldBeOneNoAltId ||
-                        cardinality == PartCardinality.MayBeOneNoAltId;
-                    if (onlyOne && actualAltId != value.AltId)
-                        throw new InvalidOperationException($"Can't overwrite part array {key} with AltID {value.AltId}, because cardinality is {cardinality} and expected AltID is {actualAltId}.");
-                    if (onlyOneNoAltId)
-                        throw new InvalidOperationException($"Can never overwrite part array {key} with AltID {value.AltId}, because cardinality is {cardinality}, even though the expected AltID is {actualAltId}.");
-                }
-
-                // Add this value info!
-                partsArray[key].Add(value);
+                LoggingTools.Debug("Adding part storage: {0}", key);
+                partsArray.Add(key, []);
             }
+
+            // Maybe somehow we no longer have any value info but we still have the key entry?
+            if (partsArray[key].Count > 0)
+            {
+                // We need to check the cardinality.
+                var cardinality = partType.cardinality;
+                int actualAltId = partsArray[key][0].AltId;
+                bool onlyOne =
+                    cardinality == PartCardinality.ShouldBeOne ||
+                    cardinality == PartCardinality.MayBeOne;
+                bool onlyOneNoAltId =
+                    cardinality == PartCardinality.ShouldBeOneNoAltId ||
+                    cardinality == PartCardinality.MayBeOneNoAltId;
+                LoggingTools.Debug("Checking altid [actual: {0}, value: {1}] with {2} [{3}, {4}]", actualAltId, value.AltId, cardinality, onlyOne, onlyOneNoAltId);
+                if (onlyOne && actualAltId != value.AltId)
+                    throw new InvalidOperationException($"Can't overwrite part array {key} with AltID {value.AltId}, because cardinality is {cardinality} and expected AltID is {actualAltId}.");
+                if (onlyOneNoAltId)
+                    throw new InvalidOperationException($"Can never overwrite part array {key} with AltID {value.AltId}, because cardinality is {cardinality}, even though the expected AltID is {actualAltId}.");
+            }
+
+            // Add this value info!
+            LoggingTools.Debug("Adding value to storage: {0}", key);
+            partsArray[key].Add(value);
         }
 
         internal void AddExtraPartToArray(PartsArrayEnum key, BasePartInfo value)
@@ -717,30 +748,33 @@ namespace VisualCard.Parts
 
             // If we don't have this key yet, add it.
             if (!extraParts.ContainsKey(key))
-                extraParts.Add(key, [value]);
-            else
             {
-                // Maybe somehow we no longer have any value info but we still have the key entry?
-                if (extraParts[key].Count > 0)
-                {
-                    // We need to check the cardinality.
-                    var cardinality = partType.cardinality;
-                    int actualAltId = extraParts[key][0].AltId;
-                    bool onlyOne =
-                        cardinality == PartCardinality.ShouldBeOne ||
-                        cardinality == PartCardinality.MayBeOne;
-                    bool onlyOneNoAltId =
-                        cardinality == PartCardinality.ShouldBeOneNoAltId ||
-                        cardinality == PartCardinality.MayBeOneNoAltId;
-                    if (onlyOne && actualAltId != value.AltId)
-                        throw new InvalidOperationException($"Can't overwrite part array {key} with AltID {value.AltId}, because cardinality is {cardinality} and expected AltID is {actualAltId}.");
-                    if (onlyOneNoAltId)
-                        throw new InvalidOperationException($"Can never overwrite part array {key} with AltID {value.AltId}, because cardinality is {cardinality}, even though the expected AltID is {actualAltId}.");
-                }
-
-                // Add this value info!
-                extraParts[key].Add(value);
+                LoggingTools.Debug("Adding part storage: {0}", key);
+                extraParts.Add(key, []);
             }
+
+            // Maybe somehow we no longer have any value info but we still have the key entry?
+            if (extraParts[key].Count > 0)
+            {
+                // We need to check the cardinality.
+                var cardinality = partType.cardinality;
+                int actualAltId = extraParts[key][0].AltId;
+                bool onlyOne =
+                    cardinality == PartCardinality.ShouldBeOne ||
+                    cardinality == PartCardinality.MayBeOne;
+                bool onlyOneNoAltId =
+                    cardinality == PartCardinality.ShouldBeOneNoAltId ||
+                    cardinality == PartCardinality.MayBeOneNoAltId;
+                LoggingTools.Debug("Checking altid [actual: {0}, value: {1}] with {2} [{3}, {4}]", actualAltId, value.AltId, cardinality, onlyOne, onlyOneNoAltId);
+                if (onlyOne && actualAltId != value.AltId)
+                    throw new InvalidOperationException($"Can't overwrite part array {key} with AltID {value.AltId}, because cardinality is {cardinality} and expected AltID is {actualAltId}.");
+                if (onlyOneNoAltId)
+                    throw new InvalidOperationException($"Can never overwrite part array {key} with AltID {value.AltId}, because cardinality is {cardinality}, even though the expected AltID is {actualAltId}.");
+            }
+
+            // Add this value info!
+            LoggingTools.Debug("Adding value to storage: {0}", key);
+            extraParts[key].Add(value);
         }
 
         /// <summary>
@@ -771,30 +805,33 @@ namespace VisualCard.Parts
 
             // If we don't have this key yet, add it.
             if (!strings.ContainsKey(key))
-                strings.Add(key, [value]);
-            else
             {
-                // Maybe somehow we no longer have any value info but we still have the key entry?
-                if (strings[key].Count > 0)
-                {
-                    // We need to check the cardinality.
-                    var cardinality = partType.cardinality;
-                    int actualAltId = strings[key][0].AltId;
-                    bool onlyOne =
-                        cardinality == PartCardinality.ShouldBeOne ||
-                        cardinality == PartCardinality.MayBeOne;
-                    bool onlyOneNoAltId =
-                        cardinality == PartCardinality.ShouldBeOneNoAltId ||
-                        cardinality == PartCardinality.MayBeOneNoAltId;
-                    if (onlyOne && actualAltId != value.AltId)
-                        throw new InvalidOperationException($"Can't overwrite string {key} with AltID {value.AltId}, because cardinality is {cardinality} and expected AltID is {actualAltId}.");
-                    if (onlyOneNoAltId)
-                        throw new InvalidOperationException($"Can never overwrite string {key} with AltID {value.AltId}, because cardinality is {cardinality}, even though the expected AltID is {actualAltId}.");
-                }
-
-                // Add this value info!
-                strings[key].Add(value);
+                LoggingTools.Debug("Adding string storage: {0}", key);
+                strings.Add(key, []);
             }
+
+            // Maybe somehow we no longer have any value info but we still have the key entry?
+            if (strings[key].Count > 0)
+            {
+                // We need to check the cardinality.
+                var cardinality = partType.cardinality;
+                int actualAltId = strings[key][0].AltId;
+                bool onlyOne =
+                    cardinality == PartCardinality.ShouldBeOne ||
+                    cardinality == PartCardinality.MayBeOne;
+                bool onlyOneNoAltId =
+                    cardinality == PartCardinality.ShouldBeOneNoAltId ||
+                    cardinality == PartCardinality.MayBeOneNoAltId;
+                LoggingTools.Debug("Checking altid [actual: {0}, value: {1}] with {2} [{3}, {4}]", actualAltId, value.AltId, cardinality, onlyOne, onlyOneNoAltId);
+                if (onlyOne && actualAltId != value.AltId)
+                    throw new InvalidOperationException($"Can't overwrite string {key} with AltID {value.AltId}, because cardinality is {cardinality} and expected AltID is {actualAltId}.");
+                if (onlyOneNoAltId)
+                    throw new InvalidOperationException($"Can never overwrite string {key} with AltID {value.AltId}, because cardinality is {cardinality}, even though the expected AltID is {actualAltId}.");
+            }
+
+            // Add this value info!
+            LoggingTools.Debug("Adding value to storage: {0}", key);
+            strings[key].Add(value);
         }
 
         /// <summary>
@@ -811,6 +848,7 @@ namespace VisualCard.Parts
                 expectedFieldList.Add(VcardConstants._nameSpecifier);
             if (CardVersion.Major >= 3)
                 expectedFieldList.Add(VcardConstants._fullNameSpecifier);
+            LoggingTools.Debug("Expected fields: {0} [{1}]", expectedFieldList.Count, string.Join(", ", expectedFieldList));
 
             // Now, check for requirements
             string[] expectedFields = [.. expectedFieldList];
@@ -820,7 +858,10 @@ namespace VisualCard.Parts
             // Check for organization vCards that may not have MEMBER properties
             string[] forbiddenOrgFields = [VcardConstants._memberSpecifier];
             if (CardKind != CardKind.Group && ValidateFields(ref forbiddenOrgFields, out _))
+            {
+                LoggingTools.Error("Unexpected field in card kind {0}: MEMBER", CardKind);
                 throw new InvalidDataException($"{CardKind} vCards are forbidden from having MEMBER properties.");
+            }
         }
 
         private bool ValidateFields(ref string[] expectedFields, out string[] actualFields)
@@ -839,7 +880,10 @@ namespace VisualCard.Parts
                             var values = GetString((CardStringsEnum)partType.enumeration);
                             bool exists = values.Length > 0;
                             if (exists)
+                            {
+                                LoggingTools.Debug("Added {0} to actual field list", expectedFieldName);
                                 actualFieldList.Add(expectedFieldName);
+                            }
                         }
                         break;
                     case PartType.PartsArray:
@@ -849,7 +893,10 @@ namespace VisualCard.Parts
                             var values = GetPartsArray(partType.enumType, (CardPartsArrayEnum)partType.enumeration);
                             bool exists = values.Length > 0;
                             if (exists)
+                            {
+                                LoggingTools.Debug("Added {0} to actual field list", expectedFieldName);
                                 actualFieldList.Add(expectedFieldName);
+                            }
                         }
                         break;
                 }
@@ -857,6 +904,7 @@ namespace VisualCard.Parts
             Array.Sort(expectedFields);
             actualFieldList.Sort();
             actualFields = [.. actualFieldList];
+            LoggingTools.Debug("Field count: {0}", actualFields.Length);
             return actualFields.SequenceEqual(expectedFields);
         }
 
@@ -891,6 +939,7 @@ namespace VisualCard.Parts
             {
                 // We don't need the base, but a derivative of it. Check it.
                 var partsArrayEnum = (CardPartsArrayEnum)type.enumeration;
+                LoggingTools.Debug("Comparing {0} and {1}", key, partsArrayEnum);
                 if (key != partsArrayEnum)
                     throw new InvalidOperationException($"Parts array enumeration [{key}] is different from the expected one [{partsArrayEnum}] according to type {typeof(BaseCardPartInfo).Name}.");
             }

@@ -30,6 +30,7 @@ using VisualCard.Calendar.Parts.Comparers;
 using VisualCard.Calendar.Parts.Enums;
 using VisualCard.Calendar.Parts.Implementations.Event;
 using VisualCard.Calendar.Parts.Implementations.Todo;
+using VisualCard.Common.Diagnostics;
 using VisualCard.Common.Parsers;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parts;
@@ -562,15 +563,19 @@ namespace VisualCard.Calendar.Parts
         {
             // Check to see if we need to validate
             if (validate)
+            {
+                LoggingTools.Info("Validation requested before saving");
                 Validate();
+            }
 
-            // Initialize the card builder
-            var cardBuilder = new StringBuilder();
+            // Initialize the calendar builder
+            var calendarBuilder = new StringBuilder();
 
             // First, write the header
-            cardBuilder.AppendLine($"{CommonConstants._beginSpecifier}:{objectType}");
+            LoggingTools.Debug("Writing header for {0}", objectType);
+            calendarBuilder.AppendLine($"{CommonConstants._beginSpecifier}:{objectType}");
             if (objectType == VCalendarConstants._objectVCalendarSpecifier)
-                cardBuilder.AppendLine($"{CommonConstants._versionSpecifier}:{version}");
+                calendarBuilder.AppendLine($"{CommonConstants._versionSpecifier}:{version}");
 
             // Then, enumerate all the strings
             foreach (CalendarStringsEnum stringEnum in strings.Keys)
@@ -579,6 +584,7 @@ namespace VisualCard.Calendar.Parts
                 var array = GetString(stringEnum, version, strings);
                 if (array is null || array.Length == 0)
                     continue;
+                LoggingTools.Debug("Installing {0} strings to calendar text...", array.Length);
 
                 // Get the prefix
                 string prefix = VCalendarParserTools.GetPrefixFromStringsEnum(stringEnum);
@@ -594,11 +600,12 @@ namespace VisualCard.Calendar.Parts
                     string[] partArgumentsLines = partArguments.SplitNewLines();
                     string group = part.Group;
                     if (!string.IsNullOrEmpty(group))
-                        cardBuilder.Append($"{group}.");
+                        partBuilder.Append($"{group}.");
                     partBuilder.Append($"{prefix}");
                     partBuilder.Append($"{partArguments}");
                     partBuilder.Append($"{CommonTools.MakeStringBlock(part.Value, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length, encoding: part.Encoding ?? "")}");
-                    cardBuilder.AppendLine($"{partBuilder}");
+                    LoggingTools.Debug("Adding string to line with length {0} [prefix: {1}, {2}]", partBuilder.Length, prefix, partArguments);
+                    calendarBuilder.AppendLine($"{partBuilder}");
                 }
             }
 
@@ -609,6 +616,7 @@ namespace VisualCard.Calendar.Parts
                 var array = GetInteger(integerEnum, version, integers);
                 if (array is null || array.Length == 0)
                     continue;
+                LoggingTools.Debug("Installing {0} integers to calendar text...", array.Length);
 
                 // Get the prefix
                 string prefix = VCalendarParserTools.GetPrefixFromIntegersEnum(integerEnum);
@@ -624,11 +632,12 @@ namespace VisualCard.Calendar.Parts
                     string[] partArgumentsLines = partArguments.SplitNewLines();
                     string group = part.Group;
                     if (!string.IsNullOrEmpty(group))
-                        cardBuilder.Append($"{group}.");
+                        partBuilder.Append($"{group}.");
                     partBuilder.Append($"{prefix}");
                     partBuilder.Append($"{partArguments}");
                     partBuilder.Append($"{CommonTools.MakeStringBlock($"{part.Value}", partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length, encoding: part.Encoding ?? "")}");
-                    cardBuilder.AppendLine($"{partBuilder}");
+                    LoggingTools.Debug("Adding integer to line with length {0} [prefix: {1}, {2}]", partBuilder.Length, prefix, partArguments);
+                    calendarBuilder.AppendLine($"{partBuilder}");
                 }
             }
 
@@ -639,6 +648,7 @@ namespace VisualCard.Calendar.Parts
                 var array = GetPartsArray<BaseCalendarPartInfo>(partsArrayEnum, version, partsArray);
                 if (array is null || array.Length == 0)
                     continue;
+                LoggingTools.Debug("Installing {0} parts to calendar text...", array.Length);
 
                 // Get the prefix
                 string prefix = VCalendarParserTools.GetPrefixFromPartsArrayEnum(partsArrayEnum);
@@ -655,11 +665,12 @@ namespace VisualCard.Calendar.Parts
                     string[] partArgumentsLines = partArguments.SplitNewLines();
                     string group = part.Group;
                     if (!string.IsNullOrEmpty(group))
-                        cardBuilder.Append($"{group}.");
+                        partBuilder.Append($"{group}.");
                     partBuilder.Append($"{prefix}");
                     partBuilder.Append($"{partArguments}");
                     partBuilder.Append($"{CommonTools.MakeStringBlock(partRepresentation, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length, encoding: part.Encoding ?? "")}");
-                    cardBuilder.AppendLine($"{partBuilder}");
+                    LoggingTools.Debug("Adding part to line with length {0} [prefix: {1}, {2}]", partBuilder.Length, prefix, partArguments);
+                    calendarBuilder.AppendLine($"{partBuilder}");
                 }
             }
 
@@ -670,6 +681,7 @@ namespace VisualCard.Calendar.Parts
                 var array = GetExtraPartsArray<BasePartInfo>(extraPartEnum, version, extraParts);
                 if (array is null || array.Length == 0)
                     continue;
+                LoggingTools.Debug("Installing {0} extra parts to calendar text...", array.Length);
 
                 // Get the prefix
                 string prefix = VCalendarParserTools.GetPrefixFromPartsArrayEnum((CalendarPartsArrayEnum)extraPartEnum);
@@ -686,62 +698,85 @@ namespace VisualCard.Calendar.Parts
                     string[] partArgumentsLines = partArguments.SplitNewLines();
                     string group = part.Group;
                     if (!string.IsNullOrEmpty(group))
-                        cardBuilder.Append($"{group}.");
+                        partBuilder.Append($"{group}.");
                     partBuilder.Append($"{prefix}");
                     partBuilder.Append($"{partArguments}");
                     partBuilder.Append($"{CommonTools.MakeStringBlock(partRepresentation, partArgumentsLines[partArgumentsLines.Length - 1].Length + prefix.Length, encoding: part.Encoding ?? "")}");
-                    cardBuilder.AppendLine($"{partBuilder}");
+                    LoggingTools.Debug("Adding extra part to line with length {0} [prefix: {1}, {2}]", partBuilder.Length, prefix, partArguments);
+                    calendarBuilder.AppendLine($"{partBuilder}");
                 }
             }
 
             // Then, the components
             if (objectType == VCalendarConstants._objectVCalendarSpecifier)
             {
+                LoggingTools.Debug("Installing {0} events to calendar text...", events.Count);
                 foreach (var calendarEvent in events)
-                    cardBuilder.Append(calendarEvent.SaveToString());
+                    calendarBuilder.Append(calendarEvent.SaveToString());
+
+                LoggingTools.Debug("Installing {0} todos to calendar text...", todos.Count);
                 foreach (var calendarTodo in todos)
-                    cardBuilder.Append(calendarTodo.SaveToString());
+                    calendarBuilder.Append(calendarTodo.SaveToString());
+
+                LoggingTools.Debug("Installing {0} journals to calendar text...", journals.Count);
                 foreach (var calendarJournal in journals)
-                    cardBuilder.Append(calendarJournal.SaveToString());
+                    calendarBuilder.Append(calendarJournal.SaveToString());
+
+                LoggingTools.Debug("Installing {0} free/busy info to calendar text...", freeBusyList.Count);
                 foreach (var calendarFreeBusy in freeBusyList)
-                    cardBuilder.Append(calendarFreeBusy.SaveToString());
+                    calendarBuilder.Append(calendarFreeBusy.SaveToString());
+
+                LoggingTools.Debug("Installing {0} time zones to calendar text...", timeZones.Count);
                 foreach (var calendarTimeZone in timeZones)
-                    cardBuilder.Append(calendarTimeZone.SaveToString());
+                    calendarBuilder.Append(calendarTimeZone.SaveToString());
+
+                LoggingTools.Debug("Installing {0} extra components to calendar text...", others.Count);
                 foreach (var calendarOther in others)
-                    cardBuilder.Append(calendarOther.SaveToString());
+                    calendarBuilder.Append(calendarOther.SaveToString());
             }
             else if (objectType == VCalendarConstants._objectVEventSpecifier)
             {
-                foreach (var calendarAlarm in ((CalendarEvent)this).alarms)
-                    cardBuilder.Append(calendarAlarm.SaveToString());
+                var alarms = ((CalendarEvent)this).alarms;
+                LoggingTools.Debug("Installing {0} alarms to calendar event text...", alarms.Count);
+                foreach (var calendarAlarm in alarms)
+                    calendarBuilder.Append(calendarAlarm.SaveToString());
             }
             else if (objectType == VCalendarConstants._objectVTodoSpecifier)
             {
-                foreach (var calendarAlarm in ((CalendarTodo)this).alarms)
-                    cardBuilder.Append(calendarAlarm.SaveToString());
+                var alarms = ((CalendarTodo)this).alarms;
+                LoggingTools.Debug("Installing {0} alarms to calendar todo text...", alarms.Count);
+                foreach (var calendarAlarm in alarms)
+                    calendarBuilder.Append(calendarAlarm.SaveToString());
             }
             else if (objectType == VCalendarConstants._objectVTimeZoneSpecifier)
             {
-                foreach (var calendarStandard in ((CalendarTimeZone)this).standards)
-                    cardBuilder.Append(calendarStandard.SaveToString());
-                foreach (var calendarDaylight in ((CalendarTimeZone)this).daylights)
-                    cardBuilder.Append(calendarDaylight.SaveToString());
+                var standards = ((CalendarTimeZone)this).standards;
+                LoggingTools.Debug("Installing {0} daylight time zone info to calendar time zone text...", standards.Count);
+                foreach (var calendarStandard in standards)
+                    calendarBuilder.Append(calendarStandard.SaveToString());
+
+                var daylights = ((CalendarTimeZone)this).daylights;
+                LoggingTools.Debug("Installing {0} daylight time zone info to calendar time zone text...", daylights.Count);
+                foreach (var calendarDaylight in daylights)
+                    calendarBuilder.Append(calendarDaylight.SaveToString());
             }
 
-            // End the card and return it
-            cardBuilder.AppendLine($"{CommonConstants._endSpecifier}:{objectType}");
-            return cardBuilder.ToString();
+            // End the calendar and return it
+            LoggingTools.Debug("Writing footer...");
+            calendarBuilder.AppendLine($"{CommonConstants._endSpecifier}:{objectType}");
+            LoggingTools.Info("Returning calendar text with length {0}...", calendarBuilder.Length);
+            return calendarBuilder.ToString();
         }
 
         /// <summary>
-        /// Saves this parsed card to a file path
+        /// Saves this parsed calendar to a file path
         /// </summary>
-        /// <param name="path">File path to save this card to</param>
+        /// <param name="path">File path to save this calendar to</param>
         public void SaveTo(string path)
         {
             // Save all the changes to the file
-            var cardString = SaveToString();
-            File.WriteAllText(path, cardString);
+            var calendarString = SaveToString();
+            File.WriteAllText(path, calendarString);
         }
 
         /// <summary>
@@ -765,8 +800,14 @@ namespace VisualCard.Calendar.Parts
             // Remove the string value
             var stringValue = strings[stringsEnum][idx];
             bool result = strings[stringsEnum].Remove(stringValue);
+            LoggingTools.Debug("Removal of {0} from {1} result: {2}", idx, stringsEnum, result);
+
+            // Delete section if needed
             if (strings[stringsEnum].Count == 0)
+            {
+                LoggingTools.Warning("Deleting dangling section {0}...", stringsEnum);
                 strings.Remove(stringsEnum);
+            }
             return result;
         }
 
@@ -791,8 +832,14 @@ namespace VisualCard.Calendar.Parts
             // Remove the integer value
             var integerValue = integers[integersEnum][idx];
             bool result = integers[integersEnum].Remove(integerValue);
+            LoggingTools.Debug("Removal of {0} from {1} result: {2}", idx, integersEnum, result);
+
+            // Delete section if needed
             if (integers[integersEnum].Count == 0)
+            {
+                LoggingTools.Warning("Deleting dangling section {0}...", integersEnum);
                 integers.Remove(integersEnum);
+            }
             return result;
         }
 
@@ -950,8 +997,12 @@ namespace VisualCard.Calendar.Parts
                 var extraPartEnum = (PartsArrayEnum)partsArrayEnum;
                 var part = extraParts[extraPartEnum][idx];
                 bool result = extraParts[extraPartEnum].Remove(part);
+                LoggingTools.Debug("Removal of {0} from {1} result: {2}", idx, partsArrayEnum, result);
                 if (extraParts[extraPartEnum].Count == 0)
+                {
+                    LoggingTools.Warning("Deleting dangling section {0}...", extraPartEnum);
                     extraParts.Remove(extraPartEnum);
+                }
                 return result;
             }
             else
@@ -959,8 +1010,12 @@ namespace VisualCard.Calendar.Parts
                 // Remove the part
                 var part = partsArray[partsArrayEnum][idx];
                 bool result = partsArray[partsArrayEnum].Remove(part);
+                LoggingTools.Debug("Removal of {0} from {1} result: {2}", idx, partsArrayEnum, result);
                 if (partsArray[partsArrayEnum].Count == 0)
+                {
+                    LoggingTools.Warning("Deleting dangling section {0}...", partsArrayEnum);
                     partsArray.Remove(partsArrayEnum);
+                }
                 return result;
             }
         }
@@ -1056,18 +1111,23 @@ namespace VisualCard.Calendar.Parts
 
             // If we don't have this key yet, add it.
             if (!partsArray.ContainsKey(key))
-                partsArray.Add(key, [value]);
-            else
             {
-                // We need to check the cardinality.
-                var cardinality = partType.cardinality;
-                bool onlyOne =
-                    cardinality == PartCardinality.ShouldBeOne ||
-                    cardinality == PartCardinality.MayBeOne;
-                if (onlyOne)
-                    throw new InvalidOperationException($"Can't add part array {key}, because cardinality is {cardinality}.");
-                partsArray[key].Add(value);
+                LoggingTools.Debug("Adding part storage: {0}", key);
+                partsArray.Add(key, []);
             }
+
+            // We need to check the cardinality.
+            var cardinality = partType.cardinality;
+            bool onlyOne =
+                cardinality == PartCardinality.ShouldBeOne ||
+                cardinality == PartCardinality.MayBeOne;
+            LoggingTools.Debug("Checking cardinality {0} [{1}]", cardinality, onlyOne);
+            if (onlyOne)
+                throw new InvalidOperationException($"Can't add part array {key}, because cardinality is {cardinality}.");
+
+            // Add this value info!
+            LoggingTools.Debug("Adding value to storage: {0}", key);
+            partsArray[key].Add(value);
         }
 
         internal virtual void AddExtraPartToArray(PartsArrayEnum key, BasePartInfo value) =>
@@ -1087,18 +1147,23 @@ namespace VisualCard.Calendar.Parts
 
             // If we don't have this key yet, add it.
             if (!partsArray.ContainsKey(key))
-                partsArray.Add(key, [value]);
-            else
             {
-                // We need to check the cardinality.
-                var cardinality = partType.cardinality;
-                bool onlyOne =
-                    cardinality == PartCardinality.ShouldBeOne ||
-                    cardinality == PartCardinality.MayBeOne;
-                if (onlyOne)
-                    throw new InvalidOperationException($"Can't add part array {key}, because cardinality is {cardinality}.");
-                partsArray[key].Add(value);
+                LoggingTools.Debug("Adding part storage: {0}", key);
+                partsArray.Add(key, []);
             }
+
+            // We need to check the cardinality.
+            var cardinality = partType.cardinality;
+            bool onlyOne =
+                cardinality == PartCardinality.ShouldBeOne ||
+                cardinality == PartCardinality.MayBeOne;
+            LoggingTools.Debug("Checking cardinality {0} [{1}]", cardinality, onlyOne);
+            if (onlyOne)
+                throw new InvalidOperationException($"Can't add part array {key}, because cardinality is {cardinality}.");
+
+            // Add this value info!
+            LoggingTools.Debug("Adding value to storage: {0}", key);
+            partsArray[key].Add(value);
         }
 
         /// <summary>
@@ -1132,18 +1197,23 @@ namespace VisualCard.Calendar.Parts
 
             // If we don't have this key yet, add it.
             if (!strings.ContainsKey(key))
-                strings.Add(key, [value]);
-            else
             {
-                // We need to check the cardinality.
-                var cardinality = partType.cardinality;
-                bool onlyOne =
-                    cardinality == PartCardinality.ShouldBeOne ||
-                    cardinality == PartCardinality.MayBeOne;
-                if (onlyOne)
-                    throw new InvalidOperationException($"Can't add string {key}, because cardinality is {cardinality}.");
-                strings[key].Add(value);
+                LoggingTools.Debug("Adding string storage: {0}", key);
+                strings.Add(key, []);
             }
+
+            // We need to check the cardinality.
+            var cardinality = partType.cardinality;
+            bool onlyOne =
+                cardinality == PartCardinality.ShouldBeOne ||
+                cardinality == PartCardinality.MayBeOne;
+            LoggingTools.Debug("Checking cardinality {0} [{1}]", cardinality, onlyOne);
+            if (onlyOne)
+                throw new InvalidOperationException($"Can't add string {key}, because cardinality is {cardinality}.");
+
+            // Add this value info!
+            LoggingTools.Debug("Adding value to storage: {0}", key);
+            strings[key].Add(value);
         }
 
         /// <summary>
@@ -1177,18 +1247,23 @@ namespace VisualCard.Calendar.Parts
 
             // If we don't have this key yet, add it.
             if (!integers.ContainsKey(key))
-                integers.Add(key, [value]);
-            else
             {
-                // We need to check the cardinality.
-                var cardinality = partType.cardinality;
-                bool onlyOne =
-                    cardinality == PartCardinality.ShouldBeOne ||
-                    cardinality == PartCardinality.MayBeOne;
-                if (onlyOne)
-                    throw new InvalidOperationException($"Can't add integer {key}, because cardinality is {cardinality}.");
-                integers[key].Add(value);
+                LoggingTools.Debug("Adding integer storage: {0}", key);
+                integers.Add(key, []);
             }
+
+            // We need to check the cardinality.
+            var cardinality = partType.cardinality;
+            bool onlyOne =
+                cardinality == PartCardinality.ShouldBeOne ||
+                cardinality == PartCardinality.MayBeOne;
+            LoggingTools.Debug("Checking cardinality {0} [{1}]", cardinality, onlyOne);
+            if (onlyOne)
+                throw new InvalidOperationException($"Can't add integer {key}, because cardinality is {cardinality}.");
+
+            // Add this value info!
+            LoggingTools.Debug("Adding value to storage: {0}", key);
+            integers[key].Add(value);
         }
 
         /// <summary>
@@ -1200,6 +1275,7 @@ namespace VisualCard.Calendar.Parts
             // Track the required root fields
             string[] expectedFields =
                 CalendarVersion.Major == 2 ? [VCalendarConstants._productIdSpecifier] : [];
+            LoggingTools.Debug("Expected fields: {0} [{1}]", expectedFields.Length, string.Join(", ", expectedFields));
             if (!ValidateComponent(ref expectedFields, out string[] actualFields, this))
                 throw new InvalidDataException($"The following keys [{string.Join(", ", expectedFields)}] are required in the root  Got [{string.Join(", ", actualFields)}].");
 
@@ -1212,6 +1288,8 @@ namespace VisualCard.Calendar.Parts
                 CalendarVersion.Major == 2 && GetString(CalendarStringsEnum.Method).Length == 0 ?
                 [VCalendarConstants._dateStartSpecifier, .. expectedEventFields] :
                 expectedEventFields;
+            LoggingTools.Debug("Expected event fields: {0} [{1}]", expectedEventFields.Length, string.Join(", ", expectedEventFields));
+            LoggingTools.Debug("Expected todo fields: {0} [{1}]", expectedTodoFields.Length, string.Join(", ", expectedTodoFields));
             foreach (var eventInfo in events)
             {
                 if (!ValidateComponent(ref expectedEventFields, out string[] actualEventFields, eventInfo))
@@ -1223,6 +1301,7 @@ namespace VisualCard.Calendar.Parts
                 var priorities = eventInfo.GetInteger(CalendarIntegersEnum.Priority);
                 foreach (var priority in priorities)
                 {
+                    LoggingTools.Debug("Checking priority value: {0}", priority.Value);
                     if (priority.Value < 0 || priority.Value > 9)
                         throw new ArgumentOutOfRangeException(nameof(CalendarIntegersEnum.Priority), priority.Value, "Percent completion may not be less than zero or greater than 100");
                 }
@@ -1230,6 +1309,7 @@ namespace VisualCard.Calendar.Parts
                 // Check for conflicts
                 var dtends = eventInfo.GetPartsArray<DateEndInfo>();
                 var durations = eventInfo.GetString(CalendarStringsEnum.Duration);
+                LoggingTools.Debug("dtends: {0}, durations: {1}", dtends.Length, durations.Length);
                 if (dtends.Length > 0 && durations.Length > 0)
                     throw new InvalidDataException("Date end and duration conflict found.");
             }
@@ -1244,6 +1324,7 @@ namespace VisualCard.Calendar.Parts
                 var percentages = todoInfo.GetInteger(CalendarIntegersEnum.PercentComplete);
                 foreach (var percentage in percentages)
                 {
+                    LoggingTools.Debug("Checking percent value: {0}", percentage.Value);
                     if (percentage.Value < 0 || percentage.Value > 100)
                         throw new ArgumentOutOfRangeException(nameof(CalendarIntegersEnum.PercentComplete), percentage.Value, "Percent completion may not be less than zero or greater than 100");
                 }
@@ -1252,6 +1333,7 @@ namespace VisualCard.Calendar.Parts
                 var priorities = todoInfo.GetInteger(CalendarIntegersEnum.Priority);
                 foreach (var priority in priorities)
                 {
+                    LoggingTools.Debug("Checking priority value: {0}", priority.Value);
                     if (priority.Value < 0 || priority.Value > 9)
                         throw new ArgumentOutOfRangeException(nameof(CalendarIntegersEnum.Priority), priority.Value, "Percent completion may not be less than zero or greater than 100");
                 }
@@ -1260,6 +1342,7 @@ namespace VisualCard.Calendar.Parts
                 var dtstarts = todoInfo.GetPartsArray<DateStartInfo>();
                 var dues = todoInfo.GetPartsArray<DueDateInfo>();
                 var durations = todoInfo.GetString(CalendarStringsEnum.Duration);
+                LoggingTools.Debug("dtstarts: {0}, dues: {1}, durations: {2}", dtstarts.Length, dues.Length, durations.Length);
                 if (dues.Length > 0 && durations.Length > 0)
                     throw new InvalidDataException("Due date and duration conflict found.");
                 if (durations.Length > 0 && dtstarts.Length == 0)
@@ -1274,6 +1357,11 @@ namespace VisualCard.Calendar.Parts
             string[] expectedTimeZoneFields = [VCalendarConstants._tzidSpecifier];
             string[] expectedStandardFields = [VCalendarConstants._dateStartSpecifier, VCalendarConstants._tzOffsetFromSpecifier, VCalendarConstants._tzOffsetToSpecifier];
             string[] expectedDaylightFields = expectedStandardFields;
+            LoggingTools.Debug("Expected journal fields: {0} [{1}]", expectedJournalFields.Length, string.Join(", ", expectedJournalFields));
+            LoggingTools.Debug("Expected free/busy fields: {0} [{1}]", expectedFreeBusyFields.Length, string.Join(", ", expectedFreeBusyFields));
+            LoggingTools.Debug("Expected timezone fields: {0} [{1}]", expectedTimeZoneFields.Length, string.Join(", ", expectedTimeZoneFields));
+            LoggingTools.Debug("Expected standard fields: {0} [{1}]", expectedStandardFields.Length, string.Join(", ", expectedStandardFields));
+            LoggingTools.Debug("Expected daylight fields: {0} [{1}]", expectedDaylightFields.Length, string.Join(", ", expectedDaylightFields));
             foreach (var journalInfo in Journals)
             {
                 if (!ValidateComponent(ref expectedJournalFields, out string[] actualJournalFields, journalInfo))
@@ -1290,6 +1378,7 @@ namespace VisualCard.Calendar.Parts
                     throw new InvalidDataException($"The following keys [{string.Join(", ", expectedTimeZoneFields)}] are required in the timezone representation. Got [{string.Join(", ", actualTimeZoneFields)}].");
 
                 // Check for standard and/or daylight
+                LoggingTools.Debug("st: {0}, dl: {1}", timezoneInfo.StandardTimeList.Length, timezoneInfo.DaylightTimeList.Length);
                 if (timezoneInfo.StandardTimeList.Length == 0 && timezoneInfo.DaylightTimeList.Length == 0)
                     throw new InvalidDataException("One of the standard/daylight components is required.");
 
@@ -1317,11 +1406,15 @@ namespace VisualCard.Calendar.Parts
             foreach (string expectedFieldName in expectedFields)
             {
                 if (HasComponent(expectedFieldName, component))
+                {
+                    LoggingTools.Debug("Added {0} to actual field list", expectedFieldName);
                     actualFieldList.Add(expectedFieldName);
+                }
             }
             Array.Sort(expectedFields);
             actualFieldList.Sort();
             actualFields = [.. actualFieldList];
+            LoggingTools.Debug("Field count: {0}", actualFields.Length);
             return actualFields.SequenceEqual(expectedFields);
         }
 
@@ -1360,6 +1453,7 @@ namespace VisualCard.Calendar.Parts
         private void ValidateAlarm(CalendarAlarm alarmInfo)
         {
             string[] expectedAlarmFields = [VCalendarConstants._actionSpecifier, VCalendarConstants._triggerSpecifier];
+            LoggingTools.Debug("Expected alarm fields: {0} [{1}]", expectedAlarmFields.Length, string.Join(", ", expectedAlarmFields));
             if (!ValidateComponent(ref expectedAlarmFields, out string[] actualAlarmFields, alarmInfo))
                 throw new InvalidDataException($"The following keys [{string.Join(", ", expectedAlarmFields)}] are required in the alarm representation. Got [{string.Join(", ", actualAlarmFields)}].");
 
@@ -1367,8 +1461,12 @@ namespace VisualCard.Calendar.Parts
             string[] expectedAudioAlarmFields = [VCalendarConstants._attachSpecifier];
             string[] expectedDisplayAlarmFields = [VCalendarConstants._descriptionSpecifier];
             string[] expectedMailAlarmFields = [VCalendarConstants._descriptionSpecifier, VCalendarConstants._summarySpecifier, VCalendarConstants._attendeeSpecifier];
+            LoggingTools.Debug("Expected a-alarm fields: {0} [{1}]", expectedAudioAlarmFields.Length, string.Join(", ", expectedAudioAlarmFields));
+            LoggingTools.Debug("Expected d-alarm fields: {0} [{1}]", expectedDisplayAlarmFields.Length, string.Join(", ", expectedDisplayAlarmFields));
+            LoggingTools.Debug("Expected m-alarm fields: {0} [{1}]", expectedMailAlarmFields.Length, string.Join(", ", expectedMailAlarmFields));
             var actionList = alarmInfo.GetString(CalendarStringsEnum.Action);
             string type = actionList.Length > 0 ? actionList[0].Value : "";
+            LoggingTools.Debug("Alarm type: {0} [{1} actions]", type, actionList.Length);
             switch (type)
             {
                 case "AUDIO":
@@ -1387,8 +1485,10 @@ namespace VisualCard.Calendar.Parts
 
             // Check to see if there is a repeat property
             var repeatList = alarmInfo.GetInteger(CalendarIntegersEnum.Repeat);
+            LoggingTools.Debug("{0} repeats", repeatList.Length);
             int repeat = (int)(repeatList.Length > 0 ? repeatList[0].Value : -1);
             string[] expectedRepeatedAlarmFields = [VCalendarConstants._durationSpecifier];
+            LoggingTools.Debug("Expected r-alarm fields: {0} [{1}]", expectedRepeatedAlarmFields.Length, string.Join(", ", expectedRepeatedAlarmFields));
             if (repeat >= 1)
             {
                 if (!ValidateComponent(ref expectedRepeatedAlarmFields, out string[] actualRepeatedAlarmFields, alarmInfo))
@@ -1427,6 +1527,7 @@ namespace VisualCard.Calendar.Parts
             {
                 // We don't need the base, but a derivative of it. Check it.
                 var partsArrayEnum = (CalendarPartsArrayEnum)type.enumeration;
+                LoggingTools.Debug("Comparing {0} and {1}", key, partsArrayEnum);
                 if (key != partsArrayEnum)
                     throw new InvalidOperationException($"Parts array enumeration [{key}] is different from the expected one [{partsArrayEnum}] according to type {partType.Name}.");
             }
