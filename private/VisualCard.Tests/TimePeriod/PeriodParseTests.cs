@@ -19,6 +19,7 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shouldly;
+using System;
 using VisualCard.Common.Parsers;
 
 namespace VisualCard.Tests.TimePeriod
@@ -32,9 +33,11 @@ namespace VisualCard.Tests.TimePeriod
         public void ParsePeriods(string rule)
         {
             var span = CommonTools.GetTimePeriod(rule);
-            span.StartDate.ShouldNotBe(new());
-            span.EndDate.ShouldNotBe(new());
-            span.Duration.ShouldNotBe(new());
+            var noDateTime = new DateTimeOffset();
+            var noTimeSpan = new TimeSpan();
+            span.StartDate.ShouldNotBe(noDateTime);
+            span.EndDate.ShouldNotBe(noDateTime);
+            span.Duration.ShouldNotBe(noTimeSpan);
         }
 
         [TestMethod]
@@ -43,9 +46,11 @@ namespace VisualCard.Tests.TimePeriod
             var span = CommonTools.GetTimePeriod("19970101T180000Z/19970102T070000Z");
 
             // We can't test against result because it's uninferrable due to CPU timings.
-            span.StartDate.ShouldNotBe(new());
-            span.EndDate.ShouldNotBe(new());
-            span.Duration.ShouldNotBe(new());
+            var noDateTime = new DateTimeOffset();
+            var noTimeSpan = new TimeSpan();
+            span.StartDate.ShouldNotBe(noDateTime);
+            span.EndDate.ShouldNotBe(noDateTime);
+            span.Duration.ShouldNotBe(noTimeSpan);
             span.Duration.Days.ShouldBe(0);
             span.Duration.Hours.ShouldBe(13);
             span.Duration.Minutes.ShouldBe(0);
@@ -58,9 +63,11 @@ namespace VisualCard.Tests.TimePeriod
             var span = CommonTools.GetTimePeriod("19970101T180000Z/PT5H30M");
 
             // We can't test against result because it's uninferrable due to CPU timings.
-            span.StartDate.ShouldNotBe(new());
-            span.EndDate.ShouldNotBe(new());
-            span.Duration.ShouldNotBe(new());
+            var noDateTime = new DateTimeOffset();
+            var noTimeSpan = new TimeSpan();
+            span.StartDate.ShouldNotBe(noDateTime);
+            span.EndDate.ShouldNotBe(noDateTime);
+            span.Duration.ShouldNotBe(noTimeSpan);
             span.Duration.Days.ShouldBe(0);
             span.Duration.Hours.ShouldBe(5);
             span.Duration.Minutes.ShouldBe(30);
