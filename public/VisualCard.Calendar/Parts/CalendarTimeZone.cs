@@ -87,7 +87,7 @@ namespace VisualCard.Calendar.Parts
         /// </summary>
         /// <param name="validate">Whether to validate all the fields or not</param>
         public override string SaveToString(bool validate = false) =>
-            SaveToString(CalendarVersion, extraParts, partsArray, strings, integers, VCalendarConstants._objectVTimeZoneSpecifier, validate);
+            SaveToString(CalendarVersion, VCalendarConstants._objectVTimeZoneSpecifier, validate);
 
         /// <summary>
         /// Saves the calendar timezone info to the returned string

@@ -129,7 +129,7 @@ namespace VisualCard.Parts
         public BasePartInfo[] GetExtraPartsArray(Type partType)
         {
             // Check the base type
-            VerifyBasePartType(partType);
+            CommonTools.VerifyBasePartType(partType);
 
             // Get the extra part enumeration according to the type
             var key = (PartsArrayEnum)VcardParserTools.GetPartsArrayEnumFromType(partType, CardVersion, CardKindStr);
@@ -906,13 +906,6 @@ namespace VisualCard.Parts
             return actualFields.SequenceEqual(expectedFields);
         }
 
-        internal void VerifyBasePartType(Type partType)
-        {
-            // Check the base type
-            if (partType.BaseType != typeof(BasePartInfo) && partType != typeof(BasePartInfo))
-                throw new InvalidOperationException($"Base type is not BasePartInfo [{partType.BaseType.Name}] and the part type is [{partType.Name}] that doesn't represent the part.");
-        }
-
         internal void VerifyPartType(Type partType)
         {
             // Check the base type
@@ -924,7 +917,7 @@ namespace VisualCard.Parts
         {
             // Check the base type
             if (key == CardPartsArrayEnum.IanaNames || key == CardPartsArrayEnum.NonstandardNames)
-                VerifyBasePartType(partType);
+                CommonTools.VerifyBasePartType(partType);
             else
                 VerifyPartType(partType);
 

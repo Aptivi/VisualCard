@@ -52,7 +52,7 @@ namespace VisualCard.Calendar.Parts
         /// </summary>
         /// <param name="validate">Whether to validate all the fields or not</param>
         public override string SaveToString(bool validate = false) =>
-            SaveToString(CalendarVersion, extraParts, partsArray, strings, integers, componentName, validate);
+            SaveToString(CalendarVersion, componentName, validate);
 
         /// <summary>
         /// Saves the calendar component to the returned string

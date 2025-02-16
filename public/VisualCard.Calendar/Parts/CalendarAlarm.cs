@@ -21,11 +21,13 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using Textify.General;
 using VisualCard.Calendar.Parsers;
 using VisualCard.Calendar.Parts.Comparers;
 using VisualCard.Calendar.Parts.Enums;
+using VisualCard.Common.Diagnostics;
 using VisualCard.Common.Parts;
 using VisualCard.Common.Parts.Comparers;
 using VisualCard.Common.Parts.Enums;
@@ -44,7 +46,7 @@ namespace VisualCard.Calendar.Parts
         /// </summary>
         /// <param name="validate">Whether to validate all the fields or not</param>
         public override string SaveToString(bool validate = false) =>
-            SaveToString(CalendarVersion, extraParts, partsArray, strings, integers, VCalendarConstants._objectVAlarmSpecifier, validate);
+            SaveToString(CalendarVersion, VCalendarConstants._objectVAlarmSpecifier, validate);
 
         /// <summary>
         /// Saves the calendar alarm to the returned string
@@ -111,6 +113,52 @@ namespace VisualCard.Calendar.Parts
         /// <inheritdoc/>
         public static bool operator !=(CalendarAlarm a, CalendarAlarm b)
             => !a.Equals(b);
+
+        internal void ValidateAlarm()
+        {
+            string[] expectedAlarmFields = [VCalendarConstants._actionSpecifier, VCalendarConstants._triggerSpecifier];
+            LoggingTools.Debug("Expected alarm fields: {0} [{1}]", expectedAlarmFields.Length, string.Join(", ", expectedAlarmFields));
+            if (!ValidateComponent(ref expectedAlarmFields, out string[] actualAlarmFields, this))
+                throw new InvalidDataException($"The following keys [{string.Join(", ", expectedAlarmFields)}] are required in the alarm representation. Got [{string.Join(", ", actualAlarmFields)}].");
+
+            // Check the alarm action
+            string[] expectedAudioAlarmFields = [VCalendarConstants._attachSpecifier];
+            string[] expectedDisplayAlarmFields = [VCalendarConstants._descriptionSpecifier];
+            string[] expectedMailAlarmFields = [VCalendarConstants._descriptionSpecifier, VCalendarConstants._summarySpecifier, VCalendarConstants._attendeeSpecifier];
+            LoggingTools.Debug("Expected a-alarm fields: {0} [{1}]", expectedAudioAlarmFields.Length, string.Join(", ", expectedAudioAlarmFields));
+            LoggingTools.Debug("Expected d-alarm fields: {0} [{1}]", expectedDisplayAlarmFields.Length, string.Join(", ", expectedDisplayAlarmFields));
+            LoggingTools.Debug("Expected m-alarm fields: {0} [{1}]", expectedMailAlarmFields.Length, string.Join(", ", expectedMailAlarmFields));
+            var actionList = GetString(CalendarStringsEnum.Action);
+            string type = actionList.Length > 0 ? actionList[0].Value : "";
+            LoggingTools.Debug("Alarm type: {0} [{1} actions]", type, actionList.Length);
+            switch (type)
+            {
+                case "AUDIO":
+                    if (!ValidateComponent(ref expectedAudioAlarmFields, out string[] actualAudioAlarmFields, this))
+                        throw new InvalidDataException($"The following keys [{string.Join(", ", expectedAudioAlarmFields)}] are required in the audio alarm representation. Got [{string.Join(", ", actualAudioAlarmFields)}].");
+                    break;
+                case "DISPLAY":
+                    if (!ValidateComponent(ref expectedDisplayAlarmFields, out string[] actualDisplayAlarmFields, this))
+                        throw new InvalidDataException($"The following keys [{string.Join(", ", expectedDisplayAlarmFields)}] are required in the display alarm representation. Got [{string.Join(", ", actualDisplayAlarmFields)}].");
+                    break;
+                case "EMAIL":
+                    if (!ValidateComponent(ref expectedMailAlarmFields, out string[] actualMailAlarmFields, this))
+                        throw new InvalidDataException($"The following keys [{string.Join(", ", expectedMailAlarmFields)}] are required in the mail alarm representation. Got [{string.Join(", ", actualMailAlarmFields)}].");
+                    break;
+            }
+
+            // Check to see if there is a repeat property
+            var repeatList = GetInteger(CalendarIntegersEnum.Repeat);
+            LoggingTools.Debug("{0} repeats", repeatList.Length);
+            int repeat = (int)(repeatList.Length > 0 ? repeatList[0].Value : -1);
+            string[] expectedRepeatedAlarmFields = [VCalendarConstants._durationSpecifier];
+            LoggingTools.Debug("Expected r-alarm fields: {0} [{1}]", expectedRepeatedAlarmFields.Length, string.Join(", ", expectedRepeatedAlarmFields));
+            if (repeat >= 1)
+            {
+                if (!ValidateComponent(ref expectedRepeatedAlarmFields, out string[] actualRepeatedAlarmFields, this))
+                    throw new InvalidDataException($"The following keys [{string.Join(", ", expectedRepeatedAlarmFields)}] are required in the repeated alarm representation. Got [{string.Join(", ", actualRepeatedAlarmFields)}].");
+            }
+        }
 
         /// <summary>
         /// Makes an empty calendar alarm

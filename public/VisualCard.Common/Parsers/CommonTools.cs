@@ -28,6 +28,7 @@ using Textify.General;
 using VisualCard.Common.Diagnostics;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parsers.Recurrence;
+using VisualCard.Common.Parts;
 
 namespace VisualCard.Common.Parsers
 {
@@ -850,6 +851,13 @@ namespace VisualCard.Common.Parsers
             valueBuilder.Append(CommonConstants._argumentDelimiter);
             valueBuilder.Append(rawValue);
             return valueBuilder.ToString();
+        }
+
+        internal static void VerifyBasePartType(Type partType)
+        {
+            // Check the base type
+            if (partType.BaseType != typeof(BasePartInfo) && partType != typeof(BasePartInfo))
+                throw new InvalidOperationException($"Base type is not BasePartInfo [{partType.BaseType.Name}] and the part type is [{partType.Name}] that doesn't represent the part.");
         }
     }
 }

@@ -66,7 +66,7 @@ namespace VisualCard.Calendar.Parts
         /// </summary>
         /// <param name="validate">Whether to validate all the fields or not</param>
         public override string SaveToString(bool validate = false) =>
-            SaveToString(CalendarVersion, extraParts, partsArray, strings, integers, VCalendarConstants._objectVTodoSpecifier, validate);
+            SaveToString(CalendarVersion, VCalendarConstants._objectVTodoSpecifier, validate);
 
         /// <summary>
         /// Saves the calendar to-do component to the returned string

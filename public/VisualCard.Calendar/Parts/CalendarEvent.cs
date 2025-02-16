@@ -46,7 +46,7 @@ namespace VisualCard.Calendar.Parts
         /// </summary>
         /// <param name="validate">Whether to validate all the fields or not</param>
         public override string SaveToString(bool validate = false) =>
-            SaveToString(CalendarVersion, extraParts, partsArray, strings, integers, VCalendarConstants._objectVEventSpecifier, validate);
+            SaveToString(CalendarVersion, VCalendarConstants._objectVEventSpecifier, validate);
 
         /// <summary>
         /// Saves the calendar alarm to the returned string
