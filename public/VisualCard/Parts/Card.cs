@@ -29,6 +29,7 @@ using VisualCard.Common.Diagnostics;
 using VisualCard.Common.Parsers;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parts;
+using VisualCard.Common.Parts.Comparers;
 using VisualCard.Common.Parts.Enums;
 using VisualCard.Common.Parts.Implementations;
 using VisualCard.Parsers;
@@ -981,6 +982,7 @@ namespace VisualCard.Parts
 
             // Check all the properties
             return
+                CommonComparison.ExtraPartsEnumEqual(source.extraParts, target.extraParts) &&
                 CardPartComparison.PartsArrayEnumEqual(source.partsArray, target.partsArray) &&
                 CardPartComparison.StringsEqual(source.strings, target.strings)
             ;

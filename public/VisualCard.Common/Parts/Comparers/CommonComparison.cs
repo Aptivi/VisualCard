@@ -20,11 +20,38 @@
 using System.Collections.Generic;
 using System.Linq;
 using VisualCard.Common.Diagnostics;
+using VisualCard.Common.Parts.Enums;
 
 namespace VisualCard.Common.Parts.Comparers
 {
     internal static class CommonComparison
     {
+        internal static bool ExtraPartsEnumEqual(
+            IDictionary<PartsArrayEnum, List<BasePartInfo>> source,
+            IDictionary<PartsArrayEnum, List<BasePartInfo>> target)
+        {
+            // Verify the dictionaries
+            if (!VerifyDicts(source, target))
+                return false;
+
+            // If they are really equal using the equals operator, return true.
+            if (source == target)
+                return true;
+
+            // Now, test the equality
+            bool equal = source.All(kvp =>
+            {
+                bool exists = target.TryGetValue(kvp.Key, out List<BasePartInfo> parts);
+                if (!exists)
+                    return false;
+
+                // Compare between the lists
+                return CompareLists(kvp.Value, parts);
+            });
+            LoggingTools.Info("As a result, equal is {0}", equal);
+            return equal;
+        }
+
         internal static bool CompareLists<TValue>(
             IList<TValue> source,
             IList<TValue> target)

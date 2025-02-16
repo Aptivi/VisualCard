@@ -34,6 +34,7 @@ using VisualCard.Common.Diagnostics;
 using VisualCard.Common.Parsers;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parts;
+using VisualCard.Common.Parts.Comparers;
 using VisualCard.Common.Parts.Enums;
 using VisualCard.Common.Parts.Implementations;
 using VisualCard.Parsers;
@@ -43,7 +44,7 @@ namespace VisualCard.Calendar.Parts
     /// <summary>
     /// A vCalendar card instance
     /// </summary>
-    [DebuggerDisplay("vCalendar version {CalendarVersion.ToString()}, parts: (A [{partsArray.Count}] | S [{strings.Count}] | I [{integers.Count} | E [{extraParts.Count}])")]
+    [DebuggerDisplay("vCalendar version {CalendarVersion.ToString()}, parts: (A [{partsArray.Count}] | S [{strings.Count}] | I [{integers.Count}] | E [{extraParts.Count}])")]
     public class Calendar : IEquatable<Calendar>
     {
         internal readonly List<CalendarEvent> events = [];
@@ -52,11 +53,11 @@ namespace VisualCard.Calendar.Parts
         internal readonly List<CalendarFreeBusy> freeBusyList = [];
         internal readonly List<CalendarTimeZone> timeZones = [];
         internal readonly List<CalendarOtherComponent> others = [];
+        internal readonly Dictionary<PartsArrayEnum, List<BasePartInfo>> extraParts = [];
+        internal readonly Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray = [];
+        internal readonly Dictionary<CalendarStringsEnum, List<ValueInfo<string>>> strings = [];
+        internal readonly Dictionary<CalendarIntegersEnum, List<ValueInfo<double>>> integers = [];
         private readonly Version version;
-        private readonly Dictionary<PartsArrayEnum, List<BasePartInfo>> extraParts = [];
-        private readonly Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>> partsArray = [];
-        private readonly Dictionary<CalendarStringsEnum, List<ValueInfo<string>>> strings = [];
-        private readonly Dictionary<CalendarIntegersEnum, List<ValueInfo<double>>> integers = [];
 
         /// <summary>
         /// The vCalendar version
@@ -1566,6 +1567,7 @@ namespace VisualCard.Calendar.Parts
 
             // Check all the properties
             return
+                CommonComparison.ExtraPartsEnumEqual(source.extraParts, target.extraParts) &&
                 CalendarPartComparison.PartsArrayEnumEqual(source.partsArray, target.partsArray) &&
                 CalendarPartComparison.StringsEqual(source.strings, target.strings) &&
                 CalendarPartComparison.IntegersEqual(source.integers, target.integers) &&
@@ -1588,6 +1590,7 @@ namespace VisualCard.Calendar.Parts
             hashCode = hashCode * -1521134295 + EqualityComparer<List<CalendarFreeBusy>>.Default.GetHashCode(freeBusyList);
             hashCode = hashCode * -1521134295 + EqualityComparer<List<CalendarTimeZone>>.Default.GetHashCode(timeZones);
             hashCode = hashCode * -1521134295 + EqualityComparer<List<CalendarOtherComponent>>.Default.GetHashCode(others);
+            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<PartsArrayEnum, List<BasePartInfo>>>.Default.GetHashCode(extraParts);
             hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarPartsArrayEnum, List<BaseCalendarPartInfo>>>.Default.GetHashCode(partsArray);
             hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarStringsEnum, List<ValueInfo<string>>>>.Default.GetHashCode(strings);
             hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<CalendarIntegersEnum, List<ValueInfo<double>>>>.Default.GetHashCode(integers);
