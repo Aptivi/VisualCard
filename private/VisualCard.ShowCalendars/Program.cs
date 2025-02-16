@@ -41,7 +41,7 @@ namespace VisualCard.ShowCalendars
             else
             {
                 // Enable logging
-                LoggingTools.EnableLogging = true;
+                LoggingTools.EnableLogging = args.Contains("-logging");
 
                 // If one of the arguments is a switch to trigger printing, set it
                 bool print = !args.Contains("-noprint");

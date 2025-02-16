@@ -18,7 +18,10 @@
 //
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+#if LOGGING
 using VisualCard.Common.Diagnostics;
+#endif
 
 namespace VisualCard.Tests
 {
@@ -29,7 +32,9 @@ namespace VisualCard.Tests
         public static void Setup(TestContext ctx)
         {
             ctx.WriteLine("Enabling VC logger...");
+#if LOGGING
             LoggingTools.EnableLogging = true;
+#endif
         }
     }
 }
