@@ -1,11 +1,16 @@
-We've made this release to add basic support for QUOTED-PRINTABLE. The next release will be a huge release that will make your applications more powerful than never before.
+We've made this release to make applications that use VisualCard even more powerful, considering that we've already added new features that allow you to add elements and edit them!
 
 ### Changes
 
 This release contains a variety of changes, including, but not limited to:
 
-- `[+]` Added QUOTED-PRINTABLE support for cards and calendars
-- `[*]` General improvements
+- `[+]` You can now add, edit, and delete properties and components!
+- `[+]` Added social media URI generation
+- `[+]` Introducing `VisualCard.Common` that contains versit-agnostic tools
+- `[+]` Added logging support
+- `[*]` IANA and X-nonstandard properties are no longer versit-specific
+- `[*]` Refactored the codebase
+- `[*]` General improvements and bug fixes
 
 Review the commit history if you want to get a deep insight about the changes.
 
