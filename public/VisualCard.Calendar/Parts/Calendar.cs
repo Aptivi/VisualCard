@@ -377,13 +377,10 @@ namespace VisualCard.Calendar.Parts
             if (!type.minimumVersionCondition(version))
                 return [];
 
-            // Get the fallback value
-            BasePartInfo[] fallback = [];
-
             // Check to see if the part array has a value or not
             bool hasValue = extraPartsArray.ContainsKey(key);
             if (!hasValue)
-                return fallback;
+                return [];
 
             // Cast the values
             var value = extraPartsArray[key];
@@ -426,13 +423,10 @@ namespace VisualCard.Calendar.Parts
             if (!type.minimumVersionCondition(version))
                 return [];
 
-            // Get the fallback value
-            BaseCalendarPartInfo[] fallback = [];
-
             // Check to see if the part array has a value or not
             bool hasValue = partsArray.ContainsKey(key);
             if (!hasValue)
-                return fallback;
+                return [];
 
             // Cast the values
             var value = partsArray[key];

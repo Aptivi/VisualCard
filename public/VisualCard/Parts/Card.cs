@@ -227,13 +227,10 @@ namespace VisualCard.Parts
             if (!type.minimumVersionCondition(CardVersion))
                 return [];
 
-            // Get the fallback value
-            BaseCardPartInfo[] fallback = [];
-
             // Check to see if the partarray has a value or not
             bool hasValue = partsArray.ContainsKey(key);
             if (!hasValue)
-                return fallback;
+                return [];
 
             // Cast the values
             var value = partsArray[key];
