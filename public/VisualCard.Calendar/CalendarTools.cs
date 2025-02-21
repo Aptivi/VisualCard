@@ -26,6 +26,7 @@ using VisualCard.Calendar.Parsers;
 using VisualCard.Parsers;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parsers;
+using VisualCard.Common.Diagnostics;
 
 namespace VisualCard.Calendar
 {
@@ -94,29 +95,33 @@ namespace VisualCard.Calendar
 
                 // Get the property info
                 string prefix = "";
-                string value;
-                try
+                string value = CalendarLine;
+                if (!CalendarLine.StartsWith(" ") && !string.IsNullOrWhiteSpace(CalendarLine))
                 {
-                    var prop = new PropertyInfo(CalendarLine);
-                    if (prop.CanContinueMultiline)
-                        CalendarLine = CalendarLine.Remove(CalendarLine.Length - 1, 1);
-                    while (prop.CanContinueMultiline)
+                    try
                     {
-                        prop.rawValue.Remove(prop.rawValue.Length - 1, 1);
-                        string nextLine = stream.ReadLine();
-                        prop.rawValue.Append(nextLine);
-
-                        // Add it to the current line for later processing
-                        CalendarLine += nextLine;
-                        if (CalendarLine[CalendarLine.Length - 1] == '=')
+                        var prop = new PropertyInfo(CalendarLine);
+                        if (prop.CanContinueMultiline)
                             CalendarLine = CalendarLine.Remove(CalendarLine.Length - 1, 1);
+                        while (prop.CanContinueMultiline)
+                        {
+                            prop.rawValue.Remove(prop.rawValue.Length - 1, 1);
+                            string nextLine = stream.ReadLine();
+                            prop.rawValue.Append(nextLine);
+
+                            // Add it to the current line for later processing
+                            CalendarLine += nextLine;
+                            if (CalendarLine[CalendarLine.Length - 1] == '=')
+                                CalendarLine = CalendarLine.Remove(CalendarLine.Length - 1, 1);
+                        }
+                        prefix = prop.Prefix;
+                        value = prop.Value;
                     }
-                    prefix = prop.Prefix;
-                    value = prop.Value;
-                }
-                catch
-                {
-                    value = CalendarLine;
+                    catch (Exception ex)
+                    {
+                        LoggingTools.Warning(ex, "Line may not be valid: {0}", CalendarLine);
+                        value = CalendarLine;
+                    }
                 }
 
                 // Process the line for begin, version, and end specifiers

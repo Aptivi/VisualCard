@@ -26,6 +26,7 @@ using VisualCard.Parts;
 using Textify.General;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parsers;
+using VisualCard.Common.Diagnostics;
 
 namespace VisualCard
 {
@@ -98,29 +99,33 @@ namespace VisualCard
 
                 // Get the property info
                 string prefix = "";
-                string value;
-                try
+                string value = CardLine;
+                if (!CardLine.StartsWith(" ") && !string.IsNullOrWhiteSpace(CardLine))
                 {
-                    var prop = new PropertyInfo(CardLine);
-                    if (prop.CanContinueMultiline)
-                        CardLine = CardLine.Remove(CardLine.Length - 1, 1);
-                    while (prop.CanContinueMultiline)
+                    try
                     {
-                        prop.rawValue.Remove(prop.rawValue.Length - 1, 1);
-                        string nextLine = stream.ReadLine();
-                        prop.rawValue.Append(nextLine);
-
-                        // Add it to the current line for later processing
-                        CardLine += nextLine;
-                        if (CardLine[CardLine.Length - 1] == '=')
+                        var prop = new PropertyInfo(CardLine);
+                        if (prop.CanContinueMultiline)
                             CardLine = CardLine.Remove(CardLine.Length - 1, 1);
+                        while (prop.CanContinueMultiline)
+                        {
+                            prop.rawValue.Remove(prop.rawValue.Length - 1, 1);
+                            string nextLine = stream.ReadLine();
+                            prop.rawValue.Append(nextLine);
+
+                            // Add it to the current line for later processing
+                            CardLine += nextLine;
+                            if (CardLine[CardLine.Length - 1] == '=')
+                                CardLine = CardLine.Remove(CardLine.Length - 1, 1);
+                        }
+                        prefix = prop.Prefix;
+                        value = prop.Value;
                     }
-                    prefix = prop.Prefix;
-                    value = prop.Value;
-                }
-                catch
-                {
-                    value = CardLine;
+                    catch (Exception ex)
+                    {
+                        LoggingTools.Warning(ex, "Line may not be valid: {0}", CardLine);
+                        value = CardLine;
+                    }
                 }
 
                 // Process the line for begin, version, and end specifiers
