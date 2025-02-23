@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildTargets", "private\BuildTargets\BuildTargets.csproj", "{FF903B9E-3605-4F14-B851-10306427F32D}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisualCard", "public\VisualCard\VisualCard.csproj", "{2AFDCE5C-842F-4129-B4BE-00A72F19DCD2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisualCard.ShowContacts", "private\VisualCard.ShowContacts\VisualCard.ShowContacts.csproj", "{798FA5EC-E411-4DF3-B8C7-D5E0AA63AA58}"
@@ -26,8 +28,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisualCard.ShowCalendars", "private\VisualCard.ShowCalendars\VisualCard.ShowCalendars.csproj", "{80A3B32A-F96E-4E87-837F-94E6EB188547}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisualCard.Extras", "public\VisualCard.Extras\VisualCard.Extras.csproj", "{A06611BC-20E0-4990-B907-83C2979E5AE8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildTargets", "private\BuildTargets\BuildTargets.csproj", "{FF903B9E-3605-4F14-B851-10306427F32D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisualCard.Common", "public\VisualCard.Common\VisualCard.Common.csproj", "{F58FE94C-FCE9-4CAE-8CD1-C62BDEB4701C}"
 EndProject
