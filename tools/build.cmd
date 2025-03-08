@@ -1,6 +1,6 @@
 @echo off
 
-REM This script builds and packs the artifacts. Use when you have VS installed.
+REM This script builds and packs the artifacts.
 set releaseconfig=%1
 if "%releaseconfig%" == "" set releaseconfig=Release
 
@@ -12,16 +12,18 @@ REM Turn off telemetry and logo
 set DOTNET_CLI_TELEMETRY_OPTOUT=1
 set DOTNET_NOLOGO=1
 
+set ROOTDIR=%~dp0\..
+
 :download
 echo Downloading packages...
-"%ProgramFiles%\dotnet\dotnet.exe" restore "..\VisualCard.sln" -p:Configuration=%releaseconfig% %buildoptions%
+"%ProgramFiles%\dotnet\dotnet.exe" restore "%ROOTDIR%\VisualCard.sln" -p:Configuration=%releaseconfig% %buildoptions%
 if %errorlevel% == 0 goto :build
 echo There was an error trying to download packages (%errorlevel%).
 goto :finished
 
 :build
-echo Building VisualCard...
-"%ProgramFiles%\dotnet\dotnet.exe" build "..\VisualCard.sln" -p:Configuration=%releaseconfig% %buildoptions%
+echo Building...
+"%ProgramFiles%\dotnet\dotnet.exe" build "%ROOTDIR%\VisualCard.sln" -p:Configuration=%releaseconfig% %buildoptions%
 if %errorlevel% == 0 goto :success
 echo There was an error trying to build (%errorlevel%).
 goto :finished
