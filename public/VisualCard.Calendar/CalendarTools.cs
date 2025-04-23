@@ -96,7 +96,7 @@ namespace VisualCard.Calendar
                 // Get the property info
                 string prefix = "";
                 string value = CalendarLine;
-                if (!CalendarLine.StartsWith(" ") && !string.IsNullOrWhiteSpace(CalendarLine))
+                if (!CalendarLine.StartsWith("\t") && !CalendarLine.StartsWith(" ") && !string.IsNullOrWhiteSpace(CalendarLine))
                 {
                     try
                     {

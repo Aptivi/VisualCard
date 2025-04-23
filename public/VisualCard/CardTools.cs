@@ -100,7 +100,7 @@ namespace VisualCard
                 // Get the property info
                 string prefix = "";
                 string value = CardLine;
-                if (!CardLine.StartsWith(" ") && !string.IsNullOrWhiteSpace(CardLine))
+                if (!CardLine.StartsWith("\t") && !CardLine.StartsWith(" ") && !string.IsNullOrWhiteSpace(CardLine))
                 {
                     try
                     {
