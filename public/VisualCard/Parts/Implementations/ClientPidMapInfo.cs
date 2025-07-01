@@ -53,15 +53,15 @@ namespace VisualCard.Parts.Implementations
         {
             // Split the client PID map info
             if (!value.Contains(";"))
-                throw new InvalidDataException($"Client PID map representation is invalid: {value}");
+                throw new InvalidDataException("Client PID map representation is invalid:" + $" {value}");
 
             // Parse the info
             string pidNumStr = value.Substring(0, value.IndexOf(";"));
             string pidUriStr = value.RemoveSuffix($"{pidNumStr};");
             if (!int.TryParse(pidNumStr, out int pidNum))
-                throw new InvalidDataException($"PID number {pidNumStr} is invalid");
+                throw new InvalidDataException("PID number {0} is invalid".FormatString(pidNumStr));
             if (!Uri.TryCreate(pidUriStr, UriKind.Absolute, out Uri uri))
-                throw new InvalidDataException($"PID URI {pidUriStr} is invalid");
+                throw new InvalidDataException("PID URI {0} is invalid".FormatString(pidUriStr));
             pidUriStr = uri.ToString();
 
             // Populate the fields

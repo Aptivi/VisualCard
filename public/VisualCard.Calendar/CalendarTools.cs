@@ -153,7 +153,7 @@ namespace VisualCard.Calendar
                 if (prefix.EqualsNoCase(CommonConstants._versionSpecifier) &&
                     !value.EqualsNoCase("1.0") && !value.EqualsNoCase("2.0") &&
                     !VersionSpotted)
-                    throw new InvalidDataException($"This calendar has an invalid vCalendar version {CalendarLine}.");
+                    throw new InvalidDataException("This calendar has an invalid vCalendar version {0}.".FormatString(CalendarLine));
                 else if (!VersionSpotted && prefix.EqualsNoCase(CommonConstants._versionSpecifier))
                 {
                     VersionSpotted = true;

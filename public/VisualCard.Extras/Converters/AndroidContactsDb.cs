@@ -100,12 +100,11 @@ namespace VisualCard.Extras.Converters
         {
             // Check to see if the database exists
             string dbObtainTip =
-                "\n\nMake sure that your phone is rooted before being able to obtain the contacts2.db file. " +
-                "Try out these paths:\n\n" +
-               $"  - {knownPaths[0]} (systemwide contacts)\n" +
-               $"  - {knownPaths[1]} (userspace (user 0) contacts)\n" +
-               $"  - {knownPaths[2]} (Motorola Blur)" +
-                "\n\nIf they don't work, consult your device's /data directory in the root file manager.";
+                "\n\n" + "Make sure that your phone is rooted before being able to obtain the 'contacts2.db' file. Try out these paths:" + "\n\n" +
+                "  - " + "Systemwide contacts:" + $" {knownPaths[0]}\n" +
+                "  - " + "Userspace (user 0) contacts:" + $" {knownPaths[1]}\n" +
+                "  - " + "Motorola Blur:" + $" {knownPaths[2]}" +
+                "\n\n" + "If they don't work, consult your device's /data directory in the root file manager.";
             LoggingTools.Info("Checking to see if {0} exists...", pathToDb);
             if (!File.Exists(pathToDb))
                 throw new FileNotFoundException("The Android contact database file obtained from the contact provider is not found." + dbObtainTip);

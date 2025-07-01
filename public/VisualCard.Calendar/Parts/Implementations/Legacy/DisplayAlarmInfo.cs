@@ -20,6 +20,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Textify.General;
 using VisualCard.Common.Parsers;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parts;
@@ -78,7 +79,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
             // Get the values
             string[] split = value.Split(';');
             if (split.Length != 4)
-                throw new ArgumentException($"When splitting display alarm information, the split value is {split.Length} instead of 4.");
+                throw new ArgumentException("When splitting display alarm information, the split value is {0} instead of 4.".FormatString(split.Length));
             string unprocessedRunTime = split[0];
             string snoozeTime = split[1];
             string unprocessedRepeat = split[2];

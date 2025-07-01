@@ -19,6 +19,7 @@
 
 using System;
 using System.Diagnostics;
+using Textify.General;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parts;
 
@@ -51,11 +52,11 @@ namespace VisualCard.Calendar.Parts.Implementations
             // Get the value
             string[] _geoSplit = value.Split(calendarVersion.Major == 1 ? ',' : ';');
             if (_geoSplit.Length != 2)
-                throw new ArgumentException($"When splitting geography, the split value is {_geoSplit.Length} instead of 2.");
+                throw new ArgumentException("When splitting geography, the split value is {0} instead of 2.".FormatString(_geoSplit.Length));
             if (!double.TryParse(_geoSplit[0], out double lat))
-                throw new ArgumentException($"Invalid latitude {_geoSplit[0]}");
+                throw new ArgumentException("Invalid latitude {0}".FormatString(_geoSplit[0]));
             if (!double.TryParse(_geoSplit[1], out double lon))
-                throw new ArgumentException($"Invalid longitude {_geoSplit[1]}");
+                throw new ArgumentException("Invalid longitude {0}".FormatString(_geoSplit[1]));
 
             // Populate the fields
             GeoInfo _geo = new(property, elementTypes, lat, lon);

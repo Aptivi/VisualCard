@@ -20,6 +20,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Textify.General;
 using VisualCard.Common.Parsers;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parts;
@@ -82,7 +83,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
             if (split.Length == 1 && split[0] == "FALSE")
                 return new DaylightInfo(property, elementTypes, false, new(), new(), new(), "", "");
             if (split.Length != 6)
-                throw new ArgumentException($"When splitting daylight information, the split value is {split.Length} instead of 6.");
+                throw new ArgumentException("When splitting daylight information, the split value is {0} instead of 6.".FormatString(split.Length));
             string unprocessedUtc = split[1];
             string unprocessedStart = split[2];
             string unprocessedEnd = split[3];

@@ -121,7 +121,7 @@ namespace VisualCard.Calendar.Parts
             base(version)
         {
             if (version.Major != 2 && version.Minor != 0)
-                throw new ArgumentException($"Invalid vCalendar version {version} specified. The supported version is 2.0.");
+                throw new ArgumentException("Invalid vCalendar version {0} specified. The supported version is 2.0.".FormatString(version));
         }
     }
 }

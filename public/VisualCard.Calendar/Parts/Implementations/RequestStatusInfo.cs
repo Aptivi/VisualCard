@@ -85,14 +85,14 @@ namespace VisualCard.Calendar.Parts.Implementations
                 throw new InvalidDataException("There is no dot to split two or three status codes.");
             string[] statusSplit = statusStr.Split('.');
             if (statusSplit.Length < 2 || statusSplit.Length > 3)
-                throw new InvalidDataException($"After splitting, got {statusSplit.Length} items instead of 2 or 3.");
+                throw new InvalidDataException("After splitting, got {0} items instead of 2 or 3.".FormatString(statusSplit.Length));
             (int, int, int) statusTuple = default;
             if (!int.TryParse(statusSplit[0], out statusTuple.Item1))
-                throw new InvalidDataException($"Status is not a number. First: {statusSplit[0]}.");
+                throw new InvalidDataException("Status is not a number." + $" [1/3]: {statusSplit[0]}.");
             if (!int.TryParse(statusSplit[1], out statusTuple.Item2))
-                throw new InvalidDataException($"Status is not a number. Second: {statusSplit[1]}.");
+                throw new InvalidDataException("Status is not a number." + $" [2/3]: {statusSplit[1]}.");
             if (statusSplit.Length == 3 && !int.TryParse(statusSplit[2], out statusTuple.Item3))
-                throw new InvalidDataException($"Status is not a number. Third: {statusSplit[2]}.");
+                throw new InvalidDataException("Status is not a number." + $" [3/3]: {statusSplit[2]}.");
 
             // Get the property pair and split it
             string pair = requestStatus.RemovePrefix($"{statusStr};");

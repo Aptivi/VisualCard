@@ -20,6 +20,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using Textify.General;
 using VisualCard.Common.Diagnostics;
 using VisualCard.Common.Parsers;
 using VisualCard.Common.Parsers.Arguments;
@@ -89,7 +90,7 @@ namespace VisualCard.Parsers
                 CardStringsEnum.Interest => VcardConstants._interestSpecifier,
                 CardStringsEnum.OrgDirectory => VcardConstants._orgDirectorySpecifier,
                 _ =>
-                    throw new NotImplementedException($"String enumeration {stringsEnum} is not implemented.")
+                    throw new NotImplementedException("String enumeration {0} is not implemented.".FormatString(stringsEnum))
             };
 
         internal static string GetPrefixFromPartsArrayEnum(CardPartsArrayEnum partsArrayEnum) =>
@@ -249,7 +250,7 @@ namespace VisualCard.Parsers
                             throw new InvalidDataException("ALTID must be exactly in the first position of the argument, because arguments that follow it are required to be specified");
                     }
                     else if (altIdArg is not null)
-                        throw new InvalidDataException($"ALTID must not be specified in the {partType.enumeration} type that expects a cardinality of {cardinality}.");
+                        throw new InvalidDataException("ALTID must not be specified in the {0} type that expects a cardinality of {1}".FormatString(partType.enumeration, cardinality));
                 }
             }
             LoggingTools.Info("Returning ALTID {0}", altId);

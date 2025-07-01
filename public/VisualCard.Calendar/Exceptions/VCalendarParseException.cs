@@ -42,10 +42,10 @@ namespace VisualCard.Calendar.Exceptions
         /// <param name="linenumber">Line number in which it caused the error</param>
         /// <param name="innerException">Inner exception (if any)</param>
         internal VCalendarParseException(string message, string line, int linenumber, Exception innerException)
-            : base($"An error occurred while parsing the VCalendar calendar\n" +
-                   $"Error: {message}\n" +
-                   $"Line: {line}\n" +
-                   $"Line number: {linenumber}", innerException)
+            : base("An error occurred while parsing the VCalendar calendar" + "\n" +
+                   "Error:" + $" {message}\n" +
+                   "Line:" + $" {line}\n" +
+                   "Line number:" + $" {linenumber}", innerException)
         {
             LoggingTools.Error(this, "Throwing vCalendar parse exception...");
         }

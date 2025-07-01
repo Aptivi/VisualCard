@@ -293,7 +293,7 @@ namespace VisualCard.Common.Parsers
         {
             // Check for sanity
             if (string.IsNullOrEmpty(utcOffsetRepresentation))
-                throw new ArgumentException($"UTC offset representation is not provided.");
+                throw new ArgumentException("UTC offset representation is not provided.");
 
             // Now, this representation might be a POSIX offset that follows the vCard specification, but check the sign,
             // because it might be either <+/->HHmmss, <+/->HHmm, or <+/->HH.
@@ -302,14 +302,14 @@ namespace VisualCard.Common.Parsers
             string offsetNoSign = utcOffsetRepresentation.Substring(1);
             LoggingTools.Debug("Designator {0}, offset {1}", designatorStr, offsetNoSign);
             if (designatorStr != "+" && designatorStr != "-")
-                throw new ArgumentException($"Designator {designatorStr} is invalid.");
+                throw new ArgumentException("Designator {0} is invalid.".FormatString(designatorStr));
             if (TimeSpan.TryParseExact(offsetNoSign, supportedTimeFormats, CultureInfo.InvariantCulture, out TimeSpan offset))
             {
                 bool useNegative = designatorStr == "-" && offset != new TimeSpan();
                 LoggingTools.Debug("Using negative {0}", useNegative);
                 return useNegative ? -offset : offset;
             }
-            throw new ArgumentException($"Can't parse offset {utcOffsetRepresentation}");
+            throw new ArgumentException("Can't parse offset:" + $" {utcOffsetRepresentation}");
         }
 
         /// <summary>
@@ -349,7 +349,7 @@ namespace VisualCard.Common.Parsers
             duration = duration.Trim();
             LoggingTools.Debug("Processing duration {0}", duration);
             if (string.IsNullOrEmpty(duration))
-                throw new ArgumentException($"Duration is not provided");
+                throw new ArgumentException("Duration is not provided");
 
             // Check to see if we've been provided with a sign
             bool isNegative = duration[0] == '-';
@@ -357,7 +357,7 @@ namespace VisualCard.Common.Parsers
             if (duration[0] == '+' || isNegative)
                 duration = duration.Substring(1);
             if (duration[0] != 'P')
-                throw new ArgumentException($"Duration is invalid: {duration}");
+                throw new ArgumentException("Duration is invalid:" + $" {duration}");
             duration = duration.Substring(1);
             LoggingTools.Debug("Final duration: {0}", duration);
 
@@ -394,7 +394,7 @@ namespace VisualCard.Common.Parsers
                     continue;
                 }
                 if (!int.TryParse(digits, out int value))
-                    throw new ArgumentException($"Digits are not numeric: {digits}, {duration}");
+                    throw new ArgumentException("Digits are not numeric:" + $" {digits}, {duration}");
                 value = isNegative ? -value : value;
                 LoggingTools.Debug("Value is {0}", value);
                 switch (type)
@@ -402,13 +402,13 @@ namespace VisualCard.Common.Parsers
                     // Year and Month types are only supported in vCalendar 1.0
                     case "Y":
                         if (modern)
-                            throw new ArgumentException($"Year specifier is disabled in vCalendar 2.0, {duration}");
+                            throw new ArgumentException("Year specifier is disabled in vCalendar 2.0." + $" {duration}");
                         offset = offset.AddYears(value);
                         LoggingTools.Debug("Added {0} years", value);
                         break;
                     case "M":
                         if (modern && inDate)
-                            throw new ArgumentException($"Month specifier is disabled in vCalendar 2.0, {duration}");
+                            throw new ArgumentException("Month specifier is disabled in vCalendar 2.0" + $" {duration}");
                         if (inDate)
                         {
                             offset = offset.AddMonths(value);
@@ -440,7 +440,7 @@ namespace VisualCard.Common.Parsers
                         break;
                     default:
                         LoggingTools.Error("Type is invalid! {0}, {1}, {2}", type, duration, value);
-                        throw new ArgumentException($"Type is invalid: {type}, {duration}");
+                        throw new ArgumentException("Type is invalid:" + $" {type}, {duration}");
                 }
                 duration = duration.Substring(length);
                 LoggingTools.Debug("Cut duration: {0}", duration);
@@ -469,14 +469,14 @@ namespace VisualCard.Common.Parsers
             string[] splits = period.Split('/');
             LoggingTools.Debug("Expected two splits: {0}", splits.Length);
             if (splits.Length != 2)
-                throw new ArgumentException($"After splitting, got {splits.Length} instead of 2: {period}");
+                throw new ArgumentException("After splitting, got {0} instead of 2:".FormatString(splits.Length) + $" {period}");
             string startStr = splits[0];
             string endStr = splits[1];
 
             // Now, parse them
             LoggingTools.Debug("Parsing start: {0}", startStr);
             if (!TryParsePosixDateTime(startStr, out DateTimeOffset start))
-                throw new ArgumentException($"Invalid start date {startStr}: {period}");
+                throw new ArgumentException("Invalid start date:" + $" {startStr}, {period}");
             LoggingTools.Debug("Parsing end: {0}", startStr);
             if (!TryParsePosixDateTime(endStr, out DateTimeOffset end))
             {
@@ -671,7 +671,7 @@ namespace VisualCard.Common.Parsers
         {
             // Check for sanity
             if (string.IsNullOrEmpty(posixDateRepresentation))
-                throw new ArgumentException($"Date representation is not provided.");
+                throw new ArgumentException("Date representation is not provided.");
 
             // Now, check the representation
             LoggingTools.Info("Parsing POSIX date representation {0}", posixDateRepresentation);
@@ -682,7 +682,7 @@ namespace VisualCard.Common.Parsers
                 return date;
             }
             LoggingTools.Error("Parsing failed for {0}", posixDateRepresentation);
-            throw new ArgumentException($"Can't parse date {posixDateRepresentation}");
+            throw new ArgumentException("Can't parse date:" + $" {posixDateRepresentation}");
         }
 
         internal static string ProcessStringValue(string value, string valueType, char split = ';')
@@ -703,7 +703,7 @@ namespace VisualCard.Common.Parsers
                         case "URL":
                             // Check the URI
                             if (!Uri.TryCreate(finalValuePart, UriKind.Absolute, out Uri uri))
-                                throw new InvalidDataException($"URL {finalValuePart} is invalid");
+                                throw new InvalidDataException("URL {0} is invalid".FormatString(finalValuePart));
                             break;
                         case "UTC-OFFSET":
                             // Check the UTC offset
@@ -712,46 +712,46 @@ namespace VisualCard.Common.Parsers
                         case "DATE":
                             // Check the date
                             if (!TryParsePosixDate(finalValuePart, out _))
-                                throw new InvalidDataException($"Date {finalValuePart} is invalid");
+                                throw new InvalidDataException("Date {0} is invalid".FormatString(finalValuePart));
                             break;
                         case "TIME":
                             // Check the time
                             if (!TryParsePosixTime(finalValuePart, out _))
-                                throw new InvalidDataException($"Time {finalValuePart} is invalid");
+                                throw new InvalidDataException("Time {0} is invalid".FormatString(finalValuePart));
                             break;
                         case "DATE-TIME":
                             // Check the date and time
                             if (!TryParsePosixDateTime(finalValuePart, out _))
-                                throw new InvalidDataException($"Date and time {finalValuePart} is invalid");
+                                throw new InvalidDataException("Date and time {0} is invalid".FormatString(finalValuePart));
                             break;
                         case "DATE-AND-OR-TIME":
                             // Check the date and/or time
                             if (!TryParsePosixDateTime(finalValuePart, out _) &&
                                 !TryParsePosixTime(finalValuePart, out _))
-                                throw new InvalidDataException($"Date and/or time {finalValuePart} is invalid");
+                                throw new InvalidDataException("Date and/or time {0} is invalid".FormatString(finalValuePart));
                             break;
                         case "TIMESTAMP":
                             // Check the timestamp
                             if (!TryParsePosixTimestamp(finalValuePart, out _))
-                                throw new InvalidDataException($"Timestamp {finalValuePart} is invalid");
+                                throw new InvalidDataException("Timestamp {0} is invalid".FormatString(finalValuePart));
                             break;
                         case "BOOLEAN":
                             // Check the boolean
                             if (!finalValuePart.Equals("true", StringComparison.OrdinalIgnoreCase) &&
                                 !finalValuePart.Equals("false", StringComparison.OrdinalIgnoreCase))
-                                throw new InvalidDataException($"Boolean {finalValuePart} is invalid");
+                                throw new InvalidDataException("Boolean {0} is invalid".FormatString(finalValuePart));
                             break;
                         case "INTEGER":
                             // Check the integer
                             if (!int.TryParse(finalValuePart, out _))
-                                throw new InvalidDataException($"Integer {finalValuePart} is invalid");
+                                throw new InvalidDataException("Integer {0} is invalid".FormatString(finalValuePart));
                             break;
                         case "FLOAT":
                             // Check the float
                             string[] floatParts = finalValuePart.Split(split == ';' ? ',' : ';');
                             foreach (var floatPart in floatParts)
                                 if (!double.TryParse(floatPart, out _))
-                                    throw new InvalidDataException($"Float {floatPart} in {finalValuePart} is invalid");
+                                    throw new InvalidDataException("Float {0} in {1} is invalid".FormatString(floatPart, finalValuePart));
                             break;
                         case "DURATION":
                             // Check the duration
@@ -785,7 +785,7 @@ namespace VisualCard.Common.Parsers
 
             // Return the result
             if (!valid)
-                throw new InvalidDataException($"String value {value} for {valueType} is invalid.\n\n  - {string.Join("\n  - ", errors.Select((ex) => ex.Message))}");
+                throw new InvalidDataException("String value {0} for {1} is invalid.".FormatString(value, valueType) + $"\n\n  - {string.Join("\n  - ", errors.Select((ex) => ex.Message))}");
             LoggingTools.Info("Returning final value {0}", finalValue);
             return finalValue;
         }
@@ -857,7 +857,7 @@ namespace VisualCard.Common.Parsers
         {
             // Check the base type
             if (partType.BaseType != typeof(BasePartInfo) && partType != typeof(BasePartInfo))
-                throw new InvalidOperationException($"Base type is not BasePartInfo [{partType.BaseType.Name}] and the part type is [{partType.Name}] that doesn't represent the part.");
+                throw new InvalidOperationException("Base type is not {0} [{1}] and the part type is [{2}] that doesn't represent the part.".FormatString(nameof(BasePartInfo), partType.BaseType.Name, partType.Name));
         }
     }
 }

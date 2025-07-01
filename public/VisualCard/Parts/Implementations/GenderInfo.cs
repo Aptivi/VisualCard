@@ -27,6 +27,7 @@ using VisualCard.Parts.Implementations.Tools;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parts;
 using VisualCard.Common.Parsers;
+using Textify.General;
 
 namespace VisualCard.Parts.Implementations
 {
@@ -77,7 +78,7 @@ namespace VisualCard.Parts.Implementations
                 "U" => Gender.Unknown,
                 "" => Gender.Unspecified,
                 _ =>
-                    throw new InvalidDataException($"Invalid gender string {genderString}")
+                    throw new InvalidDataException("Invalid gender string {0}".FormatString(genderString))
             };
 
             // Add the fetched information

@@ -193,7 +193,7 @@ namespace VisualCard
                     !value.EqualsNoCase("2.1") && !value.EqualsNoCase("3.0") &&
                     !value.EqualsNoCase("4.0") && !value.EqualsNoCase("5.0") &&
                     !VersionSpotted)
-                    throw new InvalidDataException($"This card has an invalid VCard version {CardLine}.");
+                    throw new InvalidDataException("This card has an invalid VCard version {0}.".FormatString(CardLine));
                 else if (!VersionSpotted && prefix.EqualsNoCase(CommonConstants._versionSpecifier))
                 {
                     VersionSpotted = true;
@@ -201,7 +201,7 @@ namespace VisualCard
                     
                     // Check to see if the vCard has VERSION directly after BEGIN:VCARD for 4.0 and 5.0
                     if (!versionDirect && (CardVersion.Major == 4 || CardVersion.Major == 5))
-                        throw new InvalidDataException($"vCard {CardVersion.Major}.0 requires that VERSION comes directly after {VcardConstants._beginText}.");
+                        throw new InvalidDataException("vCard {0}.0 requires that {1} comes directly after {2}.".FormatString(CardVersion.Major, CommonConstants._versionSpecifier, VcardConstants._beginText));
                     continue;
                 }
                 if (!VersionSpotted)

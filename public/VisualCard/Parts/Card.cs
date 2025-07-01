@@ -722,9 +722,9 @@ namespace VisualCard.Parts
                     cardinality == PartCardinality.MayBeOneNoAltId;
                 LoggingTools.Debug("Checking altid [actual: {0}, value: {1}] with {2} [{3}, {4}]", actualAltId, value.AltId, cardinality, onlyOne, onlyOneNoAltId);
                 if (onlyOne && actualAltId != value.AltId)
-                    throw new InvalidOperationException($"Can't overwrite part array {key} with AltID {value.AltId}, because cardinality is {cardinality} and expected AltID is {actualAltId}.");
+                    throw new InvalidOperationException("Can't overwrite part array {0} with AltID {1}, because cardinality is {2} and expected AltID is {3}.".FormatString(key, value.AltId, cardinality, actualAltId));
                 if (onlyOneNoAltId)
-                    throw new InvalidOperationException($"Can never overwrite part array {key} with AltID {value.AltId}, because cardinality is {cardinality}, even though the expected AltID is {actualAltId}.");
+                    throw new InvalidOperationException("Can never overwrite part array {0} with AltID {1}, because cardinality is {2}, even though the expected AltID is {3}.".FormatString(key, value.AltId, cardinality, actualAltId));
             }
 
             // Add this value info!
@@ -765,9 +765,9 @@ namespace VisualCard.Parts
                     cardinality == PartCardinality.MayBeOneNoAltId;
                 LoggingTools.Debug("Checking altid [actual: {0}, value: {1}] with {2} [{3}, {4}]", actualAltId, value.AltId, cardinality, onlyOne, onlyOneNoAltId);
                 if (onlyOne && actualAltId != value.AltId)
-                    throw new InvalidOperationException($"Can't overwrite part array {key} with AltID {value.AltId}, because cardinality is {cardinality} and expected AltID is {actualAltId}.");
+                    throw new InvalidOperationException("Can't overwrite part array {0} with AltID {1}, because cardinality is {2} and expected AltID is {3}.".FormatString(key, value.AltId, cardinality, actualAltId));
                 if (onlyOneNoAltId)
-                    throw new InvalidOperationException($"Can never overwrite part array {key} with AltID {value.AltId}, because cardinality is {cardinality}, even though the expected AltID is {actualAltId}.");
+                    throw new InvalidOperationException("Can never overwrite part array {0} with AltID {1}, because cardinality is {2}, even though the expected AltID is {3}.".FormatString(key, value.AltId, cardinality, actualAltId));
             }
 
             // Add this value info!
@@ -822,9 +822,9 @@ namespace VisualCard.Parts
                     cardinality == PartCardinality.MayBeOneNoAltId;
                 LoggingTools.Debug("Checking altid [actual: {0}, value: {1}] with {2} [{3}, {4}]", actualAltId, value.AltId, cardinality, onlyOne, onlyOneNoAltId);
                 if (onlyOne && actualAltId != value.AltId)
-                    throw new InvalidOperationException($"Can't overwrite string {key} with AltID {value.AltId}, because cardinality is {cardinality} and expected AltID is {actualAltId}.");
+                    throw new InvalidOperationException("Can't overwrite string {0} with AltID {1}, because cardinality is {2} and expected AltID is {3}.".FormatString(key, value.AltId, cardinality, actualAltId));
                 if (onlyOneNoAltId)
-                    throw new InvalidOperationException($"Can never overwrite string {key} with AltID {value.AltId}, because cardinality is {cardinality}, even though the expected AltID is {actualAltId}.");
+                    throw new InvalidOperationException("Can never overwrite string {0} with AltID {1}, because cardinality is {2}, even though the expected AltID is {3}.".FormatString(key, value.AltId, cardinality, actualAltId));
             }
 
             // Add this value info!
@@ -851,14 +851,14 @@ namespace VisualCard.Parts
             // Now, check for requirements
             string[] expectedFields = [.. expectedFieldList];
             if (!ValidateFields(ref expectedFields, out string[] actualFields))
-                throw new InvalidDataException($"The following keys [{string.Join(", ", expectedFields)}] are required. Got [{string.Join(", ", actualFields)}].");
+                throw new InvalidDataException("The following keys [{0}] are required. Got [{1}].".FormatString(string.Join(", ", expectedFields), string.Join(", ", actualFields)));
 
             // Check for organization vCards that may not have MEMBER properties
             string[] forbiddenOrgFields = [VcardConstants._memberSpecifier];
             if (CardKind != CardKind.Group && ValidateFields(ref forbiddenOrgFields, out _))
             {
                 LoggingTools.Error("Unexpected field in card kind {0}: MEMBER", CardKind);
-                throw new InvalidDataException($"{CardKind} vCards are forbidden from having MEMBER properties.");
+                throw new InvalidDataException("vCards are forbidden from having MEMBER properties.".FormatString(CardKind));
             }
         }
 
@@ -910,7 +910,7 @@ namespace VisualCard.Parts
         {
             // Check the base type
             if (partType.BaseType != typeof(BaseCardPartInfo) && partType != typeof(BaseCardPartInfo))
-                throw new InvalidOperationException($"Base type is not BaseCardPartInfo [{partType.BaseType.Name}] and the part type is [{partType.Name}] that doesn't represent card part.");
+                throw new InvalidOperationException("Base type is not {0} [{1}] and the part type is [{2}] that doesn't represent card part.".FormatString(nameof(BaseCardPartInfo), partType.BaseType.Name, partType.Name));
         }
 
         internal void VerifyPartsArrayType(CardPartsArrayEnum key, Type partType)
@@ -932,7 +932,7 @@ namespace VisualCard.Parts
                 var partsArrayEnum = (CardPartsArrayEnum)type.enumeration;
                 LoggingTools.Debug("Comparing {0} and {1}", key, partsArrayEnum);
                 if (key != partsArrayEnum)
-                    throw new InvalidOperationException($"Parts array enumeration [{key}] is different from the expected one [{partsArrayEnum}] according to type {typeof(BaseCardPartInfo).Name}.");
+                    throw new InvalidOperationException("Parts array enumeration [{0}] is different from the expected one [{1}] according to type {2}.".FormatString(key, partsArrayEnum, nameof(BaseCardPartInfo)));
             }
         }
 
@@ -1007,7 +1007,7 @@ namespace VisualCard.Parts
         public Card(Version version)
         {
             if (!VcardParserTools.VerifySupportedVersion(version))
-                throw new ArgumentException($"Invalid vCard version {version} specified. The supported versions are 2.1, 3.0, 4.0, and 5.0.");
+                throw new ArgumentException("Invalid vCard version {0} specified. The supported versions are 2.1, 3.0, 4.0, and 5.0.".FormatString(version));
             this.version = version;
         }
     }

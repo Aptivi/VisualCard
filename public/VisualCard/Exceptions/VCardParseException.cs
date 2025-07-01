@@ -42,10 +42,10 @@ namespace VisualCard.Exceptions
         /// <param name="linenumber">Line number in which it caused the error</param>
         /// <param name="innerException">Inner exception (if any)</param>
         internal VCardParseException(string message, string line, int linenumber, Exception innerException)
-            : base($"An error occurred while parsing the VCard contact\n" +
-                   $"Error: {message}\n" +
-                   $"Line: {line}\n" + 
-                   $"Line number: {linenumber}", innerException)
+            : base("An error occurred while parsing the VCard contact" + "\n" +
+                   "Error:" + $" {message}\n" +
+                   "Line:" + $" {line}\n" + 
+                   "Line number:" + $" {linenumber}", innerException)
         {
             LoggingTools.Error(this, "Throwing vCard parse exception...");
         }

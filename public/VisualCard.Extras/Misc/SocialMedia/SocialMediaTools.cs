@@ -19,6 +19,7 @@
 
 using System;
 using System.Collections.Generic;
+using Textify.General;
 using VisualCard.Common.Diagnostics;
 using VisualCard.Common.Parts.Implementations;
 
@@ -65,17 +66,17 @@ namespace VisualCard.Extras.Misc.SocialMedia
             var socialMediaFields = socialMediaValue.XValues ??
                 throw new ArgumentException("There are no social media fields.");
             if (socialMediaValue.XKeyName != "VISUALCARD-SOCIAL")
-                throw new ArgumentException($"The value info is not a social media value for {appInfo.appAbbreviation}. Expected VISUALCARD-SOCIAL, got {socialMediaValue.XKeyName} with {socialMediaFields.Length} values");
+                throw new ArgumentException("The value info is not a social media value for {0}. Expected VISUALCARD-SOCIAL, got {1} with {2} values".FormatString(appInfo.appAbbreviation, socialMediaValue.XKeyName, socialMediaFields.Length));
 
             // Check the value. It should be two or more values with the first one holding the social media abbreviation
             // name in two letters.
             if (socialMediaFields.Length < 2)
-                throw new ArgumentException($"For {appInfo.appAbbreviation}, expected at least an abbreviation and a name. Got {socialMediaFields.Length} values. Hint: X-VISUALCARD-SOCIAL:{appInfo.appAbbreviation};NAME.");
+                throw new ArgumentException("For {0}, expected at least an abbreviation and a name. Got {1} values. Hint:".FormatString(appInfo.appAbbreviation, socialMediaFields.Length) + $" X-VISUALCARD-SOCIAL:{appInfo.appAbbreviation};NAME.");
             string valueAbbreviation = socialMediaFields[0];
             string valueName = socialMediaFields[1];
             LoggingTools.Info("Checking abbreviation {0} by comparing it with {1}", valueAbbreviation, appInfo.appAbbreviation);
             if (appInfo.appAbbreviation != valueAbbreviation)
-                throw new ArgumentException($"For {appInfo.appAbbreviation}, expected a matching abbreviation for the app. Got {valueAbbreviation}. Hint: X-VISUALCARD-SOCIAL:{appInfo.appAbbreviation};NAME.");
+                throw new ArgumentException("For {0}, expected a matching abbreviation for the app. Got {1}. Hint:".FormatString(appInfo.appAbbreviation, valueAbbreviation) + $" X-VISUALCARD-SOCIAL:{appInfo.appAbbreviation};NAME.");
 
             // Now, initialize the string builder for the URL
             var uriBuilder = new UriBuilder();

@@ -32,6 +32,7 @@ using VisualCard.Common.Parts.Implementations;
 using VisualCard.Common.Parts.Enums;
 using VisualCard.Common.Parsers;
 using VisualCard.Common.Diagnostics;
+using Textify.General;
 
 namespace VisualCard.Calendar.Parsers
 {
@@ -86,7 +87,7 @@ namespace VisualCard.Calendar.Parsers
                 CalendarStringsEnum.RelatedTo => VCalendarConstants._relationshipSpecifier,
                 CalendarStringsEnum.Contact => VCalendarConstants._contactSpecifier,
                 _ =>
-                    throw new NotImplementedException($"String enumeration {stringsEnum} is not implemented.")
+                    throw new NotImplementedException("String enumeration {0} is not implemented.".FormatString(stringsEnum))
             };
 
         internal static string GetPrefixFromIntegersEnum(CalendarIntegersEnum integersEnum) =>
@@ -98,7 +99,7 @@ namespace VisualCard.Calendar.Parsers
                 CalendarIntegersEnum.Repeat => VCalendarConstants._repeatSpecifier,
                 CalendarIntegersEnum.RecurrTimes => VCalendarConstants._rNumSpecifier,
                 _ =>
-                    throw new NotImplementedException($"Integer enumeration {integersEnum} is not implemented.")
+                    throw new NotImplementedException("Integer enumeration {0} is not implemented.".FormatString(integersEnum))
             };
 
         internal static string GetPrefixFromPartsArrayEnum(CalendarPartsArrayEnum partsArrayEnum) =>

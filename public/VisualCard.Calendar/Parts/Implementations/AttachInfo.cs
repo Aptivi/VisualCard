@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using Textify.General;
 using VisualCard.Common.Parsers;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parts;
@@ -59,7 +60,7 @@ namespace VisualCard.Calendar.Parts.Implementations
             {
                 // Since we don't need embedded attachs, we need to check a URL.
                 if (!Uri.TryCreate(value, UriKind.Absolute, out Uri uri))
-                    throw new InvalidDataException($"URL {value} is invalid");
+                    throw new InvalidDataException("URL {0} is invalid".FormatString(value));
                 value = uri.ToString();
             }
 

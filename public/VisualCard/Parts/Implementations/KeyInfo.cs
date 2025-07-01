@@ -25,6 +25,7 @@ using VisualCard.Parsers;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parts;
 using VisualCard.Common.Parsers;
+using Textify.General;
 
 namespace VisualCard.Parts.Implementations
 {
@@ -61,7 +62,7 @@ namespace VisualCard.Parts.Implementations
                 if (property.ValueType.Equals("uri", StringComparison.OrdinalIgnoreCase))
                 {
                     if (!Uri.TryCreate(value, UriKind.Absolute, out Uri uri))
-                        throw new InvalidDataException($"URL {value} is invalid");
+                        throw new InvalidDataException("URL {0} is invalid".FormatString(value));
                     value = uri.ToString();
                 }
             }
@@ -74,7 +75,7 @@ namespace VisualCard.Parts.Implementations
                 {
                     // Since we don't need embedded keys, we need to check a URL.
                     if (!Uri.TryCreate(value, UriKind.Absolute, out Uri uri))
-                        throw new InvalidDataException($"URL {value} is invalid");
+                        throw new InvalidDataException("URL {0} is invalid".FormatString(value));
                     value = uri.ToString();
                 }
             }

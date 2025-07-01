@@ -20,6 +20,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using Textify.General;
 using VisualCard.Common.Diagnostics;
 
 namespace VisualCard.Common.Parsers.Recurrence
@@ -102,7 +103,7 @@ namespace VisualCard.Common.Parsers.Recurrence
                     if (!int.TryParse(durationStr, out int duration))
                     {
                         LoggingTools.Error("Designator {0} contains invalid duration.", durationStr);
-                        throw new ArgumentException($"Invalid duration in designator: {durationStr}, {designator}");
+                        throw new ArgumentException("Invalid duration in designator:" + $" {durationStr}, {designator}");
                     }
                     LoggingTools.Debug("Duration is {1}.", duration);
                     parsedRule.duration = duration;
@@ -129,7 +130,7 @@ namespace VisualCard.Common.Parsers.Recurrence
                     else
                     {
                         LoggingTools.Error("Invalid time [{0}]", filtered);
-                        throw new ArgumentException($"Invalid time {filtered}");
+                        throw new ArgumentException("Invalid time {0}".FormatString(filtered));
                     }
                     LoggingTools.Info("Parsing next designator...");
                     continue;
@@ -158,7 +159,7 @@ namespace VisualCard.Common.Parsers.Recurrence
                     else
                     {
                         LoggingTools.Error("Day of week {0} is invalid.", filtered);
-                        throw new ArgumentException($"Invalid day of week {filtered}");
+                        throw new ArgumentException("Invalid day of week {0}".FormatString(filtered));
                     }
                     LoggingTools.Debug("Day of week from {0} is {1} and end marker is {2}.", filtered, day, isEndMarker);
                     parsedRule.dayTimes.Add((isEndMarker, day));
@@ -211,7 +212,7 @@ namespace VisualCard.Common.Parsers.Recurrence
                         // This is dealing with monthly repetition based on a relative day.
                         LoggingTools.Info("Filtered length must be two");
                         if (filtered.Length != 2)
-                            throw new ArgumentException($"After filtering, instead of two characters, got {filtered.Length}: {filtered}");
+                            throw new ArgumentException("After filtering, instead of two characters, got {0}".FormatString(filtered.Length) + $": {filtered}");
 
                         // Check the number and the sign
                         char occurrenceNumber = filtered[0];
@@ -219,11 +220,11 @@ namespace VisualCard.Common.Parsers.Recurrence
                         bool occurrenceNegative = occurrenceSign == '-';
                         LoggingTools.Debug("Number from [1-5] {0}, sign {1}, negative {2}", occurrenceNumber, occurrenceSign, occurrenceNegative);
                         if (!int.TryParse($"{occurrenceNumber}", out int occurrence))
-                            throw new ArgumentException($"Occurrence number is not a number of [1-5] {occurrenceNumber}: {filtered}");
+                            throw new ArgumentException("Occurrence number is not a number of [1-5]" + $" {occurrenceNumber}: {filtered}");
                         if (occurrence < 1 || occurrence > 5)
-                            throw new ArgumentException($"Occurrence number is out of range of [1-5] {occurrence}: {filtered}");
+                            throw new ArgumentException("Occurrence number is out of range of [1-5]" + $" {occurrence}: {filtered}");
                         if (occurrenceSign != '+' && !occurrenceNegative)
-                            throw new ArgumentException($"Occurrence sign is incorrect {occurrenceSign}: {filtered}");
+                            throw new ArgumentException("Occurrence sign is incorrect" + $" {occurrenceSign}: {filtered}");
 
                         // Add the parsed occurrence
                         parsedRule.monthlyOccurrences.Add((isEndMarker, (occurrence, occurrenceNegative)));
@@ -243,7 +244,7 @@ namespace VisualCard.Common.Parsers.Recurrence
                         // This is dealing with monthly repetition based on an absolute day.
                         LoggingTools.Info("Filtered length must be between 1 and 3");
                         if (filtered.Length < 1 || filtered.Length > 3)
-                            throw new ArgumentException($"After filtering, got {filtered.Length} that is not 1, 2, or 3 characters long: {filtered}");
+                            throw new ArgumentException("After filtering, got {0} that is not 1, 2, or 3 characters long".FormatString(filtered.Length) + $": {filtered}");
 
                         // Check for sign
                         char dayNumberSign = filtered[filtered.Length - 1];
@@ -259,11 +260,11 @@ namespace VisualCard.Common.Parsers.Recurrence
                         if (!dayNumberLast)
                         {
                             if (!int.TryParse($"{dayNumberStr}", out dayNumber))
-                                throw new ArgumentException($"Day number is not a number of [1-31] {dayNumberStr}: {filtered}");
+                                throw new ArgumentException("Day number is not a number of [1-31]" + $" {dayNumberStr}: {filtered}");
                             if (dayNumber < 1 || dayNumber > 31)
-                                throw new ArgumentException($"Day number is out of range of [1-31] {dayNumber}: {filtered}");
+                                throw new ArgumentException("Day number is out of range of [1-31]" + $" {dayNumber}: {filtered}");
                             if (dayNumberSign != '+' && !dayNumberNegative && hasSign)
-                                throw new ArgumentException($"Day number sign is incorrect {dayNumberSign}: {filtered}");
+                                throw new ArgumentException("Day number sign is incorrect" + $" {dayNumberSign}: {filtered}");
                         }
 
                         // Add the parsed day number
@@ -279,14 +280,14 @@ namespace VisualCard.Common.Parsers.Recurrence
                         // This is dealing with yearly month repeat, for example, a ninth month is September.
                         LoggingTools.Info("Filtered length must be between 1 and 2");
                         if (filtered.Length < 1 || filtered.Length > 2)
-                            throw new ArgumentException($"After filtering, got {filtered.Length} that is not 1 or 2 characters long: {filtered}");
+                            throw new ArgumentException("After filtering, got {0} that is not 1 or 2 characters long".FormatString(filtered.Length) + $": {filtered}");
 
                         // Check the number
                         LoggingTools.Debug("Month number [1-12] to parse: {0}", filtered);
                         if (!int.TryParse($"{filtered}", out int monthNumber))
-                            throw new ArgumentException($"Month number is not a number of [1-12] {filtered}: {filtered}");
+                            throw new ArgumentException("Month number is not a number of [1-12]" + $" {filtered}: {filtered}");
                         if (monthNumber < 1 || monthNumber > 12)
-                            throw new ArgumentException($"Month number is out of range of [1-12] {monthNumber}: {filtered}");
+                            throw new ArgumentException("Month number is out of range of [1-12]" + $" {monthNumber}: {filtered}");
 
                         // Add the parsed month number
                         parsedRule.yearlyMonthNumbers.Add((isEndMarker, monthNumber));
@@ -303,14 +304,14 @@ namespace VisualCard.Common.Parsers.Recurrence
                         // 60th day.
                         LoggingTools.Info("Filtered length must be between 1 and 3");
                         if (filtered.Length < 1 || filtered.Length > 3)
-                            throw new ArgumentException($"After filtering, got {filtered.Length} that is not 1 or 2 characters long: {filtered}");
+                            throw new ArgumentException("After filtering, got {0} that is not 1 or 2 characters long".FormatString(filtered.Length) + $": {filtered}");
 
                         // Check the number
                         LoggingTools.Debug("Yearly day number [1-366] to parse: {0}", filtered);
                         if (!int.TryParse($"{filtered}", out int yearlyDayNumber))
-                            throw new ArgumentException($"Yearly day number is not a number of [1-366] {filtered}: {filtered}");
+                            throw new ArgumentException("Yearly day number is not a number of [1-366]" + $" {filtered}: {filtered}");
                         if (yearlyDayNumber < 1 || yearlyDayNumber > 366)
-                            throw new ArgumentException($"Yearly day number is out of range of [1-366] {yearlyDayNumber}: {filtered}");
+                            throw new ArgumentException("Yearly day number is out of range of [1-366]" + $" {yearlyDayNumber}: {filtered}");
 
                         // Add the parsed day number
                         parsedRule.yearlyDayNumbers.Add((isEndMarker, yearlyDayNumber));
@@ -359,7 +360,7 @@ namespace VisualCard.Common.Parsers.Recurrence
                 designator[0] == 'W' ? RecurrenceRuleFrequency.Weekly :
                 designator[0] == 'D' ? RecurrenceRuleFrequency.Daily :
                 designator[0] == 'M' ? RecurrenceRuleFrequency.Minute :
-                throw new ArgumentException($"Invalid frequency in frequency designator: {designator}");
+                throw new ArgumentException("Invalid frequency in frequency designator:" + $" {designator}");
             LoggingTools.Debug("Frequency is {0}", freq);
 
             // Get the number index and cut the string so that we have a number
@@ -376,7 +377,7 @@ namespace VisualCard.Common.Parsers.Recurrence
             string intervalStr = designator.Substring(numberIdx);
             LoggingTools.Info("Checking {0} for freq {1} to see if it's parsable", intervalStr, freq);
             if (!int.TryParse(intervalStr, out int interval))
-                throw new ArgumentException($"Invalid interval in frequency designator: {intervalStr}, {designator}");
+                throw new ArgumentException("Invalid interval in frequency designator:" + $" {intervalStr}, {designator}");
             return (freq, interval);
         }
     }

@@ -62,7 +62,7 @@ namespace VisualCard.Parts.Implementations
         {
             // Check the provided agent
             if (string.IsNullOrEmpty(value))
-                throw new InvalidDataException("Agent information must specify exactly one value (agent vCard contents that have their lines delimited by \\n)");
+                throw new InvalidDataException("Agent information must specify exactly one value (agent vCard contents that have their lines delimited by '\\n')");
 
             // Populate the fields
             string _agentVcard = Regex.Unescape(value).Replace("\\n", "\n").Replace("\\N", "\n");
