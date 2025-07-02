@@ -1,0 +1,77 @@
+{
+  "lang": "cnt-T",
+  "name": "Chinese (Traditional)",
+  "cultures": [
+    "zh",
+    "zh-Hant",
+    "zh-Hant-HK",
+    "zh-Hant-MO",
+    "zh-Hant-TW"
+  ],
+  "locs": [
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_INTRO",
+      "text": "在取得「contacts2.db」檔案之前，請確保您的手機已 root 權限。請嘗試以下路徑："
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_SYSTEMWIDE",
+      "text": "系統級聯絡人："
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_USERWIDE",
+      "text": "使用者空間（使用者 0）聯絡人："
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_OTHERDIRS",
+      "text": "如果這些路徑不起作用，請在 root 檔案管理員中查看裝置的 /data 目錄。"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBNOTFOUND",
+      "text": "未找到從聯絡人提供者提供的 Android 聯絡人資料庫檔案。"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBINVALID",
+      "text": "Android 聯絡人資料庫檔案無效。"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_NEEDSMECARD",
+      "text": "MeCard 字串不應為空。"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_MECARDINVALID",
+      "text": "此字串不代表有效的 MeCard 聯絡人。"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_MECARDPARSEFAILED",
+      "text": "MeCard 聯絡人字串無效。"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_CARDNOTPROVIDED",
+      "text": "未提供卡片。"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_NEEDSNAMETOSAVE",
+      "text": "無法從包含空名稱或空全名的 vCard 建構 MeCard 字串。"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_APPNOTFOUND",
+      "text": "沒有這樣的社群媒體應用程式。"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_NOSOCIALMEDIAFIELDS",
+      "text": "沒有社群媒體欄位。"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_INCORRECTFIELD",
+      "text": "值資訊不是 {0} 的社群媒體值。預期為 VISUALCARD-SOCIAL，結果為 {1}，包含 {2} 個值。"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_NEEDSABBREVNAME",
+      "text": "對於 {0}，預期至少包含一個縮寫和一個名稱。結果為 {1} 個值。提示："
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_ABBREVMISMATCH",
+      "text": "對於 {0}，預期為應用的匹配縮寫。結果為 {1}。提示："
+    }
+  ]
+}

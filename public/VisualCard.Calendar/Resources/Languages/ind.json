@@ -1,0 +1,258 @@
+{
+  "lang": "ind",
+  "name": "Hindi",
+  "cultures": [
+    "hi-Latn",
+    "hi-Latn-IN"
+  ],
+  "locs": [
+    {
+      "loc": "VISUALCARD_CALENDAR_EXCEPTION_GENERALCALENDARPARSEERROR",
+      "text": "saamaany kailendar paarsing truti."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR",
+      "text": "vchalaindar kailendar ko paars karate samay ek truti huee"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR_ERROR",
+      "text": "truti:"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR_LINE",
+      "text": "pankti:"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR_LINENUM",
+      "text": "pankti sankhya:"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_CALENDARCONTENTEMPTY",
+      "text": "kailendar saamagree rikt hai."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_ENDINGMISMATCH",
+      "text": "ant bemel: apekshit {0} banaam vaastavik {1}"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_PARTTYPEUNSUPPORTED",
+      "text": "bhaag jaanakaaree prakaar {0} sampatti prakaar {1} ka samarthan nahin karata hai kyonki nimn prakaar samarthit hain: [{2}]"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_VALUEDISALLOWED",
+      "text": "maan {0} anumat maanon kee soochee mein nahin hai [{1}]"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_INVALIDTYPE",
+      "text": "prakaar {0} amaany hai. kya aap sunishchit hain ki aapane apane vchalaindar pratinidhitv mein sahee prakaar nirdisht kiya hai?"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_INVALIDTYPE2",
+      "text": "amaany prakaar {0}"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_INCOMPATIBLENESTEDTYPES",
+      "text": "{1} ke andar {0} nahin rakha ja sakata"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_STRENUMNOTVALID",
+      "text": "string ganana {0} laagoo nahin kee gaee hai."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_INTENUMNOTVALID",
+      "text": "poornaank ganana {0} laagoo nahin kee gaee hai."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_TYPENEEDED",
+      "text": "prakaar pradaan nahin kiya gaya hai."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_AUDIOALARMINFO_ARGMISMATCH",
+      "text": "odiyo alaarm jaanakaaree ko vibhaajit karate samay, vibhaajan maan 4 ke bajaay {0} hai."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_AUDIOALARMINFO_REPEATTIMES",
+      "text": "amaany doharaav samay"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_DAYLIGHTINFO_ARGMISMATCH",
+      "text": "din ke ujaale kee jaanakaaree ko vibhaajit karate samay, vibhaajan maan 6 ke bajaay {0} hai."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_DISPLAYALARMINFO_ARGMISMATCH",
+      "text": "pradarshan alaarm jaanakaaree ko vibhaajit karate samay, vibhaajan maan 4 ke bajaay {0} hai."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_MAILALARMINFO_ARGMISMATCH",
+      "text": "mel alaarm jaanakaaree ko vibhaajit karate samay, vibhaajan maan 5 ke bajaay {0} hai."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_PROCEDUREALARMINFO_ARGMISMATCH",
+      "text": "prakriya alaarm jaanakaaree ko vibhaajit karate samay, vibhaajan maan 4 ke bajaay {0} hai."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_ATTACH_INVALIDURL",
+      "text": "url {0} amaany hai"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_GEO_ARGMISMATCH",
+      "text": "bhoogol ko vibhaajit karate samay, vibhaajan maan 2 ke bajaay {0} hai."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_GEO_INVALIDLAT",
+      "text": "amaany akshaansh {0}"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_GEO_INVALIDLONG",
+      "text": "amaany deshaantar {0}"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_NOSPLIT",
+      "text": "sthiti sankhya aur sthiti vivaran aur sambhavatah, baaharee deta jodee ke beech vibhaajit karane ke lie koee ardhaviraam nahin hai."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_NOSPLITCODES",
+      "text": "do ya teen sthiti kod ko vibhaajit karane ke lie koee bindu nahin hai."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_ARGMISMATCH",
+      "text": "vibhaajan ke baad, 2 ya 3 ke bajaay {0} aaitam mile."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_INVALIDNUM",
+      "text": "sthiti ek sankhya nahin hai."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_ENUMTYPENOTFOUND",
+      "text": "{0} ke lie ganana prakaar nahin mila"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_ENUMTYPEUNDETERMINABLE_DELETE",
+      "text": "bhaag ko hataane ke lie ganana prakaar nirdhaarit nahin kiya ja sakata."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_ENUMTYPEUNDETERMINABLE_ADD",
+      "text": "bhaag jodane ke lie ganana prakaar nirdhaarit nahin kiya ja sakata."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_CANTADDCARDINALITY_PARTS",
+      "text": "bhaag saranee {0} nahin joda ja sakata, kyonki kaardinailitee {1} hai."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_CANTADDCARDINALITY_STRING",
+      "text": "string {0} nahin joda ja sakata, kyonki kaardinailitee {1} hai."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_CANTADDCARDINALITY_INTEGER",
+      "text": "poornaank {0} nahin joda ja sakata, kyonki kaardinailitee {1} hai."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_ROOT",
+      "text": "mool mein nimnalikhit kunjiyaan [{0}] aavashyak hain. [{1}] mila."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_EVENT",
+      "text": "ghatana niroopan mein nimnalikhit kunjiyaan [{0}] aavashyak hain. [{1}] mila."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_DATEENDCONFLICT_EVENT",
+      "text": "tithi samaapti aur avadhi sangharsh paaya gaya."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TODO",
+      "text": "toodoo niroopan mein nimnalikhit kunjiyaan [{0}] aavashyak hain. [{1}] mila."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_DUEDATECONFLICT_TODO",
+      "text": "niyat tithi aur avadhi sangharsh paaya gaya."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NODATESTARTDURATION_TODO",
+      "text": "avadhi mein jodane ke lie koee tithi praarambh nahin hai."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_JOURNAL",
+      "text": "jarnal niroopan mein nimnalikhit kunjiyaan [{0}] aavashyak hain. [{1}] mila."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_FREEBUSY",
+      "text": "phreebizee niroopan mein nimnalikhit kunjiyaan [{0}] aavashyak hain. [{1}] mila."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TIMEZONE",
+      "text": "samayakshetr niroopan mein nimnalikhit kunjiyaan [{0}] aavashyak hain. [{1}] mila."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSCOMPONENTS_TIMEZONE",
+      "text": "maanak/delait ghatakon mein se ek kee aavashyakata hai."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TIMEZONE_STANDARD",
+      "text": "maanak pratinidhitv mein nimnalikhit kunjiyaan [{0}] aavashyak hain. [{1}] mila."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TIMEZONE_DAYLIGHT",
+      "text": "delait pratinidhitv mein nimnalikhit kunjiyaan [{0}] aavashyak hain. [{1}] mila."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_PERCENTCOMPLETION",
+      "text": "pratishat poornata shoony se kam ya 100 se adhik nahin ho sakatee"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_PRIORITY",
+      "text": "praathamikata shoony se kam ya 9 se adhik nahin ho sakatee"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_MEMBERINVCARD",
+      "text": "vchards mein maimbair gun hone kee manaahee hai."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_INVALIDBASETYPE",
+      "text": "aadhaar prakaar {0} [{1}] nahin hai aur bhaag prakaar [{2}] hai jo kailendar bhaag ka pratinidhitv nahin karata hai."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_PARTSTYPEMISMATCH",
+      "text": "bhaag saranee ganana [{0}] prakaar {2} ke anusaar apekshit ek [{1}] se bhinn hai."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_INVALIDVERSION",
+      "text": "amaany vchalaindar sanskaran {0} nirdisht kiya gaya hai. samarthit sanskaran 1.0 aur 2.0 hain."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARV2COMPONENTS_INVALIDVERSION",
+      "text": "amaany vchalaindar sanskaran {0} nirdisht kiya gaya hai. samarthit sanskaran 2.0 hai."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_ROOT",
+      "text": "alaarm niroopan mein nimnalikhit kunjiyaan [{0}] aavashyak hain. [{1}] mila."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_AUDIO",
+      "text": "odiyo alaarm niroopan mein nimnalikhit kunjiyaan [{0}] aavashyak hain. [{1}] mila."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_DISPLAY",
+      "text": "disple alaarm niroopan mein nimnalikhit kunjiyaan [{0}] aavashyak hain. [{1}] mila."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_MAIL",
+      "text": "mel alaarm niroopan mein nimnalikhit kunjiyaan [{0}] aavashyak hain. [{1}] mila."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_REPEATED",
+      "text": "baar-baar alaarm niroopan mein nimnalikhit kunjiyaan [{0}] aavashyak hain. [{1}] mila."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_TOOLS_EXCEPTION_INVALIDVCALENDAR",
+      "text": "yah ek maany vchalaindar fail nahin hai."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_TOOLS_EXCEPTION_INVALIDVCALENDARVERSION",
+      "text": "is kailendar mein ek amaany vchalaindar sanskaran {0} hai."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_TOOLS_EXCEPTION_ENDEDPREMATURELY",
+      "text": "kailendar samaapti taig ke bina samay se pahale samaapt ho gaya"
+    }
+  ]
+}

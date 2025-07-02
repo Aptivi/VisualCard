@@ -1,0 +1,283 @@
+{
+  "lang": "spa",
+  "name": "Spanish",
+  "cultures": [
+    "es",
+    "es-419",
+    "es-AR",
+    "es-BO",
+    "es-BR",
+    "es-BZ",
+    "es-CL",
+    "es-CO",
+    "es-CR",
+    "es-CU",
+    "es-DO",
+    "es-EC",
+    "es-ES",
+    "es-GQ",
+    "es-GT",
+    "es-HN",
+    "es-MX",
+    "es-NI",
+    "es-PA",
+    "es-PE",
+    "es-PH",
+    "es-PR",
+    "es-PY",
+    "es-SV",
+    "es-US",
+    "es-UY",
+    "es-VE"
+  ],
+  "locs": [
+    {
+      "loc": "VISUALCARD_CALENDAR_EXCEPTION_GENERALCALENDARPARSEERROR",
+      "text": "Error general de análisis del calendario."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR",
+      "text": "Se produjo un error al analizar el calendario de VCalendar."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR_ERROR",
+      "text": "Error:"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR_LINE",
+      "text": "Línea:"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR_LINENUM",
+      "text": "Número de línea:"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_CALENDARCONTENTEMPTY",
+      "text": "El contenido del calendario está vacío."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_ENDINGMISMATCH",
+      "text": "Discrepancia final: Se esperaba {0} frente a {1} real."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_PARTTYPEUNSUPPORTED",
+      "text": "El tipo de información de la pieza {0} no admite el tipo de propiedad {1} porque se admiten los siguientes tipos: [{2}]"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_VALUEDISALLOWED",
+      "text": "El valor {0} no está en la lista de valores permitidos [{1}]"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_INVALIDTYPE",
+      "text": "El tipo {0} no es válido. ¿Está seguro de haber especificado el tipo correcto en su representación de vCalendar?"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_INVALIDTYPE2",
+      "text": "Tipo {0} no válido."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_INCOMPATIBLENESTEDTYPES",
+      "text": "No se puede colocar {0} dentro de {1}."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_STRENUMNOTVALID",
+      "text": "La enumeración de cadena {0} no está implementada."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_INTENUMNOTVALID",
+      "text": "La enumeración de enteros {0} no está implementada."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_TYPENEEDED",
+      "text": "No se proporciona el tipo."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_AUDIOALARMINFO_ARGMISMATCH",
+      "text": "Al dividir la información de alarma de audio, el valor de división es {0} en lugar de 4."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_AUDIOALARMINFO_REPEATTIMES",
+      "text": "Tiempos de repetición no válidos."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_DAYLIGHTINFO_ARGMISMATCH",
+      "text": "Al dividir la información de luz diurna, el valor de división es {0} en lugar de 6."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_DISPLAYALARMINFO_ARGMISMATCH",
+      "text": "Al dividir la información de alarma de pantalla, el valor de división es {0} en lugar de 4."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_MAILALARMINFO_ARGMISMATCH",
+      "text": "Al dividir la información de alarma de correo, el valor de división es {0} en lugar de 5."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_PROCEDUREALARMINFO_ARGMISMATCH",
+      "text": "Al dividir la información de alarma de procedimiento, el valor de división es {0} en lugar de 4."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_ATTACH_INVALIDURL",
+      "text": "La URL {0} no es válida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_GEO_ARGMISMATCH",
+      "text": "Al dividir la geografía, el valor de división es {0} en lugar de 2."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_GEO_INVALIDLAT",
+      "text": "Latitud {0} no válida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_GEO_INVALIDLONG",
+      "text": "Longitud {0} no válida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_NOSPLIT",
+      "text": "No hay punto y coma para separar el número de estado, la descripción del estado y, posiblemente, el par de datos externos."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_NOSPLITCODES",
+      "text": "No hay punto para separar dos o tres códigos de estado."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_ARGMISMATCH",
+      "text": "Después de la división, se obtuvieron {0} elementos en lugar de 2 o 3."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_INVALIDNUM",
+      "text": "El estado no es un número."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_ENUMTYPENOTFOUND",
+      "text": "No se encuentra el tipo de enumeración para {0}."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_ENUMTYPEUNDETERMINABLE_DELETE",
+      "text": "No se puede determinar el tipo de enumeración para eliminar parte."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_ENUMTYPEUNDETERMINABLE_ADD",
+      "text": "No se puede determinar el tipo de enumeración para agregar la parte."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_CANTADDCARDINALITY_PARTS",
+      "text": "No se puede agregar la matriz {0} porque la cardinalidad es {1}."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_CANTADDCARDINALITY_STRING",
+      "text": "No se puede agregar la cadena {0} porque la cardinalidad es {1}."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_CANTADDCARDINALITY_INTEGER",
+      "text": "No se puede agregar el entero {0} porque la cardinalidad es {1}."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_ROOT",
+      "text": "Se requieren las siguientes claves [{0}] en la raíz. Se obtuvo [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_EVENT",
+      "text": "Se requieren las siguientes claves [{0}] en la representación del evento. Se obtuvo [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_DATEENDCONFLICT_EVENT",
+      "text": "Se encontró un conflicto entre la fecha de finalización y la duración."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TODO",
+      "text": "Se requieren las siguientes claves [{0}] en la representación de la tarea pendiente. Se obtuvo [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_DUEDATECONFLICT_TODO",
+      "text": "Se encontró un conflicto entre la fecha de vencimiento y la duración."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NODATESTARTDURATION_TODO",
+      "text": "No hay una fecha de inicio que agregar a la duración."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_JOURNAL",
+      "text": "Se requieren las siguientes claves [{0}] en la representación del diario. Se obtuvo [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_FREEBUSY",
+      "text": "Se requieren las siguientes claves [{0}] en la representación de la tarea libre y ocupada. Se obtuvo [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TIMEZONE",
+      "text": "Se requieren las siguientes claves [{0}] en la representación de la zona horaria. Se obtuvo [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSCOMPONENTS_TIMEZONE",
+      "text": "Se requiere uno de los componentes estándar/diurno."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TIMEZONE_STANDARD",
+      "text": "Las siguientes claves [{0}] son ​​obligatorias en la representación estándar. Obtenido [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TIMEZONE_DAYLIGHT",
+      "text": "Las siguientes claves [{0}] son ​​obligatorias en la representación diurna. Obtenido [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_PERCENTCOMPLETION",
+      "text": "El porcentaje de finalización no puede ser menor que cero ni mayor que 100."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_PRIORITY",
+      "text": "La prioridad no puede ser menor que cero ni mayor que 9."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_MEMBERINVCARD",
+      "text": "Las vCards tienen prohibido tener propiedades MEMBER."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_INVALIDBASETYPE",
+      "text": "El tipo base no es {0} [{1}] y el tipo de parte es [{2}], que no representa una parte del calendario."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_PARTSTYPEMISMATCH",
+      "text": "La enumeración de la matriz de partes [{0}] es diferente de la esperada [{1}] según el tipo {2}."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_INVALIDVERSION",
+      "text": "La versión de vCalendar {0} especificada no es válida. Las versiones compatibles son 1.0 y 2.0."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARV2COMPONENTS_INVALIDVERSION",
+      "text": "La versión de vCalendar {0} especificada no es válida. La versión compatible es 2.0."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_ROOT",
+      "text": "Las siguientes claves [{0}] son ​​obligatorias en la representación de la alarma. Obtenido [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_AUDIO",
+      "text": "Las siguientes claves [{0}] son ​​necesarias para la representación de la alarma de audio. Obtenido [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_DISPLAY",
+      "text": "Las siguientes claves [{0}] son ​​necesarias para la representación de la alarma de visualización. Obtenido [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_MAIL",
+      "text": "Las siguientes claves [{0}] son ​​necesarias para la representación de la alarma de correo. Obtenido [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_REPEATED",
+      "text": "Las siguientes claves [{0}] son ​​necesarias para la representación de la alarma repetida. Obtenido [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_TOOLS_EXCEPTION_INVALIDVCALENDAR",
+      "text": "Este archivo vCalendar no es válido."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_TOOLS_EXCEPTION_INVALIDVCALENDARVERSION",
+      "text": "Este calendario tiene una versión de vCalendar {0} no válida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_TOOLS_EXCEPTION_ENDEDPREMATURELY",
+      "text": "El calendario finalizó prematuramente sin la etiqueta de cierre."
+    }
+  ]
+}

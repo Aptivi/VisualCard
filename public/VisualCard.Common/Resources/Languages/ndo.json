@@ -1,0 +1,318 @@
+{
+  "lang": "ndo",
+  "name": "Indonesian",
+  "cultures": [
+    "id",
+    "id-ID"
+  ],
+  "locs": [
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_ARGS_EXCEPTION_NEEDSARGDELIM",
+      "text": "Baris tersebut harus berisi pemisah argumen."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_COMMON_EXCEPTION_NORULE",
+      "text": "Tidak ada aturan."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_TOOSHORT",
+      "text": "Aturan harus memiliki setidaknya 2 huruf agar bermakna."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDDURATION",
+      "text": "Durasi tidak valid dalam penunjuk:"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDTIME",
+      "text": "Waktu tidak valid {0}"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDDAYOFWEEK",
+      "text": "Hari tidak valid {0}"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYPOS_ARGMISMATCH",
+      "text": "Setelah penyaringan, alih-alih dua karakter, yang didapat adalah {0}"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYPOS_OCCURRENCENUMNOTNUMERIC",
+      "text": "Nomor kejadian bukan angka [1-5]"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYPOS_OCCURRENCENUMOUTOFRANGE",
+      "text": "Nomor kejadian di luar rentang [1-5]"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYPOS_OCCURRENCESIGNINCORRECT",
+      "text": "Tanda kejadian salah"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYDAY_ARGMISMATCH",
+      "text": "Setelah penyaringan, didapat {0} yang panjangnya bukan 1, 2, atau 3 karakter"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYDAY_DAYNUMNOTNUMERIC",
+      "text": "Nomor hari bukan angka [1-31]"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYDAY_DAYNUMOUTOFRANGE",
+      "text": "Nomor hari di luar rentang [1-31]"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYDAY_DAYSIGNINCORRECT",
+      "text": "Tanda nomor hari salah"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYMONTH_ARGMISMATCH",
+      "text": "Setelah penyaringan, didapat {0} yang panjangnya bukan 1 atau 2 karakter"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYMONTH_MONTHNUMNOTNUMERIC",
+      "text": "Nomor bulan bukan angka [1-12]"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYMONTH_MONTHNUMOUTOFRANGE",
+      "text": "Nomor bulan di luar rentang [1-12]"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYDAY_DAYNUMNOTNUMERIC",
+      "text": "Nomor hari tahunan bukan angka [1-366]"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYDAY_DAYNUMOUTOFRANGE",
+      "text": "Nomor hari tahunan di luar rentang [1-366]"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDFREQUENCY",
+      "text": "Frekuensi tidak valid dalam penunjuk frekuensi:"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDFREQUENCYINTERVAL",
+      "text": "Interval tidak valid dalam frekuensi penunjuk:"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_MISSINGEQUALS",
+      "text": "Bagian aturan memerlukan tanda sama dengan."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_KEYEXISTS",
+      "text": "Tombol {0} sudah ada."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_UNTILCOUNT",
+      "text": "Tombol UNTIL dan COUNT tidak dapat berdampingan."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDFREQUENCY",
+      "text": "Frekuensi {0} tidak valid."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDDURATION",
+      "text": "Durasi {0} tidak valid."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDINTERVAL",
+      "text": "Interval {0} tidak valid."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDSECONDS",
+      "text": "Detik {0} tidak valid."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_SECONDSOUTOFRANGE",
+      "text": "Detik {0} berada di luar rentang [0-60]."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDMINUTES",
+      "text": "Menit {0} tidak valid."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_MINUTESOUTOFRANGE",
+      "text": "Menit {0} berada di luar rentang [0-59]."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDHOURS",
+      "text": "Jam {0} tidak valid."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_HOURSOUTOFRANGE",
+      "text": "Jam {0} berada di luar rentang [0-23]."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_BYDAYNOTANUMBER",
+      "text": "Bukan angka {0} setelah tanda {1}"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKNUMNOTNUMERIC",
+      "text": "Bukan angka minggu."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKNUMOUTOFRANGE",
+      "text": "Angka minggu {0} berada di luar rentang [1-53]."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKDAYARGMISMATCH",
+      "text": "Hari dalam seminggu harus memiliki tepat 2 karakter."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKDAYNOTWEEKDAY",
+      "text": "Bukan hari dalam seminggu."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_DAYOFMONTHNOTNUMERIC",
+      "text": "Bukan angka hari dalam sebulan."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_DAYOFMONTHOUTOFRANGE",
+      "text": "Tanggal dalam sebulan {0} berada di luar rentang [1-31]."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_DAYOFYEARNOTNUMERIC",
+      "text": "Bukan nomor hari dalam setahun."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_DAYOFYEAROUTOFRANGE",
+      "text": "Hari dalam setahun {0} berada di luar rentang [1-366]."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_MONTHNUMNOTNUMERIC",
+      "text": "Bukan nomor bulan."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_MONTHNUMOUTOFRANGE",
+      "text": "Nomor bulan {0} berada di luar rentang [1-12]."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_POSNUMNOTNUMERIC",
+      "text": "Bukan nomor posisi."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_POSNUMOUTOFRANGE",
+      "text": "Posisi {0} berada di luar rentang [1-366]."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDKEYNAME",
+      "text": "Bukan nama kunci yang valid."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_UTCOFFSETNEEDED",
+      "text": "Representasi offset UTC tidak disediakan."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_UTCOFFSETDESIGNATORINVALID",
+      "text": "Penunjuk {0} tidak valid."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_UTCOFFSETPARSEFAILED",
+      "text": "Tidak dapat mengurai offset:"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONNEEDED",
+      "text": "Durasi tidak disediakan"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONINVALID",
+      "text": "Durasi tidak valid:"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONDIGITSINVALID",
+      "text": "Digit bukan numerik:"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONYEARDISABLED",
+      "text": "Penentu tahun dinonaktifkan di vCalendar 2.0."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONMONTHDISABLED",
+      "text": "Penentu bulan dinonaktifkan di vCalendar 2.0."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONTYPEINVALID",
+      "text": "Tipe tidak valid:"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_TIMEPERIODNEEDED",
+      "text": "Periode waktu tidak ditentukan"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_TIMEPERIODSPLIT",
+      "text": "Setelah pemisahan, diperoleh {0} alih-alih 2:"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_TIMEPERIODSTARTDATEINVALID",
+      "text": "Tanggal mulai tidak valid:"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_TYPENEEDSTYPESPECIFIER",
+      "text": "Tipe harus diawali dengan TYPE="
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_BLOBISURL",
+      "text": "Berisi URL yang valid; Anda harus mengambil URL tersebut secara manual dan mengonversi respons ke aliran."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_BLOBNODATA",
+      "text": "Tidak ada data yang dikodekan."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_BLOBUNDETERMINABLE",
+      "text": "Bukan blob. Anda harus menanganinya dengan cara tertentu."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DATENEEDED",
+      "text": "Representasi tanggal tidak disediakan."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DATEPARSEFAILED",
+      "text": "Tidak dapat mengurai tanggal:"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_URL",
+      "text": "URL {0} tidak valid"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_DATE",
+      "text": "Tanggal {0} tidak valid"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_TIME",
+      "text": "Waktu {0} tidak valid"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_DATETIME",
+      "text": "Tanggal dan waktu {0} tidak valid"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_DATETIMESELECT",
+      "text": "Tanggal dan/atau waktu {0} tidak valid"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_TIMESTAMP",
+      "text": "Stempel waktu {0} tidak valid"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_BOOLEAN",
+      "text": "Boolean {0} tidak valid"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_INTEGER",
+      "text": "Integer {0} tidak valid"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_FLOAT",
+      "text": "Float {0} dalam {1} tidak valid"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_STRVALUEINVALID",
+      "text": "Nilai string {0} untuk {1} tidak valid."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_BASETYPEINVALID",
+      "text": "Tipe dasar bukan {0} [{1}] dan tipe komponen adalah [{2}] yang tidak mewakili komponen."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_STARTLATERTHANEND",
+      "text": "Tanggal mulai tidak boleh lebih lama dari tanggal berakhir"
+    }
+  ]
+}

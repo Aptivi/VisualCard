@@ -1,4 +1,4 @@
-﻿//
+//
 // VisualCard  Copyright (C) 2021-2025  Aptivi
 //
 // This file is part of VisualCard
@@ -20,6 +20,7 @@
 using System;
 using System.Diagnostics;
 using Textify.General;
+using VisualCard.Calendar.Languages;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parts;
 
@@ -52,11 +53,11 @@ namespace VisualCard.Calendar.Parts.Implementations
             // Get the value
             string[] _geoSplit = value.Split(calendarVersion.Major == 1 ? ',' : ';');
             if (_geoSplit.Length != 2)
-                throw new ArgumentException("When splitting geography, the split value is {0} instead of 2.".FormatString(_geoSplit.Length));
+                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_GEO_ARGMISMATCH").FormatString(_geoSplit.Length));
             if (!double.TryParse(_geoSplit[0], out double lat))
-                throw new ArgumentException("Invalid latitude {0}".FormatString(_geoSplit[0]));
+                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_GEO_INVALIDLAT").FormatString(_geoSplit[0]));
             if (!double.TryParse(_geoSplit[1], out double lon))
-                throw new ArgumentException("Invalid longitude {0}".FormatString(_geoSplit[1]));
+                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_GEO_INVALIDLONG").FormatString(_geoSplit[1]));
 
             // Populate the fields
             GeoInfo _geo = new(property, elementTypes, lat, lon);

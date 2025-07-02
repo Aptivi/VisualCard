@@ -1,4 +1,4 @@
-﻿//
+//
 // VisualCard  Copyright (C) 2021-2025  Aptivi
 //
 // This file is part of VisualCard
@@ -25,6 +25,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Textify.General;
+using VisualCard.Calendar.Languages;
 using VisualCard.Calendar.Parsers;
 using VisualCard.Calendar.Parts.Comparers;
 using VisualCard.Calendar.Parts.Enums;
@@ -263,7 +264,7 @@ namespace VisualCard.Calendar.Parts
             string prefix = VCalendarParserTools.GetPrefixFromPartsArrayEnum((CalendarPartsArrayEnum)key);
             var partType = VCalendarParserTools.GetPartType(prefix, CalendarVersion, typeof(Calendar));
             if (partType.enumType is null)
-                throw new ArgumentException("Enumeration type is not found for {0}".FormatString(key));
+                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_ENUMTYPENOTFOUND").FormatString(key));
             return GetExtraPartsArray(partType.enumType, key);
         }
 
@@ -344,7 +345,7 @@ namespace VisualCard.Calendar.Parts
             string prefix = VCalendarParserTools.GetPrefixFromPartsArrayEnum(key);
             var partType = VCalendarParserTools.GetPartType(prefix, CalendarVersion, typeof(Calendar));
             if (partType.enumType is null)
-                throw new ArgumentException("Enumeration type is not found for {0}".FormatString(key));
+                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_ENUMTYPENOTFOUND").FormatString(key));
             return GetPartsArray(partType.enumType, key);
         }
 
@@ -778,7 +779,7 @@ namespace VisualCard.Calendar.Parts
             string prefix = VCalendarParserTools.GetPrefixFromPartsArrayEnum(partsArrayEnum);
             var type = VCalendarParserTools.GetPartType(prefix, CalendarVersion, GetType());
             var partType = type.enumType ??
-                throw new ArgumentException("Can't determine enumeration type to delete part.");
+                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_ENUMTYPEUNDETERMINABLE_DELETE"));
 
             // Remove the string value
             return DeletePartsArray(partsArrayEnum, partType, idx);
@@ -851,7 +852,7 @@ namespace VisualCard.Calendar.Parts
             string prefix = VCalendarParserTools.GetPrefixFromPartsArrayEnum((CalendarPartsArrayEnum)partsArrayEnum);
             var type = VCalendarParserTools.GetPartType(prefix, CalendarVersion, GetType());
             var partType = type.enumType ??
-                throw new ArgumentException("Can't determine enumeration type to delete part.");
+                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_ENUMTYPEUNDETERMINABLE_DELETE"));
 
             // Remove the string value
             return DeleteExtraPartsArray(partsArrayEnum, partType, idx);
@@ -988,7 +989,7 @@ namespace VisualCard.Calendar.Parts
             string prefix = VCalendarParserTools.GetPrefixFromPartsArrayEnum(key);
             var type = VCalendarParserTools.GetPartType(prefix, CalendarVersion, GetType());
             var partType = type.enumType ??
-                throw new ArgumentException("Can't determine enumeration type to add part.");
+                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_ENUMTYPEUNDETERMINABLE_ADD"));
 
             // Now, add the part
             AddPartToArray(key, partType, rawValue, group, extraPrefix, args);
@@ -1043,7 +1044,7 @@ namespace VisualCard.Calendar.Parts
                 cardinality == PartCardinality.MayBeOne;
             LoggingTools.Debug("Checking cardinality {0} [{1}]", cardinality, onlyOne);
             if (onlyOne && partsArray[key].Count > 0)
-                throw new InvalidOperationException("Can't add part array {0}, because cardinality is {1}.".FormatString(key, cardinality));
+                throw new InvalidOperationException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_CANTADDCARDINALITY_PARTS").FormatString(key, cardinality));
 
             // Add this value info!
             LoggingTools.Debug("Adding value to storage: {0}", key);
@@ -1076,7 +1077,7 @@ namespace VisualCard.Calendar.Parts
                 cardinality == PartCardinality.MayBeOne;
             LoggingTools.Debug("Checking cardinality {0} [{1}]", cardinality, onlyOne);
             if (onlyOne && extraParts[key].Count > 0)
-                throw new InvalidOperationException("Can't add part array {0}, because cardinality is {1}.".FormatString(key, cardinality));
+                throw new InvalidOperationException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_CANTADDCARDINALITY_PARTS").FormatString(key, cardinality));
 
             // Add this value info!
             LoggingTools.Debug("Adding value to storage: {0}", key);
@@ -1123,7 +1124,7 @@ namespace VisualCard.Calendar.Parts
                 cardinality == PartCardinality.MayBeOne;
             LoggingTools.Debug("Checking cardinality {0} [{1}]", cardinality, onlyOne);
             if (onlyOne && strings[key].Count > 0)
-                throw new InvalidOperationException("Can't add string {0}, because cardinality is {1}.".FormatString(key, cardinality));
+                throw new InvalidOperationException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_CANTADDCARDINALITY_STRING").FormatString(key, cardinality));
 
             // Add this value info!
             LoggingTools.Debug("Adding value to storage: {0}", key);
@@ -1170,7 +1171,7 @@ namespace VisualCard.Calendar.Parts
                 cardinality == PartCardinality.MayBeOne;
             LoggingTools.Debug("Checking cardinality {0} [{1}]", cardinality, onlyOne);
             if (onlyOne && integers[key].Count > 0)
-                throw new InvalidOperationException("Can't add integer {0}, because cardinality is {1}.".FormatString(key, cardinality));
+                throw new InvalidOperationException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_CANTADDCARDINALITY_INTEGER").FormatString(key, cardinality));
 
             // Add this value info!
             LoggingTools.Debug("Adding value to storage: {0}", key);
@@ -1188,7 +1189,7 @@ namespace VisualCard.Calendar.Parts
                 CalendarVersion.Major == 2 ? [VCalendarConstants._productIdSpecifier] : [];
             LoggingTools.Debug("Expected fields: {0} [{1}]", expectedFields.Length, string.Join(", ", expectedFields));
             if (!ValidateComponent(ref expectedFields, out string[] actualFields, this))
-                throw new InvalidDataException("The following keys [{0}] are required in the root. Got [{1}].".FormatString(string.Join(", ", expectedFields), string.Join(", ", actualFields)));
+                throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_ROOT").FormatString(string.Join(", ", expectedFields), string.Join(", ", actualFields)));
 
             // Now, track the individual components starting from events
             string[] expectedEventFields =
@@ -1204,7 +1205,7 @@ namespace VisualCard.Calendar.Parts
             foreach (var eventInfo in events)
             {
                 if (!ValidateComponent(ref expectedEventFields, out string[] actualEventFields, eventInfo))
-                    throw new InvalidDataException("The following keys [{0}] are required in the event representation. Got [{1}].".FormatString(string.Join(", ", expectedEventFields), string.Join(", ", actualEventFields)));
+                    throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_EVENT").FormatString(string.Join(", ", expectedEventFields), string.Join(", ", actualEventFields)));
                 foreach (var alarmInfo in eventInfo.Alarms)
                     alarmInfo.ValidateAlarm();
 
@@ -1214,7 +1215,7 @@ namespace VisualCard.Calendar.Parts
                 {
                     LoggingTools.Debug("Checking priority value: {0}", priority.Value);
                     if (priority.Value < 0 || priority.Value > 9)
-                        throw new ArgumentOutOfRangeException(nameof(CalendarIntegersEnum.Priority), priority.Value, "Priority may not be less than zero or greater than 9");
+                        throw new ArgumentOutOfRangeException(nameof(CalendarIntegersEnum.Priority), priority.Value, LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_PRIORITY"));
                 }
 
                 // Check for conflicts
@@ -1222,12 +1223,12 @@ namespace VisualCard.Calendar.Parts
                 var durations = eventInfo.GetString(CalendarStringsEnum.Duration);
                 LoggingTools.Debug("dtends: {0}, durations: {1}", dtends.Length, durations.Length);
                 if (dtends.Length > 0 && durations.Length > 0)
-                    throw new InvalidDataException("Date end and duration conflict found.");
+                    throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_DATEENDCONFLICT_EVENT"));
             }
             foreach (var todoInfo in Todos)
             {
                 if (!ValidateComponent(ref expectedTodoFields, out string[] actualTodoFields, todoInfo))
-                    throw new InvalidDataException("The following keys [{0}] are required in the todo representation. Got [{1}].".FormatString(string.Join(", ", expectedTodoFields), string.Join(", ", actualTodoFields)));
+                    throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TODO").FormatString(string.Join(", ", expectedTodoFields), string.Join(", ", actualTodoFields)));
                 foreach (var alarmInfo in todoInfo.Alarms)
                     alarmInfo.ValidateAlarm();
 
@@ -1237,7 +1238,7 @@ namespace VisualCard.Calendar.Parts
                 {
                     LoggingTools.Debug("Checking percent value: {0}", percentage.Value);
                     if (percentage.Value < 0 || percentage.Value > 100)
-                        throw new ArgumentOutOfRangeException(nameof(CalendarIntegersEnum.PercentComplete), percentage.Value, "Percent completion may not be less than zero or greater than 100");
+                        throw new ArgumentOutOfRangeException(nameof(CalendarIntegersEnum.PercentComplete), percentage.Value, LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_PERCENTCOMPLETION"));
                 }
 
                 // Check the priority
@@ -1246,7 +1247,7 @@ namespace VisualCard.Calendar.Parts
                 {
                     LoggingTools.Debug("Checking priority value: {0}", priority.Value);
                     if (priority.Value < 0 || priority.Value > 9)
-                        throw new ArgumentOutOfRangeException(nameof(CalendarIntegersEnum.Priority), priority.Value, "Priority may not be less than zero or greater than 9");
+                        throw new ArgumentOutOfRangeException(nameof(CalendarIntegersEnum.Priority), priority.Value, LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_PRIORITY"));
                 }
 
                 // Check for conflicts
@@ -1255,9 +1256,9 @@ namespace VisualCard.Calendar.Parts
                 var durations = todoInfo.GetString(CalendarStringsEnum.Duration);
                 LoggingTools.Debug("dtstarts: {0}, dues: {1}, durations: {2}", dtstarts.Length, dues.Length, durations.Length);
                 if (dues.Length > 0 && durations.Length > 0)
-                    throw new InvalidDataException("Due date and duration conflict found.");
+                    throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_DUEDATECONFLICT_TODO"));
                 if (durations.Length > 0 && dtstarts.Length == 0)
-                    throw new InvalidDataException("There is no date start to add to the duration.");
+                    throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NODATESTARTDURATION_TODO"));
             }
 
             // Continue if we have a calendar with version 2.0
@@ -1276,33 +1277,33 @@ namespace VisualCard.Calendar.Parts
             foreach (var journalInfo in Journals)
             {
                 if (!ValidateComponent(ref expectedJournalFields, out string[] actualJournalFields, journalInfo))
-                    throw new InvalidDataException("The following keys [{0}] are required in the journal representation. Got [{1}].".FormatString(string.Join(", ", expectedJournalFields), string.Join(", ", actualJournalFields)));
+                    throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_JOURNAL").FormatString(string.Join(", ", expectedJournalFields), string.Join(", ", actualJournalFields)));
             }
             foreach (var freebusyInfo in FreeBusyList)
             {
                 if (!ValidateComponent(ref expectedFreeBusyFields, out string[] actualFreeBusyFields, freebusyInfo))
-                    throw new InvalidDataException("The following keys [{0}] are required in the freebusy representation. Got [{1}].".FormatString(string.Join(", ", expectedFreeBusyFields), string.Join(", ", actualFreeBusyFields)));
+                    throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_FREEBUSY").FormatString(string.Join(", ", expectedFreeBusyFields), string.Join(", ", actualFreeBusyFields)));
             }
             foreach (var timezoneInfo in TimeZones)
             {
                 if (!ValidateComponent(ref expectedTimeZoneFields, out string[] actualTimeZoneFields, timezoneInfo))
-                    throw new InvalidDataException("The following keys [{0}] are required in the timezone representation. Got [{1}].".FormatString(string.Join(", ", expectedTimeZoneFields), string.Join(", ", actualTimeZoneFields)));
+                    throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TIMEZONE").FormatString(string.Join(", ", expectedTimeZoneFields), string.Join(", ", actualTimeZoneFields)));
 
                 // Check for standard and/or daylight
                 LoggingTools.Debug("st: {0}, dl: {1}", timezoneInfo.StandardTimeList.Length, timezoneInfo.DaylightTimeList.Length);
                 if (timezoneInfo.StandardTimeList.Length == 0 && timezoneInfo.DaylightTimeList.Length == 0)
-                    throw new InvalidDataException("One of the standard/daylight components is required.");
+                    throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSCOMPONENTS_TIMEZONE"));
 
                 // Verify the standard and/or daylight components
                 foreach (var standardInfo in timezoneInfo.StandardTimeList)
                 {
                     if (!ValidateComponent(ref expectedStandardFields, out string[] actualStandardFields, standardInfo))
-                        throw new InvalidDataException("The following keys [{0}] are required in the standard representation. Got [{1}].".FormatString(string.Join(", ", expectedStandardFields), string.Join(", ", actualStandardFields)));
+                        throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TIMEZONE_STANDARD").FormatString(string.Join(", ", expectedStandardFields), string.Join(", ", actualStandardFields)));
                 }
                 foreach (var daylightInfo in timezoneInfo.DaylightTimeList)
                 {
                     if (!ValidateComponent(ref expectedDaylightFields, out string[] actualDaylightFields, daylightInfo))
-                        throw new InvalidDataException("The following keys [{0}] are required in the daylight representation. Got [{1}].".FormatString(string.Join(", ", expectedDaylightFields), string.Join(", ", actualDaylightFields)));
+                        throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TIMEZONE_DAYLIGHT").FormatString(string.Join(", ", expectedDaylightFields), string.Join(", ", actualDaylightFields)));
                 }
             }
         }
@@ -1365,7 +1366,7 @@ namespace VisualCard.Calendar.Parts
         {
             // Check the base type
             if (partType.BaseType != typeof(BaseCalendarPartInfo) && partType != typeof(BaseCalendarPartInfo))
-                throw new InvalidOperationException("Base type is not {0} [{1}] and the part type is [{2}] that doesn't represent calendar part.".FormatString(nameof(BaseCalendarPartInfo), partType.BaseType.Name, partType.Name));
+                throw new InvalidOperationException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_INVALIDBASETYPE").FormatString(nameof(BaseCalendarPartInfo), partType.BaseType.Name, partType.Name));
         }
 
         internal void VerifyPartsArrayType(CalendarPartsArrayEnum key, Type partType, Type componentType)
@@ -1387,7 +1388,7 @@ namespace VisualCard.Calendar.Parts
                 var partsArrayEnum = (CalendarPartsArrayEnum)type.enumeration;
                 LoggingTools.Debug("Comparing {0} and {1}", key, partsArrayEnum);
                 if (key != partsArrayEnum)
-                    throw new InvalidOperationException("Parts array enumeration [{0}] is different from the expected one [{1}] according to type {2}.".FormatString(key, partsArrayEnum, partType.Name));
+                    throw new InvalidOperationException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_PARTSTYPEMISMATCH").FormatString(key, partsArrayEnum, partType.Name));
             }
         }
 
@@ -1476,7 +1477,7 @@ namespace VisualCard.Calendar.Parts
         public Calendar(Version version)
         {
             if (!VCalendarParserTools.VerifySupportedVersion(version))
-                throw new ArgumentException("Invalid vCalendar version {0} specified. The supported versions are 1.0 and 2.0.".FormatString(version));
+                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_INVALIDVERSION").FormatString(version));
             this.version = version;
         }
     }

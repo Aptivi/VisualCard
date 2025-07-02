@@ -1,4 +1,4 @@
-﻿//
+//
 // VisualCard  Copyright (C) 2021-2025  Aptivi
 //
 // This file is part of VisualCard
@@ -27,6 +27,7 @@ using Textify.General;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parsers;
 using VisualCard.Common.Diagnostics;
+using VisualCard.Languages;
 
 namespace VisualCard
 {
@@ -175,7 +176,7 @@ namespace VisualCard
 
                 // All VCards must begin with BEGIN:VCARD
                 if (!prefix.EqualsNoCase(CommonConstants._beginSpecifier) && !value.EqualsNoCase(VcardConstants._objectVCardSpecifier) && !BeginSpotted)
-                    throw new InvalidDataException("This is not a valid vCard contact file.");
+                    throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_TOOLS_EXCEPTION_INVALIDVCARDCONTACT"));
                 else if (!BeginSpotted)
                 {
                     BeginSpotted = true;
@@ -193,7 +194,7 @@ namespace VisualCard
                     !value.EqualsNoCase("2.1") && !value.EqualsNoCase("3.0") &&
                     !value.EqualsNoCase("4.0") && !value.EqualsNoCase("5.0") &&
                     !VersionSpotted)
-                    throw new InvalidDataException("This card has an invalid VCard version {0}.".FormatString(CardLine));
+                    throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_TOOLS_EXCEPTION_INVALIDVCARDVERSION").FormatString(CardLine));
                 else if (!VersionSpotted && prefix.EqualsNoCase(CommonConstants._versionSpecifier))
                 {
                     VersionSpotted = true;
@@ -201,7 +202,7 @@ namespace VisualCard
                     
                     // Check to see if the vCard has VERSION directly after BEGIN:VCARD for 4.0 and 5.0
                     if (!versionDirect && (CardVersion.Major == 4 || CardVersion.Major == 5))
-                        throw new InvalidDataException("vCard {0}.0 requires that {1} comes directly after {2}.".FormatString(CardVersion.Major, CommonConstants._versionSpecifier, VcardConstants._beginText));
+                        throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_TOOLS_EXCEPTION_VERSIONNOTFIRST").FormatString(CardVersion.Major, CommonConstants._versionSpecifier, VcardConstants._beginText));
                     continue;
                 }
                 if (!VersionSpotted)
@@ -233,7 +234,7 @@ namespace VisualCard
 
             // Throw if the card ended prematurely
             if (!EndSpotted)
-                throw new InvalidDataException("Card ended prematurely without the ending tag");
+                throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_TOOLS_EXCEPTION_ENDEDPREMATURELY"));
 
             // Now, assuming that all cards and their parsers are valid, parse all of them
             foreach (var parser in FinalParsers)

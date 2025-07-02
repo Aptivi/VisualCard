@@ -1,4 +1,4 @@
-﻿//
+//
 // VisualCard  Copyright (C) 2021-2025  Aptivi
 //
 // This file is part of VisualCard
@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Textify.General;
+using VisualCard.Calendar.Languages;
 using VisualCard.Common.Parsers;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parts;
@@ -84,7 +85,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
             // Get the values
             string[] split = value.Split(';');
             if (split.Length != 5)
-                throw new ArgumentException("When splitting mail alarm information, the split value is {0} instead of 5.".FormatString(split.Length));
+                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_MAILALARMINFO_ARGMISMATCH").FormatString(split.Length));
             string unprocessedRunTime = split[0];
             string snoozeTime = split[1];
             string unprocessedRepeat = split[2];
@@ -95,7 +96,7 @@ namespace VisualCard.Calendar.Parts.Implementations.Legacy
             DateTimeOffset runTime = CommonTools.ParsePosixDateTime(unprocessedRunTime);
             int repeat = 0;
             if (!string.IsNullOrWhiteSpace(unprocessedRepeat) && !int.TryParse(unprocessedRepeat, out repeat))
-                throw new ArgumentException("Invalid repeat times");
+                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_AUDIOALARMINFO_REPEATTIMES"));
 
             // Populate the fields
             MailAlarmInfo info = new(property, elementTypes, runTime, snoozeTime, repeat, address, note);

@@ -1,4 +1,4 @@
-﻿//
+//
 // VisualCard  Copyright (C) 2021-2025  Aptivi
 //
 // This file is part of VisualCard
@@ -29,6 +29,7 @@ using VisualCard.Parts.Enums;
 using VisualCard.Common.Parts.Implementations;
 using VisualCard.Common.Parsers;
 using VisualCard.Common.Diagnostics;
+using VisualCard.Extras.Languages;
 
 namespace VisualCard.Extras.Converters
 {
@@ -65,12 +66,12 @@ namespace VisualCard.Extras.Converters
         {
             // Check to see if the MeCard string is valid
             if (string.IsNullOrWhiteSpace(meCardString))
-                throw new InvalidDataException("MeCard string should not be empty.");
+                throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_NEEDSMECARD"));
             LoggingTools.Info("Checking for prefix and suffix...");
             if (!meCardString.StartsWith(_meCardBegin) && !meCardString.EndsWith(_meCardEnd))
             {
                 LoggingTools.Error("MeCard didn't start with {0} and end with {1}", _meCardBegin, _meCardEnd);
-                throw new InvalidDataException("This string doesn't represent a valid MeCard contact.");
+                throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_MECARDINVALID"));
             }
 
             // Now, parse it.
@@ -172,7 +173,7 @@ namespace VisualCard.Extras.Converters
             catch (Exception ex)
             {
                 LoggingTools.Error(ex, "Can't parse the MeCard string {0}", meCardString);
-                throw new InvalidDataException("The MeCard contact string is not valid.", ex);
+                throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_MECARDPARSEFAILED"), ex);
             }
         }
 
@@ -186,7 +187,7 @@ namespace VisualCard.Extras.Converters
         {
             // Check the card for validity
             if (card is null)
-                throw new ArgumentNullException(nameof(card), "Card is not provided.");
+                throw new ArgumentNullException(nameof(card), LanguageTools.GetLocalized("VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_CARDNOTPROVIDED"));
 
             // Now, get all the values in the below order
             var names = card.GetPartsArray<NameInfo>();
@@ -216,7 +217,7 @@ namespace VisualCard.Extras.Converters
             if (!hasNames && !hasFullName)
             {
                 LoggingTools.Error("No name and full name to build MeCard. Throwing error...");
-                throw new InvalidDataException("Can't build a MeCard string from a vCard containing an empty name or an empty full name.");
+                throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_NEEDSNAMETOSAVE"));
             }
 
             // Add the types

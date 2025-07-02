@@ -1,0 +1,319 @@
+{
+  "lang": "iri",
+  "name": "Irish",
+  "cultures": [
+    "ga",
+    "ga-GB",
+    "ga-IE"
+  ],
+  "locs": [
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_ARGS_EXCEPTION_NEEDSARGDELIM",
+      "text": "Ní mór do theorannaitheoir argóinte a bheith sa líne."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_COMMON_EXCEPTION_NORULE",
+      "text": "Níl aon riail ann."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_TOOSHORT",
+      "text": "Ní mór 2 litir ar a laghad a bheith i rialacha le go mbeidh brí leo."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDDURATION",
+      "text": "Fad neamhbhailí san ainmneoir:"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDTIME",
+      "text": "Am neamhbhailí {0}"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDDAYOFWEEK",
+      "text": "Lá neamhbhailí na seachtaine {0}"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYPOS_ARGMISMATCH",
+      "text": "Tar éis scagtha, in ionad dhá charachtar, fuarthas {0}"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYPOS_OCCURRENCENUMNOTNUMERIC",
+      "text": "Ní uimhir [1-5] í an uimhir teagmhais"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYPOS_OCCURRENCENUMOUTOFRANGE",
+      "text": "Tá an uimhir teagmhais lasmuigh den raon [1-5]"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYPOS_OCCURRENCESIGNINCORRECT",
+      "text": "Tá an comhartha teagmhais mícheart"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYDAY_ARGMISMATCH",
+      "text": "Tar éis scagtha, fuarthas {0} nach bhfuil 1, 2, nó 3 charachtar ar fhad"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYDAY_DAYNUMNOTNUMERIC",
+      "text": "Ní uimhir [1-31] ​​í an uimhir lae"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYDAY_DAYNUMOUTOFRANGE",
+      "text": "Tá an uimhir lae lasmuigh den raon [1-31]"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYDAY_DAYSIGNINCORRECT",
+      "text": "Tá an comhartha uimhir lae mícheart"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYMONTH_ARGMISMATCH",
+      "text": "Tar éis scagtha, fuarthas {0} nach bhfuil 1 nó 2 charachtar ar fhad"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYMONTH_MONTHNUMNOTNUMERIC",
+      "text": "Ní uimhir [1-12] í an uimhir mhíosa"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYMONTH_MONTHNUMOUTOFRANGE",
+      "text": "Tá an uimhir mhíosa lasmuigh den raon [1-12]"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYDAY_DAYNUMNOTNUMERIC",
+      "text": "Ní uimhir [1-366] í an uimhir lae bhliantúil"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYDAY_DAYNUMOUTOFRANGE",
+      "text": "Tá an uimhir lae bhliantúil lasmuigh den raon [1-366]"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDFREQUENCY",
+      "text": "Minicíocht neamhbhailí san ainmneoir minicíochta:"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDFREQUENCYINTERVAL",
+      "text": "Eatramh neamhbhailí san ainmneoir minicíochta:"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_MISSINGEQUALS",
+      "text": "Teastaíonn comhartha comhionannais ó chuid riail."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_KEYEXISTS",
+      "text": "Tá eochair {0} ann cheana féin."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_UNTILCOUNT",
+      "text": "Ní féidir le heochracha UNTIL agus COUNT a bheith ann le chéile."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDFREQUENCY",
+      "text": "Tá minicíocht {0} neamhbhailí."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDDURATION",
+      "text": "Tá fad {0} neamhbhailí."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDINTERVAL",
+      "text": "Tá eatramh {0} neamhbhailí."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDSECONDS",
+      "text": "Tá soicind {0} neamhbhailí."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_SECONDSOUTOFRANGE",
+      "text": "Tá soicind {0} lasmuigh den raon [0-60]."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDMINUTES",
+      "text": "Tá nóiméid {0} neamhbhailí."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_MINUTESOUTOFRANGE",
+      "text": "Tá nóiméid {0} lasmuigh den raon [0-59]."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDHOURS",
+      "text": "Tá uaireanta {0} neamhbhailí."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_HOURSOUTOFRANGE",
+      "text": "Tá uaireanta {0} lasmuigh den raon [0-23]."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_BYDAYNOTANUMBER",
+      "text": "Ní uimhir {0} i ndiaidh an chomhartha {1} í."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKNUMNOTNUMERIC",
+      "text": "Ní uimhir seachtaine í."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKNUMOUTOFRANGE",
+      "text": "Tá uimhir seachtaine {0} lasmuigh den raon [1-53]."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKDAYARGMISMATCH",
+      "text": "Ní mór go mbeadh 2 charachtar go díreach i lá na seachtaine."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKDAYNOTWEEKDAY",
+      "text": "Ní lá seachtaine é."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_DAYOFMONTHNOTNUMERIC",
+      "text": "Ní uimhir lae den mhí é."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_DAYOFMONTHOUTOFRANGE",
+      "text": "Tá lá na míosa {0} lasmuigh den raon [1-31]."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_DAYOFYEARNOTNUMERIC",
+      "text": "Ní uimhir lae den bhliain é."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_DAYOFYEAROUTOFRANGE",
+      "text": "Tá lá na bliana {0} lasmuigh den raon [1-366]."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_MONTHNUMNOTNUMERIC",
+      "text": "Ní uimhir mhíosa í."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_MONTHNUMOUTOFRANGE",
+      "text": "Tá uimhir mhíosa {0} lasmuigh den raon [1-12]."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_POSNUMNOTNUMERIC",
+      "text": "Ní uimhir shuímh í."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_POSNUMOUTOFRANGE",
+      "text": "Tá suíomh {0} lasmuigh den raon [1-366]."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDKEYNAME",
+      "text": "Ní ainm eochrach bailí é."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_UTCOFFSETNEEDED",
+      "text": "Ní chuirtear ionadaíocht fritháireamh UTC ar fáil."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_UTCOFFSETDESIGNATORINVALID",
+      "text": "Tá an t-ainmnitheoir {0} neamhbhailí."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_UTCOFFSETPARSEFAILED",
+      "text": "Ní féidir an fritháireamh a pharsáil:"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONNEEDED",
+      "text": "Ní chuirtear fad ar fáil"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONINVALID",
+      "text": "Tá fad neamhbhailí:"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONDIGITSINVALID",
+      "text": "Níl na digití uimhriúil:"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONYEARDISABLED",
+      "text": "Tá an sonraitheoir bliana díchumasaithe i vCalendar 2.0."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONMONTHDISABLED",
+      "text": "Tá an sonraitheoir míosa díchumasaithe i vCalendar 2.0."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONTYPEINVALID",
+      "text": "Tá an cineál neamhbhailí:"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_TIMEPERIODNEEDED",
+      "text": "Níor sonraíodh an tréimhse ama"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_TIMEPERIODSPLIT",
+      "text": "Tar éis scoilteadh, fuarthas {0} in ionad 2:"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_TIMEPERIODSTARTDATEINVALID",
+      "text": "Dáta tosaithe neamhbhailí:"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_TYPENEEDSTYPESPECIFIER",
+      "text": "Ní mór TYPE= a chur leis an gcineál."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_BLOBISURL",
+      "text": "Tá URL bailí ann; ba chóir duit an URL sin a fháil de láimh agus an freagra a thiontú chuig an sruth."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_BLOBNODATA",
+      "text": "Níl aon sonraí ionchódaithe ann."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_BLOBUNDETERMINABLE",
+      "text": "Ní blob é. Ba chóir duit é a láimhseáil ar bhealach éigin."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DATENEEDED",
+      "text": "Ní chuirtear ionadaíocht dáta ar fáil."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DATEPARSEFAILED",
+      "text": "Ní féidir an dáta a pharsáil:"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_URL",
+      "text": "Tá URL {0} neamhbhailí"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_DATE",
+      "text": "Tá dáta {0} neamhbhailí"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_TIME",
+      "text": "Tá am {0} neamhbhailí"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_DATETIME",
+      "text": "Tá dáta agus am {0} neamhbhailí"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_DATETIMESELECT",
+      "text": "Tá dáta agus/nó am {0} neamhbhailí"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_TIMESTAMP",
+      "text": "Tá stampa ama {0} neamhbhailí"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_BOOLEAN",
+      "text": "Tá Boolean {0} neamhbhailí"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_INTEGER",
+      "text": "Tá slánuimhir {0} neamhbhailí"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_FLOAT",
+      "text": "Tá snámhphointe {0} i {1} neamhbhailí"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_STRVALUEINVALID",
+      "text": "Tá luach teaghrán {0} do {1} neamhbhailí."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_BASETYPEINVALID",
+      "text": "Ní hé an cineál bonn {0} [{1}] agus is é an cineál cuid [{2}] nach léiríonn an chuid."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_STARTLATERTHANEND",
+      "text": "Ní fhéadfaidh an dáta tosaigh a bheith níos déanaí ná an dáta deiridh"
+    }
+  ]
+}

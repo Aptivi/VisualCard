@@ -1,4 +1,4 @@
-﻿//
+//
 // VisualCard  Copyright (C) 2021-2025  Aptivi
 //
 // This file is part of VisualCard
@@ -27,6 +27,7 @@ using VisualCard.Parsers;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parts;
 using VisualCard.Common.Parsers;
+using VisualCard.Languages;
 
 namespace VisualCard.Parts.Implementations
 {
@@ -77,7 +78,7 @@ namespace VisualCard.Parts.Implementations
         {
             string[] splitName = value.Split(CommonConstants._fieldDelimiter);
             if (splitName.Length < 2)
-                throw new InvalidDataException("Name field must specify the first two or more of the five values (Last name, first name, alt names, prefixes, and suffixes)");
+                throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_PARTS_EXCEPTION_NAME_NEEDSARGS"));
 
             // Populate fields
             string _lastName = Regex.Unescape(splitName[0]);

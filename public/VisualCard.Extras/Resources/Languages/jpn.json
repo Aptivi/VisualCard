@@ -1,0 +1,74 @@
+{
+  "lang": "jpn",
+  "name": "Japanese",
+  "cultures": [
+    "ja",
+    "ja-JP"
+  ],
+  "locs": [
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_INTRO",
+      "text": "'contacts2.db' ファイルを取得する前に、携帯電話がルート化されていることを確認してください。以下のパスをお試しください。"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_SYSTEMWIDE",
+      "text": "システム全体の連絡先："
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_USERWIDE",
+      "text": "ユーザー空間（ユーザー 0）の連絡先："
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_OTHERDIRS",
+      "text": "これらのパスが機能しない場合は、ルートファイルマネージャーでデバイスの /data ディレクトリを参照してください。"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBNOTFOUND",
+      "text": "連絡先プロバイダーから取得した Android 連絡先データベースファイルが見つかりません。"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBINVALID",
+      "text": "Android 連絡先データベースファイルが無効です。"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_NEEDSMECARD",
+      "text": "MeCard 文字列は空にできません。"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_MECARDINVALID",
+      "text": "この文字列は有効な MeCard 連絡先を表していません。"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_MECARDPARSEFAILED",
+      "text": "MeCard 連絡先文字列が無効です。"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_CARDNOTPROVIDED",
+      "text": "カードが指定されていません。"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_NEEDSNAMETOSAVE",
+      "text": "空の名前または空のフルネームを含む vCard から MeCard 文字列を構築できません。"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_APPNOTFOUND",
+      "text": "そのようなソーシャルメディアアプリはありません。"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_NOSOCIALMEDIAFIELDS",
+      "text": "ソーシャルメディアフィールドがありません。"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_INCORRECTFIELD",
+      "text": "値 info は {0} のソーシャルメディア値ではありません。VISUALCARD-SOCIAL が必要ですが、{2} 個の値を持つ {1} が取得されました。"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_NEEDSABBREVNAME",
+      "text": "{0} には、少なくとも略語と名前が必要です。 {1} 個の値を取得しました。ヒント:"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_ABBREVMISMATCH",
+      "text": "{0} には、アプリの略語が一致するはずです。{1} 個を取得しました。ヒント:"
+    }
+  ]
+}

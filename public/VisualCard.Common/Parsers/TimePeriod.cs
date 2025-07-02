@@ -1,4 +1,4 @@
-﻿//
+//
 // VisualCard  Copyright (C) 2021-2025  Aptivi
 //
 // This file is part of VisualCard
@@ -20,6 +20,7 @@
 using System;
 using System.Diagnostics;
 using VisualCard.Common.Diagnostics;
+using VisualCard.Common.Languages;
 
 namespace VisualCard.Common.Parsers
 {
@@ -59,7 +60,7 @@ namespace VisualCard.Common.Parsers
         {
             LoggingTools.Info("Start date {0}, end date {1}", startDate, endDate);
             if (startDate > endDate)
-                throw new ArgumentException("Start date may not be later than the end date");
+                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_STARTLATERTHANEND"));
             LoggingTools.Debug("Installing start and end date...");
             this.startDate = startDate;
             this.endDate = endDate;

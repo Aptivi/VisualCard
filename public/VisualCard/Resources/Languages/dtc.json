@@ -1,0 +1,180 @@
+{
+  "lang": "dtc",
+  "name": "Dutch",
+  "cultures": [
+    "nl",
+    "nl-AW",
+    "nl-BE",
+    "nl-BQ",
+    "nl-CW",
+    "nl-NL",
+    "nl-SR",
+    "nl-SX"
+  ],
+  "locs": [
+    {
+      "loc": "VISUALCARD_EXCEPTION_GENERALCONTACTPARSEERROR",
+      "text": "Algemene fout bij het parseren van contacten."
+    },
+    {
+      "loc": "VISUALCARD_EXCEPTION_CONTACTPARSEERROR",
+      "text": "Er is een fout opgetreden bij het parseren van het VCard-contact."
+    },
+    {
+      "loc": "VISUALCARD_EXCEPTION_CONTACTPARSEERROR_ERROR",
+      "text": "Fout:"
+    },
+    {
+      "loc": "VISUALCARD_EXCEPTION_CONTACTPARSEERROR_LINE",
+      "text": "Regel:"
+    },
+    {
+      "loc": "VISUALCARD_EXCEPTION_CONTACTPARSEERROR_LINENUM",
+      "text": "Regelnummer:"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_CARDCONTENTEMPTY",
+      "text": "De kaartinhoud is leeg."
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_PARTTYPEUNSUPPORTED",
+      "text": "Onderdeelinfotype {0} ondersteunt geen eigenschapstype {1} omdat de volgende basistypen worden ondersteund: [{2}] en de extra typen: [{3}]"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_VALUEDISALLOWED",
+      "text": "Waarde {0} staat niet in de lijst met toegestane waarden [{1}]"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_INVALIDPROFILE",
+      "text": "Profiel moet 'vCard' zijn"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_INVALIDTYPE",
+      "text": "Het type {0} is ongeldig. Weet u zeker dat u het juiste type in uw vCard-weergave hebt opgegeven?"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_STRENUMNOTVALID",
+      "text": "Tekenreeks-enumeratie {0} is niet geïmplementeerd."
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_TYPENEEDED",
+      "text": "Type is niet opgegeven."
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_NOTNUMERIC",
+      "text": "ALTID moet numeriek zijn"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_NOTPOSITIVE",
+      "text": "ALTID moet positief zijn"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_NOREASONS",
+      "text": "ALTID moet een of meer argumenten bevatten om aan te geven waarom deze instantie een alternatief is"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_NOTINFIRSTPOS",
+      "text": "ALTID moet exact op de eerste positie van het argument staan, omdat de argumenten die erop volgen, moeten worden opgegeven"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_ILLEGALCARDINALITY",
+      "text": "ALTID mag niet worden opgegeven in het type {0} dat een kardinaliteit van {1} verwacht"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_ENCODABLES_INVALIDURL",
+      "text": "URL {0} is ongeldig"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_ADDRESS_NEEDSARGS",
+      "text": "Adresgegevens moeten exact zeven waarden bevatten (postbus, uitgebreid adres, straatadres, plaats, regio, postcode en land)"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_AGENT_NEEDSARGS",
+      "text": "Agentgegevens moeten exact één waarde bevatten (inhoud van de vCard van de agent waarvan de regels worden gescheiden door '\\\\n')"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CLIENTPID_INVALIDMAP",
+      "text": "Client PID-kaartweergave is ongeldig:"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CLIENTPID_INVALIDPIDNUM",
+      "text": "PID-nummer {0} is ongeldig"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CLIENTPID_INVALIDPIDURI",
+      "text": "PID-URI {0} is ongeldig"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_GENDER_INVALIDGENDERSTR",
+      "text": "Ongeldige geslachtsreeks {0}"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_NAME_NEEDSARGS",
+      "text": "Naamveld moet de eerste twee of meer van de vijf waarden bevatten (achternaam, voornaam, alternatieve namen, voorvoegsels en achtervoegsels)"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_XML_NEEDSXML",
+      "text": "Kan geen XML-document uit het niets genereren."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ENUMTYPEUNDETERMINABLE_DELETE",
+      "text": "Kan het opsommingstype voor het verwijderen van een onderdeel niet bepalen."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ENUMTYPEUNDETERMINABLE_ADD",
+      "text": "Kan het opsommingstype voor het toevoegen van een onderdeel niet bepalen."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONEALTIDMISMATCH_PARTS",
+      "text": "Kan onderdeelarray {0} niet overschrijven met AltID {1}, omdat de kardinaliteit {2} is en de verwachte AltID {3}."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONENOALTID_PARTS",
+      "text": "Kan onderdeelarray {0} nooit overschrijven met AltID {1}, omdat de kardinaliteit {2} is, ook al is de verwachte AltID {3}."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONEALTIDMISMATCH_STRING",
+      "text": "Kan string {0} niet overschrijven met AltID {1}, omdat de kardinaliteit {2} is en de verwachte AltID {3}."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONENOALTID_STRING",
+      "text": "Kan string {0} nooit overschrijven met AltID {1}, omdat de kardinaliteit {2} is, ook al is de verwachte AltID {3}."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_NEEDSKEYS",
+      "text": "De volgende sleutels [{0}] zijn vereist. [{1}] verkregen."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_MEMBERINVCARD",
+      "text": "vCards mogen geen MEMBER-eigenschappen hebben."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_INVALIDBASETYPE",
+      "text": "Het basistype is niet {0} [{1}] en het onderdeeltype is [{2}], wat geen kaartonderdeel vertegenwoordigt."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_PARTSTYPEMISMATCH",
+      "text": "De nummering van de onderdelenarray [{0}] wijkt af van de verwachte [{1}], afhankelijk van type {2}."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_INVALIDVERSION",
+      "text": "Ongeldige vCard-versie {0} opgegeven. De ondersteunde versies zijn 2.1, 3.0, 4.0 en 5.0."
+    },
+    {
+      "loc": "VISUALCARD_TOOLS_EXCEPTION_INVALIDVCARDCONTACT",
+      "text": "Dit is geen geldig vCard-contactbestand."
+    },
+    {
+      "loc": "VISUALCARD_TOOLS_EXCEPTION_INVALIDVCARDVERSION",
+      "text": "Deze kaart heeft een ongeldige VCard-versie {0}."
+    },
+    {
+      "loc": "VISUALCARD_TOOLS_EXCEPTION_VERSIONNOTFIRST",
+      "text": "vCard {0}.0 vereist dat {1} direct na {2} komt."
+    },
+    {
+      "loc": "VISUALCARD_TOOLS_EXCEPTION_ENDEDPREMATURELY",
+      "text": "Kaart is voortijdig beëindigd zonder de eindtag"
+    }
+  ]
+}

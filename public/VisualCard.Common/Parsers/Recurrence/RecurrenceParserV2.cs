@@ -1,4 +1,4 @@
-﻿//
+//
 // VisualCard  Copyright (C) 2021-2025  Aptivi
 //
 // This file is part of VisualCard
@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Textify.General;
 using VisualCard.Common.Diagnostics;
+using VisualCard.Common.Languages;
 
 namespace VisualCard.Common.Parsers.Recurrence
 {
@@ -39,7 +40,7 @@ namespace VisualCard.Common.Parsers.Recurrence
         {
             // Sanity check
             if (string.IsNullOrEmpty(rule))
-                throw new ArgumentNullException(nameof(rule), "There is no rule.");
+                throw new ArgumentNullException(nameof(rule), LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_RECURRENCE_COMMON_EXCEPTION_NORULE"));
 
             // Split the semicolons to represent part of the rule and check for frequency
             LoggingTools.Info("Processing v2 rule {0}...", rule);
@@ -64,7 +65,7 @@ namespace VisualCard.Common.Parsers.Recurrence
                 if (!part.Contains("="))
                 {
                     LoggingTools.Error("Part {0} doesn't have equals sign!", part);
-                    throw new ArgumentException("A rule part needs an equal sign." + $" {part}");
+                    throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_MISSINGEQUALS") + $" {part}");
                 }
 
                 // Get the key name and the value representation
@@ -77,11 +78,11 @@ namespace VisualCard.Common.Parsers.Recurrence
                 // UNTIL and COUNT occurrences since they can't coexist with each other.
                 LoggingTools.Debug("Finding key name {0} from {1} keys [{2}]", keyName, processedKeys.Count, string.Join(", ", processedKeys));
                 if (processedKeys.Contains(keyName))
-                    throw new ArgumentException("Key {0} already exists.".FormatString(keyName) + $" {part}");
+                    throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_KEYEXISTS").FormatString(keyName) + $" {part}");
                 processedKeys.Add(keyName);
                 LoggingTools.Debug("Added processed key {0}", keyName);
                 if (processedKeys.Contains("UNTIL") && processedKeys.Contains("COUNT"))
-                    throw new ArgumentException("Keys UNTIL and COUNT can't coexist with each other." + $" {part}");
+                    throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_UNTILCOUNT") + $" {part}");
 
                 // Parse everything according to the key name
                 switch (keyName)
@@ -98,7 +99,7 @@ namespace VisualCard.Common.Parsers.Recurrence
                             valueRepresentation == "WEEKLY" ? RecurrenceRuleFrequency.Weekly :
                             valueRepresentation == "MONTHLY" ? RecurrenceRuleFrequency.Monthly :
                             valueRepresentation == "YEARLY" ? RecurrenceRuleFrequency.Yearly :
-                            throw new ArgumentException("Frequency {0} is invalid.".FormatString(valueRepresentation) + $" {part}");
+                            throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDFREQUENCY").FormatString(valueRepresentation) + $" {part}");
                         LoggingTools.Debug("Added frequency {0}", freq);
                         recurrenceRule.frequency = freq;
                         break;
@@ -112,14 +113,14 @@ namespace VisualCard.Common.Parsers.Recurrence
                     case "COUNT":
                         // ( "COUNT" "=" 1*DIGIT )
                         if (!int.TryParse(valueRepresentation, out int duration))
-                            throw new ArgumentException("Duration {0} is invalid.".FormatString(valueRepresentation) + $" {part}");
+                            throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDDURATION").FormatString(valueRepresentation) + $" {part}");
                         LoggingTools.Debug("Added duration {0}", duration);
                         recurrenceRule.duration = duration;
                         break;
                     case "INTERVAL":
                         // ( "INTERVAL" "=" 1*DIGIT )
                         if (!int.TryParse(valueRepresentation, out int interval))
-                            throw new ArgumentException("Interval {0} is invalid.".FormatString(valueRepresentation) + $" {part}");
+                            throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDINTERVAL").FormatString(valueRepresentation) + $" {part}");
                         LoggingTools.Debug("Added interval {0}", interval);
                         recurrenceRule.interval = interval;
                         break;
@@ -133,9 +134,9 @@ namespace VisualCard.Common.Parsers.Recurrence
                         {
                             LoggingTools.Debug("Second: {0} [within the 0-60 range?]", secondStr);
                             if (!int.TryParse(secondStr, out int seconds))
-                                throw new ArgumentException("Seconds {0} is invalid.".FormatString(secondStr) + $" {part}");
+                                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDSECONDS").FormatString(secondStr) + $" {part}");
                             if (seconds < 0 || seconds > 60)
-                                throw new ArgumentException("Seconds {0} is out of range [0-60].".FormatString(seconds) + $" {part}");
+                                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_SECONDSOUTOFRANGE").FormatString(seconds) + $" {part}");
                             LoggingTools.Debug("Added seconds '{0}' to the list", seconds);
                             recurrenceRule.secondsList.Add(seconds);
                         }
@@ -150,9 +151,9 @@ namespace VisualCard.Common.Parsers.Recurrence
                         {
                             LoggingTools.Debug("Minute: {0} [within the 0-59 range?]", minuteStr);
                             if (!int.TryParse(minuteStr, out int minutes))
-                                throw new ArgumentException("Minutes {0} is invalid.".FormatString(minuteStr) + $" {part}");
+                                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDMINUTES").FormatString(minuteStr) + $" {part}");
                             if (minutes < 0 || minutes > 59)
-                                throw new ArgumentException("Minutes {0} is out of range [0-59].".FormatString(minutes) + $" {part}");
+                                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_MINUTESOUTOFRANGE").FormatString(minutes) + $" {part}");
                             LoggingTools.Debug("Added minutes '{0}' to the list", minutes);
                             recurrenceRule.minutesList.Add(minutes);
                         }
@@ -167,9 +168,9 @@ namespace VisualCard.Common.Parsers.Recurrence
                         {
                             LoggingTools.Debug("Hour: {0} [within the 0-23 range?]", hourStr);
                             if (!int.TryParse(hourStr, out int hours))
-                                throw new ArgumentException("Hours {0} is invalid.".FormatString(hourStr) + $" {part}");
+                                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDHOURS").FormatString(hourStr) + $" {part}");
                             if (hours < 0 || hours > 23)
-                                throw new ArgumentException("Hours {0} is out of range [0-23].".FormatString(hours) + $" {part}");
+                                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_HOURSOUTOFRANGE").FormatString(hours) + $" {part}");
                             LoggingTools.Debug("Added hours '{0}' to the list", hours);
                             recurrenceRule.hoursList.Add(hours);
                         }
@@ -197,7 +198,7 @@ namespace VisualCard.Common.Parsers.Recurrence
                             {
                                 LoggingTools.Debug("Processing signed number: {0}", finalDayStr[1]);
                                 if (!char.IsNumber(finalDayStr[1]))
-                                    throw new ArgumentException("Not a number {0} after sign {1}".FormatString(finalDayStr[1], finalDayStr[0]) + $", {finalDayStr}: {part}");
+                                    throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_BYDAYNOTANUMBER").FormatString(finalDayStr[1], finalDayStr[0]) + $", {finalDayStr}: {part}");
                                 finalDayStr = finalDayStr.Substring(1);
                                 LoggingTools.Debug("Cut sign: {0}", finalDayStr);
                             }
@@ -216,9 +217,9 @@ namespace VisualCard.Common.Parsers.Recurrence
                                 string weekNumStr = finalDayStr.Substring(0, splitIdx);
                                 LoggingTools.Debug("Cut to {0} from idx {1} to check for number and range [1-53]", weekNumStr, splitIdx);
                                 if (!int.TryParse(weekNumStr, out weekNum))
-                                    throw new ArgumentException("Not a week number." + $" {weekNumStr}, {part}");
+                                    throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKNUMNOTNUMERIC") + $" {weekNumStr}, {part}");
                                 if (weekNum < 1 || weekNum > 53)
-                                    throw new ArgumentException("Week number {0} is out of range [1-53].".FormatString(weekNum) + $" {part}");
+                                    throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKNUMOUTOFRANGE").FormatString(weekNum) + $" {part}");
                                 finalDayStr = finalDayStr.Substring(splitIdx);
                                 LoggingTools.Debug("Cut sign: {0}", finalDayStr);
                             }
@@ -226,7 +227,7 @@ namespace VisualCard.Common.Parsers.Recurrence
                             // Check for weekday
                             LoggingTools.Debug("Weekday is: {0} [{1} chars]", finalDayStr, finalDayStr.Length);
                             if (finalDayStr.Length != 2)
-                                throw new ArgumentException("Week day needs to have exactly 2 characters." + $" {finalDayStr}, {part}");
+                                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKDAYARGMISMATCH") + $" {finalDayStr}, {part}");
                             if (finalDayStr == "SU")
                                 dayOfWeek = DayOfWeek.Sunday;
                             else if (finalDayStr == "MO")
@@ -242,7 +243,7 @@ namespace VisualCard.Common.Parsers.Recurrence
                             else if (finalDayStr == "SA")
                                 dayOfWeek = DayOfWeek.Saturday;
                             else
-                                throw new ArgumentException("Not a week day." + $" {finalDayStr}, {part}");
+                                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKDAYNOTWEEKDAY") + $" {finalDayStr}, {part}");
                             LoggingTools.Debug("Day of week is: {0}", dayOfWeek);
 
                             // Add the result
@@ -269,7 +270,7 @@ namespace VisualCard.Common.Parsers.Recurrence
                             {
                                 LoggingTools.Debug("Processing signed number: {0}", finalMonthStr[1]);
                                 if (!char.IsNumber(finalMonthStr[1]))
-                                    throw new ArgumentException("Not a number {0} after sign {1}".FormatString(finalMonthStr[1], finalMonthStr[0]) + $", {finalMonthStr}. {part}");
+                                    throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_BYDAYNOTANUMBER").FormatString(finalMonthStr[1], finalMonthStr[0]) + $", {finalMonthStr}. {part}");
                                 finalMonthStr = finalMonthStr.Substring(1);
                                 LoggingTools.Debug("Cut sign: {0}", finalMonthStr);
                             }
@@ -277,9 +278,9 @@ namespace VisualCard.Common.Parsers.Recurrence
                             // Check for day of month number
                             LoggingTools.Debug("Processing {0} to check for number and range [1-31]", finalMonthStr);
                             if (!int.TryParse(finalMonthStr, out int dayOfMonth))
-                                throw new ArgumentException("Not a day of month number." + $" {finalMonthStr}, {part}");
+                                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_DAYOFMONTHNOTNUMERIC") + $" {finalMonthStr}, {part}");
                             if (dayOfMonth < 1 || dayOfMonth > 31)
-                                throw new ArgumentException("Day of month {0} is out of range [1-31].".FormatString(dayOfMonth) + $" {part}");
+                                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_DAYOFMONTHOUTOFRANGE").FormatString(dayOfMonth) + $" {part}");
 
                             // Add the result
                             recurrenceRule.daysOfMonthList.Add((isNegative, dayOfMonth));
@@ -305,7 +306,7 @@ namespace VisualCard.Common.Parsers.Recurrence
                             {
                                 LoggingTools.Debug("Processing signed number: {0}", finalYearStr[1]);
                                 if (!char.IsNumber(finalYearStr[1]))
-                                    throw new ArgumentException("Not a number {0} after sign {1}".FormatString(finalYearStr[1], finalYearStr[0]) + $", {finalYearStr}. {part}");
+                                    throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_BYDAYNOTANUMBER").FormatString(finalYearStr[1], finalYearStr[0]) + $", {finalYearStr}. {part}");
                                 finalYearStr = finalYearStr.Substring(1);
                                 LoggingTools.Debug("Cut sign: {0}", finalYearStr);
                             }
@@ -313,9 +314,9 @@ namespace VisualCard.Common.Parsers.Recurrence
                             // Check for day of year number
                             LoggingTools.Debug("Processing {0} to check for number and range [1-366]", finalYearStr);
                             if (!int.TryParse(finalYearStr, out int dayOfYear))
-                                throw new ArgumentException("Not a day of year number." + $" {finalYearStr}, {part}");
+                                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_DAYOFYEARNOTNUMERIC") + $" {finalYearStr}, {part}");
                             if (dayOfYear < 1 || dayOfYear > 366)
-                                throw new ArgumentException("Day of year {0} is out of range [1-366].".FormatString(dayOfYear) + $" {part}");
+                                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_DAYOFYEAROUTOFRANGE").FormatString(dayOfYear) + $" {part}");
 
                             // Add the result
                             recurrenceRule.daysOfYearList.Add((isNegative, dayOfYear));
@@ -341,7 +342,7 @@ namespace VisualCard.Common.Parsers.Recurrence
                             {
                                 LoggingTools.Debug("Processing signed number: {0}", finalWeekStr[1]);
                                 if (!char.IsNumber(finalWeekStr[1]))
-                                    throw new ArgumentException("Not a number {0} after sign {1}".FormatString(finalWeekStr[1], finalWeekStr[0]) + $", {finalWeekStr}. {part}");
+                                    throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_BYDAYNOTANUMBER").FormatString(finalWeekStr[1], finalWeekStr[0]) + $", {finalWeekStr}. {part}");
                                 finalWeekStr = finalWeekStr.Substring(1);
                                 LoggingTools.Debug("Cut sign: {0}", finalWeekStr);
                             }
@@ -349,9 +350,9 @@ namespace VisualCard.Common.Parsers.Recurrence
                             // Check for week number
                             LoggingTools.Debug("Processing {0} to check for number and range [1-53]", finalWeekStr);
                             if (!int.TryParse(finalWeekStr, out int weekNum))
-                                throw new ArgumentException("Not a week number." + $" {finalWeekStr}, {part}");
+                                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKNUMNOTNUMERIC") + $" {finalWeekStr}, {part}");
                             if (weekNum < 1 || weekNum > 53)
-                                throw new ArgumentException("Week number {0} is out of range [1-53].".FormatString(weekNum) + $" {part}");
+                                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKNUMOUTOFRANGE").FormatString(weekNum) + $" {part}");
 
                             // Add the result
                             recurrenceRule.weeksList.Add((isNegative, weekNum));
@@ -370,9 +371,9 @@ namespace VisualCard.Common.Parsers.Recurrence
 
                             // Check for month number
                             if (!int.TryParse(monthStr, out int monthNum))
-                                throw new ArgumentException("Not a month number." + $" {monthStr}, {part}");
+                                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_MONTHNUMNOTNUMERIC") + $" {monthStr}, {part}");
                             if (monthNum < 1 || monthNum > 12)
-                                throw new ArgumentException("Month number {0} is out of range [1-12].".FormatString(monthNum) + $" {part}");
+                                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_MONTHNUMOUTOFRANGE").FormatString(monthNum) + $" {part}");
 
                             // Add the result
                             recurrenceRule.monthsList.Add(monthNum);
@@ -399,7 +400,7 @@ namespace VisualCard.Common.Parsers.Recurrence
                             {
                                 LoggingTools.Debug("Processing signed number: {0}", finalPositionStr[1]);
                                 if (!char.IsNumber(finalPositionStr[1]))
-                                    throw new ArgumentException("Not a number {0} after sign {1}".FormatString(finalPositionStr[1], finalPositionStr[0]) + $", {finalPositionStr}. {part}");
+                                    throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_BYDAYNOTANUMBER").FormatString(finalPositionStr[1], finalPositionStr[0]) + $", {finalPositionStr}. {part}");
                                 finalPositionStr = finalPositionStr.Substring(1);
                                 LoggingTools.Debug("Cut sign: {0}", finalPositionStr);
                             }
@@ -407,9 +408,9 @@ namespace VisualCard.Common.Parsers.Recurrence
                             // Check for position number
                             LoggingTools.Debug("Processing {0} to check for number and range [1-366]", finalPositionStr);
                             if (!int.TryParse(finalPositionStr, out int position))
-                                throw new ArgumentException("Not a position number." + $" {finalPositionStr}, {part}");
+                                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_POSNUMNOTNUMERIC") + $" {finalPositionStr}, {part}");
                             if (position < 1 || position > 366)
-                                throw new ArgumentException("Position {0} is out of range [1-366].".FormatString(position) + $" {part}");
+                                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_POSNUMOUTOFRANGE").FormatString(position) + $" {part}");
 
                             // Add the result
                             recurrenceRule.positionsList.Add((isNegative, position));
@@ -422,7 +423,7 @@ namespace VisualCard.Common.Parsers.Recurrence
                         DayOfWeek start;
                         LoggingTools.Debug("Week start: {0} [{1} chars]", valueRepresentation, valueRepresentation.Length);
                         if (valueRepresentation.Length != 2)
-                            throw new ArgumentException("Week day needs to have exactly 2 characters." + $" {valueRepresentation}, {part}");
+                            throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKDAYARGMISMATCH") + $" {valueRepresentation}, {part}");
                         if (valueRepresentation == "SU")
                             start = DayOfWeek.Sunday;
                         else if (valueRepresentation == "MO")
@@ -438,13 +439,13 @@ namespace VisualCard.Common.Parsers.Recurrence
                         else if (valueRepresentation == "SA")
                             start = DayOfWeek.Saturday;
                         else
-                            throw new ArgumentException("Not a week day." + $" {valueRepresentation}, {part}");
+                            throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKDAYNOTWEEKDAY") + $" {valueRepresentation}, {part}");
                         LoggingTools.Debug("Got enumeration {0}", start);
                         recurrenceRule.weekStart = start;
                         break;
                     default:
                         LoggingTools.Error("Got invalid key {0} [{1}]", keyName, part);
-                        throw new ArgumentException("Not a valid key name." + $" {keyName}, {part}");
+                        throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDKEYNAME") + $" {keyName}, {part}");
                 }
             }
 

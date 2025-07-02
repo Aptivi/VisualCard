@@ -1,0 +1,328 @@
+{
+  "lang": "ptg",
+  "name": "Portuguese",
+  "cultures": [
+    "pt",
+    "pt-AO",
+    "pt-CH",
+    "pt-CV",
+    "pt-GQ",
+    "pt-GW",
+    "pt-LU",
+    "pt-MO",
+    "pt-MZ",
+    "pt-PT",
+    "pt-ST",
+    "pt-TL"
+  ],
+  "locs": [
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_ARGS_EXCEPTION_NEEDSARGDELIM",
+      "text": "A linha deve conter um delimitador de argumentos."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_COMMON_EXCEPTION_NORULE",
+      "text": "Não há regra."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_TOOSHORT",
+      "text": "As regras devem ter pelo menos 2 letras para serem significativas."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDDURATION",
+      "text": "Duração inválida no designador:"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDTIME",
+      "text": "Hora inválida {0}"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDDAYOFWEEK",
+      "text": "Dia da semana inválido {0}"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYPOS_ARGMISMATCH",
+      "text": "Após a filtragem, em vez de dois caracteres, obteve-se {0}"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYPOS_OCCURRENCENUMNOTNUMERIC",
+      "text": "O número da ocorrência não é um número de [1-5]"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYPOS_OCCURRENCENUMOUTOFRANGE",
+      "text": "O número da ocorrência está fora do intervalo de [1-5]"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYPOS_OCCURRENCESIGNINCORRECT",
+      "text": "O sinal da ocorrência está incorreto"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYDAY_ARGMISMATCH",
+      "text": "Após a filtragem, obteve-se {0} que não tem 1, 2 ou 3 caracteres"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYDAY_DAYNUMNOTNUMERIC",
+      "text": "O número do dia não é um número de [1-31]"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYDAY_DAYNUMOUTOFRANGE",
+      "text": "O número do dia está fora do intervalo de [1-31]"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYDAY_DAYSIGNINCORRECT",
+      "text": "O sinal do número do dia está incorreto"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYMONTH_ARGMISMATCH",
+      "text": "Após a filtragem, obteve-se {0} que não tem 1 ou 2 caracteres"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYMONTH_MONTHNUMNOTNUMERIC",
+      "text": "O número do mês não é um número de [1-12]"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYMONTH_MONTHNUMOUTOFRANGE",
+      "text": "O número do mês está fora do intervalo de [1-12]"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYDAY_DAYNUMNOTNUMERIC",
+      "text": "O número do dia anual não é um número de [1-366]"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYDAY_DAYNUMOUTOFRANGE",
+      "text": "O número do dia anual está fora do intervalo de [1-366]"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDFREQUENCY",
+      "text": "Frequência inválida no designador de frequência:"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDFREQUENCYINTERVAL",
+      "text": "Intervalo de frequência inválido Designador:"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_MISSINGEQUALS",
+      "text": "Uma parte da regra necessita de um sinal de igual."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_KEYEXISTS",
+      "text": "A chave {0} já existe."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_UNTILCOUNT",
+      "text": "As chaves UNTIL e COUNT não podem coexistir."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDFREQUENCY",
+      "text": "A frequência {0} é inválida."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDDURATION",
+      "text": "A duração {0} é inválida."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDINTERVAL",
+      "text": "O intervalo {0} é inválido."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDSECONDS",
+      "text": "Segundos {0} é inválido."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_SECONDSOUTOFRANGE",
+      "text": "Segundos {0} está fora do intervalo [0-60]."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDMINUTES",
+      "text": "Minutos {0} é inválido."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_MINUTESOUTOFRANGE",
+      "text": "Minutos {0} está fora do intervalo [0-59]."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDHOURS",
+      "text": "Horas {0} é inválido."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_HOURSOUTOFRANGE",
+      "text": "Horas {0} está fora do intervalo [0-23]."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_BYDAYNOTANUMBER",
+      "text": "Não é um número {0} após o sinal {1}."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKNUMNOTNUMERIC",
+      "text": "Não é um número de semana."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKNUMOUTOFRANGE",
+      "text": "O número da semana {0} está fora do intervalo [1-53]."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKDAYARGMISMATCH",
+      "text": "O dia da semana precisa de ter exatamente 2 caracteres."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKDAYNOTWEEKDAY",
+      "text": "Não é um dia da semana."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_DAYOFMONTHNOTNUMERIC",
+      "text": "Não é um número de dia do mês."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_DAYOFMONTHOUTOFRANGE",
+      "text": "O dia do mês {0} está fora do intervalo [1-31]."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_DAYOFYEARNOTNUMERIC",
+      "text": "Não é um número de dia do ano."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_DAYOFYEAROUTOFRANGE",
+      "text": "O dia do ano {0} está fora do intervalo [1-366]."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_MONTHNUMNOTNUMERIC",
+      "text": "Não é um número de mês."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_MONTHNUMOUTOFRANGE",
+      "text": "O número do mês {0} está fora do intervalo [1-12]."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_POSNUMNOTNUMERIC",
+      "text": "Não é um número de posição."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_POSNUMOUTOFRANGE",
+      "text": "A posição {0} está fora do intervalo [1-366]."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDKEYNAME",
+      "text": "Não é um nome de chave válido."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_UTCOFFSETNEEDED",
+      "text": "A representação do deslocamento UTC não foi fornecida."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_UTCOFFSETDESIGNATORINVALID",
+      "text": "O designador {0} é inválido."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_UTCOFFSETPARSEFAILED",
+      "text": "Não é possível analisar o deslocamento:"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONNEEDED",
+      "text": "A duração não foi fornecida."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONINVALID",
+      "text": "A duração é inválida:"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONDIGITSINVALID",
+      "text": "Os dígitos não são numéricos:"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONYEARDISABLED",
+      "text": "O especificador de ano está desativado no vCalendar 2.0."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONMONTHDISABLED",
+      "text": "O especificador de mês está desativado no vCalendar 2.0."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONTYPEINVALID",
+      "text": "O tipo é inválido:"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_TIMEPERIODNEEDED",
+      "text": "O período não foi especificado."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_TIMEPERIODSPLIT",
+      "text": "Após a divisão, obteve {0} em vez de 2:"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_TIMEPERIODSTARTDATEINVALID",
+      "text": "Data de início inválida:"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_TYPENEEDSTYPESPECIFIER",
+      "text": "O tipo deve ser prefixado com TYPE="
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_BLOBISURL",
+      "text": "Contém um URL válido; deve procurar esse URL manualmente e converter a resposta para o fluxo."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_BLOBNODATA",
+      "text": "Não existem dados codificados."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_BLOBUNDETERMINABLE",
+      "text": "Não é um blob. Devia lidar com isso de alguma forma."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DATENEEDED",
+      "text": "A representação da data não foi fornecida."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DATEPARSEFAILED",
+      "text": "Não é possível analisar a data:"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_URL",
+      "text": "URL {0} inválido"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_DATE",
+      "text": "Data {0} inválida"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_TIME",
+      "text": "Hora {0} inválida"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_DATETIME",
+      "text": "Data e hora {0} inválidas"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_DATETIMESELECT",
+      "text": "Data e/ou hora {0} inválidas"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_TIMESTAMP",
+      "text": "Carimbo de data/hora {0} inválido"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_BOOLEAN",
+      "text": "Booleano {0} inválido"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_INTEGER",
+      "text": "Inteiro {0} inválido"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_FLOAT",
+      "text": "Float {0} em {1} inválido"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_STRVALUEINVALID",
+      "text": "Valor da string {0} para {1} inválido."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_BASETYPEINVALID",
+      "text": "O tipo base não é {0} [{1}] e o tipo da parte é [{2}], o que não representa a parte."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_STARTLATERTHANEND",
+      "text": "A data de início não pode ser posterior à data de fim"
+    }
+  ]
+}

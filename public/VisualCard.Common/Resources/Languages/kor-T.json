@@ -1,0 +1,319 @@
+{
+  "lang": "kor-T",
+  "name": "Korean",
+  "cultures": [
+    "ko",
+    "ko-KP",
+    "ko-KR"
+  ],
+  "locs": [
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_ARGS_EXCEPTION_NEEDSARGDELIM",
+      "text": "줄에는 인수 구분 기호가 포함되어야 합니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_COMMON_EXCEPTION_NORULE",
+      "text": "규칙은 없습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_TOOSHORT",
+      "text": "규칙은 의미를 가지려면 최소 2글자 이상이어야 합니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDDURATION",
+      "text": "지정자의 기간이 잘못되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDTIME",
+      "text": "시간 {0}이 잘못되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDDAYOFWEEK",
+      "text": "요일이 잘못되었습니다. {0}"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYPOS_ARGMISMATCH",
+      "text": "필터링 후 두 글자 대신 {0}이 표시되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYPOS_OCCURRENCENUMNOTNUMERIC",
+      "text": "발생 번호가 [1-5]의 숫자가 아닙니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYPOS_OCCURRENCENUMOUTOFRANGE",
+      "text": "발생 번호가 [1-5]의 범위를 벗어났습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYPOS_OCCURRENCESIGNINCORRECT",
+      "text": "발생 기호가 잘못되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYDAY_ARGMISMATCH",
+      "text": "필터링 후 1, 2, 3자 길이가 아닌 {0}이 표시되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYDAY_DAYNUMNOTNUMERIC",
+      "text": "일 번호가 [1-31]의 숫자가 아닙니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYDAY_DAYNUMOUTOFRANGE",
+      "text": "일 번호가 [1-31]의 범위를 벗어났습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYDAY_DAYSIGNINCORRECT",
+      "text": "일 번호 기호가 잘못되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYMONTH_ARGMISMATCH",
+      "text": "필터링 후 1 또는 2자 길이가 아닌 {0}이 표시되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYMONTH_MONTHNUMNOTNUMERIC",
+      "text": "월 번호가 [1-12]의 숫자가 아닙니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYMONTH_MONTHNUMOUTOFRANGE",
+      "text": "월 번호가 [1-12]의 범위를 벗어났습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYDAY_DAYNUMNOTNUMERIC",
+      "text": "연간 일 번호가 [1-366]의 숫자가 아닙니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYDAY_DAYNUMOUTOFRANGE",
+      "text": "연간 일 번호가 [1-366]의 범위를 벗어났습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDFREQUENCY",
+      "text": "빈도 지정자의 빈도가 잘못되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDFREQUENCYINTERVAL",
+      "text": "빈도 지정자의 간격이 잘못되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_MISSINGEQUALS",
+      "text": "규칙 부분에 등호가 필요합니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_KEYEXISTS",
+      "text": "키 {0}이(가) 이미 존재합니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_UNTILCOUNT",
+      "text": "UNTIL 키와 COUNT 키는 함께 사용할 수 없습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDFREQUENCY",
+      "text": "빈도 {0}이(가) 잘못되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDDURATION",
+      "text": "기간 {0}이(가) 잘못되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDINTERVAL",
+      "text": "간격 {0}이(가) 잘못되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDSECONDS",
+      "text": "초 {0}이(가) 잘못되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_SECONDSOUTOFRANGE",
+      "text": "초 {0}이(가) [0-60] 범위를 벗어났습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDMINUTES",
+      "text": "분 {0}이(가) 잘못되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_MINUTESOUTOFRANGE",
+      "text": "분 {0}이(가) [0-59] 범위를 벗어났습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDHOURS",
+      "text": "시간 {0}이(가) 잘못되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_HOURSOUTOFRANGE",
+      "text": "시간 {0}이(가) [0-23] 범위를 벗어났습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_BYDAYNOTANUMBER",
+      "text": "기호 {1} 뒤에 숫자 {0}가(이) 아닙니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKNUMNOTNUMERIC",
+      "text": "주 번호가 아닙니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKNUMOUTOFRANGE",
+      "text": "주 번호 {0}이(가) [1-53] 범위를 벗어났습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKDAYARGMISMATCH",
+      "text": "요일은 정확히 2자여야 합니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKDAYNOTWEEKDAY",
+      "text": "요일이 아닙니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_DAYOFMONTHNOTNUMERIC",
+      "text": "월 중 일 번호가 아닙니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_DAYOFMONTHOUTOFRANGE",
+      "text": "월 중 일 {0}이(가) [1-31] ​​범위를 벗어났습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_DAYOFYEARNOTNUMERIC",
+      "text": "년 중 일 번호가 아닙니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_DAYOFYEAROUTOFRANGE",
+      "text": "일 {0}이(가) [1-366] 범위를 벗어났습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_MONTHNUMNOTNUMERIC",
+      "text": "월 숫자가 아닙니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_MONTHNUMOUTOFRANGE",
+      "text": "월 숫자 {0}이(가) [1-12] 범위를 벗어났습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_POSNUMNOTNUMERIC",
+      "text": "위치 숫자가 아닙니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_POSNUMOUTOFRANGE",
+      "text": "위치 {0}이(가) [1-366] 범위를 벗어났습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDKEYNAME",
+      "text": "유효한 키 이름이 아닙니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_UTCOFFSETNEEDED",
+      "text": "UTC 오프셋 표현이 제공되지 않았습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_UTCOFFSETDESIGNATORINVALID",
+      "text": "지정자 {0}이(가) 잘못되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_UTCOFFSETPARSEFAILED",
+      "text": "오프셋을 구문 분석할 수 없습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONNEEDED",
+      "text": "기간이 제공되지 않았습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONINVALID",
+      "text": "기간이 잘못되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONDIGITSINVALID",
+      "text": "숫자가 숫자가 아닙니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONYEARDISABLED",
+      "text": "vCalendar 2.0에서 연도 지정자가 비활성화되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONMONTHDISABLED",
+      "text": "vCalendar 2.0에서 월 지정자가 비활성화되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONTYPEINVALID",
+      "text": "유형이 잘못되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_TIMEPERIODNEEDED",
+      "text": "기간이 지정되지 않았습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_TIMEPERIODSPLIT",
+      "text": "분할 후 2 대신 {0}이(가) 반환되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_TIMEPERIODSTARTDATEINVALID",
+      "text": "시작 날짜가 잘못되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_TYPENEEDSTYPESPECIFIER",
+      "text": "유형 앞에 TYPE=을 추가해야 합니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_BLOBISURL",
+      "text": "유효한 URL을 포함합니다. 해당 URL을 수동으로 가져와서 응답을 스트림으로 변환해야 합니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_BLOBNODATA",
+      "text": "인코딩된 데이터가 없습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_BLOBUNDETERMINABLE",
+      "text": "BLOB이 아닙니다. 어떻게든 처리해야 합니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DATENEEDED",
+      "text": "날짜 표현이 제공되지 않았습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DATEPARSEFAILED",
+      "text": "날짜를 구문 분석할 수 없습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_URL",
+      "text": "URL {0}이(가) 잘못되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_DATE",
+      "text": "날짜 {0}이(가) 잘못되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_TIME",
+      "text": "시간 {0}이(가) 잘못되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_DATETIME",
+      "text": "날짜 및 시간 {0}이(가) 잘못되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_DATETIMESELECT",
+      "text": "날짜 및/또는 시간 {0}이(가) 잘못되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_TIMESTAMP",
+      "text": "타임스탬프 {0}이(가) 잘못되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_BOOLEAN",
+      "text": "부울 {0}이(가) 잘못되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_INTEGER",
+      "text": "정수 {0}이(가) 잘못되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_FLOAT",
+      "text": "{1}의 부동 소수점 {0}이(가) 잘못되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_STRVALUEINVALID",
+      "text": "{1}의 문자열 값 {0}이(가) 잘못되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_BASETYPEINVALID",
+      "text": "기본 유형이 {0} [{1}]이(가) 아니며, 파트 유형이 파트를 나타내지 않는 [{2}]입니다."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_STARTLATERTHANEND",
+      "text": "시작 날짜는 종료 날짜보다 늦을 수 없습니다."
+    }
+  ]
+}

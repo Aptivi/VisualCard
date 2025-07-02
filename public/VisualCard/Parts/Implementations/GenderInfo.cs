@@ -1,4 +1,4 @@
-﻿//
+//
 // VisualCard  Copyright (C) 2021-2025  Aptivi
 //
 // This file is part of VisualCard
@@ -28,6 +28,7 @@ using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parts;
 using VisualCard.Common.Parsers;
 using Textify.General;
+using VisualCard.Languages;
 
 namespace VisualCard.Parts.Implementations
 {
@@ -78,7 +79,7 @@ namespace VisualCard.Parts.Implementations
                 "U" => Gender.Unknown,
                 "" => Gender.Unspecified,
                 _ =>
-                    throw new InvalidDataException("Invalid gender string {0}".FormatString(genderString))
+                    throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_PARTS_EXCEPTION_GENDER_INVALIDGENDERSTR").FormatString(genderString))
             };
 
             // Add the fetched information

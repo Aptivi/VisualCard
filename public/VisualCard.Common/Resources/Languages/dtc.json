@@ -1,0 +1,324 @@
+{
+  "lang": "dtc",
+  "name": "Dutch",
+  "cultures": [
+    "nl",
+    "nl-AW",
+    "nl-BE",
+    "nl-BQ",
+    "nl-CW",
+    "nl-NL",
+    "nl-SR",
+    "nl-SX"
+  ],
+  "locs": [
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_ARGS_EXCEPTION_NEEDSARGDELIM",
+      "text": "De regel moet een argumentscheidingsteken bevatten."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_COMMON_EXCEPTION_NORULE",
+      "text": "Er is geen regel."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_TOOSHORT",
+      "text": "Regels moeten minimaal 2 letters bevatten om betekenisvol te zijn."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDDURATION",
+      "text": "Ongeldige duur in aanduiding:"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDTIME",
+      "text": "Ongeldige tijd {0}"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDDAYOFWEEK",
+      "text": "Ongeldige dag van de week {0}"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYPOS_ARGMISMATCH",
+      "text": "Na filtering, in plaats van twee tekens, {0} ontvangen"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYPOS_OCCURRENCENUMNOTNUMERIC",
+      "text": "Het voorkomennummer is geen getal van [1-5]"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYPOS_OCCURRENCENUMOUTOFRANGE",
+      "text": "Het voorkomennummer valt buiten het bereik van [1-5]"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYPOS_OCCURRENCESIGNINCORRECT",
+      "text": "Het voorkomenteken is onjuist"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYDAY_ARGMISMATCH",
+      "text": "Na filtering, {0} ontvangen dat niet 1, 2 of 3 tekens lang is"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYDAY_DAYNUMNOTNUMERIC",
+      "text": "Het dagnummer is geen getal van [1-31]"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYDAY_DAYNUMOUTOFRANGE",
+      "text": "Het dagnummer valt buiten het bereik van [1-31]"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYDAY_DAYSIGNINCORRECT",
+      "text": "Het teken van het dagnummer is onjuist"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYMONTH_ARGMISMATCH",
+      "text": "Na filtering, {0} ontvangen dat niet 1 of 2 tekens lang is"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYMONTH_MONTHNUMNOTNUMERIC",
+      "text": "Het maandnummer is geen getal van [1-12]"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYMONTH_MONTHNUMOUTOFRANGE",
+      "text": "Het maandnummer valt buiten het bereik van [1-12]"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYDAY_DAYNUMNOTNUMERIC",
+      "text": "Het jaardagnummer is geen getal van [1-366]"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYDAY_DAYNUMOUTOFRANGE",
+      "text": "Het jaardagnummer valt buiten het bereik van [1-366]"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDFREQUENCY",
+      "text": "Ongeldige frequentie in frequentieaanduiding:"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDFREQUENCYINTERVAL",
+      "text": "Ongeldig interval in frequentieaanduiding:"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_MISSINGEQUALS",
+      "text": "Een regel Een deel heeft een gelijkteken nodig."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_KEYEXISTS",
+      "text": "Sleutel {0} bestaat al."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_UNTILCOUNT",
+      "text": "Sleutels UNTIL en COUNT kunnen niet naast elkaar bestaan."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDFREQUENCY",
+      "text": "Frequentie {0} is ongeldig."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDDURATION",
+      "text": "Duur {0} is ongeldig."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDINTERVAL",
+      "text": "Interval {0} is ongeldig."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDSECONDS",
+      "text": "Seconden {0} is ongeldig."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_SECONDSOUTOFRANGE",
+      "text": "Seconden {0} is buiten bereik [0-60]."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDMINUTES",
+      "text": "Minuten {0} is ongeldig."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_MINUTESOUTOFRANGE",
+      "text": "Minuten {0} is buiten bereik [0-59]."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDHOURS",
+      "text": "Uren {0} is ongeldig."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_HOURSOUTOFRANGE",
+      "text": "Uren {0} is buiten bereik [0-23]."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_BYDAYNOTANUMBER",
+      "text": "Geen getal {0} na teken {1}"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKNUMNOTNUMERIC",
+      "text": "Geen weeknummer."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKNUMOUTOFRANGE",
+      "text": "Weeknummer {0} is buiten bereik [1-53]."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKDAYARGMISMATCH",
+      "text": "Weekdag moet precies 2 tekens bevatten."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKDAYNOTWEEKDAY",
+      "text": "Geen weekdag."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_DAYOFMONTHNOTNUMERIC",
+      "text": "Geen dag van de maand."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_DAYOFMONTHOUTOFRANGE",
+      "text": "Dag van de maand {0} is buiten bereik [1-31]."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_DAYOFYEARNOTNUMERIC",
+      "text": "Geen dag van het jaar."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_DAYOFYEAROUTOFRANGE",
+      "text": "Dag van het jaar {0} valt buiten bereik [1-366]."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_MONTHNUMNOTNUMERIC",
+      "text": "Geen maandnummer."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_MONTHNUMOUTOFRANGE",
+      "text": "Maandnummer {0} valt buiten bereik [1-12]."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_POSNUMNOTNUMERIC",
+      "text": "Geen positienummer."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_POSNUMOUTOFRANGE",
+      "text": "Positie {0} valt buiten bereik [1-366]."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDKEYNAME",
+      "text": "Geen geldige sleutelnaam."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_UTCOFFSETNEEDED",
+      "text": "UTC-offsetweergave is niet opgegeven."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_UTCOFFSETDESIGNATORINVALID",
+      "text": "Designator {0} is ongeldig."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_UTCOFFSETPARSEFAILED",
+      "text": "Offset kan niet worden geparseerd:"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONNEEDED",
+      "text": "Duur is niet opgegeven"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONINVALID",
+      "text": "Duur is ongeldig:"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONDIGITSINVALID",
+      "text": "Cijfers zijn niet numeriek:"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONYEARDISABLED",
+      "text": "Jaarspecificatie is uitgeschakeld in vCalendar 2.0."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONMONTHDISABLED",
+      "text": "Maandspecificatie is uitgeschakeld in vCalendar 2.0."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONTYPEINVALID",
+      "text": "Type is ongeldig:"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_TIMEPERIODNEEDED",
+      "text": "Tijdsperiode is niet opgegeven"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_TIMEPERIODSPLIT",
+      "text": "Na splitsing {0} in plaats van 2 ontvangen:"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_TIMEPERIODSTARTDATEINVALID",
+      "text": "Ongeldige startdatum:"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_TYPENEEDSTYPESPECIFIER",
+      "text": "Type moet worden voorafgegaan door TYPE="
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_BLOBISURL",
+      "text": "Bevat een geldige URL; u moet die URL handmatig ophalen en het antwoord naar de stream converteren."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_BLOBNODATA",
+      "text": "Er zijn geen gecodeerde gegevens."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_BLOBUNDETERMINABLE",
+      "text": "Geen blob. Je moet er op de een of andere manier mee omgaan."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DATENEEDED",
+      "text": "Datumweergave is niet opgegeven."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DATEPARSEFAILED",
+      "text": "Kan datum niet parseren:"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_URL",
+      "text": "URL {0} is ongeldig"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_DATE",
+      "text": "Datum {0} is ongeldig"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_TIME",
+      "text": "Tijd {0} is ongeldig"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_DATETIME",
+      "text": "Datum en tijd {0} zijn ongeldig"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_DATETIMESELECT",
+      "text": "Datum en/of tijd {0} is ongeldig"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_TIMESTAMP",
+      "text": "Tijdstempel {0} is ongeldig"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_BOOLEAN",
+      "text": "Booleaanse waarde {0} is ongeldig"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_INTEGER",
+      "text": "Integer {0} is ongeldig"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_FLOAT",
+      "text": "Float {0} in {1} is ongeldig"
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_STRVALUEINVALID",
+      "text": "Tekenreekswaarde {0} voor {1} is ongeldig."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_BASETYPEINVALID",
+      "text": "Basistype is niet {0} [{1}] en het onderdeeltype is [{2}] dat het onderdeel niet vertegenwoordigt."
+    },
+    {
+      "loc": "VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_STARTLATERTHANEND",
+      "text": "Begindatum mag niet later zijn dan de einddatum"
+    }
+  ]
+}

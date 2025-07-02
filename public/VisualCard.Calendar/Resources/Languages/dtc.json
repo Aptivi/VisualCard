@@ -1,0 +1,264 @@
+{
+  "lang": "dtc",
+  "name": "Dutch",
+  "cultures": [
+    "nl",
+    "nl-AW",
+    "nl-BE",
+    "nl-BQ",
+    "nl-CW",
+    "nl-NL",
+    "nl-SR",
+    "nl-SX"
+  ],
+  "locs": [
+    {
+      "loc": "VISUALCARD_CALENDAR_EXCEPTION_GENERALCALENDARPARSEERROR",
+      "text": "Algemene fout bij het parseren van de agenda."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR",
+      "text": "Er is een fout opgetreden bij het parseren van de VCalendar-agenda."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR_ERROR",
+      "text": "Fout:"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR_LINE",
+      "text": "Regel:"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR_LINENUM",
+      "text": "Regelnummer:"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_CALENDARCONTENTEMPTY",
+      "text": "De agenda-inhoud is leeg."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_ENDINGMISMATCH",
+      "text": "Einde komt niet overeen: Verwachte {0} versus werkelijke {1}"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_PARTTYPEUNSUPPORTED",
+      "text": "Onderdeelinfotype {0} ondersteunt eigenschapstype {1} niet omdat de volgende typen worden ondersteund: [{2}]"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_VALUEDISALLOWED",
+      "text": "Waarde {0} staat niet in de lijst met toegestane waarden [{1}]"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_INVALIDTYPE",
+      "text": "Het type {0} is ongeldig. Weet u zeker dat u het juiste type in uw vCalendar-weergave hebt opgegeven?"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_INVALIDTYPE2",
+      "text": "Ongeldig type {0}"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_INCOMPATIBLENESTEDTYPES",
+      "text": "Kan {0} niet binnen {1} plaatsen"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_STRENUMNOTVALID",
+      "text": "Tekenreeks-enumeratie {0} is niet geïmplementeerd."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_INTENUMNOTVALID",
+      "text": "Integer-enumeratie {0} is niet geïmplementeerd."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_TYPENEEDED",
+      "text": "Type is niet opgegeven."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_AUDIOALARMINFO_ARGMISMATCH",
+      "text": "Bij het splitsen van audio-alarminformatie is de splitswaarde {0} in plaats van 4."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_AUDIOALARMINFO_REPEATTIMES",
+      "text": "Ongeldige herhaaltijden"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_DAYLIGHTINFO_ARGMISMATCH",
+      "text": "Bij het splitsen van daglichtinformatie is de splitswaarde {0} in plaats van 6."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_DISPLAYALARMINFO_ARGMISMATCH",
+      "text": "Bij het splitsen van display-alarminformatie is de splitswaarde {0} in plaats van 4."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_MAILALARMINFO_ARGMISMATCH",
+      "text": "Bij het splitsen van mail-alarminformatie is de splitswaarde {0} in plaats van 5."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_PROCEDUREALARMINFO_ARGMISMATCH",
+      "text": "Bij het splitsen van procedure-alarminformatie is de splitswaarde {0} in plaats van 4."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_ATTACH_INVALIDURL",
+      "text": "URL {0} is ongeldig"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_GEO_ARGMISMATCH",
+      "text": "Bij het splitsen van geografie is de splitswaarde {0} in plaats van 2."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_GEO_INVALIDLAT",
+      "text": "Ongeldige breedtegraad {0}"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_GEO_INVALIDLONG",
+      "text": "Ongeldige lengtegraad {0}"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_NOSPLIT",
+      "text": "Er is geen puntkomma om te splitsen tussen statusnummer en statusbeschrijving en mogelijk het externe datapaar."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_NOSPLITCODES",
+      "text": "Er is geen punt om twee of drie statuscodes te splitsen."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_ARGMISMATCH",
+      "text": "Na het splitsen werden {0} items in plaats van 2 of 3 weergegeven."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_INVALIDNUM",
+      "text": "Status is geen getal."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_ENUMTYPENOTFOUND",
+      "text": "Enumeratietype is niet gevonden voor {0}"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_ENUMTYPEUNDETERMINABLE_DELETE",
+      "text": "Kan geen enumeratietype bepalen om een ​​deel te verwijderen."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_ENUMTYPEUNDETERMINABLE_ADD",
+      "text": "Kan het opsommingstype voor het toevoegen van een onderdeel niet bepalen."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_CANTADDCARDINALITY_PARTS",
+      "text": "Kan onderdeelarray {0} niet toevoegen, omdat kardinaliteit {1} is."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_CANTADDCARDINALITY_STRING",
+      "text": "Kan string {0} niet toevoegen, omdat kardinaliteit {1} is."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_CANTADDCARDINALITY_INTEGER",
+      "text": "Kan integer {0} niet toevoegen, omdat kardinaliteit {1} is."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_ROOT",
+      "text": "De volgende sleutels [{0}] zijn vereist in de root. [{1}] is verkregen."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_EVENT",
+      "text": "De volgende sleutels [{0}] zijn vereist in de gebeurtenisweergave. [{1}] is verkregen."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_DATEENDCONFLICT_EVENT",
+      "text": "Conflict tussen einddatum en duur gevonden."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TODO",
+      "text": "De volgende sleutels [{0}] zijn vereist in de todo-weergave. [{1}] is verkregen."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_DUEDATECONFLICT_TODO",
+      "text": "Conflict tussen einddatum en duur gevonden."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NODATESTARTDURATION_TODO",
+      "text": "Er is geen begindatum om aan de duur toe te voegen."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_JOURNAL",
+      "text": "De volgende sleutels [{0}] zijn vereist in de journaalweergave. [{1}] is verkregen."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_FREEBUSY",
+      "text": "De volgende sleutels [{0}] zijn vereist in de freebusy-weergave. [{1}] is verkregen."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TIMEZONE",
+      "text": "De volgende sleutels [{0}] zijn vereist in de tijdzoneweergave. [{1}] is verkregen."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSCOMPONENTS_TIMEZONE",
+      "text": "Een van de standaard-/daglichtcomponenten is vereist."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TIMEZONE_STANDARD",
+      "text": "De volgende sleutels [{0}] zijn vereist in de standaardweergave. [{1}] is verkregen."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TIMEZONE_DAYLIGHT",
+      "text": "De volgende sleutels [{0}] zijn vereist in de daglichtweergave. [{1}] is verkregen."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_PERCENTCOMPLETION",
+      "text": "Het voltooiingspercentage mag niet kleiner dan nul of groter dan 100 zijn."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_PRIORITY",
+      "text": "De prioriteit mag niet kleiner dan nul of groter dan 9 zijn."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_MEMBERINVCARD",
+      "text": "vCards mogen geen LID-eigenschappen hebben."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_INVALIDBASETYPE",
+      "text": "Het basistype is niet {0} [{1}] en het onderdeeltype is [{2}] dat geen kalenderonderdeel vertegenwoordigt."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_PARTSTYPEMISMATCH",
+      "text": "De opsomming van de onderdelenarray [{0}] wijkt af van de verwachte [{1}] volgens type {2}."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_INVALIDVERSION",
+      "text": "Ongeldige vCalendar-versie {0} is opgegeven. De ondersteunde versies zijn 1.0 en 2.0."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARV2COMPONENTS_INVALIDVERSION",
+      "text": "Ongeldige vCalendar-versie {0} is opgegeven. De ondersteunde versie is 2.0."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_ROOT",
+      "text": "De volgende sleutels [{0}] zijn vereist in de alarmweergave. [{1}] is verkregen."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_AUDIO",
+      "text": "De volgende toetsen [{0}] zijn vereist in de weergave van het audio-alarm. [{1}] ontvangen."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_DISPLAY",
+      "text": "De volgende toetsen [{0}] zijn vereist in de weergave van het display-alarm. [{1}] ontvangen."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_MAIL",
+      "text": "De volgende toetsen [{0}] zijn vereist in de weergave van het mail-alarm. [{1}] ontvangen."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_REPEATED",
+      "text": "De volgende toetsen [{0}] zijn vereist in de weergave van het herhaalde alarm. [{1}] ontvangen."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_TOOLS_EXCEPTION_INVALIDVCALENDAR",
+      "text": "Dit is geen geldig vCalendar-bestand."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_TOOLS_EXCEPTION_INVALIDVCALENDARVERSION",
+      "text": "Deze agenda heeft een ongeldige vCalendar-versie {0}."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_TOOLS_EXCEPTION_ENDEDPREMATURELY",
+      "text": "De agenda is voortijdig beëindigd zonder de eindtag"
+    }
+  ]
+}

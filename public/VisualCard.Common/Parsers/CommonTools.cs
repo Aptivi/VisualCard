@@ -1,4 +1,4 @@
-﻿//
+//
 // VisualCard  Copyright (C) 2021-2025  Aptivi
 //
 // This file is part of VisualCard
@@ -26,6 +26,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Textify.General;
 using VisualCard.Common.Diagnostics;
+using VisualCard.Common.Languages;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parsers.Recurrence;
 using VisualCard.Common.Parts;
@@ -293,7 +294,7 @@ namespace VisualCard.Common.Parsers
         {
             // Check for sanity
             if (string.IsNullOrEmpty(utcOffsetRepresentation))
-                throw new ArgumentException("UTC offset representation is not provided.");
+                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_UTCOFFSETNEEDED"));
 
             // Now, this representation might be a POSIX offset that follows the vCard specification, but check the sign,
             // because it might be either <+/->HHmmss, <+/->HHmm, or <+/->HH.
@@ -302,14 +303,14 @@ namespace VisualCard.Common.Parsers
             string offsetNoSign = utcOffsetRepresentation.Substring(1);
             LoggingTools.Debug("Designator {0}, offset {1}", designatorStr, offsetNoSign);
             if (designatorStr != "+" && designatorStr != "-")
-                throw new ArgumentException("Designator {0} is invalid.".FormatString(designatorStr));
+                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_UTCOFFSETDESIGNATORINVALID").FormatString(designatorStr));
             if (TimeSpan.TryParseExact(offsetNoSign, supportedTimeFormats, CultureInfo.InvariantCulture, out TimeSpan offset))
             {
                 bool useNegative = designatorStr == "-" && offset != new TimeSpan();
                 LoggingTools.Debug("Using negative {0}", useNegative);
                 return useNegative ? -offset : offset;
             }
-            throw new ArgumentException("Can't parse offset:" + $" {utcOffsetRepresentation}");
+            throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_UTCOFFSETPARSEFAILED") + $" {utcOffsetRepresentation}");
         }
 
         /// <summary>
@@ -349,7 +350,7 @@ namespace VisualCard.Common.Parsers
             duration = duration.Trim();
             LoggingTools.Debug("Processing duration {0}", duration);
             if (string.IsNullOrEmpty(duration))
-                throw new ArgumentException("Duration is not provided");
+                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONNEEDED"));
 
             // Check to see if we've been provided with a sign
             bool isNegative = duration[0] == '-';
@@ -357,7 +358,7 @@ namespace VisualCard.Common.Parsers
             if (duration[0] == '+' || isNegative)
                 duration = duration.Substring(1);
             if (duration[0] != 'P')
-                throw new ArgumentException("Duration is invalid:" + $" {duration}");
+                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONINVALID") + $" {duration}");
             duration = duration.Substring(1);
             LoggingTools.Debug("Final duration: {0}", duration);
 
@@ -394,7 +395,7 @@ namespace VisualCard.Common.Parsers
                     continue;
                 }
                 if (!int.TryParse(digits, out int value))
-                    throw new ArgumentException("Digits are not numeric:" + $" {digits}, {duration}");
+                    throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONDIGITSINVALID") + $" {digits}, {duration}");
                 value = isNegative ? -value : value;
                 LoggingTools.Debug("Value is {0}", value);
                 switch (type)
@@ -402,7 +403,7 @@ namespace VisualCard.Common.Parsers
                     // Year and Month types are only supported in vCalendar 1.0
                     case "Y":
                         if (modern)
-                            throw new ArgumentException("Year specifier is disabled in vCalendar 2.0." + $" {duration}");
+                            throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONYEARDISABLED") + $" {duration}");
                         offset = offset.AddYears(value);
                         LoggingTools.Debug("Added {0} years", value);
                         break;
@@ -440,7 +441,7 @@ namespace VisualCard.Common.Parsers
                         break;
                     default:
                         LoggingTools.Error("Type is invalid! {0}, {1}, {2}", type, duration, value);
-                        throw new ArgumentException("Type is invalid:" + $" {type}, {duration}");
+                        throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONTYPEINVALID") + $" {type}, {duration}");
                 }
                 duration = duration.Substring(length);
                 LoggingTools.Debug("Cut duration: {0}", duration);
@@ -463,20 +464,20 @@ namespace VisualCard.Common.Parsers
             period = period.Trim();
             LoggingTools.Debug("Time period: {0}", period);
             if (string.IsNullOrEmpty(period))
-                throw new ArgumentException("Time period is not specified");
+                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_TIMEPERIODNEEDED"));
 
             // Parse the time period by splitting with the slash character to two string variables
             string[] splits = period.Split('/');
             LoggingTools.Debug("Expected two splits: {0}", splits.Length);
             if (splits.Length != 2)
-                throw new ArgumentException("After splitting, got {0} instead of 2:".FormatString(splits.Length) + $" {period}");
+                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_TIMEPERIODSPLIT").FormatString(splits.Length) + $" {period}");
             string startStr = splits[0];
             string endStr = splits[1];
 
             // Now, parse them
             LoggingTools.Debug("Parsing start: {0}", startStr);
             if (!TryParsePosixDateTime(startStr, out DateTimeOffset start))
-                throw new ArgumentException("Invalid start date:" + $" {startStr}, {period}");
+                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_TIMEPERIODSTARTDATEINVALID") + $" {startStr}, {period}");
             LoggingTools.Debug("Parsing end: {0}", startStr);
             if (!TryParsePosixDateTime(endStr, out DateTimeOffset end))
             {
@@ -499,7 +500,7 @@ namespace VisualCard.Common.Parsers
 
             // Trying to specify type without TYPE= is illegal according to RFC2426 in vCard 3.0 and 4.0
             if (ArgType.Length > 0 && string.IsNullOrEmpty(ArgType[0].Key) && isSpecifierRequired)
-                throw new InvalidDataException("Type must be prepended with TYPE=");
+                throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_TYPENEEDSTYPESPECIFIER"));
 
             // Flatten the strings
             var stringArrays = ArgType.Select((arg) => arg.AllValues);
@@ -653,25 +654,25 @@ namespace VisualCard.Common.Parsers
                     if (uri.Scheme == "data")
                         dataStr = uri.AbsolutePath.Substring(uri.AbsolutePath.IndexOf(",") + 1);
                     else
-                        throw new InvalidDataException("Contains a valid URL; you should fetch that URL manually and convert the response to the stream.");
+                        throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_BLOBISURL"));
                 }
                 else
                     dataStr = keyEncoded ??
-                        throw new InvalidDataException("There is no encoded data.");
+                        throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_BLOBNODATA"));
                 byte[] dataBytes = Convert.FromBase64String(dataStr);
                 Stream blobStream = new MemoryStream(dataBytes);
                 LoggingTools.Debug("Got blob stream with {0} bytes", blobStream.Length);
                 return blobStream;
             }
             else
-                throw new InvalidOperationException("Not a blob. You should somehow handle it.");
+                throw new InvalidOperationException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_BLOBUNDETERMINABLE"));
         }
 
         internal static DateTimeOffset ParsePosixRepresentation(string posixDateRepresentation, string[] formats)
         {
             // Check for sanity
             if (string.IsNullOrEmpty(posixDateRepresentation))
-                throw new ArgumentException("Date representation is not provided.");
+                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DATENEEDED"));
 
             // Now, check the representation
             LoggingTools.Info("Parsing POSIX date representation {0}", posixDateRepresentation);
@@ -682,7 +683,7 @@ namespace VisualCard.Common.Parsers
                 return date;
             }
             LoggingTools.Error("Parsing failed for {0}", posixDateRepresentation);
-            throw new ArgumentException("Can't parse date:" + $" {posixDateRepresentation}");
+            throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DATEPARSEFAILED") + $" {posixDateRepresentation}");
         }
 
         internal static string ProcessStringValue(string value, string valueType, char split = ';')
@@ -703,7 +704,7 @@ namespace VisualCard.Common.Parsers
                         case "URL":
                             // Check the URI
                             if (!Uri.TryCreate(finalValuePart, UriKind.Absolute, out Uri uri))
-                                throw new InvalidDataException("URL {0} is invalid".FormatString(finalValuePart));
+                                throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_URL").FormatString(finalValuePart));
                             break;
                         case "UTC-OFFSET":
                             // Check the UTC offset
@@ -712,46 +713,46 @@ namespace VisualCard.Common.Parsers
                         case "DATE":
                             // Check the date
                             if (!TryParsePosixDate(finalValuePart, out _))
-                                throw new InvalidDataException("Date {0} is invalid".FormatString(finalValuePart));
+                                throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_DATE").FormatString(finalValuePart));
                             break;
                         case "TIME":
                             // Check the time
                             if (!TryParsePosixTime(finalValuePart, out _))
-                                throw new InvalidDataException("Time {0} is invalid".FormatString(finalValuePart));
+                                throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_TIME").FormatString(finalValuePart));
                             break;
                         case "DATE-TIME":
                             // Check the date and time
                             if (!TryParsePosixDateTime(finalValuePart, out _))
-                                throw new InvalidDataException("Date and time {0} is invalid".FormatString(finalValuePart));
+                                throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_DATETIME").FormatString(finalValuePart));
                             break;
                         case "DATE-AND-OR-TIME":
                             // Check the date and/or time
                             if (!TryParsePosixDateTime(finalValuePart, out _) &&
                                 !TryParsePosixTime(finalValuePart, out _))
-                                throw new InvalidDataException("Date and/or time {0} is invalid".FormatString(finalValuePart));
+                                throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_DATETIMESELECT").FormatString(finalValuePart));
                             break;
                         case "TIMESTAMP":
                             // Check the timestamp
                             if (!TryParsePosixTimestamp(finalValuePart, out _))
-                                throw new InvalidDataException("Timestamp {0} is invalid".FormatString(finalValuePart));
+                                throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_TIMESTAMP").FormatString(finalValuePart));
                             break;
                         case "BOOLEAN":
                             // Check the boolean
                             if (!finalValuePart.Equals("true", StringComparison.OrdinalIgnoreCase) &&
                                 !finalValuePart.Equals("false", StringComparison.OrdinalIgnoreCase))
-                                throw new InvalidDataException("Boolean {0} is invalid".FormatString(finalValuePart));
+                                throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_BOOLEAN").FormatString(finalValuePart));
                             break;
                         case "INTEGER":
                             // Check the integer
                             if (!int.TryParse(finalValuePart, out _))
-                                throw new InvalidDataException("Integer {0} is invalid".FormatString(finalValuePart));
+                                throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_INTEGER").FormatString(finalValuePart));
                             break;
                         case "FLOAT":
                             // Check the float
                             string[] floatParts = finalValuePart.Split(split == ';' ? ',' : ';');
                             foreach (var floatPart in floatParts)
                                 if (!double.TryParse(floatPart, out _))
-                                    throw new InvalidDataException("Float {0} in {1} is invalid".FormatString(floatPart, finalValuePart));
+                                    throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_FLOAT").FormatString(floatPart, finalValuePart));
                             break;
                         case "DURATION":
                             // Check the duration
@@ -785,7 +786,7 @@ namespace VisualCard.Common.Parsers
 
             // Return the result
             if (!valid)
-                throw new InvalidDataException("String value {0} for {1} is invalid.".FormatString(value, valueType) + $"\n\n  - {string.Join("\n  - ", errors.Select((ex) => ex.Message))}");
+                throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_STRVALUEINVALID").FormatString(value, valueType) + $"\n\n  - {string.Join("\n  - ", errors.Select((ex) => ex.Message))}");
             LoggingTools.Info("Returning final value {0}", finalValue);
             return finalValue;
         }
@@ -857,7 +858,7 @@ namespace VisualCard.Common.Parsers
         {
             // Check the base type
             if (partType.BaseType != typeof(BasePartInfo) && partType != typeof(BasePartInfo))
-                throw new InvalidOperationException("Base type is not {0} [{1}] and the part type is [{2}] that doesn't represent the part.".FormatString(nameof(BasePartInfo), partType.BaseType.Name, partType.Name));
+                throw new InvalidOperationException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_BASETYPEINVALID").FormatString(nameof(BasePartInfo), partType.BaseType.Name, partType.Name));
         }
     }
 }

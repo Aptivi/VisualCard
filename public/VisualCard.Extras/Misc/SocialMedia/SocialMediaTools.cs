@@ -1,4 +1,4 @@
-﻿//
+//
 // VisualCard  Copyright (C) 2021-2025  Aptivi
 //
 // This file is part of VisualCard
@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using Textify.General;
 using VisualCard.Common.Diagnostics;
 using VisualCard.Common.Parts.Implementations;
+using VisualCard.Extras.Languages;
 
 namespace VisualCard.Extras.Misc.SocialMedia
 {
@@ -58,25 +59,25 @@ namespace VisualCard.Extras.Misc.SocialMedia
             if (!mediaInfo.TryGetValue(app, out (string appAbbreviation, string appHostPart) appInfo))
             {
                 LoggingTools.Error("Invalid social media app {0}", app);
-                throw new ArgumentException("There is no such social media app.");
+                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_APPNOTFOUND"));
             }
 
             // Check the social media value info using the X- nonstandard names
             LoggingTools.Info("Parsing {0} fields with key name {1}", socialMediaValue.XValues?.Length ?? 0, socialMediaValue.XKeyName);
             var socialMediaFields = socialMediaValue.XValues ??
-                throw new ArgumentException("There are no social media fields.");
+                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_NOSOCIALMEDIAFIELDS"));
             if (socialMediaValue.XKeyName != "VISUALCARD-SOCIAL")
-                throw new ArgumentException("The value info is not a social media value for {0}. Expected VISUALCARD-SOCIAL, got {1} with {2} values".FormatString(appInfo.appAbbreviation, socialMediaValue.XKeyName, socialMediaFields.Length));
+                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_INCORRECTFIELD").FormatString(appInfo.appAbbreviation, socialMediaValue.XKeyName, socialMediaFields.Length));
 
             // Check the value. It should be two or more values with the first one holding the social media abbreviation
             // name in two letters.
             if (socialMediaFields.Length < 2)
-                throw new ArgumentException("For {0}, expected at least an abbreviation and a name. Got {1} values. Hint:".FormatString(appInfo.appAbbreviation, socialMediaFields.Length) + $" X-VISUALCARD-SOCIAL:{appInfo.appAbbreviation};NAME.");
+                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_NEEDSABBREVNAME").FormatString(appInfo.appAbbreviation, socialMediaFields.Length) + $" X-VISUALCARD-SOCIAL:{appInfo.appAbbreviation};NAME.");
             string valueAbbreviation = socialMediaFields[0];
             string valueName = socialMediaFields[1];
             LoggingTools.Info("Checking abbreviation {0} by comparing it with {1}", valueAbbreviation, appInfo.appAbbreviation);
             if (appInfo.appAbbreviation != valueAbbreviation)
-                throw new ArgumentException("For {0}, expected a matching abbreviation for the app. Got {1}. Hint:".FormatString(appInfo.appAbbreviation, valueAbbreviation) + $" X-VISUALCARD-SOCIAL:{appInfo.appAbbreviation};NAME.");
+                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_ABBREVMISMATCH").FormatString(appInfo.appAbbreviation, valueAbbreviation) + $" X-VISUALCARD-SOCIAL:{appInfo.appAbbreviation};NAME.");
 
             // Now, initialize the string builder for the URL
             var uriBuilder = new UriBuilder();

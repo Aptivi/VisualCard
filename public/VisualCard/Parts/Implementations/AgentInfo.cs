@@ -1,4 +1,4 @@
-﻿//
+//
 // VisualCard  Copyright (C) 2021-2025  Aptivi
 //
 // This file is part of VisualCard
@@ -26,6 +26,7 @@ using System.Text.RegularExpressions;
 using Textify.General;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parts;
+using VisualCard.Languages;
 
 namespace VisualCard.Parts.Implementations
 {
@@ -62,7 +63,7 @@ namespace VisualCard.Parts.Implementations
         {
             // Check the provided agent
             if (string.IsNullOrEmpty(value))
-                throw new InvalidDataException("Agent information must specify exactly one value (agent vCard contents that have their lines delimited by '\\n')");
+                throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_PARTS_EXCEPTION_AGENT_NEEDSARGS"));
 
             // Populate the fields
             string _agentVcard = Regex.Unescape(value).Replace("\\n", "\n").Replace("\\N", "\n");

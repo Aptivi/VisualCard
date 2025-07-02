@@ -1,0 +1,82 @@
+{
+  "lang": "chi",
+  "name": "Chinese (Simplified)",
+  "cultures": [
+    "zh",
+    "zh-CN",
+    "zh-HK",
+    "zh-MO",
+    "zh-SG",
+    "zh-Hans",
+    "zh-Hans-CN",
+    "zh-Hans-HK",
+    "zh-Hans-MO",
+    "zh-Hans-SG"
+  ],
+  "locs": [
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_INTRO",
+      "text": "Zài huòqǔ “contacts2.Db” wénjiàn zhīqián, qǐng quèbǎo nín de shǒujī yǐ root quánxiàn. Qǐng chángshì yǐxià lùjìng:"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_SYSTEMWIDE",
+      "text": "Xìtǒng jí liánxì rén:"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_USERWIDE",
+      "text": "Yònghù kōngjiān (yònghù 0) liánxì rén:"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_OTHERDIRS",
+      "text": "Rúguǒ zhèxiē lùjìng bù qǐ zuòyòng, qǐng zài root wénjiàn guǎnlǐ qì zhōng chákàn shèbèi de/data mùlù."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBNOTFOUND",
+      "text": "Wèi zhǎodào cóng liánxì rén tígōng chéngxù huòqǔ de Android liánxì rén shùjùkù wénjiàn."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBINVALID",
+      "text": "Android liánxì rén shùjùkù wénjiàn wúxiào."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_NEEDSMECARD",
+      "text": "MeCard zìfú chuàn bù yìng wèi kōng."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_MECARDINVALID",
+      "text": "Cǐ zìfú chuàn bù dàibiǎo yǒuxiào de MeCard liánxì rén."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_MECARDPARSEFAILED",
+      "text": "MeCard liánxì rén zìfú chuàn wúxiào."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_CARDNOTPROVIDED",
+      "text": "Wèi tígōng kǎpiàn."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_NEEDSNAMETOSAVE",
+      "text": "Wúfǎ cóng bāohán kōng míngchēng huò kōng quán míng de vCard gòujiàn MeCard zìfú chuàn."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_APPNOTFOUND",
+      "text": "Méiyǒu zhèyàng de shèjiāo méitǐ yìngyòng."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_NOSOCIALMEDIAFIELDS",
+      "text": "Méiyǒu shèjiāo méitǐ zìduàn."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_INCORRECTFIELD",
+      "text": "Zhí xìnxī bùshì {0} de shèjiāo méitǐ zhí. Yùqí wèi VISUALCARD-SOCIAL, jiéguǒ wèi {1}, bāohán {2} gè zhí."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_NEEDSABBREVNAME",
+      "text": "Duìyú {0}, yùqí zhìshǎo bāohán yīgè suōxiě hé yīgè míngchēng. Jiéguǒ wèi {1} gè zhí. Tíshì:"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_ABBREVMISMATCH",
+      "text": "Duìyú {0}, yùqí wèi yìngyòng de pǐpèi suōxiě. Jiéguǒ wèi {1}. Tíshì:"
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "lang": "fre",
+  "name": "French",
+  "cultures": [
+    "fr",
+    "fr-029",
+    "fr-BE",
+    "fr-BF",
+    "fr-BI",
+    "fr-BJ",
+    "fr-BL",
+    "fr-CA",
+    "fr-CD",
+    "fr-CF",
+    "fr-CG",
+    "fr-CH",
+    "fr-CI",
+    "fr-CM",
+    "fr-DJ",
+    "fr-DZ",
+    "fr-FR",
+    "fr-GA",
+    "fr-GF",
+    "fr-GN",
+    "fr-GP",
+    "fr-GQ",
+    "fr-HT",
+    "fr-KM",
+    "fr-LU",
+    "fr-MA",
+    "fr-MC",
+    "fr-MF",
+    "fr-MG",
+    "fr-ML",
+    "fr-MQ",
+    "fr-MR",
+    "fr-MU",
+    "fr-NC",
+    "fr-NE",
+    "fr-PF",
+    "fr-PM",
+    "fr-RE",
+    "fr-RW",
+    "fr-SC",
+    "fr-SN",
+    "fr-SY",
+    "fr-TD",
+    "fr-TG",
+    "fr-TN",
+    "fr-VU",
+    "fr-WF",
+    "fr-YT"
+  ],
+  "locs": [
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_INTRO",
+      "text": "Assurez-vous que votre téléphone est rooté avant de pouvoir obtenir le fichier « contacts2.db ». Essayez les chemins suivants :"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_SYSTEMWIDE",
+      "text": "Contacts système :"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_USERWIDE",
+      "text": "Contacts espace utilisateur (utilisateur 0) :"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_OTHERDIRS",
+      "text": "S'ils ne fonctionnent pas, consultez le répertoire /data de votre appareil dans le gestionnaire de fichiers racine."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBNOTFOUND",
+      "text": "Le fichier de base de données de contacts Android obtenu auprès du fournisseur de contacts est introuvable."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBINVALID",
+      "text": "Le fichier de base de données de contacts Android n'est pas valide."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_NEEDSMECARD",
+      "text": "La chaîne MeCard ne doit pas être vide."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_MECARDINVALID",
+      "text": "Cette chaîne ne représente pas un contact MeCard valide."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_MECARDPARSEFAILED",
+      "text": "La chaîne de contact MeCard n'est pas valide."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_CARDNOTPROVIDED",
+      "text": "La carte n'est pas fournie."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_NEEDSNAMETOSAVE",
+      "text": "Impossible de créer une chaîne MeCard à partir d'une vCard contenant un nom vide ou un nom complet vide."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_APPNOTFOUND",
+      "text": "Il n'existe aucune application de réseau social de ce type."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_NOSOCIALMEDIAFIELDS",
+      "text": "Il n'y a aucun champ de réseau social."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_INCORRECTFIELD",
+      "text": "La valeur info n'est pas une valeur de réseau social pour {0}. VISUALCARD-SOCIAL attendu, {1} obtenu avec {2} valeurs."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_NEEDSABBREVNAME",
+      "text": "Pour {0}, au moins une abréviation et un nom étaient attendus. {1} valeurs obtenues. Indice :"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_ABBREVMISMATCH",
+      "text": "Pour {0}, une abréviation correspondante pour l'application était attendue. J'ai obtenu {1}. Indice :"
+    }
+  ]
+}

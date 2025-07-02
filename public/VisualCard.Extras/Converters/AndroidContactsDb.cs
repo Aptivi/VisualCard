@@ -1,4 +1,4 @@
-﻿//
+//
 // VisualCard  Copyright (C) 2021-2025  Aptivi
 //
 // This file is part of VisualCard
@@ -25,6 +25,7 @@ using System.Text;
 using Textify.General;
 using VisualCard.Common.Diagnostics;
 using VisualCard.Common.Parsers;
+using VisualCard.Extras.Languages;
 using VisualCard.Parsers;
 using VisualCard.Parts;
 
@@ -100,14 +101,14 @@ namespace VisualCard.Extras.Converters
         {
             // Check to see if the database exists
             string dbObtainTip =
-                "\n\n" + "Make sure that your phone is rooted before being able to obtain the 'contacts2.db' file. Try out these paths:" + "\n\n" +
-                "  - " + "Systemwide contacts:" + $" {knownPaths[0]}\n" +
-                "  - " + "Userspace (user 0) contacts:" + $" {knownPaths[1]}\n" +
+                "\n\n" + LanguageTools.GetLocalized("VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_INTRO") + "\n\n" +
+                "  - " + LanguageTools.GetLocalized("VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_SYSTEMWIDE") + $" {knownPaths[0]}\n" +
+                "  - " + LanguageTools.GetLocalized("VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_USERWIDE") + $" {knownPaths[1]}\n" +
                 "  - " + "Motorola Blur:" + $" {knownPaths[2]}" +
-                "\n\n" + "If they don't work, consult your device's /data directory in the root file manager.";
+                "\n\n" + LanguageTools.GetLocalized("VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_OTHERDIRS");
             LoggingTools.Info("Checking to see if {0} exists...", pathToDb);
             if (!File.Exists(pathToDb))
-                throw new FileNotFoundException("The Android contact database file obtained from the contact provider is not found." + dbObtainTip);
+                throw new FileNotFoundException(LanguageTools.GetLocalized("VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBNOTFOUND") + dbObtainTip);
 
             try
             {
@@ -731,7 +732,7 @@ namespace VisualCard.Extras.Converters
             }
             catch (Exception ex)
             {
-                throw new InvalidDataException("The Android contact database file is not valid." + dbObtainTip, ex);
+                throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBINVALID") + dbObtainTip, ex);
             }
         }
     }

@@ -1,0 +1,74 @@
+{
+  "lang": "ukr",
+  "name": "Ukrainian",
+  "cultures": [
+    "uk",
+    "uk-UA"
+  ],
+  "locs": [
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_INTRO",
+      "text": "Перш ніж отримати файл «contacts2.db», переконайтеся, що ваш телефон має root-доступ. Спробуйте ці шляхи:"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_SYSTEMWIDE",
+      "text": "Контакти загальносистемного доступу:"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_USERWIDE",
+      "text": "Контакти простору користувача (користувач 0):"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_OTHERDIRS",
+      "text": "Якщо вони не працюють, зверніться до каталогу /data вашого пристрою в кореневому файловому менеджері."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBNOTFOUND",
+      "text": "Файл бази даних контактів Android, отриманий від постачальника контактів, не знайдено."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBINVALID",
+      "text": "Файл бази даних контактів Android недійсний."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_NEEDSMECARD",
+      "text": "Рядок MeCard не повинен бути порожнім."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_MECARDINVALID",
+      "text": "Цей рядок не представляє дійсний контакт MeCard."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_MECARDPARSEFAILED",
+      "text": "Рядок контакту MeCard недійсний."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_CARDNOTPROVIDED",
+      "text": "Картку не надано."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_NEEDSNAMETOSAVE",
+      "text": "Неможливо створити рядок MeCard з vCard, що містить порожнє ім'я або порожнє повне ім'я."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_APPNOTFOUND",
+      "text": "Такого додатка для соціальних мереж немає."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_NOSOCIALMEDIAFIELDS",
+      "text": "Поля соціальних мереж відсутні."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_INCORRECTFIELD",
+      "text": "Значення інформації не є значенням соціальної мережі для {0}. Очікувалося VISUALCARD-SOCIAL, отримано {1} з {2} значеннями."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_NEEDSABBREVNAME",
+      "text": "Для {0} очікувалося принаймні скорочення та ім'я. Отримано {1} значень. Підказка:"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_ABBREVMISMATCH",
+      "text": "Для {0} очікувалося відповідне скорочення для програми. Отримано {1}. Підказка:"
+    }
+  ]
+}

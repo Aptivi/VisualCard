@@ -1,0 +1,177 @@
+{
+  "lang": "cnt",
+  "name": "Chinese (Traditional)",
+  "cultures": [
+    "zh",
+    "zh-Hant",
+    "zh-Hant-HK",
+    "zh-Hant-MO",
+    "zh-Hant-TW"
+  ],
+  "locs": [
+    {
+      "loc": "VISUALCARD_EXCEPTION_GENERALCONTACTPARSEERROR",
+      "text": "Chángguī liánxì rén jiěxī cuòwù."
+    },
+    {
+      "loc": "VISUALCARD_EXCEPTION_CONTACTPARSEERROR",
+      "text": "Jiěxī VCard liánluò rén shí fāshēng cuòwù."
+    },
+    {
+      "loc": "VISUALCARD_EXCEPTION_CONTACTPARSEERROR_ERROR",
+      "text": "Cuòwù:"
+    },
+    {
+      "loc": "VISUALCARD_EXCEPTION_CONTACTPARSEERROR_LINE",
+      "text": "Xíng:"
+    },
+    {
+      "loc": "VISUALCARD_EXCEPTION_CONTACTPARSEERROR_LINENUM",
+      "text": "Xíng hào:"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_CARDCONTENTEMPTY",
+      "text": "Kǎpiàn nèiróng wèi kōng."
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_PARTTYPEUNSUPPORTED",
+      "text": "Bùfèn zīxùn lèixíng {0} bù zhīyuán shǔxìng lèixíng {1}, yīnwèi zhīyuán xiàliè jīběn lèixíng:[{2}] Hé éwài lèixíng:[{3}]"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_VALUEDISALLOWED",
+      "text": "Zhí {0} bùzài yǔnxǔ zhí qīngdān zhōng [{1}]"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_INVALIDPROFILE",
+      "text": "gèrén zīliào bìxū wèi “vCard”"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_INVALIDTYPE",
+      "text": "lèixíng {0} wúxiào. Nín quèdìng zài vCard biǎoshì zhōng zhǐdìngle zhèngquè de lèixíng ma?"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_STRENUMNOTVALID",
+      "text": "Zì chuàn méi jǔ {0} wèi shíxiàn."
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_TYPENEEDED",
+      "text": "Wèi tígōng lèixíng."
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_NOTNUMERIC",
+      "text": "ALTID bìxū wéi shùzì"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_NOTPOSITIVE",
+      "text": "ALTID bìxū wèi zhèngshù"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_NOREASONS",
+      "text": "ALTID bìxū bāohán yīgè huò duō gè cānshù, yǐ shuōmíng cǐ shílì wèihé wèitìdài shílì"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_NOTINFIRSTPOS",
+      "text": "ALTID bìxū wèiyú cān shǔ de dì yīgè wèizhì, yīn wéi qí hòu de cānshù bìxū zhǐdìng."
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_ILLEGALCARDINALITY",
+      "text": "ALTID bùnéng zhǐdìng wèi {0} lèixíng, yīnwèi gāi lèixíng yāoqiú jīshù wèi {1}."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_ENCODABLES_INVALIDURL",
+      "text": "URL {0} wúxiào"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_ADDRESS_NEEDSARGS",
+      "text": "dìzhǐ zīxùn bìxū zhǐdìng qī gè zhí (yóudìqūhào, wánzhěng dìzhǐ, jiēdào dìzhǐ, dìdiǎn, dì qū, yóudì qūhào hé guójiā)."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_AGENT_NEEDSARGS",
+      "text": "Dàilǐ zīxùn bìxū zhǐdìng yī gè zhí (dàilǐ vCard nèiróng, qí xíng yǐ `\\\\n'fēngé)."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CLIENTPID_INVALIDMAP",
+      "text": "Kèhù duān PID duì yìng biǎoshì wúxiào:"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CLIENTPID_INVALIDPIDNUM",
+      "text": "PID biānhào {0} wúxiào"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CLIENTPID_INVALIDPIDURI",
+      "text": "PID URI {0} wúxiào"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_GENDER_INVALIDGENDERSTR",
+      "text": "xìngbié zì chuàn wúxiào {0}"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_NAME_NEEDSARGS",
+      "text": "míngchēng lán wèi bìxū zhǐdìng wǔ gè zhí (xìngshì, míngzì, tì dài míngchēng, qiánzhuì hé hòuzhuì) zhōng de qián liǎng gè huò gèng duō zhí."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_XML_NEEDSXML",
+      "text": "Wúfǎ cóng líng chǎnshēng XML wénjiàn."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ENUMTYPEUNDETERMINABLE_DELETE",
+      "text": "Wúfǎ quèdìng yòng yú shānchú bùfèn de méi jǔ lèixíng."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ENUMTYPEUNDETERMINABLE_ADD",
+      "text": "Wúfǎ quèdìng yòng yú xīn zēng bùjiàn de méi jǔ lèixíng."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONEALTIDMISMATCH_PARTS",
+      "text": "Wúfǎ yòng AltID {1} fù xiě bùjiàn shùzǔ {0}, yīnwèi jīshù wèi {2}, ér yùqí de AltID wèi {3}."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONENOALTID_PARTS",
+      "text": "Yǒngyuǎn wúfǎ yòng AltID {1} fù xiě bùjiàn shùzǔ {0}, yīnwèi jīshù wèi {2}, jíshǐ yùqí de AltID wèi {3}."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONEALTIDMISMATCH_STRING",
+      "text": "Wúfǎ yòng AltID {1} fù xiě zì chuàn {0}, yīnwèi jīshù wèi {2}, ér yùqí de AltID wèi {3}."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONENOALTID_STRING",
+      "text": "Yǒngyuǎn wúfǎ yòng AltID {1} fù xiě zì chuàn {0}, yīnwèi jīshù wèi {2}, jíshǐ yùqí de AltID wèi {3}."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_NEEDSKEYS",
+      "text": "Yǐxià jiàn [{0}] shì bìyào de. Jiéguǒ wèi [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_MEMBERINVCARD",
+      "text": "VCard jìnzhǐ jùyǒu MEMBER shǔxìng."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_INVALIDBASETYPE",
+      "text": "Jīdǐ lèixíng bùshì {0} [{1}], qiě língjiàn lèixíng wèi [{2}], tā bù dàibiǎo kǎpiàn língjiàn."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_PARTSTYPEMISMATCH",
+      "text": "Gēnjù lèixíng {2}, língjiàn zhènliè lièjǔ [{0}] yǔ yùqí méi jǔ [{1}] bùtóng."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_INVALIDVERSION",
+      "text": "Zhǐdìng de vCard bǎnběn {0} wúxiào. Zhīyuán de bǎnběn wèi 2.1,3.0,4.0 Hé 5.0."
+    },
+    {
+      "loc": "VISUALCARD_TOOLS_EXCEPTION_INVALIDVCARDCONTACT",
+      "text": "Zhè bùshì yǒuxiào de vCard liánluò rén wénjiàn."
+    },
+    {
+      "loc": "VISUALCARD_TOOLS_EXCEPTION_INVALIDVCARDVERSION",
+      "text": "Cǐ kǎpiàn de VCard bǎnběn {0} wúxiào."
+    },
+    {
+      "loc": "VISUALCARD_TOOLS_EXCEPTION_VERSIONNOTFIRST",
+      "text": "VCard {0}.0 Yāoqiú {1} jǐn jiē zài {2} zhīhòu."
+    },
+    {
+      "loc": "VISUALCARD_TOOLS_EXCEPTION_ENDEDPREMATURELY",
+      "text": "Kǎpiàn tíqián jiéshù, quēshǎo jiéshù biāojì"
+    }
+  ]
+}

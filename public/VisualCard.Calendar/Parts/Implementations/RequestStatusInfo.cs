@@ -1,4 +1,4 @@
-﻿//
+//
 // VisualCard  Copyright (C) 2021-2025  Aptivi
 //
 // This file is part of VisualCard
@@ -24,6 +24,7 @@ using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using Textify.General;
+using VisualCard.Calendar.Languages;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parts;
 
@@ -77,22 +78,22 @@ namespace VisualCard.Calendar.Parts.Implementations
             // Get the request and split it with the semicolon two times
             var requestStatus = Regex.Unescape(value);
             if (!requestStatus.Contains(";"))
-                throw new InvalidDataException("There is no semicolon to split between status number and status description and, possibly, the external data pair.");
+                throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_NOSPLIT"));
 
             // Get the status number
             string statusStr = requestStatus.Substring(0, requestStatus.IndexOf(";"));
             if (!statusStr.Contains("."))
-                throw new InvalidDataException("There is no dot to split two or three status codes.");
+                throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_NOSPLITCODES"));
             string[] statusSplit = statusStr.Split('.');
             if (statusSplit.Length < 2 || statusSplit.Length > 3)
-                throw new InvalidDataException("After splitting, got {0} items instead of 2 or 3.".FormatString(statusSplit.Length));
+                throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_ARGMISMATCH").FormatString(statusSplit.Length));
             (int, int, int) statusTuple = default;
             if (!int.TryParse(statusSplit[0], out statusTuple.Item1))
-                throw new InvalidDataException("Status is not a number." + $" [1/3]: {statusSplit[0]}.");
+                throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_INVALIDNUM") + $" [1/3]: {statusSplit[0]}.");
             if (!int.TryParse(statusSplit[1], out statusTuple.Item2))
-                throw new InvalidDataException("Status is not a number." + $" [2/3]: {statusSplit[1]}.");
+                throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_INVALIDNUM") + $" [2/3]: {statusSplit[1]}.");
             if (statusSplit.Length == 3 && !int.TryParse(statusSplit[2], out statusTuple.Item3))
-                throw new InvalidDataException("Status is not a number." + $" [3/3]: {statusSplit[2]}.");
+                throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_INVALIDNUM") + $" [3/3]: {statusSplit[2]}.");
 
             // Get the property pair and split it
             string pair = requestStatus.RemovePrefix($"{statusStr};");

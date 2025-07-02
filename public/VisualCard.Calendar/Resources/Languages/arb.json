@@ -1,0 +1,284 @@
+{
+  "lang": "arb",
+  "name": "Arabic",
+  "cultures": [
+    "ar",
+    "ar-001",
+    "ar-AE",
+    "ar-BH",
+    "ar-DJ",
+    "ar-DZ",
+    "ar-EG",
+    "ar-ER",
+    "ar-IL",
+    "ar-IQ",
+    "ar-JO",
+    "ar-KM",
+    "ar-KW",
+    "ar-LB",
+    "ar-LY",
+    "ar-MA",
+    "ar-MR",
+    "ar-OM",
+    "ar-PS",
+    "ar-QA",
+    "ar-SA",
+    "ar-SD",
+    "ar-SO",
+    "ar-SS",
+    "ar-SY",
+    "ar-TD",
+    "ar-TN",
+    "ar-YE"
+  ],
+  "locs": [
+    {
+      "loc": "VISUALCARD_CALENDAR_EXCEPTION_GENERALCALENDARPARSEERROR",
+      "text": "khata eam fi tahlil altaqwimi."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR",
+      "text": "hadath khata 'athna' tahlil taqwim vCalendar."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR_ERROR",
+      "text": "alkhata'a:"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR_LINE",
+      "text": "alsatru:"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR_LINENUM",
+      "text": "raqm alsatri:"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_CALENDARCONTENTEMPTY",
+      "text": "muhtawaa altaqwim fargh."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_ENDINGMISMATCH",
+      "text": "eadam tatabuq fi alnihayati: alqimat almutawaqaea {0} muqabil alqimat alfielia {1}"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_PARTTYPEUNSUPPORTED",
+      "text": "nawe maelumat aljuz' {0} la yadeam nawe alkhasiya {1} li'ana al'anwae altaaliat madeumatun: [{2}]"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_VALUEDISALLOWED",
+      "text": "alqima {0} ghayr mawjudat fi qayimat alqiam almasmuh biha [{1}]"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_INVALIDTYPE",
+      "text": "alnawe {0} ghayr salihin. hal 'ant muta'akid min tahdid alnawe alsahih fi tamthil vCalendar?"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_INVALIDTYPE2",
+      "text": "alnawe {0} ghayr salih"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_INCOMPATIBLENESTEDTYPES",
+      "text": "la yumkin wade {0} dakhil {1}"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_STRENUMNOTVALID",
+      "text": "lam yatima tatbiq taedad alsilsila {0}."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_INTENUMNOTVALID",
+      "text": "lam yatima tatbiq taedad al'aedad alsahiha {0}."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_TYPENEEDED",
+      "text": "alnawe ghayr mutawafiri."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_AUDIOALARMINFO_ARGMISMATCH",
+      "text": "eind taqsim maelumat altanbih alsawti, takun qimat altaqsim {0} bdlaan min 4."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_AUDIOALARMINFO_REPEATTIMES",
+      "text": "'awqat altakrar ghayr salihatin."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_DAYLIGHTINFO_ARGMISMATCH",
+      "text": "eind taqsim maelumat daw' alnahar, takun qimat altaqsim {0} bdlaan min 6."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_DISPLAYALARMINFO_ARGMISMATCH",
+      "text": "eind taqsim maelumat tanbih alearda, takun qimat altaqsim {0} bdlaan min 4."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_MAILALARMINFO_ARGMISMATCH",
+      "text": "eind taqsim maelumat tanbih albirid, takun qimat altaqsim {0} bdlaan min 5."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_PROCEDUREALARMINFO_ARGMISMATCH",
+      "text": "eind taqsim maelumat tanbih al'iijra'i, takun qimat altaqsim {0} bdlaan min 4."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_ATTACH_INVALIDURL",
+      "text": "eunwan URL {0} ghayr salihi."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_GEO_ARGMISMATCH",
+      "text": "eind taqsim almawqie aljughrafi, takun qimat altaqsim {0} bdlaan min 2."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_GEO_INVALIDLAT",
+      "text": "khatu aleard ghayr salih {0}"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_GEO_INVALIDLONG",
+      "text": "khatu altuwl ghayr salih {0}"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_NOSPLIT",
+      "text": "la tujad fasilat manqutat liltaqsim bayn raqm alhalat wawasfiha, warubama zawj albayanat alkhariji."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_NOSPLITCODES",
+      "text": "la tujad nuqtat litaqsim ramzi halatan 'aw thalathatin."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_ARGMISMATCH",
+      "text": "baed altaqsimi, tama alhusul ealaa {0} eunsur bdlaan min eunsurayn 'aw thalathatin."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_INVALIDNUM",
+      "text": "alhalat laysat rqman."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_ENUMTYPENOTFOUND",
+      "text": "lam yatima aleuthur ealaa nawe altiedad li {0}."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_ENUMTYPEUNDETERMINABLE_DELETE",
+      "text": "la yumkin tahdid nawe altiedad lihadhf juz'i."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_ENUMTYPEUNDETERMINABLE_ADD",
+      "text": "la yumkin tahdid nawe altiedad li'iidafat juz'i."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_CANTADDCARDINALITY_PARTS",
+      "text": "la yumkin 'iidafat masfufat al'ajza' {0}, li'ana eadad aleanasir hu {1}."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_CANTADDCARDINALITY_STRING",
+      "text": "la yumkin 'iidafat silsilat nasiya {0}, li'ana eadad aleanasir hu {1}."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_CANTADDCARDINALITY_INTEGER",
+      "text": "la yumkin 'iidafat eadad sahih {0}, li'ana eadad aleanasir hu {1}."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_ROOT",
+      "text": "almafatih altaalia [{0}] matlubat fi aljidhra. tama alhusul ealaa [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_EVENT",
+      "text": "almafatih altaalia [{0}] matlubat fi tamthil alhadathi. tama alhusul ealaa [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_DATEENDCONFLICT_EVENT",
+      "text": "tama aleuthur ealaa taearud bayn tarikh alnihayat walmudati."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TODO",
+      "text": "almafatih altaalia [{0}] matlubat fi tamthil almuhami. tama alhusul ealaa [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_DUEDATECONFLICT_TODO",
+      "text": "tama aleuthur ealaa taearud bayn tarikh aliastihqaq walmudati."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NODATESTARTDURATION_TODO",
+      "text": "la yujad tarikh bidayatan li'iidafatih 'iilaa almudati."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_JOURNAL",
+      "text": "almafatih altaalia [{0}] matlubat fi tamthil alyawmiati. tama alhusul ealaa [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_FREEBUSY",
+      "text": "almafatih altaalia [{0}] matlubat fi tamthil mashghul. tama alhusul ealaa [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TIMEZONE",
+      "text": "almafatih altaalia [{0}] matlubat fi tamthil almintaqat alzamaniati. tama alhusul ealaa [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSCOMPONENTS_TIMEZONE",
+      "text": "'ahad mukawinat almieyari/du' alnahar matlubun."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TIMEZONE_STANDARD",
+      "text": "almafatih altaalia [{0}] matlubat fi altamthil alqiasi. tama alhusul ealaa [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TIMEZONE_DAYLIGHT",
+      "text": "almafatih altaalia [{0}] matlubat fi tamthil daw' alnahar. tama alhusul ealaa [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_PERCENTCOMPLETION",
+      "text": "la yajuz 'an takun nisbat al'iikmal 'aqala min sifr wala 'akbar min 100."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_PRIORITY",
+      "text": "la yajuz 'an takun al'awlawiat 'aqala min sifr wala 'akbar min 9."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_MEMBERINVCARD",
+      "text": "yuhzr ealaa bitaqat vCard ahtiwa' khasayis MEMBER."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_INVALIDBASETYPE",
+      "text": "alnawe al'asasiu lays {0} [{1}], wanawe aljuz' hu [{2}] aladhi la yumathil juz' altaqwimi."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_PARTSTYPEMISMATCH",
+      "text": "yakhtalif tiedad masfufat al'ajza' [{0}] ean almutawaqae [{1}] wfqan lilnawe {2}."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_INVALIDVERSION",
+      "text": "tama tahdid 'iisdar vCalendar ghayr salih {0}. al'iisdaran almadeuman huma 1.0 wa2.0."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARV2COMPONENTS_INVALIDVERSION",
+      "text": "tama tahdid 'iisdar vCalendar ghayr salih {0}. al'iisdar almadeum hu 2.0."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_ROOT",
+      "text": "almafatih altaalia [{0}] matlubat fi tamthil altanbihi. tama alhusul ealaa [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_AUDIO",
+      "text": "almafatih altaalia [{0}] matlubat fi tamthil altanbih alsawtii. tama alhusul ealaa [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_DISPLAY",
+      "text": "almafatih altaalia [{0}] matlubat fi tamthil tanbih alearda. tama alhusul ealaa [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_MAIL",
+      "text": "almafatih altaalia [{0}] matlubat fi tamthil tanbih albirid. tama alhusul ealaa [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_REPEATED",
+      "text": "almafatih altaalia [{0}] matlubat fi tamthil altanbih almutakariri. tama alhusul ealaa [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_TOOLS_EXCEPTION_INVALIDVCALENDAR",
+      "text": "hadha lays milafu taqwim aiftiradiin salih."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_TOOLS_EXCEPTION_INVALIDVCALENDARVERSION",
+      "text": "yahtawi hadha altaqwim ealaa 'iisdar taqwim aftiradiin ghayr salih {0}."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_TOOLS_EXCEPTION_ENDEDPREMATURELY",
+      "text": "antahaa altaqwim qabl 'awanih bidun wasm alnihayati."
+    }
+  ]
+}

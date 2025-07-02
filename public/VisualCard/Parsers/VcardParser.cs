@@ -1,4 +1,4 @@
-﻿//
+//
 // VisualCard  Copyright (C) 2021-2025  Aptivi
 //
 // This file is part of VisualCard
@@ -31,6 +31,7 @@ using VisualCard.Common.Parts;
 using VisualCard.Common.Parts.Enums;
 using VisualCard.Common.Parts.Implementations;
 using VisualCard.Exceptions;
+using VisualCard.Languages;
 using VisualCard.Parts;
 using VisualCard.Parts.Enums;
 
@@ -66,7 +67,7 @@ namespace VisualCard.Parsers
             // Check the content to ensure that we really have data
             LoggingTools.Debug("Content lines is {0}...", CardContent.Length);
             if (CardContent.Length == 0)
-                throw new InvalidDataException("Card content is empty.");
+                throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_PARSER_EXCEPTION_CARDCONTENTEMPTY"));
 
             // Make a new vCard
             var card = new Card(CardVersion);
@@ -148,7 +149,7 @@ namespace VisualCard.Parsers
                          (CardPartsArrayEnum)partType.enumeration == CardPartsArrayEnum.NonstandardNames))
                         continue;
                     LoggingTools.Error("Element type {0} is not in the list of allowed types", elementTypeUpper);
-                    throw new InvalidDataException("Part info type {0} doesn't support property type {1} because the following base types are supported: [{2}] and the extra types are supported: [{3}]".FormatString(partType.enumType?.Name ?? "<null>", elementTypeUpper, string.Join(", ", allowedTypes), string.Join(", ", partType.allowedExtraTypes)));
+                    throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_PARSER_EXCEPTION_PARTTYPEUNSUPPORTED").FormatString(partType.enumType?.Name ?? "<null>", elementTypeUpper, string.Join(", ", allowedTypes), string.Join(", ", partType.allowedExtraTypes)));
                 }
             }
 
@@ -169,7 +170,7 @@ namespace VisualCard.Parsers
                         found = true;
                 }
                 if (!found)
-                    throw new InvalidDataException("Value {0} not in the list of allowed values [{1}]".FormatString(finalValue, string.Join(", ", partType.allowedValues)));
+                    throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_PARSER_EXCEPTION_VALUEDISALLOWED").FormatString(finalValue, string.Join(", ", partType.allowedValues)));
                 LoggingTools.Debug("Found allowed value [type: {0}]: {1}", valueType, finalValue);
             }
 
@@ -193,7 +194,7 @@ namespace VisualCard.Parsers
                         if (stringType == CardStringsEnum.Profile && !finalValue.Equals("vcard", StringComparison.OrdinalIgnoreCase))
                         {
                             LoggingTools.Error("String part is {0} and value is not vcard [{1}]", stringType, finalValue);
-                            throw new InvalidDataException("Profile must be 'vCard'");
+                            throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_PARSER_EXCEPTION_INVALIDPROFILE"));
                         }
 
                         // Set the string for real
@@ -234,7 +235,7 @@ namespace VisualCard.Parsers
                     break;
                 default:
                     LoggingTools.Error("Unknown part {0}", partType.type);
-                    throw new InvalidDataException("The type {0} is invalid. Are you sure that you've specified the correct type in your vCard representation?".FormatString(partType.type));
+                    throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_PARSER_EXCEPTION_INVALIDTYPE").FormatString(partType.type));
             }
         }
 

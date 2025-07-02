@@ -1,0 +1,75 @@
+{
+  "lang": "iri",
+  "name": "Irish",
+  "cultures": [
+    "ga",
+    "ga-GB",
+    "ga-IE"
+  ],
+  "locs": [
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_INTRO",
+      "text": "Cinntigh go bhfuil do ghuthán fréamhaithe sula mbeidh tú in ann an comhad 'contacts2.db' a fháil. Bain triail as na cosáin seo:"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_SYSTEMWIDE",
+      "text": "Teagmhálaithe uile-chórais:"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_USERWIDE",
+      "text": "Teagmhálaithe spás úsáideora (úsáideoir 0):"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_OTHERDIRS",
+      "text": "Mura n-oibríonn siad, féach ar eolaire /data do ghléis sa bhainisteoir comhad fréimhe."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBNOTFOUND",
+      "text": "Ní bhfuarthas an comhad bunachar sonraí teagmhála Android a fuarthas ón soláthraí teagmhála."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBINVALID",
+      "text": "Níl an comhad bunachar sonraí teagmhála Android bailí."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_NEEDSMECARD",
+      "text": "Níor cheart go mbeadh an teaghrán MeCard folamh."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_MECARDINVALID",
+      "text": "Ní ionann an teaghrán seo agus teagmhálaí bailí MeCard."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_MECARDPARSEFAILED",
+      "text": "Níl an teaghrán teagmhála MeCard bailí."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_CARDNOTPROVIDED",
+      "text": "Níor soláthraíodh an cárta."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_NEEDSNAMETOSAVE",
+      "text": "Ní féidir teaghrán MeCard a thógáil ó vCard ina bhfuil ainm folamh nó ainm iomlán folamh."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_APPNOTFOUND",
+      "text": "Níl aip meán sóisialta den sórt sin ann."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_NOSOCIALMEDIAFIELDS",
+      "text": "Níl aon réimsí meán sóisialta ann."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_INCORRECTFIELD",
+      "text": "Ní luach meán sóisialta é an fhaisnéis luacha do {0}. Bhíothas ag súil le VISUALCARD-SOCIAL, fuarthas {1} le {2} luachanna"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_NEEDSABBREVNAME",
+      "text": "Do {0}, bhíothas ag súil le giorrúchán agus ainm ar a laghad. Fuarthas {1} luachanna. Leid:"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_ABBREVMISMATCH",
+      "text": "I gcás {0}, bhíothas ag súil le giorrúchán comhoiriúnach don aip. Fuarthas {1}. Leid:"
+    }
+  ]
+}

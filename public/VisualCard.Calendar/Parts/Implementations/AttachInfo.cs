@@ -1,4 +1,4 @@
-﻿//
+//
 // VisualCard  Copyright (C) 2021-2025  Aptivi
 //
 // This file is part of VisualCard
@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using Textify.General;
+using VisualCard.Calendar.Languages;
 using VisualCard.Common.Parsers;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parts;
@@ -60,7 +61,7 @@ namespace VisualCard.Calendar.Parts.Implementations
             {
                 // Since we don't need embedded attachs, we need to check a URL.
                 if (!Uri.TryCreate(value, UriKind.Absolute, out Uri uri))
-                    throw new InvalidDataException("URL {0} is invalid".FormatString(value));
+                    throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_ATTACH_INVALIDURL").FormatString(value));
                 value = uri.ToString();
             }
 

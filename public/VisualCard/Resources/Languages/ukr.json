@@ -1,0 +1,174 @@
+{
+  "lang": "ukr",
+  "name": "Ukrainian",
+  "cultures": [
+    "uk",
+    "uk-UA"
+  ],
+  "locs": [
+    {
+      "loc": "VISUALCARD_EXCEPTION_GENERALCONTACTPARSEERROR",
+      "text": "Загальна помилка розбору контакту."
+    },
+    {
+      "loc": "VISUALCARD_EXCEPTION_CONTACTPARSEERROR",
+      "text": "Сталася помилка під час розбору контакту VCard."
+    },
+    {
+      "loc": "VISUALCARD_EXCEPTION_CONTACTPARSEERROR_ERROR",
+      "text": "Помилка:"
+    },
+    {
+      "loc": "VISUALCARD_EXCEPTION_CONTACTPARSEERROR_LINE",
+      "text": "Рядок:"
+    },
+    {
+      "loc": "VISUALCARD_EXCEPTION_CONTACTPARSEERROR_LINENUM",
+      "text": "Номер рядка:"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_CARDCONTENTEMPTY",
+      "text": "Вміст картки порожній."
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_PARTTYPEUNSUPPORTED",
+      "text": "Тип інформації про частину {0} не підтримує тип властивості {1}, оскільки підтримуються такі базові типи: [{2}], а також підтримуються додаткові типи: [{3}]"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_VALUEDISALLOWED",
+      "text": "Значення {0} відсутнє у списку дозволених значень [{1}]"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_INVALIDPROFILE",
+      "text": "Профіль має бути 'vCard'."
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_INVALIDTYPE",
+      "text": "Тип {0} недійсний. Ви впевнені, що вказали правильний тип у вашому представленні vCard?"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_STRENUMNOTVALID",
+      "text": "Перелік рядків {0} не реалізовано."
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_TYPENEEDED",
+      "text": "Тип не надано."
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_NOTNUMERIC",
+      "text": "ALTID має бути числовим"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_NOTPOSITIVE",
+      "text": "ALTID має бути додатним"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_NOREASONS",
+      "text": "ALTID повинен мати один або кілька аргументів, щоб вказати, чому цей екземпляр є альтернативним"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_NOTINFIRSTPOS",
+      "text": "ALTID має бути точно на першій позиції аргументу, оскільки аргументи, що йдуть після нього, повинні бути вказані"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_ILLEGALCARDINALITY",
+      "text": "ALTID не повинен бути вказаний у типі {0}, який очікує кардинальність {1}"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_ENCODABLES_INVALIDURL",
+      "text": "URL-адреса {0} недійсна"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_ADDRESS_NEEDSARGS",
+      "text": "Інформація про адресу повинна містити рівно сім значень (поштова скринька, розширена адреса, адреса вулиці, населений пункт, регіон, поштовий індекс та країна)"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_AGENT_NEEDSARGS",
+      "text": "Інформація про агента повинна містити рівно одне значення (вміст vCard агента, рядки якого розділені символом '\\\\n')"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CLIENTPID_INVALIDMAP",
+      "text": "Представлення карти PID клієнта недійсне:"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CLIENTPID_INVALIDPIDNUM",
+      "text": "Номер PID {0} недійсний"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CLIENTPID_INVALIDPIDURI",
+      "text": "URI PID {0} недійсний"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_GENDER_INVALIDGENDERSTR",
+      "text": "Недійсний рядок статі {0}"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_NAME_NEEDSARGS",
+      "text": "Поле імені має містити перші два або більше з п'яти значень (прізвище, ім'я, альтернативні імена, префікси та суфікси)"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_XML_NEEDSXML",
+      "text": "Неможливо згенерувати XML-документ з нічого."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ENUMTYPEUNDETERMINABLE_DELETE",
+      "text": "Неможливо визначити тип переліку для видалення частини."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ENUMTYPEUNDETERMINABLE_ADD",
+      "text": "Неможливо визначити тип перелічення для додавання частини."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONEALTIDMISMATCH_PARTS",
+      "text": "Неможливо перезаписати масив частин {0} з AltID {1}, оскільки потужність дорівнює {2}, а очікуваний AltID дорівнює {3}."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONENOALTID_PARTS",
+      "text": "Ніколи не можна перезаписати масив частин {0} з AltID {1}, оскільки потужність дорівнює {2}, навіть якщо очікуваний AltID дорівнює {3}."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONEALTIDMISMATCH_STRING",
+      "text": "Неможливо перезаписати рядок {0} з AltID {1}, оскільки потужність дорівнює {2}, а очікуваний AltID дорівнює {3}."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONENOALTID_STRING",
+      "text": "Ніколи не можна перезаписати рядок {0} з AltID {1}, оскільки потужність дорівнює {2}, навіть якщо очікуваний AltID дорівнює {3}."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_NEEDSKEYS",
+      "text": "Наступні ключі [{0}] є обов'язковими. Отримано [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_MEMBERINVCARD",
+      "text": "vCard заборонено мати властивості MEMBER."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_INVALIDBASETYPE",
+      "text": "Базовий тип не {0} [{1}], а тип частини [{2}], що не представляє частину картки."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_PARTSTYPEMISMATCH",
+      "text": "Перелік масиву частин [{0}] відрізняється від очікуваного [{1}] відповідно до типу {2}."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_INVALIDVERSION",
+      "text": "Вказано недійсну версію vCard {0}. Підтримувані версії: 2.1, 3.0, 4.0 та 5.0."
+    },
+    {
+      "loc": "VISUALCARD_TOOLS_EXCEPTION_INVALIDVCARDCONTACT",
+      "text": "Це недійсний файл контакту vCard."
+    },
+    {
+      "loc": "VISUALCARD_TOOLS_EXCEPTION_INVALIDVCARDVERSION",
+      "text": "Ця картка має недійсну версію VCard {0}."
+    },
+    {
+      "loc": "VISUALCARD_TOOLS_EXCEPTION_VERSIONNOTFIRST",
+      "text": "vCard {0}.0 вимагає, щоб {1} знаходився безпосередньо після {2}."
+    },
+    {
+      "loc": "VISUALCARD_TOOLS_EXCEPTION_ENDEDPREMATURELY",
+      "text": "Картка закінчилася передчасно без кінцевого тегу."
+    }
+  ]
+}

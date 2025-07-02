@@ -1,0 +1,259 @@
+{
+  "lang": "kor-T",
+  "name": "Korean",
+  "cultures": [
+    "ko",
+    "ko-KP",
+    "ko-KR"
+  ],
+  "locs": [
+    {
+      "loc": "VISUALCARD_CALENDAR_EXCEPTION_GENERALCALENDARPARSEERROR",
+      "text": "일반 달력 구문 분석 오류입니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR",
+      "text": "VCalendar 달력을 구문 분석하는 중 오류가 발생했습니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR_ERROR",
+      "text": "오류:"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR_LINE",
+      "text": "줄:"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR_LINENUM",
+      "text": "줄 번호:"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_CALENDARCONTENTEMPTY",
+      "text": "달력 내용이 비어 있습니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_ENDINGMISMATCH",
+      "text": "종료 불일치: 예상 {0}과 실제 {1}이(가) 다릅니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_PARTTYPEUNSUPPORTED",
+      "text": "파트 정보 유형 {0}은(는) 다음 유형이 지원되므로 속성 유형 {1}을(를) 지원하지 않습니다. [{2}]"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_VALUEDISALLOWED",
+      "text": "값 {0}이(가) 허용되는 값 목록에 없습니다. [{1}]"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_INVALIDTYPE",
+      "text": "유형 {0}이(가) 잘못되었습니다. vCalendar 표현에 올바른 유형을 지정했습니까?"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_INVALIDTYPE2",
+      "text": "유형 {0}이 잘못되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_INCOMPATIBLENESTEDTYPES",
+      "text": "{1} 안에 {0}을(를) 넣을 수 없습니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_STRENUMNOTVALID",
+      "text": "문자열 열거형 {0}이(가) 구현되지 않았습니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_INTENUMNOTVALID",
+      "text": "정수 열거형 {0}이(가) 구현되지 않았습니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_TYPENEEDED",
+      "text": "유형이 제공되지 않았습니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_AUDIOALARMINFO_ARGMISMATCH",
+      "text": "오디오 알람 정보를 분할할 때 분할 값이 4가 아닌 {0}입니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_AUDIOALARMINFO_REPEATTIMES",
+      "text": "반복 횟수가 잘못되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_DAYLIGHTINFO_ARGMISMATCH",
+      "text": "일광 절약 시간 정보를 분할할 때 분할 값이 6이 아닌 {0}입니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_DISPLAYALARMINFO_ARGMISMATCH",
+      "text": "디스플레이 알람 정보를 분할할 때 분할 값이 4가 아닌 {0}입니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_MAILALARMINFO_ARGMISMATCH",
+      "text": "메일 알람 정보를 분할할 때 분할 값이 5가 아닌 {0}입니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_PROCEDUREALARMINFO_ARGMISMATCH",
+      "text": "절차 알람 정보를 분할할 때 분할 값이 4가 아닌 {0}입니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_ATTACH_INVALIDURL",
+      "text": "URL {0}이 잘못되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_GEO_ARGMISMATCH",
+      "text": "지역을 분할할 때 분할 값이 2가 아닌 {0}입니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_GEO_INVALIDLAT",
+      "text": "위도 {0}이 잘못되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_GEO_INVALIDLONG",
+      "text": "경도 {0}이 잘못되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_NOSPLIT",
+      "text": "상태 번호와 상태 설명, 그리고 외부 데이터 쌍 사이에 분할할 세미콜론이 없습니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_NOSPLITCODES",
+      "text": "두세 개의 상태 코드를 분할할 점이 없습니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_ARGMISMATCH",
+      "text": "분할 후 2개 또는 3개가 아닌 {0}개의 항목이 표시되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_INVALIDNUM",
+      "text": "상태가 숫자가 아닙니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_ENUMTYPENOTFOUND",
+      "text": "{0}에 대한 열거형 유형을 찾을 수 없습니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_ENUMTYPEUNDETERMINABLE_DELETE",
+      "text": "부분을 삭제할 열거형 유형을 결정할 수 없습니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_ENUMTYPEUNDETERMINABLE_ADD",
+      "text": "부분을 ​​추가할 열거형 유형을 결정할 수 없습니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_CANTADDCARDINALITY_PARTS",
+      "text": "기수가 {1}이므로 부분 배열 {0}을(를) 추가할 수 없습니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_CANTADDCARDINALITY_STRING",
+      "text": "기수가 {1}이므로 문자열 {0}을(를) 추가할 수 없습니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_CANTADDCARDINALITY_INTEGER",
+      "text": "기수가 {1}이므로 정수 {0}을(를) 추가할 수 없습니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_ROOT",
+      "text": "루트에 다음 키 [{0}]이(가) 필요합니다. [{1}]을(를) 가져왔습니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_EVENT",
+      "text": "이벤트 표현에 다음 키 [{0}]이(가) 필요합니다. [{1}]을(를) 가져왔습니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_DATEENDCONFLICT_EVENT",
+      "text": "날짜 종료와 기간이 충돌합니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TODO",
+      "text": "할 일 표현에 다음 키 [{0}]이(가) 필요합니다. [{1}]을(를) 가져왔습니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_DUEDATECONFLICT_TODO",
+      "text": "마감일과 기간이 충돌합니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NODATESTARTDURATION_TODO",
+      "text": "기간에 추가할 시작일이 없습니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_JOURNAL",
+      "text": "분개 표현에 다음 키 [{0}]이(가) 필요합니다. [{1}]을(를) 가져왔습니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_FREEBUSY",
+      "text": "한가함/바쁨 표현에 다음 키 [{0}]이(가) 필요합니다. [{1}]을(를) 가져왔습니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TIMEZONE",
+      "text": "시간대 표현에 다음 키 [{0}]이(가) 필요합니다. [{1}]을(를) 받았습니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSCOMPONENTS_TIMEZONE",
+      "text": "표준/일광 절약 시간제 구성 요소 중 하나가 필요합니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TIMEZONE_STANDARD",
+      "text": "표준 표현에는 다음 키 [{0}]이(가) 필요합니다. [{1}]을(를) 받았습니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TIMEZONE_DAYLIGHT",
+      "text": "일광 절약 시간제 표현에는 다음 키 [{0}]이(가) 필요합니다. [{1}]을(를) 받았습니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_PERCENTCOMPLETION",
+      "text": "완료율은 0보다 작거나 100보다 클 수 없습니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_PRIORITY",
+      "text": "우선순위는 0보다 작거나 9보다 클 수 없습니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_MEMBERINVCARD",
+      "text": "vCard는 MEMBER 속성을 가질 수 없습니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_INVALIDBASETYPE",
+      "text": "기본 유형이 {0} [{1}]이(가) 아니며, 파트 유형은 달력 파트를 나타내지 않는 [{2}]입니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_PARTSTYPEMISMATCH",
+      "text": "파트 배열 열거형 [{0}]이(가) 유형 {2}에 따라 예상된 [{1}]과(와) 다릅니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_INVALIDVERSION",
+      "text": "잘못된 vCalendar 버전 {0}이(가) 지정되었습니다. 지원되는 버전은 1.0 및 2.0입니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARV2COMPONENTS_INVALIDVERSION",
+      "text": "잘못된 vCalendar 버전 {0}이(가) 지정되었습니다. 지원되는 버전은 2.0입니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_ROOT",
+      "text": "알람 표현에는 다음 키 [{0}]이(가) 필요합니다. [{1}]을(를) 받았습니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_AUDIO",
+      "text": "오디오 알람 표현에는 다음 키 [{0}]이(가) 필요합니다. [{1}]을(를) 받았습니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_DISPLAY",
+      "text": "디스플레이 알람 표현에는 다음 키 [{0}]이(가) 필요합니다. [{1}]을(를) 받았습니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_MAIL",
+      "text": "메일 알람 표현에는 다음 키 [{0}]이(가) 필요합니다. [{1}]을(를) 받았습니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_REPEATED",
+      "text": "반복 알람 표현에는 다음 키 [{0}]이(가) 필요합니다. [{1}]을(를) 받았습니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_TOOLS_EXCEPTION_INVALIDVCALENDAR",
+      "text": "유효하지 않은 vCalendar 파일입니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_TOOLS_EXCEPTION_INVALIDVCALENDARVERSION",
+      "text": "이 캘린더에는 잘못된 vCalendar 버전 {0}이(가) 있습니다."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_TOOLS_EXCEPTION_ENDEDPREMATURELY",
+      "text": "캘린더가 종료 태그 없이 너무 일찍 종료되었습니다."
+    }
+  ]
+}

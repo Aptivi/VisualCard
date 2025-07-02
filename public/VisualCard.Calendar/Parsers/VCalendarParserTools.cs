@@ -1,4 +1,4 @@
-﻿//
+//
 // VisualCard  Copyright (C) 2021-2025  Aptivi
 //
 // This file is part of VisualCard
@@ -33,6 +33,7 @@ using VisualCard.Common.Parts.Enums;
 using VisualCard.Common.Parsers;
 using VisualCard.Common.Diagnostics;
 using Textify.General;
+using VisualCard.Calendar.Languages;
 
 namespace VisualCard.Calendar.Parsers
 {
@@ -87,7 +88,7 @@ namespace VisualCard.Calendar.Parsers
                 CalendarStringsEnum.RelatedTo => VCalendarConstants._relationshipSpecifier,
                 CalendarStringsEnum.Contact => VCalendarConstants._contactSpecifier,
                 _ =>
-                    throw new NotImplementedException("String enumeration {0} is not implemented.".FormatString(stringsEnum))
+                    throw new NotImplementedException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARSER_EXCEPTION_STRENUMNOTVALID").FormatString(stringsEnum))
             };
 
         internal static string GetPrefixFromIntegersEnum(CalendarIntegersEnum integersEnum) =>
@@ -99,7 +100,7 @@ namespace VisualCard.Calendar.Parsers
                 CalendarIntegersEnum.Repeat => VCalendarConstants._repeatSpecifier,
                 CalendarIntegersEnum.RecurrTimes => VCalendarConstants._rNumSpecifier,
                 _ =>
-                    throw new NotImplementedException("Integer enumeration {0} is not implemented.".FormatString(integersEnum))
+                    throw new NotImplementedException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARSER_EXCEPTION_INTENUMNOTVALID").FormatString(integersEnum))
             };
 
         internal static string GetPrefixFromPartsArrayEnum(CalendarPartsArrayEnum partsArrayEnum) =>
@@ -139,7 +140,7 @@ namespace VisualCard.Calendar.Parsers
             if (partsArrayType is null)
             {
                 LoggingTools.Error("Part type not provided [version {0}, kind {1}]", cardVersion.ToString(), componentType.Name);
-                throw new NotImplementedException("Type is not provided.");
+                throw new NotImplementedException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARSER_EXCEPTION_TYPENEEDED"));
             }
 
             // Enumerate through all parts array enums

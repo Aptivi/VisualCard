@@ -1,4 +1,4 @@
-﻿//
+//
 // VisualCard  Copyright (C) 2021-2025  Aptivi
 //
 // This file is part of VisualCard
@@ -32,6 +32,7 @@ using VisualCard.Common.Parts;
 using VisualCard.Common.Parts.Comparers;
 using VisualCard.Common.Parts.Enums;
 using VisualCard.Common.Parts.Implementations;
+using VisualCard.Languages;
 using VisualCard.Parsers;
 using VisualCard.Parts.Comparers;
 using VisualCard.Parts.Enums;
@@ -523,7 +524,7 @@ namespace VisualCard.Parts
             string prefix = VcardParserTools.GetPrefixFromPartsArrayEnum(partsArrayEnum);
             var type = VcardParserTools.GetPartType(prefix, CardVersion, CardKindStr);
             var partType = type.enumType ??
-                throw new ArgumentException("Can't determine enumeration type to delete part.");
+                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_PARTS_EXCEPTION_CARD_ENUMTYPEUNDETERMINABLE_DELETE"));
 
             // Remove the string value
             return DeletePartsArray(partsArrayEnum, partType, idx);
@@ -660,7 +661,7 @@ namespace VisualCard.Parts
             string prefix = VcardParserTools.GetPrefixFromPartsArrayEnum(key);
             var type = VcardParserTools.GetPartType(prefix, CardVersion, CardKindStr);
             var partType = type.enumType ??
-                throw new ArgumentException("Can't determine enumeration type to add part.");
+                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_PARTS_EXCEPTION_CARD_ENUMTYPEUNDETERMINABLE_ADD"));
 
             // Now, add the part
             AddPartToArray(key, partType, rawValue, group, extraPrefix, args);
@@ -722,9 +723,9 @@ namespace VisualCard.Parts
                     cardinality == PartCardinality.MayBeOneNoAltId;
                 LoggingTools.Debug("Checking altid [actual: {0}, value: {1}] with {2} [{3}, {4}]", actualAltId, value.AltId, cardinality, onlyOne, onlyOneNoAltId);
                 if (onlyOne && actualAltId != value.AltId)
-                    throw new InvalidOperationException("Can't overwrite part array {0} with AltID {1}, because cardinality is {2} and expected AltID is {3}.".FormatString(key, value.AltId, cardinality, actualAltId));
+                    throw new InvalidOperationException(LanguageTools.GetLocalized("VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONEALTIDMISMATCH_PARTS").FormatString(key, value.AltId, cardinality, actualAltId));
                 if (onlyOneNoAltId)
-                    throw new InvalidOperationException("Can never overwrite part array {0} with AltID {1}, because cardinality is {2}, even though the expected AltID is {3}.".FormatString(key, value.AltId, cardinality, actualAltId));
+                    throw new InvalidOperationException(LanguageTools.GetLocalized("VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONENOALTID_PARTS").FormatString(key, value.AltId, cardinality, actualAltId));
             }
 
             // Add this value info!
@@ -765,9 +766,9 @@ namespace VisualCard.Parts
                     cardinality == PartCardinality.MayBeOneNoAltId;
                 LoggingTools.Debug("Checking altid [actual: {0}, value: {1}] with {2} [{3}, {4}]", actualAltId, value.AltId, cardinality, onlyOne, onlyOneNoAltId);
                 if (onlyOne && actualAltId != value.AltId)
-                    throw new InvalidOperationException("Can't overwrite part array {0} with AltID {1}, because cardinality is {2} and expected AltID is {3}.".FormatString(key, value.AltId, cardinality, actualAltId));
+                    throw new InvalidOperationException(LanguageTools.GetLocalized("VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONEALTIDMISMATCH_PARTS").FormatString(key, value.AltId, cardinality, actualAltId));
                 if (onlyOneNoAltId)
-                    throw new InvalidOperationException("Can never overwrite part array {0} with AltID {1}, because cardinality is {2}, even though the expected AltID is {3}.".FormatString(key, value.AltId, cardinality, actualAltId));
+                    throw new InvalidOperationException(LanguageTools.GetLocalized("VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONENOALTID_PARTS").FormatString(key, value.AltId, cardinality, actualAltId));
             }
 
             // Add this value info!
@@ -822,9 +823,9 @@ namespace VisualCard.Parts
                     cardinality == PartCardinality.MayBeOneNoAltId;
                 LoggingTools.Debug("Checking altid [actual: {0}, value: {1}] with {2} [{3}, {4}]", actualAltId, value.AltId, cardinality, onlyOne, onlyOneNoAltId);
                 if (onlyOne && actualAltId != value.AltId)
-                    throw new InvalidOperationException("Can't overwrite string {0} with AltID {1}, because cardinality is {2} and expected AltID is {3}.".FormatString(key, value.AltId, cardinality, actualAltId));
+                    throw new InvalidOperationException(LanguageTools.GetLocalized("VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONEALTIDMISMATCH_STRING").FormatString(key, value.AltId, cardinality, actualAltId));
                 if (onlyOneNoAltId)
-                    throw new InvalidOperationException("Can never overwrite string {0} with AltID {1}, because cardinality is {2}, even though the expected AltID is {3}.".FormatString(key, value.AltId, cardinality, actualAltId));
+                    throw new InvalidOperationException(LanguageTools.GetLocalized("VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONENOALTID_STRING").FormatString(key, value.AltId, cardinality, actualAltId));
             }
 
             // Add this value info!
@@ -851,14 +852,14 @@ namespace VisualCard.Parts
             // Now, check for requirements
             string[] expectedFields = [.. expectedFieldList];
             if (!ValidateFields(ref expectedFields, out string[] actualFields))
-                throw new InvalidDataException("The following keys [{0}] are required. Got [{1}].".FormatString(string.Join(", ", expectedFields), string.Join(", ", actualFields)));
+                throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_PARTS_EXCEPTION_CARD_NEEDSKEYS").FormatString(string.Join(", ", expectedFields), string.Join(", ", actualFields)));
 
             // Check for organization vCards that may not have MEMBER properties
             string[] forbiddenOrgFields = [VcardConstants._memberSpecifier];
             if (CardKind != CardKind.Group && ValidateFields(ref forbiddenOrgFields, out _))
             {
                 LoggingTools.Error("Unexpected field in card kind {0}: MEMBER", CardKind);
-                throw new InvalidDataException("vCards are forbidden from having MEMBER properties.".FormatString(CardKind));
+                throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_PARTS_EXCEPTION_CARD_MEMBERINVCARD").FormatString(CardKind));
             }
         }
 
@@ -910,7 +911,7 @@ namespace VisualCard.Parts
         {
             // Check the base type
             if (partType.BaseType != typeof(BaseCardPartInfo) && partType != typeof(BaseCardPartInfo))
-                throw new InvalidOperationException("Base type is not {0} [{1}] and the part type is [{2}] that doesn't represent card part.".FormatString(nameof(BaseCardPartInfo), partType.BaseType.Name, partType.Name));
+                throw new InvalidOperationException(LanguageTools.GetLocalized("VISUALCARD_PARTS_EXCEPTION_CARD_INVALIDBASETYPE").FormatString(nameof(BaseCardPartInfo), partType.BaseType.Name, partType.Name));
         }
 
         internal void VerifyPartsArrayType(CardPartsArrayEnum key, Type partType)
@@ -932,7 +933,7 @@ namespace VisualCard.Parts
                 var partsArrayEnum = (CardPartsArrayEnum)type.enumeration;
                 LoggingTools.Debug("Comparing {0} and {1}", key, partsArrayEnum);
                 if (key != partsArrayEnum)
-                    throw new InvalidOperationException("Parts array enumeration [{0}] is different from the expected one [{1}] according to type {2}.".FormatString(key, partsArrayEnum, nameof(BaseCardPartInfo)));
+                    throw new InvalidOperationException(LanguageTools.GetLocalized("VISUALCARD_PARTS_EXCEPTION_CARD_PARTSTYPEMISMATCH").FormatString(key, partsArrayEnum, nameof(BaseCardPartInfo)));
             }
         }
 
@@ -1007,7 +1008,7 @@ namespace VisualCard.Parts
         public Card(Version version)
         {
             if (!VcardParserTools.VerifySupportedVersion(version))
-                throw new ArgumentException("Invalid vCard version {0} specified. The supported versions are 2.1, 3.0, 4.0, and 5.0.".FormatString(version));
+                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_PARTS_EXCEPTION_CARD_INVALIDVERSION").FormatString(version));
             this.version = version;
         }
     }

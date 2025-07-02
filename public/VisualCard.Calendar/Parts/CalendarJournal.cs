@@ -1,4 +1,4 @@
-﻿//
+//
 // VisualCard  Copyright (C) 2021-2025  Aptivi
 //
 // This file is part of VisualCard
@@ -23,6 +23,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using Textify.General;
+using VisualCard.Calendar.Languages;
 using VisualCard.Calendar.Parsers;
 using VisualCard.Calendar.Parts.Comparers;
 using VisualCard.Calendar.Parts.Enums;
@@ -121,7 +122,7 @@ namespace VisualCard.Calendar.Parts
             base(version)
         {
             if (version.Major != 2 && version.Minor != 0)
-                throw new ArgumentException("Invalid vCalendar version {0} specified. The supported version is 2.0.".FormatString(version));
+                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARV2COMPONENTS_INVALIDVERSION").FormatString(version));
         }
     }
 }

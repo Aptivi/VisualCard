@@ -1,0 +1,258 @@
+{
+  "lang": "ind-T",
+  "name": "Hindi",
+  "cultures": [
+    "hi",
+    "hi-IN"
+  ],
+  "locs": [
+    {
+      "loc": "VISUALCARD_CALENDAR_EXCEPTION_GENERALCALENDARPARSEERROR",
+      "text": "सामान्य कैलेंडर पार्सिंग त्रुटि।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR",
+      "text": "VCalendar कैलेंडर को पार्स करते समय एक त्रुटि हुई"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR_ERROR",
+      "text": "त्रुटि:"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR_LINE",
+      "text": "पंक्ति:"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR_LINENUM",
+      "text": "पंक्ति संख्या:"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_CALENDARCONTENTEMPTY",
+      "text": "कैलेंडर सामग्री रिक्त है।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_ENDINGMISMATCH",
+      "text": "अंत बेमेल: अपेक्षित {0} बनाम वास्तविक {1}"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_PARTTYPEUNSUPPORTED",
+      "text": "भाग जानकारी प्रकार {0} संपत्ति प्रकार {1} का समर्थन नहीं करता है क्योंकि निम्न प्रकार समर्थित हैं: [{2}]"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_VALUEDISALLOWED",
+      "text": "मान {0} अनुमत मानों की सूची में नहीं है [{1}]"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_INVALIDTYPE",
+      "text": "प्रकार {0} अमान्य है। क्या आप सुनिश्चित हैं कि आपने अपने vCalendar प्रतिनिधित्व में सही प्रकार निर्दिष्ट किया है?"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_INVALIDTYPE2",
+      "text": "अमान्य प्रकार {0}"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_INCOMPATIBLENESTEDTYPES",
+      "text": "{1} के अंदर {0} नहीं रखा जा सकता"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_STRENUMNOTVALID",
+      "text": "स्ट्रिंग गणना {0} लागू नहीं की गई है।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_INTENUMNOTVALID",
+      "text": "पूर्णांक गणना {0} लागू नहीं की गई है।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_TYPENEEDED",
+      "text": "प्रकार प्रदान नहीं किया गया है।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_AUDIOALARMINFO_ARGMISMATCH",
+      "text": "ऑडियो अलार्म जानकारी को विभाजित करते समय, विभाजन मान 4 के बजाय {0} है।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_AUDIOALARMINFO_REPEATTIMES",
+      "text": "अमान्य दोहराव समय"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_DAYLIGHTINFO_ARGMISMATCH",
+      "text": "दिन के उजाले की जानकारी को विभाजित करते समय, विभाजन मान 6 के बजाय {0} है।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_DISPLAYALARMINFO_ARGMISMATCH",
+      "text": "प्रदर्शन अलार्म जानकारी को विभाजित करते समय, विभाजन मान 4 के बजाय {0} है।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_MAILALARMINFO_ARGMISMATCH",
+      "text": "मेल अलार्म जानकारी को विभाजित करते समय, विभाजन मान 5 के बजाय {0} है।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_PROCEDUREALARMINFO_ARGMISMATCH",
+      "text": "प्रक्रिया अलार्म जानकारी को विभाजित करते समय, विभाजन मान 4 के बजाय {0} है।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_ATTACH_INVALIDURL",
+      "text": "URL {0} अमान्य है"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_GEO_ARGMISMATCH",
+      "text": "भूगोल को विभाजित करते समय, विभाजन मान 2 के बजाय {0} है।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_GEO_INVALIDLAT",
+      "text": "अमान्य अक्षांश {0}"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_GEO_INVALIDLONG",
+      "text": "अमान्य देशांतर {0}"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_NOSPLIT",
+      "text": "स्थिति संख्या और स्थिति विवरण और संभवतः, बाहरी डेटा जोड़ी के बीच विभाजित करने के लिए कोई अर्धविराम नहीं है।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_NOSPLITCODES",
+      "text": "दो या तीन स्थिति कोड को विभाजित करने के लिए कोई बिंदु नहीं है।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_ARGMISMATCH",
+      "text": "विभाजन के बाद, 2 या 3 के बजाय {0} आइटम मिले।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_INVALIDNUM",
+      "text": "स्थिति एक संख्या नहीं है।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_ENUMTYPENOTFOUND",
+      "text": "{0} के लिए गणना प्रकार नहीं मिला"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_ENUMTYPEUNDETERMINABLE_DELETE",
+      "text": "भाग को हटाने के लिए गणना प्रकार निर्धारित नहीं किया जा सकता।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_ENUMTYPEUNDETERMINABLE_ADD",
+      "text": "भाग जोड़ने के लिए गणना प्रकार निर्धारित नहीं किया जा सकता।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_CANTADDCARDINALITY_PARTS",
+      "text": "भाग सरणी {0} नहीं जोड़ा जा सकता, क्योंकि कार्डिनैलिटी {1} है।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_CANTADDCARDINALITY_STRING",
+      "text": "स्ट्रिंग {0} नहीं जोड़ा जा सकता, क्योंकि कार्डिनैलिटी {1} है।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_CANTADDCARDINALITY_INTEGER",
+      "text": "पूर्णांक {0} नहीं जोड़ा जा सकता, क्योंकि कार्डिनैलिटी {1} है।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_ROOT",
+      "text": "मूल में निम्नलिखित कुंजियाँ [{0}] आवश्यक हैं। [{1}] मिला।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_EVENT",
+      "text": "घटना निरूपण में निम्नलिखित कुंजियाँ [{0}] आवश्यक हैं। [{1}] मिला।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_DATEENDCONFLICT_EVENT",
+      "text": "तिथि समाप्ति और अवधि संघर्ष पाया गया।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TODO",
+      "text": "टूडू निरूपण में निम्नलिखित कुंजियाँ [{0}] आवश्यक हैं। [{1}] मिला।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_DUEDATECONFLICT_TODO",
+      "text": "नियत तिथि और अवधि संघर्ष पाया गया।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NODATESTARTDURATION_TODO",
+      "text": "अवधि में जोड़ने के लिए कोई तिथि प्रारंभ नहीं है।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_JOURNAL",
+      "text": "जर्नल निरूपण में निम्नलिखित कुंजियाँ [{0}] आवश्यक हैं। [{1}] मिला।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_FREEBUSY",
+      "text": "फ्रीबिज़ी निरूपण में निम्नलिखित कुंजियाँ [{0}] आवश्यक हैं। [{1}] मिला।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TIMEZONE",
+      "text": "समयक्षेत्र निरूपण में निम्नलिखित कुंजियाँ [{0}] आवश्यक हैं। [{1}] मिला।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSCOMPONENTS_TIMEZONE",
+      "text": "मानक/डेलाइट घटकों में से एक की आवश्यकता है।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TIMEZONE_STANDARD",
+      "text": "मानक प्रतिनिधित्व में निम्नलिखित कुंजियाँ [{0}] आवश्यक हैं। [{1}] मिला।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TIMEZONE_DAYLIGHT",
+      "text": "डेलाइट प्रतिनिधित्व में निम्नलिखित कुंजियाँ [{0}] आवश्यक हैं। [{1}] मिला।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_PERCENTCOMPLETION",
+      "text": "प्रतिशत पूर्णता शून्य से कम या 100 से अधिक नहीं हो सकती"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_PRIORITY",
+      "text": "प्राथमिकता शून्य से कम या 9 से अधिक नहीं हो सकती"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_MEMBERINVCARD",
+      "text": "vCards में MEMBER गुण होने की मनाही है।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_INVALIDBASETYPE",
+      "text": "आधार प्रकार {0} [{1}] नहीं है और भाग प्रकार [{2}] है जो कैलेंडर भाग का प्रतिनिधित्व नहीं करता है।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_PARTSTYPEMISMATCH",
+      "text": "भाग सरणी गणना [{0}] प्रकार {2} के अनुसार अपेक्षित एक [{1}] से भिन्न है।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_INVALIDVERSION",
+      "text": "अमान्य vCalendar संस्करण {0} निर्दिष्ट किया गया है। समर्थित संस्करण 1.0 और 2.0 हैं।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARV2COMPONENTS_INVALIDVERSION",
+      "text": "अमान्य vCalendar संस्करण {0} निर्दिष्ट किया गया है। समर्थित संस्करण 2.0 है।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_ROOT",
+      "text": "अलार्म निरूपण में निम्नलिखित कुंजियाँ [{0}] आवश्यक हैं। [{1}] मिला।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_AUDIO",
+      "text": "ऑडियो अलार्म निरूपण में निम्नलिखित कुंजियाँ [{0}] आवश्यक हैं। [{1}] मिला।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_DISPLAY",
+      "text": "डिस्प्ले अलार्म निरूपण में निम्नलिखित कुंजियाँ [{0}] आवश्यक हैं। [{1}] मिला।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_MAIL",
+      "text": "मेल अलार्म निरूपण में निम्नलिखित कुंजियाँ [{0}] आवश्यक हैं। [{1}] मिला।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_REPEATED",
+      "text": "बार-बार अलार्म निरूपण में निम्नलिखित कुंजियाँ [{0}] आवश्यक हैं। [{1}] मिला।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_TOOLS_EXCEPTION_INVALIDVCALENDAR",
+      "text": "यह एक मान्य vCalendar फ़ाइल नहीं है।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_TOOLS_EXCEPTION_INVALIDVCALENDARVERSION",
+      "text": "इस कैलेंडर में एक अमान्य vCalendar संस्करण {0} है।"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_TOOLS_EXCEPTION_ENDEDPREMATURELY",
+      "text": "कैलेंडर समाप्ति टैग के बिना समय से पहले समाप्त हो गया"
+    }
+  ]
+}

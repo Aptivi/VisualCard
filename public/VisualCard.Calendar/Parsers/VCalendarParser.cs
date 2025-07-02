@@ -1,4 +1,4 @@
-﻿//
+//
 // VisualCard  Copyright (C) 2021-2025  Aptivi
 //
 // This file is part of VisualCard
@@ -33,6 +33,7 @@ using VisualCard.Common.Parts;
 using VisualCard.Common.Parts.Implementations;
 using VisualCard.Common.Diagnostics;
 using Textify.General;
+using VisualCard.Calendar.Languages;
 
 namespace VisualCard.Calendar.Parsers
 {
@@ -65,7 +66,7 @@ namespace VisualCard.Calendar.Parsers
             // Check the content to ensure that we really have data
             LoggingTools.Debug("Content lines is {0}...", CalendarContent.Length);
             if (CalendarContent.Length == 0)
-                throw new InvalidDataException("Calendar content is empty.");
+                throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARSER_EXCEPTION_CALENDARCONTENTEMPTY"));
 
             // Make a new vcalendar
             var calendar = new Parts.Calendar(CalendarVersion);
@@ -122,7 +123,7 @@ namespace VisualCard.Calendar.Parsers
                         else
                         {
                             LoggingTools.Error("Expected type {0} for ending, got {1}", expectedType, info.Value);
-                            throw new ArgumentException("Ending mismatch: Expected {0} vs. actual {1}".FormatString(expectedType, info.Value));
+                            throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARSER_EXCEPTION_ENDINGMISMATCH").FormatString(expectedType, info.Value));
                         }
                         continue;
                     }
@@ -167,7 +168,7 @@ namespace VisualCard.Calendar.Parsers
                          (CalendarPartsArrayEnum)partType.enumeration == CalendarPartsArrayEnum.NonstandardNames))
                         continue;
                     LoggingTools.Error("Element type {0} is not in the list of allowed types", elementTypeUpper);
-                    throw new InvalidDataException("Part info type {0} doesn't support property type {1} because the following types are supported: [{2}]".FormatString(partType.enumType?.Name ?? "<null>", elementTypeUpper, string.Join(", ", partType.allowedExtraTypes)));
+                    throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARSER_EXCEPTION_PARTTYPEUNSUPPORTED").FormatString(partType.enumType?.Name ?? "<null>", elementTypeUpper, string.Join(", ", partType.allowedExtraTypes)));
                 }
             }
 
@@ -188,7 +189,7 @@ namespace VisualCard.Calendar.Parsers
                         found = true;
                 }
                 if (!found)
-                    throw new InvalidDataException("Value {0} not in the list of allowed values [{1}]".FormatString(finalValue, string.Join(", ", partType.allowedValues)));
+                    throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARSER_EXCEPTION_VALUEDISALLOWED").FormatString(finalValue, string.Join(", ", partType.allowedValues)));
                 LoggingTools.Debug("Found allowed value [type: {0}]: {1}", valueType, finalValue);
             }
 
@@ -259,7 +260,7 @@ namespace VisualCard.Calendar.Parsers
                     break;
                 default:
                     LoggingTools.Error("Unknown part {0}", partType.type);
-                    throw new InvalidDataException("The type {0} is invalid. Are you sure that you've specified the correct type in your vCalendar representation?".FormatString(partType.type));
+                    throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARSER_EXCEPTION_INVALIDTYPE").FormatString(partType.type));
             }
         }
 
@@ -279,7 +280,7 @@ namespace VisualCard.Calendar.Parsers
                 _ =>
                     CalendarVersion.Major == 2 ?
                     new CalendarOtherComponent(CalendarVersion, type) :
-                    throw new ArgumentException("Invalid type {0}".FormatString(type)),
+                    throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARSER_EXCEPTION_INVALIDTYPE2").FormatString(type)),
             };
         }
 
@@ -360,7 +361,7 @@ namespace VisualCard.Calendar.Parsers
             if (!nestable)
             {
                 LoggingTools.Warning("Part type {0} can't hold parts of type {1}", part.GetType().Name, subpart.GetType().Name);
-                throw new ArgumentException("Can't place {0} inside {1}".FormatString(subpart.GetType().Name, part.GetType().Name));
+                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARSER_EXCEPTION_INCOMPATIBLENESTEDTYPES").FormatString(subpart.GetType().Name, part.GetType().Name));
             }
         }
 

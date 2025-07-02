@@ -1,4 +1,4 @@
-﻿//
+//
 // VisualCard  Copyright (C) 2021-2025  Aptivi
 //
 // This file is part of VisualCard
@@ -24,6 +24,7 @@ using System.IO;
 using Textify.General;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parts;
+using VisualCard.Languages;
 
 namespace VisualCard.Parts.Implementations
 {
@@ -53,15 +54,15 @@ namespace VisualCard.Parts.Implementations
         {
             // Split the client PID map info
             if (!value.Contains(";"))
-                throw new InvalidDataException("Client PID map representation is invalid:" + $" {value}");
+                throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_PARTS_EXCEPTION_CLIENTPID_INVALIDMAP") + $" {value}");
 
             // Parse the info
             string pidNumStr = value.Substring(0, value.IndexOf(";"));
             string pidUriStr = value.RemoveSuffix($"{pidNumStr};");
             if (!int.TryParse(pidNumStr, out int pidNum))
-                throw new InvalidDataException("PID number {0} is invalid".FormatString(pidNumStr));
+                throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_PARTS_EXCEPTION_CLIENTPID_INVALIDPIDNUM").FormatString(pidNumStr));
             if (!Uri.TryCreate(pidUriStr, UriKind.Absolute, out Uri uri))
-                throw new InvalidDataException("PID URI {0} is invalid".FormatString(pidUriStr));
+                throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_PARTS_EXCEPTION_CLIENTPID_INVALIDPIDURI").FormatString(pidUriStr));
             pidUriStr = uri.ToString();
 
             // Populate the fields

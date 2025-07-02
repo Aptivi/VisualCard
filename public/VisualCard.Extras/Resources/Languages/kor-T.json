@@ -1,0 +1,75 @@
+{
+  "lang": "kor-T",
+  "name": "Korean",
+  "cultures": [
+    "ko",
+    "ko-KP",
+    "ko-KR"
+  ],
+  "locs": [
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_INTRO",
+      "text": "'contacts2.db' 파일을 얻으려면 휴대폰이 루팅되었는지 확인하세요. 다음 경로를 시도해 보세요."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_SYSTEMWIDE",
+      "text": "시스템 전체 연락처:"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_USERWIDE",
+      "text": "사용자 공간(사용자 0) 연락처:"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_OTHERDIRS",
+      "text": "작동하지 않으면 루트 파일 관리자에서 기기의 /data 디렉터리를 확인하세요."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBNOTFOUND",
+      "text": "연락처 제공업체에서 가져온 Android 연락처 데이터베이스 파일을 찾을 수 없습니다."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBINVALID",
+      "text": "Android 연락처 데이터베이스 파일이 유효하지 않습니다."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_NEEDSMECARD",
+      "text": "MeCard 문자열은 비어 있으면 안 됩니다."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_MECARDINVALID",
+      "text": "이 문자열은 유효한 MeCard 연락처를 나타내지 않습니다."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_MECARDPARSEFAILED",
+      "text": "MeCard 연락처 문자열이 유효하지 않습니다."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_CARDNOTPROVIDED",
+      "text": "카드가 제공되지 않았습니다."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_NEEDSNAMETOSAVE",
+      "text": "빈 이름 또는 빈 전체 이름이 포함된 vCard에서 MeCard 문자열을 만들 수 없습니다."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_APPNOTFOUND",
+      "text": "해당 소셜 미디어 앱이 없습니다."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_NOSOCIALMEDIAFIELDS",
+      "text": "소셜 미디어 필드가 없습니다."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_INCORRECTFIELD",
+      "text": "정보 값은 {0}의 소셜 미디어 값이 아닙니다. VISUALCARD-SOCIAL을 예상했지만 {2}개의 값을 가진 {1}을(를) 받았습니다."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_NEEDSABBREVNAME",
+      "text": "{0}에 대해 최소한 약어와 이름이 있어야 합니다. {1}개의 값을 얻었습니다. 힌트:"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_ABBREVMISMATCH",
+      "text": "{0}에 대해 앱과 일치하는 약어가 필요합니다. {1}개를 얻었습니다. 힌트:"
+    }
+  ]
+}

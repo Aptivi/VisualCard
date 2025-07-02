@@ -1,0 +1,175 @@
+{
+  "lang": "kor-T",
+  "name": "Korean",
+  "cultures": [
+    "ko",
+    "ko-KP",
+    "ko-KR"
+  ],
+  "locs": [
+    {
+      "loc": "VISUALCARD_EXCEPTION_GENERALCONTACTPARSEERROR",
+      "text": "일반 연락처 구문 분석 오류입니다."
+    },
+    {
+      "loc": "VISUALCARD_EXCEPTION_CONTACTPARSEERROR",
+      "text": "VCard 연락처 구문 분석 중 오류가 발생했습니다."
+    },
+    {
+      "loc": "VISUALCARD_EXCEPTION_CONTACTPARSEERROR_ERROR",
+      "text": "오류:"
+    },
+    {
+      "loc": "VISUALCARD_EXCEPTION_CONTACTPARSEERROR_LINE",
+      "text": "줄:"
+    },
+    {
+      "loc": "VISUALCARD_EXCEPTION_CONTACTPARSEERROR_LINENUM",
+      "text": "줄 번호:"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_CARDCONTENTEMPTY",
+      "text": "카드 내용이 비어 있습니다."
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_PARTTYPEUNSUPPORTED",
+      "text": "다음 기본 유형이 지원되므로 부분 정보 유형 {0}은 속성 유형 {1}을(를) 지원하지 않습니다. [{2}] 및 추가 유형 [{3}]이(가) 지원됩니다."
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_VALUEDISALLOWED",
+      "text": "값 {0}이(가) 허용되는 값 목록 [{1}]에 없습니다."
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_INVALIDPROFILE",
+      "text": "프로필은 'vCard'여야 합니다."
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_INVALIDTYPE",
+      "text": "유형 {0}이(가) 잘못되었습니다. vCard 표현에 올바른 유형을 지정했습니까?"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_STRENUMNOTVALID",
+      "text": "문자열 열거형 {0}이(가) 구현되지 않았습니다."
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_TYPENEEDED",
+      "text": "유형이 제공되지 않았습니다."
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_NOTNUMERIC",
+      "text": "ALTID는 숫자여야 합니다."
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_NOTPOSITIVE",
+      "text": "ALTID는 양수여야 합니다."
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_NOREASONS",
+      "text": "ALTID는 이 인스턴스가 대체 인스턴스인 이유를 지정하는 하나 이상의 인수를 가져야 합니다."
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_NOTINFIRSTPOS",
+      "text": "ALTID는 인수의 정확히 첫 번째 위치에 있어야 합니다. 그 뒤에 오는 인수를 지정해야 하기 때문입니다."
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_ILLEGALCARDINALITY",
+      "text": "ALTID는 카디널리티가 {1}인 {0} 유형에 지정되어서는 안 됩니다."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_ENCODABLES_INVALIDURL",
+      "text": "URL {0}이(가) 잘못되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_ADDRESS_NEEDSARGS",
+      "text": "주소 정보는 정확히 7개의 값(사서함, 확장 주소, 도로명 주소, 시/도, 지역, 우편번호, 국가)을 지정해야 합니다."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_AGENT_NEEDSARGS",
+      "text": "에이전트 정보는 정확히 하나의 값(줄이 '\\\\n'으로 구분된 에이전트 vCard 콘텐츠)을 지정해야 합니다."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CLIENTPID_INVALIDMAP",
+      "text": "클라이언트 PID 맵 표현이 잘못되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CLIENTPID_INVALIDPIDNUM",
+      "text": "PID 번호 {0}이(가) 잘못되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CLIENTPID_INVALIDPIDURI",
+      "text": "PID URI {0}이(가) 잘못되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_GENDER_INVALIDGENDERSTR",
+      "text": "성별 문자열 {0}이(가) 잘못되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_NAME_NEEDSARGS",
+      "text": "이름 필드는 5개의 값(성, 이름, 대체 이름, 접두사, 접미사) 중 처음 두 개 이상을 지정해야 합니다."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_XML_NEEDSXML",
+      "text": "무에서 XML 문서를 생성할 수 없습니다."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ENUMTYPEUNDETERMINABLE_DELETE",
+      "text": "부분을 삭제할 열거형 유형을 결정할 수 없습니다."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ENUMTYPEUNDETERMINABLE_ADD",
+      "text": "파트를 추가할 열거형 유형을 확인할 수 없습니다."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONEALTIDMISMATCH_PARTS",
+      "text": "카디널리티가 {2}이고 예상 AltID가 {3}이므로 AltID가 {1}인 파트 배열 {0}을(를) 덮어쓸 수 없습니다."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONENOALTID_PARTS",
+      "text": "카디널리티가 {2}이고 예상 AltID가 {3}인데도 AltID가 {1}인 파트 배열 {0}을(를) 덮어쓸 수 없습니다."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONEALTIDMISMATCH_STRING",
+      "text": "카디널리티가 {2}이고 예상 AltID가 {3}인데도 AltID가 {1}인 문자열 {0}을(를) 덮어쓸 수 없습니다."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONENOALTID_STRING",
+      "text": "카디널리티가 {2}이고 예상 AltID가 {3}인데도 AltID가 {1}인 문자열 {0}을(를) 덮어쓸 수 없습니다."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_NEEDSKEYS",
+      "text": "다음 키 [{0}]은(는) 필수입니다. [{1}]을(를) 가져왔습니다."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_MEMBERINVCARD",
+      "text": "vCard는 MEMBER 속성을 가질 수 없습니다."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_INVALIDBASETYPE",
+      "text": "기본 유형이 {0} [{1}]이(가) 아니며 파트 유형은 카드 파트를 나타내지 않는 [{2}]입니다."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_PARTSTYPEMISMATCH",
+      "text": "부품 배열 열거형 [{0}]이(가) 유형 {2}에 따라 예상된 열거형 [{1}]과(와) 다릅니다."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_INVALIDVERSION",
+      "text": "잘못된 vCard 버전 {0}이(가) 지정되었습니다. 지원되는 버전은 2.1, 3.0, 4.0, 5.0입니다."
+    },
+    {
+      "loc": "VISUALCARD_TOOLS_EXCEPTION_INVALIDVCARDCONTACT",
+      "text": "유효한 vCard 연락처 파일이 아닙니다."
+    },
+    {
+      "loc": "VISUALCARD_TOOLS_EXCEPTION_INVALIDVCARDVERSION",
+      "text": "이 카드의 VCard 버전 {0}이(가) 잘못되었습니다."
+    },
+    {
+      "loc": "VISUALCARD_TOOLS_EXCEPTION_VERSIONNOTFIRST",
+      "text": "vCard {0}.0은 {1}이 {2} 바로 뒤에 와야 합니다."
+    },
+    {
+      "loc": "VISUALCARD_TOOLS_EXCEPTION_ENDEDPREMATURELY",
+      "text": "카드가 종료 태그 없이 너무 일찍 종료되었습니다."
+    }
+  ]
+}

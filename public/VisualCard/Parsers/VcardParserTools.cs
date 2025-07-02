@@ -1,4 +1,4 @@
-﻿//
+//
 // VisualCard  Copyright (C) 2021-2025  Aptivi
 //
 // This file is part of VisualCard
@@ -26,6 +26,7 @@ using VisualCard.Common.Parsers;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parts.Enums;
 using VisualCard.Common.Parts.Implementations;
+using VisualCard.Languages;
 using VisualCard.Parts.Enums;
 using VisualCard.Parts.Implementations;
 
@@ -90,7 +91,7 @@ namespace VisualCard.Parsers
                 CardStringsEnum.Interest => VcardConstants._interestSpecifier,
                 CardStringsEnum.OrgDirectory => VcardConstants._orgDirectorySpecifier,
                 _ =>
-                    throw new NotImplementedException("String enumeration {0} is not implemented.".FormatString(stringsEnum))
+                    throw new NotImplementedException(LanguageTools.GetLocalized("VISUALCARD_PARSER_EXCEPTION_STRENUMNOTVALID").FormatString(stringsEnum))
             };
 
         internal static string GetPrefixFromPartsArrayEnum(CardPartsArrayEnum partsArrayEnum) =>
@@ -122,7 +123,7 @@ namespace VisualCard.Parsers
             if (partsArrayType is null)
             {
                 LoggingTools.Error("Part type not provided [version {0}, kind {1}]", cardVersion.ToString(), cardKindStr);
-                throw new NotImplementedException("Type is not provided.");
+                throw new NotImplementedException(LanguageTools.GetLocalized("VISUALCARD_PARSER_EXCEPTION_TYPENEEDED"));
             }
 
             // Enumerate through all parts array enums
@@ -234,23 +235,23 @@ namespace VisualCard.Parsers
                         {
                             // We need ALTID to be numeric
                             if (!int.TryParse(altIdArg.Values[0].value, out altId))
-                                throw new InvalidDataException("ALTID must be numeric");
+                                throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_PARSER_EXCEPTION_ALTID_NOTNUMERIC"));
                             LoggingTools.Debug("Parsed altid as {0}", altId);
 
                             // We need ALTID to be positive
                             if (altId < 0)
-                                throw new InvalidDataException("ALTID must be positive");
+                                throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_PARSER_EXCEPTION_ALTID_NOTPOSITIVE"));
 
                             // Here, we require arguments for ALTID
                             LoggingTools.Debug("Checking {0} arguments to find reasons as to why altid is {1}", arguments.Length, altId);
                             if (arguments.Length <= 1)
-                                throw new InvalidDataException("ALTID must have one or more arguments to specify why this instance is an alternative");
+                                throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_PARSER_EXCEPTION_ALTID_NOREASONS"));
                         }
                         else if (altIdArg is not null)
-                            throw new InvalidDataException("ALTID must be exactly in the first position of the argument, because arguments that follow it are required to be specified");
+                            throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_PARSER_EXCEPTION_ALTID_NOTINFIRSTPOS"));
                     }
                     else if (altIdArg is not null)
-                        throw new InvalidDataException("ALTID must not be specified in the {0} type that expects a cardinality of {1}".FormatString(partType.enumeration, cardinality));
+                        throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_PARSER_EXCEPTION_ALTID_ILLEGALCARDINALITY").FormatString(partType.enumeration, cardinality));
                 }
             }
             LoggingTools.Info("Returning ALTID {0}", altId);

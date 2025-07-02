@@ -1,0 +1,174 @@
+{
+  "lang": "ndo",
+  "name": "Indonesian",
+  "cultures": [
+    "id",
+    "id-ID"
+  ],
+  "locs": [
+    {
+      "loc": "VISUALCARD_EXCEPTION_GENERALCONTACTPARSEERROR",
+      "text": "Kesalahan penguraian kontak umum."
+    },
+    {
+      "loc": "VISUALCARD_EXCEPTION_CONTACTPARSEERROR",
+      "text": "Terjadi kesalahan saat mengurai kontak VCard"
+    },
+    {
+      "loc": "VISUALCARD_EXCEPTION_CONTACTPARSEERROR_ERROR",
+      "text": "Kesalahan:"
+    },
+    {
+      "loc": "VISUALCARD_EXCEPTION_CONTACTPARSEERROR_LINE",
+      "text": "Baris:"
+    },
+    {
+      "loc": "VISUALCARD_EXCEPTION_CONTACTPARSEERROR_LINENUM",
+      "text": "Nomor baris:"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_CARDCONTENTEMPTY",
+      "text": "Konten kartu kosong."
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_PARTTYPEUNSUPPORTED",
+      "text": "Tipe info bagian {0} tidak mendukung tipe properti {1} karena tipe dasar berikut didukung: [{2}] dan tipe tambahan didukung: [{3}]"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_VALUEDISALLOWED",
+      "text": "Nilai {0} tidak ada dalam daftar nilai yang diizinkan [{1}]"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_INVALIDPROFILE",
+      "text": "Profil harus 'vCard'"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_INVALIDTYPE",
+      "text": "Tipe {0} tidak valid. Apakah Anda yakin telah menentukan tipe yang benar dalam representasi vCard Anda?"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_STRENUMNOTVALID",
+      "text": "Enumerasi string {0} tidak diimplementasikan."
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_TYPENEEDED",
+      "text": "Tipe tidak disediakan."
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_NOTNUMERIC",
+      "text": "ALTID harus berupa angka"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_NOTPOSITIVE",
+      "text": "ALTID harus positif"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_NOREASONS",
+      "text": "ALTID harus memiliki satu atau beberapa argumen untuk menentukan mengapa contoh ini merupakan alternatif"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_NOTINFIRSTPOS",
+      "text": "ALTID harus tepat berada di posisi pertama argumen, karena argumen yang mengikutinya harus ditentukan"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_ILLEGALCARDINALITY",
+      "text": "ALTID tidak boleh ditentukan dalam tipe {0} yang mengharapkan kardinalitas {1}"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_ENCODABLES_INVALIDURL",
+      "text": "URL {0} tidak valid"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_ADDRESS_NEEDSARGS",
+      "text": "Informasi alamat harus menentukan tepat tujuh nilai (P.O. Box, alamat yang diperluas, alamat jalan, lokasi, kawasan, kode pos, dan negara)"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_AGENT_NEEDSARGS",
+      "text": "Informasi agen harus menentukan tepat satu nilai (konten vCard agen yang barisnya dibatasi oleh '\\\\n')"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CLIENTPID_INVALIDMAP",
+      "text": "Representasi peta PID klien tidak valid:"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CLIENTPID_INVALIDPIDNUM",
+      "text": "Nomor PID {0} tidak valid"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CLIENTPID_INVALIDPIDURI",
+      "text": "URI PID {0} tidak valid"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_GENDER_INVALIDGENDERSTR",
+      "text": "String jenis kelamin {0} tidak valid"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_NAME_NEEDSARGS",
+      "text": "Bidang nama harus menentukan dua atau lebih nilai pertama dari lima nilai (Nama belakang, nama depan, nama alt, awalan, dan akhiran)"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_XML_NEEDSXML",
+      "text": "Tidak dapat membuat dokumen XML dari ketiadaan."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ENUMTYPEUNDETERMINABLE_DELETE",
+      "text": "Tidak dapat menentukan jenis enumerasi untuk menghapus bagian."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ENUMTYPEUNDETERMINABLE_ADD",
+      "text": "Tidak dapat menentukan jenis enumerasi untuk menambahkan bagian."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONEALTIDMISMATCH_PARTS",
+      "text": "Tidak dapat menimpa array bagian {0} dengan AltID {1}, karena kardinalitasnya adalah {2} dan AltID yang diharapkan adalah {3}."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONENOALTID_PARTS",
+      "text": "Tidak dapat menimpa array bagian {0} dengan AltID {1}, karena kardinalitasnya adalah {2}, meskipun AltID yang diharapkan adalah {3}."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONEALTIDMISMATCH_STRING",
+      "text": "Tidak dapat menimpa string {0} dengan AltID {1}, karena kardinalitasnya adalah {2} dan AltID yang diharapkan adalah {3}."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONENOALTID_STRING",
+      "text": "Tidak dapat menimpa string {0} dengan AltID {1}, karena kardinalitasnya adalah {2}, meskipun AltID yang diharapkan adalah {3}."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_NEEDSKEYS",
+      "text": "Kunci berikut [{0}] diperlukan. Mendapat [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_MEMBERINVCARD",
+      "text": "vCard dilarang memiliki properti MEMBER."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_INVALIDBASETYPE",
+      "text": "Tipe dasar bukan {0} [{1}] dan tipe bagiannya adalah [{2}] yang tidak mewakili bagian kartu."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_PARTSTYPEMISMATCH",
+      "text": "Enumerasi array parts [{0}] berbeda dari yang diharapkan [{1}] menurut tipe {2}."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_INVALIDVERSION",
+      "text": "Versi vCard {0} yang tidak valid ditentukan. Versi yang didukung adalah 2.1, 3.0, 4.0, dan 5.0."
+    },
+    {
+      "loc": "VISUALCARD_TOOLS_EXCEPTION_INVALIDVCARDCONTACT",
+      "text": "Ini bukan berkas kontak vCard yang valid."
+    },
+    {
+      "loc": "VISUALCARD_TOOLS_EXCEPTION_INVALIDVCARDVERSION",
+      "text": "Kartu ini memiliki versi VCard {0} yang tidak valid."
+    },
+    {
+      "loc": "VISUALCARD_TOOLS_EXCEPTION_VERSIONNOTFIRST",
+      "text": "vCard {0}.0 mengharuskan {1} muncul langsung setelah {2}."
+    },
+    {
+      "loc": "VISUALCARD_TOOLS_EXCEPTION_ENDEDPREMATURELY",
+      "text": "Kartu berakhir sebelum waktunya tanpa tag penutup"
+    }
+  ]
+}

@@ -1,0 +1,259 @@
+{
+  "lang": "grk",
+  "name": "Greek",
+  "cultures": [
+    "el",
+    "el-CY",
+    "el-GR"
+  ],
+  "locs": [
+    {
+      "loc": "VISUALCARD_CALENDAR_EXCEPTION_GENERALCALENDARPARSEERROR",
+      "text": "Γενικό σφάλμα ανάλυσης ημερολογίου."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR",
+      "text": "Παρουσιάστηκε σφάλμα κατά την ανάλυση του ημερολογίου VCalendar"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR_ERROR",
+      "text": "Σφάλμα:"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR_LINE",
+      "text": "Γραμμή:"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR_LINENUM",
+      "text": "Αριθμός γραμμής:"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_CALENDARCONTENTEMPTY",
+      "text": "Το περιεχόμενο του ημερολογίου είναι κενό."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_ENDINGMISMATCH",
+      "text": "Αναντιστοιχία τέλους: Αναμενόμενο {0} έναντι πραγματικού {1}"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_PARTTYPEUNSUPPORTED",
+      "text": "Ο τύπος πληροφοριών μέρους {0} δεν υποστηρίζει τον τύπο ιδιότητας {1} επειδή υποστηρίζονται οι ακόλουθοι τύποι: [{2}]"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_VALUEDISALLOWED",
+      "text": "Η τιμή {0} δεν βρίσκεται στη λίστα επιτρεπόμενων τιμών [{1}]"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_INVALIDTYPE",
+      "text": "Ο τύπος {0} δεν είναι έγκυρος. Είστε βέβαιοι ότι έχετε καθορίσει τον σωστό τύπο στην αναπαράσταση vCalendar;"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_INVALIDTYPE2",
+      "text": "Μη έγκυρος τύπος {0}"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_INCOMPATIBLENESTEDTYPES",
+      "text": "Δεν είναι δυνατή η τοποθέτηση του {0} μέσα στο {1}"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_STRENUMNOTVALID",
+      "text": "Η απαρίθμηση συμβολοσειράς {0} δεν έχει υλοποιηθεί."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_INTENUMNOTVALID",
+      "text": "Η απαρίθμηση ακεραίων {0} δεν έχει υλοποιηθεί."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_TYPENEEDED",
+      "text": "Ο τύπος δεν παρέχεται."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_AUDIOALARMINFO_ARGMISMATCH",
+      "text": "Κατά τον διαχωρισμό πληροφοριών ηχητικού συναγερμού, η τιμή διαχωρισμού είναι {0} αντί για 4."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_AUDIOALARMINFO_REPEATTIMES",
+      "text": "Μη έγκυροι χρόνοι επανάληψης"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_DAYLIGHTINFO_ARGMISMATCH",
+      "text": "Κατά τον διαχωρισμό πληροφοριών ημέρας, η τιμή διαχωρισμού είναι {0} αντί για 6."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_DISPLAYALARMINFO_ARGMISMATCH",
+      "text": "Κατά τον διαχωρισμό πληροφοριών συναγερμού εμφάνισης, η τιμή διαχωρισμού είναι {0} αντί για 4."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_MAILALARMINFO_ARGMISMATCH",
+      "text": "Κατά τον διαχωρισμό πληροφοριών συναγερμού αλληλογραφίας, η τιμή διαχωρισμού είναι {0} αντί για 5."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_PROCEDUREALARMINFO_ARGMISMATCH",
+      "text": "Κατά τον διαχωρισμό πληροφοριών συναγερμού διαδικασίας, η τιμή διαχωρισμού είναι {0} αντί για 4."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_ATTACH_INVALIDURL",
+      "text": "Η διεύθυνση URL {0} δεν είναι έγκυρη"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_GEO_ARGMISMATCH",
+      "text": "Κατά τον διαχωρισμό γεωγραφικής περιοχής, η τιμή διαχωρισμού είναι {0} αντί για 2."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_GEO_INVALIDLAT",
+      "text": "Μη έγκυρο γεωγραφικό πλάτος {0}"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_GEO_INVALIDLONG",
+      "text": "Μη έγκυρο γεωγραφικό μήκος {0}"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_NOSPLIT",
+      "text": "Δεν υπάρχει ερωτηματικό για τον διαχωρισμό μεταξύ του αριθμού κατάστασης και της περιγραφής κατάστασης και, ενδεχομένως, του ζεύγους εξωτερικών δεδομένων."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_NOSPLITCODES",
+      "text": "Δεν υπάρχει τελεία για τον διαχωρισμό δύο ή τριών κωδικών κατάστασης."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_ARGMISMATCH",
+      "text": "Μετά τον διαχωρισμό, ελήφθησαν {0} στοιχεία αντί για 2 ή 3."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_INVALIDNUM",
+      "text": "Η κατάσταση δεν είναι αριθμός."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_ENUMTYPENOTFOUND",
+      "text": "Δεν βρέθηκε τύπος απαρίθμησης για {0}"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_ENUMTYPEUNDETERMINABLE_DELETE",
+      "text": "Δεν είναι δυνατός ο προσδιορισμός του τύπου απαρίθμησης για τη διαγραφή του μέρους."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_ENUMTYPEUNDETERMINABLE_ADD",
+      "text": "Δεν είναι δυνατός ο προσδιορισμός του τύπου απαρίθμησης για την προσθήκη του μέρους."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_CANTADDCARDINALITY_PARTS",
+      "text": "Δεν είναι δυνατή η προσθήκη του πίνακα μερών {0}, επειδή η πληθικότητα είναι {1}."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_CANTADDCARDINALITY_STRING",
+      "text": "Δεν είναι δυνατή η προσθήκη συμβολοσειράς {0}, επειδή η πληθικότητα είναι {1}."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_CANTADDCARDINALITY_INTEGER",
+      "text": "Δεν είναι δυνατή η προσθήκη ακέραιου αριθμού {0}, επειδή η πληθικότητα είναι {1}."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_ROOT",
+      "text": "Τα ακόλουθα κλειδιά [{0}] απαιτούνται στη ρίζα. Got [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_EVENT",
+      "text": "Τα ακόλουθα κλειδιά [{0}] απαιτούνται στην αναπαράσταση συμβάντος. Got [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_DATEENDCONFLICT_EVENT",
+      "text": "Βρέθηκε διένεξη ημερομηνίας λήξης και διάρκειας."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TODO",
+      "text": "Τα ακόλουθα κλειδιά [{0}] απαιτούνται στην αναπαράσταση εκκρεμότητας. Got [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_DUEDATECONFLICT_TODO",
+      "text": "Βρέθηκε διένεξη ημερομηνίας λήξης και διάρκειας."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NODATESTARTDURATION_TODO",
+      "text": "Δεν υπάρχει ημερομηνία έναρξης για προσθήκη στη διάρκεια."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_JOURNAL",
+      "text": "Τα ακόλουθα κλειδιά [{0}] απαιτούνται στην αναπαράσταση ημερολογίου. Got [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_FREEBUSY",
+      "text": "Τα ακόλουθα κλειδιά [{0}] απαιτούνται στην αναπαράσταση ελεύθερης λειτουργίας. Got [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TIMEZONE",
+      "text": "Τα ακόλουθα κλειδιά [{0}] απαιτούνται στην αναπαράσταση ζώνης ώρας. Got [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSCOMPONENTS_TIMEZONE",
+      "text": "Απαιτείται ένα από τα τυπικά/στοιχεία ημέρας."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TIMEZONE_STANDARD",
+      "text": "Τα ακόλουθα κλειδιά [{0}] απαιτούνται στην τυπική αναπαράσταση. Got [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TIMEZONE_DAYLIGHT",
+      "text": "Τα ακόλουθα κλειδιά [{0}] απαιτούνται στην αναπαράσταση ημέρας. Got [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_PERCENTCOMPLETION",
+      "text": "Το ποσοστό ολοκλήρωσης δεν μπορεί να είναι μικρότερο από μηδέν ή μεγαλύτερο από 100."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_PRIORITY",
+      "text": "Η προτεραιότητα δεν μπορεί να είναι μικρότερη από μηδέν ή μεγαλύτερη από 9."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_MEMBERINVCARD",
+      "text": "Απαγορεύεται στις vCards να έχουν ιδιότητες MEMBER."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_INVALIDBASETYPE",
+      "text": "Ο βασικός τύπος δεν είναι {0} [{1}] και ο τύπος μέρους είναι [{2}] που δεν αντιπροσωπεύει το μέρος του ημερολογίου."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_PARTSTYPEMISMATCH",
+      "text": "Η απαρίθμηση του πίνακα μερών [{0}] διαφέρει από την αναμενόμενη [{1}] ανάλογα με τον τύπο {2}."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_INVALIDVERSION",
+      "text": "Καθορίστηκε μη έγκυρη έκδοση vCalendar {0}. Οι υποστηριζόμενες εκδόσεις είναι 1.0 και 2.0."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARV2COMPONENTS_INVALIDVERSION",
+      "text": "Καθορίστηκε μη έγκυρη έκδοση vCalendar {0}. Η υποστηριζόμενη έκδοση είναι 2.0."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_ROOT",
+      "text": "Τα ακόλουθα κλειδιά [{0}] απαιτούνται στην αναπαράσταση συναγερμού. Got [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_AUDIO",
+      "text": "Τα ακόλουθα κλειδιά [{0}] απαιτούνται στην αναπαράσταση ηχητικού συναγερμού. Got [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_DISPLAY",
+      "text": "Τα ακόλουθα κλειδιά [{0}] απαιτούνται στην απεικόνιση συναγερμού εμφάνισης. Got [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_MAIL",
+      "text": "Τα ακόλουθα κλειδιά [{0}] απαιτούνται στην απεικόνιση συναγερμού αλληλογραφίας. Got [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_REPEATED",
+      "text": "Τα ακόλουθα κλειδιά [{0}] απαιτούνται στην απεικόνιση επαναλαμβανόμενου συναγερμού. Got [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_TOOLS_EXCEPTION_INVALIDVCALENDAR",
+      "text": "Αυτό δεν είναι ένα έγκυρο αρχείο vCalendar."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_TOOLS_EXCEPTION_INVALIDVCALENDARVERSION",
+      "text": "Αυτό το ημερολόγιο έχει μια μη έγκυρη έκδοση vCalendar {0}."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_TOOLS_EXCEPTION_ENDEDPREMATURELY",
+      "text": "Το ημερολόγιο έληξε πρόωρα χωρίς την ετικέτα λήξης"
+    }
+  ]
+}

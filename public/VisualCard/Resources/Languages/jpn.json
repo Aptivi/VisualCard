@@ -1,0 +1,174 @@
+{
+  "lang": "jpn",
+  "name": "Japanese",
+  "cultures": [
+    "ja",
+    "ja-JP"
+  ],
+  "locs": [
+    {
+      "loc": "VISUALCARD_EXCEPTION_GENERALCONTACTPARSEERROR",
+      "text": "一般的な連絡先解析エラーです。"
+    },
+    {
+      "loc": "VISUALCARD_EXCEPTION_CONTACTPARSEERROR",
+      "text": "VCard 連絡先の解析中にエラーが発生しました。"
+    },
+    {
+      "loc": "VISUALCARD_EXCEPTION_CONTACTPARSEERROR_ERROR",
+      "text": "エラー:"
+    },
+    {
+      "loc": "VISUALCARD_EXCEPTION_CONTACTPARSEERROR_LINE",
+      "text": "行:"
+    },
+    {
+      "loc": "VISUALCARD_EXCEPTION_CONTACTPARSEERROR_LINENUM",
+      "text": "行番号:"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_CARDCONTENTEMPTY",
+      "text": "カードの内容が空です。"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_PARTTYPEUNSUPPORTED",
+      "text": "パーツ情報タイプ {0} は、次の基本タイプがサポートされているため、プロパティタイプ {1} をサポートしていません: [{2}]、追加のタイプがサポートされているため: [{3}]"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_VALUEDISALLOWED",
+      "text": "値 {0} は、許可された値のリスト [{1}] に含まれていません。"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_INVALIDPROFILE",
+      "text": "プロファイルは「vCard」である必要があります。"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_INVALIDTYPE",
+      "text": "タイプ {0} は無効です。vCard 表現で正しいタイプを指定しましたか？"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_STRENUMNOTVALID",
+      "text": "文字列列挙 {0} は実装されていません。"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_TYPENEEDED",
+      "text": "タイプが指定されていません。"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_NOTNUMERIC",
+      "text": "ALTID は数値である必要があります。"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_NOTPOSITIVE",
+      "text": "ALTID は正の値である必要があります。"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_NOREASONS",
+      "text": "ALTID には、このインスタンスが代替である理由を指定するための引数が 1 つ以上必要です。"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_NOTINFIRSTPOS",
+      "text": "ALTID は、後続の引数の指定が必須であるため、引数の最初の位置に指定する必要があります。"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_ILLEGALCARDINALITY",
+      "text": "ALTID は、カーディナリティが {1} である {0} 型では指定できません。"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_ENCODABLES_INVALIDURL",
+      "text": "URL {0} が無効です。"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_ADDRESS_NEEDSARGS",
+      "text": "住所情報には、正確に 7 つの値（私書箱、拡張住所、番地、市区町村、地域、郵便番号、国）を指定する必要があります。"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_AGENT_NEEDSARGS",
+      "text": "エージェント情報には、正確に 1 つの値（行が '\\\\n' で区切られたエージェント vCard コンテンツ）を指定する必要があります。"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CLIENTPID_INVALIDMAP",
+      "text": "クライアント PID マップ表現が無効です。"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CLIENTPID_INVALIDPIDNUM",
+      "text": "PID 番号 {0} が無効です。"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CLIENTPID_INVALIDPIDURI",
+      "text": "PID URI {0} が無効です。"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_GENDER_INVALIDGENDERSTR",
+      "text": "性別文字列 {0} が無効です。"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_NAME_NEEDSARGS",
+      "text": "名前フィールドには、5 つの値（姓、名、代替名、接頭辞、接尾辞）のうち最初の 2 つ以上を指定する必要があります。"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_XML_NEEDSXML",
+      "text": "何もないところから XML ドキュメントを生成できません。"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ENUMTYPEUNDETERMINABLE_DELETE",
+      "text": "パーツを削除するための列挙型を決定できません。"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ENUMTYPEUNDETERMINABLE_ADD",
+      "text": "パーツを追加するための列挙型を決定できません。"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONEALTIDMISMATCH_PARTS",
+      "text": "カーディナリティが {2} で、期待される AltID が {3} であるため、パーツ配列 {0} を AltID {1} で上書きできません。"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONENOALTID_PARTS",
+      "text": "カーディナリティが {2} で、期待される AltID が {3} であるため、パーツ配列 {0} を AltID {1} で上書きすることはできません。"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONEALTIDMISMATCH_STRING",
+      "text": "カーディナリティが {2} で、期待される AltID が {3} であるため、文字列 {0} を AltID {1} で上書きすることはできません。"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONENOALTID_STRING",
+      "text": "カーディナリティが {2} で、期待される AltID が {3} であるため、文字列 {0} を AltID {1} で上書きすることはできません。"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_NEEDSKEYS",
+      "text": "次のキー [{0}] が必要です。[{1}] を取得しました。"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_MEMBERINVCARD",
+      "text": "vCard は MEMBER プロパティを持つことが禁止されています。"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_INVALIDBASETYPE",
+      "text": "基本型が {0} [{1}] ではなく、パーツ型が [{2}] ですが、これはカードのパーツを表していません。"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_PARTSTYPEMISMATCH",
+      "text": "パーツ配列列挙 [{0}] は、型 {2} に従って期待される [{1}] と異なります。"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_INVALIDVERSION",
+      "text": "指定された vCard バージョン {0} は無効です。サポートされているバージョンは 2.1、3.0、4.0、および 5.0 です。"
+    },
+    {
+      "loc": "VISUALCARD_TOOLS_EXCEPTION_INVALIDVCARDCONTACT",
+      "text": "これは有効な vCard 連絡先ファイルではありません。"
+    },
+    {
+      "loc": "VISUALCARD_TOOLS_EXCEPTION_INVALIDVCARDVERSION",
+      "text": "このカードの vCard バージョン {0} は無効です。"
+    },
+    {
+      "loc": "VISUALCARD_TOOLS_EXCEPTION_VERSIONNOTFIRST",
+      "text": "vCard {0}.0 では、{1} が {2} の直後に来る必要があります。"
+    },
+    {
+      "loc": "VISUALCARD_TOOLS_EXCEPTION_ENDEDPREMATURELY",
+      "text": "カードは終了タグなしで途中で終了しています。"
+    }
+  ]
+}

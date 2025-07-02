@@ -1,0 +1,74 @@
+{
+  "lang": "vtn",
+  "name": "Vietnamese",
+  "cultures": [
+    "vi",
+    "vi-VN"
+  ],
+  "locs": [
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_INTRO",
+      "text": "Hãy đảm bảo rằng điện thoại của bạn đã được root trước khi có thể lấy tệp 'contacts2.db'. Hãy thử các đường dẫn sau:"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_SYSTEMWIDE",
+      "text": "Danh bạ toàn hệ thống:"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_USERWIDE",
+      "text": "Danh bạ không gian người dùng (người dùng 0):"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_OTHERDIRS",
+      "text": "Nếu chúng không hoạt động, hãy tham khảo thư mục /data của thiết bị trong trình quản lý tệp gốc."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBNOTFOUND",
+      "text": "Không tìm thấy tệp cơ sở dữ liệu danh bạ Android lấy từ nhà cung cấp danh bạ."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBINVALID",
+      "text": "Tệp cơ sở dữ liệu danh bạ Android không hợp lệ."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_NEEDSMECARD",
+      "text": "Chuỗi MeCard không được để trống."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_MECARDINVALID",
+      "text": "Chuỗi này không biểu thị một danh bạ MeCard hợp lệ."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_MECARDPARSEFAILED",
+      "text": "Chuỗi danh bạ MeCard không hợp lệ."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_CARDNOTPROVIDED",
+      "text": "Thẻ không được cung cấp."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_NEEDSNAMETOSAVE",
+      "text": "Không thể xây dựng chuỗi MeCard từ vCard chứa tên trống hoặc tên đầy đủ trống."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_APPNOTFOUND",
+      "text": "Không có ứng dụng mạng xã hội nào như vậy."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_NOSOCIALMEDIAFIELDS",
+      "text": "Không có trường mạng xã hội nào."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_INCORRECTFIELD",
+      "text": "Giá trị info không phải là giá trị mạng xã hội cho {0}. Dự kiến ​​VISUALCARD-SOCIAL, nhận được {1} với {2} giá trị"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_NEEDSABBREVNAME",
+      "text": "Đối với {0}, dự kiến ​​ít nhất một chữ viết tắt và một tên. Nhận được {1} giá trị. Gợi ý:"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_ABBREVMISMATCH",
+      "text": "Đối với {0}, mong đợi một chữ viết tắt phù hợp cho ứng dụng. Đã nhận được {1}. Gợi ý:"
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "lang": "rmn",
+  "name": "Romanian",
+  "cultures": [
+    "ro",
+    "ro-MD",
+    "ro-RO"
+  ],
+  "locs": [
+    {
+      "loc": "VISUALCARD_EXCEPTION_GENERALCONTACTPARSEERROR",
+      "text": "Eroare generală de analiză a contactului."
+    },
+    {
+      "loc": "VISUALCARD_EXCEPTION_CONTACTPARSEERROR",
+      "text": "A apărut o eroare la analizarea contactului VCard."
+    },
+    {
+      "loc": "VISUALCARD_EXCEPTION_CONTACTPARSEERROR_ERROR",
+      "text": "Eroare:"
+    },
+    {
+      "loc": "VISUALCARD_EXCEPTION_CONTACTPARSEERROR_LINE",
+      "text": "Linie:"
+    },
+    {
+      "loc": "VISUALCARD_EXCEPTION_CONTACTPARSEERROR_LINENUM",
+      "text": "Număr linie:"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_CARDCONTENTEMPTY",
+      "text": "Conținutul cardului este gol."
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_PARTTYPEUNSUPPORTED",
+      "text": "Tipul de informații despre piesă {0} nu acceptă tipul de proprietate {1} deoarece sunt acceptate următoarele tipuri de bază: [{2}] și tipurile suplimentare sunt acceptate: [{3}]"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_VALUEDISALLOWED",
+      "text": "Valoarea {0} nu se află în lista de valori permise [{1}]"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_INVALIDPROFILE",
+      "text": "Profilul trebuie să fie „vCard”"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_INVALIDTYPE",
+      "text": "Tipul {0} este invalid. Sunteți sigur că ați specificat tipul corect în reprezentarea vCard?"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_STRENUMNOTVALID",
+      "text": "Enumerarea șirurilor {0} nu este implementată."
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_TYPENEEDED",
+      "text": "Tipul nu este furnizat."
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_NOTNUMERIC",
+      "text": "ALTID trebuie să fie numeric"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_NOTPOSITIVE",
+      "text": "ALTID trebuie să fie pozitiv"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_NOREASONS",
+      "text": "ALTID trebuie să aibă unul sau mai multe argumente pentru a specifica de ce această instanță este o alternativă"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_NOTINFIRSTPOS",
+      "text": "ALTID trebuie să fie exact în prima poziție a argumentului, deoarece argumentele care îl urmează trebuie specificate"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_ILLEGALCARDINALITY",
+      "text": "ALTID nu trebuie specificat în tipul {0} care așteaptă o cardinalitate de {1}"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_ENCODABLES_INVALIDURL",
+      "text": "URL-ul {0} este invalid"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_ADDRESS_NEEDSARGS",
+      "text": "Informațiile despre adresă trebuie să specifice exact șapte valori (căsuță poștală, adresă extinsă, adresă stradală, localitate, regiune, cod poștal și țară)"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_AGENT_NEEDSARGS",
+      "text": "Informațiile despre agent trebuie să specifice exact o valoare (conținutul vCard-ului agentului ale cărui linii sunt delimitate de '\\\\n')"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CLIENTPID_INVALIDMAP",
+      "text": "Reprezentarea hărții PID a clientului este invalidă:"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CLIENTPID_INVALIDPIDNUM",
+      "text": "Numărul PID {0} este invalid"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CLIENTPID_INVALIDPIDURI",
+      "text": "URI-ul PID {0} este invalid"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_GENDER_INVALIDGENDERSTR",
+      "text": "Șir de gen invalid {0}"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_NAME_NEEDSARGS",
+      "text": "Câmpul Nume trebuie să specifice primele două sau mai multe dintre cele cinci valori (nume, prenume, nume alternative, prefixe și sufixe)"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_XML_NEEDSXML",
+      "text": "Nu se poate genera un document XML din nimic."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ENUMTYPEUNDETERMINABLE_DELETE",
+      "text": "Nu se poate determina tipul de enumerare pentru a șterge o parte."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ENUMTYPEUNDETERMINABLE_ADD",
+      "text": "Nu se poate determina tipul de enumerare pentru a adăuga o piesă."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONEALTIDMISMATCH_PARTS",
+      "text": "Nu se poate suprascrie matricea de piese {0} cu AltID {1}, deoarece cardinalitatea este {2} și AltID-ul așteptat este {3}."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONENOALTID_PARTS",
+      "text": "Nu se poate suprascrie niciodată matricea de piese {0} cu AltID {1}, deoarece cardinalitatea este {2}, chiar dacă AltID-ul așteptat este {3}."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONEALTIDMISMATCH_STRING",
+      "text": "Nu se poate suprascrie niciodată șirul {0} cu AltID {1}, deoarece cardinalitatea este {2} și AltID-ul așteptat este {3}."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONENOALTID_STRING",
+      "text": "Nu se poate suprascrie niciodată șirul {0} cu AltID {1}, deoarece cardinalitatea este {2}, chiar dacă AltID-ul așteptat este {3}."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_NEEDSKEYS",
+      "text": "Următoarele chei [{0}] sunt necesare. Am obținut [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_MEMBERINVCARD",
+      "text": "vCard-urile nu pot avea proprietăți MEMBER."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_INVALIDBASETYPE",
+      "text": "Tipul de bază nu este {0} [{1}] și tipul de piesă este [{2}] care nu reprezintă o piesă de card."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_PARTSTYPEMISMATCH",
+      "text": "Enumerarea matricei de componente [{0}] este diferită de cea așteptată [{1}] în funcție de tipul {2}."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_INVALIDVERSION",
+      "text": "Versiunea vCard {0} specificată este nevalidă. Versiunile acceptate sunt 2.1, 3.0, 4.0 și 5.0."
+    },
+    {
+      "loc": "VISUALCARD_TOOLS_EXCEPTION_INVALIDVCARDCONTACT",
+      "text": "Acesta nu este un fișier de contact vCard valid."
+    },
+    {
+      "loc": "VISUALCARD_TOOLS_EXCEPTION_INVALIDVCARDVERSION",
+      "text": "Acest card are o versiune vCard {0} nevalidă."
+    },
+    {
+      "loc": "VISUALCARD_TOOLS_EXCEPTION_VERSIONNOTFIRST",
+      "text": "vCard {0}.0 necesită ca {1} să vină imediat după {2}."
+    },
+    {
+      "loc": "VISUALCARD_TOOLS_EXCEPTION_ENDEDPREMATURELY",
+      "text": "Cardul s-a încheiat prematur fără eticheta de încheiere."
+    }
+  ]
+}

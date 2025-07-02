@@ -1,0 +1,174 @@
+{
+  "lang": "ind-T",
+  "name": "Hindi",
+  "cultures": [
+    "hi",
+    "hi-IN"
+  ],
+  "locs": [
+    {
+      "loc": "VISUALCARD_EXCEPTION_GENERALCONTACTPARSEERROR",
+      "text": "सामान्य संपर्क पार्सिंग त्रुटि।"
+    },
+    {
+      "loc": "VISUALCARD_EXCEPTION_CONTACTPARSEERROR",
+      "text": "VCard संपर्क पार्स करते समय एक त्रुटि हुई"
+    },
+    {
+      "loc": "VISUALCARD_EXCEPTION_CONTACTPARSEERROR_ERROR",
+      "text": "त्रुटि:"
+    },
+    {
+      "loc": "VISUALCARD_EXCEPTION_CONTACTPARSEERROR_LINE",
+      "text": "पंक्ति:"
+    },
+    {
+      "loc": "VISUALCARD_EXCEPTION_CONTACTPARSEERROR_LINENUM",
+      "text": "पंक्ति संख्या:"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_CARDCONTENTEMPTY",
+      "text": "कार्ड सामग्री रिक्त है।"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_PARTTYPEUNSUPPORTED",
+      "text": "भाग जानकारी प्रकार {0} संपत्ति प्रकार {1} का समर्थन नहीं करता है क्योंकि निम्नलिखित आधार प्रकार समर्थित हैं: [{2}] और अतिरिक्त प्रकार समर्थित हैं: [{3}]"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_VALUEDISALLOWED",
+      "text": "मान {0} अनुमत मानों की सूची में नहीं है [{1}]"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_INVALIDPROFILE",
+      "text": "प्रोफ़ाइल 'vCard' होनी चाहिए"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_INVALIDTYPE",
+      "text": "प्रकार {0} अमान्य है। क्या आप सुनिश्चित हैं कि आपने अपने vCard प्रतिनिधित्व में सही प्रकार निर्दिष्ट किया है?"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_STRENUMNOTVALID",
+      "text": "स्ट्रिंग गणना {0} लागू नहीं की गई है।"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_TYPENEEDED",
+      "text": "प्रकार प्रदान नहीं किया गया है।"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_NOTNUMERIC",
+      "text": "ALTID संख्यात्मक होना चाहिए"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_NOTPOSITIVE",
+      "text": "ALTID सकारात्मक होना चाहिए"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_NOREASONS",
+      "text": "ALTID में एक या अधिक तर्क होने चाहिए, ताकि यह निर्दिष्ट किया जा सके कि यह उदाहरण वैकल्पिक क्यों है"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_NOTINFIRSTPOS",
+      "text": "ALTID को तर्क की पहली स्थिति में होना चाहिए, क्योंकि इसके बाद आने वाले तर्कों को निर्दिष्ट करना आवश्यक है"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_ILLEGALCARDINALITY",
+      "text": "ALTID को {0} प्रकार में निर्दिष्ट नहीं किया जाना चाहिए, जिसमें {1} की कार्डिनैलिटी अपेक्षित हो"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_ENCODABLES_INVALIDURL",
+      "text": "URL {0} अमान्य है"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_ADDRESS_NEEDSARGS",
+      "text": "पता जानकारी में ठीक सात मान निर्दिष्ट होने चाहिए (P.O. बॉक्स, विस्तारित पता, सड़क का पता, इलाका, क्षेत्र, डाक कोड और देश)"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_AGENT_NEEDSARGS",
+      "text": "एजेंट जानकारी में ठीक एक मान निर्दिष्ट होना चाहिए (एजेंट vCard सामग्री जिसकी पंक्तियाँ '\\\\n' द्वारा सीमांकित हैं)"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CLIENTPID_INVALIDMAP",
+      "text": "क्लाइंट PID मानचित्र प्रतिनिधित्व अमान्य है:"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CLIENTPID_INVALIDPIDNUM",
+      "text": "PID संख्या {0} अमान्य है"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CLIENTPID_INVALIDPIDURI",
+      "text": "PID URI {0} अमान्य है"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_GENDER_INVALIDGENDERSTR",
+      "text": "अमान्य लिंग स्ट्रिंग {0}"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_NAME_NEEDSARGS",
+      "text": "नाम फ़ील्ड में पाँच मानों में से पहले दो या अधिक मान निर्दिष्ट होने चाहिए (अंतिम नाम, पहला नाम, वैकल्पिक नाम, उपसर्ग और प्रत्यय)"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_XML_NEEDSXML",
+      "text": "कुछ भी नहीं से XML दस्तावेज़ उत्पन्न नहीं किया जा सकता।"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ENUMTYPEUNDETERMINABLE_DELETE",
+      "text": "भाग को हटाने के लिए गणना प्रकार निर्धारित नहीं किया जा सकता।"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ENUMTYPEUNDETERMINABLE_ADD",
+      "text": "भाग जोड़ने के लिए गणना प्रकार निर्धारित नहीं किया जा सकता।"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONEALTIDMISMATCH_PARTS",
+      "text": "भाग सरणी {0} को AltID {1} से अधिलेखित नहीं किया जा सकता, क्योंकि कार्डिनैलिटी {2} है और अपेक्षित AltID {3} है।"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONENOALTID_PARTS",
+      "text": "भाग सरणी {0} को AltID {1} से कभी अधिलेखित नहीं किया जा सकता, क्योंकि कार्डिनैलिटी {2} है, भले ही अपेक्षित AltID {3} हो।"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONEALTIDMISMATCH_STRING",
+      "text": "स्ट्रिंग {0} को AltID {1} से अधिलेखित नहीं किया जा सकता, क्योंकि कार्डिनैलिटी {2} है और अपेक्षित AltID {3} है।"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONENOALTID_STRING",
+      "text": "स्ट्रिंग {0} को AltID {1} से कभी अधिलेखित नहीं किया जा सकता, क्योंकि कार्डिनैलिटी {2} है, भले ही अपेक्षित AltID {3} हो।"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_NEEDSKEYS",
+      "text": "निम्न कुंजियाँ [{0}] आवश्यक हैं। [{1}] मिला।"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_MEMBERINVCARD",
+      "text": "vCards में MEMBER गुण होने की मनाही है।"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_INVALIDBASETYPE",
+      "text": "आधार प्रकार {0} [{1}] नहीं है और भाग प्रकार [{2}] है जो कार्ड भाग का प्रतिनिधित्व नहीं करता है।"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_PARTSTYPEMISMATCH",
+      "text": "पार्ट्स ऐरे एन्यूमरेशन [{0}] टाइप {2} के अनुसार अपेक्षित [{1}] से अलग है।"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_INVALIDVERSION",
+      "text": "अमान्य vCard संस्करण {0} निर्दिष्ट किया गया। समर्थित संस्करण 2.1, 3.0, 4.0 और 5.0 हैं।"
+    },
+    {
+      "loc": "VISUALCARD_TOOLS_EXCEPTION_INVALIDVCARDCONTACT",
+      "text": "यह एक मान्य vCard संपर्क फ़ाइल नहीं है।"
+    },
+    {
+      "loc": "VISUALCARD_TOOLS_EXCEPTION_INVALIDVCARDVERSION",
+      "text": "इस कार्ड का अमान्य VCard संस्करण {0} है।"
+    },
+    {
+      "loc": "VISUALCARD_TOOLS_EXCEPTION_VERSIONNOTFIRST",
+      "text": "vCard {0}.0 के लिए आवश्यक है कि {1} सीधे {2} के बाद आए।"
+    },
+    {
+      "loc": "VISUALCARD_TOOLS_EXCEPTION_ENDEDPREMATURELY",
+      "text": "कार्ड समाप्ति टैग के बिना समय से पहले समाप्त हो गया"
+    }
+  ]
+}

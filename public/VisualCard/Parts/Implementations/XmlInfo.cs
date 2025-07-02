@@ -1,4 +1,4 @@
-﻿//
+//
 // VisualCard  Copyright (C) 2021-2025  Aptivi
 //
 // This file is part of VisualCard
@@ -23,6 +23,7 @@ using System.Diagnostics;
 using System.Xml;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parts;
+using VisualCard.Languages;
 
 namespace VisualCard.Parts.Implementations
 {
@@ -63,7 +64,7 @@ namespace VisualCard.Parts.Implementations
         internal override BasePartInfo FromStringInternal(string value, PropertyInfo property, int altId, string[] elementTypes, Version cardVersion)
         {
             XmlDocument doc = GenerateDocument(value) ??
-                throw new ArgumentNullException("Can't generate XML document from nothing.");
+                throw new ArgumentNullException(LanguageTools.GetLocalized("VISUALCARD_PARTS_EXCEPTION_XML_NEEDSXML"));
 
             // Add the fetched information
             XmlInfo _xml = new(altId, property, elementTypes, doc, value);

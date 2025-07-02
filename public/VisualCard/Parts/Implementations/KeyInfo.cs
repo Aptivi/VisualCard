@@ -1,4 +1,4 @@
-﻿//
+//
 // VisualCard  Copyright (C) 2021-2025  Aptivi
 //
 // This file is part of VisualCard
@@ -26,6 +26,7 @@ using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parts;
 using VisualCard.Common.Parsers;
 using Textify.General;
+using VisualCard.Languages;
 
 namespace VisualCard.Parts.Implementations
 {
@@ -62,7 +63,7 @@ namespace VisualCard.Parts.Implementations
                 if (property.ValueType.Equals("uri", StringComparison.OrdinalIgnoreCase))
                 {
                     if (!Uri.TryCreate(value, UriKind.Absolute, out Uri uri))
-                        throw new InvalidDataException("URL {0} is invalid".FormatString(value));
+                        throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_PARTS_EXCEPTION_ENCODABLES_INVALIDURL").FormatString(value));
                     value = uri.ToString();
                 }
             }
@@ -75,7 +76,7 @@ namespace VisualCard.Parts.Implementations
                 {
                     // Since we don't need embedded keys, we need to check a URL.
                     if (!Uri.TryCreate(value, UriKind.Absolute, out Uri uri))
-                        throw new InvalidDataException("URL {0} is invalid".FormatString(value));
+                        throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_PARTS_EXCEPTION_ENCODABLES_INVALIDURL").FormatString(value));
                     value = uri.ToString();
                 }
             }

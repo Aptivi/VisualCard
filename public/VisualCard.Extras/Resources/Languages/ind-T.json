@@ -1,0 +1,74 @@
+{
+  "lang": "ind-T",
+  "name": "Hindi",
+  "cultures": [
+    "hi",
+    "hi-IN"
+  ],
+  "locs": [
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_INTRO",
+      "text": "'contacts2.db' फ़ाइल प्राप्त करने से पहले सुनिश्चित करें कि आपका फ़ोन रूट किया गया है। इन पथों को आज़माएँ:"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_SYSTEMWIDE",
+      "text": "सिस्टमवाइड संपर्क:"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_USERWIDE",
+      "text": "यूजरस्पेस (यूजर 0) संपर्क:"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_OTHERDIRS",
+      "text": "यदि वे काम नहीं करते हैं, तो रूट फ़ाइल प्रबंधक में अपने डिवाइस की /data निर्देशिका देखें।"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBNOTFOUND",
+      "text": "संपर्क प्रदाता से प्राप्त Android संपर्क डेटाबेस फ़ाइल नहीं मिली है।"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBINVALID",
+      "text": "Android संपर्क डेटाबेस फ़ाइल मान्य नहीं है।"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_NEEDSMECARD",
+      "text": "MeCard स्ट्रिंग खाली नहीं होनी चाहिए।"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_MECARDINVALID",
+      "text": "यह स्ट्रिंग मान्य MeCard संपर्क का प्रतिनिधित्व नहीं करती है।"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_MECARDPARSEFAILED",
+      "text": "MeCard संपर्क स्ट्रिंग मान्य नहीं है।"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_CARDNOTPROVIDED",
+      "text": "कार्ड प्रदान नहीं किया गया है।"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_NEEDSNAMETOSAVE",
+      "text": "खाली नाम या खाली पूरा नाम वाले vCard से MeCard स्ट्रिंग नहीं बनाई जा सकती।"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_APPNOTFOUND",
+      "text": "ऐसा कोई सोशल मीडिया ऐप नहीं है।"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_NOSOCIALMEDIAFIELDS",
+      "text": "कोई सोशल मीडिया फ़ील्ड नहीं है।"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_INCORRECTFIELD",
+      "text": "मान जानकारी {0} के लिए सोशल मीडिया मान नहीं है। अपेक्षित VISUALCARD-SOCIAL, {2} मानों के साथ {1} मिला"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_NEEDSABBREVNAME",
+      "text": "{0} के लिए, कम से कम एक संक्षिप्त नाम और एक नाम अपेक्षित है। {1} मान मिले। संकेत:"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_ABBREVMISMATCH",
+      "text": "{0} के लिए, ऐप के लिए एक मिलान संक्षिप्त नाम अपेक्षित है। {1} मिला। संकेत:"
+    }
+  ]
+}

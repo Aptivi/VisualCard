@@ -1,0 +1,75 @@
+{
+  "lang": "grk",
+  "name": "Greek",
+  "cultures": [
+    "el",
+    "el-CY",
+    "el-GR"
+  ],
+  "locs": [
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_INTRO",
+      "text": "Βεβαιωθείτε ότι το τηλέφωνό σας έχει root πριν μπορέσετε να λάβετε το αρχείο 'contacts2.db'. Δοκιμάστε αυτές τις διαδρομές:"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_SYSTEMWIDE",
+      "text": "Επαφές σε όλο το σύστημα:"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_USERWIDE",
+      "text": "Επαφές χώρου χρήστη (χρήστης 0):"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBOBTAINTIP_OTHERDIRS",
+      "text": "Εάν δεν λειτουργούν, συμβουλευτείτε τον κατάλογο /data της συσκευής σας στον διαχειριστή αρχείων root."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBNOTFOUND",
+      "text": "Το αρχείο βάσης δεδομένων επαφών Android που ελήφθη από τον πάροχο επαφών δεν βρέθηκε."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_ANDROID_EXCEPTION_DBINVALID",
+      "text": "Το αρχείο βάσης δεδομένων επαφών Android δεν είναι έγκυρο."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_NEEDSMECARD",
+      "text": "Η συμβολοσειρά MeCard δεν πρέπει να είναι κενή."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_MECARDINVALID",
+      "text": "Αυτή η συμβολοσειρά δεν αντιπροσωπεύει μια έγκυρη επαφή MeCard."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_MECARDPARSEFAILED",
+      "text": "Η συμβολοσειρά επαφής MeCard δεν είναι έγκυρη."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_CARDNOTPROVIDED",
+      "text": "Δεν παρέχεται κάρτα."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_MECARD_EXCEPTION_NEEDSNAMETOSAVE",
+      "text": "Δεν είναι δυνατή η δημιουργία μιας συμβολοσειράς MeCard από μια vCard που περιέχει ένα κενό όνομα ή ένα κενό πλήρες όνομα."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_APPNOTFOUND",
+      "text": "Δεν υπάρχει τέτοια εφαρμογή κοινωνικής δικτύωσης."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_NOSOCIALMEDIAFIELDS",
+      "text": "Δεν υπάρχουν πεδία κοινωνικής δικτύωσης."
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_INCORRECTFIELD",
+      "text": "Η τιμή info δεν είναι τιμή κοινωνικής δικτύωσης για το {0}. Αναμενόταν VISUALCARD-SOCIAL, ελήφθη {1} με τιμές {2}"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_NEEDSABBREVNAME",
+      "text": "Για το {0}, αναμενόταν τουλάχιστον μια συντομογραφία και ένα όνομα. Ελήφθησαν τιμές {1}. Υπόδειξη:"
+    },
+    {
+      "loc": "VISUALCARD_EXTRAS_CONVERTERS_SOCIALMEDIA_EXCEPTION_ABBREVMISMATCH",
+      "text": "Για το {0}, αναμενόταν μια αντίστοιχη συντομογραφία για την εφαρμογή. Λήφθηκε το {1}. Υπόδειξη:"
+    }
+  ]
+}

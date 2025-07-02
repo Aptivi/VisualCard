@@ -1,4 +1,4 @@
-﻿//
+//
 // VisualCard  Copyright (C) 2021-2025  Aptivi
 //
 // This file is part of VisualCard
@@ -24,6 +24,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Textify.General;
+using VisualCard.Calendar.Languages;
 using VisualCard.Calendar.Parsers;
 using VisualCard.Calendar.Parts.Comparers;
 using VisualCard.Calendar.Parts.Enums;
@@ -119,7 +120,7 @@ namespace VisualCard.Calendar.Parts
             string[] expectedAlarmFields = [VCalendarConstants._actionSpecifier, VCalendarConstants._triggerSpecifier];
             LoggingTools.Debug("Expected alarm fields: {0} [{1}]", expectedAlarmFields.Length, string.Join(", ", expectedAlarmFields));
             if (!ValidateComponent(ref expectedAlarmFields, out string[] actualAlarmFields, this))
-                throw new InvalidDataException("The following keys [{0}] are required in the alarm representation. Got [{1}].".FormatString(string.Join(", ", expectedAlarmFields), string.Join(", ", actualAlarmFields)));
+                throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_ROOT").FormatString(string.Join(", ", expectedAlarmFields), string.Join(", ", actualAlarmFields)));
 
             // Check the alarm action
             string[] expectedAudioAlarmFields = [VCalendarConstants._attachSpecifier];
@@ -135,15 +136,15 @@ namespace VisualCard.Calendar.Parts
             {
                 case "AUDIO":
                     if (!ValidateComponent(ref expectedAudioAlarmFields, out string[] actualAudioAlarmFields, this))
-                        throw new InvalidDataException("The following keys [{0}] are required in the audio alarm representation. Got [{1}].".FormatString(string.Join(", ", expectedAudioAlarmFields), string.Join(", ", actualAudioAlarmFields)));
+                        throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_AUDIO").FormatString(string.Join(", ", expectedAudioAlarmFields), string.Join(", ", actualAudioAlarmFields)));
                     break;
                 case "DISPLAY":
                     if (!ValidateComponent(ref expectedDisplayAlarmFields, out string[] actualDisplayAlarmFields, this))
-                        throw new InvalidDataException("The following keys [{0}] are required in the display alarm representation. Got [{1}].".FormatString(string.Join(", ", expectedDisplayAlarmFields), string.Join(", ", actualDisplayAlarmFields)));
+                        throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_DISPLAY").FormatString(string.Join(", ", expectedDisplayAlarmFields), string.Join(", ", actualDisplayAlarmFields)));
                     break;
                 case "EMAIL":
                     if (!ValidateComponent(ref expectedMailAlarmFields, out string[] actualMailAlarmFields, this))
-                        throw new InvalidDataException("The following keys [{0}] are required in the mail alarm representation. Got [{1}].".FormatString(string.Join(", ", expectedMailAlarmFields), string.Join(", ", actualMailAlarmFields)));
+                        throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_MAIL").FormatString(string.Join(", ", expectedMailAlarmFields), string.Join(", ", actualMailAlarmFields)));
                     break;
             }
 
@@ -156,7 +157,7 @@ namespace VisualCard.Calendar.Parts
             if (repeat >= 1)
             {
                 if (!ValidateComponent(ref expectedRepeatedAlarmFields, out string[] actualRepeatedAlarmFields, this))
-                    throw new InvalidDataException("The following keys [{0}] are required in the repeated alarm representation. Got [{1}].".FormatString(string.Join(", ", expectedRepeatedAlarmFields), string.Join(", ", actualRepeatedAlarmFields)));
+                    throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_REPEATED").FormatString(string.Join(", ", expectedRepeatedAlarmFields), string.Join(", ", actualRepeatedAlarmFields)));
             }
         }
 
@@ -169,7 +170,7 @@ namespace VisualCard.Calendar.Parts
             base(version)
         {
             if (version.Major != 2 && version.Minor != 0)
-                throw new ArgumentException("Invalid vCalendar version {0} specified. The supported version is 2.0.".FormatString(version));
+                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARV2COMPONENTS_INVALIDVERSION").FormatString(version));
         }
     }
 }

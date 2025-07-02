@@ -1,0 +1,175 @@
+{
+  "lang": "iri",
+  "name": "Irish",
+  "cultures": [
+    "ga",
+    "ga-GB",
+    "ga-IE"
+  ],
+  "locs": [
+    {
+      "loc": "VISUALCARD_EXCEPTION_GENERALCONTACTPARSEERROR",
+      "text": "Earráid ghinearálta parsála teagmhála."
+    },
+    {
+      "loc": "VISUALCARD_EXCEPTION_CONTACTPARSEERROR",
+      "text": "Tharla earráid agus an teagmhálaí VCard á pharsáil"
+    },
+    {
+      "loc": "VISUALCARD_EXCEPTION_CONTACTPARSEERROR_ERROR",
+      "text": "Earráid:"
+    },
+    {
+      "loc": "VISUALCARD_EXCEPTION_CONTACTPARSEERROR_LINE",
+      "text": "Líne:"
+    },
+    {
+      "loc": "VISUALCARD_EXCEPTION_CONTACTPARSEERROR_LINENUM",
+      "text": "Uimhir na líne:"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_CARDCONTENTEMPTY",
+      "text": "Tá ábhar an chárta folamh."
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_PARTTYPEUNSUPPORTED",
+      "text": "Ní thacaíonn cineál eolais na coda {0} leis an gcineál maoine {1} toisc go dtacaítear leis na cineálacha bonn seo a leanas: [{2}] agus go dtacaítear leis na cineálacha breise: [{3}]"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_VALUEDISALLOWED",
+      "text": "Níl luach {0} sa liosta luachanna ceadaithe [{1}]"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_INVALIDPROFILE",
+      "text": "Ní mór don phróifíl a bheith 'vCard'"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_INVALIDTYPE",
+      "text": "Tá an cineál {0} neamhbhailí. An bhfuil tú cinnte gur shonraigh tú an cineál ceart i do léiriú vCard?"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_STRENUMNOTVALID",
+      "text": "Níl uimhriú teaghrán {0} curtha i bhfeidhm."
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_TYPENEEDED",
+      "text": "Níl an cineál curtha ar fáil."
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_NOTNUMERIC",
+      "text": "Ní mór ALTID a bheith uimhriúil"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_NOTPOSITIVE",
+      "text": "Ní mór ALTID a bheith dearfach"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_NOREASONS",
+      "text": "Ní mór argóint amháin nó níos mó a bheith ag ALTID chun a shonrú cén fáth gur rogha eile é an sampla seo"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_NOTINFIRSTPOS",
+      "text": "Ní mór ALTID a bheith go díreach sa chéad áit den argóint, mar ní mór argóintí a leanann é a shonrú"
+    },
+    {
+      "loc": "VISUALCARD_PARSER_EXCEPTION_ALTID_ILLEGALCARDINALITY",
+      "text": "Ní mór ALTID a shonrú sa chineál {0} a bhfuil súil aige le cardinality de {1}"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_ENCODABLES_INVALIDURL",
+      "text": "Tá URL {0} neamhbhailí"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_ADDRESS_NEEDSARGS",
+      "text": "Ní mór seacht luach go díreach a shonrú san fhaisnéis seolta (Bosca PO, seoladh sínte, seoladh sráide, áit, réigiún, cód poist, agus tír)"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_AGENT_NEEDSARGS",
+      "text": "Ní mór don fhaisnéis ghníomhaire luach amháin go díreach a shonrú (ábhar vCard gníomhaire a bhfuil a línte scartha ag '\\\\n')"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CLIENTPID_INVALIDMAP",
+      "text": "Tá léiriú léarscáile PID cliant neamhbhailí:"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CLIENTPID_INVALIDPIDNUM",
+      "text": "Tá uimhir PID {0} neamhbhailí"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CLIENTPID_INVALIDPIDURI",
+      "text": "Tá URI PID {0} neamhbhailí"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_GENDER_INVALIDGENDERSTR",
+      "text": "Teaghrán inscne neamhbhailí {0}"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_NAME_NEEDSARGS",
+      "text": "Ní mór don réimse ainm an chéad dá luach nó níos mó de na cúig luach a shonrú (Sloinne, céadainm, ainmneacha malartacha, réimíreanna, agus iarmhíreanna)"
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_XML_NEEDSXML",
+      "text": "Ní féidir doiciméad XML a ghiniúint as rud ar bith."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ENUMTYPEUNDETERMINABLE_DELETE",
+      "text": "Ní féidir an cineál áirimh a chinneadh chun cuid a scriosadh."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ENUMTYPEUNDETERMINABLE_ADD",
+      "text": "Ní féidir an cineál áirimh a chinneadh chun cuid a chur leis."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONEALTIDMISMATCH_PARTS",
+      "text": "Ní féidir eagar cuid {0} a athscríobh le AltID {1}, mar is é {2} an cardinality agus is é {3} an AltID ionchais."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONENOALTID_PARTS",
+      "text": "Ní féidir eagar cuid {0} a athscríobh le AltID {1} riamh, mar is é {2} an cardinality, cé go bhfuil an AltID ionchais {3}."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONEALTIDMISMATCH_STRING",
+      "text": "Ní féidir teaghrán {0} a athscríobh le AltID {1}, mar is é {2} an cardinality agus is é {3} an AltID ionchais."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONENOALTID_STRING",
+      "text": "Ní féidir teaghrán {0} a athscríobh le AltID {1} riamh, mar is é {2} an cardinality, cé go bhfuil an AltID ionchais {3}."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_NEEDSKEYS",
+      "text": "Tá na heochracha seo a leanas [{0}] ag teastáil. Fuarthas [{1}]."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_MEMBERINVCARD",
+      "text": "Tá cosc ​​ar vCards airíonna MEMBER a bheith acu."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_INVALIDBASETYPE",
+      "text": "Ní hé an cineál bonn {0} [{1}] agus is é an cineál cuid [{2}] nach léiríonn cuid cárta."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_PARTSTYPEMISMATCH",
+      "text": "Tá uimhriú eagar na gcodanna [{0}] difriúil ón gceann a bhíothas ag súil leis [{1}] de réir chineál {2}."
+    },
+    {
+      "loc": "VISUALCARD_PARTS_EXCEPTION_CARD_INVALIDVERSION",
+      "text": "Leagan neamhbhailí vCard {0} sonraithe. Is iad na leaganacha tacaithe ná 2.1, 3.0, 4.0, agus 5.0."
+    },
+    {
+      "loc": "VISUALCARD_TOOLS_EXCEPTION_INVALIDVCARDCONTACT",
+      "text": "Ní comhad teagmhála vCard bailí é seo."
+    },
+    {
+      "loc": "VISUALCARD_TOOLS_EXCEPTION_INVALIDVCARDVERSION",
+      "text": "Tá leagan neamhbhailí VCard {0} den chárta seo."
+    },
+    {
+      "loc": "VISUALCARD_TOOLS_EXCEPTION_VERSIONNOTFIRST",
+      "text": "Éilíonn vCard {0}.0 go dtagann {1} díreach i ndiaidh {2}."
+    },
+    {
+      "loc": "VISUALCARD_TOOLS_EXCEPTION_ENDEDPREMATURELY",
+      "text": "Chríochnaigh an cárta roimh am gan an chlib deiridh."
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-﻿//
+//
 // VisualCard  Copyright (C) 2021-2025  Aptivi
 //
 // This file is part of VisualCard
@@ -25,6 +25,7 @@ using System.Text.RegularExpressions;
 using VisualCard.Common.Parsers;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parts;
+using VisualCard.Languages;
 using VisualCard.Parsers;
 
 namespace VisualCard.Parts.Implementations
@@ -83,7 +84,7 @@ namespace VisualCard.Parts.Implementations
 
             // Check the provided address
             if (splitAdr.Length < 7)
-                throw new InvalidDataException("Address information must specify exactly seven values (P.O. Box, extended address, street address, locality, region, postal code, and country)");
+                throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_PARTS_EXCEPTION_ADDRESS_NEEDSARGS"));
 
             // Populate the fields
             string[] _addressTypes = elementTypes.Length >= 1 ? elementTypes : ["HOME"];

@@ -1,0 +1,259 @@
+{
+  "lang": "kor",
+  "name": "Korean",
+  "cultures": [
+    "ko",
+    "ko-KP",
+    "ko-KR"
+  ],
+  "locs": [
+    {
+      "loc": "VISUALCARD_CALENDAR_EXCEPTION_GENERALCALENDARPARSEERROR",
+      "text": "ilban dallyeog gumun bunseog olyuibnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR",
+      "text": "VCalendar dallyeog-eul gumun bunseoghaneun jung olyuga balsaenghaessseubnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR_ERROR",
+      "text": "olyu:"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR_LINE",
+      "text": "jul:"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR_LINENUM",
+      "text": "jul beonho:"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_CALENDARCONTENTEMPTY",
+      "text": "dallyeog naeyong-i bieo issseubnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_ENDINGMISMATCH",
+      "text": "jonglyo bul-ilchi: yesang {0}gwa silje {1}i(ga) daleubnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_PARTTYPEUNSUPPORTED",
+      "text": "pateu jeongbo yuhyeong {0}eun(neun) da-eum yuhyeong-i jiwondoemeulo sogseong yuhyeong {1}eul(leul) jiwonhaji anhseubnida. [{2}]"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_VALUEDISALLOWED",
+      "text": "gabs {0}i(ga) heoyongdoeneun gabs moglog-e eobs-seubnida. [{1}]"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_INVALIDTYPE",
+      "text": "yuhyeong {0}i(ga) jalmosdoeeossseubnida. vCalendar pyohyeon-e olbaleun yuhyeong-eul jijeonghaessseubnikka?"
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_INVALIDTYPE2",
+      "text": "yuhyeong {0}i jalmosdoeeossseubnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_INCOMPATIBLENESTEDTYPES",
+      "text": "{1} an-e {0}eul(leul) neoh-eul su eobs-seubnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_STRENUMNOTVALID",
+      "text": "munjayeol yeolgeohyeong {0}i(ga) guhyeondoeji anh-assseubnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_INTENUMNOTVALID",
+      "text": "jeongsu yeolgeohyeong {0}i(ga) guhyeondoeji anh-assseubnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARSER_EXCEPTION_TYPENEEDED",
+      "text": "yuhyeong-i jegongdoeji anh-assseubnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_AUDIOALARMINFO_ARGMISMATCH",
+      "text": "odio allam jeongboleul bunhalhal ttae bunhal gabs-i 4ga anin {0}ibnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_AUDIOALARMINFO_REPEATTIMES",
+      "text": "banbog hoes-suga jalmosdoeeossseubnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_DAYLIGHTINFO_ARGMISMATCH",
+      "text": "ilgwang jeol-yag sigan jeongboleul bunhalhal ttae bunhal gabs-i 6i anin {0}ibnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_DISPLAYALARMINFO_ARGMISMATCH",
+      "text": "diseupeullei allam jeongboleul bunhalhal ttae bunhal gabs-i 4ga anin {0}ibnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_MAILALARMINFO_ARGMISMATCH",
+      "text": "meil allam jeongboleul bunhalhal ttae bunhal gabs-i 5ga anin {0}ibnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_PROCEDUREALARMINFO_ARGMISMATCH",
+      "text": "jeolcha allam jeongboleul bunhalhal ttae bunhal gabs-i 4ga anin {0}ibnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_ATTACH_INVALIDURL",
+      "text": "URL {0}i jalmosdoeeossseubnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_GEO_ARGMISMATCH",
+      "text": "jiyeog-eul bunhalhal ttae bunhal gabs-i 2ga anin {0}ibnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_GEO_INVALIDLAT",
+      "text": "wido {0}i jalmosdoeeossseubnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_GEO_INVALIDLONG",
+      "text": "gyeongdo {0}i jalmosdoeeossseubnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_NOSPLIT",
+      "text": "sangtae beonhowa sangtae seolmyeong, geuligo oebu deiteo ssang saie bunhalhal semikollon-i eobs-seubnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_NOSPLITCODES",
+      "text": "duse gaeui sangtae kodeuleul bunhalhal jeom-i eobs-seubnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_ARGMISMATCH",
+      "text": "bunhal hu 2gae ttoneun 3gaega anin {0}gaeui hangmog-i pyosidoeeossseubnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_INVALIDNUM",
+      "text": "sangtaega susjaga anibnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_ENUMTYPENOTFOUND",
+      "text": "{0}e daehan yeolgeohyeong yuhyeong-eul chaj-eul su eobs-seubnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_ENUMTYPEUNDETERMINABLE_DELETE",
+      "text": "bubun-eul sagjehal yeolgeohyeong yuhyeong-eul gyeoljeonghal su eobs-seubnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_ENUMTYPEUNDETERMINABLE_ADD",
+      "text": "bubun-eul ​​chugahal yeolgeohyeong yuhyeong-eul gyeoljeonghal su eobs-seubnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_CANTADDCARDINALITY_PARTS",
+      "text": "gisuga {1}imeulo bubun baeyeol {0}eul(leul) chugahal su eobs-seubnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_CANTADDCARDINALITY_STRING",
+      "text": "gisuga {1}imeulo munjayeol {0}eul(leul) chugahal su eobs-seubnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_CANTADDCARDINALITY_INTEGER",
+      "text": "gisuga {1}imeulo jeongsu {0}eul(leul) chugahal su eobs-seubnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_ROOT",
+      "text": "luteue da-eum ki [{0}]i(ga) pil-yohabnida. [{1}]eul(leul) gajyeowassseubnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_EVENT",
+      "text": "ibenteu pyohyeon-e da-eum ki [{0}]i(ga) pil-yohabnida. [{1}]eul(leul) gajyeowassseubnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_DATEENDCONFLICT_EVENT",
+      "text": "naljja jonglyowa gigan-i chungdolhabnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TODO",
+      "text": "hal il pyohyeon-e da-eum ki [{0}]i(ga) pil-yohabnida. [{1}]eul(leul) gajyeowassseubnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_DUEDATECONFLICT_TODO",
+      "text": "magam-ilgwa gigan-i chungdolhabnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NODATESTARTDURATION_TODO",
+      "text": "gigan-e chugahal sijag-il-i eobs-seubnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_JOURNAL",
+      "text": "bungae pyohyeon-e da-eum ki [{0}]i(ga) pil-yohabnida. [{1}]eul(leul) gajyeowassseubnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_FREEBUSY",
+      "text": "hangaham/bappeum pyohyeon-e da-eum ki [{0}]i(ga) pil-yohabnida. [{1}]eul(leul) gajyeowassseubnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TIMEZONE",
+      "text": "sigandae pyohyeon-e da-eum ki [{0}]i(ga) pil-yohabnida. [{1}]eul(leul) bad-assseubnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSCOMPONENTS_TIMEZONE",
+      "text": "pyojun/ilgwang jeol-yag siganje guseong yoso jung hanaga pil-yohabnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TIMEZONE_STANDARD",
+      "text": "pyojun pyohyeon-eneun da-eum ki [{0}]i(ga) pil-yohabnida. [{1}]eul(leul) bad-assseubnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TIMEZONE_DAYLIGHT",
+      "text": "ilgwang jeol-yag siganje pyohyeon-eneun da-eum ki [{0}]i(ga) pil-yohabnida. [{1}]eul(leul) bad-assseubnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_PERCENTCOMPLETION",
+      "text": "wanlyoyul-eun 0boda jaggeona 100boda keul su eobs-seubnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_PRIORITY",
+      "text": "useonsun-wineun 0boda jaggeona 9boda keul su eobs-seubnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_MEMBERINVCARD",
+      "text": "vCardneun MEMBER sogseong-eul gajil su eobs-seubnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_INVALIDBASETYPE",
+      "text": "gibon yuhyeong-i {0} [{1}]i(ga) animyeo, pateu yuhyeong-eun dallyeog pateuleul natanaeji anhneun [{2}]ibnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_PARTSTYPEMISMATCH",
+      "text": "pateu baeyeol yeolgeohyeong [{0}]i(ga) yuhyeong {2}e ttala yesangdoen [{1}]gwa(wa) daleubnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_INVALIDVERSION",
+      "text": "jalmosdoen vCalendar beojeon {0}i(ga) jijeongdoeeossseubnida. jiwondoeneun beojeon-eun 1.0 mich 2.0ibnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARV2COMPONENTS_INVALIDVERSION",
+      "text": "jalmosdoen vCalendar beojeon {0}i(ga) jijeongdoeeossseubnida. jiwondoeneun beojeon-eun 2.0ibnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_ROOT",
+      "text": "allam pyohyeon-eneun da-eum ki [{0}]i(ga) pil-yohabnida. [{1}]eul(leul) bad-assseubnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_AUDIO",
+      "text": "odio allam pyohyeon-eneun da-eum ki [{0}]i(ga) pil-yohabnida. [{1}]eul(leul) bad-assseubnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_DISPLAY",
+      "text": "diseupeullei allam pyohyeon-eneun da-eum ki [{0}]i(ga) pil-yohabnida. [{1}]eul(leul) bad-assseubnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_MAIL",
+      "text": "meil allam pyohyeon-eneun da-eum ki [{0}]i(ga) pil-yohabnida. [{1}]eul(leul) bad-assseubnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_REPEATED",
+      "text": "banbog allam pyohyeon-eneun da-eum ki [{0}]i(ga) pil-yohabnida. [{1}]eul(leul) bad-assseubnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_TOOLS_EXCEPTION_INVALIDVCALENDAR",
+      "text": "yuhyohaji anh-eun vCalendar pail-ibnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_TOOLS_EXCEPTION_INVALIDVCALENDARVERSION",
+      "text": "i kaellindeoeneun jalmosdoen vCalendar beojeon {0}i(ga) issseubnida."
+    },
+    {
+      "loc": "VISUALCARD_CALENDAR_TOOLS_EXCEPTION_ENDEDPREMATURELY",
+      "text": "kaellindeoga jonglyo taegeu eobs-i neomu iljjig jonglyodoeeossseubnida."
+    }
+  ]
+}

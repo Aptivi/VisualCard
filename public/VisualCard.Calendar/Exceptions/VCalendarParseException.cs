@@ -1,4 +1,4 @@
-﻿//
+//
 // VisualCard  Copyright (C) 2021-2025  Aptivi
 //
 // This file is part of VisualCard
@@ -18,6 +18,7 @@
 //
 
 using System;
+using VisualCard.Calendar.Languages;
 using VisualCard.Common.Diagnostics;
 
 namespace VisualCard.Calendar.Exceptions
@@ -29,7 +30,7 @@ namespace VisualCard.Calendar.Exceptions
     {
         /// <inheritdoc/>
         internal VCalendarParseException()
-            : base("General calendar parsing error.")
+            : base(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_EXCEPTION_GENERALCALENDARPARSEERROR"))
         {
             LoggingTools.Error("Throwing vCalendar parse exception...");
         }
@@ -42,10 +43,10 @@ namespace VisualCard.Calendar.Exceptions
         /// <param name="linenumber">Line number in which it caused the error</param>
         /// <param name="innerException">Inner exception (if any)</param>
         internal VCalendarParseException(string message, string line, int linenumber, Exception innerException)
-            : base("An error occurred while parsing the VCalendar calendar" + "\n" +
-                   "Error:" + $" {message}\n" +
-                   "Line:" + $" {line}\n" +
-                   "Line number:" + $" {linenumber}", innerException)
+            : base(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR") + "\n" +
+                   LanguageTools.GetLocalized("VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR_ERROR") + $" {message}\n" +
+                   LanguageTools.GetLocalized("VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR_LINE") + $" {line}\n" +
+                   LanguageTools.GetLocalized("VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR_LINENUM") + $" {linenumber}", innerException)
         {
             LoggingTools.Error(this, "Throwing vCalendar parse exception...");
         }

@@ -1,4 +1,4 @@
-﻿//
+//
 // VisualCard  Copyright (C) 2021-2025  Aptivi
 //
 // This file is part of VisualCard
@@ -19,6 +19,7 @@
 
 using System;
 using VisualCard.Common.Diagnostics;
+using VisualCard.Languages;
 
 namespace VisualCard.Exceptions
 {
@@ -29,7 +30,7 @@ namespace VisualCard.Exceptions
     {
         /// <inheritdoc/>
         internal VCardParseException()
-            : base("General contact parsing error.")
+            : base(LanguageTools.GetLocalized("VISUALCARD_EXCEPTION_GENERALCONTACTPARSEERROR"))
         {
             LoggingTools.Error("Throwing vCard parse exception...");
         }
@@ -42,10 +43,10 @@ namespace VisualCard.Exceptions
         /// <param name="linenumber">Line number in which it caused the error</param>
         /// <param name="innerException">Inner exception (if any)</param>
         internal VCardParseException(string message, string line, int linenumber, Exception innerException)
-            : base("An error occurred while parsing the VCard contact" + "\n" +
-                   "Error:" + $" {message}\n" +
-                   "Line:" + $" {line}\n" + 
-                   "Line number:" + $" {linenumber}", innerException)
+            : base(LanguageTools.GetLocalized("VISUALCARD_EXCEPTION_CONTACTPARSEERROR") + "\n" +
+                   LanguageTools.GetLocalized("VISUALCARD_EXCEPTION_CONTACTPARSEERROR_ERROR") + $" {message}\n" +
+                   LanguageTools.GetLocalized("VISUALCARD_EXCEPTION_CONTACTPARSEERROR_LINE") + $" {line}\n" + 
+                   LanguageTools.GetLocalized("VISUALCARD_EXCEPTION_CONTACTPARSEERROR_LINENUM") + $" {linenumber}", innerException)
         {
             LoggingTools.Error(this, "Throwing vCard parse exception...");
         }

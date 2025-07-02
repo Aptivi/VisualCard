@@ -1,4 +1,4 @@
-﻿//
+//
 // VisualCard  Copyright (C) 2021-2025  Aptivi
 //
 // This file is part of VisualCard
@@ -27,6 +27,7 @@ using VisualCard.Parsers;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parsers;
 using VisualCard.Common.Diagnostics;
+using VisualCard.Calendar.Languages;
 
 namespace VisualCard.Calendar
 {
@@ -139,7 +140,7 @@ namespace VisualCard.Calendar
 
                 // All vCalendars must begin with BEGIN:VCALENDAR
                 if (!prefix.EqualsNoCase(CommonConstants._beginSpecifier) && !value.EqualsNoCase(VCalendarConstants._objectVCalendarSpecifier) && !BeginSpotted)
-                    throw new InvalidDataException("This is not a valid vCalendar file.");
+                    throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_TOOLS_EXCEPTION_INVALIDVCALENDAR"));
                 else if (!BeginSpotted)
                 {
                     BeginSpotted = true;
@@ -153,7 +154,7 @@ namespace VisualCard.Calendar
                 if (prefix.EqualsNoCase(CommonConstants._versionSpecifier) &&
                     !value.EqualsNoCase("1.0") && !value.EqualsNoCase("2.0") &&
                     !VersionSpotted)
-                    throw new InvalidDataException("This calendar has an invalid vCalendar version {0}.".FormatString(CalendarLine));
+                    throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_TOOLS_EXCEPTION_INVALIDVCALENDARVERSION").FormatString(CalendarLine));
                 else if (!VersionSpotted && prefix.EqualsNoCase(CommonConstants._versionSpecifier))
                 {
                     VersionSpotted = true;
@@ -181,7 +182,7 @@ namespace VisualCard.Calendar
 
             // Throw if the calendar ended prematurely
             if (!EndSpotted)
-                throw new InvalidDataException("Calendar ended prematurely without the ending tag");
+                throw new InvalidDataException(LanguageTools.GetLocalized("VISUALCARD_CALENDAR_TOOLS_EXCEPTION_ENDEDPREMATURELY"));
 
             // Now, assuming that all calendars and their parsers are valid, parse all of them
             foreach (var parser in FinalParsers)

@@ -1,4 +1,4 @@
-﻿//
+//
 // VisualCard  Copyright (C) 2021-2025  Aptivi
 //
 // This file is part of VisualCard
@@ -24,6 +24,7 @@ using System.Linq;
 using System.Text;
 using Textify.General;
 using VisualCard.Common.Diagnostics;
+using VisualCard.Common.Languages;
 using VisualCard.Common.Parts.Comparers;
 
 namespace VisualCard.Common.Parsers.Arguments
@@ -146,7 +147,7 @@ namespace VisualCard.Common.Parsers.Arguments
             if (!line.Contains($"{CommonConstants._argumentDelimiter}"))
             {
                 LoggingTools.Error("Invalid line! No argument delimiter ':' found!");
-                throw new ArgumentException("The line must contain an argument delimiter.");
+                throw new ArgumentException(LanguageTools.GetLocalized("VISUALCARD_COMMON_PARSERS_ARGS_EXCEPTION_NEEDSARGDELIM"));
             }
             line = line.Trim();
             string value = line.Substring(line.IndexOf(CommonConstants._argumentDelimiter) + 1).Trim();
