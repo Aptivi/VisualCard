@@ -28,12 +28,12 @@ Specification Details
    of the three vCard versions with one feature removed. References below:
    
      - vCard 2.1
-        https://github.com/Aptivi/VisualCard/blob/main/VisualCard/Specs/vcard-21.txt
+        https://gitlab.com/aptivi/main/VisualCard/blob/main/VisualCard/Specs/vcard-21.txt
      - vCard 3.0
-        https://github.com/Aptivi/VisualCard/blob/main/VisualCard/Specs/vcard-30-rfc
+        https://gitlab.com/aptivi/main/VisualCard/blob/main/VisualCard/Specs/vcard-30-rfc
         2426.txt
      - vCard 4.0
-        https://github.com/Aptivi/VisualCard/blob/main/VisualCard/Specs/vcard-40-rfc
+        https://gitlab.com/aptivi/main/VisualCard/blob/main/VisualCard/Specs/vcard-40-rfc
         6350.txt
    
    This new version of vCard is currently exclusive to VisualCard. Any application

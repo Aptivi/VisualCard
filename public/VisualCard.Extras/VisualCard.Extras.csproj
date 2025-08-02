@@ -10,9 +10,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <DebugType>portable</DebugType>
     <PackageIcon>OfficialAppIcon-VisualCard-512.png</PackageIcon>
-    <PackageProjectUrl>https://github.com/Aptivi/VisualCard</PackageProjectUrl>
+    <PackageProjectUrl>https://gitlab.com/aptivi/main/VisualCard</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <RepositoryUrl>https://github.com/Aptivi/VisualCard</RepositoryUrl>
+    <RepositoryUrl>https://gitlab.com/aptivi/main/VisualCard</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
