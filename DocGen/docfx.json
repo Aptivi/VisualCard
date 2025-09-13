@@ -3,7 +3,7 @@
         {
             "src": [
                 {
-                    "files": [ "VisualCard/**.csproj", "VisualCard.Calendar/**.csproj" ],
+                    "files": [ "public/**/*.csproj" ],
                     "src": ".."
                 }
             ],
