@@ -36,7 +36,7 @@
 
 <!----------------------------------------------------------------------------->
 
-[Releases]: https://gitlab.com/aptivi/main/VisualCard/-/releases
+[Releases]: https://github.com/Aptivi/VisualCard/releases
 [NuGet]: https://www.nuget.org/packages/VisualCard/
 
 [Libraries]: https://aptivi.gitbook.io/visualcard-manual/project-dependencies
