@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <!-- 
+    Microsoft ResX Schema 
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+
+    Example:
+
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+        <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+            <xsd:element name="metadata">
+            <xsd:complexType>
+                <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                </xsd:sequence>
+                <xsd:attribute name="name" use="required" type="xsd:string" />
+                <xsd:attribute name="type" type="xsd:string" />
+                <xsd:attribute name="mimetype" type="xsd:string" />
+                <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="assembly">
+            <xsd:complexType>
+                <xsd:attribute name="alias" type="xsd:string" />
+                <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="data">
+            <xsd:complexType>
+                <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                </xsd:sequence>
+                <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+                <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+                <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+                <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="resheader">
+            <xsd:complexType>
+                <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                </xsd:sequence>
+                <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+            </xsd:element>
+        </xsd:choice>
+        </xsd:complexType>
+    </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+    <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="VISUALCARD_EXCEPTION_GENERALCONTACTPARSEERROR" xml:space="preserve">
+    <value>Error general de análisis de contacto.</value>
+  </data>
+  <data name="VISUALCARD_EXCEPTION_CONTACTPARSEERROR" xml:space="preserve">
+    <value>Se produjo un error al analizar el contacto de vCard.</value>
+  </data>
+  <data name="VISUALCARD_EXCEPTION_CONTACTPARSEERROR_ERROR" xml:space="preserve">
+    <value>Error:</value>
+  </data>
+  <data name="VISUALCARD_EXCEPTION_CONTACTPARSEERROR_LINE" xml:space="preserve">
+    <value>Línea:</value>
+  </data>
+  <data name="VISUALCARD_EXCEPTION_CONTACTPARSEERROR_LINENUM" xml:space="preserve">
+    <value>Número de línea:</value>
+  </data>
+  <data name="VISUALCARD_PARSER_EXCEPTION_CARDCONTENTEMPTY" xml:space="preserve">
+    <value>El contenido de la tarjeta está vacío.</value>
+  </data>
+  <data name="VISUALCARD_PARSER_EXCEPTION_PARTTYPEUNSUPPORTED" xml:space="preserve">
+    <value>El tipo de información de pieza {0} no admite el tipo de propiedad {1} porque se admiten los siguientes tipos base: [{2}] y los tipos adicionales: [{3}].</value>
+  </data>
+  <data name="VISUALCARD_PARSER_EXCEPTION_VALUEDISALLOWED" xml:space="preserve">
+    <value>El valor {0} no está en la lista de valores permitidos [{1}].</value>
+  </data>
+  <data name="VISUALCARD_PARSER_EXCEPTION_INVALIDPROFILE" xml:space="preserve">
+    <value>El perfil debe ser &apos;vCard&apos;.</value>
+  </data>
+  <data name="VISUALCARD_PARSER_EXCEPTION_INVALIDTYPE" xml:space="preserve">
+    <value>El tipo {0} no es válido. ¿Está seguro de haber especificado el tipo correcto en su representación de vCard?</value>
+  </data>
+  <data name="VISUALCARD_PARSER_EXCEPTION_STRENUMNOTVALID" xml:space="preserve">
+    <value>La enumeración de cadena {0} no está implementada.</value>
+  </data>
+  <data name="VISUALCARD_PARSER_EXCEPTION_TYPENEEDED" xml:space="preserve">
+    <value>No se proporciona el tipo.</value>
+  </data>
+  <data name="VISUALCARD_PARSER_EXCEPTION_ALTID_NOTNUMERIC" xml:space="preserve">
+    <value>ALTID debe ser numérico</value>
+  </data>
+  <data name="VISUALCARD_PARSER_EXCEPTION_ALTID_NOTPOSITIVE" xml:space="preserve">
+    <value>ALTID debe ser positivo</value>
+  </data>
+  <data name="VISUALCARD_PARSER_EXCEPTION_ALTID_NOREASONS" xml:space="preserve">
+    <value>ALTID debe tener uno o más argumentos para especificar por qué esta instancia es una alternativa</value>
+  </data>
+  <data name="VISUALCARD_PARSER_EXCEPTION_ALTID_NOTINFIRSTPOS" xml:space="preserve">
+    <value>ALTID debe estar exactamente en la primera posición del argumento, ya que los argumentos que le siguen deben especificarse</value>
+  </data>
+  <data name="VISUALCARD_PARSER_EXCEPTION_ALTID_ILLEGALCARDINALITY" xml:space="preserve">
+    <value>ALTID no debe especificarse en el tipo {0}, que espera una cardinalidad de {1}</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_ENCODABLES_INVALIDURL" xml:space="preserve">
+    <value>La URL {0} no es válida</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_ADDRESS_NEEDSARGS" xml:space="preserve">
+    <value>La información de la dirección debe especificar exactamente siete valores (apartado postal, dirección completa, dirección postal, localidad, región, código postal y país)</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_AGENT_NEEDSARGS" xml:space="preserve">
+    <value>La información del agente debe especificar exactamente un valor (contenido de la vCard del agente cuyas líneas están delimitadas por &apos;\\n&apos;)</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CLIENTPID_INVALIDMAP" xml:space="preserve">
+    <value>La representación del mapa PID del cliente no es válida:</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CLIENTPID_INVALIDPIDNUM" xml:space="preserve">
+    <value>El número PID {0} no es válido</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CLIENTPID_INVALIDPIDURI" xml:space="preserve">
+    <value>El URI PID {0} no es válido</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_GENDER_INVALIDGENDERSTR" xml:space="preserve">
+    <value>Cadena de género {0} no válida</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_NAME_NEEDSARGS" xml:space="preserve">
+    <value>El campo de nombre debe especificar los dos primeros o más de los cinco valores (apellido, nombre, nombres alternativos, prefijos y sufijos)</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_XML_NEEDSXML" xml:space="preserve">
+    <value>No se puede generar un documento XML desde cero.</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CARD_ENUMTYPEUNDETERMINABLE_DELETE" xml:space="preserve">
+    <value>No se puede determinar el tipo de enumeración para eliminar la parte.</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CARD_ENUMTYPEUNDETERMINABLE_ADD" xml:space="preserve">
+    <value>No se puede determinar el tipo de enumeración para añadir la parte.</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONEALTIDMISMATCH_PARTS" xml:space="preserve">
+    <value>No se puede sobrescribir la matriz de partes {0} con AltID {1}, porque la cardinalidad es {2} y el AltID esperado es {3}.</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONENOALTID_PARTS" xml:space="preserve">
+    <value>Nunca se puede sobrescribir la matriz de partes {0} con AltID {1}, porque la cardinalidad es {2}, aunque el AltID esperado sea {3}.</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONEALTIDMISMATCH_STRING" xml:space="preserve">
+    <value>No se puede sobrescribir la cadena {0} con AltID {1}, porque la cardinalidad es {2} y el AltID esperado es {3}.</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONENOALTID_STRING" xml:space="preserve">
+    <value>Nunca se puede sobrescribir la cadena {0} con AltID {1}, porque la cardinalidad es {2}, aunque el AltID esperado sea {3}.</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CARD_NEEDSKEYS" xml:space="preserve">
+    <value>Las siguientes claves [{0}] son ​​obligatorias. Se obtuvo [{1}].</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CARD_MEMBERINVCARD" xml:space="preserve">
+    <value>Las vCards no pueden tener propiedades MEMBER.</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CARD_INVALIDBASETYPE" xml:space="preserve">
+    <value>El tipo base no es {0} [{1}] y el tipo de parte es [{2}], que no representa la parte de la tarjeta.</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CARD_PARTSTYPEMISMATCH" xml:space="preserve">
+    <value>La enumeración de la matriz de partes [{0}] es diferente de la esperada [{1}] según el tipo {2}.</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CARD_INVALIDVERSION" xml:space="preserve">
+    <value>Se especificó una versión de vCard {0} no válida. Las versiones compatibles son 2.1, 3.0, 4.0 y 5.0.</value>
+  </data>
+  <data name="VISUALCARD_TOOLS_EXCEPTION_INVALIDVCARDCONTACT" xml:space="preserve">
+    <value>Este no es un archivo de contacto vCard válido.</value>
+  </data>
+  <data name="VISUALCARD_TOOLS_EXCEPTION_INVALIDVCARDVERSION" xml:space="preserve">
+    <value>Esta tarjeta tiene una versión de vCard {0} no válida.</value>
+  </data>
+  <data name="VISUALCARD_TOOLS_EXCEPTION_VERSIONNOTFIRST" xml:space="preserve">
+    <value>La vCard {0}.0 requiere que {1} vaya justo después de {2}.</value>
+  </data>
+  <data name="VISUALCARD_TOOLS_EXCEPTION_ENDEDPREMATURELY" xml:space="preserve">
+    <value>La tarjeta finalizó prematuramente sin la etiqueta de cierre.</value>
+  </data>
+
+</root>

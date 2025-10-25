@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <!-- 
+    Microsoft ResX Schema 
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+
+    Example:
+
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+        <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+            <xsd:element name="metadata">
+            <xsd:complexType>
+                <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                </xsd:sequence>
+                <xsd:attribute name="name" use="required" type="xsd:string" />
+                <xsd:attribute name="type" type="xsd:string" />
+                <xsd:attribute name="mimetype" type="xsd:string" />
+                <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="assembly">
+            <xsd:complexType>
+                <xsd:attribute name="alias" type="xsd:string" />
+                <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="data">
+            <xsd:complexType>
+                <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                </xsd:sequence>
+                <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+                <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+                <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+                <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="resheader">
+            <xsd:complexType>
+                <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                </xsd:sequence>
+                <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+            </xsd:element>
+        </xsd:choice>
+        </xsd:complexType>
+    </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+    <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="VISUALCARD_CALENDAR_EXCEPTION_GENERALCALENDARPARSEERROR" xml:space="preserve">
+    <value>Earráid ghinearálta parsála féilire.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR" xml:space="preserve">
+    <value>Tharla earráid agus féilire VCalendar á pharsáil</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR_ERROR" xml:space="preserve">
+    <value>Earráid:</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR_LINE" xml:space="preserve">
+    <value>Líne:</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR_LINENUM" xml:space="preserve">
+    <value>Uimhir na líne:</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARSER_EXCEPTION_CALENDARCONTENTEMPTY" xml:space="preserve">
+    <value>Tá ábhar an fhéilire folamh.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARSER_EXCEPTION_ENDINGMISMATCH" xml:space="preserve">
+    <value>Neamhoird deiridh: {0} ionchais i gcoinne {1} iarbhír</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARSER_EXCEPTION_PARTTYPEUNSUPPORTED" xml:space="preserve">
+    <value>Ní thacaíonn cineál faisnéise cuid {0} le cineál maoine {1} mar go dtacaítear leis na cineálacha seo a leanas: [{2}]</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARSER_EXCEPTION_VALUEDISALLOWED" xml:space="preserve">
+    <value>Níl luach {0} sa liosta luachanna ceadaithe [{1}]</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARSER_EXCEPTION_INVALIDTYPE" xml:space="preserve">
+    <value>Tá an cineál {0} neamhbhailí. An bhfuil tú cinnte gur shonraigh tú an cineál ceart i do léiriú vCalendar?</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARSER_EXCEPTION_INVALIDTYPE2" xml:space="preserve">
+    <value>Cineál neamhbhailí {0}</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARSER_EXCEPTION_INCOMPATIBLENESTEDTYPES" xml:space="preserve">
+    <value>Ní féidir {0} a chur taobh istigh de {1}</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARSER_EXCEPTION_STRENUMNOTVALID" xml:space="preserve">
+    <value>Níl uimhriú teaghrán {0} curtha i bhfeidhm.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARSER_EXCEPTION_INTENUMNOTVALID" xml:space="preserve">
+    <value>Níl uimhriú slánuimhreach {0} curtha i bhfeidhm.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARSER_EXCEPTION_TYPENEEDED" xml:space="preserve">
+    <value>Níl cineál curtha ar fáil.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_AUDIOALARMINFO_ARGMISMATCH" xml:space="preserve">
+    <value>Agus faisnéis aláraim fuaime á roinnt, is é {0} an luach scoilte in ionad 4.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_AUDIOALARMINFO_REPEATTIMES" xml:space="preserve">
+    <value>Amanna athrá neamhbhailí</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_DAYLIGHTINFO_ARGMISMATCH" xml:space="preserve">
+    <value>Agus faisnéis solas an lae á roinnt, is é {0} an luach scoilte in ionad 6.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_DISPLAYALARMINFO_ARGMISMATCH" xml:space="preserve">
+    <value>Agus faisnéis aláraim taispeána á roinnt, is é {0} an luach scoilte in ionad 4.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_MAILALARMINFO_ARGMISMATCH" xml:space="preserve">
+    <value>Agus faisnéis aláraim ríomhphoist á roinnt, is é {0} an luach scoilte in ionad 5.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_PROCEDUREALARMINFO_ARGMISMATCH" xml:space="preserve">
+    <value>Agus faisnéis aláraim nós imeachta á roinnt, is é {0} an luach scoilte in ionad 4.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_ATTACH_INVALIDURL" xml:space="preserve">
+    <value>Tá URL {0} neamhbhailí</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_GEO_ARGMISMATCH" xml:space="preserve">
+    <value>Agus tíreolaíocht á roinnt, is é {0} an luach scoilte in ionad 2.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_GEO_INVALIDLAT" xml:space="preserve">
+    <value>Domhanleithead neamhbhailí {0}</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_GEO_INVALIDLONG" xml:space="preserve">
+    <value>Domhanfhad neamhbhailí {0}</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_NOSPLIT" xml:space="preserve">
+    <value>Níl aon leathstad ann le roinnt idir uimhir stádais agus cur síos stádais agus, b&apos;fhéidir, an péire sonraí seachtracha.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_NOSPLITCODES" xml:space="preserve">
+    <value>Níl aon ponc ann le dhá nó trí chód stádais a roinnt.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_ARGMISMATCH" xml:space="preserve">
+    <value>Tar éis roinnte, fuarthas {0} mír in ionad 2 nó 3.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_INVALIDNUM" xml:space="preserve">
+    <value>Ní uimhir é an stádas.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_ENUMTYPENOTFOUND" xml:space="preserve">
+    <value>Ní bhfuarthas cineál áirimh do {0}</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_ENUMTYPEUNDETERMINABLE_DELETE" xml:space="preserve">
+    <value>Ní féidir an cineál áirimh a chinneadh chun cuid a scriosadh.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_ENUMTYPEUNDETERMINABLE_ADD" xml:space="preserve">
+    <value>Ní féidir an cineál áirimh a chinneadh chun cuid a chur leis.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_CANTADDCARDINALITY_PARTS" xml:space="preserve">
+    <value>Ní féidir eagar cuid {0} a chur leis, mar is é {1} an cardinality.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_CANTADDCARDINALITY_STRING" xml:space="preserve">
+    <value>Ní féidir teaghrán {0} a chur leis, mar is é {1} an cardinality.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_CANTADDCARDINALITY_INTEGER" xml:space="preserve">
+    <value>Ní féidir an slánuimhir {0} a chur leis, mar is é {1} an cardinality.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_ROOT" xml:space="preserve">
+    <value>Tá na heochracha seo a leanas [{0}] ag teastáil sa fhréamh. Fuarthas [{1}].</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_EVENT" xml:space="preserve">
+    <value>Tá na heochracha seo a leanas [{0}] ag teastáil san ionadaíocht imeachta. Fuarthas [{1}].</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_DATEENDCONFLICT_EVENT" xml:space="preserve">
+    <value>Coimhlint dáta deiridh agus fad aimsithe.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TODO" xml:space="preserve">
+    <value>Tá na heochracha seo a leanas [{0}] ag teastáil san ionadaíocht to-do. Fuarthas [{1}].</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_DUEDATECONFLICT_TODO" xml:space="preserve">
+    <value>Coimhlint dáta dlite agus fad aimsithe.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NODATESTARTDURATION_TODO" xml:space="preserve">
+    <value>Níl aon dáta tosaigh le cur leis an fad.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_JOURNAL" xml:space="preserve">
+    <value>Tá na heochracha seo a leanas [{0}] ag teastáil san ionadaíocht irisleabhair. Fuarthas [{1}].</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_FREEBUSY" xml:space="preserve">
+    <value>Tá na heochracha seo a leanas [{0}] ag teastáil san ionadaíocht freebusy. Fuarthas [{1}].</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TIMEZONE" xml:space="preserve">
+    <value>Tá na heochracha seo a leanas [{0}] ag teastáil san ionadaíocht crios ama. Fuarthas [{1}].</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSCOMPONENTS_TIMEZONE" xml:space="preserve">
+    <value>Tá ceann de na comhpháirteanna caighdeánacha/solas lae ag teastáil.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TIMEZONE_STANDARD" xml:space="preserve">
+    <value>Tá na heochracha seo a leanas [{0}] riachtanach san ionadaíocht chaighdeánach. Fuarthas [{1}].</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TIMEZONE_DAYLIGHT" xml:space="preserve">
+    <value>Tá na heochracha seo a leanas [{0}] riachtanach san ionadaíocht solais lae. Fuarthas [{1}].</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_PERCENTCOMPLETION" xml:space="preserve">
+    <value>Ní fhéadfaidh an céatadán críochnaithe a bheith níos lú ná náid ná níos mó ná 100.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_PRIORITY" xml:space="preserve">
+    <value>Ní fhéadfaidh an tosaíocht a bheith níos lú ná náid ná níos mó ná 9.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_MEMBERINVCARD" xml:space="preserve">
+    <value>Tá cosc ​​ar vCards airíonna MEMBER a bheith acu.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_INVALIDBASETYPE" xml:space="preserve">
+    <value>Ní hé an cineál bonn {0} [{1}] agus is é an cineál cuid [{2}] nach léiríonn cuid féilire.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_PARTSTYPEMISMATCH" xml:space="preserve">
+    <value>Tá uimhir eagar na gcodanna [{0}] difriúil ón gceann a bhfuiltear ag súil leis [{1}] de réir an chineáil {2}.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_INVALIDVERSION" xml:space="preserve">
+    <value>Leagan neamhbhailí de vCalendar sonraithe {0}. Is iad 1.0 agus 2.0 na leaganacha tacaithe.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARV2COMPONENTS_INVALIDVERSION" xml:space="preserve">
+    <value>Leagan neamhbhailí de vCalendar sonraithe {0}. Is é 2.0 an leagan tacaithe.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_ROOT" xml:space="preserve">
+    <value>Tá na heochracha seo a leanas [{0}] riachtanach san ionadaíocht aláraim. Fuarthas [{1}].</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_AUDIO" xml:space="preserve">
+    <value>Tá na heochracha seo a leanas [{0}] riachtanach san ionadaíocht aláraim fuaime. Fuarthas [{1}].</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_DISPLAY" xml:space="preserve">
+    <value>Tá na heochracha seo a leanas [{0}] ag teastáil san ionadaíocht aláraim taispeána. Fuarthas [{1}].</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_MAIL" xml:space="preserve">
+    <value>Tá na heochracha seo a leanas [{0}] ag teastáil san ionadaíocht aláraim ríomhphoist. Fuarthas [{1}].</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_REPEATED" xml:space="preserve">
+    <value>Tá na heochracha seo a leanas [{0}] ag teastáil san ionadaíocht aláraim athchleachtach. Fuarthas [{1}].</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_TOOLS_EXCEPTION_INVALIDVCALENDAR" xml:space="preserve">
+    <value>Ní comhad vCalendar bailí é seo.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_TOOLS_EXCEPTION_INVALIDVCALENDARVERSION" xml:space="preserve">
+    <value>Tá leagan neamhbhailí de vCalendar {0} ag an bhféilire seo.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_TOOLS_EXCEPTION_ENDEDPREMATURELY" xml:space="preserve">
+    <value>Chríochnaigh an féilire roimh am gan an chlib deiridh.</value>
+  </data>
+
+</root>

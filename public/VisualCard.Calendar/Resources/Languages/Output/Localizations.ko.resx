@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <!-- 
+    Microsoft ResX Schema 
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+
+    Example:
+
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+        <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+            <xsd:element name="metadata">
+            <xsd:complexType>
+                <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                </xsd:sequence>
+                <xsd:attribute name="name" use="required" type="xsd:string" />
+                <xsd:attribute name="type" type="xsd:string" />
+                <xsd:attribute name="mimetype" type="xsd:string" />
+                <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="assembly">
+            <xsd:complexType>
+                <xsd:attribute name="alias" type="xsd:string" />
+                <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="data">
+            <xsd:complexType>
+                <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                </xsd:sequence>
+                <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+                <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+                <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+                <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="resheader">
+            <xsd:complexType>
+                <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                </xsd:sequence>
+                <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+            </xsd:element>
+        </xsd:choice>
+        </xsd:complexType>
+    </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+    <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="VISUALCARD_CALENDAR_EXCEPTION_GENERALCALENDARPARSEERROR" xml:space="preserve">
+    <value>일반 달력 구문 분석 오류입니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR" xml:space="preserve">
+    <value>VCalendar 달력을 구문 분석하는 중 오류가 발생했습니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR_ERROR" xml:space="preserve">
+    <value>오류:</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR_LINE" xml:space="preserve">
+    <value>줄:</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR_LINENUM" xml:space="preserve">
+    <value>줄 번호:</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARSER_EXCEPTION_CALENDARCONTENTEMPTY" xml:space="preserve">
+    <value>달력 내용이 비어 있습니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARSER_EXCEPTION_ENDINGMISMATCH" xml:space="preserve">
+    <value>종료 불일치: 예상 {0}과 실제 {1}이(가) 다릅니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARSER_EXCEPTION_PARTTYPEUNSUPPORTED" xml:space="preserve">
+    <value>파트 정보 유형 {0}은(는) 다음 유형이 지원되므로 속성 유형 {1}을(를) 지원하지 않습니다. [{2}]</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARSER_EXCEPTION_VALUEDISALLOWED" xml:space="preserve">
+    <value>값 {0}이(가) 허용되는 값 목록에 없습니다. [{1}]</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARSER_EXCEPTION_INVALIDTYPE" xml:space="preserve">
+    <value>유형 {0}이(가) 잘못되었습니다. vCalendar 표현에 올바른 유형을 지정했습니까?</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARSER_EXCEPTION_INVALIDTYPE2" xml:space="preserve">
+    <value>유형 {0}이 잘못되었습니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARSER_EXCEPTION_INCOMPATIBLENESTEDTYPES" xml:space="preserve">
+    <value>{1} 안에 {0}을(를) 넣을 수 없습니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARSER_EXCEPTION_STRENUMNOTVALID" xml:space="preserve">
+    <value>문자열 열거형 {0}이(가) 구현되지 않았습니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARSER_EXCEPTION_INTENUMNOTVALID" xml:space="preserve">
+    <value>정수 열거형 {0}이(가) 구현되지 않았습니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARSER_EXCEPTION_TYPENEEDED" xml:space="preserve">
+    <value>유형이 제공되지 않았습니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_AUDIOALARMINFO_ARGMISMATCH" xml:space="preserve">
+    <value>오디오 알람 정보를 분할할 때 분할 값이 4가 아닌 {0}입니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_AUDIOALARMINFO_REPEATTIMES" xml:space="preserve">
+    <value>반복 횟수가 잘못되었습니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_DAYLIGHTINFO_ARGMISMATCH" xml:space="preserve">
+    <value>일광 절약 시간 정보를 분할할 때 분할 값이 6이 아닌 {0}입니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_DISPLAYALARMINFO_ARGMISMATCH" xml:space="preserve">
+    <value>디스플레이 알람 정보를 분할할 때 분할 값이 4가 아닌 {0}입니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_MAILALARMINFO_ARGMISMATCH" xml:space="preserve">
+    <value>메일 알람 정보를 분할할 때 분할 값이 5가 아닌 {0}입니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_PROCEDUREALARMINFO_ARGMISMATCH" xml:space="preserve">
+    <value>절차 알람 정보를 분할할 때 분할 값이 4가 아닌 {0}입니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_ATTACH_INVALIDURL" xml:space="preserve">
+    <value>URL {0}이 잘못되었습니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_GEO_ARGMISMATCH" xml:space="preserve">
+    <value>지역을 분할할 때 분할 값이 2가 아닌 {0}입니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_GEO_INVALIDLAT" xml:space="preserve">
+    <value>위도 {0}이 잘못되었습니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_GEO_INVALIDLONG" xml:space="preserve">
+    <value>경도 {0}이 잘못되었습니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_NOSPLIT" xml:space="preserve">
+    <value>상태 번호와 상태 설명, 그리고 외부 데이터 쌍 사이에 분할할 세미콜론이 없습니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_NOSPLITCODES" xml:space="preserve">
+    <value>두세 개의 상태 코드를 분할할 점이 없습니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_ARGMISMATCH" xml:space="preserve">
+    <value>분할 후 2개 또는 3개가 아닌 {0}개의 항목이 표시되었습니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_INVALIDNUM" xml:space="preserve">
+    <value>상태가 숫자가 아닙니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_ENUMTYPENOTFOUND" xml:space="preserve">
+    <value>{0}에 대한 열거형 유형을 찾을 수 없습니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_ENUMTYPEUNDETERMINABLE_DELETE" xml:space="preserve">
+    <value>부분을 삭제할 열거형 유형을 결정할 수 없습니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_ENUMTYPEUNDETERMINABLE_ADD" xml:space="preserve">
+    <value>부분을 ​​추가할 열거형 유형을 결정할 수 없습니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_CANTADDCARDINALITY_PARTS" xml:space="preserve">
+    <value>기수가 {1}이므로 부분 배열 {0}을(를) 추가할 수 없습니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_CANTADDCARDINALITY_STRING" xml:space="preserve">
+    <value>기수가 {1}이므로 문자열 {0}을(를) 추가할 수 없습니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_CANTADDCARDINALITY_INTEGER" xml:space="preserve">
+    <value>기수가 {1}이므로 정수 {0}을(를) 추가할 수 없습니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_ROOT" xml:space="preserve">
+    <value>루트에 다음 키 [{0}]이(가) 필요합니다. [{1}]을(를) 가져왔습니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_EVENT" xml:space="preserve">
+    <value>이벤트 표현에 다음 키 [{0}]이(가) 필요합니다. [{1}]을(를) 가져왔습니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_DATEENDCONFLICT_EVENT" xml:space="preserve">
+    <value>날짜 종료와 기간이 충돌합니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TODO" xml:space="preserve">
+    <value>할 일 표현에 다음 키 [{0}]이(가) 필요합니다. [{1}]을(를) 가져왔습니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_DUEDATECONFLICT_TODO" xml:space="preserve">
+    <value>마감일과 기간이 충돌합니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NODATESTARTDURATION_TODO" xml:space="preserve">
+    <value>기간에 추가할 시작일이 없습니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_JOURNAL" xml:space="preserve">
+    <value>분개 표현에 다음 키 [{0}]이(가) 필요합니다. [{1}]을(를) 가져왔습니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_FREEBUSY" xml:space="preserve">
+    <value>한가함/바쁨 표현에 다음 키 [{0}]이(가) 필요합니다. [{1}]을(를) 가져왔습니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TIMEZONE" xml:space="preserve">
+    <value>시간대 표현에 다음 키 [{0}]이(가) 필요합니다. [{1}]을(를) 받았습니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSCOMPONENTS_TIMEZONE" xml:space="preserve">
+    <value>표준/일광 절약 시간제 구성 요소 중 하나가 필요합니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TIMEZONE_STANDARD" xml:space="preserve">
+    <value>표준 표현에는 다음 키 [{0}]이(가) 필요합니다. [{1}]을(를) 받았습니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TIMEZONE_DAYLIGHT" xml:space="preserve">
+    <value>일광 절약 시간제 표현에는 다음 키 [{0}]이(가) 필요합니다. [{1}]을(를) 받았습니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_PERCENTCOMPLETION" xml:space="preserve">
+    <value>완료율은 0보다 작거나 100보다 클 수 없습니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_PRIORITY" xml:space="preserve">
+    <value>우선순위는 0보다 작거나 9보다 클 수 없습니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_MEMBERINVCARD" xml:space="preserve">
+    <value>vCard는 MEMBER 속성을 가질 수 없습니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_INVALIDBASETYPE" xml:space="preserve">
+    <value>기본 유형이 {0} [{1}]이(가) 아니며, 파트 유형은 달력 파트를 나타내지 않는 [{2}]입니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_PARTSTYPEMISMATCH" xml:space="preserve">
+    <value>파트 배열 열거형 [{0}]이(가) 유형 {2}에 따라 예상된 [{1}]과(와) 다릅니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_INVALIDVERSION" xml:space="preserve">
+    <value>잘못된 vCalendar 버전 {0}이(가) 지정되었습니다. 지원되는 버전은 1.0 및 2.0입니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARV2COMPONENTS_INVALIDVERSION" xml:space="preserve">
+    <value>잘못된 vCalendar 버전 {0}이(가) 지정되었습니다. 지원되는 버전은 2.0입니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_ROOT" xml:space="preserve">
+    <value>알람 표현에는 다음 키 [{0}]이(가) 필요합니다. [{1}]을(를) 받았습니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_AUDIO" xml:space="preserve">
+    <value>오디오 알람 표현에는 다음 키 [{0}]이(가) 필요합니다. [{1}]을(를) 받았습니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_DISPLAY" xml:space="preserve">
+    <value>디스플레이 알람 표현에는 다음 키 [{0}]이(가) 필요합니다. [{1}]을(를) 받았습니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_MAIL" xml:space="preserve">
+    <value>메일 알람 표현에는 다음 키 [{0}]이(가) 필요합니다. [{1}]을(를) 받았습니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_REPEATED" xml:space="preserve">
+    <value>반복 알람 표현에는 다음 키 [{0}]이(가) 필요합니다. [{1}]을(를) 받았습니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_TOOLS_EXCEPTION_INVALIDVCALENDAR" xml:space="preserve">
+    <value>유효하지 않은 vCalendar 파일입니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_TOOLS_EXCEPTION_INVALIDVCALENDARVERSION" xml:space="preserve">
+    <value>이 캘린더에는 잘못된 vCalendar 버전 {0}이(가) 있습니다.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_TOOLS_EXCEPTION_ENDEDPREMATURELY" xml:space="preserve">
+    <value>캘린더가 종료 태그 없이 너무 일찍 종료되었습니다.</value>
+  </data>
+
+</root>

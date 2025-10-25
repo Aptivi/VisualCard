@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <!-- 
+    Microsoft ResX Schema 
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+
+    Example:
+
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+        <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+            <xsd:element name="metadata">
+            <xsd:complexType>
+                <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                </xsd:sequence>
+                <xsd:attribute name="name" use="required" type="xsd:string" />
+                <xsd:attribute name="type" type="xsd:string" />
+                <xsd:attribute name="mimetype" type="xsd:string" />
+                <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="assembly">
+            <xsd:complexType>
+                <xsd:attribute name="alias" type="xsd:string" />
+                <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="data">
+            <xsd:complexType>
+                <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                </xsd:sequence>
+                <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+                <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+                <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+                <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="resheader">
+            <xsd:complexType>
+                <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                </xsd:sequence>
+                <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+            </xsd:element>
+        </xsd:choice>
+        </xsd:complexType>
+    </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+    <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="VISUALCARD_EXCEPTION_GENERALCONTACTPARSEERROR" xml:space="preserve">
+    <value>saamaany sampark paarsing truti.</value>
+  </data>
+  <data name="VISUALCARD_EXCEPTION_CONTACTPARSEERROR" xml:space="preserve">
+    <value>vchard sampark paars karate samay ek truti huee</value>
+  </data>
+  <data name="VISUALCARD_EXCEPTION_CONTACTPARSEERROR_ERROR" xml:space="preserve">
+    <value>truti:</value>
+  </data>
+  <data name="VISUALCARD_EXCEPTION_CONTACTPARSEERROR_LINE" xml:space="preserve">
+    <value>pankti:</value>
+  </data>
+  <data name="VISUALCARD_EXCEPTION_CONTACTPARSEERROR_LINENUM" xml:space="preserve">
+    <value>pankti sankhya:</value>
+  </data>
+  <data name="VISUALCARD_PARSER_EXCEPTION_CARDCONTENTEMPTY" xml:space="preserve">
+    <value>kaard saamagree rikt hai.</value>
+  </data>
+  <data name="VISUALCARD_PARSER_EXCEPTION_PARTTYPEUNSUPPORTED" xml:space="preserve">
+    <value>bhaag jaanakaaree prakaar {0} sampatti prakaar {1} ka samarthan nahin karata hai kyonki nimnalikhit aadhaar prakaar samarthit hain: [{2}] aur atirikt prakaar samarthit hain: [{3}]</value>
+  </data>
+  <data name="VISUALCARD_PARSER_EXCEPTION_VALUEDISALLOWED" xml:space="preserve">
+    <value>maan {0} anumat maanon kee soochee mein nahin hai [{1}]</value>
+  </data>
+  <data name="VISUALCARD_PARSER_EXCEPTION_INVALIDPROFILE" xml:space="preserve">
+    <value>profail vchard honee chaahie</value>
+  </data>
+  <data name="VISUALCARD_PARSER_EXCEPTION_INVALIDTYPE" xml:space="preserve">
+    <value>prakaar {0} amaany hai. kya aap sunishchit hain ki aapane apane vchard pratinidhitv mein sahee prakaar nirdisht kiya hai?</value>
+  </data>
+  <data name="VISUALCARD_PARSER_EXCEPTION_STRENUMNOTVALID" xml:space="preserve">
+    <value>string ganana {0} laagoo nahin kee gaee hai.</value>
+  </data>
+  <data name="VISUALCARD_PARSER_EXCEPTION_TYPENEEDED" xml:space="preserve">
+    <value>prakaar pradaan nahin kiya gaya hai.</value>
+  </data>
+  <data name="VISUALCARD_PARSER_EXCEPTION_ALTID_NOTNUMERIC" xml:space="preserve">
+    <value>altid sankhyaatmak hona chaahie</value>
+  </data>
+  <data name="VISUALCARD_PARSER_EXCEPTION_ALTID_NOTPOSITIVE" xml:space="preserve">
+    <value>altid sakaaraatmak hona chaahie</value>
+  </data>
+  <data name="VISUALCARD_PARSER_EXCEPTION_ALTID_NOREASONS" xml:space="preserve">
+    <value>altid mein ek ya adhik tark hone chaahie, taaki yah nirdisht kiya ja sake ki yah udaaharan vaikalpik kyon hai</value>
+  </data>
+  <data name="VISUALCARD_PARSER_EXCEPTION_ALTID_NOTINFIRSTPOS" xml:space="preserve">
+    <value>altid ko tark kee pahalee sthiti mein hona chaahie, kyonki isake baad aane vaale tarkon ko nirdisht karana aavashyak hai</value>
+  </data>
+  <data name="VISUALCARD_PARSER_EXCEPTION_ALTID_ILLEGALCARDINALITY" xml:space="preserve">
+    <value>altid ko {0} prakaar mein nirdisht nahin kiya jaana chaahie, jisamen {1} kee kaardinailitee apekshit ho</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_ENCODABLES_INVALIDURL" xml:space="preserve">
+    <value>url {0} amaany hai</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_ADDRESS_NEEDSARGS" xml:space="preserve">
+    <value>pata jaanakaaree mein theek saat maan nirdisht hone chaahie (p.o. boks, vistaarit pata, sadak ka pata, ilaaka, kshetr, daak kod aur desh)</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_AGENT_NEEDSARGS" xml:space="preserve">
+    <value>ejent jaanakaaree mein theek ek maan nirdisht hona chaahie (ejent vchard saamagree jisakee panktiyaan \\n dvaara seemaankit hain)</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CLIENTPID_INVALIDMAP" xml:space="preserve">
+    <value>klaint pid maanachitr pratinidhitv amaany hai:</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CLIENTPID_INVALIDPIDNUM" xml:space="preserve">
+    <value>pid sankhya {0} amaany hai</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CLIENTPID_INVALIDPIDURI" xml:space="preserve">
+    <value>pid uri {0} amaany hai</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_GENDER_INVALIDGENDERSTR" xml:space="preserve">
+    <value>amaany ling string {0}</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_NAME_NEEDSARGS" xml:space="preserve">
+    <value>naam feeld mein paanch maanon mein se pahale do ya adhik maan nirdisht hone chaahie (antim naam, pahala naam, vaikalpik naam, upasarg aur pratyay)</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_XML_NEEDSXML" xml:space="preserve">
+    <value>kuchh bhee nahin se xml dastaavez utpann nahin kiya ja sakata.</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CARD_ENUMTYPEUNDETERMINABLE_DELETE" xml:space="preserve">
+    <value>bhaag ko hataane ke lie ganana prakaar nirdhaarit nahin kiya ja sakata.</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CARD_ENUMTYPEUNDETERMINABLE_ADD" xml:space="preserve">
+    <value>bhaag jodane ke lie ganana prakaar nirdhaarit nahin kiya ja sakata.</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONEALTIDMISMATCH_PARTS" xml:space="preserve">
+    <value>bhaag saranee {0} ko altid {1} se adhilekhit nahin kiya ja sakata, kyonki kaardinailitee {2} hai aur apekshit altid {3} hai.</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONENOALTID_PARTS" xml:space="preserve">
+    <value>bhaag saranee {0} ko altid {1} se kabhee adhilekhit nahin kiya ja sakata, kyonki kaardinailitee {2} hai, bhale hee apekshit altid {3} ho.</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONEALTIDMISMATCH_STRING" xml:space="preserve">
+    <value>string {0} ko altid {1} se adhilekhit nahin kiya ja sakata, kyonki kaardinailitee {2} hai aur apekshit altid {3} hai.</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONENOALTID_STRING" xml:space="preserve">
+    <value>string {0} ko altid {1} se kabhee adhilekhit nahin kiya ja sakata, kyonki kaardinailitee {2} hai, bhale hee apekshit altid {3} ho.</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CARD_NEEDSKEYS" xml:space="preserve">
+    <value>nimn kunjiyaan [{0}] aavashyak hain. [{1}] mila.</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CARD_MEMBERINVCARD" xml:space="preserve">
+    <value>vchards mein maimbair gun hone kee manaahee hai.</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CARD_INVALIDBASETYPE" xml:space="preserve">
+    <value>aadhaar prakaar {0} [{1}] nahin hai aur bhaag prakaar [{2}] hai jo kaard bhaag ka pratinidhitv nahin karata hai.</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CARD_PARTSTYPEMISMATCH" xml:space="preserve">
+    <value>paarts aire enyoomareshan [{0}] taip {2} ke anusaar apekshit [{1}] se alag hai.</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CARD_INVALIDVERSION" xml:space="preserve">
+    <value>amaany vchard sanskaran {0} nirdisht kiya gaya. samarthit sanskaran 2.1, 3.0, 4.0 aur 5.0 hain.</value>
+  </data>
+  <data name="VISUALCARD_TOOLS_EXCEPTION_INVALIDVCARDCONTACT" xml:space="preserve">
+    <value>yah ek maany vchard sampark fail nahin hai.</value>
+  </data>
+  <data name="VISUALCARD_TOOLS_EXCEPTION_INVALIDVCARDVERSION" xml:space="preserve">
+    <value>is kaard ka amaany vchard sanskaran {0} hai.</value>
+  </data>
+  <data name="VISUALCARD_TOOLS_EXCEPTION_VERSIONNOTFIRST" xml:space="preserve">
+    <value>vchard {0}.0 ke lie aavashyak hai ki {1} seedhe {2} ke baad aae.</value>
+  </data>
+  <data name="VISUALCARD_TOOLS_EXCEPTION_ENDEDPREMATURELY" xml:space="preserve">
+    <value>kaard samaapti taig ke bina samay se pahale samaapt ho gaya</value>
+  </data>
+
+</root>

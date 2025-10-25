@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <!-- 
+    Microsoft ResX Schema 
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+
+    Example:
+
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+        <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+            <xsd:element name="metadata">
+            <xsd:complexType>
+                <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                </xsd:sequence>
+                <xsd:attribute name="name" use="required" type="xsd:string" />
+                <xsd:attribute name="type" type="xsd:string" />
+                <xsd:attribute name="mimetype" type="xsd:string" />
+                <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="assembly">
+            <xsd:complexType>
+                <xsd:attribute name="alias" type="xsd:string" />
+                <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="data">
+            <xsd:complexType>
+                <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                </xsd:sequence>
+                <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+                <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+                <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+                <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="resheader">
+            <xsd:complexType>
+                <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                </xsd:sequence>
+                <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+            </xsd:element>
+        </xsd:choice>
+        </xsd:complexType>
+    </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+    <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="VISUALCARD_CALENDAR_EXCEPTION_GENERALCALENDARPARSEERROR" xml:space="preserve">
+    <value>Error general de análisis del calendario.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR" xml:space="preserve">
+    <value>Se produjo un error al analizar el calendario de VCalendar.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR_ERROR" xml:space="preserve">
+    <value>Error:</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR_LINE" xml:space="preserve">
+    <value>Línea:</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_EXCEPTION_CALENDARPARSEERROR_LINENUM" xml:space="preserve">
+    <value>Número de línea:</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARSER_EXCEPTION_CALENDARCONTENTEMPTY" xml:space="preserve">
+    <value>El contenido del calendario está vacío.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARSER_EXCEPTION_ENDINGMISMATCH" xml:space="preserve">
+    <value>Discrepancia final: Se esperaba {0} frente a {1} real.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARSER_EXCEPTION_PARTTYPEUNSUPPORTED" xml:space="preserve">
+    <value>El tipo de información de la pieza {0} no admite el tipo de propiedad {1} porque se admiten los siguientes tipos: [{2}]</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARSER_EXCEPTION_VALUEDISALLOWED" xml:space="preserve">
+    <value>El valor {0} no está en la lista de valores permitidos [{1}]</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARSER_EXCEPTION_INVALIDTYPE" xml:space="preserve">
+    <value>El tipo {0} no es válido. ¿Está seguro de haber especificado el tipo correcto en su representación de vCalendar?</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARSER_EXCEPTION_INVALIDTYPE2" xml:space="preserve">
+    <value>Tipo {0} no válido.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARSER_EXCEPTION_INCOMPATIBLENESTEDTYPES" xml:space="preserve">
+    <value>No se puede colocar {0} dentro de {1}.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARSER_EXCEPTION_STRENUMNOTVALID" xml:space="preserve">
+    <value>La enumeración de cadena {0} no está implementada.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARSER_EXCEPTION_INTENUMNOTVALID" xml:space="preserve">
+    <value>La enumeración de enteros {0} no está implementada.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARSER_EXCEPTION_TYPENEEDED" xml:space="preserve">
+    <value>No se proporciona el tipo.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_AUDIOALARMINFO_ARGMISMATCH" xml:space="preserve">
+    <value>Al dividir la información de alarma de audio, el valor de división es {0} en lugar de 4.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_AUDIOALARMINFO_REPEATTIMES" xml:space="preserve">
+    <value>Tiempos de repetición no válidos.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_DAYLIGHTINFO_ARGMISMATCH" xml:space="preserve">
+    <value>Al dividir la información de luz diurna, el valor de división es {0} en lugar de 6.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_DISPLAYALARMINFO_ARGMISMATCH" xml:space="preserve">
+    <value>Al dividir la información de alarma de pantalla, el valor de división es {0} en lugar de 4.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_MAILALARMINFO_ARGMISMATCH" xml:space="preserve">
+    <value>Al dividir la información de alarma de correo, el valor de división es {0} en lugar de 5.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_LEGACY_PROCEDUREALARMINFO_ARGMISMATCH" xml:space="preserve">
+    <value>Al dividir la información de alarma de procedimiento, el valor de división es {0} en lugar de 4.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_ATTACH_INVALIDURL" xml:space="preserve">
+    <value>La URL {0} no es válida.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_GEO_ARGMISMATCH" xml:space="preserve">
+    <value>Al dividir la geografía, el valor de división es {0} en lugar de 2.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_GEO_INVALIDLAT" xml:space="preserve">
+    <value>Latitud {0} no válida.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_GEO_INVALIDLONG" xml:space="preserve">
+    <value>Longitud {0} no válida.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_NOSPLIT" xml:space="preserve">
+    <value>No hay punto y coma para separar el número de estado, la descripción del estado y, posiblemente, el par de datos externos.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_NOSPLITCODES" xml:space="preserve">
+    <value>No hay punto para separar dos o tres códigos de estado.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_ARGMISMATCH" xml:space="preserve">
+    <value>Después de la división, se obtuvieron {0} elementos en lugar de 2 o 3.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_REQSTATUS_INVALIDNUM" xml:space="preserve">
+    <value>El estado no es un número.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_ENUMTYPENOTFOUND" xml:space="preserve">
+    <value>No se encuentra el tipo de enumeración para {0}.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_ENUMTYPEUNDETERMINABLE_DELETE" xml:space="preserve">
+    <value>No se puede determinar el tipo de enumeración para eliminar parte.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_ENUMTYPEUNDETERMINABLE_ADD" xml:space="preserve">
+    <value>No se puede determinar el tipo de enumeración para agregar la parte.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_CANTADDCARDINALITY_PARTS" xml:space="preserve">
+    <value>No se puede agregar la matriz {0} porque la cardinalidad es {1}.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_CANTADDCARDINALITY_STRING" xml:space="preserve">
+    <value>No se puede agregar la cadena {0} porque la cardinalidad es {1}.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_CANTADDCARDINALITY_INTEGER" xml:space="preserve">
+    <value>No se puede agregar el entero {0} porque la cardinalidad es {1}.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_ROOT" xml:space="preserve">
+    <value>Se requieren las siguientes claves [{0}] en la raíz. Se obtuvo [{1}].</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_EVENT" xml:space="preserve">
+    <value>Se requieren las siguientes claves [{0}] en la representación del evento. Se obtuvo [{1}].</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_DATEENDCONFLICT_EVENT" xml:space="preserve">
+    <value>Se encontró un conflicto entre la fecha de finalización y la duración.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TODO" xml:space="preserve">
+    <value>Se requieren las siguientes claves [{0}] en la representación de la tarea pendiente. Se obtuvo [{1}].</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_DUEDATECONFLICT_TODO" xml:space="preserve">
+    <value>Se encontró un conflicto entre la fecha de vencimiento y la duración.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NODATESTARTDURATION_TODO" xml:space="preserve">
+    <value>No hay una fecha de inicio que agregar a la duración.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_JOURNAL" xml:space="preserve">
+    <value>Se requieren las siguientes claves [{0}] en la representación del diario. Se obtuvo [{1}].</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_FREEBUSY" xml:space="preserve">
+    <value>Se requieren las siguientes claves [{0}] en la representación de la tarea libre y ocupada. Se obtuvo [{1}].</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TIMEZONE" xml:space="preserve">
+    <value>Se requieren las siguientes claves [{0}] en la representación de la zona horaria. Se obtuvo [{1}].</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSCOMPONENTS_TIMEZONE" xml:space="preserve">
+    <value>Se requiere uno de los componentes estándar/diurno.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TIMEZONE_STANDARD" xml:space="preserve">
+    <value>Las siguientes claves [{0}] son ​​obligatorias en la representación estándar. Obtenido [{1}].</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_NEEDSKEYS_TIMEZONE_DAYLIGHT" xml:space="preserve">
+    <value>Las siguientes claves [{0}] son ​​obligatorias en la representación diurna. Obtenido [{1}].</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_PERCENTCOMPLETION" xml:space="preserve">
+    <value>El porcentaje de finalización no puede ser menor que cero ni mayor que 100.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_PRIORITY" xml:space="preserve">
+    <value>La prioridad no puede ser menor que cero ni mayor que 9.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_MEMBERINVCARD" xml:space="preserve">
+    <value>Las vCards tienen prohibido tener propiedades MEMBER.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_INVALIDBASETYPE" xml:space="preserve">
+    <value>El tipo base no es {0} [{1}] y el tipo de parte es [{2}], que no representa una parte del calendario.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_PARTSTYPEMISMATCH" xml:space="preserve">
+    <value>La enumeración de la matriz de partes [{0}] es diferente de la esperada [{1}] según el tipo {2}.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDAR_INVALIDVERSION" xml:space="preserve">
+    <value>La versión de vCalendar {0} especificada no es válida. Las versiones compatibles son 1.0 y 2.0.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARV2COMPONENTS_INVALIDVERSION" xml:space="preserve">
+    <value>La versión de vCalendar {0} especificada no es válida. La versión compatible es 2.0.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_ROOT" xml:space="preserve">
+    <value>Las siguientes claves [{0}] son ​​obligatorias en la representación de la alarma. Obtenido [{1}].</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_AUDIO" xml:space="preserve">
+    <value>Las siguientes claves [{0}] son ​​necesarias para la representación de la alarma de audio. Obtenido [{1}].</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_DISPLAY" xml:space="preserve">
+    <value>Las siguientes claves [{0}] son ​​necesarias para la representación de la alarma de visualización. Obtenido [{1}].</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_MAIL" xml:space="preserve">
+    <value>Las siguientes claves [{0}] son ​​necesarias para la representación de la alarma de correo. Obtenido [{1}].</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_PARTS_EXCEPTION_CALENDARALARM_NEEDSKEYS_REPEATED" xml:space="preserve">
+    <value>Las siguientes claves [{0}] son ​​necesarias para la representación de la alarma repetida. Obtenido [{1}].</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_TOOLS_EXCEPTION_INVALIDVCALENDAR" xml:space="preserve">
+    <value>Este archivo vCalendar no es válido.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_TOOLS_EXCEPTION_INVALIDVCALENDARVERSION" xml:space="preserve">
+    <value>Este calendario tiene una versión de vCalendar {0} no válida.</value>
+  </data>
+  <data name="VISUALCARD_CALENDAR_TOOLS_EXCEPTION_ENDEDPREMATURELY" xml:space="preserve">
+    <value>El calendario finalizó prematuramente sin la etiqueta de cierre.</value>
+  </data>
+
+</root>

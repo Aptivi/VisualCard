@@ -21,9 +21,6 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-    
-    <!-- For cross platform and .NET 8.0+ support -->
-    <AptLocDisableInvalidCultureWarnings>true</AptLocDisableInvalidCultureWarnings>
   </PropertyGroup>
 
   <ItemGroup>
@@ -33,10 +30,8 @@
 
   <ItemGroup>
     <PackageReference Include="Aptivestigate.Serilog" Version="1.3.0" />
-    <PackageReference Include="LocaleStation" Version="1.3.2" />
-    <PackageReference Include="LocaleStation.Tools" Version="1.3.2" />
     <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="9.0.6" />
-    <PackageReference Include="Nettify" Version="1.7.0" />
+    <PackageReference Include="Nettify" Version="1.7.1" />
     <PackageReference Include="QRCoder" Version="1.6.0" />
   </ItemGroup>
 
@@ -44,10 +39,6 @@
     <ProjectReference Include="..\VisualCard.Calendar\VisualCard.Calendar.csproj" />
     <ProjectReference Include="..\VisualCard.Common\VisualCard.Common.csproj" />
     <ProjectReference Include="..\VisualCard\VisualCard.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <AdditionalFiles Include="Resources\Languages\*.json" AptLocIsLanguagePath="true" />
   </ItemGroup>
 
 </Project>

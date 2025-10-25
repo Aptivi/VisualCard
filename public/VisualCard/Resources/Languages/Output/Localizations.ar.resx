@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <!-- 
+    Microsoft ResX Schema 
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+
+    Example:
+
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+        <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+            <xsd:element name="metadata">
+            <xsd:complexType>
+                <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                </xsd:sequence>
+                <xsd:attribute name="name" use="required" type="xsd:string" />
+                <xsd:attribute name="type" type="xsd:string" />
+                <xsd:attribute name="mimetype" type="xsd:string" />
+                <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="assembly">
+            <xsd:complexType>
+                <xsd:attribute name="alias" type="xsd:string" />
+                <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="data">
+            <xsd:complexType>
+                <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                </xsd:sequence>
+                <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+                <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+                <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+                <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="resheader">
+            <xsd:complexType>
+                <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                </xsd:sequence>
+                <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+            </xsd:element>
+        </xsd:choice>
+        </xsd:complexType>
+    </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+    <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="VISUALCARD_EXCEPTION_GENERALCONTACTPARSEERROR" xml:space="preserve">
+    <value>خطأ عام في تحليل جهة اتصال.</value>
+  </data>
+  <data name="VISUALCARD_EXCEPTION_CONTACTPARSEERROR" xml:space="preserve">
+    <value>حدث خطأ أثناء تحليل جهة اتصال VCard.</value>
+  </data>
+  <data name="VISUALCARD_EXCEPTION_CONTACTPARSEERROR_ERROR" xml:space="preserve">
+    <value>الخطأ:</value>
+  </data>
+  <data name="VISUALCARD_EXCEPTION_CONTACTPARSEERROR_LINE" xml:space="preserve">
+    <value>السطر:</value>
+  </data>
+  <data name="VISUALCARD_EXCEPTION_CONTACTPARSEERROR_LINENUM" xml:space="preserve">
+    <value>رقم السطر:</value>
+  </data>
+  <data name="VISUALCARD_PARSER_EXCEPTION_CARDCONTENTEMPTY" xml:space="preserve">
+    <value>محتوى البطاقة فارغ.</value>
+  </data>
+  <data name="VISUALCARD_PARSER_EXCEPTION_PARTTYPEUNSUPPORTED" xml:space="preserve">
+    <value>نوع معلومات الجزء {0} لا يدعم نوع الخاصية {1} لأن الأنواع الأساسية التالية مدعومة: [{2}] والأنواع الإضافية مدعومة: [{3}]</value>
+  </data>
+  <data name="VISUALCARD_PARSER_EXCEPTION_VALUEDISALLOWED" xml:space="preserve">
+    <value>القيمة {0} غير موجودة في قائمة القيم المسموح بها [{1}]</value>
+  </data>
+  <data name="VISUALCARD_PARSER_EXCEPTION_INVALIDPROFILE" xml:space="preserve">
+    <value>يجب أن يكون الملف الشخصي &quot;vCard&quot;.</value>
+  </data>
+  <data name="VISUALCARD_PARSER_EXCEPTION_INVALIDTYPE" xml:space="preserve">
+    <value>النوع {0} غير صالح. هل أنت متأكد من تحديد النوع الصحيح في تمثيل vCard؟</value>
+  </data>
+  <data name="VISUALCARD_PARSER_EXCEPTION_STRENUMNOTVALID" xml:space="preserve">
+    <value>لم يتم تنفيذ تعداد السلسلة {0}.</value>
+  </data>
+  <data name="VISUALCARD_PARSER_EXCEPTION_TYPENEEDED" xml:space="preserve">
+    <value>النوع غير متوفر.</value>
+  </data>
+  <data name="VISUALCARD_PARSER_EXCEPTION_ALTID_NOTNUMERIC" xml:space="preserve">
+    <value>يجب أن يكون ALTID رقميًا.</value>
+  </data>
+  <data name="VISUALCARD_PARSER_EXCEPTION_ALTID_NOTPOSITIVE" xml:space="preserve">
+    <value>يجب أن يكون ALTID موجبًا.</value>
+  </data>
+  <data name="VISUALCARD_PARSER_EXCEPTION_ALTID_NOREASONS" xml:space="preserve">
+    <value>يجب أن يحتوي ALTID على وسيطة واحدة أو أكثر لتحديد سبب كون هذه الحالة بديلة.</value>
+  </data>
+  <data name="VISUALCARD_PARSER_EXCEPTION_ALTID_NOTINFIRSTPOS" xml:space="preserve">
+    <value>يجب أن يكون ALTID في الموضع الأول من الوسيطة تمامًا، لأنه يجب تحديد الوسائط التي تليها.</value>
+  </data>
+  <data name="VISUALCARD_PARSER_EXCEPTION_ALTID_ILLEGALCARDINALITY" xml:space="preserve">
+    <value>يجب ألا يكون ALTID محددًا في النوع {0} الذي يتوقع عددًا أساسيًا يساوي {1}.</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_ENCODABLES_INVALIDURL" xml:space="preserve">
+    <value>عنوان URL {0} غير صالح.</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_ADDRESS_NEEDSARGS" xml:space="preserve">
+    <value>يجب أن تحدد معلومات العنوان سبع قيم بالضبط (صندوق بريد، عنوان ممتد، عنوان شارع، موقع، منطقة، رمز بريدي، وبلد).</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_AGENT_NEEDSARGS" xml:space="preserve">
+    <value>يجب أن تحدد معلومات الوكيل قيمة واحدة بالضبط (محتويات vCard للوكيل التي يتم فصل أسطرها بـ &apos;\\n&apos;).</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CLIENTPID_INVALIDMAP" xml:space="preserve">
+    <value>تمثيل خريطة معرف عملية العميل غير صالح:</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CLIENTPID_INVALIDPIDNUM" xml:space="preserve">
+    <value>رقم معرف العملية {0} غير صالح.</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CLIENTPID_INVALIDPIDURI" xml:space="preserve">
+    <value>معرف URI لمعرف العملية {0} غير صالح.</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_GENDER_INVALIDGENDERSTR" xml:space="preserve">
+    <value>سلسلة الجنس غير صالحة {0}.</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_NAME_NEEDSARGS" xml:space="preserve">
+    <value>يجب أن يحدد حقل الاسم أول قيمتين أو أكثر من القيم الخمس (اسم العائلة، الاسم الأول، أسماء بديلة، البادئات، واللواحق).</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_XML_NEEDSXML" xml:space="preserve">
+    <value>لا يمكن إنشاء مستند XML من الصفر.</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CARD_ENUMTYPEUNDETERMINABLE_DELETE" xml:space="preserve">
+    <value>لا يمكن تحديد نوع التعداد لحذف جزء.</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CARD_ENUMTYPEUNDETERMINABLE_ADD" xml:space="preserve">
+    <value>لا يمكن تحديد نوع التعداد لإضافة جزء.</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONEALTIDMISMATCH_PARTS" xml:space="preserve">
+    <value>لا يمكن الكتابة فوق مصفوفة الجزء {0} بمعرف البديل {1}، لأن عدد العناصر هو {2} ومعرف البديل المتوقع هو {3}.</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONENOALTID_PARTS" xml:space="preserve">
+    <value>لا يمكن الكتابة فوق مصفوفة الجزء {0} بمعرف البديل {1}، لأن عدد العناصر هو {2}، على الرغم من أن معرف البديل المتوقع هو {3}.</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONEALTIDMISMATCH_STRING" xml:space="preserve">
+    <value>لا يمكن الكتابة فوق السلسلة {0} بمعرف البديل {1}، لأن عدد العناصر هو {2} ومعرف البديل المتوقع هو {3}.</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CARD_ONLYONENOALTID_STRING" xml:space="preserve">
+    <value>لا يمكن الكتابة فوق السلسلة {0} بمعرف البديل {1}، لأن عدد العناصر هو {2}، على الرغم من أن معرف البديل المتوقع هو {3}.</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CARD_NEEDSKEYS" xml:space="preserve">
+    <value>المفاتيح التالية [{0}] مطلوبة. تم الحصول على [{1}].</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CARD_MEMBERINVCARD" xml:space="preserve">
+    <value>يُحظر على بطاقات vCard أن تحتوي على خصائص MEMBER.</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CARD_INVALIDBASETYPE" xml:space="preserve">
+    <value>النوع الأساسي ليس {0} [{1}] ونوع الجزء هو [{2}] الذي لا يمثل جزء البطاقة.</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CARD_PARTSTYPEMISMATCH" xml:space="preserve">
+    <value>يختلف تعداد مصفوفة الأجزاء [{0}] عن التعداد المتوقع [{1}] وفقًا للنوع {2}.</value>
+  </data>
+  <data name="VISUALCARD_PARTS_EXCEPTION_CARD_INVALIDVERSION" xml:space="preserve">
+    <value>تم تحديد إصدار vCard غير صالح {0}. الإصدارات المدعومة هي 2.1 و3.0 و4.0 و5.0.</value>
+  </data>
+  <data name="VISUALCARD_TOOLS_EXCEPTION_INVALIDVCARDCONTACT" xml:space="preserve">
+    <value>هذا ملف اتصال vCard غير صالح.</value>
+  </data>
+  <data name="VISUALCARD_TOOLS_EXCEPTION_INVALIDVCARDVERSION" xml:space="preserve">
+    <value>تحتوي هذه البطاقة على إصدار VCard غير صالح {0}.</value>
+  </data>
+  <data name="VISUALCARD_TOOLS_EXCEPTION_VERSIONNOTFIRST" xml:space="preserve">
+    <value>تتطلب vCard {0}.0 أن يأتي {1} مباشرةً بعد {2}.</value>
+  </data>
+  <data name="VISUALCARD_TOOLS_EXCEPTION_ENDEDPREMATURELY" xml:space="preserve">
+    <value>انتهت البطاقة قبل أوانها بدون وسم النهاية.</value>
+  </data>
+
+</root>

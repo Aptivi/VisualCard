@@ -17,20 +17,17 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-using LocaleStation.Tools;
-using VisualCard.Extras.Localized;
+using MainLangTools = VisualCard.Common.Languages.LanguageTools;
 
 namespace VisualCard.Extras.Languages
 {
     internal static class LanguageTools
     {
-        private const string localType = "VisualCard.Extras";
-
         internal static string GetLocalized(string id)
         {
-            if (!LanguageCommon.IsCustomActionDefined(localType))
-                LanguageCommon.AddCustomAction(localType, new(() => LocalStrings.Languages, () => LocalStrings.Localizations, LocalStrings.Translate, LocalStrings.CheckCulture, LocalStrings.ListLanguagesCulture, LocalStrings.Exists));
-            return LanguageCommon.Translate(id);
+            if (!MainLangTools.resourceManagers.ContainsKey("VisualCard.Extras"))
+                MainLangTools.resourceManagers.Add("VisualCard.Extras", new("VisualCard.Extras.Resources.Languages.Output.Localizations", typeof(LanguageTools).Assembly));
+            return MainLangTools.GetLocalized(id);
         }
     }
 }

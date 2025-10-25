@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <!-- 
+    Microsoft ResX Schema 
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+
+    Example:
+
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+        <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+            <xsd:element name="metadata">
+            <xsd:complexType>
+                <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                </xsd:sequence>
+                <xsd:attribute name="name" use="required" type="xsd:string" />
+                <xsd:attribute name="type" type="xsd:string" />
+                <xsd:attribute name="mimetype" type="xsd:string" />
+                <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="assembly">
+            <xsd:complexType>
+                <xsd:attribute name="alias" type="xsd:string" />
+                <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="data">
+            <xsd:complexType>
+                <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                </xsd:sequence>
+                <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+                <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+                <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+                <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="resheader">
+            <xsd:complexType>
+                <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                </xsd:sequence>
+                <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+            </xsd:element>
+        </xsd:choice>
+        </xsd:complexType>
+    </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+    <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="VISUALCARD_COMMON_PARSERS_ARGS_EXCEPTION_NEEDSARGDELIM" xml:space="preserve">
+    <value>La riga deve contenere un delimitatore di argomento.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_COMMON_EXCEPTION_NORULE" xml:space="preserve">
+    <value>Non esiste una regola.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_TOOSHORT" xml:space="preserve">
+    <value>Le regole devono contenere almeno 2 lettere per essere significative.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDDURATION" xml:space="preserve">
+    <value>Durata non valida nel designatore:</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDTIME" xml:space="preserve">
+    <value>Ora non valida {0}</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDDAYOFWEEK" xml:space="preserve">
+    <value>Giorno della settimana non valido {0}</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYPOS_ARGMISMATCH" xml:space="preserve">
+    <value>Dopo il filtraggio, invece di due caratteri, è stato ottenuto {0}</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYPOS_OCCURRENCENUMNOTNUMERIC" xml:space="preserve">
+    <value>Il numero di occorrenza non è un numero compreso tra [1 e 5]</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYPOS_OCCURRENCENUMOUTOFRANGE" xml:space="preserve">
+    <value>Il numero di occorrenza è fuori dall&apos;intervallo tra [1 e 5]</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYPOS_OCCURRENCESIGNINCORRECT" xml:space="preserve">
+    <value>Il segno di occorrenza è errato</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYDAY_ARGMISMATCH" xml:space="preserve">
+    <value>Dopo il filtraggio, è stato ottenuto {0} che non è lungo 1, 2 o 3 caratteri</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYDAY_DAYNUMNOTNUMERIC" xml:space="preserve">
+    <value>Il numero del giorno non è un numero compreso tra [1 e 31]</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYDAY_DAYNUMOUTOFRANGE" xml:space="preserve">
+    <value>Il numero del giorno è fuori dall&apos;intervallo tra [1 e 31]</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYDAY_DAYSIGNINCORRECT" xml:space="preserve">
+    <value>Il segno del numero del giorno è errato</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYMONTH_ARGMISMATCH" xml:space="preserve">
+    <value>Dopo il filtraggio, è stato ottenuto {0} che non è lungo 1 o 2 caratteri</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYMONTH_MONTHNUMNOTNUMERIC" xml:space="preserve">
+    <value>Il numero del mese non è un numero compreso tra [1 e 12]</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYMONTH_MONTHNUMOUTOFRANGE" xml:space="preserve">
+    <value>Il numero del mese è fuori dall&apos;intervallo tra [1 e 12]</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYDAY_DAYNUMNOTNUMERIC" xml:space="preserve">
+    <value>Il numero del giorno dell&apos;anno non è un numero compreso tra [1 e 366]</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYDAY_DAYNUMOUTOFRANGE" xml:space="preserve">
+    <value>Il numero del giorno dell&apos;anno è fuori dall&apos;intervallo tra [1 e 366]</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDFREQUENCY" xml:space="preserve">
+    <value>Frequenza non valida nel designatore di frequenza:</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDFREQUENCYINTERVAL" xml:space="preserve">
+    <value>Intervallo non valido nella frequenza Designatore:</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_MISSINGEQUALS" xml:space="preserve">
+    <value>Una parte della regola richiede un segno di uguale.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_KEYEXISTS" xml:space="preserve">
+    <value>La chiave {0} esiste già.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_UNTILCOUNT" xml:space="preserve">
+    <value>Le chiavi UNTIL e COUNT non possono coesistere tra loro.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDFREQUENCY" xml:space="preserve">
+    <value>La frequenza {0} non è valida.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDDURATION" xml:space="preserve">
+    <value>La durata {0} non è valida.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDINTERVAL" xml:space="preserve">
+    <value>L&apos;intervallo {0} non è valido.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDSECONDS" xml:space="preserve">
+    <value>I secondi {0} non sono validi.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_SECONDSOUTOFRANGE" xml:space="preserve">
+    <value>I secondi {0} non sono compresi nell&apos;intervallo [0-60].</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDMINUTES" xml:space="preserve">
+    <value>I minuti {0} non sono validi.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_MINUTESOUTOFRANGE" xml:space="preserve">
+    <value>I minuti {0} non sono compresi nell&apos;intervallo [0-59].</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDHOURS" xml:space="preserve">
+    <value>Le ore {0} non sono valide.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_HOURSOUTOFRANGE" xml:space="preserve">
+    <value>Le ore {0} non sono comprese nell&apos;intervallo [0-23].</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_BYDAYNOTANUMBER" xml:space="preserve">
+    <value>Non è un numero {0} dopo il segno {1}</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKNUMNOTNUMERIC" xml:space="preserve">
+    <value>Non è un numero di settimana.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKNUMOUTOFRANGE" xml:space="preserve">
+    <value>Il numero di settimana {0} non è compreso nell&apos;intervallo [1-53].</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKDAYARGMISMATCH" xml:space="preserve">
+    <value>Il giorno della settimana deve contenere esattamente 2 caratteri.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKDAYNOTWEEKDAY" xml:space="preserve">
+    <value>Non è un giorno della settimana.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_DAYOFMONTHNOTNUMERIC" xml:space="preserve">
+    <value>Non è un numero del giorno del mese.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_DAYOFMONTHOUTOFRANGE" xml:space="preserve">
+    <value>Il giorno del mese {0} non è compreso nell&apos;intervallo [1-31].</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_DAYOFYEARNOTNUMERIC" xml:space="preserve">
+    <value>Non è un numero del giorno dell&apos;anno.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_DAYOFYEAROUTOFRANGE" xml:space="preserve">
+    <value>Il giorno dell&apos;anno {0} non è compreso nell&apos;intervallo [1-366].</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_MONTHNUMNOTNUMERIC" xml:space="preserve">
+    <value>Non è un numero di mese.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_MONTHNUMOUTOFRANGE" xml:space="preserve">
+    <value>Il numero di mese {0} non è compreso nell&apos;intervallo [1-12].</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_POSNUMNOTNUMERIC" xml:space="preserve">
+    <value>Non è un numero di posizione.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_POSNUMOUTOFRANGE" xml:space="preserve">
+    <value>La posizione {0} non è compresa nell&apos;intervallo [1-366].</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDKEYNAME" xml:space="preserve">
+    <value>Non è un nome di chiave valido.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_UTCOFFSETNEEDED" xml:space="preserve">
+    <value>La rappresentazione dell&apos;offset UTC non è fornita.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_UTCOFFSETDESIGNATORINVALID" xml:space="preserve">
+    <value>Il designatore {0} non è valido.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_UTCOFFSETPARSEFAILED" xml:space="preserve">
+    <value>Impossibile analizzare l&apos;offset:</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONNEEDED" xml:space="preserve">
+    <value>La durata non è fornita</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONINVALID" xml:space="preserve">
+    <value>La durata non è valida:</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONDIGITSINVALID" xml:space="preserve">
+    <value>Le cifre non sono numeriche:</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONYEARDISABLED" xml:space="preserve">
+    <value>Lo specificatore dell&apos;anno è disabilitato in vCalendar 2.0.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONMONTHDISABLED" xml:space="preserve">
+    <value>Lo specificatore del mese è disabilitato in vCalendar 2.0.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONTYPEINVALID" xml:space="preserve">
+    <value>Il tipo non è valido:</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_TIMEPERIODNEEDED" xml:space="preserve">
+    <value>Il periodo di tempo non è specificato</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_TIMEPERIODSPLIT" xml:space="preserve">
+    <value>Dopo la suddivisione, è stato ottenuto {0} invece di 2:</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_TIMEPERIODSTARTDATEINVALID" xml:space="preserve">
+    <value>Data di inizio non valida:</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_TYPENEEDSTYPESPECIFIER" xml:space="preserve">
+    <value>Il tipo deve essere preceduto da TYPE=</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_BLOBISURL" xml:space="preserve">
+    <value>Contiene un URL valido; è necessario recuperare manualmente tale URL e convertire la risposta nel flusso.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_BLOBNODATA" xml:space="preserve">
+    <value>Non sono presenti dati codificati.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_BLOBUNDETERMINABLE" xml:space="preserve">
+    <value>Non è un blob. Dovresti gestirlo in qualche modo.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DATENEEDED" xml:space="preserve">
+    <value>La rappresentazione della data non è fornita.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DATEPARSEFAILED" xml:space="preserve">
+    <value>Impossibile analizzare la data:</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_URL" xml:space="preserve">
+    <value>L&apos;URL {0} non è valido</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_DATE" xml:space="preserve">
+    <value>La data {0} non è valida</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_TIME" xml:space="preserve">
+    <value>L&apos;ora {0} non è valida</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_DATETIME" xml:space="preserve">
+    <value>La data e l&apos;ora {0} non sono valide</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_DATETIMESELECT" xml:space="preserve">
+    <value>La data e/o l&apos;ora {0} non sono valide</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_TIMESTAMP" xml:space="preserve">
+    <value>Il timestamp {0} non è valido</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_BOOLEAN" xml:space="preserve">
+    <value>Il valore booleano {0} non è valido</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_INTEGER" xml:space="preserve">
+    <value>L&apos;intero {0} non è valido</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_FLOAT" xml:space="preserve">
+    <value>Il valore float {0} in {1} non è valido</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_STRVALUEINVALID" xml:space="preserve">
+    <value>Il valore stringa {0} per {1} non è valido.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_BASETYPEINVALID" xml:space="preserve">
+    <value>Il tipo di base non è {0} [{1}] e il tipo di parte è [{2}], che non rappresenta la parte.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_STARTLATERTHANEND" xml:space="preserve">
+    <value>La data di inizio non può essere successiva alla data di fine</value>
+  </data>
+
+</root>

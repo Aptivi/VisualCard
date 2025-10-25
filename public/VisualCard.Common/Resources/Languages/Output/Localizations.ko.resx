@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <!-- 
+    Microsoft ResX Schema 
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+
+    Example:
+
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+        <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+            <xsd:element name="metadata">
+            <xsd:complexType>
+                <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                </xsd:sequence>
+                <xsd:attribute name="name" use="required" type="xsd:string" />
+                <xsd:attribute name="type" type="xsd:string" />
+                <xsd:attribute name="mimetype" type="xsd:string" />
+                <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="assembly">
+            <xsd:complexType>
+                <xsd:attribute name="alias" type="xsd:string" />
+                <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="data">
+            <xsd:complexType>
+                <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                </xsd:sequence>
+                <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+                <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+                <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+                <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="resheader">
+            <xsd:complexType>
+                <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                </xsd:sequence>
+                <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+            </xsd:element>
+        </xsd:choice>
+        </xsd:complexType>
+    </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+    <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="VISUALCARD_COMMON_PARSERS_ARGS_EXCEPTION_NEEDSARGDELIM" xml:space="preserve">
+    <value>줄에는 인수 구분 기호가 포함되어야 합니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_COMMON_EXCEPTION_NORULE" xml:space="preserve">
+    <value>규칙은 없습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_TOOSHORT" xml:space="preserve">
+    <value>규칙은 의미를 가지려면 최소 2글자 이상이어야 합니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDDURATION" xml:space="preserve">
+    <value>지정자의 기간이 잘못되었습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDTIME" xml:space="preserve">
+    <value>시간 {0}이 잘못되었습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDDAYOFWEEK" xml:space="preserve">
+    <value>요일이 잘못되었습니다. {0}</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYPOS_ARGMISMATCH" xml:space="preserve">
+    <value>필터링 후 두 글자 대신 {0}이 표시되었습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYPOS_OCCURRENCENUMNOTNUMERIC" xml:space="preserve">
+    <value>발생 번호가 [1-5]의 숫자가 아닙니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYPOS_OCCURRENCENUMOUTOFRANGE" xml:space="preserve">
+    <value>발생 번호가 [1-5]의 범위를 벗어났습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYPOS_OCCURRENCESIGNINCORRECT" xml:space="preserve">
+    <value>발생 기호가 잘못되었습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYDAY_ARGMISMATCH" xml:space="preserve">
+    <value>필터링 후 1, 2, 3자 길이가 아닌 {0}이 표시되었습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYDAY_DAYNUMNOTNUMERIC" xml:space="preserve">
+    <value>일 번호가 [1-31]의 숫자가 아닙니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYDAY_DAYNUMOUTOFRANGE" xml:space="preserve">
+    <value>일 번호가 [1-31]의 범위를 벗어났습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYDAY_DAYSIGNINCORRECT" xml:space="preserve">
+    <value>일 번호 기호가 잘못되었습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYMONTH_ARGMISMATCH" xml:space="preserve">
+    <value>필터링 후 1 또는 2자 길이가 아닌 {0}이 표시되었습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYMONTH_MONTHNUMNOTNUMERIC" xml:space="preserve">
+    <value>월 번호가 [1-12]의 숫자가 아닙니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYMONTH_MONTHNUMOUTOFRANGE" xml:space="preserve">
+    <value>월 번호가 [1-12]의 범위를 벗어났습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYDAY_DAYNUMNOTNUMERIC" xml:space="preserve">
+    <value>연간 일 번호가 [1-366]의 숫자가 아닙니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYDAY_DAYNUMOUTOFRANGE" xml:space="preserve">
+    <value>연간 일 번호가 [1-366]의 범위를 벗어났습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDFREQUENCY" xml:space="preserve">
+    <value>빈도 지정자의 빈도가 잘못되었습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDFREQUENCYINTERVAL" xml:space="preserve">
+    <value>빈도 지정자의 간격이 잘못되었습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_MISSINGEQUALS" xml:space="preserve">
+    <value>규칙 부분에 등호가 필요합니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_KEYEXISTS" xml:space="preserve">
+    <value>키 {0}이(가) 이미 존재합니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_UNTILCOUNT" xml:space="preserve">
+    <value>UNTIL 키와 COUNT 키는 함께 사용할 수 없습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDFREQUENCY" xml:space="preserve">
+    <value>빈도 {0}이(가) 잘못되었습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDDURATION" xml:space="preserve">
+    <value>기간 {0}이(가) 잘못되었습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDINTERVAL" xml:space="preserve">
+    <value>간격 {0}이(가) 잘못되었습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDSECONDS" xml:space="preserve">
+    <value>초 {0}이(가) 잘못되었습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_SECONDSOUTOFRANGE" xml:space="preserve">
+    <value>초 {0}이(가) [0-60] 범위를 벗어났습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDMINUTES" xml:space="preserve">
+    <value>분 {0}이(가) 잘못되었습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_MINUTESOUTOFRANGE" xml:space="preserve">
+    <value>분 {0}이(가) [0-59] 범위를 벗어났습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDHOURS" xml:space="preserve">
+    <value>시간 {0}이(가) 잘못되었습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_HOURSOUTOFRANGE" xml:space="preserve">
+    <value>시간 {0}이(가) [0-23] 범위를 벗어났습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_BYDAYNOTANUMBER" xml:space="preserve">
+    <value>기호 {1} 뒤에 숫자 {0}가(이) 아닙니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKNUMNOTNUMERIC" xml:space="preserve">
+    <value>주 번호가 아닙니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKNUMOUTOFRANGE" xml:space="preserve">
+    <value>주 번호 {0}이(가) [1-53] 범위를 벗어났습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKDAYARGMISMATCH" xml:space="preserve">
+    <value>요일은 정확히 2자여야 합니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKDAYNOTWEEKDAY" xml:space="preserve">
+    <value>요일이 아닙니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_DAYOFMONTHNOTNUMERIC" xml:space="preserve">
+    <value>월 중 일 번호가 아닙니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_DAYOFMONTHOUTOFRANGE" xml:space="preserve">
+    <value>월 중 일 {0}이(가) [1-31] ​​범위를 벗어났습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_DAYOFYEARNOTNUMERIC" xml:space="preserve">
+    <value>년 중 일 번호가 아닙니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_DAYOFYEAROUTOFRANGE" xml:space="preserve">
+    <value>일 {0}이(가) [1-366] 범위를 벗어났습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_MONTHNUMNOTNUMERIC" xml:space="preserve">
+    <value>월 숫자가 아닙니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_MONTHNUMOUTOFRANGE" xml:space="preserve">
+    <value>월 숫자 {0}이(가) [1-12] 범위를 벗어났습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_POSNUMNOTNUMERIC" xml:space="preserve">
+    <value>위치 숫자가 아닙니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_POSNUMOUTOFRANGE" xml:space="preserve">
+    <value>위치 {0}이(가) [1-366] 범위를 벗어났습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDKEYNAME" xml:space="preserve">
+    <value>유효한 키 이름이 아닙니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_UTCOFFSETNEEDED" xml:space="preserve">
+    <value>UTC 오프셋 표현이 제공되지 않았습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_UTCOFFSETDESIGNATORINVALID" xml:space="preserve">
+    <value>지정자 {0}이(가) 잘못되었습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_UTCOFFSETPARSEFAILED" xml:space="preserve">
+    <value>오프셋을 구문 분석할 수 없습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONNEEDED" xml:space="preserve">
+    <value>기간이 제공되지 않았습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONINVALID" xml:space="preserve">
+    <value>기간이 잘못되었습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONDIGITSINVALID" xml:space="preserve">
+    <value>숫자가 숫자가 아닙니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONYEARDISABLED" xml:space="preserve">
+    <value>vCalendar 2.0에서 연도 지정자가 비활성화되었습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONMONTHDISABLED" xml:space="preserve">
+    <value>vCalendar 2.0에서 월 지정자가 비활성화되었습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONTYPEINVALID" xml:space="preserve">
+    <value>유형이 잘못되었습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_TIMEPERIODNEEDED" xml:space="preserve">
+    <value>기간이 지정되지 않았습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_TIMEPERIODSPLIT" xml:space="preserve">
+    <value>분할 후 2 대신 {0}이(가) 반환되었습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_TIMEPERIODSTARTDATEINVALID" xml:space="preserve">
+    <value>시작 날짜가 잘못되었습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_TYPENEEDSTYPESPECIFIER" xml:space="preserve">
+    <value>유형 앞에 TYPE=을 추가해야 합니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_BLOBISURL" xml:space="preserve">
+    <value>유효한 URL을 포함합니다. 해당 URL을 수동으로 가져와서 응답을 스트림으로 변환해야 합니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_BLOBNODATA" xml:space="preserve">
+    <value>인코딩된 데이터가 없습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_BLOBUNDETERMINABLE" xml:space="preserve">
+    <value>BLOB이 아닙니다. 어떻게든 처리해야 합니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DATENEEDED" xml:space="preserve">
+    <value>날짜 표현이 제공되지 않았습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DATEPARSEFAILED" xml:space="preserve">
+    <value>날짜를 구문 분석할 수 없습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_URL" xml:space="preserve">
+    <value>URL {0}이(가) 잘못되었습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_DATE" xml:space="preserve">
+    <value>날짜 {0}이(가) 잘못되었습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_TIME" xml:space="preserve">
+    <value>시간 {0}이(가) 잘못되었습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_DATETIME" xml:space="preserve">
+    <value>날짜 및 시간 {0}이(가) 잘못되었습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_DATETIMESELECT" xml:space="preserve">
+    <value>날짜 및/또는 시간 {0}이(가) 잘못되었습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_TIMESTAMP" xml:space="preserve">
+    <value>타임스탬프 {0}이(가) 잘못되었습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_BOOLEAN" xml:space="preserve">
+    <value>부울 {0}이(가) 잘못되었습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_INTEGER" xml:space="preserve">
+    <value>정수 {0}이(가) 잘못되었습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_FLOAT" xml:space="preserve">
+    <value>{1}의 부동 소수점 {0}이(가) 잘못되었습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_STRVALUEINVALID" xml:space="preserve">
+    <value>{1}의 문자열 값 {0}이(가) 잘못되었습니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_BASETYPEINVALID" xml:space="preserve">
+    <value>기본 유형이 {0} [{1}]이(가) 아니며, 파트 유형이 파트를 나타내지 않는 [{2}]입니다.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_STARTLATERTHANEND" xml:space="preserve">
+    <value>시작 날짜는 종료 날짜보다 늦을 수 없습니다.</value>
+  </data>
+
+</root>

@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <!-- 
+    Microsoft ResX Schema 
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+
+    Example:
+
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+        <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+            <xsd:element name="metadata">
+            <xsd:complexType>
+                <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                </xsd:sequence>
+                <xsd:attribute name="name" use="required" type="xsd:string" />
+                <xsd:attribute name="type" type="xsd:string" />
+                <xsd:attribute name="mimetype" type="xsd:string" />
+                <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="assembly">
+            <xsd:complexType>
+                <xsd:attribute name="alias" type="xsd:string" />
+                <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="data">
+            <xsd:complexType>
+                <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                </xsd:sequence>
+                <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+                <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+                <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+                <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="resheader">
+            <xsd:complexType>
+                <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                </xsd:sequence>
+                <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+            </xsd:element>
+        </xsd:choice>
+        </xsd:complexType>
+    </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+    <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="VISUALCARD_COMMON_PARSERS_ARGS_EXCEPTION_NEEDSARGDELIM" xml:space="preserve">
+    <value>pankti mein ek tark seemaankak hona chaahie.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_COMMON_EXCEPTION_NORULE" xml:space="preserve">
+    <value>koee niyam nahin hai.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_TOOSHORT" xml:space="preserve">
+    <value>niyamon mein saarthak hone ke lie kam se kam 2 akshar hone chaahie.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDDURATION" xml:space="preserve">
+    <value>dizainar mein amaany avadhi:</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDTIME" xml:space="preserve">
+    <value>amaany samay {0}</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDDAYOFWEEK" xml:space="preserve">
+    <value>saptaah ka amaany din {0}</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYPOS_ARGMISMATCH" xml:space="preserve">
+    <value>filtar karane ke baad, do varnon ke bajaay, {0} mila</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYPOS_OCCURRENCENUMNOTNUMERIC" xml:space="preserve">
+    <value>ghatana sankhya [1-5] kee sankhya nahin hai</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYPOS_OCCURRENCENUMOUTOFRANGE" xml:space="preserve">
+    <value>ghatana sankhya [1-5] kee seema se baahar hai</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYPOS_OCCURRENCESIGNINCORRECT" xml:space="preserve">
+    <value>ghatana chihn galat hai</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYDAY_ARGMISMATCH" xml:space="preserve">
+    <value>filtar karane ke baad, {0} mila jo 1, 2, ya 3 varnon ka nahin hai</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYDAY_DAYNUMNOTNUMERIC" xml:space="preserve">
+    <value>din sankhya [1-31] kee sankhya nahin hai</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYDAY_DAYNUMOUTOFRANGE" xml:space="preserve">
+    <value>din sankhya [1-31] kee seema se baahar hai</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYDAY_DAYSIGNINCORRECT" xml:space="preserve">
+    <value>din sankhya chihn galat hai</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYMONTH_ARGMISMATCH" xml:space="preserve">
+    <value>filtar karane ke baad, {0} mila jo 1 ya 2 varnon ka nahin hai</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYMONTH_MONTHNUMNOTNUMERIC" xml:space="preserve">
+    <value>maheena sankhya [1-12] kee sankhya nahin hai</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYMONTH_MONTHNUMOUTOFRANGE" xml:space="preserve">
+    <value>maheena sankhya [1-12] kee seema se baahar hai</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYDAY_DAYNUMNOTNUMERIC" xml:space="preserve">
+    <value>vaarshik din sankhya [1-366] kee sankhya nahin hai</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYDAY_DAYNUMOUTOFRANGE" xml:space="preserve">
+    <value>vaarshik din sankhya [1-366] kee seema se baahar hai</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDFREQUENCY" xml:space="preserve">
+    <value>aavrtti dizainar mein amaany aavrtti:</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDFREQUENCYINTERVAL" xml:space="preserve">
+    <value>aavrtti mein amaany antaraal padanaam:</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_MISSINGEQUALS" xml:space="preserve">
+    <value>niyam bhaag mein baraabar chihn kee aavashyakata hotee hai.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_KEYEXISTS" xml:space="preserve">
+    <value>kunjee {0} pahale se maujood hai.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_UNTILCOUNT" xml:space="preserve">
+    <value>kunjiyaan until aur chount ek doosare ke saath sah-astitv mein nahin rah sakateen.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDFREQUENCY" xml:space="preserve">
+    <value>aavrtti {0} amaany hai.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDDURATION" xml:space="preserve">
+    <value>avadhi {0} amaany hai.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDINTERVAL" xml:space="preserve">
+    <value>antaraal {0} amaany hai.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDSECONDS" xml:space="preserve">
+    <value>sekand {0} amaany hai.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_SECONDSOUTOFRANGE" xml:space="preserve">
+    <value>sekand {0} seema [0-60] se baahar hai.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDMINUTES" xml:space="preserve">
+    <value>minat {0} amaany hai.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_MINUTESOUTOFRANGE" xml:space="preserve">
+    <value>minat {0} seema [0-59] se baahar hai.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDHOURS" xml:space="preserve">
+    <value>ghante {0} amaany hai.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_HOURSOUTOFRANGE" xml:space="preserve">
+    <value>ghante {0} seema [0-23] se baahar hai.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_BYDAYNOTANUMBER" xml:space="preserve">
+    <value>chihn {1} ke baad koee sankhya {0} nahin hai</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKNUMNOTNUMERIC" xml:space="preserve">
+    <value>saptaah sankhya nahin hai.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKNUMOUTOFRANGE" xml:space="preserve">
+    <value>saptaah sankhya {0} seema [1-53] se baahar hai.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKDAYARGMISMATCH" xml:space="preserve">
+    <value>saptaah ke din mein theek 2 akshar hone chaahie.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKDAYNOTWEEKDAY" xml:space="preserve">
+    <value>saptaah ka din nahin hai.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_DAYOFMONTHNOTNUMERIC" xml:space="preserve">
+    <value>maheene ka din sankhya nahin hai.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_DAYOFMONTHOUTOFRANGE" xml:space="preserve">
+    <value>maheene ka din {0} seema [1-31] se baahar hai.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_DAYOFYEARNOTNUMERIC" xml:space="preserve">
+    <value>varsh ka din sankhya nahin hai.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_DAYOFYEAROUTOFRANGE" xml:space="preserve">
+    <value>varsh ka din {0} seema se baahar hai [1-366].</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_MONTHNUMNOTNUMERIC" xml:space="preserve">
+    <value>maheene kee sankhya nahin hai.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_MONTHNUMOUTOFRANGE" xml:space="preserve">
+    <value>maheene kee sankhya {0} seema se baahar hai [1-12].</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_POSNUMNOTNUMERIC" xml:space="preserve">
+    <value>sthiti sankhya nahin hai.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_POSNUMOUTOFRANGE" xml:space="preserve">
+    <value>sthiti {0} seema se baahar hai [1-366].</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDKEYNAME" xml:space="preserve">
+    <value>maany kunjee naam nahin hai.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_UTCOFFSETNEEDED" xml:space="preserve">
+    <value>utch ofaset pratinidhitv pradaan nahin kiya gaya hai.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_UTCOFFSETDESIGNATORINVALID" xml:space="preserve">
+    <value>dizainar {0} amaany hai.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_UTCOFFSETPARSEFAILED" xml:space="preserve">
+    <value>ofaset paars nahin kiya ja sakata:</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONNEEDED" xml:space="preserve">
+    <value>avadhi pradaan nahin kee gaee hai</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONINVALID" xml:space="preserve">
+    <value>avadhi amaany hai:</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONDIGITSINVALID" xml:space="preserve">
+    <value>ank sankhyaatmak nahin hain:</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONYEARDISABLED" xml:space="preserve">
+    <value>varsh vinirdeshak vchalaindar 2.0 mein aksham hai.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONMONTHDISABLED" xml:space="preserve">
+    <value>maheena vinirdeshak vchalaindar 2.0 mein aksham hai.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONTYPEINVALID" xml:space="preserve">
+    <value>prakaar amaany hai:</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_TIMEPERIODNEEDED" xml:space="preserve">
+    <value>samay avadhi nirdisht nahin hai</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_TIMEPERIODSPLIT" xml:space="preserve">
+    <value>vibhaajan ke baad, 2 ke bajaay {0} mila:</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_TIMEPERIODSTARTDATEINVALID" xml:space="preserve">
+    <value>amaany aarambh tithi:</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_TYPENEEDSTYPESPECIFIER" xml:space="preserve">
+    <value>prakaar ko typai= se pahale joda jaana chaahie</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_BLOBISURL" xml:space="preserve">
+    <value>ek maany url shaamil hai; aapako us url ko mainyual roop se praapt karana chaahie aur pratikriya ko streem mein parivartit karana chaahie.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_BLOBNODATA" xml:space="preserve">
+    <value>koee enakoded deta nahin hai.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_BLOBUNDETERMINABLE" xml:space="preserve">
+    <value>koee blob nahin. aapako kisee tarah ise sambhaalana chaahie.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DATENEEDED" xml:space="preserve">
+    <value>tithi pratinidhitv pradaan nahin kiya gaya hai.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DATEPARSEFAILED" xml:space="preserve">
+    <value>tithi paars nahin kee ja sakatee:</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_URL" xml:space="preserve">
+    <value>url {0} amaany hai</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_DATE" xml:space="preserve">
+    <value>tithi {0} amaany hai</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_TIME" xml:space="preserve">
+    <value>samay {0} amaany hai</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_DATETIME" xml:space="preserve">
+    <value>tithi aur samay {0} amaany hai</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_DATETIMESELECT" xml:space="preserve">
+    <value>tithi aur/ya samay {0} amaany hai</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_TIMESTAMP" xml:space="preserve">
+    <value>taimastaimp {0} amaany hai</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_BOOLEAN" xml:space="preserve">
+    <value>booliyan {0} amaany hai</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_INTEGER" xml:space="preserve">
+    <value>poornaank {0} amaany hai</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_FLOAT" xml:space="preserve">
+    <value>{1} mein flot {0} amaany hai</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_STRVALUEINVALID" xml:space="preserve">
+    <value>{1} ke lie string maan {0} amaany hai.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_BASETYPEINVALID" xml:space="preserve">
+    <value>aadhaar prakaar {0} [{1}] nahin hai aur bhaag prakaar [{2}] hai jo bhaag ka pratinidhitv nahin karata hai.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_STARTLATERTHANEND" xml:space="preserve">
+    <value>aarambh tithi samaapti tithi se baad kee nahin ho sakatee</value>
+  </data>
+
+</root>

@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <!-- 
+    Microsoft ResX Schema 
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+
+    Example:
+
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+        <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+            <xsd:element name="metadata">
+            <xsd:complexType>
+                <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                </xsd:sequence>
+                <xsd:attribute name="name" use="required" type="xsd:string" />
+                <xsd:attribute name="type" type="xsd:string" />
+                <xsd:attribute name="mimetype" type="xsd:string" />
+                <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="assembly">
+            <xsd:complexType>
+                <xsd:attribute name="alias" type="xsd:string" />
+                <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="data">
+            <xsd:complexType>
+                <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                </xsd:sequence>
+                <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+                <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+                <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+                <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="resheader">
+            <xsd:complexType>
+                <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                </xsd:sequence>
+                <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+            </xsd:element>
+        </xsd:choice>
+        </xsd:complexType>
+    </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+    <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="VISUALCARD_COMMON_PARSERS_ARGS_EXCEPTION_NEEDSARGDELIM" xml:space="preserve">
+    <value>يجب أن يحتوي السطر على فاصل وسيطة.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_COMMON_EXCEPTION_NORULE" xml:space="preserve">
+    <value>لا توجد قاعدة.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_TOOSHORT" xml:space="preserve">
+    <value>يجب أن تحتوي القواعد على حرفين على الأقل لتكون ذات معنى.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDDURATION" xml:space="preserve">
+    <value>مدة غير صحيحة في المُعَيِّن:</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDTIME" xml:space="preserve">
+    <value>وقت غير صحيح {0}</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDDAYOFWEEK" xml:space="preserve">
+    <value>يوم غير صحيح من الأسبوع {0}</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYPOS_ARGMISMATCH" xml:space="preserve">
+    <value>بعد التصفية، بدلاً من حرفين، تم الحصول على {0}</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYPOS_OCCURRENCENUMNOTNUMERIC" xml:space="preserve">
+    <value>رقم التكرار ليس من [1-5]</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYPOS_OCCURRENCENUMOUTOFRANGE" xml:space="preserve">
+    <value>رقم التكرار خارج نطاق [1-5]</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYPOS_OCCURRENCESIGNINCORRECT" xml:space="preserve">
+    <value>علامة التكرار غير صحيحة</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYDAY_ARGMISMATCH" xml:space="preserve">
+    <value>بعد التصفية، تم الحصول على {0} ليس من حرف واحد أو حرفين أو ثلاثة أحرف</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYDAY_DAYNUMNOTNUMERIC" xml:space="preserve">
+    <value>رقم اليوم ليس من [1-31]</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYDAY_DAYNUMOUTOFRANGE" xml:space="preserve">
+    <value>رقم اليوم خارج نطاق [1-31]</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_MONTHLYDAY_DAYSIGNINCORRECT" xml:space="preserve">
+    <value>علامة رقم اليوم غير صحيحة</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYMONTH_ARGMISMATCH" xml:space="preserve">
+    <value>بعد التصفية، تم الحصول على {0} ليس من حرف واحد أو حرفين</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYMONTH_MONTHNUMNOTNUMERIC" xml:space="preserve">
+    <value>رقم الشهر ليس من [1-12]</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYMONTH_MONTHNUMOUTOFRANGE" xml:space="preserve">
+    <value>رقم الشهر خارج نطاق [1-12]</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYDAY_DAYNUMNOTNUMERIC" xml:space="preserve">
+    <value>رقم اليوم السنوي ليس من [1-366]</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_YEARLYDAY_DAYNUMOUTOFRANGE" xml:space="preserve">
+    <value>رقم اليوم السنوي خارج نطاق [1-366]</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDFREQUENCY" xml:space="preserve">
+    <value>تردد غير صحيح في مُعَيِّن التردد:</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V1_EXCEPTION_INVALIDFREQUENCYINTERVAL" xml:space="preserve">
+    <value>فاصل زمني غير صحيح في مُعَيِّن التردد:</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_MISSINGEQUALS" xml:space="preserve">
+    <value>يحتاج جزء القاعدة إلى علامة تساوي.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_KEYEXISTS" xml:space="preserve">
+    <value>المفتاح {0} موجود بالفعل.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_UNTILCOUNT" xml:space="preserve">
+    <value>لا يمكن استخدام مفتاحي UNTIL وCOUNT معًا.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDFREQUENCY" xml:space="preserve">
+    <value>التردد {0} غير صالح.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDDURATION" xml:space="preserve">
+    <value>المدة {0} غير صالحة.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDINTERVAL" xml:space="preserve">
+    <value>الفاصل الزمني {0} غير صالح.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDSECONDS" xml:space="preserve">
+    <value>الثواني {0} غير صالحة.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_SECONDSOUTOFRANGE" xml:space="preserve">
+    <value>الثواني {0} خارج النطاق [0-60].</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDMINUTES" xml:space="preserve">
+    <value>الدقائق {0} غير صالحة.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_MINUTESOUTOFRANGE" xml:space="preserve">
+    <value>الدقائق {0} خارج النطاق [0-59].</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDHOURS" xml:space="preserve">
+    <value>الساعات {0} غير صالحة.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_HOURSOUTOFRANGE" xml:space="preserve">
+    <value>الساعات {0} خارج النطاق [0-23].</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_BYDAYNOTANUMBER" xml:space="preserve">
+    <value>ليس رقمًا {0} بعد العلامة {1}.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKNUMNOTNUMERIC" xml:space="preserve">
+    <value>ليس رقم أسبوع.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKNUMOUTOFRANGE" xml:space="preserve">
+    <value>رقم الأسبوع {0} خارج النطاق [1-53].</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKDAYARGMISMATCH" xml:space="preserve">
+    <value>يجب أن يحتوي يوم الأسبوع على حرفين بالضبط.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_WEEKDAYNOTWEEKDAY" xml:space="preserve">
+    <value>ليس يوم أسبوع.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_DAYOFMONTHNOTNUMERIC" xml:space="preserve">
+    <value>ليس رقم يوم من الشهر.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_DAYOFMONTHOUTOFRANGE" xml:space="preserve">
+    <value>يوم الشهر {0} خارج النطاق [1-31].</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_DAYOFYEARNOTNUMERIC" xml:space="preserve">
+    <value>ليس رقم يوم من السنة.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_DAYOFYEAROUTOFRANGE" xml:space="preserve">
+    <value>يوم السنة {0} خارج النطاق [1-366].</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_MONTHNUMNOTNUMERIC" xml:space="preserve">
+    <value>ليس رقم شهر.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_MONTHNUMOUTOFRANGE" xml:space="preserve">
+    <value>رقم الشهر {0} خارج النطاق [1-12].</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_POSNUMNOTNUMERIC" xml:space="preserve">
+    <value>ليس رقم موضع.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_POSNUMOUTOFRANGE" xml:space="preserve">
+    <value>الموضع {0} خارج النطاق [1-366].</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_RECURRENCE_V2_EXCEPTION_INVALIDKEYNAME" xml:space="preserve">
+    <value>اسم مفتاح غير صالح.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_UTCOFFSETNEEDED" xml:space="preserve">
+    <value>لم يتم توفير تمثيل إزاحة UTC.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_UTCOFFSETDESIGNATORINVALID" xml:space="preserve">
+    <value>المسمى {0} غير صالح.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_UTCOFFSETPARSEFAILED" xml:space="preserve">
+    <value>لا يمكن تحليل الإزاحة:</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONNEEDED" xml:space="preserve">
+    <value>المدة غير متوفرة.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONINVALID" xml:space="preserve">
+    <value>المدة غير صالحة:</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONDIGITSINVALID" xml:space="preserve">
+    <value>الأرقام ليست رقمية:</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONYEARDISABLED" xml:space="preserve">
+    <value>محدد السنة معطل في vCalendar 2.0.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONMONTHDISABLED" xml:space="preserve">
+    <value>محدد الشهر معطل في vCalendar 2.0.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DURATIONTYPEINVALID" xml:space="preserve">
+    <value>النوع غير صالح:</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_TIMEPERIODNEEDED" xml:space="preserve">
+    <value>الفترة الزمنية غير محددة.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_TIMEPERIODSPLIT" xml:space="preserve">
+    <value>بعد التقسيم، حصلت على {0} بدلاً من 2:</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_TIMEPERIODSTARTDATEINVALID" xml:space="preserve">
+    <value>تاريخ بدء غير صالح:</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_TYPENEEDSTYPESPECIFIER" xml:space="preserve">
+    <value>يجب إضافة TYPE= قبل النوع.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_BLOBISURL" xml:space="preserve">
+    <value>يحتوي على عنوان URL صالح؛ يجب جلب عنوان URL هذا يدويًا وتحويل الاستجابة إلى التدفق.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_BLOBNODATA" xml:space="preserve">
+    <value>لا توجد بيانات مُرمَّزة.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_BLOBUNDETERMINABLE" xml:space="preserve">
+    <value>ليست كائنًا ثنائيًا. يجب عليك التعامل معها بطريقة ما.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DATENEEDED" xml:space="preserve">
+    <value>لم يتم توفير تمثيل التاريخ.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_DATEPARSEFAILED" xml:space="preserve">
+    <value>لا يمكن تحليل التاريخ:</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_URL" xml:space="preserve">
+    <value>عنوان URL {0} غير صالح</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_DATE" xml:space="preserve">
+    <value>التاريخ {0} غير صالح</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_TIME" xml:space="preserve">
+    <value>الوقت {0} غير صالح</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_DATETIME" xml:space="preserve">
+    <value>التاريخ والوقت {0} غير صالحين</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_DATETIMESELECT" xml:space="preserve">
+    <value>التاريخ و/أو الوقت {0} غير صالحين</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_TIMESTAMP" xml:space="preserve">
+    <value>الطابع الزمني {0} غير صالح</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_BOOLEAN" xml:space="preserve">
+    <value>القيمة المنطقية {0} غير صالحة</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_INTEGER" xml:space="preserve">
+    <value>العدد الصحيح {0} غير صالح</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_INVALID_FLOAT" xml:space="preserve">
+    <value>العدد العائم {0} في {1} غير صالح</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_STRVALUEINVALID" xml:space="preserve">
+    <value>قيمة السلسلة النصية {0} لـ {1} غير صالحة.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_BASETYPEINVALID" xml:space="preserve">
+    <value>النوع الأساسي ليس {0} [{1}]، ونوع الجزء هو [{2}] الذي لا يُمثل الجزء.</value>
+  </data>
+  <data name="VISUALCARD_COMMON_PARSERS_TOOLS_EXCEPTION_STARTLATERTHANEND" xml:space="preserve">
+    <value>لا يجوز أن يكون تاريخ البدء لاحقًا لتاريخ الانتهاء.</value>
+  </data>
+
+</root>
