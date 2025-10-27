@@ -17,16 +17,20 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+using ResourceLab.Management;
 using MainLangTools = VisualCard.Common.Languages.LanguageTools;
 
 namespace VisualCard.Calendar.Languages
 {
     internal static class LanguageTools
     {
+        private const string LocalName = "VisualCard.Calendar";
+
         internal static string GetLocalized(string id)
         {
-            if (!MainLangTools.resourceManagers.ContainsKey("VisualCard.Calendar"))
-                MainLangTools.resourceManagers.Add("VisualCard.Calendar", new("VisualCard.Calendar.Resources.Languages.Output.Localizations", typeof(LanguageTools).Assembly));
+            // Add local resource
+            if (!ResourcesManager.ResourceManagerExists(LocalName))
+                ResourcesManager.AddResourceManager(LocalName, new($"{LocalName}.Resources.Languages.Output.Localizations", typeof(LanguageTools).Assembly));
             return MainLangTools.GetLocalized(id);
         }
     }
