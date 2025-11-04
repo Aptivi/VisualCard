@@ -23,6 +23,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VisualCard.Common.Diagnostics;
 #endif
 
+[assembly: DoNotParallelize]
+
 namespace VisualCard.Tests
 {
     [TestClass]
