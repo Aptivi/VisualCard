@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Class CalendarFreeBusy | VisualCard API - Aptivi </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Class CalendarFreeBusy | VisualCard API - Aptivi ">
+    
+    <meta name="description" content="A vCalendar card instance">
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Space Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header class="apt-head">
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="VisualCard.Calendar.Parts.CalendarFreeBusy">
+
+
+
+  <h1 id="VisualCard_Calendar_Parts_CalendarFreeBusy" data-uid="VisualCard.Calendar.Parts.CalendarFreeBusy" class="text-break">Class CalendarFreeBusy</h1>
+  <div class="markdown level0 summary"><p>A vCalendar card instance</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">object</span></div>
+    <div class="level1"><a class="xref" href="VisualCard.Calendar.Parts.Calendar.html">Calendar</a></div>
+    <div class="level2"><span class="xref">CalendarFreeBusy</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_CalendarVersion">Calendar.CalendarVersion</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_UniqueId">Calendar.UniqueId</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_Events">Calendar.Events</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_Todos">Calendar.Todos</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_Journals">Calendar.Journals</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_FreeBusyList">Calendar.FreeBusyList</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_TimeZones">Calendar.TimeZones</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_Others">Calendar.Others</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_ExtraParts">Calendar.ExtraParts</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_PartsArray">Calendar.PartsArray</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_Strings">Calendar.Strings</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_Integers">Calendar.Integers</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_AddEvent_VisualCard_Calendar_Parts_CalendarEvent_">Calendar.AddEvent(CalendarEvent)</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_DeleteEvent_VisualCard_Calendar_Parts_CalendarEvent_">Calendar.DeleteEvent(CalendarEvent)</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_AddTodo_VisualCard_Calendar_Parts_CalendarTodo_">Calendar.AddTodo(CalendarTodo)</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_DeleteTodo_VisualCard_Calendar_Parts_CalendarTodo_">Calendar.DeleteTodo(CalendarTodo)</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_AddJournal_VisualCard_Calendar_Parts_CalendarJournal_">Calendar.AddJournal(CalendarJournal)</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_DeleteJournal_VisualCard_Calendar_Parts_CalendarJournal_">Calendar.DeleteJournal(CalendarJournal)</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_AddFreeBusy_VisualCard_Calendar_Parts_CalendarFreeBusy_">Calendar.AddFreeBusy(CalendarFreeBusy)</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_DeleteFreeBusy_VisualCard_Calendar_Parts_CalendarFreeBusy_">Calendar.DeleteFreeBusy(CalendarFreeBusy)</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_AddTimeZone_VisualCard_Calendar_Parts_CalendarTimeZone_">Calendar.AddTimeZone(CalendarTimeZone)</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_DeleteTimeZone_VisualCard_Calendar_Parts_CalendarTimeZone_">Calendar.DeleteTimeZone(CalendarTimeZone)</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_AddOther_VisualCard_Calendar_Parts_CalendarOtherComponent_">Calendar.AddOther(CalendarOtherComponent)</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_DeleteOther_VisualCard_Calendar_Parts_CalendarOtherComponent_">Calendar.DeleteOther(CalendarOtherComponent)</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_GetExtraPartsArray__1">Calendar.GetExtraPartsArray&lt;TPart&gt;()</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_GetExtraPartsArray__1_VisualCard_Common_Parts_Enums_PartsArrayEnum_">Calendar.GetExtraPartsArray&lt;TPart&gt;(PartsArrayEnum)</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_GetExtraPartsArray_System_Type_">Calendar.GetExtraPartsArray(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_GetExtraPartsArray_VisualCard_Common_Parts_Enums_PartsArrayEnum_">Calendar.GetExtraPartsArray(PartsArrayEnum)</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_GetExtraPartsArray_System_Type_VisualCard_Common_Parts_Enums_PartsArrayEnum_">Calendar.GetExtraPartsArray(Type, PartsArrayEnum)</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_GetPartsArray__1">Calendar.GetPartsArray&lt;TPart&gt;()</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_GetPartsArray__1_VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_">Calendar.GetPartsArray&lt;TPart&gt;(CalendarPartsArrayEnum)</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_GetPartsArray_System_Type_">Calendar.GetPartsArray(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_GetPartsArray_VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_">Calendar.GetPartsArray(CalendarPartsArrayEnum)</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_GetPartsArray_System_Type_VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_">Calendar.GetPartsArray(Type, CalendarPartsArrayEnum)</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_GetString_VisualCard_Calendar_Parts_Enums_CalendarStringsEnum_">Calendar.GetString(CalendarStringsEnum)</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_GetInteger_VisualCard_Calendar_Parts_Enums_CalendarIntegersEnum_">Calendar.GetInteger(CalendarIntegersEnum)</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_FindExtraPartsArray__1_System_String_">Calendar.FindExtraPartsArray&lt;TPart&gt;(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_FindExtraPartsArray__1_VisualCard_Common_Parts_Enums_PartsArrayEnum_System_String_">Calendar.FindExtraPartsArray&lt;TPart&gt;(PartsArrayEnum, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_FindExtraPartsArray_System_Type_System_String_">Calendar.FindExtraPartsArray(Type, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_FindExtraPartsArray_System_Type_VisualCard_Common_Parts_Enums_PartsArrayEnum_System_String_">Calendar.FindExtraPartsArray(Type, PartsArrayEnum, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_SaveTo_System_String_">Calendar.SaveTo(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_DeleteString_VisualCard_Calendar_Parts_Enums_CalendarStringsEnum_System_Int32_">Calendar.DeleteString(CalendarStringsEnum, int)</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_DeleteInteger_VisualCard_Calendar_Parts_Enums_CalendarIntegersEnum_System_Int32_">Calendar.DeleteInteger(CalendarIntegersEnum, int)</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_DeletePartsArray_VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_System_Int32_">Calendar.DeletePartsArray(CalendarPartsArrayEnum, int)</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_DeletePartsArray_VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_System_Type_System_Int32_">Calendar.DeletePartsArray(CalendarPartsArrayEnum, Type, int)</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_DeleteExtraPartsArray__1_System_Int32_">Calendar.DeleteExtraPartsArray&lt;TPart&gt;(int)</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_DeleteExtraPartsArray__1_VisualCard_Common_Parts_Enums_PartsArrayEnum_System_Int32_">Calendar.DeleteExtraPartsArray&lt;TPart&gt;(PartsArrayEnum, int)</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_DeleteExtraPartsArray_VisualCard_Common_Parts_Enums_PartsArrayEnum_System_Int32_">Calendar.DeleteExtraPartsArray(PartsArrayEnum, int)</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_DeleteExtraPartsArray_VisualCard_Common_Parts_Enums_PartsArrayEnum_System_Type_System_Int32_">Calendar.DeleteExtraPartsArray(PartsArrayEnum, Type, int)</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_DeletePartsArray__1_System_Int32_">Calendar.DeletePartsArray&lt;TPart&gt;(int)</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_DeletePartsArray__1_VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_System_Int32_">Calendar.DeletePartsArray&lt;TPart&gt;(CalendarPartsArrayEnum, int)</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_AddPartToArray__1_System_String_System_String_System_String_VisualCard_Common_Parsers_Arguments_ArgumentInfo___">Calendar.AddPartToArray&lt;TPart&gt;(string, string, string, params ArgumentInfo[])</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_AddPartToArray__1_VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_System_String_System_String_System_String_VisualCard_Common_Parsers_Arguments_ArgumentInfo___">Calendar.AddPartToArray&lt;TPart&gt;(CalendarPartsArrayEnum, string, string, string, params ArgumentInfo[])</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_AddPartToArray_VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_System_String_System_String_System_String_VisualCard_Common_Parsers_Arguments_ArgumentInfo___">Calendar.AddPartToArray(CalendarPartsArrayEnum, string, string, string, params ArgumentInfo[])</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_AddPartToArray_VisualCard_Calendar_Parts_Enums_CalendarPartsArrayEnum_System_Type_System_String_System_String_System_String_VisualCard_Common_Parsers_Arguments_ArgumentInfo___">Calendar.AddPartToArray(CalendarPartsArrayEnum, Type, string, string, string, params ArgumentInfo[])</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_AddString_VisualCard_Calendar_Parts_Enums_CalendarStringsEnum_System_String_System_String_VisualCard_Common_Parsers_Arguments_ArgumentInfo___">Calendar.AddString(CalendarStringsEnum, string, string, params ArgumentInfo[])</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_AddInteger_VisualCard_Calendar_Parts_Enums_CalendarIntegersEnum_System_String_System_String_VisualCard_Common_Parsers_Arguments_ArgumentInfo___">Calendar.AddInteger(CalendarIntegersEnum, string, string, params ArgumentInfo[])</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_Validate">Calendar.Validate()</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_Equals_VisualCard_Calendar_Parts_Calendar_">Calendar.Equals(Calendar)</a>
+    </div>
+    <div>
+      <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_Equals_VisualCard_Calendar_Parts_Calendar_VisualCard_Calendar_Parts_Calendar_">Calendar.Equals(Calendar, Calendar)</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="VisualCard.html">VisualCard</a>.<a class="xref" href="VisualCard.Calendar.html">Calendar</a>.<a class="xref" href="VisualCard.Calendar.Parts.html">Parts</a></h6>
+  <h6><strong>Assembly</strong>: VisualCard.Calendar.dll</h6>
+  <h5 id="VisualCard_Calendar_Parts_CalendarFreeBusy_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class CalendarFreeBusy : Calendar</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Aptivi/VisualCard/new/main/apiSpec/new?filename=VisualCard_Calendar_Parts_CalendarFreeBusy__ctor_System_Version_.md&amp;value=---%0Auid%3A%20VisualCard.Calendar.Parts.CalendarFreeBusy.%23ctor(System.Version)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Aptivi/VisualCard/blob/main/public/VisualCard.Calendar/Parts/CalendarFreeBusy.cs/#L121">View Source</a>
+  </span>
+  <a id="VisualCard_Calendar_Parts_CalendarFreeBusy__ctor_" data-uid="VisualCard.Calendar.Parts.CalendarFreeBusy.#ctor*"></a>
+  <h4 id="VisualCard_Calendar_Parts_CalendarFreeBusy__ctor_System_Version_" data-uid="VisualCard.Calendar.Parts.CalendarFreeBusy.#ctor(System.Version)">CalendarFreeBusy(Version)</h4>
+  <div class="markdown level1 summary"><p>Makes an empty calendar free/busy schedule</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CalendarFreeBusy(Version version)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Version</span></td>
+        <td><span class="parametername">version</span></td>
+        <td><p>vCalendar version to use</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ArgumentException</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Aptivi/VisualCard/new/main/apiSpec/new?filename=VisualCard_Calendar_Parts_CalendarFreeBusy_Equals_System_Object_.md&amp;value=---%0Auid%3A%20VisualCard.Calendar.Parts.CalendarFreeBusy.Equals(System.Object)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Aptivi/VisualCard/blob/main/public/VisualCard.Calendar/Parts/CalendarFreeBusy.cs/#L64">View Source</a>
+  </span>
+  <a id="VisualCard_Calendar_Parts_CalendarFreeBusy_Equals_" data-uid="VisualCard.Calendar.Parts.CalendarFreeBusy.Equals*"></a>
+  <h4 id="VisualCard_Calendar_Parts_CalendarFreeBusy_Equals_System_Object_" data-uid="VisualCard.Calendar.Parts.CalendarFreeBusy.Equals(System.Object)">Equals(object)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object obj)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><span class="parametername">obj</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_Equals_System_Object_">Calendar.Equals(object)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Aptivi/VisualCard/new/main/apiSpec/new?filename=VisualCard_Calendar_Parts_CalendarFreeBusy_Equals_VisualCard_Calendar_Parts_CalendarFreeBusy_.md&amp;value=---%0Auid%3A%20VisualCard.Calendar.Parts.CalendarFreeBusy.Equals(VisualCard.Calendar.Parts.CalendarFreeBusy)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Aptivi/VisualCard/blob/main/public/VisualCard.Calendar/Parts/CalendarFreeBusy.cs/#L72">View Source</a>
+  </span>
+  <a id="VisualCard_Calendar_Parts_CalendarFreeBusy_Equals_" data-uid="VisualCard.Calendar.Parts.CalendarFreeBusy.Equals*"></a>
+  <h4 id="VisualCard_Calendar_Parts_CalendarFreeBusy_Equals_VisualCard_Calendar_Parts_CalendarFreeBusy_" data-uid="VisualCard.Calendar.Parts.CalendarFreeBusy.Equals(VisualCard.Calendar.Parts.CalendarFreeBusy)">Equals(CalendarFreeBusy)</h4>
+  <div class="markdown level1 summary"><p>Checks to see if both the cards are equal</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Equals(CalendarFreeBusy other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="VisualCard.Calendar.Parts.CalendarFreeBusy.html">CalendarFreeBusy</a></td>
+        <td><span class="parametername">other</span></td>
+        <td><p>The target <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html">Calendar</a> instance to check to see if they equal</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>True if all the card elements are equal. Otherwise, false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Aptivi/VisualCard/new/main/apiSpec/new?filename=VisualCard_Calendar_Parts_CalendarFreeBusy_Equals_VisualCard_Calendar_Parts_CalendarFreeBusy_VisualCard_Calendar_Parts_CalendarFreeBusy_.md&amp;value=---%0Auid%3A%20VisualCard.Calendar.Parts.CalendarFreeBusy.Equals(VisualCard.Calendar.Parts.CalendarFreeBusy%2CVisualCard.Calendar.Parts.CalendarFreeBusy)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Aptivi/VisualCard/blob/main/public/VisualCard.Calendar/Parts/CalendarFreeBusy.cs/#L81">View Source</a>
+  </span>
+  <a id="VisualCard_Calendar_Parts_CalendarFreeBusy_Equals_" data-uid="VisualCard.Calendar.Parts.CalendarFreeBusy.Equals*"></a>
+  <h4 id="VisualCard_Calendar_Parts_CalendarFreeBusy_Equals_VisualCard_Calendar_Parts_CalendarFreeBusy_VisualCard_Calendar_Parts_CalendarFreeBusy_" data-uid="VisualCard.Calendar.Parts.CalendarFreeBusy.Equals(VisualCard.Calendar.Parts.CalendarFreeBusy,VisualCard.Calendar.Parts.CalendarFreeBusy)">Equals(CalendarFreeBusy, CalendarFreeBusy)</h4>
+  <div class="markdown level1 summary"><p>Checks to see if both the cards are equal</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Equals(CalendarFreeBusy source, CalendarFreeBusy target)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="VisualCard.Calendar.Parts.CalendarFreeBusy.html">CalendarFreeBusy</a></td>
+        <td><span class="parametername">source</span></td>
+        <td><p>The source <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html">Calendar</a> instance to check to see if they equal</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="VisualCard.Calendar.Parts.CalendarFreeBusy.html">CalendarFreeBusy</a></td>
+        <td><span class="parametername">target</span></td>
+        <td><p>The target <a class="xref" href="VisualCard.Calendar.Parts.Calendar.html">Calendar</a> instance to check to see if they equal</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>True if all the card elements are equal. Otherwise, false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Aptivi/VisualCard/new/main/apiSpec/new?filename=VisualCard_Calendar_Parts_CalendarFreeBusy_GetHashCode.md&amp;value=---%0Auid%3A%20VisualCard.Calendar.Parts.CalendarFreeBusy.GetHashCode%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Aptivi/VisualCard/blob/main/public/VisualCard.Calendar/Parts/CalendarFreeBusy.cs/#L97">View Source</a>
+  </span>
+  <a id="VisualCard_Calendar_Parts_CalendarFreeBusy_GetHashCode_" data-uid="VisualCard.Calendar.Parts.CalendarFreeBusy.GetHashCode*"></a>
+  <h4 id="VisualCard_Calendar_Parts_CalendarFreeBusy_GetHashCode" data-uid="VisualCard.Calendar.Parts.CalendarFreeBusy.GetHashCode">GetHashCode()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_GetHashCode">Calendar.GetHashCode()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Aptivi/VisualCard/new/main/apiSpec/new?filename=VisualCard_Calendar_Parts_CalendarFreeBusy_SaveToString_System_Boolean_.md&amp;value=---%0Auid%3A%20VisualCard.Calendar.Parts.CalendarFreeBusy.SaveToString(System.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Aptivi/VisualCard/blob/main/public/VisualCard.Calendar/Parts/CalendarFreeBusy.cs/#L47">View Source</a>
+  </span>
+  <a id="VisualCard_Calendar_Parts_CalendarFreeBusy_SaveToString_" data-uid="VisualCard.Calendar.Parts.CalendarFreeBusy.SaveToString*"></a>
+  <h4 id="VisualCard_Calendar_Parts_CalendarFreeBusy_SaveToString_System_Boolean_" data-uid="VisualCard.Calendar.Parts.CalendarFreeBusy.SaveToString(System.Boolean)">SaveToString(bool)</h4>
+  <div class="markdown level1 summary"><p>Saves this parsed calendar alarm to the string</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string SaveToString(bool validate = false)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">validate</span></td>
+        <td><p>Whether to validate all the fields or not</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_SaveToString_System_Boolean_">Calendar.SaveToString(bool)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Aptivi/VisualCard/new/main/apiSpec/new?filename=VisualCard_Calendar_Parts_CalendarFreeBusy_ToString.md&amp;value=---%0Auid%3A%20VisualCard.Calendar.Parts.CalendarFreeBusy.ToString%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Aptivi/VisualCard/blob/main/public/VisualCard.Calendar/Parts/CalendarFreeBusy.cs/#L53">View Source</a>
+  </span>
+  <a id="VisualCard_Calendar_Parts_CalendarFreeBusy_ToString_" data-uid="VisualCard.Calendar.Parts.CalendarFreeBusy.ToString*"></a>
+  <h4 id="VisualCard_Calendar_Parts_CalendarFreeBusy_ToString" data-uid="VisualCard.Calendar.Parts.CalendarFreeBusy.ToString">ToString()</h4>
+  <div class="markdown level1 summary"><p>Saves the calendar alarm to the returned string</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_ToString">Calendar.ToString()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Aptivi/VisualCard/new/main/apiSpec/new?filename=VisualCard_Calendar_Parts_CalendarFreeBusy_ToString_System_Boolean_.md&amp;value=---%0Auid%3A%20VisualCard.Calendar.Parts.CalendarFreeBusy.ToString(System.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Aptivi/VisualCard/blob/main/public/VisualCard.Calendar/Parts/CalendarFreeBusy.cs/#L60">View Source</a>
+  </span>
+  <a id="VisualCard_Calendar_Parts_CalendarFreeBusy_ToString_" data-uid="VisualCard.Calendar.Parts.CalendarFreeBusy.ToString*"></a>
+  <h4 id="VisualCard_Calendar_Parts_CalendarFreeBusy_ToString_System_Boolean_" data-uid="VisualCard.Calendar.Parts.CalendarFreeBusy.ToString(System.Boolean)">ToString(bool)</h4>
+  <div class="markdown level1 summary"><p>Saves the calendar alarm to the returned string</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString(bool validate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">validate</span></td>
+        <td><p>Whether to validate all the fields or not</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="VisualCard.Calendar.Parts.Calendar.html#VisualCard_Calendar_Parts_Calendar_ToString_System_Boolean_">Calendar.ToString(bool)</a></div>
+  <h3 id="operators">Operators
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Aptivi/VisualCard/new/main/apiSpec/new?filename=VisualCard_Calendar_Parts_CalendarFreeBusy_op_Equality_VisualCard_Calendar_Parts_CalendarFreeBusy_VisualCard_Calendar_Parts_CalendarFreeBusy_.md&amp;value=---%0Auid%3A%20VisualCard.Calendar.Parts.CalendarFreeBusy.op_Equality(VisualCard.Calendar.Parts.CalendarFreeBusy%2CVisualCard.Calendar.Parts.CalendarFreeBusy)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Aptivi/VisualCard/blob/main/public/VisualCard.Calendar/Parts/CalendarFreeBusy.cs/#L109">View Source</a>
+  </span>
+  <a id="VisualCard_Calendar_Parts_CalendarFreeBusy_op_Equality_" data-uid="VisualCard.Calendar.Parts.CalendarFreeBusy.op_Equality*"></a>
+  <h4 id="VisualCard_Calendar_Parts_CalendarFreeBusy_op_Equality_VisualCard_Calendar_Parts_CalendarFreeBusy_VisualCard_Calendar_Parts_CalendarFreeBusy_" data-uid="VisualCard.Calendar.Parts.CalendarFreeBusy.op_Equality(VisualCard.Calendar.Parts.CalendarFreeBusy,VisualCard.Calendar.Parts.CalendarFreeBusy)">operator ==(CalendarFreeBusy, CalendarFreeBusy)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator ==(CalendarFreeBusy a, CalendarFreeBusy b)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="VisualCard.Calendar.Parts.CalendarFreeBusy.html">CalendarFreeBusy</a></td>
+        <td><span class="parametername">a</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="VisualCard.Calendar.Parts.CalendarFreeBusy.html">CalendarFreeBusy</a></td>
+        <td><span class="parametername">b</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Aptivi/VisualCard/new/main/apiSpec/new?filename=VisualCard_Calendar_Parts_CalendarFreeBusy_op_Inequality_VisualCard_Calendar_Parts_CalendarFreeBusy_VisualCard_Calendar_Parts_CalendarFreeBusy_.md&amp;value=---%0Auid%3A%20VisualCard.Calendar.Parts.CalendarFreeBusy.op_Inequality(VisualCard.Calendar.Parts.CalendarFreeBusy%2CVisualCard.Calendar.Parts.CalendarFreeBusy)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Aptivi/VisualCard/blob/main/public/VisualCard.Calendar/Parts/CalendarFreeBusy.cs/#L113">View Source</a>
+  </span>
+  <a id="VisualCard_Calendar_Parts_CalendarFreeBusy_op_Inequality_" data-uid="VisualCard.Calendar.Parts.CalendarFreeBusy.op_Inequality*"></a>
+  <h4 id="VisualCard_Calendar_Parts_CalendarFreeBusy_op_Inequality_VisualCard_Calendar_Parts_CalendarFreeBusy_VisualCard_Calendar_Parts_CalendarFreeBusy_" data-uid="VisualCard.Calendar.Parts.CalendarFreeBusy.op_Inequality(VisualCard.Calendar.Parts.CalendarFreeBusy,VisualCard.Calendar.Parts.CalendarFreeBusy)">operator !=(CalendarFreeBusy, CalendarFreeBusy)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator !=(CalendarFreeBusy a, CalendarFreeBusy b)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="VisualCard.Calendar.Parts.CalendarFreeBusy.html">CalendarFreeBusy</a></td>
+        <td><span class="parametername">a</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="VisualCard.Calendar.Parts.CalendarFreeBusy.html">CalendarFreeBusy</a></td>
+        <td><span class="parametername">b</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Aptivi/VisualCard/new/main/apiSpec/new?filename=VisualCard_Calendar_Parts_CalendarFreeBusy.md&amp;value=---%0Auid%3A%20VisualCard.Calendar.Parts.CalendarFreeBusy%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/Aptivi/VisualCard/blob/main/public/VisualCard.Calendar/Parts/CalendarFreeBusy.cs/#L40" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
