@@ -188,6 +188,35 @@ namespace VisualCard.Tests.Contacts.Data
             END:VCARD
             """
         ;
+
+        internal static readonly string singleVcardTwoContactWithAgent =
+            """
+            BEGIN:VCARD
+            VERSION:2.1
+            N:Sanders;John;;;
+            FN:John Sanders
+            X-PHONETIC-FIRST-NAME:Saunders
+            X-PHONETIC-LAST-NAME:John
+            X-ANDROID-CUSTOM:vnd.android.cursor.item/nickname;JS;1;;;;;;;;;;;;;
+            TEL;CELL:495-522-3560
+            EMAIL;HOME:john.s@acme.co
+            ADR;HOME:;;Los Angeles, USA;;;;
+            ORG:Acme Co.
+            AGENT:
+            BEGIN:VCARD
+            VERSION:2.1
+            FN:Joe Friday
+            N:Friday;Joe;;;
+            TEL:+1-919-555-7878
+            TITLE:Area Administrator, Assistant
+            EMAIL;TYPE=INTERNET:jfriday@host.com
+            END:VCARD
+            TITLE:Product Manager
+            NOTE:Note test for VisualCard
+            X-AIM:john.s
+            END:VCARD
+            """
+        ;
         #endregion
 
         #region singleVcardThreeContact
@@ -574,6 +603,9 @@ namespace VisualCard.Tests.Contacts.Data
         [
             [
                 singleVcardTwoContact,
+            ],
+            [
+                singleVcardTwoContactWithAgent,
             ],
             [
                 singleVcardThreeContact,

@@ -73,6 +73,27 @@ namespace VisualCard.Common.Parts.Comparers
             return !results.Contains(false);
         }
 
+        internal static bool CompareArrays<TValue>(
+            TValue[] source,
+            TValue[] target)
+        {
+            // Verify the lists
+            if (!VerifyArrays(source, target))
+                return false;
+
+            // Now, compare between two parts
+            List<bool> results = [];
+            for (int i = 0; i < target.Length; i++)
+            {
+                TValue sourcePart = source[i];
+                TValue targetPart = target[i];
+                bool equals = sourcePart?.Equals(targetPart) ?? false;
+                LoggingTools.Info("List items comparison returned {0}", equals);
+                results.Add(equals);
+            }
+            return !results.Contains(false);
+        }
+
         internal static bool ContainsAll<TValue>(
             IEnumerable<TValue> source,
             IEnumerable<TValue> target)
@@ -99,6 +120,19 @@ namespace VisualCard.Common.Parts.Comparers
             if (source.Count != target.Count)
                 return false;
             LoggingTools.Debug("List verification complete, going ahead...");
+            return true;
+        }
+
+        internal static bool VerifyArrays<TValue>(
+            TValue[] source,
+            TValue[] target)
+        {
+            if (source == null || target == null)
+                return false;
+
+            if (source.Length != target.Length)
+                return false;
+            LoggingTools.Debug("Array verification complete, going ahead...");
             return true;
         }
 

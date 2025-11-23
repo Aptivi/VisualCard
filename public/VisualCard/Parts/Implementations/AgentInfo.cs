@@ -26,6 +26,7 @@ using System.Text.RegularExpressions;
 using Textify.General;
 using VisualCard.Common.Parsers.Arguments;
 using VisualCard.Common.Parts;
+using VisualCard.Common.Parts.Comparers;
 using VisualCard.Languages;
 
 namespace VisualCard.Parts.Implementations
@@ -95,10 +96,12 @@ namespace VisualCard.Parts.Implementations
             // We can't perform this operation on null.
             if (source is null || target is null)
                 return false;
+            if (source.AgentCards is null || target.AgentCards is null)
+                return false;
 
             // Check all the properties
             return
-                source.AgentCards == target.AgentCards
+                CommonComparison.CompareArrays(source.AgentCards, target.AgentCards)
             ;
         }
 
