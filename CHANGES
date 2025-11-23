@@ -1,10 +1,10 @@
-We've updated this project for further refinements!
+We've fixed a long-term issue related to agents and its comparison function!
 
 ### Changes
 
 This release contains a variety of changes, including, but not limited to:
 
-- `[*]` General improvements
+- `[*]` Fixed agent comparison always returning false
 
 Review the commit history if you want to get a deep insight about the changes.
 
