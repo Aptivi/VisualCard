@@ -46,6 +46,8 @@ namespace VisualCard.ShowContacts
             {
                 // Enable logging
                 LoggingTools.EnableLogging = args.Contains("-logging");
+                if (LoggingTools.EnableLogging)
+                    LoggingTools.AbstractLogger = new SerilogLogger(new LoggerConfiguration().MinimumLevel.Debug().WriteTo.File(LogTools.GenerateLogFilePath(out _)));
 
                 // If one of the arguments is a switch to trigger printing, set it
                 bool print = !args.Contains("-noprint");

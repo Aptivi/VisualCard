@@ -20,13 +20,16 @@
 using System;
 using System.Diagnostics;
 using System.Linq;
+using Aptivestigate.Logging;
+using Aptivestigate.Serilog;
+using Serilog;
 using Terminaux.Colors.Data;
 using Terminaux.Writer.ConsoleWriters;
 using VisualCard.Calendar;
-using CalendarInfo = VisualCard.Calendar.Parts.Calendar;
-using VisualCard.Calendar.Parts.Implementations.Event;
 using VisualCard.Calendar.Parts.Enums;
+using VisualCard.Calendar.Parts.Implementations.Event;
 using VisualCard.Common.Diagnostics;
+using CalendarInfo = VisualCard.Calendar.Parts.Calendar;
 
 namespace VisualCard.ShowCalendars
 {
@@ -42,6 +45,8 @@ namespace VisualCard.ShowCalendars
             {
                 // Enable logging
                 LoggingTools.EnableLogging = args.Contains("-logging");
+                if (LoggingTools.EnableLogging)
+                    LoggingTools.AbstractLogger = new SerilogLogger(new LoggerConfiguration().MinimumLevel.Debug().WriteTo.File(LogTools.GenerateLogFilePath(out _)));
 
                 // If one of the arguments is a switch to trigger printing, set it
                 bool print = !args.Contains("-noprint");
