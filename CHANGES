@@ -1,10 +1,10 @@
-We've fixed a long-term issue related to agents and its comparison function!
+We've updated this library to fix logging issues!
 
 ### Changes
 
 This release contains a variety of changes, including, but not limited to:
 
-- `[*]` Fixed agent comparison always returning false
+- `[*]` Fixed logging always writing to log files even if logging is disabled
 
 Review the commit history if you want to get a deep insight about the changes.
 
