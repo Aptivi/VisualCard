@@ -29,50 +29,57 @@ namespace VisualCard.Common.Diagnostics
     /// </summary>
     public static class LoggingTools
     {
-        private static BaseLogger? abstractLogger = new SerilogLogger(new LoggerConfiguration().WriteTo.File(LogTools.GenerateLogFilePath(out _)));
+        private static bool enableLogging;
 
         /// <summary>
         /// Whether to enable logging or not
         /// </summary>
-        public static bool EnableLogging { get; set; }
+        public static bool EnableLogging
+        {
+            get => enableLogging;
+            set
+            {
+                enableLogging = value;
+                if (enableLogging)
+                    AbstractLogger = new SerilogLogger(new LoggerConfiguration().WriteTo.File(LogTools.GenerateLogFilePath(out _)));
+                else
+                    AbstractLogger = null;
+            }
+        }
 
         /// <summary>
         /// Sets the logger to use
         /// </summary>
-        public static BaseLogger? AbstractLogger
-        {
-            get => EnableLogging ? abstractLogger : null;
-            set => abstractLogger = value;
-        }
+        public static BaseLogger? AbstractLogger { get; set; }
 
         internal static void Debug(string message, params object?[]? args) =>
-            abstractLogger?.Debug(message, args);
+            AbstractLogger?.Debug(message, args);
 
         internal static void Debug(Exception ex, string message, params object?[]? args) =>
-            abstractLogger?.Debug(ex, message, args);
+            AbstractLogger?.Debug(ex, message, args);
 
         internal static void Error(string message, params object?[]? args) =>
-            abstractLogger?.Error(message, args);
+            AbstractLogger?.Error(message, args);
 
         internal static void Error(Exception ex, string message, params object?[]? args) =>
-            abstractLogger?.Error(ex, message, args);
+            AbstractLogger?.Error(ex, message, args);
 
         internal static void Fatal(string message, params object?[]? args) =>
-            abstractLogger?.Fatal(message, args);
+            AbstractLogger?.Fatal(message, args);
 
         internal static void Fatal(Exception ex, string message, params object?[]? args) =>
-            abstractLogger?.Fatal(ex, message, args);
+            AbstractLogger?.Fatal(ex, message, args);
 
         internal static void Info(string message, params object?[]? args) =>
-            abstractLogger?.Info(message, args);
+            AbstractLogger?.Info(message, args);
 
         internal static void Info(Exception ex, string message, params object?[]? args) =>
-            abstractLogger?.Info(ex, message, args);
+            AbstractLogger?.Info(ex, message, args);
 
         internal static void Warning(string message, params object?[]? args) =>
-            abstractLogger?.Warning(message, args);
+            AbstractLogger?.Warning(message, args);
 
         internal static void Warning(Exception ex, string message, params object?[]? args) =>
-            abstractLogger?.Warning(ex, message, args);
+            AbstractLogger?.Warning(ex, message, args);
     }
 }
