@@ -14,6 +14,1517 @@
       }
     },
     {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.CalendarTools.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.CalendarTools.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.CalendarTools",
+      "Summary": "<p sourcefile=\"api/VisualCard.Calendar.CalendarTools.yml\" sourcestartlinenumber=\"1\">Module for VCalendar management</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Exceptions.VCalendarParseException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Exceptions.VCalendarParseException.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Exceptions.VCalendarParseException",
+      "Summary": "<p sourcefile=\"api/VisualCard.Calendar.Exceptions.VCalendarParseException.yml\" sourcestartlinenumber=\"1\">Exception of VCalendar parsing</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Exceptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Exceptions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Exceptions",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.BaseCalendarPartInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.BaseCalendarPartInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.BaseCalendarPartInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Calendar.Parts.BaseCalendarPartInfo.yml\" sourcestartlinenumber=\"1\">Base calendar part class</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Calendar.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Calendar.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.Calendar",
+      "Summary": "<p sourcefile=\"api/VisualCard.Calendar.Parts.Calendar.yml\" sourcestartlinenumber=\"1\">A vCalendar card instance</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.CalendarAlarm.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.CalendarAlarm.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.CalendarAlarm",
+      "Summary": "<p sourcefile=\"api/VisualCard.Calendar.Parts.CalendarAlarm.yml\" sourcestartlinenumber=\"1\">A vCalendar card instance</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.CalendarDaylight.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.CalendarDaylight.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.CalendarDaylight",
+      "Summary": "<p sourcefile=\"api/VisualCard.Calendar.Parts.CalendarDaylight.yml\" sourcestartlinenumber=\"1\">A vCalendar card instance</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.CalendarEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.CalendarEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.CalendarEvent",
+      "Summary": "<p sourcefile=\"api/VisualCard.Calendar.Parts.CalendarEvent.yml\" sourcestartlinenumber=\"1\">A vCalendar card instance</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.CalendarFreeBusy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.CalendarFreeBusy.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.CalendarFreeBusy",
+      "Summary": "<p sourcefile=\"api/VisualCard.Calendar.Parts.CalendarFreeBusy.yml\" sourcestartlinenumber=\"1\">A vCalendar card instance</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.CalendarJournal.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.CalendarJournal.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.CalendarJournal",
+      "Summary": "<p sourcefile=\"api/VisualCard.Calendar.Parts.CalendarJournal.yml\" sourcestartlinenumber=\"1\">A vCalendar card instance</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.CalendarOtherComponent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.CalendarOtherComponent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.CalendarOtherComponent",
+      "Summary": "<p sourcefile=\"api/VisualCard.Calendar.Parts.CalendarOtherComponent.yml\" sourcestartlinenumber=\"1\">A vCalendar card instance</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.CalendarStandard.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.CalendarStandard.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.CalendarStandard",
+      "Summary": "<p sourcefile=\"api/VisualCard.Calendar.Parts.CalendarStandard.yml\" sourcestartlinenumber=\"1\">A vCalendar card instance</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.CalendarTimeZone.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.CalendarTimeZone.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.CalendarTimeZone",
+      "Summary": "<p sourcefile=\"api/VisualCard.Calendar.Parts.CalendarTimeZone.yml\" sourcestartlinenumber=\"1\">A vCalendar card instance</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.CalendarTodo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.CalendarTodo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.CalendarTodo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Calendar.Parts.CalendarTodo.yml\" sourcestartlinenumber=\"1\">A vCalendar card instance</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Enums.CalendarIntegersEnum.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Enums.CalendarIntegersEnum.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.Enums.CalendarIntegersEnum",
+      "Summary": "<p sourcefile=\"api/VisualCard.Calendar.Parts.Enums.CalendarIntegersEnum.yml\" sourcestartlinenumber=\"1\">Enumeration for available parts that are integers</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum",
+      "Summary": "<p sourcefile=\"api/VisualCard.Calendar.Parts.Enums.CalendarPartsArrayEnum.yml\" sourcestartlinenumber=\"1\">Enumeration for available parts that are not strings but are arrays</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.Enums.CalendarStringsEnum",
+      "Summary": "<p sourcefile=\"api/VisualCard.Calendar.Parts.Enums.CalendarStringsEnum.yml\" sourcestartlinenumber=\"1\">Enumeration for available parts that are strings</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Enums.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Enums.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.Enums",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.AttachInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.AttachInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.Implementations.AttachInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Calendar.Parts.Implementations.AttachInfo.yml\" sourcestartlinenumber=\"1\">Calendar attach info</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.DateCreatedInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.DateCreatedInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.Implementations.DateCreatedInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Calendar.Parts.Implementations.DateCreatedInfo.yml\" sourcestartlinenumber=\"1\">Calendar date created info</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.Event.CategoriesInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.Event.CategoriesInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.Implementations.Event.CategoriesInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Calendar.Parts.Implementations.Event.CategoriesInfo.yml\" sourcestartlinenumber=\"1\">Event categories info</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.Event.DateEndInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.Event.DateEndInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.Implementations.Event.DateEndInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Calendar.Parts.Implementations.Event.DateEndInfo.yml\" sourcestartlinenumber=\"1\">Event date end info</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.Event.DateStampInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.Event.DateStampInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.Implementations.Event.DateStampInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Calendar.Parts.Implementations.Event.DateStampInfo.yml\" sourcestartlinenumber=\"1\">Event date stamp info</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.Event.DateStartInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.Event.DateStartInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.Implementations.Event.DateStartInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Calendar.Parts.Implementations.Event.DateStartInfo.yml\" sourcestartlinenumber=\"1\">Event date start info</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.Event.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.Event.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.Implementations.Event",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.ExDateInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.ExDateInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.Implementations.ExDateInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Calendar.Parts.Implementations.ExDateInfo.yml\" sourcestartlinenumber=\"1\">Calendar excluded date info</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Calendar.Parts.Implementations.FreeBusy.CalendarFreeBusyInfo.yml\" sourcestartlinenumber=\"1\">Free/busy info</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.FreeBusy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.FreeBusy.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.Implementations.FreeBusy",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.GeoInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.GeoInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.Implementations.GeoInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Calendar.Parts.Implementations.GeoInfo.yml\" sourcestartlinenumber=\"1\">Event or to-do geographical information</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.Implementations.LastModifiedInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Calendar.Parts.Implementations.LastModifiedInfo.yml\" sourcestartlinenumber=\"1\">Last modified info</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Calendar.Parts.Implementations.Legacy.AudioAlarmInfo.yml\" sourcestartlinenumber=\"1\">Event audio alarm information</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Calendar.Parts.Implementations.Legacy.DaylightInfo.yml\" sourcestartlinenumber=\"1\">Daylight information (entire calendar)</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Calendar.Parts.Implementations.Legacy.DisplayAlarmInfo.yml\" sourcestartlinenumber=\"1\">Event display alarm information</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Calendar.Parts.Implementations.Legacy.MailAlarmInfo.yml\" sourcestartlinenumber=\"1\">Event note alarm information</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Calendar.Parts.Implementations.Legacy.ProcedureAlarmInfo.yml\" sourcestartlinenumber=\"1\">Event procedure alarm information</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.Legacy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.Legacy.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.Implementations.Legacy",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.RecDateInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.RecDateInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.Implementations.RecDateInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Calendar.Parts.Implementations.RecDateInfo.yml\" sourcestartlinenumber=\"1\">Calendar recurrence date info</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.Implementations.RequestStatusInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Calendar.Parts.Implementations.RequestStatusInfo.yml\" sourcestartlinenumber=\"1\">Calendar request status info</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.ResourcesInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.ResourcesInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.Implementations.ResourcesInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Calendar.Parts.Implementations.ResourcesInfo.yml\" sourcestartlinenumber=\"1\">Calendar resources info</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetFromInfo.yml\" sourcestartlinenumber=\"1\">Time zone offset from info</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Calendar.Parts.Implementations.TimeZone.TimeZoneOffsetToInfo.yml\" sourcestartlinenumber=\"1\">Time zone offset to info</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.TimeZone.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.TimeZone.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.Implementations.TimeZone",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.Todo.DateCompletedInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.Todo.DateCompletedInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.Implementations.Todo.DateCompletedInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Calendar.Parts.Implementations.Todo.DateCompletedInfo.yml\" sourcestartlinenumber=\"1\">To-do date completed info</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Calendar.Parts.Implementations.Todo.DueDateInfo.yml\" sourcestartlinenumber=\"1\">To-do due date info</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.Todo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.Todo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.Implementations.Todo",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.Implementations.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.Implementations.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts.Implementations",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.Parts.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.Parts.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar.Parts",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Calendar.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Calendar.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Calendar",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.CardTools.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.CardTools.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.CardTools",
+      "Summary": "<p sourcefile=\"api/VisualCard.CardTools.yml\" sourcestartlinenumber=\"1\">Module for VCard management</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Common.Diagnostics.LoggingTools.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Common.Diagnostics.LoggingTools.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Common.Diagnostics.LoggingTools",
+      "Summary": "<p sourcefile=\"api/VisualCard.Common.Diagnostics.LoggingTools.yml\" sourcestartlinenumber=\"1\">VisualCard logging tools</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Common.Diagnostics.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Common.Diagnostics.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Common.Diagnostics",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Common.Parsers.Arguments.ArgumentInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Common.Parsers.Arguments.ArgumentInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Common.Parsers.Arguments.ArgumentInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Common.Parsers.Arguments.ArgumentInfo.yml\" sourcestartlinenumber=\"1\">Argument info for properties</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Common.Parsers.Arguments.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Common.Parsers.Arguments.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Common.Parsers.Arguments",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Common.Parsers.CommonTools.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Common.Parsers.CommonTools.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Common.Parsers.CommonTools",
+      "Summary": "<p sourcefile=\"api/VisualCard.Common.Parsers.CommonTools.yml\" sourcestartlinenumber=\"1\">Common tools for vCard parsing</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Common.Parsers.Recurrence.RecurrenceParser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Common.Parsers.Recurrence.RecurrenceParser.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Common.Parsers.Recurrence.RecurrenceParser",
+      "Summary": "<p sourcefile=\"api/VisualCard.Common.Parsers.Recurrence.RecurrenceParser.yml\" sourcestartlinenumber=\"1\">Recurrence rule parser</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Common.Parsers.Recurrence.RecurrenceRule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Common.Parsers.Recurrence.RecurrenceRule.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Common.Parsers.Recurrence.RecurrenceRule",
+      "Summary": "<p sourcefile=\"api/VisualCard.Common.Parsers.Recurrence.RecurrenceRule.yml\" sourcestartlinenumber=\"1\">Recurrence rule instance</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Common.Parsers.Recurrence.RecurrenceRuleFrequency.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Common.Parsers.Recurrence.RecurrenceRuleFrequency.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Common.Parsers.Recurrence.RecurrenceRuleFrequency",
+      "Summary": "<p sourcefile=\"api/VisualCard.Common.Parsers.Recurrence.RecurrenceRuleFrequency.yml\" sourcestartlinenumber=\"1\">Recurrence rule frequency</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Common.Parsers.Recurrence.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Common.Parsers.Recurrence.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Common.Parsers.Recurrence",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Common.Parsers.TimePeriod.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Common.Parsers.TimePeriod.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Common.Parsers.TimePeriod",
+      "Summary": "<p sourcefile=\"api/VisualCard.Common.Parsers.TimePeriod.yml\" sourcestartlinenumber=\"1\">Precise period of time</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Common.Parsers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Common.Parsers.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Common.Parsers",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Common.Parts.BasePartInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Common.Parts.BasePartInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Common.Parts.BasePartInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Common.Parts.BasePartInfo.yml\" sourcestartlinenumber=\"1\">Base card part class</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Common.Parts.Enums.PartCardinality.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Common.Parts.Enums.PartCardinality.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Common.Parts.Enums.PartCardinality",
+      "Summary": "<p sourcefile=\"api/VisualCard.Common.Parts.Enums.PartCardinality.yml\" sourcestartlinenumber=\"1\">Part cardinality (specifies how many times an integer, a string, or an array of parts may exist)</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Common.Parts.Enums.PartType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Common.Parts.Enums.PartType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Common.Parts.Enums.PartType",
+      "Summary": "<p sourcefile=\"api/VisualCard.Common.Parts.Enums.PartType.yml\" sourcestartlinenumber=\"1\">Part type</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Common.Parts.Enums.PartsArrayEnum.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Common.Parts.Enums.PartsArrayEnum.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Common.Parts.Enums.PartsArrayEnum",
+      "Summary": "<p sourcefile=\"api/VisualCard.Common.Parts.Enums.PartsArrayEnum.yml\" sourcestartlinenumber=\"1\">Enumeration for available parts that are not strings but are arrays</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Common.Parts.Enums.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Common.Parts.Enums.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Common.Parts.Enums",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Common.Parts.Implementations.ExtraInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Common.Parts.Implementations.ExtraInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Common.Parts.Implementations.ExtraInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Common.Parts.Implementations.ExtraInfo.yml\" sourcestartlinenumber=\"1\">Extraneous information that a calendar or a card may hold</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Common.Parts.Implementations.XNameInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Common.Parts.Implementations.XNameInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Common.Parts.Implementations.XNameInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Common.Parts.Implementations.XNameInfo.yml\" sourcestartlinenumber=\"1\">Non-standard field entry information</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Common.Parts.Implementations.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Common.Parts.Implementations.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Common.Parts.Implementations",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Common.Parts.ValueInfo-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Common.Parts.ValueInfo-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Common.Parts.ValueInfo<TValue>",
+      "Summary": "<p sourcefile=\"api/VisualCard.Common.Parts.ValueInfo-1.yml\" sourcestartlinenumber=\"1\">Card value information</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Common.Parts.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Common.Parts.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Common.Parts",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Exceptions.VCardParseException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Exceptions.VCardParseException.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Exceptions.VCardParseException",
+      "Summary": "<p sourcefile=\"api/VisualCard.Exceptions.VCardParseException.yml\" sourcestartlinenumber=\"1\">Exception of VCard parsing</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Exceptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Exceptions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Exceptions",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Extras.Converters.AndroidContactsDb.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Extras.Converters.AndroidContactsDb.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Extras.Converters.AndroidContactsDb",
+      "Summary": "<p sourcefile=\"api/VisualCard.Extras.Converters.AndroidContactsDb.yml\" sourcestartlinenumber=\"1\">Android contacts database management class</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Extras.Converters.MeCard.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Extras.Converters.MeCard.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Extras.Converters.MeCard",
+      "Summary": "<p sourcefile=\"api/VisualCard.Extras.Converters.MeCard.yml\" sourcestartlinenumber=\"1\">MeCard string generator and converter</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Extras.Converters.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Extras.Converters.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Extras.Converters",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Extras.Misc.CardGenerator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Extras.Misc.CardGenerator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Extras.Misc.CardGenerator",
+      "Summary": "<p sourcefile=\"api/VisualCard.Extras.Misc.CardGenerator.yml\" sourcestartlinenumber=\"1\">A card generator</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Extras.Misc.QrCodeGenerator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Extras.Misc.QrCodeGenerator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Extras.Misc.QrCodeGenerator",
+      "Summary": "<p sourcefile=\"api/VisualCard.Extras.Misc.QrCodeGenerator.yml\" sourcestartlinenumber=\"1\">QR code generator for cards and calendars</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Extras.Misc.SocialMedia.SocialMediaApp.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Extras.Misc.SocialMedia.SocialMediaApp.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Extras.Misc.SocialMedia.SocialMediaApp",
+      "Summary": "<p sourcefile=\"api/VisualCard.Extras.Misc.SocialMedia.SocialMediaApp.yml\" sourcestartlinenumber=\"1\">Social media application enumeration</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Extras.Misc.SocialMedia.SocialMediaTools.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Extras.Misc.SocialMedia.SocialMediaTools.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Extras.Misc.SocialMedia.SocialMediaTools",
+      "Summary": "<p sourcefile=\"api/VisualCard.Extras.Misc.SocialMedia.SocialMediaTools.yml\" sourcestartlinenumber=\"1\">Social media tools for vCards and vCalendars</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Extras.Misc.SocialMedia.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Extras.Misc.SocialMedia.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Extras.Misc.SocialMedia",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Extras.Misc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Extras.Misc.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Extras.Misc",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.BaseCardPartInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.BaseCardPartInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Parts.BaseCardPartInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Parts.BaseCardPartInfo.yml\" sourcestartlinenumber=\"1\">Base card part class</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.Card.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.Card.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Parts.Card",
+      "Summary": "<p sourcefile=\"api/VisualCard.Parts.Card.yml\" sourcestartlinenumber=\"1\">A vCard card instance</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.Enums.CardKind.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.Enums.CardKind.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Parts.Enums.CardKind",
+      "Summary": "<p sourcefile=\"api/VisualCard.Parts.Enums.CardKind.yml\" sourcestartlinenumber=\"1\">vCard kind</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.Enums.CardPartsArrayEnum.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.Enums.CardPartsArrayEnum.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Parts.Enums.CardPartsArrayEnum",
+      "Summary": "<p sourcefile=\"api/VisualCard.Parts.Enums.CardPartsArrayEnum.yml\" sourcestartlinenumber=\"1\">Enumeration for available parts that are not strings but are arrays</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.Enums.CardStringsEnum.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.Enums.CardStringsEnum.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Parts.Enums.CardStringsEnum",
+      "Summary": "<p sourcefile=\"api/VisualCard.Parts.Enums.CardStringsEnum.yml\" sourcestartlinenumber=\"1\">Enumeration for available parts that are strings</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.Enums.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.Enums.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Parts.Enums",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.AddressInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.Implementations.AddressInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Parts.Implementations.AddressInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Parts.Implementations.AddressInfo.yml\" sourcestartlinenumber=\"1\">Contact address information</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.AgentInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.Implementations.AgentInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Parts.Implementations.AgentInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Parts.Implementations.AgentInfo.yml\" sourcestartlinenumber=\"1\">Contact agent information</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.AnniversaryInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.Implementations.AnniversaryInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Parts.Implementations.AnniversaryInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Parts.Implementations.AnniversaryInfo.yml\" sourcestartlinenumber=\"1\">Contact wedding anniversary info</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.BirthDateInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.Implementations.BirthDateInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Parts.Implementations.BirthDateInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Parts.Implementations.BirthDateInfo.yml\" sourcestartlinenumber=\"1\">Contact birth date info</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.CategoryInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.Implementations.CategoryInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Parts.Implementations.CategoryInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Parts.Implementations.CategoryInfo.yml\" sourcestartlinenumber=\"1\">Contact category info</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.ClientPidMapInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.Implementations.ClientPidMapInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Parts.Implementations.ClientPidMapInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Parts.Implementations.ClientPidMapInfo.yml\" sourcestartlinenumber=\"1\">Client PID map info</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.GenderInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.Implementations.GenderInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Parts.Implementations.GenderInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Parts.Implementations.GenderInfo.yml\" sourcestartlinenumber=\"1\">Contact gender info</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.KeyInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.Implementations.KeyInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Parts.Implementations.KeyInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Parts.Implementations.KeyInfo.yml\" sourcestartlinenumber=\"1\">Contact key info</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.LogoInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.Implementations.LogoInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Parts.Implementations.LogoInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Parts.Implementations.LogoInfo.yml\" sourcestartlinenumber=\"1\">Contact logo info</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.NameInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.Implementations.NameInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Parts.Implementations.NameInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Parts.Implementations.NameInfo.yml\" sourcestartlinenumber=\"1\">Name information</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.OrganizationInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.Implementations.OrganizationInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Parts.Implementations.OrganizationInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Parts.Implementations.OrganizationInfo.yml\" sourcestartlinenumber=\"1\">Contact organization info</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.PhotoInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.Implementations.PhotoInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Parts.Implementations.PhotoInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Parts.Implementations.PhotoInfo.yml\" sourcestartlinenumber=\"1\">Contact photo info</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.RevisionInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.Implementations.RevisionInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Parts.Implementations.RevisionInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Parts.Implementations.RevisionInfo.yml\" sourcestartlinenumber=\"1\">Card revision info</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.SoundInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.Implementations.SoundInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Parts.Implementations.SoundInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Parts.Implementations.SoundInfo.yml\" sourcestartlinenumber=\"1\">Contact sound info</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.Tools.Gender.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.Implementations.Tools.Gender.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Parts.Implementations.Tools.Gender",
+      "Summary": "<p sourcefile=\"api/VisualCard.Parts.Implementations.Tools.Gender.yml\" sourcestartlinenumber=\"1\">Enumeration of gender</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.Tools.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.Implementations.Tools.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Parts.Implementations.Tools",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.XmlInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.Implementations.XmlInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Parts.Implementations.XmlInfo",
+      "Summary": "<p sourcefile=\"api/VisualCard.Parts.Implementations.XmlInfo.yml\" sourcestartlinenumber=\"1\">Contact XML info</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.Implementations.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.Implementations.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Parts.Implementations",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.Parts.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.Parts.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard.Parts",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/VisualCard.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/VisualCard.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "VisualCard",
+      "Summary": null
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
       "type": "Conceptual",
       "source_relative_path": "index.md",
       "output": {
