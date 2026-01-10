@@ -1,0 +1,19 @@
+<Solution>
+  <Folder Name="/Assets/">
+    <File Path="CHANGES" />
+    <File Path="CHANGES.TITLE" />
+    <File Path="Directory.Build.props" />
+  </Folder>
+  <Folder Name="/Private/">
+    <Project Path="private/BuildTargets/BuildTargets.csproj" />
+    <Project Path="private/VisualCard.ShowCalendars/VisualCard.ShowCalendars.csproj" />
+    <Project Path="private/VisualCard.ShowContacts/VisualCard.ShowContacts.csproj" />
+    <Project Path="private/VisualCard.Tests/VisualCard.Tests.csproj" />
+  </Folder>
+  <Folder Name="/Public/">
+    <Project Path="public/VisualCard.Calendar/VisualCard.Calendar.csproj" />
+    <Project Path="public/VisualCard.Common/VisualCard.Common.csproj" />
+    <Project Path="public/VisualCard.Extras/VisualCard.Extras.csproj" />
+    <Project Path="public/VisualCard/VisualCard.csproj" />
+  </Folder>
+</Solution>
