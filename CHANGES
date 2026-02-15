@@ -1,10 +1,10 @@
-We've updated this library to fix logging issues!
+We've updated this library to update libraries!
 
 ### Changes
 
 This release contains a variety of changes, including, but not limited to:
 
-- `[*]` Fixed logging always writing to log files even if logging is disabled
+- `[*]` Updated libraries
 
 Review the commit history if you want to get a deep insight about the changes.
 
