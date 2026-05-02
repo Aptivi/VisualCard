@@ -20,7 +20,7 @@
 using System;
 using System.Diagnostics;
 using System.Linq;
-using Terminaux.Colors.Data;
+using Colorimetry.Data;
 using Terminaux.Writer.ConsoleWriters;
 using VisualCard.Extras.Converters;
 using VisualCard.Parts;

@@ -23,7 +23,7 @@ using System.Linq;
 using Aptivestigate.Logging;
 using Aptivestigate.Serilog;
 using Serilog;
-using Terminaux.Colors.Data;
+using Colorimetry.Data;
 using Terminaux.Writer.ConsoleWriters;
 using VisualCard.Calendar;
 using VisualCard.Calendar.Parts.Enums;
